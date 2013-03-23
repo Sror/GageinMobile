@@ -13,17 +13,10 @@
 		EA38B6F816FC41E200BDB4CC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA38B6F616FC41E200BDB4CC /* InfoPlist.strings */; };
 		EA38B6FA16FC41E200BDB4CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA38B6F916FC41E200BDB4CC /* main.m */; };
 		EA38B6FE16FC41E200BDB4CC /* GGNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA38B6FD16FC41E200BDB4CC /* GGNAppDelegate.m */; };
-		EA38B70016FC41E200BDB4CC /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EA38B6FF16FC41E200BDB4CC /* Default.png */; };
-		EA38B70216FC41E200BDB4CC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA38B70116FC41E200BDB4CC /* Default@2x.png */; };
-		EA38B70416FC41E200BDB4CC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA38B70316FC41E200BDB4CC /* Default-568h@2x.png */; };
 		EA38B70716FC41E200BDB4CC /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA38B70516FC41E200BDB4CC /* MainStoryboard_iPhone.storyboard */; };
 		EA38B70A16FC41E200BDB4CC /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA38B70816FC41E200BDB4CC /* MainStoryboard_iPad.storyboard */; };
 		EA38B70D16FC41E200BDB4CC /* GGNFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA38B70C16FC41E200BDB4CC /* GGNFirstViewController.m */; };
-		EA38B70F16FC41E200BDB4CC /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = EA38B70E16FC41E200BDB4CC /* first.png */; };
-		EA38B71116FC41E200BDB4CC /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA38B71016FC41E200BDB4CC /* first@2x.png */; };
 		EA38B71416FC41E200BDB4CC /* GGNSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA38B71316FC41E200BDB4CC /* GGNSecondViewController.m */; };
-		EA38B71616FC41E200BDB4CC /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = EA38B71516FC41E200BDB4CC /* second.png */; };
-		EA38B71816FC41E200BDB4CC /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA38B71716FC41E200BDB4CC /* second@2x.png */; };
 		EA38B72016FC41E200BDB4CC /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA38B71F16FC41E200BDB4CC /* SenTestingKit.framework */; };
 		EA38B72116FC41E200BDB4CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA38B6ED16FC41E200BDB4CC /* UIKit.framework */; };
 		EA38B72216FC41E200BDB4CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA38B6EF16FC41E200BDB4CC /* Foundation.framework */; };
@@ -41,6 +34,27 @@
 		EA38B7A616FC4DA100BDB4CC /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA38B79916FC4DA100BDB4CC /* AFURLConnectionOperation.m */; };
 		EA38B7A716FC4DA100BDB4CC /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA38B79B16FC4DA100BDB4CC /* AFXMLRequestOperation.m */; };
 		EA38B7A816FC4DA100BDB4CC /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EA38B79D16FC4DA100BDB4CC /* UIImageView+AFNetworking.m */; };
+		EAF3657D16FD6804004B5EBF /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF3657C16FD6804004B5EBF /* FacebookSDK.framework */; };
+		EAF3658716FD68B8004B5EBF /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EAF3658616FD68B8004B5EBF /* FacebookSDKResources.bundle */; };
+		EAF3658916FD6904004B5EBF /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF3658816FD6904004B5EBF /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		EAF3658B16FD690A004B5EBF /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF3658A16FD690A004B5EBF /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		EAF3658D16FD6910004B5EBF /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF3658C16FD6910004B5EBF /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		EAF365A816FD7CFC004B5EBF /* SCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF365A616FD7CFC004B5EBF /* SCLoginViewController.m */; };
+		EAF365A916FD7CFC004B5EBF /* SCLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF365A716FD7CFC004B5EBF /* SCLoginViewController.xib */; };
+		EAF365BB16FD7DC2004B5EBF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365AC16FD7DC2004B5EBF /* Default-568h@2x.png */; };
+		EAF365BC16FD7DC2004B5EBF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365AD16FD7DC2004B5EBF /* Default.png */; };
+		EAF365BD16FD7DC2004B5EBF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365AE16FD7DC2004B5EBF /* Default@2x.png */; };
+		EAF365BE16FD7DC2004B5EBF /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365AF16FD7DC2004B5EBF /* first.png */; };
+		EAF365BF16FD7DC2004B5EBF /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365B016FD7DC2004B5EBF /* first@2x.png */; };
+		EAF365C016FD7DC3004B5EBF /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365B116FD7DC2004B5EBF /* Icon-72.png */; };
+		EAF365C116FD7DC3004B5EBF /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365B216FD7DC2004B5EBF /* Icon.png */; };
+		EAF365C216FD7DC3004B5EBF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365B316FD7DC2004B5EBF /* Icon@2x.png */; };
+		EAF365C316FD7DC3004B5EBF /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365B416FD7DC2004B5EBF /* second.png */; };
+		EAF365C416FD7DC3004B5EBF /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365B516FD7DC2004B5EBF /* second@2x.png */; };
+		EAF365C516FD7DC3004B5EBF /* action-eating.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365B716FD7DC2004B5EBF /* action-eating.png */; };
+		EAF365C616FD7DC3004B5EBF /* action-location.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365B816FD7DC2004B5EBF /* action-location.png */; };
+		EAF365C716FD7DC3004B5EBF /* action-people.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365B916FD7DC2004B5EBF /* action-people.png */; };
+		EAF365C816FD7DC3004B5EBF /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365BA16FD7DC2004B5EBF /* facebook.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,19 +78,12 @@
 		EA38B6FB16FC41E200BDB4CC /* GageinApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GageinApp-Prefix.pch"; sourceTree = "<group>"; };
 		EA38B6FC16FC41E200BDB4CC /* GGNAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGNAppDelegate.h; sourceTree = "<group>"; };
 		EA38B6FD16FC41E200BDB4CC /* GGNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGNAppDelegate.m; sourceTree = "<group>"; };
-		EA38B6FF16FC41E200BDB4CC /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		EA38B70116FC41E200BDB4CC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		EA38B70316FC41E200BDB4CC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EA38B70616FC41E200BDB4CC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		EA38B70916FC41E200BDB4CC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		EA38B70B16FC41E200BDB4CC /* GGNFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGNFirstViewController.h; sourceTree = "<group>"; };
 		EA38B70C16FC41E200BDB4CC /* GGNFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGNFirstViewController.m; sourceTree = "<group>"; };
-		EA38B70E16FC41E200BDB4CC /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
-		EA38B71016FC41E200BDB4CC /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
 		EA38B71216FC41E200BDB4CC /* GGNSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGNSecondViewController.h; sourceTree = "<group>"; };
 		EA38B71316FC41E200BDB4CC /* GGNSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGNSecondViewController.m; sourceTree = "<group>"; };
-		EA38B71516FC41E200BDB4CC /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
-		EA38B71716FC41E200BDB4CC /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		EA38B71E16FC41E200BDB4CC /* GageinAppTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GageinAppTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA38B71F16FC41E200BDB4CC /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		EA38B72716FC41E200BDB4CC /* GageinAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GageinAppTests-Info.plist"; sourceTree = "<group>"; };
@@ -107,6 +114,28 @@
 		EA38B79C16FC4DA100BDB4CC /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		EA38B79D16FC4DA100BDB4CC /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		EA38B7A916FC4DC100BDB4CC /* GGNDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGNDefine.h; sourceTree = "<group>"; };
+		EAF3657C16FD6804004B5EBF /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "../../../../../Users/dongyiming/Downloads/facebook-ios-sdk-master-1/build/FacebookSDK.framework"; sourceTree = "<group>"; };
+		EAF3658616FD68B8004B5EBF /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = "../../../../../Users/dongyiming/Downloads/facebook-ios-sdk-master-1/build/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle"; sourceTree = "<group>"; };
+		EAF3658816FD6904004B5EBF /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		EAF3658A16FD690A004B5EBF /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		EAF3658C16FD6910004B5EBF /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		EAF365A516FD7CFC004B5EBF /* SCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLoginViewController.h; sourceTree = "<group>"; };
+		EAF365A616FD7CFC004B5EBF /* SCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLoginViewController.m; sourceTree = "<group>"; };
+		EAF365A716FD7CFC004B5EBF /* SCLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCLoginViewController.xib; sourceTree = "<group>"; };
+		EAF365AC16FD7DC2004B5EBF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		EAF365AD16FD7DC2004B5EBF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		EAF365AE16FD7DC2004B5EBF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		EAF365AF16FD7DC2004B5EBF /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		EAF365B016FD7DC2004B5EBF /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		EAF365B116FD7DC2004B5EBF /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		EAF365B216FD7DC2004B5EBF /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		EAF365B316FD7DC2004B5EBF /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		EAF365B416FD7DC2004B5EBF /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
+		EAF365B516FD7DC2004B5EBF /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		EAF365B716FD7DC2004B5EBF /* action-eating.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-eating.png"; sourceTree = "<group>"; };
+		EAF365B816FD7DC2004B5EBF /* action-location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-location.png"; sourceTree = "<group>"; };
+		EAF365B916FD7DC2004B5EBF /* action-people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-people.png"; sourceTree = "<group>"; };
+		EAF365BA16FD7DC2004B5EBF /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,11 +143,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAF3658D16FD6910004B5EBF /* Social.framework in Frameworks */,
+				EAF3658B16FD690A004B5EBF /* Accounts.framework in Frameworks */,
+				EAF3658916FD6904004B5EBF /* AdSupport.framework in Frameworks */,
 				EA38B75616FC432B00BDB4CC /* MobileCoreServices.framework in Frameworks */,
 				EA38B75416FC432400BDB4CC /* SystemConfiguration.framework in Frameworks */,
 				EA38B6EE16FC41E200BDB4CC /* UIKit.framework in Frameworks */,
 				EA38B6F016FC41E200BDB4CC /* Foundation.framework in Frameworks */,
 				EA38B6F216FC41E200BDB4CC /* CoreGraphics.framework in Frameworks */,
+				EAF3657D16FD6804004B5EBF /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +190,11 @@
 		EA38B6EC16FC41E200BDB4CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EAF3658C16FD6910004B5EBF /* Social.framework */,
+				EAF3658A16FD690A004B5EBF /* Accounts.framework */,
+				EAF3658816FD6904004B5EBF /* AdSupport.framework */,
+				EAF3658616FD68B8004B5EBF /* FacebookSDKResources.bundle */,
+				EAF3657C16FD6804004B5EBF /* FacebookSDK.framework */,
 				EA38B75516FC432B00BDB4CC /* MobileCoreServices.framework */,
 				EA38B75316FC432400BDB4CC /* SystemConfiguration.framework */,
 				EA38B6ED16FC41E200BDB4CC /* UIKit.framework */,
@@ -170,6 +208,7 @@
 		EA38B6F316FC41E200BDB4CC /* GageinApp */ = {
 			isa = PBXGroup;
 			children = (
+				EAF365AA16FD7DC2004B5EBF /* Resources */,
 				EA38B78116FC4DA100BDB4CC /* Source */,
 				EA38B6FC16FC41E200BDB4CC /* GGNAppDelegate.h */,
 				EA38B6FD16FC41E200BDB4CC /* GGNAppDelegate.m */,
@@ -177,12 +216,8 @@
 				EA38B70816FC41E200BDB4CC /* MainStoryboard_iPad.storyboard */,
 				EA38B70B16FC41E200BDB4CC /* GGNFirstViewController.h */,
 				EA38B70C16FC41E200BDB4CC /* GGNFirstViewController.m */,
-				EA38B70E16FC41E200BDB4CC /* first.png */,
-				EA38B71016FC41E200BDB4CC /* first@2x.png */,
 				EA38B71216FC41E200BDB4CC /* GGNSecondViewController.h */,
 				EA38B71316FC41E200BDB4CC /* GGNSecondViewController.m */,
-				EA38B71516FC41E200BDB4CC /* second.png */,
-				EA38B71716FC41E200BDB4CC /* second@2x.png */,
 				EA38B6F416FC41E200BDB4CC /* Supporting Files */,
 			);
 			path = GageinApp;
@@ -195,9 +230,6 @@
 				EA38B6F616FC41E200BDB4CC /* InfoPlist.strings */,
 				EA38B6F916FC41E200BDB4CC /* main.m */,
 				EA38B6FB16FC41E200BDB4CC /* GageinApp-Prefix.pch */,
-				EA38B6FF16FC41E200BDB4CC /* Default.png */,
-				EA38B70116FC41E200BDB4CC /* Default@2x.png */,
-				EA38B70316FC41E200BDB4CC /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -254,6 +286,9 @@
 		EA38B78616FC4DA100BDB4CC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EAF365A516FD7CFC004B5EBF /* SCLoginViewController.h */,
+				EAF365A616FD7CFC004B5EBF /* SCLoginViewController.m */,
+				EAF365A716FD7CFC004B5EBF /* SCLoginViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -312,6 +347,43 @@
 				EA38B7A916FC4DC100BDB4CC /* GGNDefine.h */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		EAF365AA16FD7DC2004B5EBF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EAF365AB16FD7DC2004B5EBF /* images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EAF365AB16FD7DC2004B5EBF /* images */ = {
+			isa = PBXGroup;
+			children = (
+				EAF365AC16FD7DC2004B5EBF /* Default-568h@2x.png */,
+				EAF365AD16FD7DC2004B5EBF /* Default.png */,
+				EAF365AE16FD7DC2004B5EBF /* Default@2x.png */,
+				EAF365AF16FD7DC2004B5EBF /* first.png */,
+				EAF365B016FD7DC2004B5EBF /* first@2x.png */,
+				EAF365B116FD7DC2004B5EBF /* Icon-72.png */,
+				EAF365B216FD7DC2004B5EBF /* Icon.png */,
+				EAF365B316FD7DC2004B5EBF /* Icon@2x.png */,
+				EAF365B416FD7DC2004B5EBF /* second.png */,
+				EAF365B516FD7DC2004B5EBF /* second@2x.png */,
+				EAF365B616FD7DC2004B5EBF /* temp */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		EAF365B616FD7DC2004B5EBF /* temp */ = {
+			isa = PBXGroup;
+			children = (
+				EAF365B716FD7DC2004B5EBF /* action-eating.png */,
+				EAF365B816FD7DC2004B5EBF /* action-location.png */,
+				EAF365B916FD7DC2004B5EBF /* action-people.png */,
+				EAF365BA16FD7DC2004B5EBF /* facebook.png */,
+			);
+			path = temp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -387,15 +459,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA38B6F816FC41E200BDB4CC /* InfoPlist.strings in Resources */,
-				EA38B70016FC41E200BDB4CC /* Default.png in Resources */,
-				EA38B70216FC41E200BDB4CC /* Default@2x.png in Resources */,
-				EA38B70416FC41E200BDB4CC /* Default-568h@2x.png in Resources */,
 				EA38B70716FC41E200BDB4CC /* MainStoryboard_iPhone.storyboard in Resources */,
 				EA38B70A16FC41E200BDB4CC /* MainStoryboard_iPad.storyboard in Resources */,
-				EA38B70F16FC41E200BDB4CC /* first.png in Resources */,
-				EA38B71116FC41E200BDB4CC /* first@2x.png in Resources */,
-				EA38B71616FC41E200BDB4CC /* second.png in Resources */,
-				EA38B71816FC41E200BDB4CC /* second@2x.png in Resources */,
+				EAF3658716FD68B8004B5EBF /* FacebookSDKResources.bundle in Resources */,
+				EAF365A916FD7CFC004B5EBF /* SCLoginViewController.xib in Resources */,
+				EAF365BB16FD7DC2004B5EBF /* Default-568h@2x.png in Resources */,
+				EAF365BC16FD7DC2004B5EBF /* Default.png in Resources */,
+				EAF365BD16FD7DC2004B5EBF /* Default@2x.png in Resources */,
+				EAF365BE16FD7DC2004B5EBF /* first.png in Resources */,
+				EAF365BF16FD7DC2004B5EBF /* first@2x.png in Resources */,
+				EAF365C016FD7DC3004B5EBF /* Icon-72.png in Resources */,
+				EAF365C116FD7DC3004B5EBF /* Icon.png in Resources */,
+				EAF365C216FD7DC3004B5EBF /* Icon@2x.png in Resources */,
+				EAF365C316FD7DC3004B5EBF /* second.png in Resources */,
+				EAF365C416FD7DC3004B5EBF /* second@2x.png in Resources */,
+				EAF365C516FD7DC3004B5EBF /* action-eating.png in Resources */,
+				EAF365C616FD7DC3004B5EBF /* action-location.png in Resources */,
+				EAF365C716FD7DC3004B5EBF /* action-people.png in Resources */,
+				EAF365C816FD7DC3004B5EBF /* facebook.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +525,7 @@
 				EA38B7A616FC4DA100BDB4CC /* AFURLConnectionOperation.m in Sources */,
 				EA38B7A716FC4DA100BDB4CC /* AFXMLRequestOperation.m in Sources */,
 				EA38B7A816FC4DA100BDB4CC /* UIImageView+AFNetworking.m in Sources */,
+				EAF365A816FD7CFC004B5EBF /* SCLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,10 +638,18 @@
 		EA38B73116FC41E200BDB4CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"/Users/dongyiming/Downloads/facebook-ios-sdk-master-1/build\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GageinApp/GageinApp-Prefix.pch";
 				INFOPLIST_FILE = "GageinApp/GageinApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = (
+					"-lsqlite3.0",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -568,10 +658,18 @@
 		EA38B73216FC41E200BDB4CC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"/Users/dongyiming/Downloads/facebook-ios-sdk-master-1/build\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GageinApp/GageinApp-Prefix.pch";
 				INFOPLIST_FILE = "GageinApp/GageinApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = (
+					"-lsqlite3.0",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -630,6 +728,7 @@
 				EA38B73216FC41E200BDB4CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA38B73316FC41E200BDB4CC /* Build configuration list for PBXNativeTarget "GageinAppTests" */ = {
 			isa = XCConfigurationList;
@@ -638,6 +737,7 @@
 				EA38B73516FC41E200BDB4CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
