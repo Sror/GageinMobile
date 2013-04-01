@@ -39,6 +39,10 @@
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     
+    [[GGApi sharedApi] getCompanyInfoWithID:1399794 includeSp:YES callback:^(id operation, id aResultObject, NSError *anError) {
+        NSLog(@"%@", aResultObject);
+    }];
+    
     return YES;
 }
 
