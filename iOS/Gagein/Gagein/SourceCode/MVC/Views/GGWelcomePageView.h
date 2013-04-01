@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface GGWelcomePageView : UIView
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIView *page1;
+@property (weak, nonatomic) IBOutlet UIView *page2;
+@property (weak, nonatomic) IBOutlet UIView *page3;
+@property (weak, nonatomic) IBOutlet UIView *page4;
+@property (weak, nonatomic) IBOutlet UIButton *getStartedBtn;
 
--(void)showImageWithIndex:(NSUInteger)aIndex;
+-(void)showPageWithIndex:(NSUInteger)aIndex;
+
+-(IBAction)getStartedAction:(id)sender;
 
 @end

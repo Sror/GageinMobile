@@ -59,6 +59,8 @@
 		EACAE1471709643D00E7088F /* welcome02.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE1431709643D00E7088F /* welcome02.png */; };
 		EACAE1481709643D00E7088F /* welcome03.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE1441709643D00E7088F /* welcome03.png */; };
 		EACAE1491709643D00E7088F /* welcome04.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE1451709643D00E7088F /* welcome04.png */; };
+		EACAE14B1709755B00E7088F /* gageinLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE14A1709755B00E7088F /* gageinLogo.png */; };
+		EACAE14D1709777F00E7088F /* getStartedBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE14C1709777F00E7088F /* getStartedBtn.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +140,8 @@
 		EACAE1431709643D00E7088F /* welcome02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome02.png; sourceTree = "<group>"; };
 		EACAE1441709643D00E7088F /* welcome03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome03.png; sourceTree = "<group>"; };
 		EACAE1451709643D00E7088F /* welcome04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome04.png; sourceTree = "<group>"; };
+		EACAE14A1709755B00E7088F /* gageinLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gageinLogo.png; sourceTree = "<group>"; };
+		EACAE14C1709777F00E7088F /* getStartedBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = getStartedBtn.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -446,6 +450,8 @@
 		EACAE1411709643D00E7088F /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				EACAE14C1709777F00E7088F /* getStartedBtn.png */,
+				EACAE14A1709755B00E7088F /* gageinLogo.png */,
 				EACAE1421709643D00E7088F /* welcome01.png */,
 				EACAE1431709643D00E7088F /* welcome02.png */,
 				EACAE1441709643D00E7088F /* welcome03.png */,
@@ -532,6 +538,8 @@
 				EACAE1471709643D00E7088F /* welcome02.png in Resources */,
 				EACAE1481709643D00E7088F /* welcome03.png in Resources */,
 				EACAE1491709643D00E7088F /* welcome04.png in Resources */,
+				EACAE14B1709755B00E7088F /* gageinLogo.png in Resources */,
+				EACAE14D1709777F00E7088F /* getStartedBtn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

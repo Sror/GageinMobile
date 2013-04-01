@@ -27,14 +27,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor darkGrayColor];
+    //self.view.backgroundColor = [UIColor darkGrayColor];
     
     int pageCount = 4;
     for (int i = 0; i < pageCount; i++)
     {
         GGWelcomePageView *page = [GGWelcomePageView viewFromNibWithOwner:self];
         //page.alpha = .5f;
-        [page showImageWithIndex:i];
+        [page showPageWithIndex:i];
         CGRect pageFrame = CGRectOffset(page.frame, i * page.frame.size.width, 0);
         page.frame = pageFrame;
         [self.scrollView addSubview:page];

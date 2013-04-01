@@ -19,9 +19,53 @@
     return self;
 }
 
--(void)showImageWithIndex:(NSUInteger)aIndex
+-(void)showPageWithIndex:(NSUInteger)aIndex
 {
-    self.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"welcome0%d", aIndex + 1]];
+    self.page1.hidden =
+    self.page2.hidden =
+    self.page3.hidden =
+    self.page4.hidden = YES;
+    
+    switch (aIndex) {
+        case 0:
+        {
+            self.page1.hidden = NO;
+        }
+            break;
+            
+        case 1:
+        {
+            self.page2.hidden = NO;
+        }
+            break;
+            
+        case 2:
+        {
+            self.page3.hidden = NO;
+        }
+            break;
+            
+        case 3:
+        {
+            self.page4.hidden = NO;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    for (UIView *view in self.subviews)
+    {
+        if (view.hidden) {
+            [view removeFromSuperview];
+        }
+    }
+}
+
+-(IBAction)getStartedAction:(id)sender
+{
+    DLog(@"show sign up screen");
 }
 
 @end
