@@ -12,9 +12,12 @@
 #import "GGPeopleVC.h"
 #import "GGProfileVC.h"
 #import "GGSettingVC.h"
+#import "GGSignupPortalVC.h"
 
 #import "GGWelcomeVC.h"
 #import "GGRuntimeData.h"
+
+
 
 @implementation GGAppDelegate
 
@@ -39,24 +42,20 @@
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = @[viewController1, viewController2, viewController3, viewController4];
     
-    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:self.tabBarController];
-    navi.navigationBarHidden = YES;
+    self.naviController = [[UINavigationController alloc] initWithRootViewController:self.tabBarController];
+    self.naviController.navigationBarHidden = YES;
     
-    self.window.rootViewController = navi;
+    self.window.rootViewController = self.naviController;
     [self.window makeKeyAndVisible];
     
 //    [[GGApi sharedApi] getCompanyInfoWithID:1399794 includeSp:YES callback:^(id operation, id aResultObject, NSError *anError) {
 //        DLog(@"%@", aResultObject);
 //    }];
     
-    if ([GGRuntimeData sharedInstance].isFirstRun)
+    if (![GGRuntimeData sharedInstance].isLoggedIn)
     {
-        GGWelcomeVC *vc = [[GGWelcomeVC alloc] init];
-        [navi pushViewController:vc animated:NO];
-    }
-    else if (![GGRuntimeData sharedInstance].isLoggedIn)
-    {
-        //
+        GGSignupPortalVC *vc = [[GGSignupPortalVC alloc] init];
+        [self.naviController pushViewController:vc animated:NO];
     }
     
     return YES;
@@ -100,5 +99,10 @@
 {
 }
 */
+
+#pragma mark - handle notification
+- (void)handleNotification:(NSNotification *)notification
+{
+}
 
 @end

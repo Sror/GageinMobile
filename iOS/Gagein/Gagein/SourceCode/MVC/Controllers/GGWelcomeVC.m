@@ -73,4 +73,5 @@
     //self.scrollView.contentOffset = CGPointMake(currentPage * 320, 0);
     [self.scrollView setContentOffset:CGPointMake(currentPage * 320, 0) animated:YES];
 }
+
 @end

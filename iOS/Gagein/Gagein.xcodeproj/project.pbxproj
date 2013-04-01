@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EAC96C2B1709833C003FAFAA /* GGSignupPortalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */; };
+		EAC96C37170983B5003FAFAA /* GGCompaniesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C2F170983B5003FAFAA /* GGCompaniesVC.xib */; };
+		EAC96C38170983B5003FAFAA /* GGPeopleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C30170983B5003FAFAA /* GGPeopleVC.xib */; };
+		EAC96C39170983B5003FAFAA /* GGProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C31170983B5003FAFAA /* GGProfileVC.xib */; };
+		EAC96C3A170983B5003FAFAA /* GGSettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C32170983B5003FAFAA /* GGSettingVC.xib */; };
+		EAC96C3B170983B5003FAFAA /* GGSignupPortalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C33170983B5003FAFAA /* GGSignupPortalVC.xib */; };
+		EAC96C3C170983B5003FAFAA /* GGWelcomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C34170983B5003FAFAA /* GGWelcomeVC.xib */; };
+		EAC96C3D170983B5003FAFAA /* GGWelcomePageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */; };
+		EAC96C441709868B003FAFAA /* NSObject+BeeNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC96C431709868B003FAFAA /* NSObject+BeeNotification.m */; };
 		EACAE0771709486800E7088F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAE0761709486800E7088F /* UIKit.framework */; };
 		EACAE0791709486800E7088F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAE0781709486800E7088F /* Foundation.framework */; };
 		EACAE07B1709486800E7088F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAE07A1709486800E7088F /* CoreGraphics.framework */; };
@@ -26,10 +35,6 @@
 		EACAE0DB17094D5F00E7088F /* GGPeopleVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0DA17094D5F00E7088F /* GGPeopleVC_iPad.xib */; };
 		EACAE0DD17094D7900E7088F /* GGProfileVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0DC17094D7900E7088F /* GGProfileVC_iPad.xib */; };
 		EACAE0DF17094DA000E7088F /* GGSettingVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0DE17094DA000E7088F /* GGSettingVC_iPad.xib */; };
-		EACAE0E417094DF200E7088F /* GGCompaniesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0E017094DF200E7088F /* GGCompaniesVC.xib */; };
-		EACAE0E517094DF200E7088F /* GGPeopleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0E117094DF200E7088F /* GGPeopleVC.xib */; };
-		EACAE0E617094DF200E7088F /* GGProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0E217094DF200E7088F /* GGProfileVC.xib */; };
-		EACAE0E717094DF200E7088F /* GGSettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0E317094DF200E7088F /* GGSettingVC.xib */; };
 		EACAE0EC170954DE00E7088F /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0E8170954DE00E7088F /* first.png */; };
 		EACAE0ED170954DE00E7088F /* Gestures.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0E9170954DE00E7088F /* Gestures.png */; };
 		EACAE0EE170954DE00E7088F /* Players.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0EA170954DE00E7088F /* Players.png */; };
@@ -51,9 +56,7 @@
 		EACAE11B1709579800E7088F /* GGApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE11A1709579800E7088F /* GGApi.m */; };
 		EACAE12717095C8700E7088F /* GGRuntimeData.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE12617095C8700E7088F /* GGRuntimeData.m */; };
 		EACAE12B17095EAB00E7088F /* GGWelcomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE12917095EAB00E7088F /* GGWelcomeVC.m */; };
-		EACAE12E17095EED00E7088F /* GGWelcomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE12D17095EED00E7088F /* GGWelcomeVC.xib */; };
 		EACAE13B170961FB00E7088F /* UIView+LoadFromNib.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE13A170961FB00E7088F /* UIView+LoadFromNib.m */; };
-		EACAE13D1709626C00E7088F /* GGWelcomePageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE13C1709626C00E7088F /* GGWelcomePageView.xib */; };
 		EACAE1401709629400E7088F /* GGWelcomePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE13F1709629400E7088F /* GGWelcomePageView.m */; };
 		EACAE1461709643D00E7088F /* welcome01.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE1421709643D00E7088F /* welcome01.png */; };
 		EACAE1471709643D00E7088F /* welcome02.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE1431709643D00E7088F /* welcome02.png */; };
@@ -64,6 +67,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EAC96C281709833C003FAFAA /* GGSignupPortalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSignupPortalVC.h; sourceTree = "<group>"; };
+		EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSignupPortalVC.m; sourceTree = "<group>"; };
+		EAC96C2F170983B5003FAFAA /* GGCompaniesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompaniesVC.xib; sourceTree = "<group>"; };
+		EAC96C30170983B5003FAFAA /* GGPeopleVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGPeopleVC.xib; sourceTree = "<group>"; };
+		EAC96C31170983B5003FAFAA /* GGProfileVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGProfileVC.xib; sourceTree = "<group>"; };
+		EAC96C32170983B5003FAFAA /* GGSettingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingVC.xib; sourceTree = "<group>"; };
+		EAC96C33170983B5003FAFAA /* GGSignupPortalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSignupPortalVC.xib; sourceTree = "<group>"; };
+		EAC96C34170983B5003FAFAA /* GGWelcomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGWelcomeVC.xib; sourceTree = "<group>"; };
+		EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGWelcomePageView.xib; sourceTree = "<group>"; };
+		EAC96C421709868B003FAFAA /* NSObject+BeeNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BeeNotification.h"; sourceTree = "<group>"; };
+		EAC96C431709868B003FAFAA /* NSObject+BeeNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BeeNotification.m"; sourceTree = "<group>"; };
 		EACAE0721709486800E7088F /* Gagein.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gagein.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EACAE0761709486800E7088F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EACAE0781709486800E7088F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -91,10 +105,6 @@
 		EACAE0DA17094D5F00E7088F /* GGPeopleVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGPeopleVC_iPad.xib; sourceTree = "<group>"; };
 		EACAE0DC17094D7900E7088F /* GGProfileVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGProfileVC_iPad.xib; sourceTree = "<group>"; };
 		EACAE0DE17094DA000E7088F /* GGSettingVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingVC_iPad.xib; sourceTree = "<group>"; };
-		EACAE0E017094DF200E7088F /* GGCompaniesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompaniesVC.xib; sourceTree = "<group>"; };
-		EACAE0E117094DF200E7088F /* GGPeopleVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGPeopleVC.xib; sourceTree = "<group>"; };
-		EACAE0E217094DF200E7088F /* GGProfileVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGProfileVC.xib; sourceTree = "<group>"; };
-		EACAE0E317094DF200E7088F /* GGSettingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingVC.xib; sourceTree = "<group>"; };
 		EACAE0E8170954DE00E7088F /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		EACAE0E9170954DE00E7088F /* Gestures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gestures.png; sourceTree = "<group>"; };
 		EACAE0EA170954DE00E7088F /* Players.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Players.png; sourceTree = "<group>"; };
@@ -130,10 +140,8 @@
 		EACAE12617095C8700E7088F /* GGRuntimeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGRuntimeData.m; sourceTree = "<group>"; };
 		EACAE12817095EAA00E7088F /* GGWelcomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGWelcomeVC.h; sourceTree = "<group>"; };
 		EACAE12917095EAB00E7088F /* GGWelcomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGWelcomeVC.m; sourceTree = "<group>"; };
-		EACAE12D17095EED00E7088F /* GGWelcomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGWelcomeVC.xib; sourceTree = "<group>"; };
 		EACAE139170961FB00E7088F /* UIView+LoadFromNib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LoadFromNib.h"; sourceTree = "<group>"; };
 		EACAE13A170961FB00E7088F /* UIView+LoadFromNib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LoadFromNib.m"; sourceTree = "<group>"; };
-		EACAE13C1709626C00E7088F /* GGWelcomePageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGWelcomePageView.xib; sourceTree = "<group>"; };
 		EACAE13E1709629400E7088F /* GGWelcomePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGWelcomePageView.h; sourceTree = "<group>"; };
 		EACAE13F1709629400E7088F /* GGWelcomePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGWelcomePageView.m; sourceTree = "<group>"; };
 		EACAE1421709643D00E7088F /* welcome01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome01.png; sourceTree = "<group>"; };
@@ -160,6 +168,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EAC96C2617098313003FAFAA /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				EAC96C281709833C003FAFAA /* GGSignupPortalVC.h */,
+				EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */,
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
+		EAC96C2D170983B5003FAFAA /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				EAC96C2E170983B5003FAFAA /* ViewControllers */,
+				EAC96C35170983B5003FAFAA /* Views */,
+			);
+			path = XIBs;
+			sourceTree = "<group>";
+		};
+		EAC96C2E170983B5003FAFAA /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				EAC96C2F170983B5003FAFAA /* GGCompaniesVC.xib */,
+				EAC96C30170983B5003FAFAA /* GGPeopleVC.xib */,
+				EAC96C31170983B5003FAFAA /* GGProfileVC.xib */,
+				EAC96C32170983B5003FAFAA /* GGSettingVC.xib */,
+				EAC96C33170983B5003FAFAA /* GGSignupPortalVC.xib */,
+				EAC96C34170983B5003FAFAA /* GGWelcomeVC.xib */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		EAC96C35170983B5003FAFAA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		EACAE0671709486800E7088F = {
 			isa = PBXGroup;
 			children = (
@@ -225,7 +272,6 @@
 				EACAE0AF17094A3100E7088F /* Images */,
 				EACAE0B217094A3100E7088F /* Others */,
 				EACAE0B317094A3100E7088F /* Videos */,
-				EACAE0B417094A3100E7088F /* XIBs */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -282,22 +328,10 @@
 			path = Videos;
 			sourceTree = "<group>";
 		};
-		EACAE0B417094A3100E7088F /* XIBs */ = {
-			isa = PBXGroup;
-			children = (
-				EACAE12D17095EED00E7088F /* GGWelcomeVC.xib */,
-				EACAE0E017094DF200E7088F /* GGCompaniesVC.xib */,
-				EACAE0E117094DF200E7088F /* GGPeopleVC.xib */,
-				EACAE0E217094DF200E7088F /* GGProfileVC.xib */,
-				EACAE0E317094DF200E7088F /* GGSettingVC.xib */,
-				EACAE13C1709626C00E7088F /* GGWelcomePageView.xib */,
-			);
-			path = XIBs;
-			sourceTree = "<group>";
-		};
 		EACAE0B517094A3100E7088F /* SourceCode */ = {
 			isa = PBXGroup;
 			children = (
+				EAC96C2D170983B5003FAFAA /* XIBs */,
 				EACAE0B617094A3100E7088F /* APIEngine */,
 				EACAE0B717094A3100E7088F /* MVC */,
 				EACAE0F8170956BB00E7088F /* Utilities */,
@@ -328,6 +362,7 @@
 		EACAE0B817094A3100E7088F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EAC96C2617098313003FAFAA /* Signup */,
 				EACAE0BC17094A9A00E7088F /* GGCompaniesVC.h */,
 				EACAE0BD17094A9A00E7088F /* GGCompaniesVC.m */,
 				EACAE0C517094B3200E7088F /* GGPeopleVC.h */,
@@ -441,6 +476,8 @@
 		EACAE138170961A200E7088F /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				EAC96C421709868B003FAFAA /* NSObject+BeeNotification.h */,
+				EAC96C431709868B003FAFAA /* NSObject+BeeNotification.m */,
 				EACAE139170961FB00E7088F /* UIView+LoadFromNib.h */,
 				EACAE13A170961FB00E7088F /* UIView+LoadFromNib.m */,
 			);
@@ -520,10 +557,6 @@
 				EACAE0DB17094D5F00E7088F /* GGPeopleVC_iPad.xib in Resources */,
 				EACAE0DD17094D7900E7088F /* GGProfileVC_iPad.xib in Resources */,
 				EACAE0DF17094DA000E7088F /* GGSettingVC_iPad.xib in Resources */,
-				EACAE0E417094DF200E7088F /* GGCompaniesVC.xib in Resources */,
-				EACAE0E517094DF200E7088F /* GGPeopleVC.xib in Resources */,
-				EACAE0E617094DF200E7088F /* GGProfileVC.xib in Resources */,
-				EACAE0E717094DF200E7088F /* GGSettingVC.xib in Resources */,
 				EACAE0EC170954DE00E7088F /* first.png in Resources */,
 				EACAE0ED170954DE00E7088F /* Gestures.png in Resources */,
 				EACAE0EE170954DE00E7088F /* Players.png in Resources */,
@@ -532,14 +565,19 @@
 				EACAE0F5170954E700E7088F /* Gestures@2x.png in Resources */,
 				EACAE0F6170954E700E7088F /* Players@2x.png in Resources */,
 				EACAE0F7170954E700E7088F /* second@2x.png in Resources */,
-				EACAE12E17095EED00E7088F /* GGWelcomeVC.xib in Resources */,
-				EACAE13D1709626C00E7088F /* GGWelcomePageView.xib in Resources */,
 				EACAE1461709643D00E7088F /* welcome01.png in Resources */,
 				EACAE1471709643D00E7088F /* welcome02.png in Resources */,
 				EACAE1481709643D00E7088F /* welcome03.png in Resources */,
 				EACAE1491709643D00E7088F /* welcome04.png in Resources */,
 				EACAE14B1709755B00E7088F /* gageinLogo.png in Resources */,
 				EACAE14D1709777F00E7088F /* getStartedBtn.png in Resources */,
+				EAC96C37170983B5003FAFAA /* GGCompaniesVC.xib in Resources */,
+				EAC96C38170983B5003FAFAA /* GGPeopleVC.xib in Resources */,
+				EAC96C39170983B5003FAFAA /* GGProfileVC.xib in Resources */,
+				EAC96C3A170983B5003FAFAA /* GGSettingVC.xib in Resources */,
+				EAC96C3B170983B5003FAFAA /* GGSignupPortalVC.xib in Resources */,
+				EAC96C3C170983B5003FAFAA /* GGWelcomeVC.xib in Resources */,
+				EAC96C3D170983B5003FAFAA /* GGWelcomePageView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,6 +609,8 @@
 				EACAE12B17095EAB00E7088F /* GGWelcomeVC.m in Sources */,
 				EACAE13B170961FB00E7088F /* UIView+LoadFromNib.m in Sources */,
 				EACAE1401709629400E7088F /* GGWelcomePageView.m in Sources */,
+				EAC96C2B1709833C003FAFAA /* GGSignupPortalVC.m in Sources */,
+				EAC96C441709868B003FAFAA /* NSObject+BeeNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,6 +723,7 @@
 				EACAE0AC1709486900E7088F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

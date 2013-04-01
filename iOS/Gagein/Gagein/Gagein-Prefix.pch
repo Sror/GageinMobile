@@ -18,4 +18,5 @@
     #import "GGApi.h"
     #import "GGDefine.h"
     #import "UIView+LoadFromNib.h"
+    #import "NSObject+BeeNotification.h"
 #endif

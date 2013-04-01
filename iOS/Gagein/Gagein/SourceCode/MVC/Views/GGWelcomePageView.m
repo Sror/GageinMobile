@@ -66,6 +66,7 @@
 -(IBAction)getStartedAction:(id)sender
 {
     DLog(@"show sign up screen");
+    [self postNotification:GG_NOTIFY_GET_STARTED];
 }
 
 @end
