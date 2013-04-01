@@ -49,6 +49,16 @@
 		EACAE1171709576200E7088F /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE10D1709576200E7088F /* AFXMLRequestOperation.m */; };
 		EACAE1181709576200E7088F /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE10F1709576200E7088F /* UIImageView+AFNetworking.m */; };
 		EACAE11B1709579800E7088F /* GGApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE11A1709579800E7088F /* GGApi.m */; };
+		EACAE12717095C8700E7088F /* GGRuntimeData.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE12617095C8700E7088F /* GGRuntimeData.m */; };
+		EACAE12B17095EAB00E7088F /* GGWelcomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE12917095EAB00E7088F /* GGWelcomeVC.m */; };
+		EACAE12E17095EED00E7088F /* GGWelcomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE12D17095EED00E7088F /* GGWelcomeVC.xib */; };
+		EACAE13B170961FB00E7088F /* UIView+LoadFromNib.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE13A170961FB00E7088F /* UIView+LoadFromNib.m */; };
+		EACAE13D1709626C00E7088F /* GGWelcomePageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE13C1709626C00E7088F /* GGWelcomePageView.xib */; };
+		EACAE1401709629400E7088F /* GGWelcomePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE13F1709629400E7088F /* GGWelcomePageView.m */; };
+		EACAE1461709643D00E7088F /* welcome01.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE1421709643D00E7088F /* welcome01.png */; };
+		EACAE1471709643D00E7088F /* welcome02.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE1431709643D00E7088F /* welcome02.png */; };
+		EACAE1481709643D00E7088F /* welcome03.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE1441709643D00E7088F /* welcome03.png */; };
+		EACAE1491709643D00E7088F /* welcome04.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE1451709643D00E7088F /* welcome04.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +124,20 @@
 		EACAE10F1709576200E7088F /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		EACAE1191709579800E7088F /* GGApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGApi.h; sourceTree = "<group>"; };
 		EACAE11A1709579800E7088F /* GGApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGApi.m; sourceTree = "<group>"; };
+		EACAE12517095C8700E7088F /* GGRuntimeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGRuntimeData.h; sourceTree = "<group>"; };
+		EACAE12617095C8700E7088F /* GGRuntimeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGRuntimeData.m; sourceTree = "<group>"; };
+		EACAE12817095EAA00E7088F /* GGWelcomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGWelcomeVC.h; sourceTree = "<group>"; };
+		EACAE12917095EAB00E7088F /* GGWelcomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGWelcomeVC.m; sourceTree = "<group>"; };
+		EACAE12D17095EED00E7088F /* GGWelcomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGWelcomeVC.xib; sourceTree = "<group>"; };
+		EACAE139170961FB00E7088F /* UIView+LoadFromNib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LoadFromNib.h"; sourceTree = "<group>"; };
+		EACAE13A170961FB00E7088F /* UIView+LoadFromNib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LoadFromNib.m"; sourceTree = "<group>"; };
+		EACAE13C1709626C00E7088F /* GGWelcomePageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGWelcomePageView.xib; sourceTree = "<group>"; };
+		EACAE13E1709629400E7088F /* GGWelcomePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGWelcomePageView.h; sourceTree = "<group>"; };
+		EACAE13F1709629400E7088F /* GGWelcomePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGWelcomePageView.m; sourceTree = "<group>"; };
+		EACAE1421709643D00E7088F /* welcome01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome01.png; sourceTree = "<group>"; };
+		EACAE1431709643D00E7088F /* welcome02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome02.png; sourceTree = "<group>"; };
+		EACAE1441709643D00E7088F /* welcome03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome03.png; sourceTree = "<group>"; };
+		EACAE1451709643D00E7088F /* welcome04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome04.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +216,7 @@
 		EACAE0AD17094A3100E7088F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EACAE1411709643D00E7088F /* Demo */,
 				EACAE0AE17094A3100E7088F /* Audios */,
 				EACAE0AF17094A3100E7088F /* Images */,
 				EACAE0B217094A3100E7088F /* Others */,
@@ -256,10 +281,12 @@
 		EACAE0B417094A3100E7088F /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
+				EACAE12D17095EED00E7088F /* GGWelcomeVC.xib */,
 				EACAE0E017094DF200E7088F /* GGCompaniesVC.xib */,
 				EACAE0E117094DF200E7088F /* GGPeopleVC.xib */,
 				EACAE0E217094DF200E7088F /* GGProfileVC.xib */,
 				EACAE0E317094DF200E7088F /* GGSettingVC.xib */,
+				EACAE13C1709626C00E7088F /* GGWelcomePageView.xib */,
 			);
 			path = XIBs;
 			sourceTree = "<group>";
@@ -270,6 +297,7 @@
 				EACAE0B617094A3100E7088F /* APIEngine */,
 				EACAE0B717094A3100E7088F /* MVC */,
 				EACAE0F8170956BB00E7088F /* Utilities */,
+				EACAE138170961A200E7088F /* Categories */,
 			);
 			path = SourceCode;
 			sourceTree = "<group>";
@@ -304,6 +332,8 @@
 				EACAE0CB17094B5500E7088F /* GGProfileVC.m */,
 				EACAE0CF17094B7400E7088F /* GGSettingVC.h */,
 				EACAE0D017094B7400E7088F /* GGSettingVC.m */,
+				EACAE12817095EAA00E7088F /* GGWelcomeVC.h */,
+				EACAE12917095EAB00E7088F /* GGWelcomeVC.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -318,6 +348,8 @@
 		EACAE0BA17094A3100E7088F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EACAE13E1709629400E7088F /* GGWelcomePageView.h */,
+				EACAE13F1709629400E7088F /* GGWelcomePageView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -370,6 +402,8 @@
 			children = (
 				EACAE0F9170956E100E7088F /* GGDefine.h */,
 				EACAE0FA170956E100E7088F /* GGDefine.m */,
+				EACAE12517095C8700E7088F /* GGRuntimeData.h */,
+				EACAE12617095C8700E7088F /* GGRuntimeData.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -398,6 +432,26 @@
 				EACAE10F1709576200E7088F /* UIImageView+AFNetworking.m */,
 			);
 			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		EACAE138170961A200E7088F /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				EACAE139170961FB00E7088F /* UIView+LoadFromNib.h */,
+				EACAE13A170961FB00E7088F /* UIView+LoadFromNib.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		EACAE1411709643D00E7088F /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				EACAE1421709643D00E7088F /* welcome01.png */,
+				EACAE1431709643D00E7088F /* welcome02.png */,
+				EACAE1441709643D00E7088F /* welcome03.png */,
+				EACAE1451709643D00E7088F /* welcome04.png */,
+			);
+			path = Demo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -472,6 +526,12 @@
 				EACAE0F5170954E700E7088F /* Gestures@2x.png in Resources */,
 				EACAE0F6170954E700E7088F /* Players@2x.png in Resources */,
 				EACAE0F7170954E700E7088F /* second@2x.png in Resources */,
+				EACAE12E17095EED00E7088F /* GGWelcomeVC.xib in Resources */,
+				EACAE13D1709626C00E7088F /* GGWelcomePageView.xib in Resources */,
+				EACAE1461709643D00E7088F /* welcome01.png in Resources */,
+				EACAE1471709643D00E7088F /* welcome02.png in Resources */,
+				EACAE1481709643D00E7088F /* welcome03.png in Resources */,
+				EACAE1491709643D00E7088F /* welcome04.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +559,10 @@
 				EACAE1171709576200E7088F /* AFXMLRequestOperation.m in Sources */,
 				EACAE1181709576200E7088F /* UIImageView+AFNetworking.m in Sources */,
 				EACAE11B1709579800E7088F /* GGApi.m in Sources */,
+				EACAE12717095C8700E7088F /* GGRuntimeData.m in Sources */,
+				EACAE12B17095EAB00E7088F /* GGWelcomeVC.m in Sources */,
+				EACAE13B170961FB00E7088F /* UIView+LoadFromNib.m in Sources */,
+				EACAE1401709629400E7088F /* GGWelcomePageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

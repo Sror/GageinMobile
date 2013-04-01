@@ -17,4 +17,5 @@
     #import "AFNetworking.h"
     #import "GGApi.h"
     #import "GGDefine.h"
+    #import "UIView+LoadFromNib.h"
 #endif
