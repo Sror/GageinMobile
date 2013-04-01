@@ -1,18 +1,18 @@
 //
-//  SCLoginViewController.m
-//  GageinApp
+//  GGSettingVC.m
+//  Gagein
 //
-//  Created by dong yiming on 13-3-23.
+//  Created by dong yiming on 13-4-1.
 //  Copyright (c) 2013年 gagein. All rights reserved.
 //
 
-#import "SCLoginViewController.h"
+#import "GGSettingVC.h"
 
-@interface SCLoginViewController ()
+@interface GGSettingVC ()
 
 @end
 
-@implementation SCLoginViewController
+@implementation GGSettingVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

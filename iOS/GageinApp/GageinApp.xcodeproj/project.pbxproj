@@ -15,7 +15,6 @@
 		EA38B6FE16FC41E200BDB4CC /* GGNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA38B6FD16FC41E200BDB4CC /* GGNAppDelegate.m */; };
 		EA38B70716FC41E200BDB4CC /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA38B70516FC41E200BDB4CC /* MainStoryboard_iPhone.storyboard */; };
 		EA38B70A16FC41E200BDB4CC /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA38B70816FC41E200BDB4CC /* MainStoryboard_iPad.storyboard */; };
-		EA38B70D16FC41E200BDB4CC /* GGNFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA38B70C16FC41E200BDB4CC /* GGNFirstViewController.m */; };
 		EA38B71416FC41E200BDB4CC /* GGNSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA38B71316FC41E200BDB4CC /* GGNSecondViewController.m */; };
 		EA38B72016FC41E200BDB4CC /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA38B71F16FC41E200BDB4CC /* SenTestingKit.framework */; };
 		EA38B72116FC41E200BDB4CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA38B6ED16FC41E200BDB4CC /* UIKit.framework */; };
@@ -34,13 +33,12 @@
 		EA38B7A616FC4DA100BDB4CC /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA38B79916FC4DA100BDB4CC /* AFURLConnectionOperation.m */; };
 		EA38B7A716FC4DA100BDB4CC /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA38B79B16FC4DA100BDB4CC /* AFXMLRequestOperation.m */; };
 		EA38B7A816FC4DA100BDB4CC /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EA38B79D16FC4DA100BDB4CC /* UIImageView+AFNetworking.m */; };
+		EACAE0661709424800E7088F /* GGNCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE0651709424800E7088F /* GGNCompanyVC.m */; };
 		EAF3657D16FD6804004B5EBF /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF3657C16FD6804004B5EBF /* FacebookSDK.framework */; };
 		EAF3658716FD68B8004B5EBF /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EAF3658616FD68B8004B5EBF /* FacebookSDKResources.bundle */; };
 		EAF3658916FD6904004B5EBF /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF3658816FD6904004B5EBF /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EAF3658B16FD690A004B5EBF /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF3658A16FD690A004B5EBF /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EAF3658D16FD6910004B5EBF /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF3658C16FD6910004B5EBF /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		EAF365A816FD7CFC004B5EBF /* SCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF365A616FD7CFC004B5EBF /* SCLoginViewController.m */; };
-		EAF365A916FD7CFC004B5EBF /* SCLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF365A716FD7CFC004B5EBF /* SCLoginViewController.xib */; };
 		EAF365BB16FD7DC2004B5EBF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365AC16FD7DC2004B5EBF /* Default-568h@2x.png */; };
 		EAF365BC16FD7DC2004B5EBF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365AD16FD7DC2004B5EBF /* Default.png */; };
 		EAF365BD16FD7DC2004B5EBF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365AE16FD7DC2004B5EBF /* Default@2x.png */; };
@@ -80,8 +78,6 @@
 		EA38B6FD16FC41E200BDB4CC /* GGNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGNAppDelegate.m; sourceTree = "<group>"; };
 		EA38B70616FC41E200BDB4CC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		EA38B70916FC41E200BDB4CC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		EA38B70B16FC41E200BDB4CC /* GGNFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGNFirstViewController.h; sourceTree = "<group>"; };
-		EA38B70C16FC41E200BDB4CC /* GGNFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGNFirstViewController.m; sourceTree = "<group>"; };
 		EA38B71216FC41E200BDB4CC /* GGNSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGNSecondViewController.h; sourceTree = "<group>"; };
 		EA38B71316FC41E200BDB4CC /* GGNSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGNSecondViewController.m; sourceTree = "<group>"; };
 		EA38B71E16FC41E200BDB4CC /* GageinAppTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GageinAppTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,14 +110,13 @@
 		EA38B79C16FC4DA100BDB4CC /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		EA38B79D16FC4DA100BDB4CC /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		EA38B7A916FC4DC100BDB4CC /* GGNDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGNDefine.h; sourceTree = "<group>"; };
+		EACAE0641709424800E7088F /* GGNCompanyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGNCompanyVC.h; sourceTree = "<group>"; };
+		EACAE0651709424800E7088F /* GGNCompanyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGNCompanyVC.m; sourceTree = "<group>"; };
 		EAF3657C16FD6804004B5EBF /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "../../../../../Users/dongyiming/Downloads/facebook-ios-sdk-master-1/build/FacebookSDK.framework"; sourceTree = "<group>"; };
 		EAF3658616FD68B8004B5EBF /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = "../../../../../Users/dongyiming/Downloads/facebook-ios-sdk-master-1/build/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle"; sourceTree = "<group>"; };
 		EAF3658816FD6904004B5EBF /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		EAF3658A16FD690A004B5EBF /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		EAF3658C16FD6910004B5EBF /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		EAF365A516FD7CFC004B5EBF /* SCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLoginViewController.h; sourceTree = "<group>"; };
-		EAF365A616FD7CFC004B5EBF /* SCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLoginViewController.m; sourceTree = "<group>"; };
-		EAF365A716FD7CFC004B5EBF /* SCLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCLoginViewController.xib; sourceTree = "<group>"; };
 		EAF365AC16FD7DC2004B5EBF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EAF365AD16FD7DC2004B5EBF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		EAF365AE16FD7DC2004B5EBF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -214,8 +209,6 @@
 				EA38B6FD16FC41E200BDB4CC /* GGNAppDelegate.m */,
 				EA38B70516FC41E200BDB4CC /* MainStoryboard_iPhone.storyboard */,
 				EA38B70816FC41E200BDB4CC /* MainStoryboard_iPad.storyboard */,
-				EA38B70B16FC41E200BDB4CC /* GGNFirstViewController.h */,
-				EA38B70C16FC41E200BDB4CC /* GGNFirstViewController.m */,
 				EA38B71216FC41E200BDB4CC /* GGNSecondViewController.h */,
 				EA38B71316FC41E200BDB4CC /* GGNSecondViewController.m */,
 				EA38B6F416FC41E200BDB4CC /* Supporting Files */,
@@ -286,9 +279,10 @@
 		EA38B78616FC4DA100BDB4CC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EAF365A516FD7CFC004B5EBF /* SCLoginViewController.h */,
-				EAF365A616FD7CFC004B5EBF /* SCLoginViewController.m */,
-				EAF365A716FD7CFC004B5EBF /* SCLoginViewController.xib */,
+				EACAE060170941D600E7088F /* Companies */,
+				EACAE061170941D600E7088F /* People */,
+				EACAE062170941D600E7088F /* Profile */,
+				EACAE063170941D600E7088F /* Setting */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -347,6 +341,36 @@
 				EA38B7A916FC4DC100BDB4CC /* GGNDefine.h */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		EACAE060170941D600E7088F /* Companies */ = {
+			isa = PBXGroup;
+			children = (
+				EACAE0641709424800E7088F /* GGNCompanyVC.h */,
+				EACAE0651709424800E7088F /* GGNCompanyVC.m */,
+			);
+			path = Companies;
+			sourceTree = "<group>";
+		};
+		EACAE061170941D600E7088F /* People */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = People;
+			sourceTree = "<group>";
+		};
+		EACAE062170941D600E7088F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		EACAE063170941D600E7088F /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		EAF365AA16FD7DC2004B5EBF /* Resources */ = {
@@ -462,7 +486,6 @@
 				EA38B70716FC41E200BDB4CC /* MainStoryboard_iPhone.storyboard in Resources */,
 				EA38B70A16FC41E200BDB4CC /* MainStoryboard_iPad.storyboard in Resources */,
 				EAF3658716FD68B8004B5EBF /* FacebookSDKResources.bundle in Resources */,
-				EAF365A916FD7CFC004B5EBF /* SCLoginViewController.xib in Resources */,
 				EAF365BB16FD7DC2004B5EBF /* Default-568h@2x.png in Resources */,
 				EAF365BC16FD7DC2004B5EBF /* Default.png in Resources */,
 				EAF365BD16FD7DC2004B5EBF /* Default@2x.png in Resources */,
@@ -513,7 +536,6 @@
 			files = (
 				EA38B6FA16FC41E200BDB4CC /* main.m in Sources */,
 				EA38B6FE16FC41E200BDB4CC /* GGNAppDelegate.m in Sources */,
-				EA38B70D16FC41E200BDB4CC /* GGNFirstViewController.m in Sources */,
 				EA38B71416FC41E200BDB4CC /* GGNSecondViewController.m in Sources */,
 				EA38B79F16FC4DA100BDB4CC /* GGNApi.m in Sources */,
 				EA38B7A016FC4DA100BDB4CC /* AFHTTPClient.m in Sources */,
@@ -525,7 +547,7 @@
 				EA38B7A616FC4DA100BDB4CC /* AFURLConnectionOperation.m in Sources */,
 				EA38B7A716FC4DA100BDB4CC /* AFXMLRequestOperation.m in Sources */,
 				EA38B7A816FC4DA100BDB4CC /* UIImageView+AFNetworking.m in Sources */,
-				EAF365A816FD7CFC004B5EBF /* SCLoginViewController.m in Sources */,
+				EACAE0661709424800E7088F /* GGNCompanyVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

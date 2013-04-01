@@ -1,0 +1,518 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EACAE0771709486800E7088F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAE0761709486800E7088F /* UIKit.framework */; };
+		EACAE0791709486800E7088F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAE0781709486800E7088F /* Foundation.framework */; };
+		EACAE07B1709486800E7088F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAE07A1709486800E7088F /* CoreGraphics.framework */; };
+		EACAE0811709486800E7088F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EACAE07F1709486800E7088F /* InfoPlist.strings */; };
+		EACAE0831709486800E7088F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE0821709486800E7088F /* main.m */; };
+		EACAE0871709486800E7088F /* GGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE0861709486800E7088F /* GGAppDelegate.m */; };
+		EACAE0891709486800E7088F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0881709486800E7088F /* Default.png */; };
+		EACAE08B1709486800E7088F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE08A1709486800E7088F /* Default@2x.png */; };
+		EACAE08D1709486800E7088F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE08C1709486800E7088F /* Default-568h@2x.png */; };
+		EACAE0921709486800E7088F /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0911709486800E7088F /* first.png */; };
+		EACAE0941709486800E7088F /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0931709486800E7088F /* first@2x.png */; };
+		EACAE0991709486800E7088F /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0981709486800E7088F /* second.png */; };
+		EACAE09B1709486900E7088F /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE09A1709486900E7088F /* second@2x.png */; };
+		EACAE0BF17094A9A00E7088F /* GGCompaniesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE0BD17094A9A00E7088F /* GGCompaniesVC.m */; };
+		EACAE0C217094AD600E7088F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAE0C117094AD600E7088F /* MobileCoreServices.framework */; };
+		EACAE0C417094ADE00E7088F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAE0C317094ADE00E7088F /* SystemConfiguration.framework */; };
+		EACAE0C817094B3200E7088F /* GGPeopleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE0C617094B3200E7088F /* GGPeopleVC.m */; };
+		EACAE0CD17094B5500E7088F /* GGProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE0CB17094B5500E7088F /* GGProfileVC.m */; };
+		EACAE0D217094B7500E7088F /* GGSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE0D017094B7400E7088F /* GGSettingVC.m */; };
+		EACAE0D917094D3200E7088F /* GGCompaniesVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0D817094D3200E7088F /* GGCompaniesVC_iPad.xib */; };
+		EACAE0DB17094D5F00E7088F /* GGPeopleVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0DA17094D5F00E7088F /* GGPeopleVC_iPad.xib */; };
+		EACAE0DD17094D7900E7088F /* GGProfileVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0DC17094D7900E7088F /* GGProfileVC_iPad.xib */; };
+		EACAE0DF17094DA000E7088F /* GGSettingVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0DE17094DA000E7088F /* GGSettingVC_iPad.xib */; };
+		EACAE0E417094DF200E7088F /* GGCompaniesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0E017094DF200E7088F /* GGCompaniesVC.xib */; };
+		EACAE0E517094DF200E7088F /* GGPeopleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0E117094DF200E7088F /* GGPeopleVC.xib */; };
+		EACAE0E617094DF200E7088F /* GGProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0E217094DF200E7088F /* GGProfileVC.xib */; };
+		EACAE0E717094DF200E7088F /* GGSettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0E317094DF200E7088F /* GGSettingVC.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EACAE0721709486800E7088F /* Gagein.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gagein.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EACAE0761709486800E7088F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EACAE0781709486800E7088F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EACAE07A1709486800E7088F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EACAE07E1709486800E7088F /* Gagein-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Gagein-Info.plist"; sourceTree = "<group>"; };
+		EACAE0801709486800E7088F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EACAE0821709486800E7088F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EACAE0841709486800E7088F /* Gagein-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Gagein-Prefix.pch"; sourceTree = "<group>"; };
+		EACAE0851709486800E7088F /* GGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGAppDelegate.h; sourceTree = "<group>"; };
+		EACAE0861709486800E7088F /* GGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGAppDelegate.m; sourceTree = "<group>"; };
+		EACAE0881709486800E7088F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		EACAE08A1709486800E7088F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		EACAE08C1709486800E7088F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		EACAE0911709486800E7088F /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		EACAE0931709486800E7088F /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		EACAE0981709486800E7088F /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
+		EACAE09A1709486900E7088F /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		EACAE0BC17094A9A00E7088F /* GGCompaniesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompaniesVC.h; sourceTree = "<group>"; };
+		EACAE0BD17094A9A00E7088F /* GGCompaniesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompaniesVC.m; sourceTree = "<group>"; };
+		EACAE0C117094AD600E7088F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		EACAE0C317094ADE00E7088F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EACAE0C517094B3200E7088F /* GGPeopleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPeopleVC.h; sourceTree = "<group>"; };
+		EACAE0C617094B3200E7088F /* GGPeopleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPeopleVC.m; sourceTree = "<group>"; };
+		EACAE0CA17094B5500E7088F /* GGProfileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGProfileVC.h; sourceTree = "<group>"; };
+		EACAE0CB17094B5500E7088F /* GGProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGProfileVC.m; sourceTree = "<group>"; };
+		EACAE0CF17094B7400E7088F /* GGSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingVC.h; sourceTree = "<group>"; };
+		EACAE0D017094B7400E7088F /* GGSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingVC.m; sourceTree = "<group>"; };
+		EACAE0D817094D3200E7088F /* GGCompaniesVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompaniesVC_iPad.xib; sourceTree = "<group>"; };
+		EACAE0DA17094D5F00E7088F /* GGPeopleVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGPeopleVC_iPad.xib; sourceTree = "<group>"; };
+		EACAE0DC17094D7900E7088F /* GGProfileVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGProfileVC_iPad.xib; sourceTree = "<group>"; };
+		EACAE0DE17094DA000E7088F /* GGSettingVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingVC_iPad.xib; sourceTree = "<group>"; };
+		EACAE0E017094DF200E7088F /* GGCompaniesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompaniesVC.xib; sourceTree = "<group>"; };
+		EACAE0E117094DF200E7088F /* GGPeopleVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGPeopleVC.xib; sourceTree = "<group>"; };
+		EACAE0E217094DF200E7088F /* GGProfileVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGProfileVC.xib; sourceTree = "<group>"; };
+		EACAE0E317094DF200E7088F /* GGSettingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingVC.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EACAE06F1709486800E7088F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EACAE0C417094ADE00E7088F /* SystemConfiguration.framework in Frameworks */,
+				EACAE0C217094AD600E7088F /* MobileCoreServices.framework in Frameworks */,
+				EACAE0771709486800E7088F /* UIKit.framework in Frameworks */,
+				EACAE0791709486800E7088F /* Foundation.framework in Frameworks */,
+				EACAE07B1709486800E7088F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EACAE0671709486800E7088F = {
+			isa = PBXGroup;
+			children = (
+				EACAE07C1709486800E7088F /* Gagein */,
+				EACAE0D417094BE100E7088F /* iPad */,
+				EACAE0751709486800E7088F /* Frameworks */,
+				EACAE0731709486800E7088F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EACAE0731709486800E7088F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EACAE0721709486800E7088F /* Gagein.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EACAE0751709486800E7088F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EACAE0C317094ADE00E7088F /* SystemConfiguration.framework */,
+				EACAE0C117094AD600E7088F /* MobileCoreServices.framework */,
+				EACAE0761709486800E7088F /* UIKit.framework */,
+				EACAE0781709486800E7088F /* Foundation.framework */,
+				EACAE07A1709486800E7088F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EACAE07C1709486800E7088F /* Gagein */ = {
+			isa = PBXGroup;
+			children = (
+				EACAE0B517094A3100E7088F /* SourceCode */,
+				EACAE0AD17094A3100E7088F /* Resources */,
+				EACAE0BB17094A3100E7088F /* ThirdParty */,
+				EACAE0851709486800E7088F /* GGAppDelegate.h */,
+				EACAE0861709486800E7088F /* GGAppDelegate.m */,
+				EACAE0911709486800E7088F /* first.png */,
+				EACAE0931709486800E7088F /* first@2x.png */,
+				EACAE0981709486800E7088F /* second.png */,
+				EACAE09A1709486900E7088F /* second@2x.png */,
+				EACAE07D1709486800E7088F /* Supporting Files */,
+			);
+			path = Gagein;
+			sourceTree = "<group>";
+		};
+		EACAE07D1709486800E7088F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EACAE07E1709486800E7088F /* Gagein-Info.plist */,
+				EACAE07F1709486800E7088F /* InfoPlist.strings */,
+				EACAE0821709486800E7088F /* main.m */,
+				EACAE0841709486800E7088F /* Gagein-Prefix.pch */,
+				EACAE0881709486800E7088F /* Default.png */,
+				EACAE08A1709486800E7088F /* Default@2x.png */,
+				EACAE08C1709486800E7088F /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EACAE0AD17094A3100E7088F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EACAE0AE17094A3100E7088F /* Audios */,
+				EACAE0AF17094A3100E7088F /* Images */,
+				EACAE0B217094A3100E7088F /* Others */,
+				EACAE0B317094A3100E7088F /* Videos */,
+				EACAE0B417094A3100E7088F /* XIBs */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EACAE0AE17094A3100E7088F /* Audios */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Audios;
+			sourceTree = "<group>";
+		};
+		EACAE0AF17094A3100E7088F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				EACAE0B017094A3100E7088F /* 1X */,
+				EACAE0B117094A3100E7088F /* 2X */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		EACAE0B017094A3100E7088F /* 1X */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = 1X;
+			sourceTree = "<group>";
+		};
+		EACAE0B117094A3100E7088F /* 2X */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = 2X;
+			sourceTree = "<group>";
+		};
+		EACAE0B217094A3100E7088F /* Others */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		EACAE0B317094A3100E7088F /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Videos;
+			sourceTree = "<group>";
+		};
+		EACAE0B417094A3100E7088F /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				EACAE0E017094DF200E7088F /* GGCompaniesVC.xib */,
+				EACAE0E117094DF200E7088F /* GGPeopleVC.xib */,
+				EACAE0E217094DF200E7088F /* GGProfileVC.xib */,
+				EACAE0E317094DF200E7088F /* GGSettingVC.xib */,
+			);
+			path = XIBs;
+			sourceTree = "<group>";
+		};
+		EACAE0B517094A3100E7088F /* SourceCode */ = {
+			isa = PBXGroup;
+			children = (
+				EACAE0B617094A3100E7088F /* APIEngine */,
+				EACAE0B717094A3100E7088F /* MVC */,
+			);
+			path = SourceCode;
+			sourceTree = "<group>";
+		};
+		EACAE0B617094A3100E7088F /* APIEngine */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = APIEngine;
+			sourceTree = "<group>";
+		};
+		EACAE0B717094A3100E7088F /* MVC */ = {
+			isa = PBXGroup;
+			children = (
+				EACAE0B817094A3100E7088F /* Controllers */,
+				EACAE0B917094A3100E7088F /* Models */,
+				EACAE0BA17094A3100E7088F /* Views */,
+			);
+			path = MVC;
+			sourceTree = "<group>";
+		};
+		EACAE0B817094A3100E7088F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EACAE0BC17094A9A00E7088F /* GGCompaniesVC.h */,
+				EACAE0BD17094A9A00E7088F /* GGCompaniesVC.m */,
+				EACAE0C517094B3200E7088F /* GGPeopleVC.h */,
+				EACAE0C617094B3200E7088F /* GGPeopleVC.m */,
+				EACAE0CA17094B5500E7088F /* GGProfileVC.h */,
+				EACAE0CB17094B5500E7088F /* GGProfileVC.m */,
+				EACAE0CF17094B7400E7088F /* GGSettingVC.h */,
+				EACAE0D017094B7400E7088F /* GGSettingVC.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EACAE0B917094A3100E7088F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EACAE0BA17094A3100E7088F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EACAE0BB17094A3100E7088F /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		EACAE0D417094BE100E7088F /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				EACAE0D717094C3000E7088F /* XIBs */,
+				EACAE0D517094BE100E7088F /* MVC */,
+			);
+			path = iPad;
+			sourceTree = "<group>";
+		};
+		EACAE0D517094BE100E7088F /* MVC */ = {
+			isa = PBXGroup;
+			children = (
+				EACAE0D617094BE100E7088F /* Controllers */,
+			);
+			path = MVC;
+			sourceTree = "<group>";
+		};
+		EACAE0D617094BE100E7088F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EACAE0D717094C3000E7088F /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				EACAE0D817094D3200E7088F /* GGCompaniesVC_iPad.xib */,
+				EACAE0DA17094D5F00E7088F /* GGPeopleVC_iPad.xib */,
+				EACAE0DC17094D7900E7088F /* GGProfileVC_iPad.xib */,
+				EACAE0DE17094DA000E7088F /* GGSettingVC_iPad.xib */,
+			);
+			path = XIBs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EACAE0711709486800E7088F /* Gagein */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EACAE0AA1709486900E7088F /* Build configuration list for PBXNativeTarget "Gagein" */;
+			buildPhases = (
+				EACAE06E1709486800E7088F /* Sources */,
+				EACAE06F1709486800E7088F /* Frameworks */,
+				EACAE0701709486800E7088F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Gagein;
+			productName = Gagein;
+			productReference = EACAE0721709486800E7088F /* Gagein.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EACAE0691709486800E7088F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = GG;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = gagein;
+			};
+			buildConfigurationList = EACAE06C1709486800E7088F /* Build configuration list for PBXProject "Gagein" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EACAE0671709486800E7088F;
+			productRefGroup = EACAE0731709486800E7088F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EACAE0711709486800E7088F /* Gagein */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EACAE0701709486800E7088F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EACAE0811709486800E7088F /* InfoPlist.strings in Resources */,
+				EACAE0891709486800E7088F /* Default.png in Resources */,
+				EACAE08B1709486800E7088F /* Default@2x.png in Resources */,
+				EACAE08D1709486800E7088F /* Default-568h@2x.png in Resources */,
+				EACAE0921709486800E7088F /* first.png in Resources */,
+				EACAE0941709486800E7088F /* first@2x.png in Resources */,
+				EACAE0991709486800E7088F /* second.png in Resources */,
+				EACAE09B1709486900E7088F /* second@2x.png in Resources */,
+				EACAE0D917094D3200E7088F /* GGCompaniesVC_iPad.xib in Resources */,
+				EACAE0DB17094D5F00E7088F /* GGPeopleVC_iPad.xib in Resources */,
+				EACAE0DD17094D7900E7088F /* GGProfileVC_iPad.xib in Resources */,
+				EACAE0DF17094DA000E7088F /* GGSettingVC_iPad.xib in Resources */,
+				EACAE0E417094DF200E7088F /* GGCompaniesVC.xib in Resources */,
+				EACAE0E517094DF200E7088F /* GGPeopleVC.xib in Resources */,
+				EACAE0E617094DF200E7088F /* GGProfileVC.xib in Resources */,
+				EACAE0E717094DF200E7088F /* GGSettingVC.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EACAE06E1709486800E7088F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EACAE0831709486800E7088F /* main.m in Sources */,
+				EACAE0871709486800E7088F /* GGAppDelegate.m in Sources */,
+				EACAE0BF17094A9A00E7088F /* GGCompaniesVC.m in Sources */,
+				EACAE0C817094B3200E7088F /* GGPeopleVC.m in Sources */,
+				EACAE0CD17094B5500E7088F /* GGProfileVC.m in Sources */,
+				EACAE0D217094B7500E7088F /* GGSettingVC.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EACAE07F1709486800E7088F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EACAE0801709486800E7088F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EACAE0A81709486900E7088F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EACAE0A91709486900E7088F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EACAE0AB1709486900E7088F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Gagein/Gagein-Prefix.pch";
+				INFOPLIST_FILE = "Gagein/Gagein-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EACAE0AC1709486900E7088F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Gagein/Gagein-Prefix.pch";
+				INFOPLIST_FILE = "Gagein/Gagein-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EACAE06C1709486800E7088F /* Build configuration list for PBXProject "Gagein" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EACAE0A81709486900E7088F /* Debug */,
+				EACAE0A91709486900E7088F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EACAE0AA1709486900E7088F /* Build configuration list for PBXNativeTarget "Gagein" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EACAE0AB1709486900E7088F /* Debug */,
+				EACAE0AC1709486900E7088F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EACAE0691709486800E7088F /* Project object */;
+}
