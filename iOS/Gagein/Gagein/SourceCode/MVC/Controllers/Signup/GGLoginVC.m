@@ -111,7 +111,8 @@
                 DLog(@"Login OK");
                 //id data = parser.data;
                 //DLog(@"%@", data);
-                GGMember *member = [parser parseLogin];
+                GGSharedRuntimeData.currentUser = [parser parseLogin];
+                [GGSharedRuntimeData saveCurrentUser];
             }
             else
             {

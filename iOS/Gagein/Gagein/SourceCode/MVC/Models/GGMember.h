@@ -11,7 +11,7 @@
 
 @class GGMemberPlan;
 
-@interface GGMember : GGPerson
+@interface GGMember : GGPerson <NSCoding>
 @property (assign)  int         timeZone;
 @property (copy)    NSString    *accessToken;
 @property (strong)  GGMemberPlan *plan;

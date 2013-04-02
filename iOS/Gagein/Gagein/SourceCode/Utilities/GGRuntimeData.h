@@ -8,12 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+@class GGMember;
+
 @interface GGRuntimeData : NSObject
 AS_SINGLETON(GGRuntimeData)
 
-@property (copy)    NSString*   accessToken;  // access token for Gagein
 @property (assign)  BOOL        runedBefore;  // has runed before
+@property (strong)  GGMember    *currentUser;    // current user
 
 -(BOOL)isLoggedIn;
 -(BOOL)isFirstRun;
+-(NSString *)accessToken;
+
+-(void)saveCurrentUser;
+-(void)loadCurrentUser;
 @end
+
+#define GGSharedRuntimeData [GGRuntimeData sharedInstance]
