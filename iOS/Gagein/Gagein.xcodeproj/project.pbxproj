@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA1A61F7170A6478000B4EAE /* GGDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61F6170A6478000B4EAE /* GGDataModel.m */; };
+		EA1A61FB170A64BF000B4EAE /* GGPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61FA170A64BF000B4EAE /* GGPerson.m */; };
+		EA1A61FE170A6D33000B4EAE /* GGCompany.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61FD170A6D33000B4EAE /* GGCompany.m */; };
+		EA1A6201170A6DDC000B4EAE /* GGSocialProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A6200170A6DDC000B4EAE /* GGSocialProfile.m */; };
+		EA1A6204170A6E99000B4EAE /* GGMember.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A6203170A6E99000B4EAE /* GGMember.m */; };
+		EA1A6207170A6F75000B4EAE /* GGMemberPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A6206170A6F75000B4EAE /* GGMemberPlan.m */; };
+		EA1A620A170A7289000B4EAE /* GGCompanyUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A6209170A7289000B4EAE /* GGCompanyUpdate.m */; };
+		EA1A620D170A7406000B4EAE /* GGTag.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A620C170A7405000B4EAE /* GGTag.m */; };
 		EAC96C2B1709833C003FAFAA /* GGSignupPortalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */; };
 		EAC96C37170983B5003FAFAA /* GGCompaniesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C2F170983B5003FAFAA /* GGCompaniesVC.xib */; };
 		EAC96C38170983B5003FAFAA /* GGPeopleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C30170983B5003FAFAA /* GGPeopleVC.xib */; };
@@ -67,6 +75,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA1A61F5170A6478000B4EAE /* GGDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGDataModel.h; sourceTree = "<group>"; };
+		EA1A61F6170A6478000B4EAE /* GGDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGDataModel.m; sourceTree = "<group>"; };
+		EA1A61F9170A64BF000B4EAE /* GGPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPerson.h; sourceTree = "<group>"; };
+		EA1A61FA170A64BF000B4EAE /* GGPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPerson.m; sourceTree = "<group>"; };
+		EA1A61FC170A6D33000B4EAE /* GGCompany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompany.h; sourceTree = "<group>"; };
+		EA1A61FD170A6D33000B4EAE /* GGCompany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompany.m; sourceTree = "<group>"; };
+		EA1A61FF170A6DDC000B4EAE /* GGSocialProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSocialProfile.h; sourceTree = "<group>"; };
+		EA1A6200170A6DDC000B4EAE /* GGSocialProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSocialProfile.m; sourceTree = "<group>"; };
+		EA1A6202170A6E99000B4EAE /* GGMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGMember.h; sourceTree = "<group>"; };
+		EA1A6203170A6E99000B4EAE /* GGMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGMember.m; sourceTree = "<group>"; };
+		EA1A6205170A6F75000B4EAE /* GGMemberPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGMemberPlan.h; sourceTree = "<group>"; };
+		EA1A6206170A6F75000B4EAE /* GGMemberPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGMemberPlan.m; sourceTree = "<group>"; };
+		EA1A6208170A7288000B4EAE /* GGCompanyUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyUpdate.h; sourceTree = "<group>"; };
+		EA1A6209170A7289000B4EAE /* GGCompanyUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyUpdate.m; sourceTree = "<group>"; };
+		EA1A620B170A7405000B4EAE /* GGTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTag.h; sourceTree = "<group>"; };
+		EA1A620C170A7405000B4EAE /* GGTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGTag.m; sourceTree = "<group>"; };
 		EAC96C281709833C003FAFAA /* GGSignupPortalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSignupPortalVC.h; sourceTree = "<group>"; };
 		EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSignupPortalVC.m; sourceTree = "<group>"; };
 		EAC96C2F170983B5003FAFAA /* GGCompaniesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompaniesVC.xib; sourceTree = "<group>"; };
@@ -380,6 +404,22 @@
 		EACAE0B917094A3100E7088F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EA1A61F5170A6478000B4EAE /* GGDataModel.h */,
+				EA1A61F6170A6478000B4EAE /* GGDataModel.m */,
+				EA1A61F9170A64BF000B4EAE /* GGPerson.h */,
+				EA1A61FA170A64BF000B4EAE /* GGPerson.m */,
+				EA1A61FC170A6D33000B4EAE /* GGCompany.h */,
+				EA1A61FD170A6D33000B4EAE /* GGCompany.m */,
+				EA1A61FF170A6DDC000B4EAE /* GGSocialProfile.h */,
+				EA1A6200170A6DDC000B4EAE /* GGSocialProfile.m */,
+				EA1A6202170A6E99000B4EAE /* GGMember.h */,
+				EA1A6203170A6E99000B4EAE /* GGMember.m */,
+				EA1A6205170A6F75000B4EAE /* GGMemberPlan.h */,
+				EA1A6206170A6F75000B4EAE /* GGMemberPlan.m */,
+				EA1A6208170A7288000B4EAE /* GGCompanyUpdate.h */,
+				EA1A6209170A7289000B4EAE /* GGCompanyUpdate.m */,
+				EA1A620B170A7405000B4EAE /* GGTag.h */,
+				EA1A620C170A7405000B4EAE /* GGTag.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -611,6 +651,14 @@
 				EACAE1401709629400E7088F /* GGWelcomePageView.m in Sources */,
 				EAC96C2B1709833C003FAFAA /* GGSignupPortalVC.m in Sources */,
 				EAC96C441709868B003FAFAA /* NSObject+BeeNotification.m in Sources */,
+				EA1A61F7170A6478000B4EAE /* GGDataModel.m in Sources */,
+				EA1A61FB170A64BF000B4EAE /* GGPerson.m in Sources */,
+				EA1A61FE170A6D33000B4EAE /* GGCompany.m in Sources */,
+				EA1A6201170A6DDC000B4EAE /* GGSocialProfile.m in Sources */,
+				EA1A6204170A6E99000B4EAE /* GGMember.m in Sources */,
+				EA1A6207170A6F75000B4EAE /* GGMemberPlan.m in Sources */,
+				EA1A620A170A7289000B4EAE /* GGCompanyUpdate.m in Sources */,
+				EA1A620D170A7406000B4EAE /* GGTag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
