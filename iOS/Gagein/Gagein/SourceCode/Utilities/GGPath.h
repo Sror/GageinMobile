@@ -14,4 +14,5 @@
 +(NSString *)pathCurrentUserData;
 
 +(NSString *)ensurePathExists:(NSString *)aPath;
++(void)removePath:(NSString *)aPath;
 @end

@@ -52,4 +52,9 @@
     return aPath;
 }
 
++(void)removePath:(NSString *)aPath
+{
+    [[NSFileManager defaultManager] removeItemAtPath:aPath error:nil];
+}
+
 @end

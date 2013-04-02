@@ -7,6 +7,7 @@
 //
 
 #import "GGLoginVC.h"
+#import "GGAppDelegate.h"
 #import "GGPredicate.h"
 #import "GGMember.h"
 
@@ -113,6 +114,8 @@
                 //DLog(@"%@", data);
                 GGSharedRuntimeData.currentUser = [parser parseLogin];
                 [GGSharedRuntimeData saveCurrentUser];
+                [GGSharedDelegate popNaviToRoot];
+                [GGSharedDelegate showTabIndex:0];
             }
             else
             {

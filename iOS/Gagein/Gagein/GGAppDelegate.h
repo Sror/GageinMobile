@@ -14,4 +14,10 @@
 
 @property (strong, nonatomic) UITabBarController *tabBarController;
 @property (strong, nonatomic) UINavigationController *naviController;
+
+-(void)enterLoginIfNeeded;
+-(void)popNaviToRoot;
+-(void)showTabIndex:(NSUInteger)aIndex;
 @end
+
+#define GGSharedDelegate  ((GGAppDelegate*)[UIApplication sharedApplication].delegate)

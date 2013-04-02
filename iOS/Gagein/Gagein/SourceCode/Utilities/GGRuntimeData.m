@@ -58,4 +58,10 @@ DEF_SINGLETON(GGRuntimeData)
         self.currentUser = [unarchiver decodeObjectForKey:kDataKeyCurrentUser];
     }
 }
+
+-(void)resetCurrentUser
+{
+    [GGPath removePath:[GGPath pathCurrentUserData]];
+    self.currentUser = nil;
+}
 @end

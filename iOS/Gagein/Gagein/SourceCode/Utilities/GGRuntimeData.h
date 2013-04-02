@@ -22,6 +22,7 @@ AS_SINGLETON(GGRuntimeData)
 
 -(void)saveCurrentUser;
 -(void)loadCurrentUser;
+-(void)resetCurrentUser;
 @end
 
 #define GGSharedRuntimeData [GGRuntimeData sharedInstance]

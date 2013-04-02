@@ -52,11 +52,7 @@
 //        DLog(@"%@", aResultObject);
 //    }];
     
-    if (![GGRuntimeData sharedInstance].isLoggedIn)
-    {
-        GGSignupPortalVC *vc = [[GGSignupPortalVC alloc] init];
-        [self.naviController pushViewController:vc animated:NO];
-    }
+    [self enterLoginIfNeeded];
     
     return YES;
 }
@@ -103,6 +99,27 @@
 #pragma mark - handle notification
 - (void)handleNotification:(NSNotification *)notification
 {
+}
+
+#pragma mark - navigation & screen change
+-(void)enterLoginIfNeeded
+{
+    if (![GGRuntimeData sharedInstance].isLoggedIn)
+    {
+        GGSignupPortalVC *vc = [[GGSignupPortalVC alloc] init];
+        [self.naviController pushViewController:vc animated:NO];
+    }
+}
+
+-(void)popNaviToRoot
+{
+    [self.naviController popToRootViewControllerAnimated:NO];
+    self.naviController.navigationBarHidden = YES;
+}
+
+-(void)showTabIndex:(NSUInteger)aIndex
+{
+    self.tabBarController.selectedIndex = aIndex;
 }
 
 @end

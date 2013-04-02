@@ -7,8 +7,10 @@
 //
 
 #import "GGSettingVC.h"
+#import "GGAppDelegate.h"
 
 @interface GGSettingVC ()
+@property (weak, nonatomic) IBOutlet UIButton *btnLogout;
 
 @end
 
@@ -31,10 +33,16 @@
     
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidUnload {
+    [self setBtnLogout:nil];
+    [super viewDidUnload];
+}
+
+#pragma mark - actions
+-(IBAction)logoutAction:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [GGSharedRuntimeData resetCurrentUser];
+    [GGSharedDelegate enterLoginIfNeeded];
 }
 
 @end
