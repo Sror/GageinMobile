@@ -20,6 +20,8 @@ AS_SINGLETON(GGRuntimeData)
 -(BOOL)isFirstRun;
 -(NSString *)accessToken;
 
+-(void)saveRunedBefore;
+
 -(void)saveCurrentUser;
 -(void)loadCurrentUser;
 -(void)resetCurrentUser;

@@ -11,6 +11,7 @@
 #import "GGPath.h"
 
 #define kDataKeyCurrentUser @"kDataKeyCurrentUser"
+#define kDefaultKeyRunedBefore @"kDefaultKeyRunedBefore"
 
 @implementation GGRuntimeData
 DEF_SINGLETON(GGRuntimeData)
@@ -20,6 +21,7 @@ DEF_SINGLETON(GGRuntimeData)
     self = [super init];
     if (self) {
         [self loadCurrentUser];
+        [self _loadRunedBefore];
     }
     return self;
 }
@@ -31,12 +33,27 @@ DEF_SINGLETON(GGRuntimeData)
 
 -(BOOL)isFirstRun
 {
-    return !self.runedBefore;
+    BOOL firstRun = !_runedBefore;
+    if (firstRun) {
+        _runedBefore = YES;
+        [self saveRunedBefore];
+    }
+    return firstRun;
 }
 
 -(NSString *)accessToken
 {
     return self.currentUser.accessToken;
+}
+
+-(void)_loadRunedBefore
+{
+    _runedBefore = [[NSUserDefaults standardUserDefaults] boolForKey:kDefaultKeyRunedBefore];
+}
+
+-(void)saveRunedBefore
+{
+    [[NSUserDefaults standardUserDefaults] setBool:_runedBefore forKey:kDefaultKeyRunedBefore];
 }
 
 -(void)saveCurrentUser
