@@ -8,7 +8,12 @@
 
 #import "GGSignupPortalVC.h"
 #import "GGWelcomeVC.h"
+#import "GGLoginVC.h"
+#import "GGSignupVC.h"
+
 #import "GGRuntimeData.h"
+
+
 
 @interface GGSignupPortalVC ()
 
@@ -37,10 +42,10 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
 }
 
 -(void)dealloc
@@ -63,4 +68,17 @@
     GGWelcomeVC *vc = [[GGWelcomeVC alloc] init];
     [self.navigationController pushViewController:vc animated:NO];
 }
+
+-(IBAction)loginAction:(id)sender
+{
+    GGLoginVC *vc = [[GGLoginVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(IBAction)signupAction:(id)sender
+{
+    GGSignupVC *vc = [[GGSignupVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 @end
