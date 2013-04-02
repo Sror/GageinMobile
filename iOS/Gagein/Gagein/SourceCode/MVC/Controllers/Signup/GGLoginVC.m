@@ -49,9 +49,31 @@
     [super viewDidUnload];
 }
 
+#pragma mark - internal
+
 #pragma mark - actions
 -(IBAction)loginAction:(id)sender
 {
-    
+    [self.tfEmail resignFirstResponder];
+    [self.tfPassword resignFirstResponder];
+    [self.scrolView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
+
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == self.tfEmail) {
+        [self.scrolView setContentOffset:CGPointMake(0, 40) animated:YES];
+    }else if (textField == self.tfPassword) {
+        [self.scrolView setContentOffset:CGPointMake(0, 80) animated:YES];
+    }
+}
+
+#pragma mark - UIScrollViewDelegate
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.tfEmail resignFirstResponder];
+    [self.tfPassword resignFirstResponder];
+}
+
 @end

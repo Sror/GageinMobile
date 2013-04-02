@@ -60,6 +60,33 @@
 #pragma mark - actions
 -(IBAction)joinNowAction:(id)sender
 {
-    
+    [self.tfFirstName resignFirstResponder];
+    [self.tfLastName resignFirstResponder];
+    [self.tfEmail resignFirstResponder];
+    [self.tfPassword resignFirstResponder];
+    [self.scrolView setContentOffset:CGPointMake(0, 0) animated:YES];
+}
+
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == self.tfFirstName) {
+        [self.scrolView setContentOffset:CGPointMake(0, 40) animated:YES];
+    }else if (textField == self.tfLastName) {
+        [self.scrolView setContentOffset:CGPointMake(0, 80) animated:YES];
+    }else if (textField == self.tfEmail) {
+        [self.scrolView setContentOffset:CGPointMake(0, 120) animated:YES];
+    }else if (textField == self.tfPassword) {
+        [self.scrolView setContentOffset:CGPointMake(0, 160) animated:YES];
+    }
+}
+
+#pragma mark - UIScrollViewDelegate
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.tfFirstName resignFirstResponder];
+    [self.tfLastName resignFirstResponder];
+    [self.tfEmail resignFirstResponder];
+    [self.tfPassword resignFirstResponder];
 }
 @end
