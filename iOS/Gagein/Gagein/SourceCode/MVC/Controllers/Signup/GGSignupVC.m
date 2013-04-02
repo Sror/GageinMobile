@@ -7,6 +7,7 @@
 //
 
 #import "GGSignupVC.h"
+#import "GGPredicate.h"
 
 @interface GGSignupVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrolView;
@@ -39,11 +40,6 @@
     self.navigationController.navigationBarHidden = NO;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (void)viewDidUnload {
     [self setScrolView:nil];
@@ -57,14 +53,71 @@
     [super viewDidUnload];
 }
 
+#pragma mark - internal
+-(BOOL)_checkEmail
+{
+    if (self.tfEmail.text.length <= 0) {
+        [GGAlert alert:@"You must enter your Email."];
+        [self.tfEmail becomeFirstResponder];
+        return NO;
+    }else if (![GGPredicate checkEmail:self.tfEmail.text]){
+        [GGAlert alert:@"Not a valid Email format."];
+        [self.tfEmail becomeFirstResponder];
+        return NO;
+    }
+    
+    return YES;
+}
+
+-(BOOL)_checkPassword
+{
+    if (self.tfPassword.text.length <= 0) {
+        [GGAlert alert:@"You must enter your Password."];
+        [self.tfPassword becomeFirstResponder];
+        return NO;
+    }else if (![GGPredicate checkPassword:self.tfPassword.text]){
+        [GGAlert alert:@"Password must be 6-12 characters."];
+        [self.tfPassword becomeFirstResponder];
+        return NO;
+    }
+    
+    return YES;
+}
+
+-(BOOL)_checkFirstName
+{
+    if (self.tfFirstName.text.length <= 0) {
+        [GGAlert alert:@"You must enter your first name."];
+        [self.tfFirstName becomeFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL)_checkLastName
+{
+    if (self.tfLastName.text.length <= 0) {
+        [GGAlert alert:@"You must enter your last name."];
+        [self.tfLastName becomeFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
 #pragma mark - actions
 -(IBAction)joinNowAction:(id)sender
 {
-    [self.tfFirstName resignFirstResponder];
-    [self.tfLastName resignFirstResponder];
-    [self.tfEmail resignFirstResponder];
-    [self.tfPassword resignFirstResponder];
-    [self.scrolView setContentOffset:CGPointMake(0, 0) animated:YES];
+    if ([self _checkFirstName] && [self _checkLastName]
+        && [self _checkEmail] && [self _checkPassword]) {
+        
+        [self.tfFirstName resignFirstResponder];
+        [self.tfLastName resignFirstResponder];
+        [self.tfEmail resignFirstResponder];
+        [self.tfPassword resignFirstResponder];
+        [self.scrolView setContentOffset:CGPointMake(0, 0) animated:YES];
+        
+        DLog(@"check OK, call signup API.")
+    }
 }
 
 #pragma mark - UITextFieldDelegate

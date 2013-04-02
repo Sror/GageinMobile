@@ -180,6 +180,7 @@
 										<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 										<float key="IBUIMinimumFontSize">17</float>
 										<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+											<bool key="IBUISecureTextEntry">YES</bool>
 											<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										</object>
 										<reference key="IBUIFontDescription" ref="1026647204"/>
@@ -539,6 +540,7 @@
 						<int key="objectID">9</int>
 						<reference key="object" ref="444216328"/>
 						<reference key="parent" ref="615726619"/>
+						<string key="objectName">tfPwd</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">10</int>
