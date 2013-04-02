@@ -20,6 +20,9 @@
 		EA1A621E170A7865000B4EAE /* GGSignupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A621C170A7864000B4EAE /* GGSignupVC.m */; };
 		EA1A6222170A788B000B4EAE /* GGLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1A6220170A788B000B4EAE /* GGLoginVC.xib */; };
 		EA1A6223170A788B000B4EAE /* GGSignupVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1A6221170A788B000B4EAE /* GGSignupVC.xib */; };
+		EA1A6228170A8C95000B4EAE /* GGColor.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A6225170A8C95000B4EAE /* GGColor.m */; };
+		EA1A6229170A8C95000B4EAE /* GGPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A6227170A8C95000B4EAE /* GGPredicate.m */; };
+		EA1A622C170A9088000B4EAE /* GGAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A622B170A907B000B4EAE /* GGAlert.m */; };
 		EAC96C2B1709833C003FAFAA /* GGSignupPortalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */; };
 		EAC96C37170983B5003FAFAA /* GGCompaniesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C2F170983B5003FAFAA /* GGCompaniesVC.xib */; };
 		EAC96C38170983B5003FAFAA /* GGPeopleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C30170983B5003FAFAA /* GGPeopleVC.xib */; };
@@ -104,6 +107,12 @@
 		EA1A621C170A7864000B4EAE /* GGSignupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSignupVC.m; sourceTree = "<group>"; };
 		EA1A6220170A788B000B4EAE /* GGLoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGLoginVC.xib; sourceTree = "<group>"; };
 		EA1A6221170A788B000B4EAE /* GGSignupVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSignupVC.xib; sourceTree = "<group>"; };
+		EA1A6224170A8C95000B4EAE /* GGColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGColor.h; sourceTree = "<group>"; };
+		EA1A6225170A8C95000B4EAE /* GGColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGColor.m; sourceTree = "<group>"; };
+		EA1A6226170A8C95000B4EAE /* GGPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPredicate.h; sourceTree = "<group>"; };
+		EA1A6227170A8C95000B4EAE /* GGPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPredicate.m; sourceTree = "<group>"; };
+		EA1A622A170A907A000B4EAE /* GGAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGAlert.h; sourceTree = "<group>"; };
+		EA1A622B170A907B000B4EAE /* GGAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGAlert.m; sourceTree = "<group>"; };
 		EAC96C281709833C003FAFAA /* GGSignupPortalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSignupPortalVC.h; sourceTree = "<group>"; };
 		EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSignupPortalVC.m; sourceTree = "<group>"; };
 		EAC96C2F170983B5003FAFAA /* GGCompaniesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompaniesVC.xib; sourceTree = "<group>"; };
@@ -500,6 +509,12 @@
 		EACAE0F8170956BB00E7088F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				EA1A622A170A907A000B4EAE /* GGAlert.h */,
+				EA1A622B170A907B000B4EAE /* GGAlert.m */,
+				EA1A6224170A8C95000B4EAE /* GGColor.h */,
+				EA1A6225170A8C95000B4EAE /* GGColor.m */,
+				EA1A6226170A8C95000B4EAE /* GGPredicate.h */,
+				EA1A6227170A8C95000B4EAE /* GGPredicate.m */,
 				EACAE0F9170956E100E7088F /* GGDefine.h */,
 				EACAE0FA170956E100E7088F /* GGDefine.m */,
 				EACAE12517095C8700E7088F /* GGRuntimeData.h */,
@@ -685,6 +700,9 @@
 				EA1A6215170A77B4000B4EAE /* GGAgent.m in Sources */,
 				EA1A6219170A7851000B4EAE /* GGLoginVC.m in Sources */,
 				EA1A621E170A7865000B4EAE /* GGSignupVC.m in Sources */,
+				EA1A6228170A8C95000B4EAE /* GGColor.m in Sources */,
+				EA1A6229170A8C95000B4EAE /* GGPredicate.m in Sources */,
+				EA1A622C170A9088000B4EAE /* GGAlert.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

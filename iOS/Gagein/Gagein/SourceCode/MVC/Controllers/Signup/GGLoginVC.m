@@ -7,6 +7,7 @@
 //
 
 #import "GGLoginVC.h"
+#import "GGPredicate.h"
 
 @interface GGLoginVC ()
 @property (weak, nonatomic) IBOutlet UITextField *tfEmail;
@@ -50,13 +51,47 @@
 }
 
 #pragma mark - internal
+-(BOOL)_checkEmail
+{
+    if (self.tfEmail.text.length <= 0) {
+        [GGAlert alert:@"You must enter your Email."];
+        [self.tfEmail becomeFirstResponder];
+        return NO;
+    }else if (![GGPredicate checkEmail:self.tfEmail.text]){
+        [GGAlert alert:@"Not a valid Email format."];
+        [self.tfEmail becomeFirstResponder];
+        return NO;
+    }
+    
+    return YES;
+}
+
+-(BOOL)_checkPassword
+{
+    if (self.tfPassword.text.length <= 0) {
+        [GGAlert alert:@"You must enter your Password."];
+        [self.tfPassword becomeFirstResponder];
+        return NO;
+    }else if (![GGPredicate checkPassword:self.tfPassword.text]){
+        [GGAlert alert:@"Password must be 6-12 characters."];
+        [self.tfPassword becomeFirstResponder];
+        return NO;
+    }
+    
+    return YES;
+}
 
 #pragma mark - actions
 -(IBAction)loginAction:(id)sender
 {
-    [self.tfEmail resignFirstResponder];
-    [self.tfPassword resignFirstResponder];
-    [self.scrolView setContentOffset:CGPointMake(0, 0) animated:YES];
+    if ([self _checkEmail] && [self _checkPassword]) {
+        
+        [self.tfEmail resignFirstResponder];
+        [self.tfPassword resignFirstResponder];
+        [self.scrolView setContentOffset:CGPointMake(0, 0) animated:YES];
+        
+        DLog(@"email and pwd OK, call login API.")
+    }
 }
 
 #pragma mark - UITextFieldDelegate

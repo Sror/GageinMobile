@@ -19,4 +19,5 @@
     #import "GGDefine.h"
     #import "UIView+LoadFromNib.h"
     #import "NSObject+BeeNotification.h"
+    #import "GGAlert.h"
 #endif
