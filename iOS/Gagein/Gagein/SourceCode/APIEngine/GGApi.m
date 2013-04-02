@@ -8,11 +8,6 @@
 
 #import "GGApi.h"
 
-#define APP_CODE_KEY        @"appcode"
-#define APP_CODE_VALUE      @"09ad5d624c0294d1"
-#define ACCESS_TOKEN_KEY    @"access_token"
-#define ACCESS_TOKEN_VALUE  @"4d861dfe219170e3c58c7031578028a5"
-
 @implementation GGApi
 
 + (GGApi *)sharedApi
@@ -62,6 +57,33 @@
                   aCallback(operation, nil, error);
               }
           }];
+}
+
+-(void)loginWithEmail:(NSString *)anEmail password:(NSString *)aPassword callback:(GGApiBlock)aCallback
+{
+    NSString *path = @"login";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:anEmail forKey:@"mem_email"];
+    [parameters setObject:aPassword forKey:@"mem_password"];
+    
+    [self postPath:path
+        parameters:parameters
+           success:^(AFHTTPRequestOperation *operation, id responseObject) {
+               
+               if (aCallback) {
+                   aCallback(operation, responseObject, nil);
+               }
+               
+               
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        if (aCallback) {
+            aCallback(operation, nil, error);
+        }
+        
+    }];
 }
 
 @end

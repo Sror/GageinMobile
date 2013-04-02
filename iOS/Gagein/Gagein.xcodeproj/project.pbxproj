@@ -23,6 +23,8 @@
 		EA1A6228170A8C95000B4EAE /* GGColor.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A6225170A8C95000B4EAE /* GGColor.m */; };
 		EA1A6229170A8C95000B4EAE /* GGPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A6227170A8C95000B4EAE /* GGPredicate.m */; };
 		EA1A622C170A9088000B4EAE /* GGAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A622B170A907B000B4EAE /* GGAlert.m */; };
+		EAAD14D4170AA8D600EFB23A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAD14D3170AA8D600EFB23A /* MBProgressHUD.m */; };
+		EAAD14D7170AACD900EFB23A /* GGApiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAD14D6170AACD900EFB23A /* GGApiParser.m */; };
 		EAC96C2B1709833C003FAFAA /* GGSignupPortalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */; };
 		EAC96C37170983B5003FAFAA /* GGCompaniesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C2F170983B5003FAFAA /* GGCompaniesVC.xib */; };
 		EAC96C38170983B5003FAFAA /* GGPeopleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C30170983B5003FAFAA /* GGPeopleVC.xib */; };
@@ -113,6 +115,10 @@
 		EA1A6227170A8C95000B4EAE /* GGPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPredicate.m; sourceTree = "<group>"; };
 		EA1A622A170A907A000B4EAE /* GGAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGAlert.h; sourceTree = "<group>"; };
 		EA1A622B170A907B000B4EAE /* GGAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGAlert.m; sourceTree = "<group>"; };
+		EAAD14D2170AA8D600EFB23A /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		EAAD14D3170AA8D600EFB23A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		EAAD14D5170AACD900EFB23A /* GGApiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGApiParser.h; sourceTree = "<group>"; };
+		EAAD14D6170AACD900EFB23A /* GGApiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGApiParser.m; sourceTree = "<group>"; };
 		EAC96C281709833C003FAFAA /* GGSignupPortalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSignupPortalVC.h; sourceTree = "<group>"; };
 		EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSignupPortalVC.m; sourceTree = "<group>"; };
 		EAC96C2F170983B5003FAFAA /* GGCompaniesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompaniesVC.xib; sourceTree = "<group>"; };
@@ -214,6 +220,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EAAD14D1170AA8D600EFB23A /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				EAAD14D2170AA8D600EFB23A /* MBProgressHUD.h */,
+				EAAD14D3170AA8D600EFB23A /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		EAC96C2617098313003FAFAA /* Signup */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,6 +412,8 @@
 			children = (
 				EACAE1191709579800E7088F /* GGApi.h */,
 				EACAE11A1709579800E7088F /* GGApi.m */,
+				EAAD14D5170AACD900EFB23A /* GGApiParser.h */,
+				EAAD14D6170AACD900EFB23A /* GGApiParser.m */,
 			);
 			path = APIEngine;
 			sourceTree = "<group>";
@@ -466,6 +483,7 @@
 		EACAE0BB17094A3100E7088F /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				EAAD14D1170AA8D600EFB23A /* MBProgressHUD */,
 				EACAE0FC1709576200E7088F /* AFNetworking */,
 			);
 			path = ThirdParty;
@@ -703,6 +721,8 @@
 				EA1A6228170A8C95000B4EAE /* GGColor.m in Sources */,
 				EA1A6229170A8C95000B4EAE /* GGPredicate.m in Sources */,
 				EA1A622C170A9088000B4EAE /* GGAlert.m in Sources */,
+				EAAD14D4170AA8D600EFB23A /* MBProgressHUD.m in Sources */,
+				EAAD14D7170AACD900EFB23A /* GGApiParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

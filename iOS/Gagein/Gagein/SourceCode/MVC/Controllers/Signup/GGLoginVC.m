@@ -8,6 +8,7 @@
 
 #import "GGLoginVC.h"
 #import "GGPredicate.h"
+#import "GGMember.h"
 
 @interface GGLoginVC ()
 @property (weak, nonatomic) IBOutlet UITextField *tfEmail;
@@ -34,6 +35,10 @@
     
     self.title = @"Login with Email";
     self.navigationController.navigationBarHidden = NO;
+    
+#warning test login data
+    self.tfEmail.text = @"dymx101@hotmail.com";
+    self.tfPassword.text = @"heartL0";
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,6 +96,29 @@
         [self.scrolView setContentOffset:CGPointMake(0, 0) animated:YES];
         
         DLog(@"email and pwd OK, call login API.")
+        
+        //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeIndeterminate;
+        hud.labelText = @"Loading";
+        [GGSharedAPI loginWithEmail:self.tfEmail.text password:self.tfPassword.text callback:^(id operation, id aResultObject, NSError *anError) {
+            //DLog(@"%@", aResultObject);
+            [hud hide:YES];
+            
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.status == 1)
+            {
+                DLog(@"Login OK");
+                //id data = parser.data;
+                //DLog(@"%@", data);
+                GGMember *member = [parser parseLogin];
+            }
+            else
+            {
+                DLog(@"Login Failed");
+                [GGAlert alert:parser.message];
+            }
+        }];
     }
 }
 

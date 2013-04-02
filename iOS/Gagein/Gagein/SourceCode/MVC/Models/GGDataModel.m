@@ -9,5 +9,8 @@
 #import "GGDataModel.h"
 
 @implementation GGDataModel
-
++(id)model
+{
+    return  [[self alloc] init];
+}
 @end

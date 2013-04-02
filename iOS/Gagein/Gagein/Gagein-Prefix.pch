@@ -16,8 +16,10 @@
 
     #import "AFNetworking.h"
     #import "GGApi.h"
+    #import "GGApiParser.h"
     #import "GGDefine.h"
     #import "UIView+LoadFromNib.h"
     #import "NSObject+BeeNotification.h"
     #import "GGAlert.h"
+    #import "MBProgressHUD.h"
 #endif

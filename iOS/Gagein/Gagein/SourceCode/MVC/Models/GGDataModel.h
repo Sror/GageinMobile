@@ -10,4 +10,6 @@
 
 @interface GGDataModel : NSObject
 @property (assign) long long ID;
+
++(id)model;
 @end
