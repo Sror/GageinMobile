@@ -23,4 +23,5 @@
     #import "GGAlert.h"
     #import "MBProgressHUD.h"
     #import "GGRuntimeData.h"
+    #import "GGBaseViewController.h"
 #endif

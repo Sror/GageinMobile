@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGSignupVC : UIViewController <UITextFieldDelegate, UIScrollViewDelegate>
+@interface GGSignupVC : GGBaseViewController <UITextFieldDelegate, UIScrollViewDelegate>
 
 @end

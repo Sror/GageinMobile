@@ -1,5 +1,5 @@
 //
-//  GGSettingVC.h
+//  GGCompaniesVC.h
 //  Gagein
 //
 //  Created by dong yiming on 13-4-1.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGSettingVC : UIViewController
+@interface GGCompaniesVC : GGBaseViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

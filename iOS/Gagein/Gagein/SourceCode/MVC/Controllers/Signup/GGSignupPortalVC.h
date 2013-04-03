@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGSignupPortalVC : UIViewController
+@interface GGSignupPortalVC : GGBaseViewController
 
 @end

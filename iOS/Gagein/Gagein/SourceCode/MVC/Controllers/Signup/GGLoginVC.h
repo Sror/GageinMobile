@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGLoginVC : UIViewController <UITextFieldDelegate, UIScrollViewDelegate>
+@interface GGLoginVC : GGBaseViewController <UITextFieldDelegate, UIScrollViewDelegate>
 
 @end

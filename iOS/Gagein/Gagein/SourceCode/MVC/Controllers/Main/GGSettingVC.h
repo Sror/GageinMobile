@@ -1,5 +1,5 @@
 //
-//  GGPeopleVC.h
+//  GGSettingVC.h
 //  Gagein
 //
 //  Created by dong yiming on 13-4-1.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGPeopleVC : UIViewController
+@interface GGSettingVC : GGBaseViewController
 
 @end

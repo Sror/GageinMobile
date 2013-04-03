@@ -32,10 +32,12 @@
 
 - (void)viewDidLoad
 {
+    self.navigationController.navigationBarHidden = NO;
+    
     [super viewDidLoad];
     
     self.title = @"Login with Email";
-    self.navigationController.navigationBarHidden = NO;
+    
     
 #warning test login data
     self.tfEmail.text = @"dymx101@hotmail.com";

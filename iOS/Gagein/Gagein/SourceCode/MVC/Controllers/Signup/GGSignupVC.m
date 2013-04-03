@@ -34,10 +34,12 @@
 
 - (void)viewDidLoad
 {
+    self.navigationController.navigationBarHidden = NO;
+    
     [super viewDidLoad];
     
     self.title = @"Join Gagein";
-    self.navigationController.navigationBarHidden = NO;
+    
 }
 
 

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGProfileVC : UIViewController
+@interface GGProfileVC : GGBaseViewController
 
 @end

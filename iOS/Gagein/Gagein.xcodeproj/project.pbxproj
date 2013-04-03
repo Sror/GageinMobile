@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA0CA561170BD54000DBCD83 /* GGCompaniesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA55A170BD54000DBCD83 /* GGCompaniesVC.m */; };
+		EA0CA562170BD54000DBCD83 /* GGPeopleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA55C170BD54000DBCD83 /* GGPeopleVC.m */; };
+		EA0CA563170BD54000DBCD83 /* GGProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA55E170BD54000DBCD83 /* GGProfileVC.m */; };
+		EA0CA564170BD54000DBCD83 /* GGSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA560170BD54000DBCD83 /* GGSettingVC.m */; };
+		EA0CA567170BD57200DBCD83 /* GGWelcomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA566170BD57200DBCD83 /* GGWelcomeVC.m */; };
+		EA0CA56A170BD5AD00DBCD83 /* GGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA569170BD5AD00DBCD83 /* GGBaseViewController.m */; };
 		EA1A61F7170A6478000B4EAE /* GGDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61F6170A6478000B4EAE /* GGDataModel.m */; };
 		EA1A61FB170A64BF000B4EAE /* GGPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61FA170A64BF000B4EAE /* GGPerson.m */; };
 		EA1A61FE170A6D33000B4EAE /* GGCompany.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61FD170A6D33000B4EAE /* GGCompany.m */; };
@@ -44,12 +50,8 @@
 		EACAE0891709486800E7088F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0881709486800E7088F /* Default.png */; };
 		EACAE08B1709486800E7088F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE08A1709486800E7088F /* Default@2x.png */; };
 		EACAE08D1709486800E7088F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE08C1709486800E7088F /* Default-568h@2x.png */; };
-		EACAE0BF17094A9A00E7088F /* GGCompaniesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE0BD17094A9A00E7088F /* GGCompaniesVC.m */; };
 		EACAE0C217094AD600E7088F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAE0C117094AD600E7088F /* MobileCoreServices.framework */; };
 		EACAE0C417094ADE00E7088F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAE0C317094ADE00E7088F /* SystemConfiguration.framework */; };
-		EACAE0C817094B3200E7088F /* GGPeopleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE0C617094B3200E7088F /* GGPeopleVC.m */; };
-		EACAE0CD17094B5500E7088F /* GGProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE0CB17094B5500E7088F /* GGProfileVC.m */; };
-		EACAE0D217094B7500E7088F /* GGSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE0D017094B7400E7088F /* GGSettingVC.m */; };
 		EACAE0D917094D3200E7088F /* GGCompaniesVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0D817094D3200E7088F /* GGCompaniesVC_iPad.xib */; };
 		EACAE0DB17094D5F00E7088F /* GGPeopleVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0DA17094D5F00E7088F /* GGPeopleVC_iPad.xib */; };
 		EACAE0DD17094D7900E7088F /* GGProfileVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0DC17094D7900E7088F /* GGProfileVC_iPad.xib */; };
@@ -74,7 +76,6 @@
 		EACAE1181709576200E7088F /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE10F1709576200E7088F /* UIImageView+AFNetworking.m */; };
 		EACAE11B1709579800E7088F /* GGApi.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE11A1709579800E7088F /* GGApi.m */; };
 		EACAE12717095C8700E7088F /* GGRuntimeData.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE12617095C8700E7088F /* GGRuntimeData.m */; };
-		EACAE12B17095EAB00E7088F /* GGWelcomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE12917095EAB00E7088F /* GGWelcomeVC.m */; };
 		EACAE13B170961FB00E7088F /* UIView+LoadFromNib.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE13A170961FB00E7088F /* UIView+LoadFromNib.m */; };
 		EACAE1401709629400E7088F /* GGWelcomePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE13F1709629400E7088F /* GGWelcomePageView.m */; };
 		EACAE1461709643D00E7088F /* welcome01.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE1421709643D00E7088F /* welcome01.png */; };
@@ -86,6 +87,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA0CA559170BD54000DBCD83 /* GGCompaniesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompaniesVC.h; sourceTree = "<group>"; };
+		EA0CA55A170BD54000DBCD83 /* GGCompaniesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompaniesVC.m; sourceTree = "<group>"; };
+		EA0CA55B170BD54000DBCD83 /* GGPeopleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPeopleVC.h; sourceTree = "<group>"; };
+		EA0CA55C170BD54000DBCD83 /* GGPeopleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPeopleVC.m; sourceTree = "<group>"; };
+		EA0CA55D170BD54000DBCD83 /* GGProfileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGProfileVC.h; sourceTree = "<group>"; };
+		EA0CA55E170BD54000DBCD83 /* GGProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGProfileVC.m; sourceTree = "<group>"; };
+		EA0CA55F170BD54000DBCD83 /* GGSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingVC.h; sourceTree = "<group>"; };
+		EA0CA560170BD54000DBCD83 /* GGSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingVC.m; sourceTree = "<group>"; };
+		EA0CA565170BD57200DBCD83 /* GGWelcomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGWelcomeVC.h; sourceTree = "<group>"; };
+		EA0CA566170BD57200DBCD83 /* GGWelcomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGWelcomeVC.m; sourceTree = "<group>"; };
+		EA0CA568170BD5AD00DBCD83 /* GGBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGBaseViewController.h; sourceTree = "<group>"; };
+		EA0CA569170BD5AD00DBCD83 /* GGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGBaseViewController.m; sourceTree = "<group>"; };
 		EA1A61F5170A6478000B4EAE /* GGDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGDataModel.h; sourceTree = "<group>"; };
 		EA1A61F6170A6478000B4EAE /* GGDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGDataModel.m; sourceTree = "<group>"; };
 		EA1A61F9170A64BF000B4EAE /* GGPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPerson.h; sourceTree = "<group>"; };
@@ -146,16 +159,8 @@
 		EACAE0881709486800E7088F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		EACAE08A1709486800E7088F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		EACAE08C1709486800E7088F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		EACAE0BC17094A9A00E7088F /* GGCompaniesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompaniesVC.h; sourceTree = "<group>"; };
-		EACAE0BD17094A9A00E7088F /* GGCompaniesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompaniesVC.m; sourceTree = "<group>"; };
 		EACAE0C117094AD600E7088F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		EACAE0C317094ADE00E7088F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		EACAE0C517094B3200E7088F /* GGPeopleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPeopleVC.h; sourceTree = "<group>"; };
-		EACAE0C617094B3200E7088F /* GGPeopleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPeopleVC.m; sourceTree = "<group>"; };
-		EACAE0CA17094B5500E7088F /* GGProfileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGProfileVC.h; sourceTree = "<group>"; };
-		EACAE0CB17094B5500E7088F /* GGProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGProfileVC.m; sourceTree = "<group>"; };
-		EACAE0CF17094B7400E7088F /* GGSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingVC.h; sourceTree = "<group>"; };
-		EACAE0D017094B7400E7088F /* GGSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingVC.m; sourceTree = "<group>"; };
 		EACAE0D817094D3200E7088F /* GGCompaniesVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompaniesVC_iPad.xib; sourceTree = "<group>"; };
 		EACAE0DA17094D5F00E7088F /* GGPeopleVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGPeopleVC_iPad.xib; sourceTree = "<group>"; };
 		EACAE0DC17094D7900E7088F /* GGProfileVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGProfileVC_iPad.xib; sourceTree = "<group>"; };
@@ -193,8 +198,6 @@
 		EACAE11A1709579800E7088F /* GGApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGApi.m; sourceTree = "<group>"; };
 		EACAE12517095C8700E7088F /* GGRuntimeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGRuntimeData.h; sourceTree = "<group>"; };
 		EACAE12617095C8700E7088F /* GGRuntimeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGRuntimeData.m; sourceTree = "<group>"; };
-		EACAE12817095EAA00E7088F /* GGWelcomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGWelcomeVC.h; sourceTree = "<group>"; };
-		EACAE12917095EAB00E7088F /* GGWelcomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGWelcomeVC.m; sourceTree = "<group>"; };
 		EACAE139170961FB00E7088F /* UIView+LoadFromNib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LoadFromNib.h"; sourceTree = "<group>"; };
 		EACAE13A170961FB00E7088F /* UIView+LoadFromNib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LoadFromNib.m"; sourceTree = "<group>"; };
 		EACAE13E1709629400E7088F /* GGWelcomePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGWelcomePageView.h; sourceTree = "<group>"; };
@@ -223,6 +226,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA0CA558170BD54000DBCD83 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				EA0CA559170BD54000DBCD83 /* GGCompaniesVC.h */,
+				EA0CA55A170BD54000DBCD83 /* GGCompaniesVC.m */,
+				EA0CA55B170BD54000DBCD83 /* GGPeopleVC.h */,
+				EA0CA55C170BD54000DBCD83 /* GGPeopleVC.m */,
+				EA0CA55D170BD54000DBCD83 /* GGProfileVC.h */,
+				EA0CA55E170BD54000DBCD83 /* GGProfileVC.m */,
+				EA0CA55F170BD54000DBCD83 /* GGSettingVC.h */,
+				EA0CA560170BD54000DBCD83 /* GGSettingVC.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		EAAD14D1170AA8D600EFB23A /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +253,8 @@
 		EAC96C2617098313003FAFAA /* Signup */ = {
 			isa = PBXGroup;
 			children = (
+				EA0CA565170BD57200DBCD83 /* GGWelcomeVC.h */,
+				EA0CA566170BD57200DBCD83 /* GGWelcomeVC.m */,
 				EAC96C281709833C003FAFAA /* GGSignupPortalVC.h */,
 				EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */,
 				EA1A6216170A7851000B4EAE /* GGLoginVC.h */,
@@ -434,17 +454,10 @@
 		EACAE0B817094A3100E7088F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EA0CA558170BD54000DBCD83 /* Main */,
 				EAC96C2617098313003FAFAA /* Signup */,
-				EACAE0BC17094A9A00E7088F /* GGCompaniesVC.h */,
-				EACAE0BD17094A9A00E7088F /* GGCompaniesVC.m */,
-				EACAE0C517094B3200E7088F /* GGPeopleVC.h */,
-				EACAE0C617094B3200E7088F /* GGPeopleVC.m */,
-				EACAE0CA17094B5500E7088F /* GGProfileVC.h */,
-				EACAE0CB17094B5500E7088F /* GGProfileVC.m */,
-				EACAE0CF17094B7400E7088F /* GGSettingVC.h */,
-				EACAE0D017094B7400E7088F /* GGSettingVC.m */,
-				EACAE12817095EAA00E7088F /* GGWelcomeVC.h */,
-				EACAE12917095EAB00E7088F /* GGWelcomeVC.m */,
+				EA0CA568170BD5AD00DBCD83 /* GGBaseViewController.h */,
+				EA0CA569170BD5AD00DBCD83 /* GGBaseViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -691,10 +704,6 @@
 			files = (
 				EACAE0831709486800E7088F /* main.m in Sources */,
 				EACAE0871709486800E7088F /* GGAppDelegate.m in Sources */,
-				EACAE0BF17094A9A00E7088F /* GGCompaniesVC.m in Sources */,
-				EACAE0C817094B3200E7088F /* GGPeopleVC.m in Sources */,
-				EACAE0CD17094B5500E7088F /* GGProfileVC.m in Sources */,
-				EACAE0D217094B7500E7088F /* GGSettingVC.m in Sources */,
 				EACAE0FB170956E100E7088F /* GGDefine.m in Sources */,
 				EACAE1101709576200E7088F /* AFHTTPClient.m in Sources */,
 				EACAE1111709576200E7088F /* AFHTTPRequestOperation.m in Sources */,
@@ -707,7 +716,6 @@
 				EACAE1181709576200E7088F /* UIImageView+AFNetworking.m in Sources */,
 				EACAE11B1709579800E7088F /* GGApi.m in Sources */,
 				EACAE12717095C8700E7088F /* GGRuntimeData.m in Sources */,
-				EACAE12B17095EAB00E7088F /* GGWelcomeVC.m in Sources */,
 				EACAE13B170961FB00E7088F /* UIView+LoadFromNib.m in Sources */,
 				EACAE1401709629400E7088F /* GGWelcomePageView.m in Sources */,
 				EAC96C2B1709833C003FAFAA /* GGSignupPortalVC.m in Sources */,
@@ -729,6 +737,12 @@
 				EAAD14D4170AA8D600EFB23A /* MBProgressHUD.m in Sources */,
 				EAAD14D7170AACD900EFB23A /* GGApiParser.m in Sources */,
 				EAAD14DA170ACBDF00EFB23A /* GGPath.m in Sources */,
+				EA0CA561170BD54000DBCD83 /* GGCompaniesVC.m in Sources */,
+				EA0CA562170BD54000DBCD83 /* GGPeopleVC.m in Sources */,
+				EA0CA563170BD54000DBCD83 /* GGProfileVC.m in Sources */,
+				EA0CA564170BD54000DBCD83 /* GGSettingVC.m in Sources */,
+				EA0CA567170BD57200DBCD83 /* GGWelcomeVC.m in Sources */,
+				EA0CA56A170BD5AD00DBCD83 /* GGBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

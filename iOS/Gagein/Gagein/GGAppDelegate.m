@@ -27,6 +27,8 @@
     
     // Override point for customization after application launch.
     UIViewController *viewController1, *viewController2, *viewController3, *viewController4;
+    UINavigationController *nc1, *nc2, *nc3, *nc4;
+    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         viewController1 = [[GGCompaniesVC alloc] initWithNibName:@"GGCompaniesVC" bundle:nil];
         viewController2 = [[GGPeopleVC alloc] initWithNibName:@"GGPeopleVC" bundle:nil];
@@ -39,8 +41,13 @@
         viewController4 = [[GGSettingVC alloc] initWithNibName:@"GGSettingVC_iPad" bundle:nil];
     }
     
+    nc1 = [[UINavigationController alloc] initWithRootViewController:viewController1];
+    nc2 = [[UINavigationController alloc] initWithRootViewController:viewController2];
+    nc3 = [[UINavigationController alloc] initWithRootViewController:viewController3];
+    nc4 = [[UINavigationController alloc] initWithRootViewController:viewController4];
+    
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[viewController1, viewController2, viewController3, viewController4];
+    self.tabBarController.viewControllers = @[nc1, nc2, nc3, nc4];
     
     self.naviController = [[UINavigationController alloc] initWithRootViewController:self.tabBarController];
     self.naviController.navigationBarHidden = YES;
