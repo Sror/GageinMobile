@@ -13,6 +13,9 @@
 @end
 
 @implementation GGBaseViewController
+{
+    __weak MBProgressHUD *hud;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,6 +49,19 @@
     }
     
     return viewPortFrame;
+}
+
+-(void)showLoadingHUD
+{
+    //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = @"Loading";
+}
+
+-(void)hideLoadingHUD
+{
+    [hud hide:YES];
 }
 
 @end

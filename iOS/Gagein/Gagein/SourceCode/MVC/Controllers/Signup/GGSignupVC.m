@@ -40,6 +40,11 @@
     
     self.title = @"Join Gagein";
     
+#warning TEST register data
+    self.tfEmail.text = @"dymx101@hotmail.com";
+    self.tfPassword.text = @"heartL0";
+    self.tfFirstName.text = @"Daniel";
+    self.tfLastName.text = @"Dong";
 }
 
 
@@ -119,6 +124,28 @@
         [self.scrolView setContentOffset:CGPointMake(0, 0) animated:YES];
         
         DLog(@"check OK, call signup API.")
+        [self showLoadingHUD];
+        [GGSharedAPI retisterWithEmail:self.tfEmail.text password:self.tfPassword.text firstName:self.tfFirstName.text lastName:self.tfLastName.text callback:^(id operation, id aResultObject, NSError *anError) {
+            
+            DLog(@"%@", aResultObject);
+            [self hideLoadingHUD];
+            
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.status == 1)
+            {
+                DLog(@"Register OK, autoLogin...");
+                //id data = parser.data;
+                //DLog(@"%@", data);
+                // [parser parseLogin];
+                
+            }
+            else
+            {
+                DLog(@"register Failed");
+                [GGAlert alert:parser.message];
+            }
+            
+        }];
     }
 }
 

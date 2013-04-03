@@ -17,10 +17,9 @@
 #define CURRENT_SERVER_URL         GGN_STR_DEMO_SERVER_URL
 
 //
-#define APP_CODE_KEY        @"appcode"
+
 #define APP_CODE_VALUE      @"09ad5d624c0294d1"
-#define ACCESS_TOKEN_KEY    @"access_token"
-#define ACCESS_TOKEN_VALUE  @"4d861dfe219170e3c58c7031578028a5"
+//#define ACCESS_TOKEN_VALUE  @"4d861dfe219170e3c58c7031578028a5"
 
 //
 #undef	__INT

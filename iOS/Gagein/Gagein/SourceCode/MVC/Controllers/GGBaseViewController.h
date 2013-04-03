@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface GGBaseViewController : UIViewController
-
+-(void)showLoadingHUD;
+-(void)hideLoadingHUD;
 @end

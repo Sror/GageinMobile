@@ -100,13 +100,10 @@
         
         DLog(@"email and pwd OK, call login API.")
         
-        //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.mode = MBProgressHUDModeIndeterminate;
-        hud.labelText = @"Loading";
+        [self showLoadingHUD];
         [GGSharedAPI loginWithEmail:self.tfEmail.text password:self.tfPassword.text callback:^(id operation, id aResultObject, NSError *anError) {
             //DLog(@"%@", aResultObject);
-            [hud hide:YES];
+            [self hideLoadingHUD];
             
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.status == 1)
