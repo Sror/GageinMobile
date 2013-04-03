@@ -10,13 +10,18 @@
 
 @implementation GGApi
 
++(NSString *)apiBaseUrl
+{
+    return [NSString stringWithFormat:@"%@/svc/", CURRENT_SERVER_URL];
+}
+
 + (GGApi *)sharedApi
 {
     
     static dispatch_once_t pred;
     static GGApi *_sharedApi = nil;
     
-    dispatch_once(&pred, ^{ _sharedApi = [[self alloc] initWithBaseURL:[NSURL URLWithString:GGN_STR_API_BASE_URL]]; });
+    dispatch_once(&pred, ^{ _sharedApi = [[self alloc] initWithBaseURL:[NSURL URLWithString:[self apiBaseUrl]]]; });
     return _sharedApi;
 }
 

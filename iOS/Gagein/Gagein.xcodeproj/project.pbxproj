@@ -13,6 +13,9 @@
 		EA0CA564170BD54000DBCD83 /* GGSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA560170BD54000DBCD83 /* GGSettingVC.m */; };
 		EA0CA567170BD57200DBCD83 /* GGWelcomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA566170BD57200DBCD83 /* GGWelcomeVC.m */; };
 		EA0CA56A170BD5AD00DBCD83 /* GGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA569170BD5AD00DBCD83 /* GGBaseViewController.m */; };
+		EA0CA58A170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA587170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m */; };
+		EA0CA58B170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA589170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m */; };
+		EA0CA58D170BF4C000DBCD83 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0CA58C170BF4C000DBCD83 /* QuartzCore.framework */; };
 		EA1A61F7170A6478000B4EAE /* GGDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61F6170A6478000B4EAE /* GGDataModel.m */; };
 		EA1A61FB170A64BF000B4EAE /* GGPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61FA170A64BF000B4EAE /* GGPerson.m */; };
 		EA1A61FE170A6D33000B4EAE /* GGCompany.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61FD170A6D33000B4EAE /* GGCompany.m */; };
@@ -99,6 +102,12 @@
 		EA0CA566170BD57200DBCD83 /* GGWelcomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGWelcomeVC.m; sourceTree = "<group>"; };
 		EA0CA568170BD5AD00DBCD83 /* GGBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGBaseViewController.h; sourceTree = "<group>"; };
 		EA0CA569170BD5AD00DBCD83 /* GGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGBaseViewController.m; sourceTree = "<group>"; };
+		EA0CA585170BF4A700DBCD83 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
+		EA0CA586170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
+		EA0CA587170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
+		EA0CA588170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
+		EA0CA589170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
+		EA0CA58C170BF4C000DBCD83 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EA1A61F5170A6478000B4EAE /* GGDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGDataModel.h; sourceTree = "<group>"; };
 		EA1A61F6170A6478000B4EAE /* GGDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGDataModel.m; sourceTree = "<group>"; };
 		EA1A61F9170A64BF000B4EAE /* GGPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPerson.h; sourceTree = "<group>"; };
@@ -215,6 +224,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA0CA58D170BF4C000DBCD83 /* QuartzCore.framework in Frameworks */,
 				EACAE0C417094ADE00E7088F /* SystemConfiguration.framework in Frameworks */,
 				EACAE0C217094AD600E7088F /* MobileCoreServices.framework in Frameworks */,
 				EACAE0771709486800E7088F /* UIKit.framework in Frameworks */,
@@ -239,6 +249,18 @@
 				EA0CA560170BD54000DBCD83 /* GGSettingVC.m */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		EA0CA584170BF4A700DBCD83 /* SVPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				EA0CA585170BF4A700DBCD83 /* SVPullToRefresh.h */,
+				EA0CA586170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.h */,
+				EA0CA587170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m */,
+				EA0CA588170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.h */,
+				EA0CA589170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m */,
+			);
+			path = SVPullToRefresh;
 			sourceTree = "<group>";
 		};
 		EAAD14D1170AA8D600EFB23A /* MBProgressHUD */ = {
@@ -318,6 +340,7 @@
 		EACAE0751709486800E7088F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA0CA58C170BF4C000DBCD83 /* QuartzCore.framework */,
 				EACAE0C317094ADE00E7088F /* SystemConfiguration.framework */,
 				EACAE0C117094AD600E7088F /* MobileCoreServices.framework */,
 				EACAE0761709486800E7088F /* UIKit.framework */,
@@ -499,6 +522,7 @@
 		EACAE0BB17094A3100E7088F /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				EA0CA584170BF4A700DBCD83 /* SVPullToRefresh */,
 				EAAD14D1170AA8D600EFB23A /* MBProgressHUD */,
 				EACAE0FC1709576200E7088F /* AFNetworking */,
 			);
@@ -743,6 +767,8 @@
 				EA0CA564170BD54000DBCD83 /* GGSettingVC.m in Sources */,
 				EA0CA567170BD57200DBCD83 /* GGWelcomeVC.m in Sources */,
 				EA0CA56A170BD5AD00DBCD83 /* GGBaseViewController.m in Sources */,
+				EA0CA58A170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
+				EA0CA58B170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
