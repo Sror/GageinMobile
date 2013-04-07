@@ -30,11 +30,26 @@ typedef void(^GGApiBlock)(id operation, id aResultObject, NSError* anError);
                 callback:(GGApiBlock)aCallback;
 
 #pragma mark - company APIs
+typedef enum
+{
+    kGGPageFlagFirstPage = 0
+    , kGGPageFlagMoveDown
+    , kGGPageFlagMoveUp
+}EGGPageFlag;
+
+typedef enum
+{
+    kGGCompanyUpdateRelevanceNormal     = 10
+    , kGGCompanyUpdateRelevanceHigh     = 20
+    , kGGCompanyUpdateRelevanceVeryHigh = 30
+    , kGGCompanyUpdateRelevanceHighest  = 40
+}EGGCompanyUpdateRelevance;
+
 // get company updates
 -(void)getCompanyUpdatesWithNewsID:(long long)aNewsID
-                         pageFlag:(int)aPageFlag
+                         pageFlag:(EGGPageFlag)aPageFlag
                          pageTime:(long long)aPageTime
-                        relevance:(int)aRelevance
+                        relevance:(EGGCompanyUpdateRelevance)aRelevance
                          callback:(GGApiBlock)aCallback;
 
 @end

@@ -131,9 +131,9 @@
 
 #pragma mark - company APIs
 -(void)getCompanyUpdatesWithNewsID:(long long)aNewsID
-                         pageFlag:(int)aPageFlag
+                         pageFlag:(EGGPageFlag)aPageFlag
                          pageTime:(long long)aPageTime
-                        relevance:(int)aRelevance
+                        relevance:(EGGCompanyUpdateRelevance)aRelevance
                          callback:(GGApiBlock)aCallback
 {
     //GET

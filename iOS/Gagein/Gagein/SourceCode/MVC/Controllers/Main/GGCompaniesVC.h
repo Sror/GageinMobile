@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GGCompaniesVC : GGBaseViewController <UITableViewDelegate, UITableViewDataSource>
-
+@property (strong)   NSMutableArray              *updates;
 @end
