@@ -7,7 +7,17 @@
 //
 
 #import "GGCompanyUpdate.h"
+#import "GGCompany.h"
 
 @implementation GGCompanyUpdate
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _company = [GGCompany model];
+    }
+    return self;
+}
 
 @end

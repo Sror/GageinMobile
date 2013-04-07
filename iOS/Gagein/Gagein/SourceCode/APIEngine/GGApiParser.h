@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class GGMember;
+@class GGDataPage;
 
 @interface GGApiParser : NSObject
 @property (strong)  NSDictionary    *apiData;
@@ -22,6 +23,14 @@
 -(NSString *)message;
 -(id)data;
 
+#pragma mark - data elements
+-(BOOL)dataHasMore;
+-(long long)dataTimestamp;
+-(NSArray *)dataInfos;
+
 #pragma mark - signup
 -(GGMember*)parseLogin;
+
+#pragma mark - companies
+-(GGDataPage *)parseGetCompanyUpdates;
 @end

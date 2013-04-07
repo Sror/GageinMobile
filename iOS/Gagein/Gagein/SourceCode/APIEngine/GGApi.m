@@ -46,20 +46,11 @@
     [self.operationQueue cancelAllOperations];
 }
 
-
-//www.gagein.com/svc/company/1399794/info?appcode=09ad5d624c0294d1&access_token=4d861dfe219170e3c58c7031578028a5&include_sp=true
--(void)getCompanyInfoWithID:(long)aCompanyID includeSp:(BOOL)aIsIncludeSp callback:(GGApiBlock)aCallback
+#pragma mark - internal
+-(void)_execGetWithPath:(NSString *)aPath params:(NSDictionary *)aParams callback:(GGApiBlock)aCallback
 {
-    NSString *path = [NSString stringWithFormat:@"company/%ld/info", aCompanyID];
-    
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:(aIsIncludeSp ? @"true" : @"false") forKey:@"include_sp"];
-    
-    
-    [self getPath:path
-       parameters:parameters
+    [self getPath:aPath
+       parameters:aParams
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               if (aCallback) {
                   aCallback(operation, responseObject, nil);
@@ -72,7 +63,42 @@
           }];
 }
 
-#pragma mark - signup
+-(void)_execPostWithPath:(NSString *)aPath params:(NSDictionary *)aParams callback:(GGApiBlock)aCallback
+{
+    [self postPath:aPath
+        parameters:aParams
+           success:^(AFHTTPRequestOperation *operation, id responseObject) {
+               if (aCallback) {
+                   aCallback(operation, responseObject, nil);
+               }
+           }
+           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+               if (aCallback) {
+                   aCallback(operation, nil, error);
+               }
+           }];
+}
+
+
+//www.gagein.com/svc/company/1399794/info?appcode=09ad5d624c0294d1&access_token=4d861dfe219170e3c58c7031578028a5&include_sp=true
+-(void)getCompanyInfoWithID:(long)aCompanyID includeSp:(BOOL)aIsIncludeSp callback:(GGApiBlock)aCallback
+{
+    NSString *path = [NSString stringWithFormat:@"company/%ld/info", aCompanyID];
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:(aIsIncludeSp ? @"true" : @"false") forKey:@"include_sp"];
+    
+    [self _execGetWithPath:path params:parameters callback:aCallback];
+}
+
+
+
+
+
+
+#pragma mark - signup APIs
 -(void)loginWithEmail:(NSString *)anEmail password:(NSString *)aPassword callback:(GGApiBlock)aCallback
 {
     NSString *path = @"login";
@@ -82,22 +108,7 @@
     [parameters setObject:anEmail forKey:@"mem_email"];
     [parameters setObject:aPassword forKey:@"mem_password"];
     
-    [self postPath:path
-        parameters:parameters
-           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-               
-               if (aCallback) {
-                   aCallback(operation, responseObject, nil);
-               }
-               
-               
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        if (aCallback) {
-            aCallback(operation, nil, error);
-        }
-        
-    }];
+    [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 -(void)retisterWithEmail:(NSString *)anEmail
@@ -115,22 +126,28 @@
     [parameters setObject:aFirstName forKey:@"mem_first_name"];
     [parameters setObject:aLastName forKey:@"mem_last_name"];
     
-    [self postPath:path
-        parameters:parameters
-           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-               
-               if (aCallback) {
-                   aCallback(operation, responseObject, nil);
-               }
-               
-               
-           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-               
-               if (aCallback) {
-                   aCallback(operation, nil, error);
-               }
-               
-           }];
+    [self _execPostWithPath:path params:parameters callback:aCallback];
+}
+
+#pragma mark - company APIs
+-(void)getCompanyUpdatesWithNewsID:(long long)aNewsID
+                         pageFlag:(int)aPageFlag
+                         pageTime:(long long)aPageTime
+                        relevance:(int)aRelevance
+                         callback:(GGApiBlock)aCallback
+{
+    //GET
+    NSString *path = @"member/me/update/tracker";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:[NSNumber numberWithLongLong:aNewsID] forKey:@"newsid"];
+    [parameters setObject:[NSNumber numberWithLongLong:aPageFlag] forKey:@"pageflag"];
+    [parameters setObject:[NSNumber numberWithLongLong:aPageTime] forKey:@"pagetime"];
+    [parameters setObject:[NSNumber numberWithLongLong:aRelevance] forKey:@"relevance"];
+    
+    [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 @end

@@ -17,8 +17,8 @@ typedef void(^GGApiBlock)(id operation, id aResultObject, NSError* anError);
 
 -(void)canceAllOperations;
 
--(void)getCompanyInfoWithID:(long)aCompanyID includeSp:(BOOL)aIsIncludeSp callback:(GGApiBlock)aCallback;
 
+#pragma mark - signup APIs
 //login
 -(void)loginWithEmail:(NSString *)anEmail password:(NSString *)aPassword callback:(GGApiBlock)aCallback;
 
@@ -28,6 +28,15 @@ typedef void(^GGApiBlock)(id operation, id aResultObject, NSError* anError);
                firstName:(NSString *)aFirstName
                 lastName:(NSString *)aLastName
                 callback:(GGApiBlock)aCallback;
+
+#pragma mark - company APIs
+// get company updates
+-(void)getCompanyUpdatesWithNewsID:(long long)aNewsID
+                         pageFlag:(int)aPageFlag
+                         pageTime:(long long)aPageTime
+                        relevance:(int)aRelevance
+                         callback:(GGApiBlock)aCallback;
+
 @end
 
 #define GGSharedAPI [GGApi sharedApi]

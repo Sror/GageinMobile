@@ -8,6 +8,7 @@
 
 #import "GGMember.h"
 #import "GGCompany.h"
+#import "GGMemberPlan.h"
 
 #define kMemberID           @"kMemberID"
 #define kMemberFullName     @"kMemberFullName"
@@ -37,6 +38,15 @@
     member.company.name = [aDecoder decodeObjectForKey:kMemberOrgName];
     
     return member;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _plan = [GGMemberPlan model];
+    }
+    return self;
 }
 
 @end

@@ -20,7 +20,7 @@
 @property (copy)    NSString *fortuneRank;
 @property (copy)    NSString *ownership;
 @property (copy)    NSString *revenueSize;
-@property (copy)    NSString *type;
+@property (copy)    NSString *type;                 // eg. "Private Company"
 @property (strong)  NSMutableArray *socialProfiles; // each profile is a GGSocialProfile
 @property (copy)    NSString *address;
 @property (copy)    NSString *faxNumber;
