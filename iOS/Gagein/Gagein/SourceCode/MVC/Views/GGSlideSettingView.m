@@ -17,8 +17,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.2f];
-        [self _assembleSubViews];
+        self.backgroundColor = [UIColor colorWithRed:.5f green:.5f blue:.5f alpha:.2f];
+        
+        _viewSlide = [[UIView alloc] initWithFrame:CGRectZero];
+        _viewSlide.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+        [self addSubview:_viewSlide];
+        [self _tuneLayout];
+        
         self.hidden = YES;
     }
     return self;
@@ -28,13 +33,6 @@
 {
     [super setFrame:frame];
     [self _tuneLayout];
-}
-
--(void)_assembleSubViews
-{
-    _viewSlide = [[UIView alloc] initWithFrame:CGRectZero];
-    self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.9f];
-    [self addSubview:_viewSlide];
 }
 
 -(void)_tuneLayout
@@ -55,15 +53,18 @@
         
         [UIView animateWithDuration:.5f animations:^{
             
+#if 0
             CGPoint pt = _viewSlide.layer.position;
             pt.x += _viewSlide.frame.size.width;
             _viewSlide.layer.position = pt;
+#else
+            CGRect slideRc = CGRectMake(0
+                                        , 0
+                                        , self.frame.size.width - FORBIDDEN_AREA_WIDTH
+                                        , self.frame.size.height);
+            _viewSlide.frame = slideRc;
+#endif
             
-//            CGRect slideRc = CGRectMake(0
-//                                        , 0
-//                                        , self.frame.size.width - FORBIDDEN_AREA_WIDTH
-//                                        , self.frame.size.height);
-//            _viewSlide.frame = slideRc;
         } completion:^(BOOL finished) {
             
         }];
