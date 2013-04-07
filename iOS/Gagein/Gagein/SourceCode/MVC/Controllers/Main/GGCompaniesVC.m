@@ -8,10 +8,13 @@
 
 #import "GGCompaniesVC.h"
 #import "SVPullToRefresh.h"
+#import "GGCompanyUpdateCell.h"
 
 @interface GGCompaniesVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
 @property (nonatomic, strong) UITableView *happeningsTV;
+@property (weak, nonatomic) IBOutlet UINavigationBar *naviBar;
+@property (weak, nonatomic) IBOutlet UINavigationItem *naviItem;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @end
 
@@ -71,21 +74,31 @@
 
 - (void)viewDidLoad
 {
+    self.navigationController.navigationBarHidden = YES;
     [super viewDidLoad];
     
-    self.title = @"EXPLORING";
     
     UIBarButtonItem *menuBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(optionMenuAction:)];
     UIBarButtonItem *searchUpdateBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchUpdateAction:)];
     UIBarButtonItem *savedUpdateBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(savedUpdateAction:)];
     
-    self.navigationItem.leftBarButtonItem = menuBtn;
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:savedUpdateBtn, searchUpdateBtn, nil];
+    //self.title = @"EXPLORING";
+    //self.navigationItem.leftBarButtonItem = menuBtn;
+    //self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:savedUpdateBtn, searchUpdateBtn, nil];
     
-    self.updatesTV = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.naviItem.title = @"EXPLORING";
+    self.naviItem.leftBarButtonItem = menuBtn;
+    self.naviItem.rightBarButtonItems = [NSArray arrayWithObjects:savedUpdateBtn, searchUpdateBtn, nil];
+    
+    CGRect updateRc = self.view.bounds;
+    updateRc.origin.y += self.naviBar.frame.size.height;
+    updateRc.size.height -= self.naviBar.frame.size.height;
+    self.updatesTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
+    self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
     [self.view addSubview:self.updatesTV];
+    //self.updatesTV.hidden = YES;
     
     [self setupDataSource];
     
@@ -126,14 +139,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *updateCellId = @"updateCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
+    
+    static NSString *updateCellId = @"GGCompanyUpdateCell";
+    GGCompanyUpdateCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:updateCellId];
+        cell = [GGCompanyUpdateCell viewFromNibWithOwner:self];
     }
     
     NSDate *date = [self.dataSource objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterMediumStyle];
+    cell.titleLbl.text = [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterMediumStyle];
     
     return cell;
 }
@@ -145,4 +159,9 @@
 }
 
 
+- (void)viewDidUnload {
+    [self setNaviBar:nil];
+    [self setNaviItem:nil];
+    [super viewDidUnload];
+}
 @end

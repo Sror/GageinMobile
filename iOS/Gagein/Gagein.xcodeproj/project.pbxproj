@@ -87,6 +87,9 @@
 		EACAE1491709643D00E7088F /* welcome04.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE1451709643D00E7088F /* welcome04.png */; };
 		EACAE14B1709755B00E7088F /* gageinLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE14A1709755B00E7088F /* gageinLogo.png */; };
 		EACAE14D1709777F00E7088F /* getStartedBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE14C1709777F00E7088F /* getStartedBtn.png */; };
+		EAD481F51710FF9100556288 /* GGCompanyUpdateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */; };
+		EAD481F91710FFB300556288 /* GGCompanyUpdateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD481F81710FFB300556288 /* GGCompanyUpdateCell.m */; };
+		EAD481FB1711060500556288 /* comLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD481FA1711060500556288 /* comLogo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -217,6 +220,10 @@
 		EACAE1451709643D00E7088F /* welcome04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome04.png; sourceTree = "<group>"; };
 		EACAE14A1709755B00E7088F /* gageinLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gageinLogo.png; sourceTree = "<group>"; };
 		EACAE14C1709777F00E7088F /* getStartedBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = getStartedBtn.png; sourceTree = "<group>"; };
+		EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyUpdateCell.xib; sourceTree = "<group>"; };
+		EAD481F71710FFB300556288 /* GGCompanyUpdateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyUpdateCell.h; sourceTree = "<group>"; };
+		EAD481F81710FFB300556288 /* GGCompanyUpdateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyUpdateCell.m; sourceTree = "<group>"; };
+		EAD481FA1711060500556288 /* comLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comLogo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */,
+				EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -515,6 +523,8 @@
 			children = (
 				EACAE13E1709629400E7088F /* GGWelcomePageView.h */,
 				EACAE13F1709629400E7088F /* GGWelcomePageView.m */,
+				EAD481F71710FFB300556288 /* GGCompanyUpdateCell.h */,
+				EAD481F81710FFB300556288 /* GGCompanyUpdateCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -623,6 +633,7 @@
 		EACAE1411709643D00E7088F /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				EAD481FA1711060500556288 /* comLogo.png */,
 				EACAE14C1709777F00E7088F /* getStartedBtn.png */,
 				EACAE14A1709755B00E7088F /* gageinLogo.png */,
 				EACAE1421709643D00E7088F /* welcome01.png */,
@@ -716,6 +727,8 @@
 				EAC96C3D170983B5003FAFAA /* GGWelcomePageView.xib in Resources */,
 				EA1A6222170A788B000B4EAE /* GGLoginVC.xib in Resources */,
 				EA1A6223170A788B000B4EAE /* GGSignupVC.xib in Resources */,
+				EAD481F51710FF9100556288 /* GGCompanyUpdateCell.xib in Resources */,
+				EAD481FB1711060500556288 /* comLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -769,6 +782,7 @@
 				EA0CA56A170BD5AD00DBCD83 /* GGBaseViewController.m in Sources */,
 				EA0CA58A170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				EA0CA58B170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m in Sources */,
+				EAD481F91710FFB300556288 /* GGCompanyUpdateCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
