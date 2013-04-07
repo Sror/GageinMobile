@@ -24,4 +24,5 @@
     #import "MBProgressHUD.h"
     #import "GGRuntimeData.h"
     #import "GGBaseViewController.h"
+    #import "GGColor.h"
 #endif

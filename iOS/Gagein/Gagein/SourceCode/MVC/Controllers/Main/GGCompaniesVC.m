@@ -11,6 +11,7 @@
 #import "GGCompanyUpdateCell.h"
 #import "GGDataPage.h"
 #import "GGCompanyUpdate.h"
+#import "GGSwayView.h"
 
 //#define USE_CUSTOM_NAVI_BAR       // 是否使用自定义导航条
 
@@ -25,6 +26,7 @@
 @implementation GGCompaniesVC
 {
     EGGCompanyUpdateRelevance   _relevance;
+    GGSwayView *_swayView;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -44,6 +46,11 @@
     self.navigationController.navigationBarHidden = YES;
 #endif
     [super viewDidLoad];
+    
+    _swayView = [GGSwayView viewFromNibWithOwner:self];
+    _swayView.frame = CGRectOffset(self.view.bounds, 0, 0);
+    [self.view addSubview:_swayView];
+    
     
     
     UIBarButtonItem *menuBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(optionMenuAction:)];
@@ -70,16 +77,23 @@
     updateRc.size.height -= self.naviBar.frame.size.height;
 #endif
     
+    
     self.updatesTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
     self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
-    [self.view addSubview:self.updatesTV];
+    [_swayView addPage:self.updatesTV];
     
-    //[self setupDataSource];
+    
+    self.happeningsTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
+    self.happeningsTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
+    self.happeningsTV.dataSource = self;
+    self.happeningsTV.delegate = self;
+    self.happeningsTV.alpha = .5f;
+    [_swayView addPage:self.happeningsTV];
+    
     
     __weak GGCompaniesVC *weakSelf = self;
-    
     // setup pull-to-refresh
     [self.updatesTV addPullToRefreshWithActionHandler:^{
         [weakSelf _getFirstPage];
@@ -176,13 +190,13 @@
 
 -(void)_getDataWithNewsID:(int)aNewsID pageFlag:(int)aPageFlag pageTime:(long long)aPageTime relevance:(int)aRelevance
 {
-    [self showLoadingHUD];
+    //[self showLoadingHUD];
     [GGSharedAPI getCompanyUpdatesWithNewsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:^(id operation, id aResultObject, NSError *anError) {
         //DLog(@"%@", aResultObject);
         AFHTTPRequestOperation *httpOp = operation;
         DLog(@"%@", httpOp.responseString);
         
-        [self hideLoadingHUD];
+        //[self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         GGDataPage *page = [parser parseGetCompanyUpdates];
         //DLog(@"%@", page);

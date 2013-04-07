@@ -91,6 +91,8 @@
 		EAD481F91710FFB300556288 /* GGCompanyUpdateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD481F81710FFB300556288 /* GGCompanyUpdateCell.m */; };
 		EAD481FB1711060500556288 /* comLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD481FA1711060500556288 /* comLogo.png */; };
 		EAD481FE17111BB800556288 /* GGDataPage.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD481FD17111BB800556288 /* GGDataPage.m */; };
+		EAD4820117114E6700556288 /* GGSwayView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD4820017114E6700556288 /* GGSwayView.m */; };
+		EAD4820317114E7C00556288 /* GGSwayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD4820217114E7C00556288 /* GGSwayView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -227,6 +229,9 @@
 		EAD481FA1711060500556288 /* comLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comLogo.png; sourceTree = "<group>"; };
 		EAD481FC17111BB700556288 /* GGDataPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGDataPage.h; sourceTree = "<group>"; };
 		EAD481FD17111BB800556288 /* GGDataPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGDataPage.m; sourceTree = "<group>"; };
+		EAD481FF17114E6700556288 /* GGSwayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSwayView.h; sourceTree = "<group>"; };
+		EAD4820017114E6700556288 /* GGSwayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSwayView.m; sourceTree = "<group>"; };
+		EAD4820217114E7C00556288 /* GGSwayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSwayView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,6 +331,7 @@
 			children = (
 				EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */,
 				EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */,
+				EAD4820217114E7C00556288 /* GGSwayView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -530,6 +536,8 @@
 				EACAE13F1709629400E7088F /* GGWelcomePageView.m */,
 				EAD481F71710FFB300556288 /* GGCompanyUpdateCell.h */,
 				EAD481F81710FFB300556288 /* GGCompanyUpdateCell.m */,
+				EAD481FF17114E6700556288 /* GGSwayView.h */,
+				EAD4820017114E6700556288 /* GGSwayView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -734,6 +742,7 @@
 				EA1A6223170A788B000B4EAE /* GGSignupVC.xib in Resources */,
 				EAD481F51710FF9100556288 /* GGCompanyUpdateCell.xib in Resources */,
 				EAD481FB1711060500556288 /* comLogo.png in Resources */,
+				EAD4820317114E7C00556288 /* GGSwayView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,6 +798,7 @@
 				EA0CA58B170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				EAD481F91710FFB300556288 /* GGCompanyUpdateCell.m in Sources */,
 				EAD481FE17111BB800556288 /* GGDataPage.m in Sources */,
+				EAD4820117114E6700556288 /* GGSwayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
