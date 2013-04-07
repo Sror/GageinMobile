@@ -22,6 +22,7 @@
 -(void)awakeFromNib
 {
     self.backgroundColor = SharedColor.darkRed;
+    //self.viewContent.clipsToBounds = NO;
     self.viewPageControl.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.5f];
     [self.pageControl addTarget:self action:@selector(pageSelectedAction:) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -40,6 +41,10 @@
     }
     
     [self.viewContent addSubview:aPage];
+    CGRect contentRc = self.viewContent.frame;
+    contentRc.size.width = CGRectGetMaxX(aPage.frame);
+    self.viewContent.frame = contentRc;
+    
     self.pageControl.numberOfPages = self.viewContent.subviews.count;
     //self.viewContent.frame = CGRectOffset(self.viewContent.frame, -aPage.frame.origin.x, 0);
 }

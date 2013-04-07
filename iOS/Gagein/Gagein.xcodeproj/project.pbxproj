@@ -93,6 +93,7 @@
 		EAD481FE17111BB800556288 /* GGDataPage.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD481FD17111BB800556288 /* GGDataPage.m */; };
 		EAD4820117114E6700556288 /* GGSwayView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD4820017114E6700556288 /* GGSwayView.m */; };
 		EAD4820317114E7C00556288 /* GGSwayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD4820217114E7C00556288 /* GGSwayView.xib */; };
+		EAD4820A17116F8F00556288 /* GGSlideSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD4820917116F8F00556288 /* GGSlideSettingView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -232,6 +233,8 @@
 		EAD481FF17114E6700556288 /* GGSwayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSwayView.h; sourceTree = "<group>"; };
 		EAD4820017114E6700556288 /* GGSwayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSwayView.m; sourceTree = "<group>"; };
 		EAD4820217114E7C00556288 /* GGSwayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSwayView.xib; sourceTree = "<group>"; };
+		EAD4820817116F8E00556288 /* GGSlideSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSlideSettingView.h; sourceTree = "<group>"; };
+		EAD4820917116F8F00556288 /* GGSlideSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSlideSettingView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -538,6 +541,8 @@
 				EAD481F81710FFB300556288 /* GGCompanyUpdateCell.m */,
 				EAD481FF17114E6700556288 /* GGSwayView.h */,
 				EAD4820017114E6700556288 /* GGSwayView.m */,
+				EAD4820817116F8E00556288 /* GGSlideSettingView.h */,
+				EAD4820917116F8F00556288 /* GGSlideSettingView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -799,6 +804,7 @@
 				EAD481F91710FFB300556288 /* GGCompanyUpdateCell.m in Sources */,
 				EAD481FE17111BB800556288 /* GGDataPage.m in Sources */,
 				EAD4820117114E6700556288 /* GGSwayView.m in Sources */,
+				EAD4820A17116F8F00556288 /* GGSlideSettingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

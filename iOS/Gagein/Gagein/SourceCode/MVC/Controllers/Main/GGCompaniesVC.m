@@ -12,6 +12,7 @@
 #import "GGDataPage.h"
 #import "GGCompanyUpdate.h"
 #import "GGSwayView.h"
+#import "GGSlideSettingView.h"
 
 //#define USE_CUSTOM_NAVI_BAR       // 是否使用自定义导航条
 
@@ -26,7 +27,8 @@
 @implementation GGCompaniesVC
 {
     EGGCompanyUpdateRelevance   _relevance;
-    GGSwayView *_swayView;
+    GGSwayView                  *_swayView;
+    GGSlideSettingView          *_slideSettingView;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -36,6 +38,7 @@
         self.tabBarItem.title = @"Companies";
         self.tabBarItem.image = [UIImage imageNamed:@"first"];
         _relevance = kGGCompanyUpdateRelevanceNormal;
+        _updates = [NSMutableArray array];
     }
     return self;
 }
@@ -47,18 +50,10 @@
 #endif
     [super viewDidLoad];
     
-    _swayView = [GGSwayView viewFromNibWithOwner:self];
-    _swayView.frame = CGRectOffset(self.view.bounds, 0, 0);
-    [self.view addSubview:_swayView];
-    
-    
-    
     UIBarButtonItem *menuBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(optionMenuAction:)];
     UIBarButtonItem *searchUpdateBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchUpdateAction:)];
     UIBarButtonItem *savedUpdateBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(savedUpdateAction:)];
     
-    
-
 #if defined(USE_CUSTOM_NAVI_BAR)
     self.naviItem.title = @"EXPLORING";
     self.naviItem.leftBarButtonItem = menuBtn;
@@ -77,6 +72,14 @@
     updateRc.size.height -= self.naviBar.frame.size.height;
 #endif
     
+    //
+    _slideSettingView = [[GGSlideSettingView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:_slideSettingView];
+    
+    //
+    _swayView = [GGSwayView viewFromNibWithOwner:self];
+    _swayView.frame = CGRectOffset(self.view.bounds, 0, 0);
+    [self.view addSubview:_swayView];
     
     self.updatesTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
     self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
@@ -86,12 +89,14 @@
     
     
     self.happeningsTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
-    self.happeningsTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
+    //self.happeningsTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
     self.happeningsTV.dataSource = self;
     self.happeningsTV.delegate = self;
-    self.happeningsTV.alpha = .5f;
+    //self.happeningsTV.alpha = .5f;
     [_swayView addPage:self.happeningsTV];
     
+    //
+    [self.view bringSubviewToFront:_slideSettingView];
     
     __weak GGCompaniesVC *weakSelf = self;
     // setup pull-to-refresh
@@ -123,6 +128,14 @@
 -(void)optionMenuAction:(id)sender
 {
     DLog(@"option menu clicked");
+    if (!_slideSettingView.isShowing)
+    {
+        [_slideSettingView showSlide];
+    }
+    else
+    {
+        [_slideSettingView hideSlide];
+    }
 }
 
 -(void)searchUpdateAction:(id)sender
@@ -140,25 +153,38 @@
 #pragma mark - tableView datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.updates.count;
+    if (tableView == self.updatesTV) {
+        return self.updates.count;
+    }
+    return 20;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    static NSString *updateCellId = @"GGCompanyUpdateCell";
-    GGCompanyUpdateCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
-    if (cell == nil) {
-        cell = [GGCompanyUpdateCell viewFromNibWithOwner:self];
+    if (tableView == self.updatesTV)
+    {
+        static NSString *updateCellId = @"GGCompanyUpdateCell";
+        GGCompanyUpdateCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
+        if (cell == nil) {
+            cell = [GGCompanyUpdateCell viewFromNibWithOwner:self];
+        }
+        
+        GGCompanyUpdate *updateData = [self.updates objectAtIndex:indexPath.row];
+        
+        cell.titleLbl.text = updateData.headline;
+        cell.sourceLbl.text = updateData.fromSource;
+        cell.descriptionLbl.text = updateData.content;
+        //    cell.titleLbl.text = [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterMediumStyle];
+        
+        return cell;
     }
     
-    GGCompanyUpdate *updateData = [self.updates objectAtIndex:indexPath.row];
-    
-    cell.titleLbl.text = updateData.headline;
-    cell.sourceLbl.text = updateData.fromSource;
-    cell.descriptionLbl.text = updateData.content;
-//    cell.titleLbl.text = [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterMediumStyle];
-    
+    static NSString *happeningCellId = @"happeningCellId";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:happeningCellId];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:happeningCellId];
+    }
+    cell.textLabel.text = @"happening";
     return cell;
 }
 
@@ -212,8 +238,6 @@
                 {
                     [_updates removeAllObjects];
                     [_updates addObjectsFromArray:page.items];
-                    
-                    
                 }
                     break;
                     
