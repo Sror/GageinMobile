@@ -19,6 +19,8 @@
 		EA090800171258D700BCD4C4 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0907F6171258D700BCD4C4 /* UIImageView+WebCache.m */; };
 		EA0908031712595700BCD4C4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0908021712595700BCD4C4 /* ImageIO.framework */; };
 		EA0908051712596F00BCD4C4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0908041712596F00BCD4C4 /* MapKit.framework */; };
+		EA090811171265D800BCD4C4 /* GGCompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA09080F171265D800BCD4C4 /* GGCompanyDetailVC.m */; };
+		EA09081417126EFD00BCD4C4 /* GGCompanyDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA09081317126EFD00BCD4C4 /* GGCompanyDetailVC.xib */; };
 		EA0CA561170BD54000DBCD83 /* GGCompaniesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA55A170BD54000DBCD83 /* GGCompaniesVC.m */; };
 		EA0CA562170BD54000DBCD83 /* GGPeopleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA55C170BD54000DBCD83 /* GGPeopleVC.m */; };
 		EA0CA563170BD54000DBCD83 /* GGProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA55E170BD54000DBCD83 /* GGProfileVC.m */; };
@@ -132,6 +134,9 @@
 		EA0907F6171258D700BCD4C4 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		EA0908021712595700BCD4C4 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		EA0908041712596F00BCD4C4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		EA09080E171265D800BCD4C4 /* GGCompanyDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyDetailVC.h; sourceTree = "<group>"; };
+		EA09080F171265D800BCD4C4 /* GGCompanyDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyDetailVC.m; sourceTree = "<group>"; };
+		EA09081317126EFD00BCD4C4 /* GGCompanyDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyDetailVC.xib; sourceTree = "<group>"; };
 		EA0CA559170BD54000DBCD83 /* GGCompaniesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompaniesVC.h; sourceTree = "<group>"; };
 		EA0CA55A170BD54000DBCD83 /* GGCompaniesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompaniesVC.m; sourceTree = "<group>"; };
 		EA0CA55B170BD54000DBCD83 /* GGPeopleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPeopleVC.h; sourceTree = "<group>"; };
@@ -319,6 +324,36 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		EA09080A1712659E00BCD4C4 /* Company */ = {
+			isa = PBXGroup;
+			children = (
+				EA09080E171265D800BCD4C4 /* GGCompanyDetailVC.h */,
+				EA09080F171265D800BCD4C4 /* GGCompanyDetailVC.m */,
+			);
+			path = Company;
+			sourceTree = "<group>";
+		};
+		EA09080B1712659E00BCD4C4 /* People */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = People;
+			sourceTree = "<group>";
+		};
+		EA09080C1712659E00BCD4C4 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		EA09080D1712659E00BCD4C4 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		EA0CA558170BD54000DBCD83 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,6 +417,7 @@
 		EAC96C2E170983B5003FAFAA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				EA09081317126EFD00BCD4C4 /* GGCompanyDetailVC.xib */,
 				EA1A6220170A788B000B4EAE /* GGLoginVC.xib */,
 				EA1A6221170A788B000B4EAE /* GGSignupVC.xib */,
 				EAC96C2F170983B5003FAFAA /* GGCompaniesVC.xib */,
@@ -564,6 +600,10 @@
 		EACAE0B817094A3100E7088F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EA09080A1712659E00BCD4C4 /* Company */,
+				EA09080B1712659E00BCD4C4 /* People */,
+				EA09080C1712659E00BCD4C4 /* Profile */,
+				EA09080D1712659E00BCD4C4 /* Setting */,
 				EA0CA558170BD54000DBCD83 /* Main */,
 				EAC96C2617098313003FAFAA /* Signup */,
 				EA0CA568170BD5AD00DBCD83 /* GGBaseViewController.h */,
@@ -816,6 +856,7 @@
 				EAD481F51710FF9100556288 /* GGCompanyUpdateCell.xib in Resources */,
 				EAD481FB1711060500556288 /* comLogo.png in Resources */,
 				EAD4820317114E7C00556288 /* GGSwayView.xib in Resources */,
+				EA09081417126EFD00BCD4C4 /* GGCompanyDetailVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -883,6 +924,7 @@
 				EA0907FE171258D700BCD4C4 /* SDWebImagePrefetcher.m in Sources */,
 				EA0907FF171258D700BCD4C4 /* UIButton+WebCache.m in Sources */,
 				EA090800171258D700BCD4C4 /* UIImageView+WebCache.m in Sources */,
+				EA090811171265D800BCD4C4 /* GGCompanyDetailVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

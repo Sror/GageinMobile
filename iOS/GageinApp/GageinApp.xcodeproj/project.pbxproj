@@ -36,9 +36,7 @@
 		EACAE0661709424800E7088F /* GGNCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE0651709424800E7088F /* GGNCompanyVC.m */; };
 		EAF3657D16FD6804004B5EBF /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF3657C16FD6804004B5EBF /* FacebookSDK.framework */; };
 		EAF3658716FD68B8004B5EBF /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EAF3658616FD68B8004B5EBF /* FacebookSDKResources.bundle */; };
-		EAF3658916FD6904004B5EBF /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF3658816FD6904004B5EBF /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EAF3658B16FD690A004B5EBF /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF3658A16FD690A004B5EBF /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		EAF3658D16FD6910004B5EBF /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF3658C16FD6910004B5EBF /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EAF365BB16FD7DC2004B5EBF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365AC16FD7DC2004B5EBF /* Default-568h@2x.png */; };
 		EAF365BC16FD7DC2004B5EBF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365AD16FD7DC2004B5EBF /* Default.png */; };
 		EAF365BD16FD7DC2004B5EBF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF365AE16FD7DC2004B5EBF /* Default@2x.png */; };
@@ -114,9 +112,7 @@
 		EACAE0651709424800E7088F /* GGNCompanyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGNCompanyVC.m; sourceTree = "<group>"; };
 		EAF3657C16FD6804004B5EBF /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "../../../../../Users/dongyiming/Downloads/facebook-ios-sdk-master-1/build/FacebookSDK.framework"; sourceTree = "<group>"; };
 		EAF3658616FD68B8004B5EBF /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = "../../../../../Users/dongyiming/Downloads/facebook-ios-sdk-master-1/build/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle"; sourceTree = "<group>"; };
-		EAF3658816FD6904004B5EBF /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		EAF3658A16FD690A004B5EBF /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		EAF3658C16FD6910004B5EBF /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		EAF365AC16FD7DC2004B5EBF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EAF365AD16FD7DC2004B5EBF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		EAF365AE16FD7DC2004B5EBF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -138,9 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAF3658D16FD6910004B5EBF /* Social.framework in Frameworks */,
 				EAF3658B16FD690A004B5EBF /* Accounts.framework in Frameworks */,
-				EAF3658916FD6904004B5EBF /* AdSupport.framework in Frameworks */,
 				EA38B75616FC432B00BDB4CC /* MobileCoreServices.framework in Frameworks */,
 				EA38B75416FC432400BDB4CC /* SystemConfiguration.framework in Frameworks */,
 				EA38B6EE16FC41E200BDB4CC /* UIKit.framework in Frameworks */,
@@ -185,9 +179,7 @@
 		EA38B6EC16FC41E200BDB4CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EAF3658C16FD6910004B5EBF /* Social.framework */,
 				EAF3658A16FD690A004B5EBF /* Accounts.framework */,
-				EAF3658816FD6904004B5EBF /* AdSupport.framework */,
 				EAF3658616FD68B8004B5EBF /* FacebookSDKResources.bundle */,
 				EAF3657C16FD6804004B5EBF /* FacebookSDK.framework */,
 				EA38B75516FC432B00BDB4CC /* MobileCoreServices.framework */,

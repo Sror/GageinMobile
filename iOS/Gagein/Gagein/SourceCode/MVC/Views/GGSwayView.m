@@ -22,7 +22,7 @@
 -(void)awakeFromNib
 {
     self.backgroundColor = SharedColor.darkRed;
-    //self.viewContent.clipsToBounds = NO;
+    self.viewContent.clipsToBounds = YES;
     self.viewPageControl.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.5f];
     [self.pageControl addTarget:self action:@selector(pageSelectedAction:) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -72,9 +72,17 @@
 }
 
 #pragma mark - internal
+-(void)_hideAllPages
+{
+    for (UIView *view in self.viewContent.subviews) {
+        view.hidden = YES;
+    }
+}
+
 -(void)_animateToPageWithIndex:(NSUInteger)aIndex
 {
     UIView *page = [self.viewContent.subviews objectAtIndex:aIndex];
+    page.hidden = NO;
     
     [UIView animateWithDuration:.3f animations:^{
         CGRect contentRc = self.viewContent.frame;
@@ -82,7 +90,8 @@
         self.viewContent.frame = contentRc;
         
     } completion:^(BOOL finished) {
-        //
+        [self _hideAllPages];
+        page.hidden = NO;
     }];
 }
 

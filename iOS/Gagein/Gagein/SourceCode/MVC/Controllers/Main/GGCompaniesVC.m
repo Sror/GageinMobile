@@ -14,6 +14,7 @@
 #import "GGCompanyUpdate.h"
 #import "GGSwayView.h"
 #import "GGSlideSettingView.h"
+#import "GGCompanyDetailVC.h"
 
 //#define USE_CUSTOM_NAVI_BAR       // 是否使用自定义导航条
 
@@ -30,6 +31,7 @@
     EGGCompanyUpdateRelevance   _relevance;
     GGSwayView                  *_swayView;
     GGSlideSettingView          *_slideSettingView;
+    UITapGestureRecognizer      *_tapLogoGest;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -97,6 +99,9 @@
     [_swayView addPage:self.happeningsTV];
     
     //
+    
+    
+    //
     [self.view bringSubviewToFront:_slideSettingView];
     
     __weak GGCompaniesVC *weakSelf = self;
@@ -109,11 +114,12 @@
     [self.updatesTV addInfiniteScrollingWithActionHandler:^{
         [weakSelf _getNextPage];
     }];
+    
+    [self.updatesTV triggerPullToRefresh];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self.updatesTV triggerPullToRefresh];
-    //[self _getFirstPage];
+    //[self.updatesTV triggerPullToRefresh];
 }
 
 - (void)viewDidUnload {
@@ -149,6 +155,13 @@
     DLog(@"saved update clicked");
 }
 
+-(void)companyDetailAction:(id)sender
+{
+    GGCompanyUpdateCell *cell = (GGCompanyUpdateCell *)((UIButton*)sender).superview;
+    GGCompanyUpdate *update = [_updates objectAtIndex:cell.tag];
+    GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 
 #pragma mark - tableView datasource
@@ -168,14 +181,20 @@
         GGCompanyUpdateCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
         if (cell == nil) {
             cell = [GGCompanyUpdateCell viewFromNibWithOwner:self];
+            [cell.logoBtn addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
         }
         
         GGCompanyUpdate *updateData = [self.updates objectAtIndex:indexPath.row];
         
+        cell.ID = updateData.ID;
+        cell.tag = indexPath.row;
         cell.titleLbl.text = updateData.headline;
         cell.sourceLbl.text = updateData.fromSource;
         cell.descriptionLbl.text = updateData.content;
         [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:nil];
+        
+//        _tapLogoGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(companyDetailAction:)];
+//        [cell.logoIV addGestureRecognizer:_tapLogoGest];
         
 //        NSDate *date = [NSDate dateWithTimeIntervalSince1970:updateData.date];
 //        NSDateFormatter *formater = [[NSDateFormatter alloc] init];
@@ -199,6 +218,9 @@
 #pragma mark - tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    //GGCompanyUpdate *updateData = [self.updates objectAtIndex:indexPath.row];
     
 }
 

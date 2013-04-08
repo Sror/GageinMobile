@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *intervalLbl;
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLbl;
+@property (weak, nonatomic) IBOutlet UIButton *logoBtn;
+
+@property (assign)  long long ID;
 
 +(float)HEIGHT;
 
