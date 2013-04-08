@@ -10,6 +10,7 @@
 #import "SVPullToRefresh.h"
 #import "GGCompanyUpdateCell.h"
 #import "GGDataPage.h"
+#import "GGCompany.h"
 #import "GGCompanyUpdate.h"
 #import "GGSwayView.h"
 #import "GGSlideSettingView.h"
@@ -174,6 +175,7 @@
         cell.titleLbl.text = updateData.headline;
         cell.sourceLbl.text = updateData.fromSource;
         cell.descriptionLbl.text = updateData.content;
+        [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:nil];
         //    cell.titleLbl.text = [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterMediumStyle];
         
         return cell;

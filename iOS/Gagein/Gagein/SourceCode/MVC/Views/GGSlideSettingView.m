@@ -17,10 +17,14 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorWithRed:.5f green:.5f blue:.5f alpha:.2f];
+        self.backgroundColor = SharedColor.clear;
+        
+        UIView *bgView = [[UIView alloc] initWithFrame:self.bounds];
+        bgView.backgroundColor = [UIColor colorWithRed:.5f green:.5f blue:.5f alpha:.2f];
+        [self addSubview:bgView];
         
         _viewSlide = [[UIView alloc] initWithFrame:CGRectZero];
-        _viewSlide.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+        _viewSlide.backgroundColor = SharedColor.darkGray;
         [self addSubview:_viewSlide];
         [self _tuneLayout];
         
@@ -51,7 +55,7 @@
         _isShowing = YES;
         self.hidden = NO;
         
-        [UIView animateWithDuration:.5f animations:^{
+        [UIView animateWithDuration:.3f animations:^{
             
 #if 0
             CGPoint pt = _viewSlide.layer.position;
@@ -77,7 +81,7 @@
     {
         _isShowing = NO;
         
-        [UIView animateWithDuration:.5f animations:^{
+        [UIView animateWithDuration:.3f animations:^{
             [self _tuneLayout];
         } completion:^(BOOL finished) {
             self.hidden = YES;

@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
-         timestampString = "387020999.458851"
+         timestampString = "387078726.816887"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "246"
-         endingLineNumber = "246"
+         startingLineNumber = "248"
+         endingLineNumber = "248"
          landmarkName = "-_getDataWithNewsID:pageFlag:pageTime:relevance:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Views/GGSlideSettingView.m"
-         timestampString = "387022104.047229"
+         timestampString = "387076886.763083"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "59"
-         endingLineNumber = "59"
+         startingLineNumber = "63"
+         endingLineNumber = "63"
          landmarkName = "-showSlide"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Views/GGSlideSettingView.m"
-         timestampString = "387022104.047229"
+         timestampString = "387076886.763083"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "44"
-         endingLineNumber = "44"
+         startingLineNumber = "48"
+         endingLineNumber = "48"
          landmarkName = "-_tuneLayout"
          landmarkType = "5">
       </FileBreakpoint>

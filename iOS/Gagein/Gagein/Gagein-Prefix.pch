@@ -25,4 +25,5 @@
     #import "GGRuntimeData.h"
     #import "GGBaseViewController.h"
     #import "GGColor.h"
+    #import "UIImageView+WebCache.h"
 #endif
