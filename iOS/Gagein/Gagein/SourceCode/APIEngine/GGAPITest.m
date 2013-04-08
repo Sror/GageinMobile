@@ -13,13 +13,20 @@ DEF_SINGLETON(GGAPITest)
 
 -(void)run
 {
-    [self _testGetMyAgentsList];
+    [self _testSelectAgentIDs];
 }
 
 -(void)_testGetMyAgentsList
 {
     [GGSharedAPI getMyAgentsList:^(id operation, id aResultObject, NSError *anError) {
         
+    }];
+}
+
+-(void)_testSelectAgentIDs
+{
+    [GGSharedAPI selectAgents:[NSArray arrayWithObjects:__INT(1), __INT(2), nil] callback:^(id operation, id aResultObject, NSError *anError) {
+        //
     }];
 }
 

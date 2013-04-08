@@ -6,9 +6,15 @@
 //  Copyright (c) 2013年 gagein. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>       
+#import <Foundation/Foundation.h>  
+
+#define APP_CODE_KEY        @"appcode"
+#define ACCESS_TOKEN_KEY    @"access_token"
+
 
 typedef void(^GGApiBlock)(id operation, id aResultObject, NSError* anError);
+
+#define GGSharedAPI [GGApi sharedApi]
 
 @interface GGApi : AFHTTPClient
 
@@ -17,45 +23,11 @@ typedef void(^GGApiBlock)(id operation, id aResultObject, NSError* anError);
 
 -(void)canceAllOperations;
 
-
-#pragma mark - signup APIs
-//login
--(void)loginWithEmail:(NSString *)anEmail password:(NSString *)aPassword callback:(GGApiBlock)aCallback;
-
-// register
--(void)retisterWithEmail:(NSString *)anEmail
-                password:(NSString *)aPassword
-               firstName:(NSString *)aFirstName
-                lastName:(NSString *)aLastName
-                callback:(GGApiBlock)aCallback;
-
-#pragma mark - company APIs
-typedef enum
-{
-    kGGPageFlagFirstPage = 0
-    , kGGPageFlagMoveDown
-    , kGGPageFlagMoveUp
-}EGGPageFlag;
-
-typedef enum
-{
-    kGGCompanyUpdateRelevanceNormal     = 10
-    , kGGCompanyUpdateRelevanceHigh     = 20
-    , kGGCompanyUpdateRelevanceVeryHigh = 30
-    , kGGCompanyUpdateRelevanceHighest  = 40
-}EGGCompanyUpdateRelevance;
-
-// get company updates
--(void)getCompanyUpdatesWithNewsID:(long long)aNewsID
-                         pageFlag:(EGGPageFlag)aPageFlag
-                         pageTime:(long long)aPageTime
-                        relevance:(EGGCompanyUpdateRelevance)aRelevance
-                         callback:(GGApiBlock)aCallback;
-
-#pragma mark - Member - Agent
-//3. get agent list (New API)
--(void)getMyAgentsList:(GGApiBlock)aCallback;
+-(void)_execPostWithPath:(NSString *)aPath params:(NSDictionary *)aParams callback:(GGApiBlock)aCallback;
+-(void)_execGetWithPath:(NSString *)aPath params:(NSDictionary *)aParams callback:(GGApiBlock)aCallback;
 
 @end
 
-#define GGSharedAPI [GGApi sharedApi]
+#import "GGApi+Company.h"
+#import "GGApi+Signup.h"
+#import "GGApi+Member.h"
