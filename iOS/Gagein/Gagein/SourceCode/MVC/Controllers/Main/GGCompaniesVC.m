@@ -31,7 +31,6 @@
     EGGCompanyUpdateRelevance   _relevance;
     GGSwayView                  *_swayView;
     GGSlideSettingView          *_slideSettingView;
-    UITapGestureRecognizer      *_tapLogoGest;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -196,11 +195,12 @@
 //        _tapLogoGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(companyDetailAction:)];
 //        [cell.logoIV addGestureRecognizer:_tapLogoGest];
         
-//        NSDate *date = [NSDate dateWithTimeIntervalSince1970:updateData.date];
+        cell.intervalLbl.text = [updateData intervalStringWithDate:updateData.date];
+        
 //        NSDateFormatter *formater = [[NSDateFormatter alloc] init];
 //        formater.dateFormat = @"yyyy-MM-dd HH:mm:ss";
 //        NSString *dateStr = [formater stringFromDate:date];
-//        cell.titleLbl.text = dateStr;//[NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterFullStyle];
+//        cell.titleLbl.text = [NSString stringWithFormat:@"%d", days];//dateStr;//[NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterFullStyle];
         
         return cell;
     }

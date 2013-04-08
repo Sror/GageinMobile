@@ -12,4 +12,5 @@
 @property (assign) long long ID;
 
 +(id)model;
+-(NSString *)intervalStringWithDate:(long long)aDate;
 @end
