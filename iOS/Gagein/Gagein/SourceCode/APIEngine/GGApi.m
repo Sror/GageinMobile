@@ -51,7 +51,7 @@
 {
     AFHTTPRequestOperation *httpOp = anOperation;
     
-    DLog(@"\nRequest:\n%@\n\nRAW DATA:\n%@", httpOp.request.URL.absoluteString, httpOp.responseString);
+    DLog(@"\nRequest:\n%@\n\nRAW DATA:\n%@\n", httpOp.request.URL.absoluteString, httpOp.responseString);
 }
 
 -(void)_handleResult:(id)aResultObj

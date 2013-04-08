@@ -22,6 +22,8 @@
 		EA090811171265D800BCD4C4 /* GGCompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA09080F171265D800BCD4C4 /* GGCompanyDetailVC.m */; };
 		EA09081417126EFD00BCD4C4 /* GGCompanyDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA09081317126EFD00BCD4C4 /* GGCompanyDetailVC.xib */; };
 		EA090817171293D000BCD4C4 /* GGAPITest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA090816171293D000BCD4C4 /* GGAPITest.m */; };
+		EA09081B17129EE000BCD4C4 /* GGCompanyUpdateDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA09081917129EE000BCD4C4 /* GGCompanyUpdateDetailVC.m */; };
+		EA09081E17129F0400BCD4C4 /* GGCompanyUpdateDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA09081D17129F0400BCD4C4 /* GGCompanyUpdateDetailVC.xib */; };
 		EA0CA561170BD54000DBCD83 /* GGCompaniesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA55A170BD54000DBCD83 /* GGCompaniesVC.m */; };
 		EA0CA562170BD54000DBCD83 /* GGPeopleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA55C170BD54000DBCD83 /* GGPeopleVC.m */; };
 		EA0CA563170BD54000DBCD83 /* GGProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA55E170BD54000DBCD83 /* GGProfileVC.m */; };
@@ -140,6 +142,9 @@
 		EA09081317126EFD00BCD4C4 /* GGCompanyDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyDetailVC.xib; sourceTree = "<group>"; };
 		EA090815171293D000BCD4C4 /* GGAPITest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGAPITest.h; sourceTree = "<group>"; };
 		EA090816171293D000BCD4C4 /* GGAPITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAPITest.m; sourceTree = "<group>"; };
+		EA09081817129EE000BCD4C4 /* GGCompanyUpdateDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyUpdateDetailVC.h; sourceTree = "<group>"; };
+		EA09081917129EE000BCD4C4 /* GGCompanyUpdateDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyUpdateDetailVC.m; sourceTree = "<group>"; };
+		EA09081D17129F0400BCD4C4 /* GGCompanyUpdateDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyUpdateDetailVC.xib; sourceTree = "<group>"; };
 		EA0CA559170BD54000DBCD83 /* GGCompaniesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompaniesVC.h; sourceTree = "<group>"; };
 		EA0CA55A170BD54000DBCD83 /* GGCompaniesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompaniesVC.m; sourceTree = "<group>"; };
 		EA0CA55B170BD54000DBCD83 /* GGPeopleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPeopleVC.h; sourceTree = "<group>"; };
@@ -332,6 +337,8 @@
 			children = (
 				EA09080E171265D800BCD4C4 /* GGCompanyDetailVC.h */,
 				EA09080F171265D800BCD4C4 /* GGCompanyDetailVC.m */,
+				EA09081817129EE000BCD4C4 /* GGCompanyUpdateDetailVC.h */,
+				EA09081917129EE000BCD4C4 /* GGCompanyUpdateDetailVC.m */,
 			);
 			path = Company;
 			sourceTree = "<group>";
@@ -420,6 +427,7 @@
 		EAC96C2E170983B5003FAFAA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				EA09081D17129F0400BCD4C4 /* GGCompanyUpdateDetailVC.xib */,
 				EA09081317126EFD00BCD4C4 /* GGCompanyDetailVC.xib */,
 				EA1A6220170A788B000B4EAE /* GGLoginVC.xib */,
 				EA1A6221170A788B000B4EAE /* GGSignupVC.xib */,
@@ -862,6 +870,7 @@
 				EAD481FB1711060500556288 /* comLogo.png in Resources */,
 				EAD4820317114E7C00556288 /* GGSwayView.xib in Resources */,
 				EA09081417126EFD00BCD4C4 /* GGCompanyDetailVC.xib in Resources */,
+				EA09081E17129F0400BCD4C4 /* GGCompanyUpdateDetailVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -931,6 +940,7 @@
 				EA090800171258D700BCD4C4 /* UIImageView+WebCache.m in Sources */,
 				EA090811171265D800BCD4C4 /* GGCompanyDetailVC.m in Sources */,
 				EA090817171293D000BCD4C4 /* GGAPITest.m in Sources */,
+				EA09081B17129EE000BCD4C4 /* GGCompanyUpdateDetailVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

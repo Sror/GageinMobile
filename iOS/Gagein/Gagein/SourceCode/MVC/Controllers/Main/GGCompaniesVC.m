@@ -15,6 +15,7 @@
 #import "GGSwayView.h"
 #import "GGSlideSettingView.h"
 #import "GGCompanyDetailVC.h"
+#import "GGCompanyUpdateDetailVC.h"
 
 //#define USE_CUSTOM_NAVI_BAR       // 是否使用自定义导航条
 
@@ -220,8 +221,11 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    //GGCompanyUpdate *updateData = [self.updates objectAtIndex:indexPath.row];
-    
+    if (tableView == self.updatesTV) {
+        GGCompanyUpdate *updateData = [self.updates objectAtIndex:indexPath.row];
+        GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 
