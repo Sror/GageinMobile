@@ -271,9 +271,6 @@
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         GGDataPage *page = [parser parseGetCompanyUpdates];
         //DLog(@"%@", page);
-        __weak GGCompaniesVC *weakSelf = self;
-        [weakSelf.updatesTV.pullToRefreshView stopAnimating];
-        [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
         
         if (page.items.count)
         {
@@ -308,10 +305,18 @@
             
             [self.updatesTV reloadData];
         }
+        
+        // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
+        [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:.5f];
     }];
 }
 
-
+-(void)_delayedStopAnimating
+{
+    __weak GGCompaniesVC *weakSelf = self;
+    [weakSelf.updatesTV.pullToRefreshView stopAnimating];
+    [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
+}
 
 //- (void)insertRowAtTop {
 //    __weak GGCompaniesVC *weakSelf = self;
