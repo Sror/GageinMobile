@@ -157,7 +157,7 @@
 
 -(void)companyDetailAction:(id)sender
 {
-    GGCompanyUpdateCell *cell = (GGCompanyUpdateCell *)((UIButton*)sender).superview;
+    GGCompanyUpdateCell *cell = (GGCompanyUpdateCell *)((UIButton*)sender).superview.superview;
     GGCompanyUpdate *update = [_updates objectAtIndex:cell.tag];
     
     GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
