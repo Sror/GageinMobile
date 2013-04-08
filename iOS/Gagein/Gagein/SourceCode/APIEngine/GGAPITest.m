@@ -13,7 +13,7 @@ DEF_SINGLETON(GGAPITest)
 
 -(void)run
 {
-    [self _testSelectAgentIDs];
+    [self _testGetCompanyOverviewWithID];
 }
 
 -(void)_testGetMyAgentsList
@@ -26,6 +26,13 @@ DEF_SINGLETON(GGAPITest)
 -(void)_testSelectAgentIDs
 {
     [GGSharedAPI selectAgents:[NSArray arrayWithObjects:__INT(1), __INT(2), nil] callback:^(id operation, id aResultObject, NSError *anError) {
+        //
+    }];
+}
+
+-(void)_testGetCompanyOverviewWithID
+{
+    [GGSharedAPI getCompanyOverviewWithID:1399794 needSocialProfile:YES callback:^(id operation, id aResultObject, NSError *anError) {
         //
     }];
 }

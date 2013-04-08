@@ -34,4 +34,8 @@ typedef enum
                          relevance:(EGGCompanyUpdateRelevance)aRelevance
                           callback:(GGApiBlock)aCallback;
 
+//Get Company OverviewBack to top
+-(void)getCompanyOverviewWithID:(long long)anOrgID
+              needSocialProfile:(BOOL)aNeedSP
+                       callback:(GGApiBlock)aCallback;
 @end

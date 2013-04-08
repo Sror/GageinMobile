@@ -159,7 +159,9 @@
 {
     GGCompanyUpdateCell *cell = (GGCompanyUpdateCell *)((UIButton*)sender).superview;
     GGCompanyUpdate *update = [_updates objectAtIndex:cell.tag];
+    
     GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+    vc.companyID = update.company.ID;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

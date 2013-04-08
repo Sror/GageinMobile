@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/APIEngine/GGApiParser.m"
-         timestampString = "386999449.514815"
+         timestampString = "387101503.437437"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "133"
-         endingLineNumber = "133"
+         startingLineNumber = "127"
+         endingLineNumber = "127"
          landmarkName = "-parseGetCompanyUpdates"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
-         timestampString = "387098856.654625"
+         timestampString = "387099945.367677"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "250"
-         endingLineNumber = "250"
+         startingLineNumber = "252"
+         endingLineNumber = "252"
          landmarkName = "-_getNextPage"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,38 +47,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
-         timestampString = "387096962.993045"
+         timestampString = "387099945.367677"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "222"
-         endingLineNumber = "222"
+         startingLineNumber = "224"
+         endingLineNumber = "224"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
-         timestampString = "387098856.654625"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "312"
-         endingLineNumber = "312"
-         landmarkName = "-_getDataWithNewsID:pageFlag:pageTime:relevance:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
-         timestampString = "387098856.654625"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "320"
-         endingLineNumber = "320"
-         landmarkName = "-_delayedStopAnimating"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

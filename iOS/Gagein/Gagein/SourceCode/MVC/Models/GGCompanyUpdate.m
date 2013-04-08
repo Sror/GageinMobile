@@ -20,4 +20,19 @@
     return self;
 }
 
+-(void)parseWithData:(NSDictionary *)aData
+{
+    [super parseWithData:aData];
+    
+    self.date = [[aData objectForKey:@"date"] longLongValue];
+    self.fromSource = [aData objectForKey:@"from_source"];
+    self.content = [aData objectForKey:@"news_content"];
+    self.headline = [aData objectForKey:@"news_headline"];
+    self.url = [aData objectForKey:@"news_url"];
+    self.ID = [[aData objectForKey:@"newsid"] longLongValue];
+    self.saved = [[aData objectForKey:@"newsid"] intValue];
+    
+    [self.company parseWithData:aData];
+}
+
 @end

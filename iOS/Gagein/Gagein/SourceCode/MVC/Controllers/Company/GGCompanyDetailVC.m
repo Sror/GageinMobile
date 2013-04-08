@@ -7,12 +7,16 @@
 //
 
 #import "GGCompanyDetailVC.h"
+#import "GGCompany.h"
 
 @interface GGCompanyDetailVC ()
 
 @end
 
 @implementation GGCompanyDetailVC
+{
+    GGCompany *_companyOverview;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +31,18 @@
 {
     [super viewDidLoad];
     self.title = @"Company";
+    
+    [self _getOverView];
+}
+
+-(void)_getOverView
+{
+    [GGSharedAPI getCompanyOverviewWithID:_companyID needSocialProfile:YES callback:^(id operation, id aResultObject, NSError *anError) {
+        
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        _companyOverview = [parser parseGetCompanyOverview];
+        
+    }];
 }
 
 @end

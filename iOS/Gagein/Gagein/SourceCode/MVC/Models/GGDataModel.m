@@ -14,6 +14,12 @@
     return  [[self alloc] init];
 }
 
+-(void)parseWithData:(NSDictionary *)aData
+{
+    NSAssert([aData isKindOfClass:[NSDictionary class]], @"data must be a dictionary.");
+    // to be implemented in subclass
+}
+
 -(NSString *)intervalStringWithDate:(long long)aDate
 {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:aDate / 1000];

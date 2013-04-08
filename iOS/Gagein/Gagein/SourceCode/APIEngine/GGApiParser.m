@@ -111,30 +111,25 @@
             NSAssert([info isKindOfClass:[NSDictionary class]], @"data info should be a NSDictionary");
             
             GGCompanyUpdate *update = [GGCompanyUpdate model];
-             
-            update.date = [[info objectForKey:@"date"] longLongValue];
-            update.fromSource = [info objectForKey:@"from_source"];
-            update.content = [info objectForKey:@"news_content"];
-            update.headline = [info objectForKey:@"news_headline"];
-            update.url = [info objectForKey:@"news_url"];
-            update.ID = [[info objectForKey:@"newsid"] longLongValue];
-            update.saved = [[info objectForKey:@"newsid"] intValue];
-            
-            update.company.employeeSize = [info objectForKey:@"employee_size"];
-            update.company.fortuneRank = [info objectForKey:@"fortune_rank"];
-            update.company.logoPath = [info objectForKey:@"org_logo_path"];
-            update.company.name = [info objectForKey:@"org_name"];
-            update.company.website = [info objectForKey:@"org_website"];
-            update.company.ID = [[info objectForKey:@"orgid"] longLongValue];
-            update.company.ownership = [info objectForKey:@"ownership"];
-            update.company.revenueSize = [info objectForKey:@"revenue_size"];
-            update.company.type = [info objectForKey:@"type"];
+            [update parseWithData:info];
             
             [page.items addObject:update];
         }
     }
     
     return page;
+}
+
+
+
+
+-(GGCompany *)parseGetCompanyOverview
+{
+    GG_ASSERT_API_DATA_IS_DIC;
+    GGCompany *company = [GGCompany model];
+    [company parseWithData:self.data];
+    
+    return company;
 }
 
 @end
