@@ -14,7 +14,7 @@
 #define GGN_STR_CN_SERVER_URL                       @"http://gageincn.dyndns.org:3031"
 
 
-#define CURRENT_SERVER_URL         GGN_STR_DEMO_SERVER_URL
+#define CURRENT_SERVER_URL         GGN_STR_PRODUCTION_SERVER_URL
 
 //
 

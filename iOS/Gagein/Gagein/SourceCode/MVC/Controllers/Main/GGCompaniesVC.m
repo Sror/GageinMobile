@@ -176,7 +176,12 @@
         cell.sourceLbl.text = updateData.fromSource;
         cell.descriptionLbl.text = updateData.content;
         [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:nil];
-        //    cell.titleLbl.text = [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterMediumStyle];
+        
+//        NSDate *date = [NSDate dateWithTimeIntervalSince1970:updateData.date];
+//        NSDateFormatter *formater = [[NSDateFormatter alloc] init];
+//        formater.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//        NSString *dateStr = [formater stringFromDate:date];
+//        cell.titleLbl.text = dateStr;//[NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterFullStyle];
         
         return cell;
     }
@@ -208,15 +213,31 @@
 
 -(void)_getNextPage
 {
-    [self _getDataWithNewsID:0 pageFlag:kGGPageFlagMoveDown pageTime:0 relevance:_relevance];
+    long long newsID = 0, pageTime = 0;
+    GGCompanyUpdate *lastUpdate = [_updates lastObject];
+    if (lastUpdate)
+    {
+        newsID = lastUpdate.ID;
+        pageTime = lastUpdate.date;
+    }
+    
+    [self _getDataWithNewsID:newsID pageFlag:kGGPageFlagMoveDown pageTime:pageTime relevance:_relevance];
 }
 
 -(void)_getPrevPage
 {
-    [self _getDataWithNewsID:0 pageFlag:kGGPageFlagMoveUp pageTime:0 relevance:_relevance];
+    long long newsID = 0, pageTime = 0;
+    GGCompanyUpdate *lastUpdate = _updates.count > 0 ? [_updates objectAtIndex:0] : nil;
+    if (lastUpdate)
+    {
+        newsID = lastUpdate.ID;
+        pageTime = lastUpdate.date;
+    }
+    
+    [self _getDataWithNewsID:newsID pageFlag:kGGPageFlagMoveUp pageTime:pageTime relevance:_relevance];
 }
 
--(void)_getDataWithNewsID:(int)aNewsID pageFlag:(int)aPageFlag pageTime:(long long)aPageTime relevance:(int)aRelevance
+-(void)_getDataWithNewsID:(long long)aNewsID pageFlag:(int)aPageFlag pageTime:(long long)aPageTime relevance:(int)aRelevance
 {
     //[self showLoadingHUD];
     [GGSharedAPI getCompanyUpdatesWithNewsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:^(id operation, id aResultObject, NSError *anError) {

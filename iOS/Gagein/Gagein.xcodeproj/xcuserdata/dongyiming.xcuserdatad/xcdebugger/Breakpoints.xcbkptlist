@@ -20,19 +20,6 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
-         timestampString = "387078726.816887"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "248"
-         endingLineNumber = "248"
-         landmarkName = "-_getDataWithNewsID:pageFlag:pageTime:relevance:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Views/GGSlideSettingView.m"
          timestampString = "387076886.763083"
          startingColumnNumber = "9223372036854775807"
@@ -46,13 +33,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Gagein/SourceCode/MVC/Views/GGSlideSettingView.m"
-         timestampString = "387076886.763083"
+         filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
+         timestampString = "387080582.80578"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "48"
-         endingLineNumber = "48"
-         landmarkName = "-_tuneLayout"
+         startingLineNumber = "224"
+         endingLineNumber = "224"
+         landmarkName = "-_getNextPage"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
