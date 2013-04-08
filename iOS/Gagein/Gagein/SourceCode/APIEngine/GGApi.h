@@ -52,6 +52,10 @@ typedef enum
                         relevance:(EGGCompanyUpdateRelevance)aRelevance
                          callback:(GGApiBlock)aCallback;
 
+#pragma mark - Member - Agent
+//3. get agent list (New API)
+-(void)getMyAgentsList:(GGApiBlock)aCallback;
+
 @end
 
 #define GGSharedAPI [GGApi sharedApi]

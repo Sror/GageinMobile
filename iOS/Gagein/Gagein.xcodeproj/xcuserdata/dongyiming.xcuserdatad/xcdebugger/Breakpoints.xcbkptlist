@@ -60,13 +60,35 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
-         timestampString = "387085004.746292"
+         timestampString = "387094357.542848"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "110"
-         endingLineNumber = "110"
-         landmarkName = "-viewDidLoad"
+         startingLineNumber = "308"
+         endingLineNumber = "308"
+         landmarkName = "-_getDataWithNewsID:pageFlag:pageTime:relevance:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
+         timestampString = "387094357.542848"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "316"
+         endingLineNumber = "316"
+         landmarkName = "-_delayedStopAnimating"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
+   <ExceptionBreakpoints>
+      <ExceptionBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         scope = "0"
+         stopOnStyle = "0">
+      </ExceptionBreakpoint>
+   </ExceptionBreakpoints>
 </Bucket>

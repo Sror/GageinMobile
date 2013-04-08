@@ -8,9 +8,11 @@
 
 #import "GGSettingVC.h"
 #import "GGAppDelegate.h"
+#import "GGAPITest.h"
 
 @interface GGSettingVC ()
 @property (weak, nonatomic) IBOutlet UIButton *btnLogout;
+@property (weak, nonatomic) IBOutlet UIButton *btnAPITest;
 
 @end
 
@@ -35,6 +37,7 @@
 
 - (void)viewDidUnload {
     [self setBtnLogout:nil];
+    [self setBtnAPITest:nil];
     [super viewDidUnload];
 }
 
@@ -43,6 +46,11 @@
 {
     [GGSharedRuntimeData resetCurrentUser];
     [GGSharedDelegate enterLoginIfNeeded];
+}
+
+-(IBAction)apiTestAction:(id)sender
+{
+    [[GGAPITest sharedInstance] run];
 }
 
 @end

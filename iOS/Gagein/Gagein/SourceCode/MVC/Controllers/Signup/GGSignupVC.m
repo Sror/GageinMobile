@@ -41,7 +41,7 @@
     self.title = @"Join Gagein";
     
 #warning TEST register data
-    self.tfEmail.text = @"dymx101@hotmail.com";
+    self.tfEmail.text = @"dymx102@hotmail.com";
     self.tfPassword.text = @"heartL0";
     self.tfFirstName.text = @"Daniel";
     self.tfLastName.text = @"Dong";
@@ -58,6 +58,11 @@
     [self setTfPassword:nil];
     [self setBtnJoinNow:nil];
     [super viewDidUnload];
+}
+
+-(void)dealloc
+{
+    _scrolView.delegate = nil;
 }
 
 #pragma mark - internal

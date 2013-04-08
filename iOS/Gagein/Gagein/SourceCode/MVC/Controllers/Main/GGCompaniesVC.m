@@ -114,12 +114,12 @@
     [self.updatesTV addInfiniteScrollingWithActionHandler:^{
         [weakSelf _getNextPage];
     }];
-    
-    [self.updatesTV triggerPullToRefresh];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    //[self.updatesTV triggerPullToRefresh];
+    if (_updates.count <= 0) {
+        [self.updatesTV triggerPullToRefresh];
+    }
 }
 
 - (void)viewDidUnload {
@@ -264,8 +264,6 @@
     //[self showLoadingHUD];
     [GGSharedAPI getCompanyUpdatesWithNewsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:^(id operation, id aResultObject, NSError *anError) {
         //DLog(@"%@", aResultObject);
-        AFHTTPRequestOperation *httpOp = operation;
-        DLog(@"%@", httpOp.responseString);
         
         //[self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];

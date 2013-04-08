@@ -40,14 +40,13 @@
     
     
 #warning test login data
-    self.tfEmail.text = @"dymx101@hotmail.com";
+    self.tfEmail.text = @"dymx102@hotmail.com";
     self.tfPassword.text = @"heartL0";
 }
 
-- (void)didReceiveMemoryWarning
+-(void)dealloc
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    _scrolView.delegate = nil;
 }
 
 - (void)viewDidUnload {
