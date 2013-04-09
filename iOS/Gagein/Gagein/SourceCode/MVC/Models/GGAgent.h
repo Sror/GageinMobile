@@ -9,8 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "GGDataModel.h"
 
+typedef enum {
+    kGGAgentTypePredefined = 1
+    , kGGAgentTypeCustom = 2
+}EGGAgentType;
+
 @interface GGAgent : GGDataModel
 @property (assign)  int         type;
+@property (assign)  int         checked;
 @property (copy)    NSString    *agentID;
 @property (copy)    NSString    *name;
 @property (copy)    NSString    *keywords;

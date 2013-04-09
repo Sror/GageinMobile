@@ -10,4 +10,15 @@
 
 @implementation GGAgent
 
+-(void)parseWithData:(NSDictionary *)aData
+{
+    [super parseWithData:aData];
+    
+    self.ID = [[aData objectForKey:@"agentid"] longLongValue];
+    self.type = [[aData objectForKey:@"type"] intValue];
+    self.checked = [[aData objectForKey:@"checked"] intValue];
+    self.keywords = [aData objectForKey:@"agent_keywords"];
+    self.name = [aData objectForKey:@"agent_name"];
+}
+
 @end

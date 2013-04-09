@@ -11,6 +11,7 @@
 #import "GGCompany.h"
 #import "GGDataPage.h"
 #import "GGCompanyUpdate.h"
+#import "GGAgent.h"
 
 #define GG_ASSERT_API_DATA_IS_DIC   NSAssert([_apiData isKindOfClass:[NSDictionary class]], @"Api Data should be a NSDictionary");
 
@@ -120,9 +121,6 @@
     return page;
 }
 
-
-
-
 -(GGCompany *)parseGetCompanyOverview
 {
     GG_ASSERT_API_DATA_IS_DIC;
@@ -130,6 +128,30 @@
     [company parseWithData:self.data];
     
     return company;
+}
+
+#pragma mark - config
+-(GGDataPage *)parseGetMyAgents
+{
+    GG_ASSERT_API_DATA_IS_DIC;
+    GGDataPage *page = [GGDataPage model];
+    page.hasMore = self.dataHasMore;
+    page.timestamp = self.dataTimestamp;
+    
+    NSArray *dataInfos = self.dataInfos;
+    if (dataInfos)
+    {
+        for (id info in dataInfos) {
+            NSAssert([info isKindOfClass:[NSDictionary class]], @"data info should be a NSDictionary");
+            
+            GGAgent *update = [GGAgent model];
+            [update parseWithData:info];
+            
+            [page.items addObject:update];
+        }
+    }
+    
+    return page;
 }
 
 @end
