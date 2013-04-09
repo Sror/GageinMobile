@@ -10,6 +10,8 @@
 #import "GGAppDelegate.h"
 #import "GGPredicate.h"
 #import "GGMember.h"
+#import "GGSelectAgentsVC.h"
+#import "GGSelectFuncAreasVC.h"
 
 @interface GGLoginVC ()
 @property (weak, nonatomic) IBOutlet UITextField *tfEmail;
@@ -110,12 +112,33 @@
                 DLog(@"Login OK");
                 //id data = parser.data;
                 //DLog(@"%@", data);
-                GGSharedRuntimeData.currentUser = [parser parseLogin];
-                GGSharedRuntimeData.currentUser.accountEmail = self.tfEmail.text;
-                GGSharedRuntimeData.currentUser.accountPassword = self.tfPassword.text;
+                GGMember *currentUser = [parser parseLogin];
+                currentUser.accountEmail = self.tfEmail.text;
+                currentUser.accountPassword = self.tfPassword.text;
+                GGSharedRuntimeData.currentUser = currentUser;
                 [GGSharedRuntimeData saveCurrentUser];
-                [GGSharedDelegate popNaviToRoot];
-                [GGSharedDelegate showTabIndex:0];
+                
+                if (currentUser.isSignupOK)
+                {
+                    // go home
+                    [GGSharedDelegate popNaviToRoot];
+                    [GGSharedDelegate showTabIndex:0];
+                }
+                else if (currentUser.signupProcessStatus == kGGSignupProcessAgentsSelect)
+                {
+                    // go to Agents select
+                    GGSelectAgentsVC *vc = [[GGSelectAgentsVC alloc] init];
+                    vc.isFromRegistration = YES;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                else if (currentUser.signupProcessStatus == kGGSignupProcessAreasSelect)
+                {
+                    // go to areas select
+                    GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
+                    vc.isFromRegistration = YES;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                
             }
             else
             {

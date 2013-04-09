@@ -57,4 +57,21 @@
     return self;
 }
 
+-(void)parseWithData:(NSDictionary *)aData
+{
+    [super parseWithData:aData];
+    
+    self.ID = [[aData objectForKey:@"memid"] longLongValue];
+    self.accessToken = [aData objectForKey:@"access_token"];
+    self.fullName = [aData objectForKey:@"mem_full_name"];
+    self.timeZone = [[aData objectForKey:@"mem_timezone"] intValue];
+    self.company.name = [aData objectForKey:@"mem_orgname"];
+    self.signupProcessStatus = [[aData objectForKey:@"signup_process_status"] intValue];
+}
+
+-(BOOL)isSignupOK
+{
+    return self.signupProcessStatus == 3 || self.signupProcessStatus == 4;
+}
+
 @end

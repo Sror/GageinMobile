@@ -122,11 +122,7 @@
 {
     GG_ASSERT_API_DATA_IS_DIC;
     GGMember *member = [GGMember model];
-    member.ID = [[self.data objectForKey:@"memid"] longLongValue];
-    member.accessToken = [self.data objectForKey:@"access_token"];
-    member.fullName = [self.data objectForKey:@"mem_full_name"];
-    member.timeZone = [[self.data objectForKey:@"mem_timezone"] intValue];
-    member.company.name = [self.data objectForKey:@"mem_orgname"];
+    [member parseWithData:self.data];
     
     return member;
 }
