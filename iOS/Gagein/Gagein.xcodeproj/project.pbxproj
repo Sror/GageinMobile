@@ -54,6 +54,12 @@
 		EA1A622C170A9088000B4EAE /* GGAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A622B170A907B000B4EAE /* GGAlert.m */; };
 		EA24FA2D1713B269003AFBA9 /* GGScrollingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA2C1713B269003AFBA9 /* GGScrollingView.m */; };
 		EA24FA301713B2FF003AFBA9 /* GGScrollingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA24FA2F1713B2FF003AFBA9 /* GGScrollingView.xib */; };
+		EA24FA3A1713D8EA003AFBA9 /* GGSelectAgentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA381713D8EA003AFBA9 /* GGSelectAgentsVC.m */; };
+		EA24FA3F1713D919003AFBA9 /* GGCustomAgentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA3D1713D919003AFBA9 /* GGCustomAgentVC.m */; };
+		EA24FA441713D939003AFBA9 /* GGSelectFuncAreasVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA421713D939003AFBA9 /* GGSelectFuncAreasVC.m */; };
+		EA24FA491713D969003AFBA9 /* GGCustomAgentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA24FA461713D969003AFBA9 /* GGCustomAgentVC.xib */; };
+		EA24FA4A1713D969003AFBA9 /* GGSelectAgentsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA24FA471713D969003AFBA9 /* GGSelectAgentsVC.xib */; };
+		EA24FA4B1713D969003AFBA9 /* GGSelectFuncAreasVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA24FA481713D969003AFBA9 /* GGSelectFuncAreasVC.xib */; };
 		EAAD14D4170AA8D600EFB23A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAD14D3170AA8D600EFB23A /* MBProgressHUD.m */; };
 		EAAD14D7170AACD900EFB23A /* GGApiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAD14D6170AACD900EFB23A /* GGApiParser.m */; };
 		EAAD14DA170ACBDF00EFB23A /* GGPath.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAD14D9170ACBDF00EFB23A /* GGPath.m */; };
@@ -208,6 +214,15 @@
 		EA24FA331713BE9E003AFBA9 /* GGSwayView_deprecated.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGSwayView_deprecated.m; sourceTree = "<group>"; };
 		EA24FA341713BE9E003AFBA9 /* GGSwayView_deprecated.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GGSwayView_deprecated.xib; sourceTree = "<group>"; };
 		EA24FA351713CD50003AFBA9 /* GGApi+Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GGApi+Config.h"; sourceTree = "<group>"; };
+		EA24FA371713D8EA003AFBA9 /* GGSelectAgentsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSelectAgentsVC.h; sourceTree = "<group>"; };
+		EA24FA381713D8EA003AFBA9 /* GGSelectAgentsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSelectAgentsVC.m; sourceTree = "<group>"; };
+		EA24FA3C1713D919003AFBA9 /* GGCustomAgentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCustomAgentVC.h; sourceTree = "<group>"; };
+		EA24FA3D1713D919003AFBA9 /* GGCustomAgentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCustomAgentVC.m; sourceTree = "<group>"; };
+		EA24FA411713D939003AFBA9 /* GGSelectFuncAreasVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSelectFuncAreasVC.h; sourceTree = "<group>"; };
+		EA24FA421713D939003AFBA9 /* GGSelectFuncAreasVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSelectFuncAreasVC.m; sourceTree = "<group>"; };
+		EA24FA461713D969003AFBA9 /* GGCustomAgentVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCustomAgentVC.xib; sourceTree = "<group>"; };
+		EA24FA471713D969003AFBA9 /* GGSelectAgentsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSelectAgentsVC.xib; sourceTree = "<group>"; };
+		EA24FA481713D969003AFBA9 /* GGSelectFuncAreasVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSelectFuncAreasVC.xib; sourceTree = "<group>"; };
 		EAAD14D2170AA8D600EFB23A /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EAAD14D3170AA8D600EFB23A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EAAD14D5170AACD900EFB23A /* GGApiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGApiParser.h; sourceTree = "<group>"; };
@@ -413,6 +428,19 @@
 			path = Deprecated;
 			sourceTree = "<group>";
 		};
+		EA24FA361713D8BF003AFBA9 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				EA24FA371713D8EA003AFBA9 /* GGSelectAgentsVC.h */,
+				EA24FA381713D8EA003AFBA9 /* GGSelectAgentsVC.m */,
+				EA24FA3C1713D919003AFBA9 /* GGCustomAgentVC.h */,
+				EA24FA3D1713D919003AFBA9 /* GGCustomAgentVC.m */,
+				EA24FA411713D939003AFBA9 /* GGSelectFuncAreasVC.h */,
+				EA24FA421713D939003AFBA9 /* GGSelectFuncAreasVC.m */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		EAAD14D1170AA8D600EFB23A /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -449,6 +477,9 @@
 		EAC96C2E170983B5003FAFAA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				EA24FA461713D969003AFBA9 /* GGCustomAgentVC.xib */,
+				EA24FA471713D969003AFBA9 /* GGSelectAgentsVC.xib */,
+				EA24FA481713D969003AFBA9 /* GGSelectFuncAreasVC.xib */,
 				EA09081D17129F0400BCD4C4 /* GGCompanyUpdateDetailVC.xib */,
 				EA09081317126EFD00BCD4C4 /* GGCompanyDetailVC.xib */,
 				EA1A6220170A788B000B4EAE /* GGLoginVC.xib */,
@@ -642,6 +673,7 @@
 		EACAE0B817094A3100E7088F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EA24FA361713D8BF003AFBA9 /* Config */,
 				EA09080A1712659E00BCD4C4 /* Company */,
 				EA09080B1712659E00BCD4C4 /* People */,
 				EA09080C1712659E00BCD4C4 /* Profile */,
@@ -900,6 +932,9 @@
 				EA09081417126EFD00BCD4C4 /* GGCompanyDetailVC.xib in Resources */,
 				EA09081E17129F0400BCD4C4 /* GGCompanyUpdateDetailVC.xib in Resources */,
 				EA24FA301713B2FF003AFBA9 /* GGScrollingView.xib in Resources */,
+				EA24FA491713D969003AFBA9 /* GGCustomAgentVC.xib in Resources */,
+				EA24FA4A1713D969003AFBA9 /* GGSelectAgentsVC.xib in Resources */,
+				EA24FA4B1713D969003AFBA9 /* GGSelectFuncAreasVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -973,6 +1008,9 @@
 				EA0908241712A59300BCD4C4 /* GGApi+Signup.m in Sources */,
 				EA0908271712A94100BCD4C4 /* GGApi+Config.m in Sources */,
 				EA24FA2D1713B269003AFBA9 /* GGScrollingView.m in Sources */,
+				EA24FA3A1713D8EA003AFBA9 /* GGSelectAgentsVC.m in Sources */,
+				EA24FA3F1713D919003AFBA9 /* GGCustomAgentVC.m in Sources */,
+				EA24FA441713D939003AFBA9 /* GGSelectFuncAreasVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
