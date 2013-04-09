@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface GGSelectAgentsVC : UIViewController
+<UITableViewDataSource, UITableViewDelegate>
 
 @end

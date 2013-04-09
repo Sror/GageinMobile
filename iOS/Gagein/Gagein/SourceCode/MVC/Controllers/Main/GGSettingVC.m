@@ -9,6 +9,8 @@
 #import "GGSettingVC.h"
 #import "GGAppDelegate.h"
 #import "GGAPITest.h"
+#import "GGSelectAgentsVC.h"
+#import "GGSelectFuncAreasVC.h"
 
 @interface GGSettingVC ()
 @property (weak, nonatomic) IBOutlet UIButton *btnLogout;
@@ -51,6 +53,18 @@
 -(IBAction)apiTestAction:(id)sender
 {
     [[GGAPITest sharedInstance] run];
+}
+
+-(IBAction)setupAgentsAction:(id)sender
+{
+    GGSelectAgentsVC *vc = [[GGSelectAgentsVC alloc] init];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+-(IBAction)setupAreasAction:(id)sender
+{
+    GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 @end
