@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGCompanyDetailVC : GGBaseViewController
+@interface GGCompanyDetailVC : GGBaseViewController <UIActionSheetDelegate>
 @property (assign) long long companyID;
 @end

@@ -24,9 +24,9 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:[NSNumber numberWithLongLong:aNewsID] forKey:@"newsid"];
-    [parameters setObject:[NSNumber numberWithLongLong:aPageFlag] forKey:@"pageflag"];
+    [parameters setObject:[NSNumber numberWithInt:aPageFlag] forKey:@"pageflag"];
     [parameters setObject:[NSNumber numberWithLongLong:aPageTime] forKey:@"pagetime"];
-    [parameters setObject:[NSNumber numberWithLongLong:aRelevance] forKey:@"relevance"];
+    [parameters setObject:[NSNumber numberWithInt:aRelevance] forKey:@"relevance"];
     
     [self _execGetWithPath:path params:parameters callback:aCallback];
 }
@@ -47,4 +47,31 @@
     [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
+//MO03:Follow a CompanyBack to top
+-(void)followCompanyWithID:(long long)aCompanyID callback:(GGApiBlock)aCallback
+{
+    //GET
+    NSString *path = @"member/me/company/follow";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:[NSNumber numberWithLongLong:aCompanyID] forKey:@"orgid"];
+    
+    [self _execGetWithPath:path params:parameters callback:aCallback];
+}
+
+//MO04:Unfollow a CompanyBack to top
+-(void)unfollowCompanyWithID:(long long)aCompanyID callback:(GGApiBlock)aCallback
+{
+    //GET
+    NSString *path = @"member/me/company/unfollow";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:[NSNumber numberWithLongLong:aCompanyID] forKey:@"orgid"];
+    
+    [self _execGetWithPath:path params:parameters callback:aCallback];
+}
 @end

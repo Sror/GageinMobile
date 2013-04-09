@@ -38,4 +38,11 @@ typedef enum
 -(void)getCompanyOverviewWithID:(long long)anOrgID
               needSocialProfile:(BOOL)aNeedSP
                        callback:(GGApiBlock)aCallback;
+
+//MO03:Follow a CompanyBack to top
+-(void)followCompanyWithID:(long long)aCompanyID callback:(GGApiBlock)aCallback;
+
+//MO04:Unfollow a CompanyBack to top
+-(void)unfollowCompanyWithID:(long long)aCompanyID callback:(GGApiBlock)aCallback;
+
 @end

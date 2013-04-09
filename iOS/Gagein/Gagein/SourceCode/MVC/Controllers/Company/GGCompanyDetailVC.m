@@ -75,5 +75,59 @@
     [self.ivLogo setImageWithURL:url placeholderImage:nil];
     self.lblName.text = _companyOverview.name;
     self.lblWebsite.text = _companyOverview.website;
+    [self _updateUiBtnFollow];
 }
+
+-(void)_updateUiBtnFollow
+{
+    if (_companyOverview.followed)
+    {
+        [self.btnFollow setTitle:@"following" forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self.btnFollow setTitle:@"follow" forState:UIControlStateNormal];
+    }
+}
+
+#pragma mark - actions
+-(IBAction)followCompanyAction:(id)sender
+{
+    if (_companyOverview.followed)
+    {
+        // show action sheet
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:nil otherButtonTitles:@"unfollow", nil];
+        [sheet showFromTabBar:self.tabBarController.tabBar];
+    }
+    else
+    {
+        [GGSharedAPI followCompanyWithID:_companyOverview.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.status == 1) {
+                _companyOverview.followed = 1;
+                [self _updateUiBtnFollow];
+            }
+            
+        }];
+    }
+}
+
+#pragma mark - action sheet delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    DLog(@"action sheet index:%d", buttonIndex);
+    if (buttonIndex == 0)
+    {
+        [GGSharedAPI unfollowCompanyWithID:_companyOverview.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.status == 1) {
+                _companyOverview.followed = 0;
+                [self _updateUiBtnFollow];
+            }
+        }];
+    }
+}
+
 @end
