@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface GGSelectFuncAreasVC : UIViewController
-
+<UITableViewDataSource, UITableViewDelegate>
+@property (assign) BOOL isFromRegistration;
 @end

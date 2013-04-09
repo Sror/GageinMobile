@@ -101,6 +101,7 @@
         {
             // go to functional areas setting
             GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
+            vc.isFromRegistration = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }];
