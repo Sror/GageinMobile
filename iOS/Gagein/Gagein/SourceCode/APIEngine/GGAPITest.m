@@ -13,7 +13,7 @@ DEF_SINGLETON(GGAPITest)
 
 -(void)run
 {
-    [self _testGetMyAgentsList];
+    [self _testSelectAgentIDs];
 }
 
 -(void)_testGetMyAgentsList

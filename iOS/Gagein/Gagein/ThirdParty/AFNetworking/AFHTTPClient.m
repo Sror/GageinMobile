@@ -131,11 +131,13 @@ extern NSArray * AFQueryStringPairsFromKeyAndValue(NSString *key, id value);
 
 NSString * AFQueryStringFromParametersWithEncoding(NSDictionary *parameters, NSStringEncoding stringEncoding) {
     NSMutableArray *mutablePairs = [NSMutableArray array];
-    for (AFQueryStringPair *pair in AFQueryStringPairsFromDictionary(parameters)) {
+    NSArray *stringPairs = AFQueryStringPairsFromDictionary(parameters);
+    for (AFQueryStringPair *pair in stringPairs) {
         [mutablePairs addObject:[pair URLEncodedStringValueWithEncoding:stringEncoding]];
     }
 
-    return [mutablePairs componentsJoinedByString:@"&"];
+    NSString *queryString = [mutablePairs componentsJoinedByString:@"&"];
+    return queryString;
 }
 
 NSArray * AFQueryStringPairsFromDictionary(NSDictionary *dictionary) {
@@ -157,8 +159,10 @@ NSArray * AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
         }];
     } else if ([value isKindOfClass:[NSArray class]]) {
         NSArray *array = value;
-        [array enumerateObjectsUsingBlock:^(id nestedValue, __unused NSUInteger idx, __unused BOOL *stop) {
-            [mutableQueryStringComponents addObjectsFromArray:AFQueryStringPairsFromKeyAndValue([NSString stringWithFormat:@"%@[]", key], nestedValue)];
+        [array enumerateObjectsUsingBlock:^(id nestedValue, __unused NSUInteger idx, __unused BOOL *stop){
+//            [mutableQueryStringComponents addObjectsFromArray:AFQueryStringPairsFromKeyAndValue([NSString stringWithFormat:@"%@[]", key], nestedValue)];
+            // NOTICE: the following line is modified by Daniel Dong, the original code is above (commented).
+            [mutableQueryStringComponents addObjectsFromArray:AFQueryStringPairsFromKeyAndValue([NSString stringWithFormat:@"%@", key], nestedValue)];
         }];
     } else if ([value isKindOfClass:[NSSet class]]) {
         NSSet *set = value;

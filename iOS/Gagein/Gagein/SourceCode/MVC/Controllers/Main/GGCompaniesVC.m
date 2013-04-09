@@ -79,39 +79,36 @@
     //
     _slideSettingView = [[GGSlideSettingView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:_slideSettingView];
+
     
-    //
-    self.updatesTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
-    self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
-    self.updatesTV.dataSource = self;
-    self.updatesTV.delegate = self;
-    //[_swayView addPage:self.updatesTV];
-    
-    
-    self.happeningsTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
-    self.happeningsTV.dataSource = self;
-    self.happeningsTV.delegate = self;
-    //self.happeningsTV.alpha = .5f;
-    //[_swayView addPage:self.happeningsTV];
-    
-    //
+    // ------- add scrolling view
     _scrollingView = [GGScrollingView viewFromNibWithOwner:self];
     _scrollingView.frame = self.view.bounds;
     _scrollingView.delegate = self;
     [self.view addSubview:_scrollingView];
+    
+    self.updatesTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
+    self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
+    self.updatesTV.dataSource = self;
+    self.updatesTV.delegate = self;
     [_scrollingView addPage:self.updatesTV];
+    
+    self.happeningsTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
+    self.happeningsTV.dataSource = self;
+    self.happeningsTV.delegate = self;
     [_scrollingView addPage:self.happeningsTV];
     
     //
     [self.view bringSubviewToFront:_slideSettingView];
     
+    
+    // setup pull-to-refresh and infinite scrolling
     __weak GGCompaniesVC *weakSelf = self;
-    // setup pull-to-refresh
+
     [self.updatesTV addPullToRefreshWithActionHandler:^{
         [weakSelf _getFirstPage];
     }];
     
-    // setup infinite scrolling
     [self.updatesTV addInfiniteScrollingWithActionHandler:^{
         [weakSelf _getNextPage];
     }];

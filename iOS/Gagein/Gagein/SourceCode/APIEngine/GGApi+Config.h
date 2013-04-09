@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GGApi(Member)
+@interface GGApi(Config)
 
 #pragma mark - Agent
 //3. get agent list (New API)

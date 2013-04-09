@@ -30,4 +30,4 @@ typedef void(^GGApiBlock)(id operation, id aResultObject, NSError* anError);
 
 #import "GGApi+Company.h"
 #import "GGApi+Signup.h"
-#import "GGApi+Member.h"
+#import "GGApi+Config.h"

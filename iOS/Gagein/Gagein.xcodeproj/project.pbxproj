@@ -26,7 +26,7 @@
 		EA09081E17129F0400BCD4C4 /* GGCompanyUpdateDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA09081D17129F0400BCD4C4 /* GGCompanyUpdateDetailVC.xib */; };
 		EA0908211712A47600BCD4C4 /* GGApi+Company.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0908201712A47600BCD4C4 /* GGApi+Company.m */; };
 		EA0908241712A59300BCD4C4 /* GGApi+Signup.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0908231712A59200BCD4C4 /* GGApi+Signup.m */; };
-		EA0908271712A94100BCD4C4 /* GGApi+Member.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0908261712A94100BCD4C4 /* GGApi+Member.m */; };
+		EA0908271712A94100BCD4C4 /* GGApi+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0908261712A94100BCD4C4 /* GGApi+Config.m */; };
 		EA0CA561170BD54000DBCD83 /* GGCompaniesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA55A170BD54000DBCD83 /* GGCompaniesVC.m */; };
 		EA0CA562170BD54000DBCD83 /* GGPeopleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA55C170BD54000DBCD83 /* GGPeopleVC.m */; };
 		EA0CA563170BD54000DBCD83 /* GGProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA55E170BD54000DBCD83 /* GGProfileVC.m */; };
@@ -152,8 +152,7 @@
 		EA0908201712A47600BCD4C4 /* GGApi+Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GGApi+Company.m"; sourceTree = "<group>"; };
 		EA0908221712A59200BCD4C4 /* GGApi+Signup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GGApi+Signup.h"; sourceTree = "<group>"; };
 		EA0908231712A59200BCD4C4 /* GGApi+Signup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GGApi+Signup.m"; sourceTree = "<group>"; };
-		EA0908251712A94100BCD4C4 /* GGApi+Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GGApi+Member.h"; sourceTree = "<group>"; };
-		EA0908261712A94100BCD4C4 /* GGApi+Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GGApi+Member.m"; sourceTree = "<group>"; };
+		EA0908261712A94100BCD4C4 /* GGApi+Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GGApi+Config.m"; sourceTree = "<group>"; };
 		EA0CA559170BD54000DBCD83 /* GGCompaniesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompaniesVC.h; sourceTree = "<group>"; };
 		EA0CA55A170BD54000DBCD83 /* GGCompaniesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompaniesVC.m; sourceTree = "<group>"; };
 		EA0CA55B170BD54000DBCD83 /* GGPeopleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPeopleVC.h; sourceTree = "<group>"; };
@@ -208,6 +207,7 @@
 		EA24FA321713BE9E003AFBA9 /* GGSwayView_deprecated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGSwayView_deprecated.h; sourceTree = "<group>"; };
 		EA24FA331713BE9E003AFBA9 /* GGSwayView_deprecated.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGSwayView_deprecated.m; sourceTree = "<group>"; };
 		EA24FA341713BE9E003AFBA9 /* GGSwayView_deprecated.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GGSwayView_deprecated.xib; sourceTree = "<group>"; };
+		EA24FA351713CD50003AFBA9 /* GGApi+Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GGApi+Config.h"; sourceTree = "<group>"; };
 		EAAD14D2170AA8D600EFB23A /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EAAD14D3170AA8D600EFB23A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EAAD14D5170AACD900EFB23A /* GGApiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGApiParser.h; sourceTree = "<group>"; };
@@ -623,8 +623,8 @@
 				EA0908201712A47600BCD4C4 /* GGApi+Company.m */,
 				EA0908221712A59200BCD4C4 /* GGApi+Signup.h */,
 				EA0908231712A59200BCD4C4 /* GGApi+Signup.m */,
-				EA0908251712A94100BCD4C4 /* GGApi+Member.h */,
-				EA0908261712A94100BCD4C4 /* GGApi+Member.m */,
+				EA24FA351713CD50003AFBA9 /* GGApi+Config.h */,
+				EA0908261712A94100BCD4C4 /* GGApi+Config.m */,
 			);
 			path = APIEngine;
 			sourceTree = "<group>";
@@ -971,7 +971,7 @@
 				EA09081B17129EE000BCD4C4 /* GGCompanyUpdateDetailVC.m in Sources */,
 				EA0908211712A47600BCD4C4 /* GGApi+Company.m in Sources */,
 				EA0908241712A59300BCD4C4 /* GGApi+Signup.m in Sources */,
-				EA0908271712A94100BCD4C4 /* GGApi+Member.m in Sources */,
+				EA0908271712A94100BCD4C4 /* GGApi+Config.m in Sources */,
 				EA24FA2D1713B269003AFBA9 /* GGScrollingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
