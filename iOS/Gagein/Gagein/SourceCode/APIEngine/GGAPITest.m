@@ -13,7 +13,7 @@ DEF_SINGLETON(GGAPITest)
 
 -(void)run
 {
-    [self _testSelectAgentIDs];
+    [self _testSelectFunctionalAreas];
 }
 
 -(void)_testGetMyAgentsList
@@ -30,6 +30,43 @@ DEF_SINGLETON(GGAPITest)
     }];
 }
 
+-(void)_testAddCustomAgent
+{
+    [GGSharedAPI addCustomAgentWithName:@"steve jobs" keywords:@"steve, jobs" callback:^(id operation, id aResultObject, NSError *anError) {
+        //
+    }];
+}
+
+-(void)_testUpdateCustomAgent
+{
+    [GGSharedAPI updateCustomAgentWithID:1347 name:@"bill gates" keywords:@"bill,gates" callback:^(id operation, id aResultObject, NSError *anError) {
+        //
+    }];
+}
+
+-(void)_testDeleteCustomAgent
+{
+    [GGSharedAPI deleteCustomAgentWithID:1347 callback:^(id operation, id aResultObject, NSError *anError) {
+        //
+    }];
+}
+
+//////////////////////////////////////////////////////////////////
+-(void)_testGetFunctionalAreas
+{
+    [GGSharedAPI getFunctionalAreas:^(id operation, id aResultObject, NSError *anError) {
+        //
+    }];
+}
+
+-(void)_testSelectFunctionalAreas
+{
+    [GGSharedAPI selectFunctionalAreas:[NSArray arrayWithObjects:__INT(1010), __INT(1020), nil] callback:^(id operation, id aResultObject, NSError *anError) {
+        //
+    }];
+}
+
+/////////////////////////////////////////////////////////////////
 -(void)_testGetCompanyOverviewWithID
 {
     [GGSharedAPI getCompanyOverviewWithID:1399794 needSocialProfile:YES callback:^(id operation, id aResultObject, NSError *anError) {
