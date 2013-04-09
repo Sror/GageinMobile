@@ -16,8 +16,9 @@ typedef enum {
 
 @interface GGAgent : GGDataModel
 @property (assign)  int         type;
-@property (assign)  int         checked;
+@property (assign)  BOOL         checked;
 @property (copy)    NSString    *agentID;
 @property (copy)    NSString    *name;
 @property (copy)    NSString    *keywords;
+
 @end

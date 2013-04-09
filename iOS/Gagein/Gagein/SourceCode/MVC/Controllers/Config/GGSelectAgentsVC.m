@@ -124,6 +124,23 @@
     return @"PREDEFINED AGENTS";
 }
 
+#pragma mark - table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    GGAgent *agent = nil;
+    if (_customAgents.count && indexPath.section == 0)
+    {
+        agent = [_customAgents objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        agent = [_predefinedAgents objectAtIndex:indexPath.row];
+    }
+    
+    agent.checked = !agent.checked;
+    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 #pragma mark - API calls
 -(void)_getAgentsData
 {

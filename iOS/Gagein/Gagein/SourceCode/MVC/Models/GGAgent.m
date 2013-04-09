@@ -16,7 +16,7 @@
     
     self.ID = [[aData objectForKey:@"agentid"] longLongValue];
     self.type = [[aData objectForKey:@"type"] intValue];
-    self.checked = [[aData objectForKey:@"checked"] intValue];
+    self.checked = [[aData objectForKey:@"checked"] boolValue];
     self.keywords = [aData objectForKey:@"agent_keywords"];
     self.name = [aData objectForKey:@"agent_name"];
 }
