@@ -9,6 +9,7 @@
 #import "GGSelectAgentsVC.h"
 #import "GGDataPage.h"
 #import "GGAgent.h"
+#import "GGSelectFuncAreasVC.h"
 
 @interface GGSelectAgentsVC ()
 @property (weak, nonatomic) IBOutlet UITableView *viewTable;
@@ -39,6 +40,24 @@
 {
     [super viewDidLoad];
     
+    self.title = @"Start Your Gagein";
+    self.navigationItem.hidesBackButton = YES;
+    
+    if (!_isFromRegistration)
+    {
+        self.title = @"Choose Agents";
+        // add done button
+        UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(doneAction:)];
+        self.navigationItem.rightBarButtonItem = doneBtn;
+        
+        // hide setup tip
+        self.viewSetupLower.hidden = self.viewSetupUpper.hidden = YES;
+        
+        // addjust layout
+        self.btnAddCustomAgent.frame = [GGUtils setY:20 rect:self.btnAddCustomAgent.frame];
+        self.viewTable.frame = [GGUtils setH:self.view.frame.size.height - 60 rect:[GGUtils setY:60 rect:self.viewTable.frame]];
+    }
+    
     [self _getAgentsData];
 }
 
@@ -53,6 +72,56 @@
     [super viewDidUnload];
 }
 
+#pragma mark - internal
+-(NSArray *)_selectedAgentIDs
+{
+    NSMutableArray *selectedAgentIDs = [NSMutableArray array];
+    
+    for (GGAgent *agent in _predefinedAgents) {
+        if (agent.checked) {
+            [selectedAgentIDs addObject:[NSNumber numberWithLongLong:agent.ID]];
+        }
+    }
+    
+    for (GGAgent *agent in _customAgents) {
+        if (agent.checked) {
+            [selectedAgentIDs addObject:[NSNumber numberWithLongLong:agent.ID]];
+        }
+    }
+    
+    return selectedAgentIDs;
+}
+
+#pragma mark - actions
+-(IBAction)nextStepAction:(id)sender
+{
+    [GGSharedAPI selectAgents:[self _selectedAgentIDs] callback:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            // go to functional areas setting
+            GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }];
+}
+
+-(IBAction)doneAction:(id)sender
+{
+    [GGSharedAPI selectAgents:[self _selectedAgentIDs] callback:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            [GGAlert alert:@"Succeeded!"];
+        }
+        else
+        {
+            [GGAlert alert:parser.message];
+        }
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+}
 
 #pragma mark - table view datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

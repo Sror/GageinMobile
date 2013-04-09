@@ -58,13 +58,13 @@
 -(IBAction)setupAgentsAction:(id)sender
 {
     GGSelectAgentsVC *vc = [[GGSelectAgentsVC alloc] init];
-    [self presentViewController:vc animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(IBAction)setupAreasAction:(id)sender
 {
     GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
-    [self presentViewController:vc animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

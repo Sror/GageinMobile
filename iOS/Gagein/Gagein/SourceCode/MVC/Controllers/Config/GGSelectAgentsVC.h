@@ -10,5 +10,5 @@
 
 @interface GGSelectAgentsVC : UIViewController
 <UITableViewDataSource, UITableViewDelegate>
-
+@property (assign) BOOL isFromRegistration;
 @end

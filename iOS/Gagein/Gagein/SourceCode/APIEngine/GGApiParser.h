@@ -19,6 +19,8 @@
 +(id)parserWithApiData:(NSDictionary *)anApiData;
 -(id)initWithApiData:(NSDictionary *)anApiData;
 
+-(BOOL)isOK;
+
 #pragma mark - basic data
 -(int)status;
 -(NSString *)message;

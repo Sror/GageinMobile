@@ -36,6 +36,11 @@
     return self;
 }
 
+-(BOOL)isOK
+{
+    return self.status == 1;
+}
+
 #pragma mark - basic data
 -(int)status
 {
