@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GGScrollingView.h"
 
-@interface GGCompaniesVC : GGBaseViewController <UITableViewDelegate, UITableViewDataSource>
+@interface GGCompaniesVC : GGBaseViewController
+<UITableViewDelegate, UITableViewDataSource, GGScrollingViewDelegate>
 @property (strong)   NSMutableArray              *updates;
 @end

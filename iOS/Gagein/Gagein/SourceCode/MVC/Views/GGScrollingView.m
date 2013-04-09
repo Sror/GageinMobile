@@ -69,13 +69,20 @@
 -(void)pageSelectedAction:(id)sender
 {
     self.viewScroll.contentOffset = CGPointMake(self.viewScroll.frame.size.width * self.pageControl.currentPage, 0);
+    
+    [self.delegate scrollingView:self didScrollToIndex:self.pageControl.currentPage];
 }
 
 #pragma mark - scroll view delegate
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     int currentPage = self.viewScroll.contentOffset.x / self.viewScroll.frame.size.width;
-    self.pageControl.currentPage = currentPage;
+    
+    if (self.pageControl.currentPage != currentPage)
+    {
+        self.pageControl.currentPage = currentPage;
+        [self.delegate scrollingView:self didScrollToIndex:currentPage];
+    }
 }
 
 @end

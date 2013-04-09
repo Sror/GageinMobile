@@ -97,6 +97,7 @@
     //
     _scrollingView = [GGScrollingView viewFromNibWithOwner:self];
     _scrollingView.frame = self.view.bounds;
+    _scrollingView.delegate = self;
     [self.view addSubview:_scrollingView];
     [_scrollingView addPage:self.updatesTV];
     [_scrollingView addPage:self.happeningsTV];
@@ -195,9 +196,6 @@
         cell.descriptionLbl.text = updateData.content;
         [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:nil];
         
-//        _tapLogoGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(companyDetailAction:)];
-//        [cell.logoIV addGestureRecognizer:_tapLogoGest];
-        
         cell.intervalLbl.text = [updateData intervalStringWithDate:updateData.date];
         
 //        NSDateFormatter *formater = [[NSDateFormatter alloc] init];
@@ -230,7 +228,11 @@
     }
 }
 
-
+#pragma mark - scrolling view delegate
+-(void)scrollingView:(GGScrollingView *)aScrollingView didScrollToIndex:(NSUInteger)aPageIndex;
+{
+    DLog(@"scrolling to index:%d", aPageIndex);
+}
 
 
 #pragma mark - data handling
