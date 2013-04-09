@@ -12,10 +12,11 @@
 #import "GGDataPage.h"
 #import "GGCompany.h"
 #import "GGCompanyUpdate.h"
-#import "GGSwayView.h"
+
 #import "GGSlideSettingView.h"
 #import "GGCompanyDetailVC.h"
 #import "GGCompanyUpdateDetailVC.h"
+#import "GGScrollingView.h"
 
 //#define USE_CUSTOM_NAVI_BAR       // 是否使用自定义导航条
 
@@ -30,7 +31,7 @@
 @implementation GGCompaniesVC
 {
     EGGCompanyUpdateRelevance   _relevance;
-    GGSwayView                  *_swayView;
+    GGScrollingView             *_scrollingView;
     GGSlideSettingView          *_slideSettingView;
 }
 
@@ -80,26 +81,25 @@
     [self.view addSubview:_slideSettingView];
     
     //
-    _swayView = [GGSwayView viewFromNibWithOwner:self];
-    _swayView.frame = CGRectOffset(self.view.bounds, 0, 0);
-    [self.view addSubview:_swayView];
-    
     self.updatesTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
     self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
-    [_swayView addPage:self.updatesTV];
+    //[_swayView addPage:self.updatesTV];
     
     
     self.happeningsTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
-    //self.happeningsTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
     self.happeningsTV.dataSource = self;
     self.happeningsTV.delegate = self;
     //self.happeningsTV.alpha = .5f;
-    [_swayView addPage:self.happeningsTV];
+    //[_swayView addPage:self.happeningsTV];
     
     //
-    
+    _scrollingView = [GGScrollingView viewFromNibWithOwner:self];
+    _scrollingView.frame = self.view.bounds;
+    [self.view addSubview:_scrollingView];
+    [_scrollingView addPage:self.updatesTV];
+    [_scrollingView addPage:self.happeningsTV];
     
     //
     [self.view bringSubviewToFront:_slideSettingView];

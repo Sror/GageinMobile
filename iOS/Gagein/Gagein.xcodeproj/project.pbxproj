@@ -52,6 +52,8 @@
 		EA1A6228170A8C95000B4EAE /* GGColor.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A6225170A8C95000B4EAE /* GGColor.m */; };
 		EA1A6229170A8C95000B4EAE /* GGPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A6227170A8C95000B4EAE /* GGPredicate.m */; };
 		EA1A622C170A9088000B4EAE /* GGAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A622B170A907B000B4EAE /* GGAlert.m */; };
+		EA24FA2D1713B269003AFBA9 /* GGScrollingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA2C1713B269003AFBA9 /* GGScrollingView.m */; };
+		EA24FA301713B2FF003AFBA9 /* GGScrollingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA24FA2F1713B2FF003AFBA9 /* GGScrollingView.xib */; };
 		EAAD14D4170AA8D600EFB23A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAD14D3170AA8D600EFB23A /* MBProgressHUD.m */; };
 		EAAD14D7170AACD900EFB23A /* GGApiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAD14D6170AACD900EFB23A /* GGApiParser.m */; };
 		EAAD14DA170ACBDF00EFB23A /* GGPath.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAD14D9170ACBDF00EFB23A /* GGPath.m */; };
@@ -111,8 +113,6 @@
 		EAD481F91710FFB300556288 /* GGCompanyUpdateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD481F81710FFB300556288 /* GGCompanyUpdateCell.m */; };
 		EAD481FB1711060500556288 /* comLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD481FA1711060500556288 /* comLogo.png */; };
 		EAD481FE17111BB800556288 /* GGDataPage.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD481FD17111BB800556288 /* GGDataPage.m */; };
-		EAD4820117114E6700556288 /* GGSwayView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD4820017114E6700556288 /* GGSwayView.m */; };
-		EAD4820317114E7C00556288 /* GGSwayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD4820217114E7C00556288 /* GGSwayView.xib */; };
 		EAD4820A17116F8F00556288 /* GGSlideSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD4820917116F8F00556288 /* GGSlideSettingView.m */; };
 /* End PBXBuildFile section */
 
@@ -202,6 +202,12 @@
 		EA1A6227170A8C95000B4EAE /* GGPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPredicate.m; sourceTree = "<group>"; };
 		EA1A622A170A907A000B4EAE /* GGAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGAlert.h; sourceTree = "<group>"; };
 		EA1A622B170A907B000B4EAE /* GGAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGAlert.m; sourceTree = "<group>"; };
+		EA24FA2B1713B269003AFBA9 /* GGScrollingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGScrollingView.h; sourceTree = "<group>"; };
+		EA24FA2C1713B269003AFBA9 /* GGScrollingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGScrollingView.m; sourceTree = "<group>"; };
+		EA24FA2F1713B2FF003AFBA9 /* GGScrollingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGScrollingView.xib; sourceTree = "<group>"; };
+		EA24FA321713BE9E003AFBA9 /* GGSwayView_deprecated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGSwayView_deprecated.h; sourceTree = "<group>"; };
+		EA24FA331713BE9E003AFBA9 /* GGSwayView_deprecated.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGSwayView_deprecated.m; sourceTree = "<group>"; };
+		EA24FA341713BE9E003AFBA9 /* GGSwayView_deprecated.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GGSwayView_deprecated.xib; sourceTree = "<group>"; };
 		EAAD14D2170AA8D600EFB23A /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EAAD14D3170AA8D600EFB23A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EAAD14D5170AACD900EFB23A /* GGApiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGApiParser.h; sourceTree = "<group>"; };
@@ -287,9 +293,6 @@
 		EAD481FA1711060500556288 /* comLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comLogo.png; sourceTree = "<group>"; };
 		EAD481FC17111BB700556288 /* GGDataPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGDataPage.h; sourceTree = "<group>"; };
 		EAD481FD17111BB800556288 /* GGDataPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGDataPage.m; sourceTree = "<group>"; };
-		EAD481FF17114E6700556288 /* GGSwayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSwayView.h; sourceTree = "<group>"; };
-		EAD4820017114E6700556288 /* GGSwayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSwayView.m; sourceTree = "<group>"; };
-		EAD4820217114E7C00556288 /* GGSwayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSwayView.xib; sourceTree = "<group>"; };
 		EAD4820817116F8E00556288 /* GGSlideSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSlideSettingView.h; sourceTree = "<group>"; };
 		EAD4820917116F8F00556288 /* GGSlideSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSlideSettingView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -400,6 +403,16 @@
 			path = SVPullToRefresh;
 			sourceTree = "<group>";
 		};
+		EA24FA311713BE9D003AFBA9 /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				EA24FA321713BE9E003AFBA9 /* GGSwayView_deprecated.h */,
+				EA24FA331713BE9E003AFBA9 /* GGSwayView_deprecated.m */,
+				EA24FA341713BE9E003AFBA9 /* GGSwayView_deprecated.xib */,
+			);
+			path = Deprecated;
+			sourceTree = "<group>";
+		};
 		EAAD14D1170AA8D600EFB23A /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,7 +468,7 @@
 			children = (
 				EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */,
 				EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */,
-				EAD4820217114E7C00556288 /* GGSwayView.xib */,
+				EA24FA2F1713B2FF003AFBA9 /* GGScrollingView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -501,6 +514,7 @@
 				EACAE0BB17094A3100E7088F /* ThirdParty */,
 				EACAE0851709486800E7088F /* GGAppDelegate.h */,
 				EACAE0861709486800E7088F /* GGAppDelegate.m */,
+				EA24FA311713BE9D003AFBA9 /* Deprecated */,
 				EACAE07D1709486800E7088F /* Supporting Files */,
 			);
 			path = Gagein;
@@ -674,10 +688,10 @@
 				EACAE13F1709629400E7088F /* GGWelcomePageView.m */,
 				EAD481F71710FFB300556288 /* GGCompanyUpdateCell.h */,
 				EAD481F81710FFB300556288 /* GGCompanyUpdateCell.m */,
-				EAD481FF17114E6700556288 /* GGSwayView.h */,
-				EAD4820017114E6700556288 /* GGSwayView.m */,
 				EAD4820817116F8E00556288 /* GGSlideSettingView.h */,
 				EAD4820917116F8F00556288 /* GGSlideSettingView.m */,
+				EA24FA2B1713B269003AFBA9 /* GGScrollingView.h */,
+				EA24FA2C1713B269003AFBA9 /* GGScrollingView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -883,9 +897,9 @@
 				EA1A6223170A788B000B4EAE /* GGSignupVC.xib in Resources */,
 				EAD481F51710FF9100556288 /* GGCompanyUpdateCell.xib in Resources */,
 				EAD481FB1711060500556288 /* comLogo.png in Resources */,
-				EAD4820317114E7C00556288 /* GGSwayView.xib in Resources */,
 				EA09081417126EFD00BCD4C4 /* GGCompanyDetailVC.xib in Resources */,
 				EA09081E17129F0400BCD4C4 /* GGCompanyUpdateDetailVC.xib in Resources */,
+				EA24FA301713B2FF003AFBA9 /* GGScrollingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -941,7 +955,6 @@
 				EA0CA58B170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				EAD481F91710FFB300556288 /* GGCompanyUpdateCell.m in Sources */,
 				EAD481FE17111BB800556288 /* GGDataPage.m in Sources */,
-				EAD4820117114E6700556288 /* GGSwayView.m in Sources */,
 				EAD4820A17116F8F00556288 /* GGSlideSettingView.m in Sources */,
 				EA0907F7171258D700BCD4C4 /* MKAnnotationView+WebCache.m in Sources */,
 				EA0907F8171258D700BCD4C4 /* SDImageCache.m in Sources */,
@@ -959,6 +972,7 @@
 				EA0908211712A47600BCD4C4 /* GGApi+Company.m in Sources */,
 				EA0908241712A59300BCD4C4 /* GGApi+Signup.m in Sources */,
 				EA0908271712A94100BCD4C4 /* GGApi+Member.m in Sources */,
+				EA24FA2D1713B269003AFBA9 /* GGScrollingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

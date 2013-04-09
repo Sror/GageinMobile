@@ -30,6 +30,9 @@
 {
     [super viewDidLoad];
 	self.view.frame = [self viewportFrame];
+    
+    UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] initWithTitle:@"back" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backBtn;
 }
 
 - (void)didReceiveMemoryWarning

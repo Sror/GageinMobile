@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 gagein. All rights reserved.
 //
 
-#import "GGSwayView.h"
+#import "GGSwayView_deprecated.h"
 
-@implementation GGSwayView
+@implementation GGSwayView_deprecated
 
 - (id)initWithFrame:(CGRect)frame
 {

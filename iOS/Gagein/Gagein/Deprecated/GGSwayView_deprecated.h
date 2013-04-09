@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGSwayView : UIView
+@interface GGSwayView_deprecated : UIView
 @property (weak, nonatomic) IBOutlet UIView *viewPageControl;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UISwipeGestureRecognizer *leftSwipe;
