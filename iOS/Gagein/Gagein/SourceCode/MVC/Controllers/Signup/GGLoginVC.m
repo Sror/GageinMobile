@@ -111,6 +111,8 @@
                 //id data = parser.data;
                 //DLog(@"%@", data);
                 GGSharedRuntimeData.currentUser = [parser parseLogin];
+                GGSharedRuntimeData.currentUser.accountEmail = self.tfEmail.text;
+                GGSharedRuntimeData.currentUser.accountPassword = self.tfPassword.text;
                 [GGSharedRuntimeData saveCurrentUser];
                 [GGSharedDelegate popNaviToRoot];
                 [GGSharedDelegate showTabIndex:0];

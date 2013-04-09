@@ -9,6 +9,8 @@
 #import "GGSelectFuncAreasVC.h"
 #import "GGDataPage.h"
 #import "GGFunctionalArea.h"
+#import "GGMember.h"
+#import "GGAppDelegate.h"
 
 @interface GGSelectFuncAreasVC ()
 @property (weak, nonatomic) IBOutlet UITableView *viewTable;
@@ -55,15 +57,53 @@
     [self _getAreasData];
 }
 
+#pragma mark - internal
+-(NSArray *)_selectedAreaIDs
+{
+    NSMutableArray *selectedAreaIDs = [NSMutableArray array];
+    
+    for (GGFunctionalArea *area in _functionalAreas) {
+        if (area.checked) {
+            [selectedAreaIDs addObject:[NSNumber numberWithLongLong:area.ID]];
+        }
+    }
+    
+    return selectedAreaIDs;
+}
+
 #pragma mark - actions
 -(IBAction)doneStepAction:(id)sender
 {
-    
+    [GGSharedAPI selectFunctionalAreas:[self _selectedAreaIDs] callback:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            // go home
+            [GGSharedDelegate popNaviToRoot];
+            [GGSharedDelegate showTabIndex:0];
+        }
+        else
+        {
+            [GGAlert alert:parser.message];
+        }
+    }];
 }
 
 -(IBAction)doneAction:(id)sender
 {
-    
+    [GGSharedAPI selectFunctionalAreas:[self _selectedAreaIDs] callback:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            [GGAlert alert:@"Succeeded!"];
+        }
+        else
+        {
+            [GGAlert alert:parser.message];
+        }
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 #pragma mark - table view datasource

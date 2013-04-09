@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGSelectAgentsVC : UIViewController
+@interface GGSelectAgentsVC : GGBaseViewController
 <UITableViewDataSource, UITableViewDelegate>
 @property (assign) BOOL isFromRegistration;
 @end

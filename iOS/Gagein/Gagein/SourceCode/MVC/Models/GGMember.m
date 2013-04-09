@@ -14,6 +14,9 @@
 #define kMemberFullName     @"kMemberFullName"
 #define kMemberOrgName      @"kMemberOrgName"
 #define kMemberTimezone     @"kMemberTimezone"
+#define kMemberAccountEmail         @"kMemberAccountEmail"
+#define kMemberAccountPassword      @"kMemberAccountPassword"
+
 #define kAccessToken        @"kAccessToken"
 
 @implementation GGMember
@@ -25,6 +28,8 @@
     [aCoder encodeObject:self.company.name forKey:kMemberOrgName];
     [aCoder encodeInt:self.timeZone forKey:kMemberTimezone];
     [aCoder encodeObject:self.accessToken forKey:kAccessToken];
+    [aCoder encodeObject:self.accountEmail forKey:kMemberAccountEmail];
+    [aCoder encodeObject:self.accountPassword forKey:kMemberAccountPassword];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -34,6 +39,9 @@
     member.fullName = [aDecoder decodeObjectForKey:kMemberFullName];
     member.timeZone = [aDecoder decodeIntForKey:kMemberTimezone];
     member.accessToken = [aDecoder decodeObjectForKey:kAccessToken];
+    member.accountEmail = [aDecoder decodeObjectForKey:kMemberAccountEmail];
+    member.accountPassword = [aDecoder decodeObjectForKey:kMemberAccountPassword];
+    
     member.company = [GGCompany model];
     member.company.name = [aDecoder decodeObjectForKey:kMemberOrgName];
     

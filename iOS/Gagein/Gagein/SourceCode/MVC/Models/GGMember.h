@@ -14,5 +14,7 @@
 @interface GGMember : GGPerson <NSCoding>
 @property (assign)  int         timeZone;
 @property (copy)    NSString    *accessToken;
+@property (copy)    NSString    *accountEmail;
+@property (copy)    NSString    *accountPassword;
 @property (strong)  GGMemberPlan *plan;
 @end

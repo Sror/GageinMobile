@@ -58,7 +58,6 @@
 -(IBAction)setupAgentsAction:(id)sender
 {
     GGSelectAgentsVC *vc = [[GGSelectAgentsVC alloc] init];
-    vc.isFromRegistration = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -134,25 +134,7 @@
 #pragma mark - companies
 -(GGDataPage *)parseGetCompanyUpdates
 {
-    GG_ASSERT_API_DATA_IS_DIC;
-    GGDataPage *page = [GGDataPage model];
-    page.hasMore = self.dataHasMore;
-    page.timestamp = self.dataTimestamp;
-    
-    NSArray *dataInfos = self.dataInfos;
-    if (dataInfos)
-    {
-        for (id info in dataInfos) {
-            NSAssert([info isKindOfClass:[NSDictionary class]], @"data info should be a NSDictionary");
-            
-            GGCompanyUpdate *update = [GGCompanyUpdate model];
-            [update parseWithData:info];
-            
-            [page.items addObject:update];
-        }
-    }
-    
-    return page;
+    return [self _parsePageforClass:[GGCompanyUpdate class]];
 }
 
 -(GGCompany *)parseGetCompanyOverview
@@ -167,25 +149,7 @@
 #pragma mark - config
 -(GGDataPage *)parseGetAgents
 {
-    GG_ASSERT_API_DATA_IS_DIC;
-    GGDataPage *page = [GGDataPage model];
-    page.hasMore = self.dataHasMore;
-    page.timestamp = self.dataTimestamp;
-    
-    NSArray *dataInfos = self.dataInfos;
-    if (dataInfos)
-    {
-        for (id info in dataInfos) {
-            NSAssert([info isKindOfClass:[NSDictionary class]], @"data info should be a NSDictionary");
-            
-            GGAgent *update = [GGAgent model];
-            [update parseWithData:info];
-            
-            [page.items addObject:update];
-        }
-    }
-    
-    return page;
+    return [self _parsePageforClass:[GGAgent class]];
 }
 
 -(GGDataPage *)parseGetFunctionalAreas

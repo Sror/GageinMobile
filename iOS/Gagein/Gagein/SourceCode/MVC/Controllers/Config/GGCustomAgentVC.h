@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGCustomAgentVC : UIViewController
+@interface GGCustomAgentVC : GGBaseViewController
 
 @end

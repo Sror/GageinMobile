@@ -8,6 +8,8 @@
 
 #import "GGSignupVC.h"
 #import "GGPredicate.h"
+#import "GGSelectAgentsVC.h"
+#import "GGMember.h"
 
 @interface GGSignupVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrolView;
@@ -138,11 +140,28 @@
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.status == 1)
             {
-                DLog(@"Register OK, autoLogin...");
-                //id data = parser.data;
-                //DLog(@"%@", data);
-                // [parser parseLogin];
+                DLog(@"Register OK, auto login..");
                 
+                [GGSharedAPI loginWithEmail:self.tfEmail.text password:self.tfPassword.text callback:^(id operation, id aResultObject, NSError *anError) {
+                    GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                    if (parser.isOK)
+                    {
+                        // record login info
+                        GGSharedRuntimeData.currentUser = [parser parseLogin];
+                        GGSharedRuntimeData.currentUser.accountEmail = self.tfEmail.text;
+                        GGSharedRuntimeData.currentUser.accountPassword = self.tfPassword.text;
+                        [GGSharedRuntimeData saveCurrentUser];
+                        
+                        // go to setup wizzard
+                        GGSelectAgentsVC *vc = [[GGSelectAgentsVC alloc] init];
+                        vc.isFromRegistration = YES;
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }
+                    else
+                    {
+                        [GGAlert alert:parser.message];
+                    }
+                }];
             }
             else
             {

@@ -115,9 +115,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if (_updates.count <= 0) {
-        [self.updatesTV triggerPullToRefresh];
-    }
+    [self.updatesTV triggerPullToRefresh];
 }
 
 - (void)viewDidUnload {
@@ -305,9 +303,13 @@
                 default:
                     break;
             }
-            
-            [self.updatesTV reloadData];
         }
+        else
+        {
+            [_updates removeAllObjects];
+        }
+        
+        [self.updatesTV reloadData];
         
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
         [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:.5f];
