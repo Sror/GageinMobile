@@ -13,7 +13,7 @@
 
 #pragma mark - Agent
 //3. get agent list (New API)
--(void)getMyAgentsList:(GGApiBlock)aCallback;
+-(void)getAgents:(GGApiBlock)aCallback;
 
 //4.Select/unselect agents     (New API)
 -(void)selectAgents:(NSArray *)aAgentIDs callback:(GGApiBlock)aCallback;

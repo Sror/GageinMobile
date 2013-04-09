@@ -12,6 +12,7 @@
 #import "GGDataPage.h"
 #import "GGCompanyUpdate.h"
 #import "GGAgent.h"
+#import "GGFunctionalArea.h"
 
 #define GG_ASSERT_API_DATA_IS_DIC   NSAssert([_apiData isKindOfClass:[NSDictionary class]], @"Api Data should be a NSDictionary");
 
@@ -88,6 +89,34 @@
     return nil;
 }
 
+#pragma mark - internal
+-(GGDataPage *)_parsePageforClass:(Class)aClass
+{
+    GG_ASSERT_API_DATA_IS_DIC;
+    
+    id obj = [aClass alloc];
+    NSAssert([obj isKindOfClass:[GGDataModel class]], @"class should be a GGDataModel class");
+    
+    GGDataPage *page = [GGDataPage model];
+    page.hasMore = self.dataHasMore;
+    page.timestamp = self.dataTimestamp;
+    
+    NSArray *dataInfos = self.dataInfos;
+    if (dataInfos)
+    {
+        for (id info in dataInfos) {
+            NSAssert([info isKindOfClass:[NSDictionary class]], @"data info should be a NSDictionary");
+            
+            id dataObj = [aClass model];
+            [dataObj parseWithData:info];
+            
+            [page.items addObject:dataObj];
+        }
+    }
+    
+    return page;
+}
+
 #pragma mark - signup
 -(GGMember*)parseLogin
 {
@@ -136,7 +165,7 @@
 }
 
 #pragma mark - config
--(GGDataPage *)parseGetMyAgents
+-(GGDataPage *)parseGetAgents
 {
     GG_ASSERT_API_DATA_IS_DIC;
     GGDataPage *page = [GGDataPage model];
@@ -157,6 +186,11 @@
     }
     
     return page;
+}
+
+-(GGDataPage *)parseGetFunctionalAreas
+{
+    return [self _parsePageforClass:[GGFunctionalArea class]];
 }
 
 @end

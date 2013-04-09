@@ -7,6 +7,8 @@
 //
 
 #import "GGSelectFuncAreasVC.h"
+#import "GGDataPage.h"
+#import "GGFunctionalArea.h"
 
 @interface GGSelectFuncAreasVC ()
 @property (weak, nonatomic) IBOutlet UITableView *viewTable;
@@ -17,12 +19,15 @@
 @end
 
 @implementation GGSelectFuncAreasVC
+{
+    NSMutableArray *_functionalAreas;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _functionalAreas = [NSMutableArray array];
     }
     return self;
 }
@@ -46,6 +51,8 @@
         // addjust layout
         self.viewTable.frame = [GGUtils setH:self.view.frame.size.height - 10 rect:[GGUtils setY:10 rect:self.viewTable.frame]];
     }
+    
+    [self _getAreasData];
 }
 
 #pragma mark - actions
@@ -62,7 +69,7 @@
 #pragma mark - table view datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _functionalAreas.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -75,9 +82,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    cell.textLabel.text = @"bbbbb";
-
-    //cell.accessoryType = agentData.checked ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    GGFunctionalArea *areaData = _functionalAreas[indexPath.row];
+    cell.textLabel.text = areaData.name;
+    cell.accessoryType = areaData.checked ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     
     return cell;
 }
@@ -85,6 +92,8 @@
 #pragma mark - table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    GGFunctionalArea *areaData = _functionalAreas[indexPath.row];
+    areaData.checked = !areaData.checked;
     [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
@@ -94,5 +103,22 @@
     [self setViewSetupUpper:nil];
     [self setBtnDoneStep:nil];
     [super viewDidUnload];
+}
+
+
+#pragma mark - API calls
+-(void)_getAreasData
+{
+    [GGSharedAPI getFunctionalAreas:^(id operation, id aResultObject, NSError *anError) {
+        
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.status == 1)
+        {
+            GGDataPage *page = [parser parseGetFunctionalAreas];
+            _functionalAreas = [page.items mutableCopy];
+            [self.viewTable reloadData];
+        }
+        
+    }];
 }
 @end

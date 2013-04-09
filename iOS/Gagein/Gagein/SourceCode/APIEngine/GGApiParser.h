@@ -39,5 +39,6 @@
 -(GGCompany *)parseGetCompanyOverview;
 
 #pragma mark - config
--(GGDataPage *)parseGetMyAgents;
+-(GGDataPage *)parseGetAgents;
+-(GGDataPage *)parseGetFunctionalAreas;
 @end

@@ -12,7 +12,7 @@
 
 #pragma mark - Agent
 //3. get agent list (New API)
--(void)getMyAgentsList:(GGApiBlock)aCallback
+-(void)getAgents:(GGApiBlock)aCallback
 {
     //GET
     NSString *path = @"config/sales_trigger/list";

@@ -214,12 +214,12 @@
 #pragma mark - API calls
 -(void)_getAgentsData
 {
-    [GGSharedAPI getMyAgentsList:^(id operation, id aResultObject, NSError *anError) {
+    [GGSharedAPI getAgents:^(id operation, id aResultObject, NSError *anError) {
         
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.status == 1)
         {
-           GGDataPage *page = [parser parseGetMyAgents];
+           GGDataPage *page = [parser parseGetAgents];
             [_predefinedAgents removeAllObjects];
             [_customAgents removeAllObjects];
             for (GGAgent *agent in page.items) {

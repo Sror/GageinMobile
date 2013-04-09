@@ -18,7 +18,7 @@ DEF_SINGLETON(GGAPITest)
 
 -(void)_testGetMyAgentsList
 {
-    [GGSharedAPI getMyAgentsList:^(id operation, id aResultObject, NSError *anError) {
+    [GGSharedAPI getAgents:^(id operation, id aResultObject, NSError *anError) {
         
     }];
 }
