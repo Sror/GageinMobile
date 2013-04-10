@@ -11,6 +11,7 @@
 #import "GGAPITest.h"
 #import "GGSelectAgentsVC.h"
 #import "GGSelectFuncAreasVC.h"
+#import "GGFollowCompanyVC.h"
 
 @interface GGSettingVC ()
 @property (weak, nonatomic) IBOutlet UIButton *btnLogout;
@@ -65,7 +66,9 @@
 
 -(IBAction)setupAreasAction:(id)sender
 {
-    GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
+    //GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
+    
+    GGFollowCompanyVC *vc = [[GGFollowCompanyVC alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

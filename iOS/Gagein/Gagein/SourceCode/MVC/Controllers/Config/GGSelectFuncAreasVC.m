@@ -42,7 +42,7 @@
     
     if (!_isFromRegistration)
     {
-        self.title = @"Choose Agents";
+        self.title = @"Choose Functional Areas";
         // add done button
         UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(doneAction:)];
         self.navigationItem.rightBarButtonItem = doneBtn;
