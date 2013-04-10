@@ -63,6 +63,10 @@
     
     self.tableViewSearchResult.rowHeight = [GGCompanySearchCell HEIGHT];
     
+    // add done button
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(doneAction:)];
+    self.navigationItem.rightBarButtonItem = doneBtn;
+    
     [self _callGetFollowedCompanies];
 }
 
@@ -76,6 +80,12 @@
     [self setViewSearchBg:nil];
     [self setTableViewSearchResult:nil];
     [super viewDidUnload];
+}
+
+#pragma mark - actions
+-(void)doneAction:(id)sender
+{
+#warning save setting and quit.
 }
 
 #pragma mark - table view datasource
@@ -161,9 +171,37 @@
         if (indexPath.section == 0)
         {
             GGCompany *company = _followedCompanies[indexPath.row];
-            company.followed = !company.followed;
             
-            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            if (company.followed)
+            {
+                [GGSharedAPI unfollowCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                    GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                    if (parser.isOK)
+                    {
+                        company.followed = NO;
+                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    }
+                    else
+                    {
+                        [GGAlert alert:parser.message];
+                    }
+                }];
+            }
+            else
+            {
+                [GGSharedAPI followCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                    GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                    if (parser.isOK)
+                    {
+                        company.followed = YES;
+                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    }
+                    else
+                    {
+                        [GGAlert alert:parser.message];
+                    }
+                }];
+            }
         }
     }
 }
