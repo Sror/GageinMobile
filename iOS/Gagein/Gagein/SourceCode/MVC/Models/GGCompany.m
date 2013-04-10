@@ -48,4 +48,18 @@
     self.latestDate = [aData objectForKey:@"latest_date"];
 }
 
+-(EGGCompanyType)getType
+{
+    if ([self.type isEqualToString:@"Public Company"])
+    {
+        return kGGCompanyTypePublic;
+    }
+    else if ([self.type isEqualToString:@"Private Company"])
+    {
+        return kGGCompanyTypePrivate;
+    }
+
+    return kGGCompanyTypeUnknown;
+}
+
 @end

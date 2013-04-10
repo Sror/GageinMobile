@@ -110,10 +110,38 @@
     }
 }
 
+-(BOOL)_isCompanyFollowed:(long long)aComanyID
+{
+    for (GGCompany *company in _followedCompanies)
+    {
+        if (company.ID == aComanyID && company.followed)
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+-(int)_indexInFollowedListWithCompanyID:(long long)aComanyID
+{
+    NSUInteger count = _followedCompanies.count;
+    for (int i = 0; i < count; i++)
+    {
+        GGCompany *company = _followedCompanies[i];
+        if (company.ID == aComanyID)
+        {
+            return i;
+        }
+    }
+    
+    return NSNotFound;
+}
+
 #pragma mark - actions
 -(void)doneAction:(id)sender
 {
-#warning save setting and quit.
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - table view datasource
@@ -153,6 +181,7 @@
         GGCompany *companyData = _searchedCompanies[indexPath.row];
         [cell.ivLogo setImageWithURL:[NSURL URLWithString:companyData.logoPath] placeholderImage:nil];
         cell.lblName.text = companyData.name;
+        cell.lblName.textColor = (companyData.getType == kGGCompanyTypePrivate) ? SharedColor.gray : SharedColor.black;
         cell.lblWebsite.text = companyData.website;
         cell.tag = indexPath.row;
         
@@ -235,23 +264,47 @@
     else if (tableView == self.tableViewSearchResult)
     {
         GGCompany *company = _searchedCompanies[indexPath.row];
+
         
-        [GGSharedAPI followCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
-            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            if (parser.isOK)
-            {
-                company.followed = YES;
-                [_followedCompanies insertObject:company atIndex:0];
-                
-                [self.tableViewCompanies insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-                
-                [self searchBarCancelButtonClicked:self.searchBar];
-            }
-            else
-            {
-                [GGAlert alert:parser.message];
-            }
-        }];
+        if ([self _isCompanyFollowed:company.ID])
+        {
+            [GGAlert alert:@"Ops, You have already followed this company."];
+        }
+        else if (company.getType == kGGCompanyTypePrivate)
+        {
+            [GGAlert alert:@"Sorry, You can't follow this company, please upgrade your plan."];
+        }
+        else
+        {
+            [GGSharedAPI followCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                if (parser.isOK)
+                {
+                    int indexInFollowedList = [self _indexInFollowedListWithCompanyID:company.ID];
+                    if (indexInFollowedList != NSNotFound)
+                    {
+                        GGCompany *followedCompany = _followedCompanies[indexInFollowedList];
+                        followedCompany.followed = YES;
+                        
+                        [self.tableViewCompanies reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexInFollowedList inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    }
+                    else
+                    {
+                        company.followed = YES;
+                        [_followedCompanies insertObject:company atIndex:0];
+                        
+                        [self.tableViewCompanies insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    }
+                    
+                    
+                    [self searchBarCancelButtonClicked:self.searchBar];
+                }
+                else
+                {
+                    [GGAlert alert:parser.message];
+                }
+            }];
+        }
     }
 }
 

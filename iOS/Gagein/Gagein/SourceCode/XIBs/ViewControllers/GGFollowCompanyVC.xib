@@ -156,7 +156,6 @@
 								<string key="NSFrame">{{0, 151}, {320, 397}}</string>
 								<reference key="NSSuperview" ref="66448548"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="32586187"/>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -176,27 +175,7 @@
 									<object class="IBUIView" id="395438184">
 										<reference key="NSNextResponder" ref="511214358"/>
 										<int key="NSvFlags">274</int>
-										<array class="NSMutableArray" key="NSSubviews">
-											<object class="IBUITableView" id="164724282">
-												<reference key="NSNextResponder" ref="395438184"/>
-												<int key="NSvFlags">-2147483374</int>
-												<string key="NSFrameSize">{320, 548}</string>
-												<reference key="NSSuperview" ref="395438184"/>
-												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="806897393"/>
-												<string key="NSReuseIdentifierKey">_NS:9</string>
-												<reference key="IBUIBackgroundColor" ref="32586187"/>
-												<bool key="IBUIClipsSubviews">YES</bool>
-												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-												<bool key="IBUIAlwaysBounceVertical">YES</bool>
-												<int key="IBUISeparatorStyle">1</int>
-												<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
-												<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
-												<float key="IBUIRowHeight">44</float>
-												<float key="IBUISectionHeaderHeight">22</float>
-												<float key="IBUISectionFooterHeight">22</float>
-											</object>
-										</array>
+										<array class="NSMutableArray" key="NSSubviews"/>
 										<string key="NSFrameSize">{320, 548}</string>
 										<reference key="NSSuperview" ref="511214358"/>
 										<reference key="NSWindow"/>
@@ -211,6 +190,25 @@
 										</object>
 										<float key="IBUIAlpha">0.69999998807907104</float>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+									</object>
+									<object class="IBUITableView" id="164724282">
+										<reference key="NSNextResponder" ref="511214358"/>
+										<int key="NSvFlags">-2147483374</int>
+										<string key="NSFrameSize">{320, 548}</string>
+										<reference key="NSSuperview" ref="511214358"/>
+										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView" ref="806897393"/>
+										<string key="NSReuseIdentifierKey">_NS:9</string>
+										<reference key="IBUIBackgroundColor" ref="32586187"/>
+										<bool key="IBUIClipsSubviews">YES</bool>
+										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+										<bool key="IBUIAlwaysBounceVertical">YES</bool>
+										<int key="IBUISeparatorStyle">1</int>
+										<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
+										<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
+										<float key="IBUIRowHeight">44</float>
+										<float key="IBUISectionHeaderHeight">22</float>
+										<float key="IBUISectionFooterHeight">22</float>
 									</object>
 								</array>
 								<string key="NSFrameSize">{320, 548}</string>
@@ -451,6 +449,7 @@
 						<reference key="object" ref="511214358"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="395438184"/>
+							<reference ref="164724282"/>
 						</array>
 						<reference key="parent" ref="66448548"/>
 						<string key="objectName">viewSearchBg</string>
@@ -458,16 +457,14 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">28</int>
 						<reference key="object" ref="395438184"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="164724282"/>
-						</array>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="511214358"/>
 						<string key="objectName">bgView</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">19</int>
 						<reference key="object" ref="164724282"/>
-						<reference key="parent" ref="395438184"/>
+						<reference key="parent" ref="511214358"/>
 						<string key="objectName">tableViewSearchResult</string>
 					</object>
 				</array>

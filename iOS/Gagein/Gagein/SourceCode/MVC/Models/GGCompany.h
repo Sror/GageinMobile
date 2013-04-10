@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "GGDataModel.h"
 
+typedef enum {
+    kGGCompanyTypePublic = 0
+    , kGGCompanyTypePrivate
+    , kGGCompanyTypeUnknown
+}EGGCompanyType;
+
 @class GGSocialProfile;
 
 @interface GGCompany : GGDataModel
@@ -43,4 +49,6 @@
 @property (copy)    NSString *city;
 @property (copy)    NSString *zipcode;
 @property (copy)    NSString *latestDate;
+
+-(EGGCompanyType)getType;
 @end
