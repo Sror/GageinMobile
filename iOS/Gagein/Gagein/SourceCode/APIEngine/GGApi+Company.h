@@ -70,4 +70,7 @@ typedef enum
 //MO04:Unfollow a CompanyBack to top
 -(void)unfollowCompanyWithID:(long long)aCompanyID callback:(GGApiBlock)aCallback;
 
+//MO06:Get Followed CompaniesBack to top
+-(void)getFollowedCompaniesWithPage:(int)aPage callback:(GGApiBlock)aCallback;
+
 @end

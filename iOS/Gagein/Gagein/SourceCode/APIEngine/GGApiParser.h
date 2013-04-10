@@ -38,6 +38,7 @@
 -(GGDataPage *)parseGetCompanyUpdates;
 -(GGCompany *)parseGetCompanyOverview;
 -(GGDataPage *)parseSearchCompany;
+-(GGDataPage *)parseFollowedCompanies;
 
 #pragma mark - config
 -(GGDataPage *)parseGetAgents;

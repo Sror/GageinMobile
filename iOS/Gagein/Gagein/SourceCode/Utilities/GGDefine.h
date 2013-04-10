@@ -13,9 +13,16 @@
 #define GGN_STR_DEMO_SERVER_URL                     @"http://gageindemo.dyndns.org"
 #define GGN_STR_CN_SERVER_URL                       @"http://gageincn.dyndns.org:3031"
 
+#define CURRENT_ENV 3
 
+#undef CURRENT_SERVER_URL
+#if (CURRENT_ENV == 1)
+#define CURRENT_SERVER_URL         GGN_STR_PRODUCTION_SERVER_URL
+#elif (CURRENT_ENV == 2)
+#define CURRENT_SERVER_URL         GGN_STR_DEMO_SERVER_URL
+#elif (CURRENT_ENV == 3)
 #define CURRENT_SERVER_URL         GGN_STR_CN_SERVER_URL
-
+#endif
 //
 
 #define APP_CODE_VALUE      @"09ad5d624c0294d1"

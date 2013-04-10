@@ -43,8 +43,8 @@
     self.title = @"Join Gagein";
     
 #warning TEST register data
-    self.tfEmail.text = @"dymx102@hotmail.com";
-    self.tfPassword.text = @"heartL0";
+    //self.tfEmail.text = @"dymx102@hotmail.com";
+    //self.tfPassword.text = @"heartL0";
     self.tfFirstName.text = @"Daniel";
     self.tfLastName.text = @"Dong";
 }

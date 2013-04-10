@@ -42,7 +42,7 @@
     
     
 #warning test login data
-    self.tfEmail.text = @"dymx102@hotmail.com";
+    self.tfEmail.text = @"dymx101@hotmail.com";
     self.tfPassword.text = @"heartL0";
 }
 

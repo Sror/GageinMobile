@@ -25,7 +25,7 @@
 @property (copy)    NSString *address;
 @property (copy)    NSString *faxNumber;
 @property (copy)    NSString *fiscalYear;
-@property (assign)  int      followed;
+@property (assign)  BOOL      followed;
 @property (copy)    NSString *founded;
 @property (copy)    NSString *googleMapUrl;
 @property (copy)    NSString *industries;
@@ -42,4 +42,5 @@
 @property (copy)    NSString *state;
 @property (copy)    NSString *city;
 @property (copy)    NSString *zipcode;
+@property (copy)    NSString *latestDate;
 @end

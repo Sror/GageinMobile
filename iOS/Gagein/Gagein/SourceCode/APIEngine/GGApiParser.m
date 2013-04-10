@@ -147,6 +147,11 @@
     return [self _parsePageforClass:[GGCompany class]];
 }
 
+-(GGDataPage *)parseFollowedCompanies
+{
+    return [self _parsePageforClass:[GGCompany class]];
+}
+
 #pragma mark - config
 -(GGDataPage *)parseGetAgents
 {

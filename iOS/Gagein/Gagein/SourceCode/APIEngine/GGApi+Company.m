@@ -146,4 +146,21 @@
     
     [self _execGetWithPath:path params:parameters callback:aCallback];
 }
+
+//MO06:Get Followed CompaniesBack to top
+//GET
+//
+///svc/member/me/company/get_followed
+-(void)getFollowedCompaniesWithPage:(int)aPage callback:(GGApiBlock)aCallback
+{
+    //GET
+    NSString *path = @"member/me/company/get_followed";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:[NSNumber numberWithInt:aPage] forKey:@"page"];
+    
+    [self _execGetWithPath:path params:parameters callback:aCallback];
+}
 @end

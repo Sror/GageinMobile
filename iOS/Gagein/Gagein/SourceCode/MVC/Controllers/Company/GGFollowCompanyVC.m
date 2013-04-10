@@ -34,6 +34,8 @@
     NSTimer             *_searchTimer;
     
     NSMutableArray      *_searchedCompanies;
+    NSMutableArray      *_followedCompanies;
+    NSMutableArray      *_suggestedCompanies;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -41,6 +43,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _searchedCompanies = [NSMutableArray array];
+        _followedCompanies = [NSMutableArray array];
+        _suggestedCompanies = [NSMutableArray array];
     }
     return self;
 }
@@ -58,6 +62,8 @@
     _tvSearchResultRectShort = [GGUtils setH:height rect:_tvSearchResultRect];
     
     self.tableViewSearchResult.rowHeight = [GGCompanySearchCell HEIGHT];
+    
+    [self _callGetFollowedCompanies];
 }
 
 - (void)viewDidUnload {
@@ -73,6 +79,20 @@
 }
 
 #pragma mark - table view datasource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (tableView == self.tableViewSearchResult)
+    {
+        return 1;
+    }
+    
+    if (_suggestedCompanies.count) {
+        return 2;
+    }
+    
+    return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.tableViewSearchResult) {
@@ -80,7 +100,7 @@
         return _searchedCompanies.count;
     }
     
-    return 10;
+    return _followedCompanies.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -101,15 +121,51 @@
         return cell;
     }
     
+    /////
     static NSString *companyCellId = @"companyCellId";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:companyCellId];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:companyCellId];
     }
     
-    cell.textLabel.text = @"company";
+    GGCompany *companyData = _followedCompanies[indexPath.row];
+    cell.textLabel.text = companyData.name;
+    cell.accessoryType = companyData.followed ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (tableView == self.tableViewCompanies)
+    {
+        if (section == 0)
+        {
+            return @"Followed Companies";
+        }
+        else if (section == 1)
+        {
+            return @"Suggested Companies";
+        }
+    }
+    
+    return nil;
+}
+
+#pragma mark - table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (tableView == self.tableViewCompanies)
+    {
+        if (indexPath.section == 0)
+        {
+            GGCompany *company = _followedCompanies[indexPath.row];
+            company.followed = !company.followed;
+            
+            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    }
 }
 
 #pragma mark - search bar delegate
@@ -190,6 +246,21 @@
             [self.tableViewSearchResult reloadData];
         }];
     }
+}
+
+-(void)_callGetFollowedCompanies
+{
+    [GGSharedAPI getFollowedCompaniesWithPage:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        GGDataPage *page = [parser parseFollowedCompanies];
+        _followedCompanies = page.items;
+        
+        for (GGCompany *company in _followedCompanies) {
+            company.followed = 1;
+        }
+        
+        [self.tableViewCompanies reloadData];
+    }];
 }
 
 @end
