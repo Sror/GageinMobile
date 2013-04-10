@@ -10,6 +10,7 @@
 #import "GGSearchBar.h"
 #import "GGDataPage.h"
 #import "GGCompany.h"
+#import "GGCompanySearchCell.h"
 
 @interface GGFollowCompanyVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *viewScroll;
@@ -55,6 +56,8 @@
     _tvSearchResultRect = self.tableViewSearchResult.frame;
     float height = self.view.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT + self.tabBarController.tabBar.frame.size.height;
     _tvSearchResultRectShort = [GGUtils setH:height rect:_tvSearchResultRect];
+    
+    self.tableViewSearchResult.rowHeight = [GGCompanySearchCell HEIGHT];
 }
 
 - (void)viewDidUnload {
@@ -83,23 +86,29 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.tableViewSearchResult) {
-        static NSString *companyCellId = @"companyCellId";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:companyCellId];
+        static NSString *searchResultCellId = @"GGCompanySearchCell";
+        GGCompanySearchCell *cell = [tableView dequeueReusableCellWithIdentifier:searchResultCellId];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:companyCellId];
+            cell = [GGCompanySearchCell viewFromNibWithOwner:self];
         }
+        
         GGCompany *companyData = _searchedCompanies[indexPath.row];
-        cell.textLabel.text = companyData.name;
+        [cell.ivLogo setImageWithURL:[NSURL URLWithString:companyData.logoPath] placeholderImage:nil];
+        cell.lblName.text = companyData.name;
+        cell.lblWebsite.text = companyData.website;
+        cell.tag = indexPath.row;
+        
         return cell;
     }
     
-    static NSString *searchResultCellId = @"searchResultCellId";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:searchResultCellId];
+    static NSString *companyCellId = @"companyCellId";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:companyCellId];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchResultCellId];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:companyCellId];
     }
     
-    cell.textLabel.text = @"searchResult";
+    cell.textLabel.text = @"company";
+    
     return cell;
 }
 
