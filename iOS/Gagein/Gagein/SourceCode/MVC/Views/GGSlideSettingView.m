@@ -17,14 +17,14 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = SharedColor.clear;
+        self.backgroundColor = GGSharedColor.clear;
         
         UIView *bgView = [[UIView alloc] initWithFrame:self.bounds];
         bgView.backgroundColor = [UIColor colorWithRed:.5f green:.5f blue:.5f alpha:.2f];
         [self addSubview:bgView];
         
         _viewSlide = [[UIView alloc] initWithFrame:CGRectZero];
-        _viewSlide.backgroundColor = SharedColor.darkGray;
+        _viewSlide.backgroundColor = GGSharedColor.darkGray;
         [self addSubview:_viewSlide];
         [self _tuneLayout];
         

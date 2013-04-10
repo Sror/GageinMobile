@@ -21,7 +21,7 @@
 
 -(void)awakeFromNib
 {
-    self.backgroundColor = SharedColor.darkRed;
+    self.backgroundColor = GGSharedColor.darkRed;
     self.viewContent.clipsToBounds = YES;
     self.viewPageControl.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.5f];
     [self.pageControl addTarget:self action:@selector(pageSelectedAction:) forControlEvents:UIControlEventTouchUpInside];

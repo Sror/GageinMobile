@@ -28,7 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.view.backgroundColor = [UIColor darkGrayColor];
+    self.view.backgroundColor = GGSharedColor.bgGray;
     
     int pageCount = 4;
     for (int i = 0; i < pageCount; i++)

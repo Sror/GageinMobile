@@ -68,6 +68,7 @@
 		EA959D6F17153979005B06F6 /* GGFollowCompanyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA959D6E17153979005B06F6 /* GGFollowCompanyVC.xib */; };
 		EA959D72171539B5005B06F6 /* GGCompanySearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA959D71171539B5005B06F6 /* GGCompanySearchCell.xib */; };
 		EA959D75171539DD005B06F6 /* GGCompanySearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA959D74171539DD005B06F6 /* GGCompanySearchCell.m */; };
+		EA959D7717157102005B06F6 /* topOrangeLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA959D7617157102005B06F6 /* topOrangeLine@2x.png */; };
 		EAAD14D4170AA8D600EFB23A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAD14D3170AA8D600EFB23A /* MBProgressHUD.m */; };
 		EAAD14D7170AACD900EFB23A /* GGApiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAD14D6170AACD900EFB23A /* GGApiParser.m */; };
 		EAAD14DA170ACBDF00EFB23A /* GGPath.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAD14D9170ACBDF00EFB23A /* GGPath.m */; };
@@ -245,6 +246,7 @@
 		EA959D71171539B5005B06F6 /* GGCompanySearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanySearchCell.xib; sourceTree = "<group>"; };
 		EA959D73171539DD005B06F6 /* GGCompanySearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanySearchCell.h; sourceTree = "<group>"; };
 		EA959D74171539DD005B06F6 /* GGCompanySearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanySearchCell.m; sourceTree = "<group>"; };
+		EA959D7617157102005B06F6 /* topOrangeLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topOrangeLine@2x.png"; sourceTree = "<group>"; };
 		EAAD14D2170AA8D600EFB23A /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EAAD14D3170AA8D600EFB23A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EAAD14D5170AACD900EFB23A /* GGApiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGApiParser.h; sourceTree = "<group>"; };
@@ -642,6 +644,7 @@
 		EACAE0B117094A3100E7088F /* 2X */ = {
 			isa = PBXGroup;
 			children = (
+				EA959D7617157102005B06F6 /* topOrangeLine@2x.png */,
 				EACAE0F0170954E700E7088F /* first@2x.png */,
 				EACAE0F1170954E700E7088F /* Gestures@2x.png */,
 				EACAE0F2170954E700E7088F /* Players@2x.png */,
@@ -981,6 +984,7 @@
 				EA24FA4B1713D969003AFBA9 /* GGSelectFuncAreasVC.xib in Resources */,
 				EA959D6F17153979005B06F6 /* GGFollowCompanyVC.xib in Resources */,
 				EA959D72171539B5005B06F6 /* GGCompanySearchCell.xib in Resources */,
+				EA959D7717157102005B06F6 /* topOrangeLine@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -181,7 +181,7 @@
         GGCompany *companyData = _searchedCompanies[indexPath.row];
         [cell.ivLogo setImageWithURL:[NSURL URLWithString:companyData.logoPath] placeholderImage:nil];
         cell.lblName.text = companyData.name;
-        cell.lblName.textColor = (companyData.getType == kGGCompanyTypePrivate) ? SharedColor.gray : SharedColor.black;
+        cell.lblName.textColor = (companyData.getType == kGGCompanyTypePrivate) ? GGSharedColor.gray : GGSharedColor.black;
         cell.lblWebsite.text = companyData.website;
         cell.tag = indexPath.row;
         
