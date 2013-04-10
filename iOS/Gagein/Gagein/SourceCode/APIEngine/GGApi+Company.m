@@ -82,6 +82,43 @@
     [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
+//SO04:Get Company SuggestionBack to top
+//POST
+//
+///svc/search/companies/get_suggestions
+-(void)getCompanySuggestionWithKeyword:(NSString *)aKeyword callback:(GGApiBlock)aCallback
+{
+    //POST
+    NSString *path = @"search/companies/get_suggestions";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:aKeyword forKey:@"q"];
+    
+    [self _execPostWithPath:path params:parameters callback:aCallback];
+}
+
+//SO01:Search CompaniesBack to top
+//POST
+//
+///svc/search/companies
+-(void)searchCompaniesWithKeyword:(NSString *)aKeyword
+                             page:(int)aPage
+                         callback:(GGApiBlock)aCallback
+{
+    //POST
+    NSString *path = @"search/companies";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:[NSNumber numberWithInt:aPage] forKey:@"page"];
+    [parameters setObject:aKeyword forKey:@"q"];
+    
+    [self _execPostWithPath:path params:parameters callback:aCallback];
+}
+
 //MO03:Follow a CompanyBack to top
 -(void)followCompanyWithID:(long long)aCompanyID callback:(GGApiBlock)aCallback
 {

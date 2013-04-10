@@ -71,5 +71,9 @@ return __singleton__; \
 #endif
 
 //
+#define GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT 216.f
+#define GG_KEY_BOARD_HEIGHT_IPHONE_LANDSCAPE 162.f
+
+//
 @interface GGDefine : NSObject
 @end

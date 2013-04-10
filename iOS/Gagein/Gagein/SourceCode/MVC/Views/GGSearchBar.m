@@ -28,10 +28,16 @@
     return self;
 }
 
-//-(void)awakeFromNib
-//{
-//    [self _customize];
-//}
+-(UIButton *)cancelButton
+{
+    NSArray *subviews = self.subviews;
+    for (UIView *subview in subviews) {
+        if ([subview isKindOfClass:[UIButton class]]) {
+            return (UIButton *)subview;
+        }
+    }
+    return nil;
+}
 
 
 -(void)_customize

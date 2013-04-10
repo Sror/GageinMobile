@@ -34,4 +34,14 @@
     return aRect;
 }
 
++(UIInterfaceOrientation)interfaceOrientation
+{
+    return [[UIApplication sharedApplication] statusBarOrientation];
+}
+
++(UIDeviceOrientation)deviceOrientation
+{
+    return [[UIDevice currentDevice] orientation];
+}
+
 @end

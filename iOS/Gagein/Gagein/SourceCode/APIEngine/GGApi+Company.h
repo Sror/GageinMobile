@@ -56,6 +56,14 @@ typedef enum
               needSocialProfile:(BOOL)aNeedSP
                        callback:(GGApiBlock)aCallback;
 
+//SO04:Get Company SuggestionBack to top
+-(void)getCompanySuggestionWithKeyword:(NSString *)aKeyword callback:(GGApiBlock)aCallback;
+
+//SO01:Search CompaniesBack to top
+-(void)searchCompaniesWithKeyword:(NSString *)aKeyword
+                             page:(int)aPage
+                         callback:(GGApiBlock)aCallback;
+
 //MO03:Follow a CompanyBack to top
 -(void)followCompanyWithID:(long long)aCompanyID callback:(GGApiBlock)aCallback;
 
