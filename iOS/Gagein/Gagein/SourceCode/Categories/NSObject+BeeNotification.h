@@ -57,4 +57,4 @@
 @end
 
 #define GG_NOTIFY_GET_STARTED   @"GG_NOTIFY_GET_STARTED"
-
+#define GG_NOTIFY_LOG_OUT       @"GG_NOTIFY_LOG_OUT"

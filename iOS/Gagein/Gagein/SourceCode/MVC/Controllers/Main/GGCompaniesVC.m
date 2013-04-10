@@ -49,6 +49,8 @@
 
 - (void)viewDidLoad
 {
+    [self observeNotification:GG_NOTIFY_LOG_OUT];
+    
 #if defined(USE_CUSTOM_NAVI_BAR)
     self.navigationController.navigationBarHidden = YES;
 #endif
@@ -125,7 +127,19 @@
     [super viewDidUnload];
 }
 
+-(void)dealloc
+{
+    [self unobserveAllNotifications];
+}
 
+#pragma mark - notification handling
+-(void)handleNotification:(NSNotification *)notification
+{
+    if ([notification.name isEqualToString:GG_NOTIFY_LOG_OUT]) {
+        [_updates removeAllObjects];
+        [self.updatesTV reloadData];
+    }
+}
 
 #pragma mark - actions
 -(void)optionMenuAction:(id)sender
@@ -265,7 +279,7 @@
 -(void)_getDataWithNewsID:(long long)aNewsID pageFlag:(int)aPageFlag pageTime:(long long)aPageTime relevance:(int)aRelevance
 {
     //[self showLoadingHUD];
-    [GGSharedAPI getCompanyUpdatesWithNewsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:^(id operation, id aResultObject, NSError *anError) {
+    [GGSharedAPI getExploringUpdatesWithNewsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:^(id operation, id aResultObject, NSError *anError) {
         //DLog(@"%@", aResultObject);
         
         //[self hideLoadingHUD];
@@ -303,10 +317,6 @@
                 default:
                     break;
             }
-        }
-        else
-        {
-            [_updates removeAllObjects];
         }
         
         [self.updatesTV reloadData];

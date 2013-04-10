@@ -23,16 +23,33 @@ typedef enum
     , kGGCompanyUpdateRelevanceHighest  = 40
 }EGGCompanyUpdateRelevance;
 
+#define GG_EXPLORING_ID         -10
 
 @interface GGApi (Company)
 
 #pragma mark - company APIs
 // get company updates
--(void)getCompanyUpdatesWithNewsID:(long long)aNewsID
+-(void)getExploringUpdatesWithNewsID:(long long)aNewsID
                           pageFlag:(EGGPageFlag)aPageFlag
                           pageTime:(long long)aPageTime
                          relevance:(EGGCompanyUpdateRelevance)aRelevance
                           callback:(GGApiBlock)aCallback;
+
+// get company updates by company id
+-(void)getCompanyUpdatesWithCompanyID:(long long)aCompanyID
+                               newsID:(long long)aNewsID
+                             pageFlag:(EGGPageFlag)aPageFlag
+                             pageTime:(long long)aPageTime
+                            relevance:(EGGCompanyUpdateRelevance)aRelevance
+                             callback:(GGApiBlock)aCallback;
+
+// get company updates by agent id
+-(void)getCompanyUpdatesWithAgentID:(long long)anAgentID
+                             newsID:(long long)aNewsID
+                           pageFlag:(EGGPageFlag)aPageFlag
+                           pageTime:(long long)aPageTime
+                          relevance:(EGGCompanyUpdateRelevance)aRelevance
+                           callback:(GGApiBlock)aCallback;
 
 //Get Company OverviewBack to top
 -(void)getCompanyOverviewWithID:(long long)anOrgID

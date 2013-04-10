@@ -48,6 +48,8 @@
 {
     [GGSharedRuntimeData resetCurrentUser];
     [GGSharedDelegate enterLoginIfNeeded];
+    
+    [self postNotification:GG_NOTIFY_LOG_OUT];
 }
 
 -(IBAction)apiTestAction:(id)sender

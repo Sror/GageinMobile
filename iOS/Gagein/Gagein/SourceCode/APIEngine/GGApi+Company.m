@@ -11,7 +11,18 @@
 @implementation GGApi (Company)
 
 #pragma mark - company APIs
--(void)getCompanyUpdatesWithNewsID:(long long)aNewsID
+-(void)getExploringUpdatesWithNewsID:(long long)aNewsID
+                          pageFlag:(EGGPageFlag)aPageFlag
+                          pageTime:(long long)aPageTime
+                         relevance:(EGGCompanyUpdateRelevance)aRelevance
+                          callback:(GGApiBlock)aCallback
+{
+    [self getCompanyUpdatesWithCompanyID:GG_EXPLORING_ID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:aCallback];
+}
+
+// get company updates by company id
+-(void)getCompanyUpdatesWithCompanyID:(long long)aCompanyID
+                            newsID:(long long)aNewsID
                           pageFlag:(EGGPageFlag)aPageFlag
                           pageTime:(long long)aPageTime
                          relevance:(EGGCompanyUpdateRelevance)aRelevance
@@ -26,6 +37,30 @@
     [parameters setObject:[NSNumber numberWithLongLong:aNewsID] forKey:@"newsid"];
     [parameters setObject:[NSNumber numberWithInt:aPageFlag] forKey:@"pageflag"];
     [parameters setObject:[NSNumber numberWithLongLong:aPageTime] forKey:@"pagetime"];
+    [parameters setObject:[NSNumber numberWithLongLong:aCompanyID] forKey:@"orgid"];
+    [parameters setObject:[NSNumber numberWithInt:aRelevance] forKey:@"relevance"];
+    
+    [self _execGetWithPath:path params:parameters callback:aCallback];
+}
+
+// get company updates by agent id
+-(void)getCompanyUpdatesWithAgentID:(long long)anAgentID
+                            newsID:(long long)aNewsID
+                          pageFlag:(EGGPageFlag)aPageFlag
+                          pageTime:(long long)aPageTime
+                         relevance:(EGGCompanyUpdateRelevance)aRelevance
+                          callback:(GGApiBlock)aCallback
+{
+    //GET
+    NSString *path = @"member/me/update/tracker";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:[NSNumber numberWithLongLong:aNewsID] forKey:@"newsid"];
+    [parameters setObject:[NSNumber numberWithInt:aPageFlag] forKey:@"pageflag"];
+    [parameters setObject:[NSNumber numberWithLongLong:aPageTime] forKey:@"pagetime"];
+    [parameters setObject:[NSNumber numberWithLongLong:anAgentID] forKey:@"agentid"];
     [parameters setObject:[NSNumber numberWithInt:aRelevance] forKey:@"relevance"];
     
     [self _execGetWithPath:path params:parameters callback:aCallback];
