@@ -55,6 +55,8 @@
     
     [super viewDidLoad];
     
+    
+    
     _searchBarRect = self.searchBar.frame;
     _searchBarRectOnNavi = CGRectMake(10, (self.navigationController.navigationBar.frame.size.height - _searchBarRect.size.height) / 2, _searchBarRect.size.width, _searchBarRect.size.height);
     _tvSearchResultRect = self.tableViewSearchResult.frame;
@@ -63,12 +65,12 @@
     
     self.tableViewSearchResult.rowHeight = [GGCompanySearchCell HEIGHT];
     
-    // add done button
-    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(doneAction:)];
-    self.navigationItem.rightBarButtonItem = doneBtn;
+    [self _showTitle:YES];
+    [self _showDoneBtn:YES];
     
     [self _callGetFollowedCompanies];
 }
+
 
 - (void)viewDidUnload {
     [self setViewScroll:nil];
@@ -80,6 +82,32 @@
     [self setViewSearchBg:nil];
     [self setTableViewSearchResult:nil];
     [super viewDidUnload];
+}
+
+#pragma mark - internal
+-(void)_showDoneBtn:(BOOL)aShow
+{
+    if (aShow)
+    {
+        UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(doneAction:)];
+        self.navigationItem.rightBarButtonItem = doneBtn;
+    }
+    else
+    {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+}
+
+-(void)_showTitle:(BOOL)aShow
+{
+    if (aShow)
+    {
+        self.title = @"Follow Companies";
+    }
+    else
+    {
+        self.title = @"";
+    }
 }
 
 #pragma mark - actions
@@ -204,6 +232,27 @@
             }
         }
     }
+    else if (tableView == self.tableViewSearchResult)
+    {
+        GGCompany *company = _searchedCompanies[indexPath.row];
+        
+        [GGSharedAPI followCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                company.followed = YES;
+                [_followedCompanies insertObject:company atIndex:0];
+                
+                [self.tableViewCompanies insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                
+                [self searchBarCancelButtonClicked:self.searchBar];
+            }
+            else
+            {
+                [GGAlert alert:parser.message];
+            }
+        }];
+    }
 }
 
 #pragma mark - search bar delegate
@@ -211,7 +260,11 @@
 {
     searchBar.showsCancelButton = YES;
     searchBar.frame = _searchBarRectOnNavi;
+    
     [self.navigationController.navigationBar addSubview:searchBar];
+    [self _showDoneBtn:NO];
+    [self _showTitle:NO];
+    
     self.viewSearchBg.hidden = NO;
     self.tableViewSearchResult.frame = _tvSearchResultRectShort;
 }
@@ -244,11 +297,18 @@
 {
     DLog(@"cancel button clicked");
     
+    [_searchedCompanies removeAllObjects];
+    [self.tableViewSearchResult reloadData];
+    
     searchBar.text = @"";
     [searchBar resignFirstResponder];
     searchBar.showsCancelButton = NO;
     searchBar.frame = _searchBarRect;
     [self.viewScroll addSubview:searchBar];
+    
+    [self _showTitle:YES];
+    [self _showDoneBtn:YES];
+    
     self.viewSearchBg.hidden = YES;
 }
 
@@ -280,6 +340,9 @@
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             GGDataPage *page = [parser parseSearchCompany];
             _searchedCompanies = page.items;
+            if (_searchedCompanies.count <= 0) {
+                [GGAlert alert:@"Sorry, No company matched."];
+            }
             
             [self.tableViewSearchResult reloadData];
         }];
