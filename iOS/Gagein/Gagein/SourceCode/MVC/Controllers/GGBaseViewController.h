@@ -17,6 +17,9 @@
 -(void)installGageinLogoTo:(UIView *)aView;
 -(void)installTopLine;
 
+-(void)showBackButton;
+-(void)hideBackButton;
+
 // for overriding
 -(void)naviBackAction:(id)aSender;
 @end

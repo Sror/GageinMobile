@@ -49,6 +49,11 @@
     self.tfPassword.text = @"heartL0";
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self showBackButton];
+}
 
 
 -(void)dealloc

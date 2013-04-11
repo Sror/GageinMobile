@@ -9,7 +9,7 @@
 #import "GGBaseViewController.h"
 #import "GGNaviBackButton.h"
 
-static GGNaviBackButton *__globalBackBtn;
+
 
 @interface GGBaseViewController ()
 
@@ -38,22 +38,49 @@ static GGNaviBackButton *__globalBackBtn;
     [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
     self.navigationItem.hidesBackButton = YES;
     
+    
+}
+
+-(GGNaviBackButton *)__globalBackButton
+{
+    static GGNaviBackButton *__globalBackBtn;
+    
     if (__globalBackBtn == nil)
     {
         UIImage *backBtnImage = [UIImage imageNamed:@"btnBackBg"];
         __globalBackBtn = [[GGNaviBackButton alloc] initWithFrame:CGRectMake(5, 10, backBtnImage.size.width, backBtnImage.size.height)];
     }
     
-    [self.navigationController.navigationBar addSubview:__globalBackBtn];
+    return __globalBackBtn;
 }
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [__globalBackBtn removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
-    [__globalBackBtn addTarget:self action:@selector(naviBackAction:) forControlEvents:UIControlEventTouchUpInside];
+    if (self.navigationController.viewControllers.count <= 1)
+    {
+        [self hideBackButton];
+    }
+    else
+    {
+        [self showBackButton];
+    }
 }
 
 #pragma mark - UI element
+-(void)hideBackButton
+{
+    [[self __globalBackButton] removeFromSuperview];
+}
+
+-(void)showBackButton
+{
+    GGNaviBackButton *backBtn = [self __globalBackButton];
+    [self.navigationController.navigationBar addSubview:backBtn];
+    [backBtn removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
+    [backBtn addTarget:self action:@selector(naviBackAction:) forControlEvents:UIControlEventTouchUpInside];
+}
+
 -(void)installGageinLogo
 {
     [self installGageinLogoTo:self.view];

@@ -51,6 +51,11 @@
     self.tfLastName.text = @"Dong";
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self showBackButton];
+}
 
 - (void)viewDidUnload {
     [self setScrolView:nil];
