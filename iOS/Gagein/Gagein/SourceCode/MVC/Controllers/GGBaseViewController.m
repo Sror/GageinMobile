@@ -7,6 +7,7 @@
 //
 
 #import "GGBaseViewController.h"
+#import "GGNaviBackButton.h"
 
 @interface GGBaseViewController ()
 
@@ -31,14 +32,21 @@
     [super viewDidLoad];
 	self.view.frame = [self viewportFrame];
     
-    UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] initWithTitle:@"back" style:UIBarButtonItemStyleBordered target:nil action:nil];
-    self.navigationItem.backBarButtonItem = backBtn;
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"bgNavibar"] forBarMetrics:UIBarMetricsDefault];
+    
+    UIImage *backBtnImage = [UIImage imageNamed:@"btnBackBg"];
+    GGNaviBackButton *backBtn = [[GGNaviBackButton alloc] initWithFrame:CGRectMake(5, 10, backBtnImage.size.width, backBtnImage.size.height)];
+    [backBtn addTarget:self action:@selector(naviBackAction:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.hidesBackButton = YES;
+    [self.navigationController.navigationBar addSubview:backBtn];
+    
+    CGRect navibarRc = self.navigationController.navigationBar.frame;
+    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
 }
 
-- (void)didReceiveMemoryWarning
+-(void)naviBackAction:(id)aSender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(CGRect)viewportFrame

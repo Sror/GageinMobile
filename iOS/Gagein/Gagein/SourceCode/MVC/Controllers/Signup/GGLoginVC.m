@@ -37,7 +37,7 @@
     self.navigationController.navigationBarHidden = NO;
     
     [super viewDidLoad];
-    
+    self.view.backgroundColor = GGSharedColor.bgGray;
     self.title = @"Login with Email";
     
     
