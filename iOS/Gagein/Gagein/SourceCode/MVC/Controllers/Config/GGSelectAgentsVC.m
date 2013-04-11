@@ -10,6 +10,7 @@
 #import "GGDataPage.h"
 #import "GGAgent.h"
 #import "GGSelectFuncAreasVC.h"
+#import "GGCustomAgentVC.h"
 
 @interface GGSelectAgentsVC ()
 @property (weak, nonatomic) IBOutlet UITableView *viewTable;
@@ -128,6 +129,12 @@
         
         [self.navigationController popViewControllerAnimated:YES];
     }];
+}
+
+-(IBAction)addCustomAgentAction:(id)sender
+{
+    GGCustomAgentVC *vc = [[GGCustomAgentVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - table view datasource

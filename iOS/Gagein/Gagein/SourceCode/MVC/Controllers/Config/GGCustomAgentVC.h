@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GGCustomAgentVC : GGBaseViewController
-
+@property (assign) long long agentID;
 @end
