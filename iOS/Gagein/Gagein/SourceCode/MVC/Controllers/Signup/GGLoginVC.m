@@ -42,7 +42,6 @@
     self.title = @"Login with Email";
     
     [self installGageinLogoTo:self.scrolView];
-    [self installTopLine];
     
     
 #warning test login data

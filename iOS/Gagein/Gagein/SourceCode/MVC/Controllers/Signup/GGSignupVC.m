@@ -10,6 +10,7 @@
 #import "GGPredicate.h"
 #import "GGSelectAgentsVC.h"
 #import "GGMember.h"
+#import "GGLoginVC.h"
 
 @interface GGSignupVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrolView;
@@ -39,8 +40,9 @@
     self.navigationController.navigationBarHidden = NO;
     
     [super viewDidLoad];
-    
+    self.view.backgroundColor = GGSharedColor.bgGray;
     self.title = @"Join Gagein";
+    [self installGageinLogoTo:self.scrolView];
     
 #warning TEST register data
     //self.tfEmail.text = @"dymx102@hotmail.com";
@@ -68,6 +70,12 @@
 }
 
 #pragma mark - overriding
+-(IBAction)goLoginAction:(id)sender
+{
+    GGLoginVC *vc = [[GGLoginVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 -(void)naviBackAction:(id)aSender
 {
     [self.view.window.layer addAnimation:[GGAnimation animationPushFromLeft] forKey:nil];
