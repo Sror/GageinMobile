@@ -17,7 +17,7 @@
                          relevance:(EGGCompanyUpdateRelevance)aRelevance
                           callback:(GGApiBlock)aCallback
 {
-    [self getCompanyUpdatesWithCompanyID:GG_EXPLORING_ID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:aCallback];
+    [self getCompanyUpdatesWithCompanyID:GG_ALL_RESULT_ID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:aCallback];
 }
 
 // get company updates by company id

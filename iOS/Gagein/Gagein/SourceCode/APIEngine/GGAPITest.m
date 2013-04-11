@@ -13,7 +13,14 @@ DEF_SINGLETON(GGAPITest)
 
 -(void)run
 {
-    [self _testSelectFunctionalAreas];
+    [self _testGetMemu];
+}
+
+-(void)_testGetMemu
+{
+    [GGSharedAPI getMenuByType:kGGStrMenuTypePeople callback:^(id operation, id aResultObject, NSError *anError) {
+        //
+    }];
 }
 
 -(void)_testGetMyAgentsList

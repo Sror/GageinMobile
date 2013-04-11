@@ -11,6 +11,8 @@
 #define APP_CODE_KEY        @"appcode"
 #define ACCESS_TOKEN_KEY    @"access_token"
 
+//GET: /member/me/event/tracker --- if the value is -10,return the all result.
+#define GG_ALL_RESULT_ID         -10
 
 typedef void(^GGApiBlock)(id operation, id aResultObject, NSError* anError);
 
@@ -33,3 +35,4 @@ typedef void(^GGApiBlock)(id operation, id aResultObject, NSError* anError);
 #import "GGApi+Company.h"
 #import "GGApi+Signup.h"
 #import "GGApi+Config.h"
+#import "GGApi+Tracker.h"

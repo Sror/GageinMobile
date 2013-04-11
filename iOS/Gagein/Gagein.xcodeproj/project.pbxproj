@@ -27,6 +27,7 @@
 		EA0908211712A47600BCD4C4 /* GGApi+Company.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0908201712A47600BCD4C4 /* GGApi+Company.m */; };
 		EA0908241712A59300BCD4C4 /* GGApi+Signup.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0908231712A59200BCD4C4 /* GGApi+Signup.m */; };
 		EA0908271712A94100BCD4C4 /* GGApi+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0908261712A94100BCD4C4 /* GGApi+Config.m */; };
+		EA0A15ED1716B6B5004D0C73 /* GGApi+Tracker.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0A15EC1716B6B5004D0C73 /* GGApi+Tracker.m */; };
 		EA0CA561170BD54000DBCD83 /* GGCompaniesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA55A170BD54000DBCD83 /* GGCompaniesVC.m */; };
 		EA0CA562170BD54000DBCD83 /* GGPeopleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA55C170BD54000DBCD83 /* GGPeopleVC.m */; };
 		EA0CA563170BD54000DBCD83 /* GGProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA55E170BD54000DBCD83 /* GGProfileVC.m */; };
@@ -194,6 +195,8 @@
 		EA0908221712A59200BCD4C4 /* GGApi+Signup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GGApi+Signup.h"; sourceTree = "<group>"; };
 		EA0908231712A59200BCD4C4 /* GGApi+Signup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GGApi+Signup.m"; sourceTree = "<group>"; };
 		EA0908261712A94100BCD4C4 /* GGApi+Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GGApi+Config.m"; sourceTree = "<group>"; };
+		EA0A15EB1716B6B5004D0C73 /* GGApi+Tracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GGApi+Tracker.h"; sourceTree = "<group>"; };
+		EA0A15EC1716B6B5004D0C73 /* GGApi+Tracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GGApi+Tracker.m"; sourceTree = "<group>"; };
 		EA0CA559170BD54000DBCD83 /* GGCompaniesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompaniesVC.h; sourceTree = "<group>"; };
 		EA0CA55A170BD54000DBCD83 /* GGCompaniesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompaniesVC.m; sourceTree = "<group>"; };
 		EA0CA55B170BD54000DBCD83 /* GGPeopleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPeopleVC.h; sourceTree = "<group>"; };
@@ -785,6 +788,8 @@
 				EA0908231712A59200BCD4C4 /* GGApi+Signup.m */,
 				EA24FA351713CD50003AFBA9 /* GGApi+Config.h */,
 				EA0908261712A94100BCD4C4 /* GGApi+Config.m */,
+				EA0A15EB1716B6B5004D0C73 /* GGApi+Tracker.h */,
+				EA0A15EC1716B6B5004D0C73 /* GGApi+Tracker.m */,
 			);
 			path = APIEngine;
 			sourceTree = "<group>";
@@ -1183,6 +1188,7 @@
 				EA959D75171539DD005B06F6 /* GGCompanySearchCell.m in Sources */,
 				EAAE073B1716609A007C4A30 /* GGNaviBackButton.m in Sources */,
 				EAAE0746171689DC007C4A30 /* GGAnimation.m in Sources */,
+				EA0A15ED1716B6B5004D0C73 /* GGApi+Tracker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

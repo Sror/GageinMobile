@@ -23,7 +23,7 @@ typedef enum
     , kGGCompanyUpdateRelevanceHighest  = 40
 }EGGCompanyUpdateRelevance;
 
-#define GG_EXPLORING_ID         -10
+
 
 @interface GGApi (Company)
 
