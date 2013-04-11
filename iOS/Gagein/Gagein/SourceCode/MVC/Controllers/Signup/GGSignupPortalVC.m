@@ -59,6 +59,7 @@
 {
     if ([notification.name isEqualToString:GG_NOTIFY_GET_STARTED])
     {
+        [self.navigationController.view.layer addAnimation:[GGAnimation animationPushFromRight] forKey:nil];
         [self.navigationController popViewControllerAnimated:NO];
     }
 }
@@ -67,6 +68,8 @@
 -(IBAction)learnMoreAction:(id)sender
 {
     GGWelcomeVC *vc = [[GGWelcomeVC alloc] init];
+    
+    [self.navigationController.view.layer addAnimation:[GGAnimation animationPushFromRight] forKey:nil];
     [self.navigationController pushViewController:vc animated:NO];
 }
 
