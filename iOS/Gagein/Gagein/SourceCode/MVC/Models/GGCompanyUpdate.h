@@ -34,7 +34,7 @@
 @property (copy)    NSString *url;
 @property (copy)    NSString *note;
 @property (strong)  GGCompany *company;
-@property (assign)  int     saved;
+@property (assign)  BOOL     saved;
 @property (strong)  NSMutableArray  *tags;  // each tag is a GGTag
 @property (copy)    NSString *fromSource;
 @property (assign)  long long date;

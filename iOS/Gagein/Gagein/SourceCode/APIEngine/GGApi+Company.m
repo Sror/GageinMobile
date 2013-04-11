@@ -163,4 +163,20 @@
     
     [self _execGetWithPath:path params:parameters callback:aCallback];
 }
+
+//3.Get a update detail
+//GET:update/<newsid>/detail
+-(void)getCompanyUpdateDetailWithNewsID:(long long)aNewsID callback:(GGApiBlock)aCallback
+{
+    //GET
+    NSString *path = [NSString stringWithFormat:@"update/%lld/detail", aNewsID];
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:[NSNumber numberWithLongLong:aNewsID] forKey:@"newsid"];
+    
+    [self _execGetWithPath:path params:parameters callback:aCallback];
+}
+
 @end

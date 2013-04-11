@@ -29,7 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [self _callApiGetCompanyUpdateDetail];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,4 +45,13 @@
     [self setIvPhoto:nil];
     [super viewDidUnload];
 }
+
+#pragma mark - API calls
+-(void)_callApiGetCompanyUpdateDetail
+{
+    [GGSharedAPI getCompanyUpdateDetailWithNewsID:self.newsID callback:^(id operation, id aResultObject, NSError *anError) {
+        //
+    }];
+}
+
 @end

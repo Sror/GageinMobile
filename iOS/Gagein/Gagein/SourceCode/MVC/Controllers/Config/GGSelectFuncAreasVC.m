@@ -57,6 +57,12 @@
     [self _getAreasData];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self hideBackButton];
+}
+
 #pragma mark - internal
 -(NSArray *)_selectedAreaIDs
 {

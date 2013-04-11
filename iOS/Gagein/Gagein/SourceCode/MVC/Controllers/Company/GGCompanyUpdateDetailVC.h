@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GGCompanyUpdateDetailVC : GGBaseViewController
-
+@property (assign) long long newsID;
 @end

@@ -233,6 +233,7 @@
     if (tableView == self.updatesTV) {
         GGCompanyUpdate *updateData = [self.updates objectAtIndex:indexPath.row];
         GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
+        vc.newsID = updateData.ID;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

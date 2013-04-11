@@ -102,6 +102,7 @@
 		EAAD14DA170ACBDF00EFB23A /* GGPath.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAD14D9170ACBDF00EFB23A /* GGPath.m */; };
 		EAAE073B1716609A007C4A30 /* GGNaviBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAE073A1716609A007C4A30 /* GGNaviBackButton.m */; };
 		EAAE0746171689DC007C4A30 /* GGAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAE0745171689DC007C4A30 /* GGAnimation.m */; };
+		EAAE074917169B58007C4A30 /* API_evoving.txt in Resources */ = {isa = PBXBuildFile; fileRef = EAAE074817169B58007C4A30 /* API_evoving.txt */; };
 		EAC96C2B1709833C003FAFAA /* GGSignupPortalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */; };
 		EAC96C37170983B5003FAFAA /* GGCompaniesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C2F170983B5003FAFAA /* GGCompaniesVC.xib */; };
 		EAC96C38170983B5003FAFAA /* GGPeopleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C30170983B5003FAFAA /* GGPeopleVC.xib */; };
@@ -310,6 +311,7 @@
 		EAAE073A1716609A007C4A30 /* GGNaviBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGNaviBackButton.m; sourceTree = "<group>"; };
 		EAAE0742171689AE007C4A30 /* GGAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGAnimation.h; sourceTree = "<group>"; };
 		EAAE0745171689DC007C4A30 /* GGAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAnimation.m; sourceTree = "<group>"; };
+		EAAE074817169B58007C4A30 /* API_evoving.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = API_evoving.txt; sourceTree = "<group>"; };
 		EAC96C281709833C003FAFAA /* GGSignupPortalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSignupPortalVC.h; sourceTree = "<group>"; };
 		EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSignupPortalVC.m; sourceTree = "<group>"; };
 		EAC96C2F170983B5003FAFAA /* GGCompaniesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompaniesVC.xib; sourceTree = "<group>"; };
@@ -537,6 +539,14 @@
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		EAAE074717169B2D007C4A30 /* Documentations */ = {
+			isa = PBXGroup;
+			children = (
+				EAAE074817169B58007C4A30 /* API_evoving.txt */,
+			);
+			path = Documentations;
+			sourceTree = "<group>";
+		};
 		EAC96C2617098313003FAFAA /* Signup */ = {
 			isa = PBXGroup;
 			children = (
@@ -596,6 +606,7 @@
 		EACAE0671709486800E7088F = {
 			isa = PBXGroup;
 			children = (
+				EAAE074717169B2D007C4A30 /* Documentations */,
 				EACAE07C1709486800E7088F /* Gagein */,
 				EACAE0D417094BE100E7088F /* iPad */,
 				EACAE0751709486800E7088F /* Frameworks */,
@@ -1087,6 +1098,7 @@
 				EA525EBC1715ADF800052B17 /* pageDotYellow@2x.png in Resources */,
 				EA525EBD1715ADF800052B17 /* txtAlreadyMembLogin@2x.png in Resources */,
 				EA525EBE1715ADF800052B17 /* txtSignupToJion@2x.png in Resources */,
+				EAAE074917169B58007C4A30 /* API_evoving.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

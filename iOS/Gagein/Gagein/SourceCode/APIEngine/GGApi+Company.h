@@ -73,4 +73,7 @@ typedef enum
 //MO06:Get Followed CompaniesBack to top
 -(void)getFollowedCompaniesWithPage:(int)aPage callback:(GGApiBlock)aCallback;
 
+//3.Get a update detail
+-(void)getCompanyUpdateDetailWithNewsID:(long long)aNewsID callback:(GGApiBlock)aCallback;
+
 @end

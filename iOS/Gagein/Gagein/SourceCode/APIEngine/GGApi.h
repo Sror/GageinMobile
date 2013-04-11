@@ -14,7 +14,6 @@
 
 typedef void(^GGApiBlock)(id operation, id aResultObject, NSError* anError);
 
-#define GGSharedAPI [GGApi sharedApi]
 
 @interface GGApi : AFHTTPClient
 
@@ -28,6 +27,9 @@ typedef void(^GGApiBlock)(id operation, id aResultObject, NSError* anError);
 
 @end
 
+#define GGSharedAPI [GGApi sharedApi]
+
+/////////////////////
 #import "GGApi+Company.h"
 #import "GGApi+Signup.h"
 #import "GGApi+Config.h"

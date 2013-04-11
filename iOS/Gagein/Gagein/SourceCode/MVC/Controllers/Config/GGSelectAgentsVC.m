@@ -43,6 +43,7 @@
     self.title = @"Start Your Gagein";
     self.navigationItem.hidesBackButton = YES;
     
+    
     if (!_isFromRegistration)
     {
         self.title = @"Choose Agents";
@@ -61,6 +62,11 @@
     [self _getAgentsData];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self hideBackButton];
+}
 
 
 - (void)viewDidUnload {

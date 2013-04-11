@@ -30,7 +30,7 @@
     self.headline = [aData objectForKey:@"news_headline"];
     self.url = [aData objectForKey:@"news_url"];
     self.ID = [[aData objectForKey:@"newsid"] longLongValue];
-    self.saved = [[aData objectForKey:@"newsid"] intValue];
+    self.saved = [[aData objectForKey:@"saved"] boolValue];
     
     [self.company parseWithData:aData];
 }
