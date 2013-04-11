@@ -8,12 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum
-{
-    kGGPageFlagFirstPage = 0
-    , kGGPageFlagMoveDown
-    , kGGPageFlagMoveUp
-}EGGPageFlag;
+
 
 typedef enum
 {

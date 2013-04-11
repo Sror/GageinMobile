@@ -16,6 +16,12 @@
 
 typedef void(^GGApiBlock)(id operation, id aResultObject, NSError* anError);
 
+typedef enum
+{
+    kGGPageFlagFirstPage = 0
+    , kGGPageFlagMoveDown
+    , kGGPageFlagMoveUp
+}EGGPageFlag;
 
 @interface GGApi : AFHTTPClient
 

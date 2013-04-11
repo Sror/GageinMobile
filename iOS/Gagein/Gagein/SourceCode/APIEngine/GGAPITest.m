@@ -13,7 +13,28 @@ DEF_SINGLETON(GGAPITest)
 
 -(void)run
 {
-    [self _testGetMemu];
+    [self _testGetHappeningsWithFunctionalAreaID];
+}
+
+-(void)_testGetHappeningsWithFunctionalAreaID
+{
+    [GGSharedAPI getHappeningsWithFunctionalAreaID:GG_ALL_RESULT_ID pageFlag:kGGPageFlagFirstPage pageTime:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        //
+    }];
+}
+
+-(void)_testGetHappeningsWithPersonID
+{
+    [GGSharedAPI getHappeningsWithPersonID:GG_ALL_RESULT_ID pageFlag:kGGPageFlagFirstPage pageTime:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        //
+    }];
+}
+
+-(void)_testGetHappeningsWithCompanyID
+{
+    [GGSharedAPI getHappeningsWithCompanyID:GG_ALL_RESULT_ID pageFlag:kGGPageFlagFirstPage pageTime:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        //
+    }];
 }
 
 -(void)_testGetMemu
