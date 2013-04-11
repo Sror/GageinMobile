@@ -27,10 +27,13 @@
     self.date = [[aData objectForKey:@"date"] longLongValue];
     self.fromSource = [aData objectForKey:@"from_source"];
     self.content = [aData objectForKey:@"news_content"];
+    self.content = [aData objectForKey:@"content"]; // when parsing update detail
     self.headline = [aData objectForKey:@"news_headline"];
     self.url = [aData objectForKey:@"news_url"];
     self.ID = [[aData objectForKey:@"newsid"] longLongValue];
     self.saved = [[aData objectForKey:@"saved"] boolValue];
+    self.type = [[aData objectForKey:@"news_type"] intValue];
+    self.textview = [aData objectForKey:@"textview"];
     
     [self.company parseWithData:aData];
 }

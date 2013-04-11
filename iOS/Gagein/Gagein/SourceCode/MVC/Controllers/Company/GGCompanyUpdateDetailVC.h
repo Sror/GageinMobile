@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface GGCompanyUpdateDetailVC : GGBaseViewController
+<UIWebViewDelegate>
 @property (assign) long long newsID;
 @end

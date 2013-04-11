@@ -11,6 +11,7 @@
 @class GGMember;
 @class GGDataPage;
 @class GGCompany;
+@class GGCompanyUpdate;
 
 @interface GGApiParser : NSObject
 @property (strong)  NSDictionary    *apiData;
@@ -39,6 +40,7 @@
 -(GGCompany *)parseGetCompanyOverview;
 -(GGDataPage *)parseSearchCompany;
 -(GGDataPage *)parseFollowedCompanies;
+-(GGCompanyUpdate *)parseGetCompanyUpdateDetail;
 
 #pragma mark - config
 -(GGDataPage *)parseGetAgents;

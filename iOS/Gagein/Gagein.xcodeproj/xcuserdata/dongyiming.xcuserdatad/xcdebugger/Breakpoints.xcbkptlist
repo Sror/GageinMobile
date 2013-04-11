@@ -7,19 +7,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Gagein/SourceCode/APIEngine/GGApiParser.m"
-         timestampString = "387194413.684409"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "137"
-         endingLineNumber = "137"
-         landmarkName = "-parseGetCompanyOverview"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "Gagein/ThirdParty/AFNetworking/AFHTTPClient.m"
          timestampString = "387172533.316011"
          startingColumnNumber = "9223372036854775807"
@@ -60,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/APIEngine/GGApiParser.m"
-         timestampString = "387271362.168751"
+         timestampString = "387363184.083714"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "163"
-         endingLineNumber = "163"
+         startingLineNumber = "171"
+         endingLineNumber = "171"
          landmarkName = "-parseGetFunctionalAreas"
          landmarkType = "5">
       </FileBreakpoint>
@@ -79,32 +66,6 @@
          startingLineNumber = "98"
          endingLineNumber = "98"
          landmarkName = "-_parsePageforClass:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Gagein/SourceCode/MVC/Controllers/Config/GGSelectAgentsVC.m"
-         timestampString = "387359581.813924"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "104"
-         endingLineNumber = "104"
-         landmarkName = "-nextStepAction:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Gagein/SourceCode/MVC/Controllers/Config/GGSelectAgentsVC.m"
-         timestampString = "387359581.813924"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "105"
-         endingLineNumber = "105"
-         landmarkName = "-nextStepAction:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -183,6 +144,32 @@
          startingLineNumber = "237"
          endingLineNumber = "237"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Controllers/Signup/GGLoginVC.m"
+         timestampString = "387364120.440429"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "149"
+         endingLineNumber = "149"
+         landmarkName = "-loginAction:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Controllers/Signup/GGLoginVC.m"
+         timestampString = "387364138.964883"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "146"
+         endingLineNumber = "146"
+         landmarkName = "-loginAction:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

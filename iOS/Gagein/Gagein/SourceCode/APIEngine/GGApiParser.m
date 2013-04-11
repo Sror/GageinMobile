@@ -152,6 +152,14 @@
     return [self _parsePageforClass:[GGCompany class]];
 }
 
+-(GGCompanyUpdate *)parseGetCompanyUpdateDetail
+{
+    GGCompanyUpdate * update = [GGCompanyUpdate model];
+    [update parseWithData:self.data];
+    
+    return update;
+}
+
 #pragma mark - config
 -(GGDataPage *)parseGetAgents
 {
