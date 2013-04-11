@@ -27,4 +27,5 @@
     #import "GGColor.h"
     #import "UIImageView+WebCache.h"
     #import "GGUtils.h"
+    #import "GGAnimation.h"
 #endif

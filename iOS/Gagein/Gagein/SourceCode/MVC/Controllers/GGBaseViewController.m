@@ -9,6 +9,8 @@
 #import "GGBaseViewController.h"
 #import "GGNaviBackButton.h"
 
+static GGNaviBackButton *__globalBackBtn;
+
 @interface GGBaseViewController ()
 
 @end
@@ -33,22 +35,56 @@
 	self.view.frame = [self viewportFrame];
     
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"bgNavibar"] forBarMetrics:UIBarMetricsDefault];
-    
-    UIImage *backBtnImage = [UIImage imageNamed:@"btnBackBg"];
-    GGNaviBackButton *backBtn = [[GGNaviBackButton alloc] initWithFrame:CGRectMake(5, 10, backBtnImage.size.width, backBtnImage.size.height)];
-    [backBtn addTarget:self action:@selector(naviBackAction:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.hidesBackButton = YES;
-    [self.navigationController.navigationBar addSubview:backBtn];
-    
-    CGRect navibarRc = self.navigationController.navigationBar.frame;
     [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
+    self.navigationItem.hidesBackButton = YES;
+    
+    if (__globalBackBtn == nil)
+    {
+        UIImage *backBtnImage = [UIImage imageNamed:@"btnBackBg"];
+        __globalBackBtn = [[GGNaviBackButton alloc] initWithFrame:CGRectMake(5, 10, backBtnImage.size.width, backBtnImage.size.height)];
+    }
+    
+    [self.navigationController.navigationBar addSubview:__globalBackBtn];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [__globalBackBtn removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
+    [__globalBackBtn addTarget:self action:@selector(naviBackAction:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+#pragma mark - UI element
+-(void)installGageinLogo
+{
+    [self installGageinLogoTo:self.view];
+}
+
+-(void)installGageinLogoTo:(UIView *)aView
+{
+    if (aView)
+    {
+        UIImage *image = [UIImage imageNamed:@"gageinLogo"];
+        UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+        iv.frame = CGRectMake(65, 15, 190, 56);
+        [aView addSubview:iv];
+    }
+}
+
+-(void)installTopLine
+{
+    UIImage *image = [UIImage imageNamed:@"topOrangeLine"];
+    UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+    iv.frame = CGRectMake(0, 0, 320, 4);
+    [self.view addSubview:iv];
+}
+
+#pragma mark - actions
 -(void)naviBackAction:(id)aSender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - layout
 -(CGRect)viewportFrame
 {
     CGRect viewPortFrame = [UIScreen mainScreen].applicationFrame;

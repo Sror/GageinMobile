@@ -43,9 +43,9 @@
     }
 }
 
--(void)viewWillAppear:(BOOL)animated
+-(void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     self.navigationController.navigationBarHidden = YES;
 }
 
@@ -73,13 +73,19 @@
 -(IBAction)loginAction:(id)sender
 {
     GGLoginVC *vc = [[GGLoginVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self.view.window.layer addAnimation:[GGAnimation animationPushFromRight] forKey:nil];
+    [self presentViewController:nc animated:NO completion:nil];
 }
 
 -(IBAction)signupAction:(id)sender
 {
     GGSignupVC *vc = [[GGSignupVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self.view.window.layer addAnimation:[GGAnimation animationPushFromRight] forKey:nil];
+    [self presentViewController:nc animated:NO completion:nil];
 }
 
 @end

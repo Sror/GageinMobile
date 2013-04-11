@@ -79,6 +79,7 @@
         if (parser.isOK)
         {
             // go home
+            [self dismissViewControllerAnimated:NO completion:nil];
             [GGSharedDelegate popNaviToRoot];
             [GGSharedDelegate showTabIndex:0];
         }

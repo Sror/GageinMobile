@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Config/GGSelectFuncAreasVC.m"
-         timestampString = "387192734.946371"
+         timestampString = "387354577.529239"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "159"
-         endingLineNumber = "159"
+         startingLineNumber = "161"
+         endingLineNumber = "161"
          landmarkName = "-_getAreasData"
          landmarkType = "5">
       </FileBreakpoint>
@@ -170,6 +170,19 @@
          startingLineNumber = "132"
          endingLineNumber = "132"
          landmarkName = "-_indexInFollowedListWithCompanyID:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Controllers/GGBaseViewController.m"
+         timestampString = "387352373.530509"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "84"
+         endingLineNumber = "84"
+         landmarkName = "-naviBackAction:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

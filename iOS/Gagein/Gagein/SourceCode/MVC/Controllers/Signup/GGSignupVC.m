@@ -67,6 +67,13 @@
     _scrolView.delegate = nil;
 }
 
+#pragma mark - overriding
+-(void)naviBackAction:(id)aSender
+{
+    [self.view.window.layer addAnimation:[GGAnimation animationPushFromLeft] forKey:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
 #pragma mark - internal
 -(BOOL)_checkEmail
 {

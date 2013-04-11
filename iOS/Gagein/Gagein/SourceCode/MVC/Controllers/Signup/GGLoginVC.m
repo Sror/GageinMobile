@@ -12,6 +12,7 @@
 #import "GGMember.h"
 #import "GGSelectAgentsVC.h"
 #import "GGSelectFuncAreasVC.h"
+#import "GGSignupVC.h"
 
 @interface GGLoginVC ()
 @property (weak, nonatomic) IBOutlet UITextField *tfEmail;
@@ -40,11 +41,16 @@
     self.view.backgroundColor = GGSharedColor.bgGray;
     self.title = @"Login with Email";
     
+    [self installGageinLogoTo:self.scrolView];
+    [self installTopLine];
+    
     
 #warning test login data
     self.tfEmail.text = @"dymx101@hotmail.com";
     self.tfPassword.text = @"heartL0";
 }
+
+
 
 -(void)dealloc
 {
@@ -57,6 +63,13 @@
     [self setBtnLogin:nil];
     [self setScrolView:nil];
     [super viewDidUnload];
+}
+
+#pragma mark - overriding
+-(void)naviBackAction:(id)aSender
+{
+    [self.view.window.layer addAnimation:[GGAnimation animationPushFromLeft] forKey:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 #pragma mark - internal
@@ -91,6 +104,14 @@
 }
 
 #pragma mark - actions
+-(IBAction)goSignupAction:(id)sender
+{
+    //[self.navigationController popViewControllerAnimated:NO];
+    
+    GGSignupVC *vc = [[GGSignupVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 -(IBAction)loginAction:(id)sender
 {
     if ([self _checkEmail] && [self _checkPassword]) {
@@ -121,6 +142,7 @@
                 if (currentUser.isSignupOK)
                 {
                     // go home
+                    [self dismissViewControllerAnimated:NO completion:nil];
                     [GGSharedDelegate popNaviToRoot];
                     [GGSharedDelegate showTabIndex:0];
                 }
