@@ -33,6 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = GGSharedColor.bgGray;
     
     [self observeNotification:GG_NOTIFY_GET_STARTED];
     
