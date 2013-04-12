@@ -50,7 +50,7 @@
         self.tabBarItem.image = [UIImage imageNamed:@"first"];
         _relevance = kGGCompanyUpdateRelevanceNormal;
         _updates = [NSMutableArray array];
-        _menuType = kGGMenuTypeCompany;   // exploring...
+        _menuType = kGGMenuTypeAgent;   // exploring...
         _menuID = GG_ALL_RESULT_ID;
     }
     return self;
@@ -229,6 +229,16 @@
         }
     }
 }
+
+-(void)_selectMenuItemByID:(long long)aMenuID
+{
+    for (GGDataPage *page in _menuDatas) {
+        for (GGMenuData *menuData in page.items) {
+            menuData.checked = (menuData.ID == aMenuID);
+        }
+    }
+}
+
 
 #pragma mark - actions
 -(void)optionMenuAction:(id)sender
@@ -445,6 +455,22 @@
         if (parser.isOK)
         {
             _menuDatas = [parser parseGetMenu];
+            
+            if (_menuID == GG_ALL_RESULT_ID)
+            {
+                [self _unselectAllMenuItem];
+                
+                [self _followingSectionView].ivSelected.hidden = !(_menuType == kGGMenuTypeCompany);
+                [self _exploringSectionView].ivSelected.hidden = (_menuType == kGGMenuTypeCompany);
+            }
+            else
+            {
+                [self _selectMenuItemByID:_menuID];
+                
+                [self _followingSectionView].ivSelected.hidden = YES;
+                [self _exploringSectionView].ivSelected.hidden = YES;
+            }
+            
             [_slideSettingView.viewTable reloadData];
         }
         else
