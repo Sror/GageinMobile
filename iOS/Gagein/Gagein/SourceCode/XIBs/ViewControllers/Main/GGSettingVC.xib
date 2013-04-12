@@ -41,6 +41,7 @@
 						<string key="NSFrame">{{60, 252}, {200, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -73,7 +74,7 @@
 					<object class="IBUIButton" id="652504363">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{95, 20}, {131, 44}}</string>
+						<string key="NSFrame">{{225, 20}, {85, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="885320099"/>
@@ -96,7 +97,7 @@
 					<object class="IBUIButton" id="885320099">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{41, 81}, {109, 44}}</string>
+						<string key="NSFrame">{{11, 20}, {100, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="535204931"/>
@@ -106,7 +107,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Setup Agents</string>
+						<string key="IBUINormalTitle">UI Test</string>
 						<reference key="IBUIHighlightedTitleColor" ref="265059779"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -119,7 +120,7 @@
 					<object class="IBUIButton" id="535204931">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{175, 81}, {109, 44}}</string>
+						<string key="NSFrame">{{118, 20}, {92, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="289301090"/>
@@ -129,7 +130,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Setup Areas</string>
+						<string key="IBUINormalTitle">UI Test 2</string>
 						<reference key="IBUIHighlightedTitleColor" ref="265059779"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -248,9 +249,9 @@
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="289301090"/>
+							<reference ref="885320099"/>
 							<reference ref="652504363"/>
 							<reference ref="535204931"/>
-							<reference ref="885320099"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

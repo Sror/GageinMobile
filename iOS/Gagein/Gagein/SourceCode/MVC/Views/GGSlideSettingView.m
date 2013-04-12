@@ -26,7 +26,7 @@
         _viewSlide = [[UIView alloc] initWithFrame:CGRectZero];
         _viewSlide.backgroundColor = GGSharedColor.darkGray;
         [self addSubview:_viewSlide];
-        [self _tuneLayout];
+        _viewSlide.frame = [self _slideHideRect];
         
         self.hidden = YES;
     }
@@ -36,18 +36,27 @@
 -(void)setFrame:(CGRect)frame
 {
     [super setFrame:frame];
-    [self _tuneLayout];
+    _viewSlide.frame = [self _slideHideRect];
 }
 
--(void)_tuneLayout
+#pragma mark - rect
+-(CGRect)_slideHideRect
 {
-    CGRect slideRc = CGRectMake(FORBIDDEN_AREA_WIDTH - self.frame.size.width
-                                , 0
-                                , self.frame.size.width - FORBIDDEN_AREA_WIDTH
-                                , self.frame.size.height);
-    _viewSlide.frame = slideRc;
+    return CGRectMake(FORBIDDEN_AREA_WIDTH - self.frame.size.width
+                      , 0
+                      , self.frame.size.width - FORBIDDEN_AREA_WIDTH
+                      , self.frame.size.height);
 }
 
+-(CGRect)_slideShowRect
+{
+    return CGRectMake(0
+                      , 0
+                      , self.frame.size.width - FORBIDDEN_AREA_WIDTH
+                      , self.frame.size.height);
+}
+
+#pragma mark - actions
 -(void)showSlide
 {
     if (!_isShowing)
@@ -56,18 +65,8 @@
         self.hidden = NO;
         
         [UIView animateWithDuration:.3f animations:^{
-            
-#if 0
-            CGPoint pt = _viewSlide.layer.position;
-            pt.x += _viewSlide.frame.size.width;
-            _viewSlide.layer.position = pt;
-#else
-            CGRect slideRc = CGRectMake(0
-                                        , 0
-                                        , self.frame.size.width - FORBIDDEN_AREA_WIDTH
-                                        , self.frame.size.height);
-            _viewSlide.frame = slideRc;
-#endif
+
+            _viewSlide.frame = [self _slideShowRect];
             
         } completion:^(BOOL finished) {
             
@@ -82,7 +81,9 @@
         _isShowing = NO;
         
         [UIView animateWithDuration:.3f animations:^{
-            [self _tuneLayout];
+            
+            _viewSlide.frame = [self _slideHideRect];
+            
         } completion:^(BOOL finished) {
             self.hidden = YES;
         }];
