@@ -17,6 +17,7 @@
 #import "GGCompanyDetailVC.h"
 #import "GGCompanyUpdateDetailVC.h"
 #import "GGScrollingView.h"
+#import "GGFollowCompanyVC.h"
 
 //#define USE_CUSTOM_NAVI_BAR       // 是否使用自定义导航条
 
@@ -50,6 +51,8 @@
 - (void)viewDidLoad
 {
     [self observeNotification:GG_NOTIFY_LOG_OUT];
+    [self observeNotification:GG_NOTIFY_LOG_IN];
+    
     
 #if defined(USE_CUSTOM_NAVI_BAR)
     self.navigationController.navigationBarHidden = YES;
@@ -114,10 +117,12 @@
     [self.updatesTV addInfiniteScrollingWithActionHandler:^{
         [weakSelf _getNextPage];
     }];
+    
+    [self.updatesTV triggerPullToRefresh];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self.updatesTV triggerPullToRefresh];
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidUnload {
@@ -135,9 +140,14 @@
 #pragma mark - notification handling
 -(void)handleNotification:(NSNotification *)notification
 {
-    if ([notification.name isEqualToString:GG_NOTIFY_LOG_OUT]) {
+    if ([notification.name isEqualToString:GG_NOTIFY_LOG_OUT])
+    {
         [_updates removeAllObjects];
         [self.updatesTV reloadData];
+    }
+    else if ([notification.name isEqualToString:GG_NOTIFY_LOG_IN])
+    {
+        [self.updatesTV triggerPullToRefresh];
     }
 }
 
@@ -158,6 +168,9 @@
 -(void)searchUpdateAction:(id)sender
 {
     DLog(@"search update clicked");
+    
+    GGFollowCompanyVC *vc = [[GGFollowCompanyVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)savedUpdateAction:(id)sender

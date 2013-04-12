@@ -88,6 +88,7 @@
             [self dismissViewControllerAnimated:NO completion:nil];
             [GGSharedDelegate popNaviToRoot];
             [GGSharedDelegate showTabIndex:0];
+            [self postNotification:GG_NOTIFY_LOG_IN]; // step is done,and notify for the completion
         }
         else
         {

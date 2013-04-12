@@ -35,6 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.scrollView.hidden = YES;
     
     [self _callApiGetCompanyUpdateDetail];
 }
@@ -58,13 +59,18 @@
 -(void)_updateUIWithUpdateDetail
 {
     self.lblTitle.text = _companyUpdateDetail.headline;
-    self.lblContent.text = _companyUpdateDetail.content;
     
     if (_companyUpdateDetail.content.length <= 0)
     {
         NSURL *url = [NSURL URLWithString:_companyUpdateDetail.url];
         [_webView loadRequest:[NSURLRequest requestWithURL:url]];
         _webView.hidden = NO;
+        [self showLoadingHUD];
+    }
+    else
+    {
+        self.lblContent.text = _companyUpdateDetail.content;
+        self.scrollView.hidden = NO;
     }
 }
 
@@ -86,12 +92,12 @@
 #pragma mark - webview delegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    
+    [self hideLoadingHUD];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    
+    [self hideLoadingHUD];
 }
 
 @end

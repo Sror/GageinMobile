@@ -13,7 +13,7 @@
 #define GGN_STR_DEMO_SERVER_URL                     @"http://gageindemo.dyndns.org"
 #define GGN_STR_CN_SERVER_URL                       @"http://gageincn.dyndns.org:3031"
 
-#define CURRENT_ENV 2
+#define CURRENT_ENV 3
 
 #undef CURRENT_SERVER_URL
 #if (CURRENT_ENV == 1)
