@@ -18,6 +18,7 @@
 #import "GGCompanyUpdateDetailVC.h"
 #import "GGScrollingView.h"
 #import "GGFollowCompanyVC.h"
+#import "GGSettingHeaderView.h"
 
 //#define USE_CUSTOM_NAVI_BAR       // 是否使用自定义导航条
 
@@ -84,6 +85,8 @@
     //
     _slideSettingView = [[GGSlideSettingView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:_slideSettingView];
+    _slideSettingView.viewTable.dataSource = self;
+    _slideSettingView.viewTable.delegate = self;
 
     
     // ------- add scrolling view
@@ -191,12 +194,31 @@
 
 
 #pragma mark - tableView datasource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (tableView == _slideSettingView.viewTable)
+    {
+        return 2;
+    }
+    
+    return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.updatesTV) {
         return self.updates.count;
     }
-    return 20;
+    else if (tableView == self.happeningsTV)
+    {
+        return 20;
+    }
+    else if (tableView == _slideSettingView.viewTable)
+    {
+        return 5;
+    }
+    
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -228,27 +250,71 @@
         
         return cell;
     }
-    
-    static NSString *happeningCellId = @"happeningCellId";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:happeningCellId];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:happeningCellId];
+    else if (tableView == self.happeningsTV)
+    {
+        static NSString *happeningCellId = @"happeningCellId";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:happeningCellId];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:happeningCellId];
+        }
+        cell.textLabel.text = @"happening";
+        return cell;
     }
-    cell.textLabel.text = @"happening";
-    return cell;
+    else if (tableView == _slideSettingView.viewTable)
+    {
+        static NSString *menuCellId = @"menuCellId";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:menuCellId];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:menuCellId];
+        }
+        cell.textLabel.text = @"settings";
+        return cell;
+    }
+    
+    return nil;
 }
 
 
 #pragma mark - tableView delegate
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (tableView == _slideSettingView.viewTable)
+    {
+        return [GGSettingHeaderView HEIGHT];
+    }
+    
+    return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (tableView == _slideSettingView.viewTable)
+    {
+        GGSettingHeaderView * headerView = [GGSettingHeaderView viewFromNibWithOwner:self];
+        return headerView;
+    }
+    
+    return nil;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (tableView == self.updatesTV) {
+    if (tableView == self.updatesTV)
+    {
         GGCompanyUpdate *updateData = [self.updates objectAtIndex:indexPath.row];
         GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
         vc.newsID = updateData.ID;
         [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (tableView == self.happeningsTV)
+    {
+        //
+    }
+    else if (tableView == _slideSettingView.viewTable)
+    {
+        //
     }
 }
 

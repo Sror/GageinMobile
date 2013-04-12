@@ -156,6 +156,8 @@
 		EAEFB4EA1717A8100013634F /* GGSignupPortalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4DC1717A8100013634F /* GGSignupPortalVC.xib */; };
 		EAEFB4EB1717A8100013634F /* GGSignupVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4DD1717A8100013634F /* GGSignupVC.xib */; };
 		EAEFB4EC1717A8100013634F /* GGWelcomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4DE1717A8100013634F /* GGWelcomeVC.xib */; };
+		EAEFB4EF1717B1570013634F /* GGSettingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEFB4EE1717B1560013634F /* GGSettingHeaderView.m */; };
+		EAEFB4F71717B6E40013634F /* GGSettingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4F61717B6E40013634F /* GGSettingHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -391,6 +393,9 @@
 		EAEFB4DC1717A8100013634F /* GGSignupPortalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSignupPortalVC.xib; sourceTree = "<group>"; };
 		EAEFB4DD1717A8100013634F /* GGSignupVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSignupVC.xib; sourceTree = "<group>"; };
 		EAEFB4DE1717A8100013634F /* GGWelcomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGWelcomeVC.xib; sourceTree = "<group>"; };
+		EAEFB4ED1717B1560013634F /* GGSettingHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingHeaderView.h; sourceTree = "<group>"; };
+		EAEFB4EE1717B1560013634F /* GGSettingHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingHeaderView.m; sourceTree = "<group>"; };
+		EAEFB4F61717B6E40013634F /* GGSettingHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingHeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -591,6 +596,7 @@
 		EAC96C35170983B5003FAFAA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EAEFB4F61717B6E40013634F /* GGSettingHeaderView.xib */,
 				EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */,
 				EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */,
 				EA24FA2F1713B2FF003AFBA9 /* GGScrollingView.xib */,
@@ -859,6 +865,8 @@
 				EA959D74171539DD005B06F6 /* GGCompanySearchCell.m */,
 				EAAE07391716609A007C4A30 /* GGNaviBackButton.h */,
 				EAAE073A1716609A007C4A30 /* GGNaviBackButton.m */,
+				EAEFB4ED1717B1560013634F /* GGSettingHeaderView.h */,
+				EAEFB4EE1717B1560013634F /* GGSettingHeaderView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1160,6 +1168,7 @@
 				EAEFB4EA1717A8100013634F /* GGSignupPortalVC.xib in Resources */,
 				EAEFB4EB1717A8100013634F /* GGSignupVC.xib in Resources */,
 				EAEFB4EC1717A8100013634F /* GGWelcomeVC.xib in Resources */,
+				EAEFB4F71717B6E40013634F /* GGSettingHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1245,6 +1254,7 @@
 				EAAE073B1716609A007C4A30 /* GGNaviBackButton.m in Sources */,
 				EAAE0746171689DC007C4A30 /* GGAnimation.m in Sources */,
 				EA0A15ED1716B6B5004D0C73 /* GGApi+Tracker.m in Sources */,
+				EAEFB4EF1717B1570013634F /* GGSettingHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,13 +20,16 @@
         self.backgroundColor = GGSharedColor.clear;
         
         UIView *bgView = [[UIView alloc] initWithFrame:self.bounds];
-        bgView.backgroundColor = [UIColor colorWithRed:.5f green:.5f blue:.5f alpha:.2f];
+        bgView.backgroundColor = [UIColor colorWithRed:.5f green:.5f blue:.5f alpha:.5f];
         [self addSubview:bgView];
         
-        _viewSlide = [[UIView alloc] initWithFrame:CGRectZero];
+        _viewSlide = [[UIView alloc] initWithFrame:[self _slideHideRect]];
         _viewSlide.backgroundColor = GGSharedColor.darkGray;
         [self addSubview:_viewSlide];
-        _viewSlide.frame = [self _slideHideRect];
+        
+        _viewTable = [[UITableView alloc] initWithFrame:_viewSlide.bounds style:UITableViewStylePlain];
+        _viewTable.showsVerticalScrollIndicator = NO;
+        [_viewSlide addSubview:_viewTable];
         
         self.hidden = YES;
     }
