@@ -156,6 +156,60 @@
     }
 }
 
+#pragma mark - internal
+-(GGSettingHeaderView *)_followingSectionView
+{
+    static GGSettingHeaderView *_followingSectionView;
+    if (_followingSectionView == nil) {
+        _followingSectionView = [GGSettingHeaderView viewFromNibWithOwner:self];
+        _followingSectionView.lblTitle.text = @"FOLLOWING";
+        _followingSectionView.ivSelected.hidden = YES;
+        [_followingSectionView.btnBg addTarget:self action:@selector(_followingTapped:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _followingSectionView;
+}
+
+-(GGSettingHeaderView *)_exploringSectionView
+{
+    static GGSettingHeaderView *_exploringSectionView;
+    if (_exploringSectionView == nil) {
+        _exploringSectionView = [GGSettingHeaderView viewFromNibWithOwner:self];
+        _exploringSectionView.lblTitle.text = @"EXPLORING";
+        _exploringSectionView.ivSelected.hidden = NO;
+        [_exploringSectionView.btnBg addTarget:self action:@selector(_exploringTapped:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _exploringSectionView;
+}
+
+-(IBAction)_followingTapped:(id)sender
+{
+    [self _followingSectionView].ivSelected.hidden = NO;
+    [self _exploringSectionView].ivSelected.hidden = YES;
+    
+    [self _unselectAllMenuItem];
+    [_slideSettingView.viewTable reloadData];
+}
+
+-(IBAction)_exploringTapped:(id)sender
+{
+    [self _followingSectionView].ivSelected.hidden = YES;
+    [self _exploringSectionView].ivSelected.hidden = NO;
+    
+    [self _unselectAllMenuItem];
+    [_slideSettingView.viewTable reloadData];
+}
+
+-(void)_unselectAllMenuItem
+{
+    for (GGDataPage *page in _menuDatas) {
+        for (GGMenuData *menuData in page.items) {
+            menuData.checked = NO;
+        }
+    }
+}
+
 #pragma mark - actions
 -(void)optionMenuAction:(id)sender
 {
@@ -296,12 +350,17 @@
     return 0;
 }
 
+
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (tableView == _slideSettingView.viewTable)
     {
-        GGSettingHeaderView * headerView = [GGSettingHeaderView viewFromNibWithOwner:self];
-        return headerView;
+        if (section == 0) {
+            return [self _followingSectionView];
+        } else {
+            return [self _exploringSectionView];
+        }
     }
     
     return nil;
@@ -333,6 +392,9 @@
                 menuData.checked = (isPageMatch && theData == menuData);
             }
         }
+        
+        [self _exploringSectionView].ivSelected.hidden = YES;
+        [self _followingSectionView].ivSelected.hidden = YES;
         
         [tableView reloadData];
         //[tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
