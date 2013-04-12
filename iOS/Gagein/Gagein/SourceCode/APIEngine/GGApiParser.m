@@ -13,6 +13,7 @@
 #import "GGCompanyUpdate.h"
 #import "GGAgent.h"
 #import "GGFunctionalArea.h"
+#import "GGMenuData.h"
 
 #define GG_ASSERT_API_DATA_IS_DIC   NSAssert([_apiData isKindOfClass:[NSDictionary class]], @"Api Data should be a NSDictionary");
 
@@ -158,6 +159,38 @@
     [update parseWithData:self.data];
     
     return update;
+}
+
+-(NSArray *)parseGetMenu
+{
+    NSAssert([self.data isKindOfClass:[NSArray class]], @"data shuld be an array");
+    NSMutableArray *results = [NSMutableArray array];
+    
+    NSArray *data = self.data;
+    for (NSDictionary *dic in data)
+    {
+        NSAssert([dic isKindOfClass:[NSDictionary class]], @"data shuld be an array");
+        GGDataPage *page = [GGDataPage model];
+        page.hasMore = [[dic objectForKey:@"hasMore"] boolValue];
+        page.timestamp = [[dic objectForKey:@"timestamp"] longLongValue];
+        
+        NSArray *dataInfos = [dic objectForKey:@"info"];;
+        if (dataInfos)
+        {
+            for (id info in dataInfos) {
+                NSAssert([info isKindOfClass:[NSDictionary class]], @"data info should be a NSDictionary");
+                
+                GGMenuData *menuData = [GGMenuData model];
+                [menuData parseWithData:info];
+                
+                [page.items addObject:menuData];
+            }
+        }
+        
+        [results addObject:page];
+    }
+    
+    return results;
 }
 
 #pragma mark - config

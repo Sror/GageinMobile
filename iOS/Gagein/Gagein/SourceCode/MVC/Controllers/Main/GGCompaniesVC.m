@@ -12,6 +12,7 @@
 #import "GGDataPage.h"
 #import "GGCompany.h"
 #import "GGCompanyUpdate.h"
+#import "GGMenuData.h"
 
 #import "GGSlideSettingView.h"
 #import "GGCompanyDetailVC.h"
@@ -35,6 +36,7 @@
     EGGCompanyUpdateRelevance   _relevance;
     GGScrollingView             *_scrollingView;
     GGSlideSettingView          *_slideSettingView;
+    NSArray                    *_menuDatas;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -161,6 +163,7 @@
     if (!_slideSettingView.isShowing)
     {
         [_slideSettingView showSlide];
+        [self _callApiGetMenu];
     }
     else
     {
@@ -215,7 +218,8 @@
     }
     else if (tableView == _slideSettingView.viewTable)
     {
-        return 5;
+        GGDataPage *page = _menuDatas[section];
+        return page.items.count;
     }
     
     return 0;
@@ -267,7 +271,13 @@
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:menuCellId];
         }
-        cell.textLabel.text = @"settings";
+        
+        GGDataPage *page = _menuDatas[indexPath.section];
+        GGMenuData *menuData = page.items[indexPath.row];
+        cell.textLabel.text = menuData.name;
+        
+        cell.accessoryType = menuData.checked ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        
         return cell;
     }
     
@@ -314,7 +324,18 @@
     }
     else if (tableView == _slideSettingView.viewTable)
     {
-        //
+        GGDataPage *thePage = _menuDatas[indexPath.section];
+        GGMenuData *theData = thePage.items[indexPath.row];
+        
+        for (GGDataPage *page in _menuDatas) {
+            BOOL isPageMatch = (thePage == page);
+            for (GGMenuData *menuData in page.items) {
+                menuData.checked = (isPageMatch && theData == menuData);
+            }
+        }
+        
+        [tableView reloadData];
+        //[tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
 
@@ -326,6 +347,24 @@
 
 
 #pragma mark - data handling
+-(void)_callApiGetMenu
+{
+    [GGSharedAPI getMenuByType:kGGStrMenuTypeCompanies callback:^(id operation, id aResultObject, NSError *anError) {
+        
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            _menuDatas = [parser parseGetMenu];
+            [_slideSettingView.viewTable reloadData];
+        }
+        else
+        {
+            _menuDatas = nil;
+            [GGAlert alert:parser.message];
+        }
+    }];
+}
+
 -(void)_getFirstPage
 {
     [self _getDataWithNewsID:0 pageFlag:kGGPageFlagFirstPage pageTime:0 relevance:_relevance];

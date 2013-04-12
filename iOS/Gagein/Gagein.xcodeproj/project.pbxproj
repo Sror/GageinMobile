@@ -158,6 +158,7 @@
 		EAEFB4EC1717A8100013634F /* GGWelcomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4DE1717A8100013634F /* GGWelcomeVC.xib */; };
 		EAEFB4EF1717B1570013634F /* GGSettingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEFB4EE1717B1560013634F /* GGSettingHeaderView.m */; };
 		EAEFB4F71717B6E40013634F /* GGSettingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4F61717B6E40013634F /* GGSettingHeaderView.xib */; };
+		EAEFB4FA1717BC620013634F /* GGMenuData.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEFB4F91717BC620013634F /* GGMenuData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -396,6 +397,8 @@
 		EAEFB4ED1717B1560013634F /* GGSettingHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingHeaderView.h; sourceTree = "<group>"; };
 		EAEFB4EE1717B1560013634F /* GGSettingHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingHeaderView.m; sourceTree = "<group>"; };
 		EAEFB4F61717B6E40013634F /* GGSettingHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingHeaderView.xib; sourceTree = "<group>"; };
+		EAEFB4F81717BC620013634F /* GGMenuData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGMenuData.h; sourceTree = "<group>"; };
+		EAEFB4F91717BC620013634F /* GGMenuData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGMenuData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -844,6 +847,8 @@
 				EA24FA5317140CFF003AFBA9 /* GGFunctionalArea.m */,
 				EAD481FC17111BB700556288 /* GGDataPage.h */,
 				EAD481FD17111BB800556288 /* GGDataPage.m */,
+				EAEFB4F81717BC620013634F /* GGMenuData.h */,
+				EAEFB4F91717BC620013634F /* GGMenuData.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1255,6 +1260,7 @@
 				EAAE0746171689DC007C4A30 /* GGAnimation.m in Sources */,
 				EA0A15ED1716B6B5004D0C73 /* GGApi+Tracker.m in Sources */,
 				EAEFB4EF1717B1570013634F /* GGSettingHeaderView.m in Sources */,
+				EAEFB4FA1717BC620013634F /* GGMenuData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
