@@ -185,7 +185,9 @@
         _exploringSectionView = [GGSettingHeaderView viewFromNibWithOwner:self];
         _exploringSectionView.lblTitle.text = @"EXPLORING";
         _exploringSectionView.ivSelected.hidden = NO;
+        _exploringSectionView.btnAdd.hidden = YES;
         [_exploringSectionView.btnBg addTarget:self action:@selector(_exploringTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [_exploringSectionView.btnConfig addTarget:self action:@selector(_exploringConfigTapped:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _exploringSectionView;
@@ -200,6 +202,11 @@
     [_slideSettingView.viewTable reloadData];
     
     [self _refreshWithMenuId:GG_ALL_RESULT_ID type:kGGMenuTypeCompany];
+}
+
+-(IBAction)_exploringConfigTapped:(id)sender
+{
+    [self searchUpdateAction:nil];
 }
 
 -(IBAction)_exploringTapped:(id)sender

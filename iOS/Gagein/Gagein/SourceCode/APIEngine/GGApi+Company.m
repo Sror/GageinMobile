@@ -54,6 +54,10 @@
                          relevance:(EGGCompanyUpdateRelevance)aRelevance
                           callback:(GGApiBlock)aCallback
 {
+    if (GGSharedRuntimeData.accessToken == nil) {
+        return;
+    }
+    
     //GET
     NSString *path = @"member/me/update/tracker";
     

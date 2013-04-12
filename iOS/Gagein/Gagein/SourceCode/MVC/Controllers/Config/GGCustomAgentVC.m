@@ -64,7 +64,8 @@
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {
-                [GGAlert alert:@"Success!"];
+                //[GGAlert alert:@"Success!"];
+                [self.navigationController popViewControllerAnimated:YES];
             }
             else
             {

@@ -68,6 +68,7 @@
 {
     [super viewWillAppear:animated];
     [self hideBackButton];
+    [self _getAgentsData];
 }
 
 
@@ -136,12 +137,20 @@
         
         [self.navigationController popViewControllerAnimated:YES];
     }];
+    
 }
 
 -(IBAction)addCustomAgentAction:(id)sender
 {
     GGCustomAgentVC *vc = [[GGCustomAgentVC alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
+    
+    // save the agents silently...
+    NSArray *selectedAgentIDs = [self _selectedAgentIDs];
+    if (selectedAgentIDs.count) {
+        [GGSharedAPI selectAgents:selectedAgentIDs callback:^(id operation, id aResultObject, NSError *anError) {
+        }];
+    }
 }
 
 #pragma mark - table view datasource

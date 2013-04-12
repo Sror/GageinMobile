@@ -8,12 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum
+{
+    kGGServerProduction = 1
+    , kGGServerDemo
+    , kGGServerCN
+    , kGGServerStaging
+}EGGServerEnvironment;
+
 //
 #define GGN_STR_PRODUCTION_SERVER_URL               @"https://www.gagein.com"
 #define GGN_STR_DEMO_SERVER_URL                     @"http://gageindemo.dyndns.org"
 #define GGN_STR_CN_SERVER_URL                       @"http://gageincn.dyndns.org:3031"
+#define GGN_STR_STAGING_SERVER_URL                  @"http://gageinstaging.dyndns.org"
 
-#define CURRENT_ENV 3
+#define CURRENT_ENV 4
 
 #undef CURRENT_SERVER_URL
 #if (CURRENT_ENV == 1)
@@ -22,6 +31,8 @@
 #define CURRENT_SERVER_URL         GGN_STR_DEMO_SERVER_URL
 #elif (CURRENT_ENV == 3)
 #define CURRENT_SERVER_URL         GGN_STR_CN_SERVER_URL
+#elif (CURRENT_ENV == 4)
+#define CURRENT_SERVER_URL         GGN_STR_STAGING_SERVER_URL
 #endif
 //
 
