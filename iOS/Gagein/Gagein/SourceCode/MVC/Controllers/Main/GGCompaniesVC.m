@@ -37,6 +37,9 @@
     GGScrollingView             *_scrollingView;
     GGSlideSettingView          *_slideSettingView;
     NSArray                    *_menuDatas;
+    
+    EGGMenuType                _menuType;
+    long long                  _menuID;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -47,6 +50,8 @@
         self.tabBarItem.image = [UIImage imageNamed:@"first"];
         _relevance = kGGCompanyUpdateRelevanceNormal;
         _updates = [NSMutableArray array];
+        _menuType = kGGMenuTypeCompany;   // exploring...
+        _menuID = GG_ALL_RESULT_ID;
     }
     return self;
 }
@@ -190,6 +195,8 @@
     
     [self _unselectAllMenuItem];
     [_slideSettingView.viewTable reloadData];
+    
+    [self _refreshWithMenuId:GG_ALL_RESULT_ID type:kGGMenuTypeCompany];
 }
 
 -(IBAction)_exploringTapped:(id)sender
@@ -199,6 +206,19 @@
     
     [self _unselectAllMenuItem];
     [_slideSettingView.viewTable reloadData];
+    
+    [self _refreshWithMenuId:GG_ALL_RESULT_ID type:kGGMenuTypeAgent];
+}
+
+-(void)_refreshWithMenuId:(long long)aMenuID type:(EGGMenuType)aType
+{
+    [_slideSettingView hideSlide];
+    
+    _menuType = aType;
+    _menuID = aMenuID;
+    [self.updates removeAllObjects];
+    [self.updatesTV reloadData];
+    [self.updatesTV triggerPullToRefresh];
 }
 
 -(void)_unselectAllMenuItem
@@ -397,7 +417,15 @@
         [self _followingSectionView].ivSelected.hidden = YES;
         
         [tableView reloadData];
-        //[tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        //get update data by menuID
+        _menuType = theData.type;
+        _menuID = theData.ID;
+        [self.updates removeAllObjects];
+        [self.updatesTV reloadData];
+        [self.updatesTV triggerPullToRefresh];
+        
+        [self _refreshWithMenuId:theData.ID type:theData.type];
     }
 }
 
@@ -460,8 +488,7 @@
 
 -(void)_getDataWithNewsID:(long long)aNewsID pageFlag:(int)aPageFlag pageTime:(long long)aPageTime relevance:(int)aRelevance
 {
-    //[self showLoadingHUD];
-    [GGSharedAPI getExploringUpdatesWithNewsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:^(id operation, id aResultObject, NSError *anError) {
+    GGApiBlock callback = ^(id operation, id aResultObject, NSError* anError) {
         //DLog(@"%@", aResultObject);
         
         //[self hideLoadingHUD];
@@ -505,7 +532,17 @@
         
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
         [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:.5f];
-    }];
+    };
+    
+    //[self showLoadingHUD];
+    if (_menuType == kGGMenuTypeCompany)
+    {
+        [GGSharedAPI getCompanyUpdatesWithCompanyID:_menuID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:callback];
+    }
+    else if (_menuType == kGGMenuTypeAgent)
+    {
+        [GGSharedAPI getCompanyUpdatesWithAgentID:_menuID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:callback];
+    }
 }
 
 -(void)_delayedStopAnimating

@@ -167,6 +167,8 @@
     NSMutableArray *results = [NSMutableArray array];
     
     NSArray *data = self.data;
+#warning type data must be given by API, currently by client
+    int type = 0;
     for (NSDictionary *dic in data)
     {
         NSAssert([dic isKindOfClass:[NSDictionary class]], @"data shuld be an array");
@@ -182,12 +184,15 @@
                 
                 GGMenuData *menuData = [GGMenuData model];
                 [menuData parseWithData:info];
+                menuData.type = type;
                 
                 [page.items addObject:menuData];
             }
         }
         
         [results addObject:page];
+        
+        type++;
     }
     
     return results;
