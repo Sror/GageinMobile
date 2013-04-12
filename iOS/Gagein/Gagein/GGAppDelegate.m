@@ -114,6 +114,7 @@
     if (![GGRuntimeData sharedInstance].isLoggedIn)
     {
         GGSignupPortalVC *vc = [[GGSignupPortalVC alloc] init];
+        [self.naviController.view.layer addAnimation:[GGAnimation animationFade] forKey:nil];
         [self.naviController pushViewController:vc animated:NO];
     }
 }

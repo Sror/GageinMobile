@@ -25,6 +25,7 @@
 {
     NSMutableArray *_predefinedAgents;
     NSMutableArray *_customAgents;
+    BOOL            _isSelectionChanged;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -40,7 +41,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = GGSharedColor.veryLightGray;
     self.title = @"Start Your Gagein";
     self.navigationItem.hidesBackButton = YES;
     
@@ -116,6 +117,12 @@
 
 -(IBAction)doneAction:(id)sender
 {
+    if (!_isSelectionChanged)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    
     [GGSharedAPI selectAgents:[self _selectedAgentIDs] callback:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
@@ -222,6 +229,9 @@
     
     agent.checked = !agent.checked;
     [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    _isSelectionChanged = YES;
+    self.btnNextStep.hidden = ([self _selectedAgentIDs].count <= 0);
 }
 
 #pragma mark - API calls

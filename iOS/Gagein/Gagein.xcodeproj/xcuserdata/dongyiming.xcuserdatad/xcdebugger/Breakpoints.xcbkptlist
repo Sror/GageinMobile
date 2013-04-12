@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Config/GGSelectAgentsVC.m"
-         timestampString = "387381735.858272"
+         timestampString = "387424488.159133"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "45"
-         endingLineNumber = "45"
+         startingLineNumber = "46"
+         endingLineNumber = "46"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Config/GGSelectFuncAreasVC.m"
-         timestampString = "387423138.064609"
+         timestampString = "387425672.42302"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "167"
-         endingLineNumber = "167"
+         startingLineNumber = "169"
+         endingLineNumber = "169"
          landmarkName = "-_getAreasData"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Config/GGSelectAgentsVC.m"
-         timestampString = "387381735.858272"
+         timestampString = "387424488.159133"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "112"
-         endingLineNumber = "112"
+         startingLineNumber = "113"
+         endingLineNumber = "113"
          landmarkName = "-nextStepAction:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Company/GGFollowCompanyVC.m"
-         timestampString = "387278767.97735"
+         timestampString = "387424067.503055"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "286"
-         endingLineNumber = "286"
+         startingLineNumber = "292"
+         endingLineNumber = "292"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Company/GGFollowCompanyVC.m"
-         timestampString = "387278749.53415"
+         timestampString = "387424067.503055"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "293"
-         endingLineNumber = "293"
+         startingLineNumber = "299"
+         endingLineNumber = "299"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Company/GGFollowCompanyVC.m"
-         timestampString = "387278867.276157"
+         timestampString = "387424067.503055"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "132"
-         endingLineNumber = "132"
+         startingLineNumber = "138"
+         endingLineNumber = "138"
          landmarkName = "-_indexInFollowedListWithCompanyID:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
-         timestampString = "387423332.787186"
+         timestampString = "387424740.767251"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "250"
-         endingLineNumber = "250"
+         startingLineNumber = "251"
+         endingLineNumber = "251"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>

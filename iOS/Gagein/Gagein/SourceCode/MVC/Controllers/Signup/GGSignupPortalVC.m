@@ -91,4 +91,29 @@
     [self presentViewController:nc animated:NO completion:nil];
 }
 
+-(IBAction)connectSalesForceAction:(id)sender
+{
+    [GGAlert alert:@"Connect to Salesforce (TODO)"];
+}
+
+-(IBAction)connectLinkedInAction:(id)sender
+{
+    [GGAlert alert:@"Connect to LinkedIn (TODO)"];
+}
+
+-(IBAction)connectFacebookAction:(id)sender
+{
+    [GGAlert alert:@"Connect to Facebook (TODO)"];
+}
+
+-(IBAction)connectTwitterAction:(id)sender
+{
+    [GGAlert alert:@"Connect to Twitter (TODO)"];
+}
+
+-(IBAction)connectYammerAction:(id)sender
+{
+    [GGAlert alert:@"Connect to Yammer (TODO)"];
+}
+
 @end

@@ -176,6 +176,7 @@
 -(void)savedUpdateAction:(id)sender
 {
     DLog(@"saved update clicked");
+    [GGAlert alert:@"Saved updates (TODO)"];
 }
 
 -(void)companyDetailAction:(id)sender

@@ -54,7 +54,7 @@
     self.navigationItem.hidesBackButton = YES;
     
     [super viewDidLoad];
-    
+    self.view.backgroundColor = GGSharedColor.veryLightGray;
     
     
     _searchBarRect = self.searchBar.frame;
@@ -69,6 +69,12 @@
     [self _showDoneBtn:YES];
     
     [self _callGetFollowedCompanies];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self hideBackButton];
 }
 
 
@@ -317,6 +323,7 @@
     [self.navigationController.navigationBar addSubview:searchBar];
     [self _showDoneBtn:NO];
     [self _showTitle:NO];
+    //[self hideBackButton];
     
     self.viewSearchBg.hidden = NO;
     self.tableViewSearchResult.frame = _tvSearchResultRectShort;
@@ -361,6 +368,7 @@
     
     [self _showTitle:YES];
     [self _showDoneBtn:YES];
+    //[self hideBackButton];
     
     self.viewSearchBg.hidden = YES;
 }

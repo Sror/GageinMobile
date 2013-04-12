@@ -143,6 +143,8 @@
     GGFunctionalArea *areaData = _functionalAreas[indexPath.row];
     areaData.checked = !areaData.checked;
     [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    self.btnDoneStep.hidden = ([self _selectedAreaIDs].count <= 0);
 }
 
 - (void)viewDidUnload {
