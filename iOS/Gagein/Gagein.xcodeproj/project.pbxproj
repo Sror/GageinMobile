@@ -35,6 +35,8 @@
 		EA0CA58A170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA587170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m */; };
 		EA0CA58B170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA589170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m */; };
 		EA0CA58D170BF4C000DBCD83 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0CA58C170BF4C000DBCD83 /* QuartzCore.framework */; };
+		EA1995ED1717E301006D95E4 /* GGSettingMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */; };
+		EA1995F01717E312006D95E4 /* GGSettingMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */; };
 		EA1A61F7170A6478000B4EAE /* GGDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61F6170A6478000B4EAE /* GGDataModel.m */; };
 		EA1A61FB170A64BF000B4EAE /* GGPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61FA170A64BF000B4EAE /* GGPerson.m */; };
 		EA1A61FE170A6D33000B4EAE /* GGCompany.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61FD170A6D33000B4EAE /* GGCompany.m */; };
@@ -216,6 +218,9 @@
 		EA0CA588170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		EA0CA589170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		EA0CA58C170BF4C000DBCD83 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EA1995EB1717E301006D95E4 /* GGSettingMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingMenuCell.h; sourceTree = "<group>"; };
+		EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingMenuCell.m; sourceTree = "<group>"; };
+		EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingMenuCell.xib; sourceTree = "<group>"; };
 		EA1A61F5170A6478000B4EAE /* GGDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGDataModel.h; sourceTree = "<group>"; };
 		EA1A61F6170A6478000B4EAE /* GGDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGDataModel.m; sourceTree = "<group>"; };
 		EA1A61F9170A64BF000B4EAE /* GGPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPerson.h; sourceTree = "<group>"; };
@@ -604,6 +609,7 @@
 				EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */,
 				EA24FA2F1713B2FF003AFBA9 /* GGScrollingView.xib */,
 				EA959D71171539B5005B06F6 /* GGCompanySearchCell.xib */,
+				EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -872,6 +878,8 @@
 				EAAE073A1716609A007C4A30 /* GGNaviBackButton.m */,
 				EAEFB4ED1717B1560013634F /* GGSettingHeaderView.h */,
 				EAEFB4EE1717B1560013634F /* GGSettingHeaderView.m */,
+				EA1995EB1717E301006D95E4 /* GGSettingMenuCell.h */,
+				EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1174,6 +1182,7 @@
 				EAEFB4EB1717A8100013634F /* GGSignupVC.xib in Resources */,
 				EAEFB4EC1717A8100013634F /* GGWelcomeVC.xib in Resources */,
 				EAEFB4F71717B6E40013634F /* GGSettingHeaderView.xib in Resources */,
+				EA1995F01717E312006D95E4 /* GGSettingMenuCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1261,6 +1270,7 @@
 				EA0A15ED1716B6B5004D0C73 /* GGApi+Tracker.m in Sources */,
 				EAEFB4EF1717B1570013634F /* GGSettingHeaderView.m in Sources */,
 				EAEFB4FA1717BC620013634F /* GGMenuData.m in Sources */,
+				EA1995ED1717E301006D95E4 /* GGSettingMenuCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

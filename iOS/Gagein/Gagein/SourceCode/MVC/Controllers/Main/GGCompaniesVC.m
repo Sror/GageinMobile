@@ -20,6 +20,7 @@
 #import "GGScrollingView.h"
 #import "GGFollowCompanyVC.h"
 #import "GGSettingHeaderView.h"
+#import "GGSettingMenuCell.h"
 
 //#define USE_CUSTOM_NAVI_BAR       // 是否使用自定义导航条
 
@@ -91,10 +92,12 @@
     
     //
     _slideSettingView = [[GGSlideSettingView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:_slideSettingView];
+    _slideSettingView.viewTable.backgroundColor = GGSharedColor.clear;
+    _slideSettingView.viewTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     _slideSettingView.viewTable.dataSource = self;
     _slideSettingView.viewTable.delegate = self;
-
+    _slideSettingView.viewTable.rowHeight = [GGSettingMenuCell HEIGHT];
+    [self.view addSubview:_slideSettingView];
     
     // ------- add scrolling view
     _scrollingView = [GGScrollingView viewFromNibWithOwner:self];
@@ -350,17 +353,18 @@
     }
     else if (tableView == _slideSettingView.viewTable)
     {
-        static NSString *menuCellId = @"menuCellId";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:menuCellId];
+        static NSString *menuCellId = @"GGSettingMenuCell";
+        GGSettingMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:menuCellId];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:menuCellId];
+            cell = [GGSettingMenuCell viewFromNibWithOwner:self];
         }
         
         GGDataPage *page = _menuDatas[indexPath.section];
         GGMenuData *menuData = page.items[indexPath.row];
-        cell.textLabel.text = menuData.name;
+        cell.lblInterval.text = menuData.timeInterval;
+        cell.lblName.text = menuData.name;
         
-        cell.accessoryType = menuData.checked ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.ivSelected.hidden = !menuData.checked;
         
         return cell;
     }
