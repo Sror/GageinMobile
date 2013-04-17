@@ -71,6 +71,25 @@
     else
     {
         self.lblContent.text = _companyUpdateDetail.textview;
+        if (_companyUpdateDetail.pictures.count)
+        {
+            NSString *urlStr = nil;
+            for (NSString *str in _companyUpdateDetail.pictures)
+            {
+                if ([str.lowercaseString rangeOfString:@".gif"].location == NSNotFound
+                    && [str.lowercaseString rangeOfString:@"css"].location == NSNotFound
+                    && [str.lowercaseString rangeOfString:@"logo"].location == NSNotFound)
+                {
+                    urlStr = str;
+                    break;
+                }
+            }
+        
+            if (urlStr.length)
+            {
+                [self.ivPhoto setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:nil];
+            }
+        }
         self.scrollView.hidden = NO;
     }
 }

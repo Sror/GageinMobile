@@ -34,6 +34,7 @@
     self.saved = [[aData objectForKey:@"saved"] boolValue];
     self.type = [[aData objectForKey:@"news_type"] intValue];
     self.textview = [aData objectForKey:@"textview"];
+    self.pictures = [((NSArray *)[aData objectForKey:@"pictures"]) mutableCopy];
     
     [self.company parseWithData:aData];
 }
