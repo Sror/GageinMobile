@@ -54,6 +54,7 @@
     
     self.window.rootViewController = self.naviController;
     [self.window makeKeyAndVisible];
+    //self.window.clipsToBounds = NO;
     
 //    [[GGApi sharedApi] getCompanyInfoWithID:1399794 includeSp:YES callback:^(id operation, id aResultObject, NSError *anError) {
 //        DLog(@"%@", aResultObject);
@@ -61,7 +62,8 @@
     
     [self enterLoginIfNeeded];
     
-    [self _alertEnv];
+    //[self _alertEnv];
+    [self performSelector:@selector(_alertEnv) withObject:nil afterDelay:0.0];
     
     return YES;
 }

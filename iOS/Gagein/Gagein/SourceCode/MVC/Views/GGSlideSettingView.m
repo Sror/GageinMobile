@@ -7,9 +7,10 @@
 //
 
 #import "GGSlideSettingView.h"
+#import "GGAppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define FORBIDDEN_AREA_WIDTH    80
+#define SELF_WIDTH    240
 
 @implementation GGSlideSettingView
 
@@ -17,45 +18,35 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = GGSharedColor.clear;
+        self.backgroundColor = GGSharedColor.darkGray;
         
-        UIView *bgView = [[UIView alloc] initWithFrame:self.bounds];
-        bgView.backgroundColor = [UIColor colorWithRed:.5f green:.5f blue:.5f alpha:.5f];
-        [self addSubview:bgView];
-        
-        _viewSlide = [[UIView alloc] initWithFrame:[self _slideHideRect]];
-        _viewSlide.backgroundColor = GGSharedColor.darkGray;
-        [self addSubview:_viewSlide];
-        
-        _viewTable = [[UITableView alloc] initWithFrame:_viewSlide.bounds style:UITableViewStylePlain];
+        self.frame = [self _slideHideRect];
+        _viewTable = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
         _viewTable.showsVerticalScrollIndicator = NO;
-        [_viewSlide addSubview:_viewTable];
-        
-        self.hidden = YES;
+        [self addSubview:_viewTable];
+
+        UISwipeGestureRecognizer *leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideSlide)];
+        leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
+        [self addGestureRecognizer:leftSwipe];
     }
     return self;
 }
 
--(void)setFrame:(CGRect)frame
-{
-    [super setFrame:frame];
-    _viewSlide.frame = [self _slideHideRect];
-}
 
 #pragma mark - rect
 -(CGRect)_slideHideRect
 {
-    return CGRectMake(FORBIDDEN_AREA_WIDTH - self.frame.size.width
-                      , 0
-                      , self.frame.size.width - FORBIDDEN_AREA_WIDTH
+    return CGRectMake(-SELF_WIDTH
+                      , self.frame.origin.y
+                      , SELF_WIDTH
                       , self.frame.size.height);
 }
 
 -(CGRect)_slideShowRect
 {
     return CGRectMake(0
-                      , 0
-                      , self.frame.size.width - FORBIDDEN_AREA_WIDTH
+                      , self.frame.origin.y
+                      , SELF_WIDTH
                       , self.frame.size.height);
 }
 
@@ -65,11 +56,11 @@
     if (!_isShowing)
     {
         _isShowing = YES;
-        self.hidden = NO;
         
         [UIView animateWithDuration:.3f animations:^{
-
-            _viewSlide.frame = [self _slideShowRect];
+            
+            self.frame = [GGUtils setX:0 rect:self.frame];
+            GGSharedDelegate.naviController.view.frame = [GGUtils setX:SELF_WIDTH rect:GGSharedDelegate.naviController.view.frame];
             
         } completion:^(BOOL finished) {
             
@@ -85,10 +76,10 @@
         
         [UIView animateWithDuration:.3f animations:^{
             
-            _viewSlide.frame = [self _slideHideRect];
+            self.frame = [GGUtils setX:-SELF_WIDTH rect:self.frame];
+            GGSharedDelegate.naviController.view.frame = [GGUtils setX:0 rect:GGSharedDelegate.naviController.view.frame];
             
         } completion:^(BOOL finished) {
-            self.hidden = YES;
         }];
     }
 }

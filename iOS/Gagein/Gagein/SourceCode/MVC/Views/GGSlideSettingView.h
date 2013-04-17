@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface GGSlideSettingView : UIView
-@property (nonatomic, strong) UIView        *viewSlide;
+//@property (nonatomic, strong) UIView        *viewSlide;
 @property (nonatomic, assign) BOOL          isShowing;
 @property (nonatomic, strong) UITableView   *viewTable;
 -(void)showSlide;

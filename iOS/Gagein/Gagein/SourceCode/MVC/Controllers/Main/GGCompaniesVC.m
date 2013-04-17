@@ -21,6 +21,7 @@
 #import "GGFollowCompanyVC.h"
 #import "GGSettingHeaderView.h"
 #import "GGSettingMenuCell.h"
+#import "GGAppDelegate.h"
 
 //#define USE_CUSTOM_NAVI_BAR       // 是否使用自定义导航条
 
@@ -91,13 +92,14 @@
 #endif
     
     //
-    _slideSettingView = [[GGSlideSettingView alloc] initWithFrame:self.view.bounds];
+    _slideSettingView = [[GGSlideSettingView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
     _slideSettingView.viewTable.backgroundColor = GGSharedColor.clear;
     _slideSettingView.viewTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     _slideSettingView.viewTable.dataSource = self;
     _slideSettingView.viewTable.delegate = self;
     _slideSettingView.viewTable.rowHeight = [GGSettingMenuCell HEIGHT];
-    [self.view addSubview:_slideSettingView];
+    UIView *theWindow = GGSharedDelegate.window;
+    [theWindow addSubview:_slideSettingView];
     
     // ------- add scrolling view
     _scrollingView = [GGScrollingView viewFromNibWithOwner:self];
