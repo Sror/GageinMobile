@@ -13,7 +13,7 @@ DEF_SINGLETON(GGAPITest)
 
 -(void)run
 {
-    [self _testGetHappeningsWithFunctionalAreaID];
+    [self _testGetHappeningsWithCompanyID];
 }
 
 -(void)_testGetHappeningsWithFunctionalAreaID

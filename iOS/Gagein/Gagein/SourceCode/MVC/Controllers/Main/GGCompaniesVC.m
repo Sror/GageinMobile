@@ -12,6 +12,7 @@
 #import "GGDataPage.h"
 #import "GGCompany.h"
 #import "GGCompanyUpdate.h"
+#import "GGCompanyHappening.h"
 #import "GGMenuData.h"
 
 #import "GGSlideSettingView.h"
@@ -22,6 +23,7 @@
 #import "GGSettingHeaderView.h"
 #import "GGSettingMenuCell.h"
 #import "GGAppDelegate.h"
+#import "GGCompanyHappeningCell.h"
 
 //#define USE_CUSTOM_NAVI_BAR       // 是否使用自定义导航条
 
@@ -52,6 +54,7 @@
         self.tabBarItem.image = [UIImage imageNamed:@"first"];
         _relevance = kGGCompanyUpdateRelevanceNormal;
         _updates = [NSMutableArray array];
+        _happenings = [NSMutableArray array];
         _menuType = kGGMenuTypeAgent;   // exploring...
         _menuID = GG_ALL_RESULT_ID;
     }
@@ -114,6 +117,7 @@
     [_scrollingView addPage:self.updatesTV];
     
     self.happeningsTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
+    self.happeningsTV.rowHeight = [GGCompanyHappeningCell HEIGHT];
     self.happeningsTV.dataSource = self;
     self.happeningsTV.delegate = self;
     [_scrollingView addPage:self.happeningsTV];
@@ -133,7 +137,16 @@
         [weakSelf _getNextPage];
     }];
     
+    [self.happeningsTV addPullToRefreshWithActionHandler:^{
+        [weakSelf _getFirstHappeningPage];
+    }];
+    
+    [self.happeningsTV addInfiniteScrollingWithActionHandler:^{
+        [weakSelf _getNextHappeningPage];
+    }];
+    
     [self.updatesTV triggerPullToRefresh];
+    [self. happeningsTV triggerPullToRefresh];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -159,10 +172,14 @@
     {
         [_updates removeAllObjects];
         [self.updatesTV reloadData];
+        
+        [_happenings removeAllObjects];
+        [self.happeningsTV reloadData];
     }
     else if ([notification.name isEqualToString:GG_NOTIFY_LOG_IN])
     {
         [self.updatesTV triggerPullToRefresh];
+        [self.happeningsTV triggerPullToRefresh];
     }
 }
 
@@ -197,6 +214,8 @@
 
 -(IBAction)_followingTapped:(id)sender
 {
+    self.title = @"FOLLOWING";
+    
     [self _followingSectionView].ivSelected.hidden = NO;
     [self _exploringSectionView].ivSelected.hidden = YES;
     
@@ -213,6 +232,8 @@
 
 -(IBAction)_exploringTapped:(id)sender
 {
+    self.title = @"EXPLORING";
+    
     [self _followingSectionView].ivSelected.hidden = YES;
     [self _exploringSectionView].ivSelected.hidden = NO;
     
@@ -231,6 +252,10 @@
     [self.updates removeAllObjects];
     [self.updatesTV reloadData];
     [self.updatesTV triggerPullToRefresh];
+    
+    [self.happenings removeAllObjects];
+    [self.happeningsTV reloadData];
+    [self.happeningsTV triggerPullToRefresh];
 }
 
 -(void)_unselectAllMenuItem
@@ -310,7 +335,7 @@
     }
     else if (tableView == self.happeningsTV)
     {
-        return 20;
+        return self.happenings.count;
     }
     else if (tableView == _slideSettingView.viewTable)
     {
@@ -352,12 +377,17 @@
     }
     else if (tableView == self.happeningsTV)
     {
-        static NSString *happeningCellId = @"happeningCellId";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:happeningCellId];
+        static NSString *happeningCellId = @"GGCompanyHappeningCell";
+        GGCompanyHappeningCell *cell = [tableView dequeueReusableCellWithIdentifier:happeningCellId];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:happeningCellId];
+            cell = [GGCompanyHappeningCell viewFromNibWithOwner:self];
         }
-        cell.textLabel.text = @"happening";
+        
+        GGCompanyHappening *data = _happenings[indexPath.row];
+        cell.lblName.text = data.sourceText;
+        cell.lblDescription.text = data.headLineText;
+        [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.orgLogoPath] placeholderImage:nil];
+        
         return cell;
     }
     else if (tableView == _slideSettingView.viewTable)
@@ -436,6 +466,7 @@
             }
         }
         
+        self.title = theData.name;
         [self _exploringSectionView].ivSelected.hidden = YES;
         [self _followingSectionView].ivSelected.hidden = YES;
         
@@ -444,9 +475,13 @@
         //get update data by menuID
         _menuType = theData.type;
         _menuID = theData.ID;
-        [self.updates removeAllObjects];
-        [self.updatesTV reloadData];
-        [self.updatesTV triggerPullToRefresh];
+        
+//        [self.updates removeAllObjects];
+//        [self.updatesTV reloadData];
+//        [self.updatesTV triggerPullToRefresh];
+//        [self.happenings removeAllObjects];
+//        [self.happeningsTV reloadData];
+//        [self.happeningsTV triggerPullToRefresh];
         
         [self _refreshWithMenuId:theData.ID type:theData.type];
     }
@@ -515,11 +550,11 @@
 -(void)_getPrevPage
 {
     long long newsID = 0, pageTime = 0;
-    GGCompanyUpdate *lastUpdate = _updates.count > 0 ? [_updates objectAtIndex:0] : nil;
-    if (lastUpdate)
+    GGCompanyUpdate *firstUpdate = _updates.count > 0 ? [_updates objectAtIndex:0] : nil;
+    if (firstUpdate)
     {
-        newsID = lastUpdate.ID;
-        pageTime = lastUpdate.date;
+        newsID = firstUpdate.ID;
+        pageTime = firstUpdate.date;
     }
     
     [self _getDataWithNewsID:newsID pageFlag:kGGPageFlagMoveUp pageTime:pageTime relevance:_relevance];
@@ -584,12 +619,112 @@
     }
 }
 
+-(void)_getFirstHappeningPage
+{
+    [self _getHappeningsDataWithPageFlag:kGGPageFlagFirstPage pageTime:0];
+}
+
+-(void)_getNextHappeningPage
+{
+    long long pageTime = 0;
+    GGCompanyHappening *lastHappening = [_happenings lastObject];
+    if (lastHappening)
+    {
+        pageTime = lastHappening.timestamp;
+    }
+    
+    [self _getHappeningsDataWithPageFlag:kGGPageFlagMoveDown pageTime:pageTime];
+}
+
+-(void)_getPrevHappeningPage
+{
+    long long pageTime = 0;
+    GGCompanyHappening *firstHappening = _happenings.count > 0 ? [_happenings objectAtIndex:0] : nil;
+    if (firstHappening)
+    {
+        pageTime = firstHappening.timestamp;
+    }
+    
+    [self _getHappeningsDataWithPageFlag:kGGPageFlagMoveUp pageTime:pageTime];
+}
+
+-(void)_getHappeningsDataWithPageFlag:(int)aPageFlag pageTime:(long long)aPageTime
+{
+    GGApiBlock callback = ^(id operation, id aResultObject, NSError* anError) {
+        //DLog(@"%@", aResultObject);
+        
+        //[self hideLoadingHUD];
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        GGDataPage *page = [parser parseGetCompanyHappenings];
+        //DLog(@"%@", page);
+        
+        if (page.items.count)
+        {
+            switch (aPageFlag)
+            {
+                case kGGPageFlagFirstPage:
+                {
+                    [_happenings removeAllObjects];
+                    [_happenings addObjectsFromArray:page.items];
+                }
+                    break;
+                    
+                case kGGPageFlagMoveDown:
+                {
+                    [_happenings addObjectsFromArray:page.items];
+                    
+                    
+                }
+                    break;
+                    
+                case kGGPageFlagMoveUp:
+                {
+                    NSMutableArray *newUpdates = [NSMutableArray arrayWithArray:page.items];
+                    [newUpdates addObjectsFromArray:_happenings];
+                    self.happenings = newUpdates;
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+        
+        [self.happeningsTV reloadData];
+        
+        // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
+        [self performSelector:@selector(_delayedStopHappeningAnimating) withObject:nil afterDelay:.5f];
+    };
+    
+    //[self showLoadingHUD];
+    if (_menuType == kGGMenuTypeCompany)
+    {
+        [GGSharedAPI getHappeningsWithCompanyID:_menuID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+    }
+    else if (_menuType == kGGMenuTypeAgent)
+    {
+#warning no happenings for agent!
+        [self performSelector:@selector(_delayedStopHappeningAnimating) withObject:nil afterDelay:.5f];
+    }
+}
+
 -(void)_delayedStopAnimating
 {
     __weak GGCompaniesVC *weakSelf = self;
     [weakSelf.updatesTV.pullToRefreshView stopAnimating];
     [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
 }
+
+-(void)_delayedStopHappeningAnimating
+{
+    __weak GGCompaniesVC *weakSelf = self;
+    [weakSelf.happeningsTV.pullToRefreshView stopAnimating];
+    [weakSelf.happeningsTV.infiniteScrollingView stopAnimating];
+}
+
+
+
+
 
 //- (void)insertRowAtTop {
 //    __weak GGCompaniesVC *weakSelf = self;

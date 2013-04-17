@@ -58,6 +58,9 @@
 		EA24FA441713D939003AFBA9 /* GGSelectFuncAreasVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA421713D939003AFBA9 /* GGSelectFuncAreasVC.m */; };
 		EA24FA4E17140293003AFBA9 /* GGUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA4D17140293003AFBA9 /* GGUtils.m */; };
 		EA24FA5417140CFF003AFBA9 /* GGFunctionalArea.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA5317140CFF003AFBA9 /* GGFunctionalArea.m */; };
+		EA4F3A18171E7B5100530185 /* GGCompanyHappeningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4F3A17171E7B5100530185 /* GGCompanyHappeningCell.xib */; };
+		EA4F3A1C171E7C4C00530185 /* GGCompanyHappeningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4F3A1B171E7C4C00530185 /* GGCompanyHappeningCell.m */; };
+		EA4F3A1F171E7FC800530185 /* GGCompanyHappening.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4F3A1E171E7FC800530185 /* GGCompanyHappening.m */; };
 		EA525E881715A5E700052B17 /* gageinLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA525E871715A5E700052B17 /* gageinLogo@2x.png */; };
 		EA525E8B1715A68E00052B17 /* welcome1stGraph@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA525E891715A68E00052B17 /* welcome1stGraph@2x.png */; };
 		EA525E8C1715A68E00052B17 /* welcome1stText@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA525E8A1715A68E00052B17 /* welcome1stText@2x.png */; };
@@ -266,6 +269,11 @@
 		EA24FA4D17140293003AFBA9 /* GGUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUtils.m; sourceTree = "<group>"; };
 		EA24FA5217140CFF003AFBA9 /* GGFunctionalArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFunctionalArea.h; sourceTree = "<group>"; };
 		EA24FA5317140CFF003AFBA9 /* GGFunctionalArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFunctionalArea.m; sourceTree = "<group>"; };
+		EA4F3A17171E7B5100530185 /* GGCompanyHappeningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyHappeningCell.xib; sourceTree = "<group>"; };
+		EA4F3A1A171E7C4C00530185 /* GGCompanyHappeningCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyHappeningCell.h; sourceTree = "<group>"; };
+		EA4F3A1B171E7C4C00530185 /* GGCompanyHappeningCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyHappeningCell.m; sourceTree = "<group>"; };
+		EA4F3A1D171E7FC800530185 /* GGCompanyHappening.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyHappening.h; sourceTree = "<group>"; };
+		EA4F3A1E171E7FC800530185 /* GGCompanyHappening.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyHappening.m; sourceTree = "<group>"; };
 		EA525E871715A5E700052B17 /* gageinLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gageinLogo@2x.png"; sourceTree = "<group>"; };
 		EA525E891715A68E00052B17 /* welcome1stGraph@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome1stGraph@2x.png"; sourceTree = "<group>"; };
 		EA525E8A1715A68E00052B17 /* welcome1stText@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome1stText@2x.png"; sourceTree = "<group>"; };
@@ -610,6 +618,7 @@
 				EA24FA2F1713B2FF003AFBA9 /* GGScrollingView.xib */,
 				EA959D71171539B5005B06F6 /* GGCompanySearchCell.xib */,
 				EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */,
+				EA4F3A17171E7B5100530185 /* GGCompanyHappeningCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -855,6 +864,8 @@
 				EAD481FD17111BB800556288 /* GGDataPage.m */,
 				EAEFB4F81717BC620013634F /* GGMenuData.h */,
 				EAEFB4F91717BC620013634F /* GGMenuData.m */,
+				EA4F3A1D171E7FC800530185 /* GGCompanyHappening.h */,
+				EA4F3A1E171E7FC800530185 /* GGCompanyHappening.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -880,6 +891,8 @@
 				EAEFB4EE1717B1560013634F /* GGSettingHeaderView.m */,
 				EA1995EB1717E301006D95E4 /* GGSettingMenuCell.h */,
 				EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */,
+				EA4F3A1A171E7C4C00530185 /* GGCompanyHappeningCell.h */,
+				EA4F3A1B171E7C4C00530185 /* GGCompanyHappeningCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1183,6 +1196,7 @@
 				EAEFB4EC1717A8100013634F /* GGWelcomeVC.xib in Resources */,
 				EAEFB4F71717B6E40013634F /* GGSettingHeaderView.xib in Resources */,
 				EA1995F01717E312006D95E4 /* GGSettingMenuCell.xib in Resources */,
+				EA4F3A18171E7B5100530185 /* GGCompanyHappeningCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1271,6 +1285,8 @@
 				EAEFB4EF1717B1570013634F /* GGSettingHeaderView.m in Sources */,
 				EAEFB4FA1717BC620013634F /* GGMenuData.m in Sources */,
 				EA1995ED1717E301006D95E4 /* GGSettingMenuCell.m in Sources */,
+				EA4F3A1C171E7C4C00530185 /* GGCompanyHappeningCell.m in Sources */,
+				EA4F3A1F171E7FC800530185 /* GGCompanyHappening.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

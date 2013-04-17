@@ -12,4 +12,5 @@
 @interface GGCompaniesVC : GGBaseViewController
 <UITableViewDelegate, UITableViewDataSource, GGScrollingViewDelegate>
 @property (strong)   NSMutableArray              *updates;
+@property (strong)   NSMutableArray              *happenings;
 @end

@@ -23,12 +23,6 @@ typedef enum
 @interface GGApi (Company)
 
 #pragma mark - company APIs
-// get company updates
--(void)getExploringUpdatesWithNewsID:(long long)aNewsID
-                          pageFlag:(EGGPageFlag)aPageFlag
-                          pageTime:(long long)aPageTime
-                         relevance:(EGGCompanyUpdateRelevance)aRelevance
-                          callback:(GGApiBlock)aCallback;
 
 // get company updates by company id
 -(void)getCompanyUpdatesWithCompanyID:(long long)aCompanyID
@@ -70,5 +64,6 @@ typedef enum
 
 //3.Get a update detail
 -(void)getCompanyUpdateDetailWithNewsID:(long long)aNewsID callback:(GGApiBlock)aCallback;
+
 
 @end

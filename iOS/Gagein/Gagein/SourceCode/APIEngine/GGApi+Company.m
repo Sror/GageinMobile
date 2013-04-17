@@ -11,14 +11,14 @@
 @implementation GGApi (Company)
 
 #pragma mark - company APIs
--(void)getExploringUpdatesWithNewsID:(long long)aNewsID
-                          pageFlag:(EGGPageFlag)aPageFlag
-                          pageTime:(long long)aPageTime
-                         relevance:(EGGCompanyUpdateRelevance)aRelevance
-                          callback:(GGApiBlock)aCallback
-{
-    [self getCompanyUpdatesWithCompanyID:GG_ALL_RESULT_ID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:aCallback];
-}
+//-(void)getExploringUpdatesWithNewsID:(long long)aNewsID
+//                          pageFlag:(EGGPageFlag)aPageFlag
+//                          pageTime:(long long)aPageTime
+//                         relevance:(EGGCompanyUpdateRelevance)aRelevance
+//                          callback:(GGApiBlock)aCallback
+//{
+//    [self getCompanyUpdatesWithCompanyID:GG_ALL_RESULT_ID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:aCallback];
+//}
 
 // get company updates by company id
 -(void)getCompanyUpdatesWithCompanyID:(long long)aCompanyID
@@ -72,6 +72,81 @@
     
     [self _execGetWithPath:path params:parameters callback:aCallback];
 }
+
+// get company event by company id
+//-(void)getEventsWithCompanyID:(long long)aCompanyID
+//                           pageFlag:(EGGPageFlag)aPageFlag
+//                     pageTime:(long long)aPageTime
+//                      eventID:(long long)anEventID
+//                           callback:(GGApiBlock)aCallback
+//{
+//    if (GGSharedRuntimeData.accessToken == nil) {
+//        return;
+//    }
+//    
+//    //GET
+//    NSString *path = @"member/me/event/tracker";
+//    
+//    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+//    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+//    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+//    [parameters setObject:[NSNumber numberWithLongLong:aCompanyID] forKey:@"orgid"];
+//    [parameters setObject:[NSNumber numberWithInt:aPageFlag] forKey:@"pageflag"];
+//    [parameters setObject:[NSNumber numberWithLongLong:aPageTime] forKey:@"pagetime"];
+//    [parameters setObject:[NSNumber numberWithLongLong:anEventID] forKey:@"eventid"];
+//    
+//    [self _execGetWithPath:path params:parameters callback:aCallback];
+//}
+
+//// get people event by person id
+//-(void)getEventsWithPersonID:(long long)aPersonID
+//                     pageFlag:(EGGPageFlag)aPageFlag
+//                     pageTime:(long long)aPageTime
+//                      eventID:(long long)anEventID
+//                     callback:(GGApiBlock)aCallback
+//{
+//    if (GGSharedRuntimeData.accessToken == nil) {
+//        return;
+//    }
+//    
+//    //GET
+//    NSString *path = @"member/me/event/tracker";
+//    
+//    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+//    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+//    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+//    [parameters setObject:[NSNumber numberWithLongLong:aPersonID] forKey:@"contactid"];
+//    [parameters setObject:[NSNumber numberWithInt:aPageFlag] forKey:@"pageflag"];
+//    [parameters setObject:[NSNumber numberWithLongLong:aPageTime] forKey:@"pagetime"];
+//    [parameters setObject:[NSNumber numberWithLongLong:anEventID] forKey:@"eventid"];
+//    
+//    [self _execGetWithPath:path params:parameters callback:aCallback];
+//}
+
+//// get area event by area id
+//-(void)getEventsWithAreaID:(long long)anAreaID
+//                    pageFlag:(EGGPageFlag)aPageFlag
+//                    pageTime:(long long)aPageTime
+//                     eventID:(long long)anEventID
+//                    callback:(GGApiBlock)aCallback
+//{
+//    if (GGSharedRuntimeData.accessToken == nil) {
+//        return;
+//    }
+//    
+//    //GET
+//    NSString *path = @"member/me/event/tracker";
+//    
+//    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+//    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+//    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+//    [parameters setObject:[NSNumber numberWithLongLong:anAreaID] forKey:@"functional_areaid"];
+//    [parameters setObject:[NSNumber numberWithInt:aPageFlag] forKey:@"pageflag"];
+//    [parameters setObject:[NSNumber numberWithLongLong:aPageTime] forKey:@"pagetime"];
+//    [parameters setObject:[NSNumber numberWithLongLong:anEventID] forKey:@"eventid"];
+//    
+//    [self _execGetWithPath:path params:parameters callback:aCallback];
+//}
 
 //Get Company OverviewBack to top
 -(void)getCompanyOverviewWithID:(long long)anOrgID
