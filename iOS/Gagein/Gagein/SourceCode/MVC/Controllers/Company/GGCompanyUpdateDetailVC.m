@@ -35,6 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = GGSharedColor.veryLightGray;
     self.scrollView.hidden = YES;
     
     [self _callApiGetCompanyUpdateDetail];
@@ -60,7 +61,7 @@
 {
     self.lblTitle.text = _companyUpdateDetail.headline;
     
-    if (_companyUpdateDetail.content.length <= 0)
+    if (_companyUpdateDetail.textview.length <= 0)
     {
         NSURL *url = [NSURL URLWithString:_companyUpdateDetail.url];
         [_webView loadRequest:[NSURLRequest requestWithURL:url]];
@@ -69,7 +70,7 @@
     }
     else
     {
-        self.lblContent.text = _companyUpdateDetail.content;
+        self.lblContent.text = _companyUpdateDetail.textview;
         self.scrollView.hidden = NO;
     }
 }
