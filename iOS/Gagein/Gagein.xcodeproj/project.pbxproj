@@ -98,6 +98,10 @@
 		EA7180D917150AAF00347EA4 /* GGFollowCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */; };
 		EA7180E4171511B700347EA4 /* GGSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180E3171511B700347EA4 /* GGSearchBar.m */; };
 		EA844A22171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */; };
+		EA844A31171FBE2200658015 /* DCRoundSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2A171FBE2200658015 /* DCRoundSwitch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA844A32171FBE2200658015 /* DCRoundSwitchKnobLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2C171FBE2200658015 /* DCRoundSwitchKnobLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA844A33171FBE2200658015 /* DCRoundSwitchOutlineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2E171FBE2200658015 /* DCRoundSwitchOutlineLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA844A34171FBE2200658015 /* DCRoundSwitchToggleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A30171FBE2200658015 /* DCRoundSwitchToggleLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA959D72171539B5005B06F6 /* GGCompanySearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA959D71171539B5005B06F6 /* GGCompanySearchCell.xib */; };
 		EA959D75171539DD005B06F6 /* GGCompanySearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA959D74171539DD005B06F6 /* GGCompanySearchCell.m */; };
 		EA959D7717157102005B06F6 /* topOrangeLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA959D7617157102005B06F6 /* topOrangeLine@2x.png */; };
@@ -320,6 +324,14 @@
 		EA7180E2171511B700347EA4 /* GGSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSearchBar.h; sourceTree = "<group>"; };
 		EA7180E3171511B700347EA4 /* GGSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSearchBar.m; sourceTree = "<group>"; };
 		EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSavedUpdatesVC_iPad.xib; sourceTree = "<group>"; };
+		EA844A29171FBE2200658015 /* DCRoundSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitch.h; sourceTree = "<group>"; };
+		EA844A2A171FBE2200658015 /* DCRoundSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitch.m; sourceTree = "<group>"; };
+		EA844A2B171FBE2200658015 /* DCRoundSwitchKnobLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitchKnobLayer.h; sourceTree = "<group>"; };
+		EA844A2C171FBE2200658015 /* DCRoundSwitchKnobLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitchKnobLayer.m; sourceTree = "<group>"; };
+		EA844A2D171FBE2200658015 /* DCRoundSwitchOutlineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitchOutlineLayer.h; sourceTree = "<group>"; };
+		EA844A2E171FBE2200658015 /* DCRoundSwitchOutlineLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitchOutlineLayer.m; sourceTree = "<group>"; };
+		EA844A2F171FBE2200658015 /* DCRoundSwitchToggleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitchToggleLayer.h; sourceTree = "<group>"; };
+		EA844A30171FBE2200658015 /* DCRoundSwitchToggleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitchToggleLayer.m; sourceTree = "<group>"; };
 		EA959D71171539B5005B06F6 /* GGCompanySearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanySearchCell.xib; sourceTree = "<group>"; };
 		EA959D73171539DD005B06F6 /* GGCompanySearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanySearchCell.h; sourceTree = "<group>"; };
 		EA959D74171539DD005B06F6 /* GGCompanySearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanySearchCell.m; sourceTree = "<group>"; };
@@ -565,6 +577,21 @@
 				EA7180D31715008900347EA4 /* FXPageControl.m */,
 			);
 			path = FXPageControl;
+			sourceTree = "<group>";
+		};
+		EA844A28171FBE2200658015 /* DCRoundSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				EA844A29171FBE2200658015 /* DCRoundSwitch.h */,
+				EA844A2A171FBE2200658015 /* DCRoundSwitch.m */,
+				EA844A2B171FBE2200658015 /* DCRoundSwitchKnobLayer.h */,
+				EA844A2C171FBE2200658015 /* DCRoundSwitchKnobLayer.m */,
+				EA844A2D171FBE2200658015 /* DCRoundSwitchOutlineLayer.h */,
+				EA844A2E171FBE2200658015 /* DCRoundSwitchOutlineLayer.m */,
+				EA844A2F171FBE2200658015 /* DCRoundSwitchToggleLayer.h */,
+				EA844A30171FBE2200658015 /* DCRoundSwitchToggleLayer.m */,
+			);
+			path = DCRoundSwitch;
 			sourceTree = "<group>";
 		};
 		EAAD14D1170AA8D600EFB23A /* MBProgressHUD */ = {
@@ -915,6 +942,7 @@
 		EACAE0BB17094A3100E7088F /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				EA844A28171FBE2200658015 /* DCRoundSwitch */,
 				EA7180D11715008900347EA4 /* FXPageControl */,
 				EA0907E1171258D700BCD4C4 /* SDWebImage */,
 				EA0CA584170BF4A700DBCD83 /* SVPullToRefresh */,
@@ -1309,6 +1337,10 @@
 				EA4F3A1F171E7FC800530185 /* GGCompanyHappening.m in Sources */,
 				EA381C61171FA700004535B5 /* GGImagePool.m in Sources */,
 				EA381C65171FBBEB004535B5 /* GGSavedUpdatesVC.m in Sources */,
+				EA844A31171FBE2200658015 /* DCRoundSwitch.m in Sources */,
+				EA844A32171FBE2200658015 /* DCRoundSwitchKnobLayer.m in Sources */,
+				EA844A33171FBE2200658015 /* DCRoundSwitchOutlineLayer.m in Sources */,
+				EA844A34171FBE2200658015 /* DCRoundSwitchToggleLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

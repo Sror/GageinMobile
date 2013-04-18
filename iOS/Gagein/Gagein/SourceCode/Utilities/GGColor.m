@@ -21,6 +21,11 @@ DEF_SINGLETON(GGColor)
     return UIColorFromRGB(0xAA1E1E);
 }
 
+-(UIColor *)orange
+{
+    return [UIColor orangeColor];
+}
+
 -(UIColor *)white
 {
     return UIColorFromRGB(0xFFFFFF);
