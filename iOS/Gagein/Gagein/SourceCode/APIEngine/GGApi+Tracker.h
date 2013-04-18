@@ -51,4 +51,10 @@
 ///svc/member/me/update/unsave
 -(void)unsaveUpdateWithID:(long long)anUpdateID callback:(GGApiBlock)aCallback;
 
+//MU03:Get Saved UpdatesBack to top
+//POST
+//
+///svc/member/me/update/get_saved
+-(void)getSaveUpdatesWithPageIndex:(int)aPageIndex callback:(GGApiBlock)aCallback;
+
 @end

@@ -135,6 +135,11 @@
     return [self _parsePageforClass:[GGCompanyUpdate class]];
 }
 
+-(GGDataPage *)parseGetSavedUpdates
+{
+    return [self _parsePageforClass:[GGCompanyUpdate class]];
+}
+
 -(GGDataPage *)parseGetCompanyHappenings
 {
     return [self _parsePageforClass:[GGCompanyHappening class]];

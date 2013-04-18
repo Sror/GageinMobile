@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GGSavedUpdatesVC : GGBaseViewController
-
+<UITableViewDelegate, UITableViewDataSource>
 @end

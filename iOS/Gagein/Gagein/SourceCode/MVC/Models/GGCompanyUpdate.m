@@ -20,6 +20,7 @@
     return self;
 }
 
+
 -(void)parseWithData:(NSDictionary *)aData
 {
     [super parseWithData:aData];

@@ -13,7 +13,14 @@ DEF_SINGLETON(GGAPITest)
 
 -(void)run
 {
-    [self _testGetCompanyEventDetailWithID];
+    [self _testGetSaveUpdatesWithPageIndex];
+}
+
+-(void)_testGetSaveUpdatesWithPageIndex
+{
+    [GGSharedAPI getSaveUpdatesWithPageIndex:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        //
+    }];
 }
 
 -(void)_testGetCompanyEventDetailWithID
