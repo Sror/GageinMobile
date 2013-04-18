@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
 @interface GGCompanyUpdateDetailVC : GGBaseViewController
-<UIWebViewDelegate>
+<UIWebViewDelegate, MFMailComposeViewControllerDelegate>
 //@property (assign) long long    newsID;
 @property (copy)    NSString    *naviTitle;
 @property (strong)  NSArray     *updates;
