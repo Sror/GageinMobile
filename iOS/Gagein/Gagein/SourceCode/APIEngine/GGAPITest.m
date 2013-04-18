@@ -13,12 +13,12 @@ DEF_SINGLETON(GGAPITest)
 
 -(void)run
 {
-    [self _testGetSaveUpdatesWithPageIndex];
+    [self _testGetCompanyOverviewWithID];
 }
 
--(void)testSearchForCompanyUpdatesWithKeyword
+-(void)_testSearchForCompanyUpdatesWithKeyword
 {
-    [GGSharedAPI searchForCompanyUpdatesWithKeyword:@"apple" pageIndex:1 callback:^(id operation, id aResultObject, NSError *anError) {
+    [GGSharedAPI searchForCompanyUpdatesWithKeyword:@"a" pageIndex:1 callback:^(id operation, id aResultObject, NSError *anError) {
         //
     }];
 }

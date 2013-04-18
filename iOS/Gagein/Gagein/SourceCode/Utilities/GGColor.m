@@ -61,6 +61,11 @@ DEF_SINGLETON(GGColor)
     return UIColorFromRGB(0x333333);
 }
 
+-(UIColor *)ironGray
+{
+    return UIColorFromRGB(0x393939);
+}
+
 -(UIColor *)bgGray
 {
     return UIColorFromRGB(0x343434);

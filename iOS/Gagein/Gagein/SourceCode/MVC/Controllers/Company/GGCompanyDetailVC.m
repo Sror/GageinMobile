@@ -16,12 +16,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblWebsite;
 @property (weak, nonatomic) IBOutlet UIButton *btnFollow;
+@property (weak, nonatomic) IBOutlet UIView *viewBaseInfo;
 
 @end
 
 @implementation GGCompanyDetailVC
 {
-    GGCompany *_companyOverview;
+    GGCompany   *_companyOverview;
+    UITableView *_tvDetail;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -36,7 +38,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Company";
+    self.navigationItem.title = @"";
+    
+    _tvDetail = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    _tvDetail.delegate = self;
+    _tvDetail.dataSource = self;
+    _tvDetail.tableHeaderView = self.viewBaseInfo;
+    self.viewBaseInfo.backgroundColor = GGSharedColor.ironGray;
+    _tvDetail.backgroundColor = GGSharedColor.ironGray;
+    [self.view addSubview:_tvDetail];
     
     [self _getOverView];
 }
@@ -47,7 +57,25 @@
     [self setLblWebsite:nil];
     [self setBtnFollow:nil];
     [self setScrollView:nil];
+    [self setViewBaseInfo:nil];
     [super viewDidUnload];
+}
+
+#pragma mark - table view datasource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 100;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"test"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"test"];
+    }
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];
+    return cell;
 }
 
 #pragma mark - API calls
@@ -73,7 +101,7 @@
 //        [self.view addSubview:iv];
 //    }];
     [self.ivLogo setImageWithURL:url placeholderImage:nil];
-    self.lblName.text = _companyOverview.name;
+    self.navigationItem.title = _companyOverview.name;
     self.lblWebsite.text = _companyOverview.website;
     [self _updateUiBtnFollow];
 }

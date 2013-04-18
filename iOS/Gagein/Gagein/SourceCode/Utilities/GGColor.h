@@ -11,6 +11,7 @@
 @interface GGColor : NSObject
 AS_SINGLETON(GGColor)
 
+-(UIColor *)clear;
 -(UIColor *)darkRed;
 -(UIColor *)orange;
 -(UIColor *)white;
@@ -19,7 +20,7 @@ AS_SINGLETON(GGColor)
 -(UIColor *)lightGray;
 -(UIColor *)veryLightGray;
 -(UIColor *)darkGray;
--(UIColor *)clear;
+-(UIColor *)ironGray;
 -(UIColor *)bgGray;
 -(UIColor *)silver;
 @end
