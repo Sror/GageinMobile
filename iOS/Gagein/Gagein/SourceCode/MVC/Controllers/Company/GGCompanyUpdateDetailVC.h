@@ -10,5 +10,8 @@
 
 @interface GGCompanyUpdateDetailVC : GGBaseViewController
 <UIWebViewDelegate>
-@property (assign) long long newsID;
+//@property (assign) long long    newsID;
+@property (copy)    NSString    *naviTitle;
+@property (strong)  NSArray     *updates;
+@property (assign) NSUInteger   updateIndex;
 @end

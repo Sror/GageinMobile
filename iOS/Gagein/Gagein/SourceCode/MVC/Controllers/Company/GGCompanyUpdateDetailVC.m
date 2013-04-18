@@ -11,9 +11,16 @@
 
 @interface GGCompanyUpdateDetailVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (weak, nonatomic) IBOutlet UIView *viewUpdate;
+@property (weak, nonatomic) IBOutlet UIImageView *ivUpdateBg;
+@property (weak, nonatomic) IBOutlet UILabel *lblSource;
+@property (weak, nonatomic) IBOutlet UILabel *lblDate;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblContent;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIImageView *ivPhoto;
+
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end
@@ -35,17 +42,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = GGSharedColor.veryLightGray;
+    self.title = _naviTitle;
+    self.view.backgroundColor = GGSharedColor.silver;
+    
+    //
+    UIButton *prevBtn = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    CGRect naviRc = self.navigationController.navigationBar.frame;
+    prevBtn.frame = CGRectMake(naviRc.size.width - prevBtn.frame.size.width - 50, (naviRc.size.height - prevBtn.frame.size.height) / 2, prevBtn.frame.size.width, prevBtn.frame.size.height);
+    [prevBtn addTarget:self action:@selector(prevUpdateAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationController.navigationBar addSubview:prevBtn];
+    
+    UIButton *nextBtn = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    nextBtn.frame = CGRectMake(naviRc.size.width - nextBtn.frame.size.width - 10, (naviRc.size.height - nextBtn.frame.size.height) / 2, nextBtn.frame.size.width, nextBtn.frame.size.height);
+    [prevBtn addTarget:self action:@selector(nextUpdateAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationController.navigationBar addSubview:nextBtn];
+    
+    //
     self.scrollView.hidden = YES;
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, CGRectGetMaxY(self.viewUpdate.frame) + 10);
+    
+    self.ivUpdateBg.image = [[UIImage imageNamed:@"shadowedBgWhite.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
     
     [self _callApiGetCompanyUpdateDetail];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (void)viewDidUnload {
     [self setScrollView:nil];
@@ -53,14 +73,28 @@
     [self setIvPhoto:nil];
     [self setLblContent:nil];
     [self setWebView:nil];
+    [self setLblSource:nil];
+    [self setLblDate:nil];
+    [self setViewUpdate:nil];
+    [self setIvUpdateBg:nil];
+    [self setTextView:nil];
     [super viewDidUnload];
+}
+
+#pragma mark - Actions
+-(void)prevUpdateAction:(id)sender
+{
+    
+}
+
+-(void)nextUpdateAction:(id)sender
+{
+    
 }
 
 #pragma mark - UI
 -(void)_updateUIWithUpdateDetail
 {
-    self.lblTitle.text = _companyUpdateDetail.headline;
-    
     if (_companyUpdateDetail.textview.length <= 0)
     {
         NSURL *url = [NSURL URLWithString:_companyUpdateDetail.url];
@@ -70,7 +104,10 @@
     }
     else
     {
-        self.lblContent.text = _companyUpdateDetail.textview;
+        self.lblTitle.text = _companyUpdateDetail.headline;
+        self.textView.text = _companyUpdateDetail.textview;
+        self.lblSource.text = _companyUpdateDetail.fromSource;
+        
         if (_companyUpdateDetail.pictures.count)
         {
             NSString *urlStr = nil;
@@ -94,10 +131,13 @@
     }
 }
 
+
+
 #pragma mark - API calls
 -(void)_callApiGetCompanyUpdateDetail
 {
-    [GGSharedAPI getCompanyUpdateDetailWithNewsID:self.newsID callback:^(id operation, id aResultObject, NSError *anError) {
+    GGCompanyUpdate *updateData = [self.updates objectAtIndex:_updateIndex];
+    [GGSharedAPI getCompanyUpdateDetailWithNewsID:updateData.ID callback:^(id operation, id aResultObject, NSError *anError) {
         
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK) {

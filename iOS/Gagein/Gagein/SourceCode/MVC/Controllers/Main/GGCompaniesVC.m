@@ -445,9 +445,12 @@
     
     if (tableView == self.updatesTV)
     {
-        GGCompanyUpdate *updateData = [self.updates objectAtIndex:indexPath.row];
+        //GGCompanyUpdate *updateData = [self.updates objectAtIndex:indexPath.row];
         GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
-        vc.newsID = updateData.ID;
+        //vc.newsID = updateData.ID;
+        vc.naviTitle = self.title;
+        vc.updates = self.updates;
+        vc.updateIndex = indexPath.row;
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (tableView == self.happeningsTV)
