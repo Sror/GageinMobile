@@ -28,4 +28,5 @@
     #import "UIImageView+WebCache.h"
     #import "GGUtils.h"
     #import "GGAnimation.h"
+    #import "GGImagePool.h"
 #endif

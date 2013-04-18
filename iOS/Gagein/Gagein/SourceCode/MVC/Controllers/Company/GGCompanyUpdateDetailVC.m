@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblContent;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIImageView *ivPhoto;
+@property (weak, nonatomic) IBOutlet UIWebView *wvTextView;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
@@ -28,6 +29,9 @@
 @implementation GGCompanyUpdateDetailVC
 {
     GGCompanyUpdate *_companyUpdateDetail;
+    UIButton *_btnPrevUpdate;
+    UIButton *_btnNextUpdate;
+    CGRect  _originalTextViewFrame;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -46,18 +50,27 @@
     self.view.backgroundColor = GGSharedColor.silver;
     
     //
-    UIButton *prevBtn = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    _btnPrevUpdate = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    //prevBtn.tag = 20001;
     CGRect naviRc = self.navigationController.navigationBar.frame;
-    prevBtn.frame = CGRectMake(naviRc.size.width - prevBtn.frame.size.width - 50, (naviRc.size.height - prevBtn.frame.size.height) / 2, prevBtn.frame.size.width, prevBtn.frame.size.height);
-    [prevBtn addTarget:self action:@selector(prevUpdateAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationController.navigationBar addSubview:prevBtn];
+    _btnPrevUpdate.frame = CGRectMake(naviRc.size.width - _btnPrevUpdate.frame.size.width - 50
+                                      , (naviRc.size.height - _btnPrevUpdate.frame.size.height) / 2
+                                      , _btnPrevUpdate.frame.size.width
+                                      , _btnPrevUpdate.frame.size.height);
+    [_btnPrevUpdate addTarget:self action:@selector(prevUpdateAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *nextBtn = [UIButton buttonWithType:UIButtonTypeInfoLight];
-    nextBtn.frame = CGRectMake(naviRc.size.width - nextBtn.frame.size.width - 10, (naviRc.size.height - nextBtn.frame.size.height) / 2, nextBtn.frame.size.width, nextBtn.frame.size.height);
-    [prevBtn addTarget:self action:@selector(nextUpdateAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationController.navigationBar addSubview:nextBtn];
+    
+    _btnNextUpdate = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    //nextBtn.tag = 20002;
+    _btnNextUpdate.frame = CGRectMake(naviRc.size.width - _btnNextUpdate.frame.size.width - 10
+                                      , (naviRc.size.height - _btnNextUpdate.frame.size.height) / 2
+                                      , _btnNextUpdate.frame.size.width
+                                      , _btnNextUpdate.frame.size.height);
+    [_btnNextUpdate addTarget:self action:@selector(nextUpdateAction:) forControlEvents:UIControlEventTouchUpInside];
+    
     
     //
+    _originalTextViewFrame = self.wvTextView.frame;
     self.scrollView.hidden = YES;
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, CGRectGetMaxY(self.viewUpdate.frame) + 10);
     
@@ -78,18 +91,53 @@
     [self setViewUpdate:nil];
     [self setIvUpdateBg:nil];
     [self setTextView:nil];
+    [self setWvTextView:nil];
     [super viewDidUnload];
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController.navigationBar addSubview:_btnPrevUpdate];
+    [self.navigationController.navigationBar addSubview:_btnNextUpdate];
+    [self _updateNaviBtnState];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [_btnPrevUpdate removeFromSuperview];
+    [_btnNextUpdate removeFromSuperview];
+}
+
 
 #pragma mark - Actions
 -(void)prevUpdateAction:(id)sender
 {
-    
+    if (_updateIndex > 0) {
+        _updateIndex--;
+        [self _callApiGetCompanyUpdateDetail];
+        
+        [self _updateNaviBtnState];
+    }
 }
 
 -(void)nextUpdateAction:(id)sender
 {
-    
+    if (_updateIndex < _updates.count - 1) {
+        _updateIndex++;
+        [self _callApiGetCompanyUpdateDetail];
+        
+        [self _updateNaviBtnState];
+    }
+}
+
+-(void)_updateNaviBtnState
+{
+    _btnPrevUpdate.enabled = (_updateIndex > 0);
+    _btnNextUpdate.enabled = (_updateIndex < _updates.count - 1);
 }
 
 #pragma mark - UI
@@ -104,13 +152,16 @@
     }
     else
     {
+        [_webView loadHTMLString:@"" baseURL:nil];
+        _webView.hidden = YES;
         self.lblTitle.text = _companyUpdateDetail.headline;
-        self.textView.text = _companyUpdateDetail.textview;
-        self.lblSource.text = _companyUpdateDetail.fromSource;
+
+        [self.wvTextView loadHTMLString:_companyUpdateDetail.textview baseURL:nil];
+        self.lblSource.text = ((GGCompanyUpdate *)(_updates[_updateIndex])).fromSource;
         
+        NSString *urlStr = nil;
         if (_companyUpdateDetail.pictures.count)
         {
-            NSString *urlStr = nil;
             for (NSString *str in _companyUpdateDetail.pictures)
             {
                 if ([str.lowercaseString rangeOfString:@".gif"].location == NSNotFound
@@ -124,13 +175,44 @@
         
             if (urlStr.length)
             {
-                [self.ivPhoto setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:nil];
+                UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] ;
+                activityIndicator.hidesWhenStopped = YES;
+                activityIndicator.hidden = NO;
+                [activityIndicator startAnimating];
+                activityIndicator.center = CGPointMake(self.ivPhoto.frame.size.width / 2, self.ivPhoto.frame.size.height / 2);
+                [self.ivPhoto addSubview:activityIndicator];
+                
+                UIImage *placeholderImage = GGSharedImagePool.placeholder;
+                //[self.ivPhoto setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:placeholderImage];
+                [self.ivPhoto setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                    [activityIndicator stopAnimating];
+                    [activityIndicator removeFromSuperview];
+                }];
             }
         }
+        
+        [self _adjustLayoutHasImage:(urlStr.length)];
+        self.ivPhoto.hidden = (urlStr.length <= 0);
         self.scrollView.hidden = NO;
     }
 }
 
+
+-(void)_adjustLayoutHasImage:(BOOL)aHasImage
+{
+    if (!aHasImage)
+    {
+        CGRect longRect = _originalTextViewFrame;
+        float offsetY = _originalTextViewFrame.origin.y - self.ivPhoto.frame.origin.y;
+        longRect.origin.y -= offsetY;
+        longRect.size.height += offsetY;
+        self.wvTextView.frame = longRect;
+    }
+    else
+    {
+        self.wvTextView.frame = _originalTextViewFrame;
+    }
+}
 
 
 #pragma mark - API calls
