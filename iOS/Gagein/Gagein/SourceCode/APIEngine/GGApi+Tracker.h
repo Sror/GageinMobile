@@ -41,4 +41,14 @@
                                 pageTime:(long long)aPageTime
                                 callback:(GGApiBlock)aCallback;
 
+//MU01:Save an UpdateBack to top
+//POST
+///svc/member/me/update/save
+-(void)saveUpdateWithID:(long long)anUpdateID callback:(GGApiBlock)aCallback;
+
+//MU02:Unsave an UpdateBack to top
+//POST
+///svc/member/me/update/unsave
+-(void)unsaveUpdateWithID:(long long)anUpdateID callback:(GGApiBlock)aCallback;
+
 @end

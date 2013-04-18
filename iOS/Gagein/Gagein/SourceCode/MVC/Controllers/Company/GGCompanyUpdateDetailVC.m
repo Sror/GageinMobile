@@ -231,6 +231,41 @@
     }];
 }
 
+-(IBAction)saveAction:(id)sender
+{
+    GGCompanyUpdate *data = _updates[_updateIndex];
+    if (data.saved)
+    {
+        [GGSharedAPI unsaveUpdateWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                data.saved = NO;
+                [GGAlert alert:@"unsaved!"];
+            }
+            else
+            {
+                [GGAlert alert:parser.message];
+            }
+        }];
+    }
+    else
+    {
+        [GGSharedAPI saveUpdateWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                data.saved = YES;
+                [GGAlert alert:@"saved!"];
+            }
+            else
+            {
+                [GGAlert alert:parser.message];
+            }
+        }];
+    }
+}
+
 #pragma mark - webview delegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {

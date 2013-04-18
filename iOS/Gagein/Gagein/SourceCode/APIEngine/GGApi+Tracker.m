@@ -123,4 +123,36 @@
     [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
+//MU01:Save an UpdateBack to top
+//POST
+///svc/member/me/update/save
+-(void)saveUpdateWithID:(long long)anUpdateID callback:(GGApiBlock)aCallback
+{
+    //POST
+    NSString *path = @"member/me/update/save";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:__LONGLONG(anUpdateID) forKey:@"newsid"];
+    
+    [self _execPostWithPath:path params:parameters callback:aCallback];
+}
+
+//MU02:Unsave an UpdateBack to top
+//POST
+///svc/member/me/update/unsave
+-(void)unsaveUpdateWithID:(long long)anUpdateID callback:(GGApiBlock)aCallback
+{
+    //POST
+    NSString *path = @"member/me/update/unsave";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:__LONGLONG(anUpdateID) forKey:@"newsid"];
+    
+    [self _execPostWithPath:path params:parameters callback:aCallback];
+}
+
 @end
