@@ -61,6 +61,8 @@
 		EA381C5B171F8918004535B5 /* shadowedBgWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = EA381C5A171F8918004535B5 /* shadowedBgWhite.png */; };
 		EA381C5E171FA6C2004535B5 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = EA381C5D171FA6C2004535B5 /* placeholder.png */; };
 		EA381C61171FA700004535B5 /* GGImagePool.m in Sources */ = {isa = PBXBuildFile; fileRef = EA381C60171FA700004535B5 /* GGImagePool.m */; };
+		EA381C65171FBBEB004535B5 /* GGSavedUpdatesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA381C63171FBBEB004535B5 /* GGSavedUpdatesVC.m */; };
+		EA381C68171FBC19004535B5 /* GGSavedUpdatesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA381C67171FBC19004535B5 /* GGSavedUpdatesVC.xib */; };
 		EA4F3A18171E7B5100530185 /* GGCompanyHappeningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4F3A17171E7B5100530185 /* GGCompanyHappeningCell.xib */; };
 		EA4F3A1C171E7C4C00530185 /* GGCompanyHappeningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4F3A1B171E7C4C00530185 /* GGCompanyHappeningCell.m */; };
 		EA4F3A1F171E7FC800530185 /* GGCompanyHappening.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4F3A1E171E7FC800530185 /* GGCompanyHappening.m */; };
@@ -95,6 +97,7 @@
 		EA7180D41715008900347EA4 /* FXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D31715008900347EA4 /* FXPageControl.m */; };
 		EA7180D917150AAF00347EA4 /* GGFollowCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */; };
 		EA7180E4171511B700347EA4 /* GGSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180E3171511B700347EA4 /* GGSearchBar.m */; };
+		EA844A22171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */; };
 		EA959D72171539B5005B06F6 /* GGCompanySearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA959D71171539B5005B06F6 /* GGCompanySearchCell.xib */; };
 		EA959D75171539DD005B06F6 /* GGCompanySearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA959D74171539DD005B06F6 /* GGCompanySearchCell.m */; };
 		EA959D7717157102005B06F6 /* topOrangeLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA959D7617157102005B06F6 /* topOrangeLine@2x.png */; };
@@ -120,7 +123,6 @@
 		EACAE0C417094ADE00E7088F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAE0C317094ADE00E7088F /* SystemConfiguration.framework */; };
 		EACAE0D917094D3200E7088F /* GGCompaniesVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0D817094D3200E7088F /* GGCompaniesVC_iPad.xib */; };
 		EACAE0DB17094D5F00E7088F /* GGPeopleVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0DA17094D5F00E7088F /* GGPeopleVC_iPad.xib */; };
-		EACAE0DD17094D7900E7088F /* GGProfileVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0DC17094D7900E7088F /* GGProfileVC_iPad.xib */; };
 		EACAE0DF17094DA000E7088F /* GGSettingVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0DE17094DA000E7088F /* GGSettingVC_iPad.xib */; };
 		EACAE0EC170954DE00E7088F /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0E8170954DE00E7088F /* first.png */; };
 		EACAE0ED170954DE00E7088F /* Gestures.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0E9170954DE00E7088F /* Gestures.png */; };
@@ -275,6 +277,9 @@
 		EA381C5D171FA6C2004535B5 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		EA381C5F171FA700004535B5 /* GGImagePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGImagePool.h; sourceTree = "<group>"; };
 		EA381C60171FA700004535B5 /* GGImagePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGImagePool.m; sourceTree = "<group>"; };
+		EA381C62171FBBEB004535B5 /* GGSavedUpdatesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSavedUpdatesVC.h; sourceTree = "<group>"; };
+		EA381C63171FBBEB004535B5 /* GGSavedUpdatesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSavedUpdatesVC.m; sourceTree = "<group>"; };
+		EA381C67171FBC19004535B5 /* GGSavedUpdatesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSavedUpdatesVC.xib; sourceTree = "<group>"; };
 		EA4F3A17171E7B5100530185 /* GGCompanyHappeningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyHappeningCell.xib; sourceTree = "<group>"; };
 		EA4F3A1A171E7C4C00530185 /* GGCompanyHappeningCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyHappeningCell.h; sourceTree = "<group>"; };
 		EA4F3A1B171E7C4C00530185 /* GGCompanyHappeningCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyHappeningCell.m; sourceTree = "<group>"; };
@@ -314,6 +319,7 @@
 		EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFollowCompanyVC.m; sourceTree = "<group>"; };
 		EA7180E2171511B700347EA4 /* GGSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSearchBar.h; sourceTree = "<group>"; };
 		EA7180E3171511B700347EA4 /* GGSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSearchBar.m; sourceTree = "<group>"; };
+		EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSavedUpdatesVC_iPad.xib; sourceTree = "<group>"; };
 		EA959D71171539B5005B06F6 /* GGCompanySearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanySearchCell.xib; sourceTree = "<group>"; };
 		EA959D73171539DD005B06F6 /* GGCompanySearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanySearchCell.h; sourceTree = "<group>"; };
 		EA959D74171539DD005B06F6 /* GGCompanySearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanySearchCell.m; sourceTree = "<group>"; };
@@ -351,7 +357,6 @@
 		EACAE0C317094ADE00E7088F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EACAE0D817094D3200E7088F /* GGCompaniesVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompaniesVC_iPad.xib; sourceTree = "<group>"; };
 		EACAE0DA17094D5F00E7088F /* GGPeopleVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGPeopleVC_iPad.xib; sourceTree = "<group>"; };
-		EACAE0DC17094D7900E7088F /* GGProfileVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGProfileVC_iPad.xib; sourceTree = "<group>"; };
 		EACAE0DE17094DA000E7088F /* GGSettingVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingVC_iPad.xib; sourceTree = "<group>"; };
 		EACAE0E8170954DE00E7088F /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		EACAE0E9170954DE00E7088F /* Gestures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gestures.png; sourceTree = "<group>"; };
@@ -512,6 +517,8 @@
 				EA0CA55E170BD54000DBCD83 /* GGProfileVC.m */,
 				EA0CA55F170BD54000DBCD83 /* GGSettingVC.h */,
 				EA0CA560170BD54000DBCD83 /* GGSettingVC.m */,
+				EA381C62171FBBEB004535B5 /* GGSavedUpdatesVC.h */,
+				EA381C63171FBBEB004535B5 /* GGSavedUpdatesVC.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -944,9 +951,9 @@
 		EACAE0D717094C3000E7088F /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
+				EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */,
 				EACAE0D817094D3200E7088F /* GGCompaniesVC_iPad.xib */,
 				EACAE0DA17094D5F00E7088F /* GGPeopleVC_iPad.xib */,
-				EACAE0DC17094D7900E7088F /* GGProfileVC_iPad.xib */,
 				EACAE0DE17094DA000E7088F /* GGSettingVC_iPad.xib */,
 			);
 			path = XIBs;
@@ -1046,6 +1053,7 @@
 		EAEFB4D21717A8100013634F /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				EA381C67171FBC19004535B5 /* GGSavedUpdatesVC.xib */,
 				EAEFB4D31717A8100013634F /* GGCompaniesVC.xib */,
 				EAEFB4D41717A8100013634F /* GGPeopleVC.xib */,
 				EAEFB4D51717A8100013634F /* GGProfileVC.xib */,
@@ -1144,7 +1152,6 @@
 				EACAE08D1709486800E7088F /* Default-568h@2x.png in Resources */,
 				EACAE0D917094D3200E7088F /* GGCompaniesVC_iPad.xib in Resources */,
 				EACAE0DB17094D5F00E7088F /* GGPeopleVC_iPad.xib in Resources */,
-				EACAE0DD17094D7900E7088F /* GGProfileVC_iPad.xib in Resources */,
 				EACAE0DF17094DA000E7088F /* GGSettingVC_iPad.xib in Resources */,
 				EACAE0EC170954DE00E7088F /* first.png in Resources */,
 				EACAE0ED170954DE00E7088F /* Gestures.png in Resources */,
@@ -1209,6 +1216,8 @@
 				EA4F3A18171E7B5100530185 /* GGCompanyHappeningCell.xib in Resources */,
 				EA381C5B171F8918004535B5 /* shadowedBgWhite.png in Resources */,
 				EA381C5E171FA6C2004535B5 /* placeholder.png in Resources */,
+				EA381C68171FBC19004535B5 /* GGSavedUpdatesVC.xib in Resources */,
+				EA844A22171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1299,6 +1308,7 @@
 				EA4F3A1C171E7C4C00530185 /* GGCompanyHappeningCell.m in Sources */,
 				EA4F3A1F171E7FC800530185 /* GGCompanyHappening.m in Sources */,
 				EA381C61171FA700004535B5 /* GGImagePool.m in Sources */,
+				EA381C65171FBBEB004535B5 /* GGSavedUpdatesVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
