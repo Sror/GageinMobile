@@ -57,4 +57,12 @@
 ///svc/member/me/update/get_saved
 -(void)getSaveUpdatesWithPageIndex:(int)aPageIndex callback:(GGApiBlock)aCallback;
 
+//SU01:Search UpdatesBack to top
+//POST
+//
+///svc/search/updates
+-(void)searchForCompanyUpdatesWithKeyword:(NSString *)aKeyword
+                                pageIndex:(NSUInteger)aPageIndex
+                                 callback:(GGApiBlock)aCallback;
+
 @end

@@ -16,6 +16,13 @@ DEF_SINGLETON(GGAPITest)
     [self _testGetSaveUpdatesWithPageIndex];
 }
 
+-(void)testSearchForCompanyUpdatesWithKeyword
+{
+    [GGSharedAPI searchForCompanyUpdatesWithKeyword:@"apple" pageIndex:1 callback:^(id operation, id aResultObject, NSError *anError) {
+        //
+    }];
+}
+
 -(void)_testGetSaveUpdatesWithPageIndex
 {
     [GGSharedAPI getSaveUpdatesWithPageIndex:0 callback:^(id operation, id aResultObject, NSError *anError) {

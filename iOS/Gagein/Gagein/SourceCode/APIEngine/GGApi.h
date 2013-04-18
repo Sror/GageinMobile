@@ -13,6 +13,7 @@
 
 //GET: /member/me/event/tracker --- if the value is -10,return the all result.
 #define GG_ALL_RESULT_ID         -10
+#define GG_PAGE_START_INDEX         1
 
 typedef void(^GGApiBlock)(id operation, id aResultObject, NSError* anError);
 

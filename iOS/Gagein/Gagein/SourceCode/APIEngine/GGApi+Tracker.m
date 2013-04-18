@@ -172,5 +172,24 @@
     [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
+//SU01:Search UpdatesBack to top
+//POST
+//
+///svc/search/updates
+-(void)searchForCompanyUpdatesWithKeyword:(NSString *)aKeyword
+                                pageIndex:(NSUInteger)aPageIndex
+                                 callback:(GGApiBlock)aCallback
+{
+    //POST
+    NSString *path = @"search/updates";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:__INT(aPageIndex) forKey:@"page"];
+    [parameters setObject:aKeyword forKey:@"q"];
+    
+    [self _execPostWithPath:path params:parameters callback:aCallback];
+}
 
 @end

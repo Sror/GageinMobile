@@ -39,6 +39,7 @@
         self.tabBarItem.title = @"Saved";
         self.tabBarItem.image = [UIImage imageNamed:@"Players"];
         _updates = [NSMutableArray array];
+        _currentPageIndex = GG_PAGE_START_INDEX;
     }
     return self;
 }
@@ -137,7 +138,7 @@
 -(void)_getFirstPage
 {
     [_updates removeAllObjects];
-    _currentPageIndex = 0;
+    _currentPageIndex = GG_PAGE_START_INDEX;
     _hasMore = YES;
     [self _callGetSavedUpdates];
 }
