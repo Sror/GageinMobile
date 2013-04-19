@@ -7,7 +7,11 @@
 //
 
 #import "GGCompanyDetailVC.h"
+
 #import "GGCompany.h"
+#import "GGDataPage.h"
+#import "GGCompanyUpdate.h"
+#import "GGCompanyHappening.h"
 
 #import "GGCompanyDetailOverviewCell.h"
 #import "GGCompanyDetailHeaderView.h"
@@ -28,15 +32,18 @@
 
 @implementation GGCompanyDetailVC
 {
-    GGCompany   *_companyOverview;
-    UITableView *_tvDetail;
+    GGCompany           *_companyOverview;
+    UITableView         *_tvDetail;
+    NSMutableArray      *_updates;
+    NSMutableArray      *_happenings;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _updates = [NSMutableArray array];
+        _happenings = [NSMutableArray array];
     }
     return self;
 }
@@ -62,7 +69,9 @@
     _tvDetail.backgroundView = tvBgView;
     
     //
-    [self _getOverView];
+    [self _callApiGetOverView];
+    [self _callApiGetUpdates];
+    [self _callApiGetHappenings];
 }
 
 - (void)viewDidUnload {
@@ -86,9 +95,9 @@
     if (section == 0) {
         return 1;
     } else if (section == 1) {
-        return 3;
+        return _updates.count;
     } else if (section == 2) {
-        return 3;
+        return _happenings.count;
     } else if (section == 3) {
         return 3;
     } else if (section == 4) {
@@ -104,6 +113,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int section = indexPath.section;
+    int row = indexPath.row;
+    
     if (section == 0) {
         GGCompanyDetailOverviewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGCompanyDetailOverviewCell"];
         if (!cell) {
@@ -117,7 +128,7 @@
         
         return cell;
         
-    } else if (section == 1) {
+    } else if (section == 1) {  // update cell
         
         GGCompanyDetailUpdateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGCompanyDetailUpdateCell"];
         if (!cell) {
@@ -125,13 +136,15 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        cell.lblSource.text = @"Yahoo";
+        GGCompanyUpdate *data = _updates[row];
+        
+        cell.lblSource.text = data.fromSource;
         cell.lblInterval.text = @"1d ago";
-        cell.lblHeadLine.text = @"asjdhkasdhkjashdkjashdkjahsdkjasdkjasasdhsahdashdkahd";
+        cell.lblHeadLine.text = data.headline;
         
         return cell;
         
-    } else if (section == 2) {
+    } else if (section == 2) { // happening cell
         
         GGCompanyDetailUpdateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGCompanyDetailUpdateCell"];
         if (!cell) {
@@ -139,9 +152,11 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        cell.lblSource.text = @"Yahoo";
+        GGCompanyHappening *data = _happenings[indexPath.row];
+        
+        cell.lblSource.text = data.sourceText;
         cell.lblInterval.text = @"1d ago";
-        cell.lblHeadLine.text = @"asjdhkasdhkjashdkjashdkjahsdkjasdkjasasdhsahdashdkahd";
+        cell.lblHeadLine.text = data.headLineText;
         
         return cell;
         
@@ -256,7 +271,7 @@
 }
 
 #pragma mark - API calls
--(void)_getOverView
+-(void)_callApiGetOverView
 {
     [GGSharedAPI getCompanyOverviewWithID:_companyID needSocialProfile:YES callback:^(id operation, id aResultObject, NSError *anError) {
         
@@ -336,5 +351,64 @@
         }];
     }
 }
+
+#pragma mark - api calls
+
+-(void)_callApiGetUpdates
+{
+    GGApiBlock callback = ^(id operation, id aResultObject, NSError* anError) {
+        //DLog(@"%@", aResultObject);
+        
+        //[self hideLoadingHUD];
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        GGDataPage *page = [parser parseGetCompanyUpdates];
+        //DLog(@"%@", page);
+        
+        [_updates removeAllObjects];
+        
+        int maxCount = 0;
+        for (id item in page.items) {
+            [_updates addObject:item];
+            maxCount ++;
+            if (maxCount > 2) {
+                break;
+            }
+        }
+        //[_updates addObjectsFromArray:page.items];
+        
+        
+        [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
+    };
+    
+    [GGSharedAPI getCompanyUpdatesWithCompanyID:_companyID newsID:0 pageFlag:kGGPageFlagFirstPage pageTime:0 relevance:kGGCompanyUpdateRelevanceNormal callback:callback];
+
+}
+
+-(void)_callApiGetHappenings
+{
+    GGApiBlock callback = ^(id operation, id aResultObject, NSError* anError) {
+        //DLog(@"%@", aResultObject);
+        
+        //[self hideLoadingHUD];
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        GGDataPage *page = [parser parseGetCompanyHappenings];
+        //DLog(@"%@", page);
+        
+        [_happenings removeAllObjects];
+        
+        int maxCount = 0;
+        for (id item in page.items) {
+            [_happenings addObject:item];
+            maxCount ++;
+            if (maxCount > 2) {
+                break;
+            }
+        }
+        //[_happenings addObjectsFromArray:page.items];
+        
+        [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+    };
+    
+    [GGSharedAPI getHappeningsWithCompanyID:_companyID pageFlag:kGGPageFlagFirstPage pageTime:0 callback:callback];}
 
 @end

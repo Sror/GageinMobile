@@ -166,6 +166,7 @@
 		EAD960391720ED3A00A72A9C /* GGComDetailEmployeeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD960381720ED3A00A72A9C /* GGComDetailEmployeeCell.m */; };
 		EAD9603C1720F35100A72A9C /* GGComDetailProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD9603B1720F35000A72A9C /* GGComDetailProfileCell.m */; };
 		EAD9603E1720F35F00A72A9C /* GGComDetailProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD9603D1720F35F00A72A9C /* GGComDetailProfileCell.xib */; };
+		EAD96042172115CB00A72A9C /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD96041172115CB00A72A9C /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EAEFB4DF1717A8100013634F /* GGCompanyDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CB1717A8100013634F /* GGCompanyDetailVC.xib */; };
 		EAEFB4E01717A8100013634F /* GGCompanyUpdateDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CC1717A8100013634F /* GGCompanyUpdateDetailVC.xib */; };
 		EAEFB4E11717A8100013634F /* GGFollowCompanyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CD1717A8100013634F /* GGFollowCompanyVC.xib */; };
@@ -443,6 +444,8 @@
 		EAD9603A1720F35000A72A9C /* GGComDetailProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComDetailProfileCell.h; sourceTree = "<group>"; };
 		EAD9603B1720F35000A72A9C /* GGComDetailProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComDetailProfileCell.m; sourceTree = "<group>"; };
 		EAD9603D1720F35F00A72A9C /* GGComDetailProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGComDetailProfileCell.xib; sourceTree = "<group>"; };
+		EAD96040172115CB00A72A9C /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		EAD96041172115CB00A72A9C /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		EAEFB4CB1717A8100013634F /* GGCompanyDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyDetailVC.xib; sourceTree = "<group>"; };
 		EAEFB4CC1717A8100013634F /* GGCompanyUpdateDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyUpdateDetailVC.xib; sourceTree = "<group>"; };
 		EAEFB4CD1717A8100013634F /* GGFollowCompanyVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGFollowCompanyVC.xib; sourceTree = "<group>"; };
@@ -972,6 +975,7 @@
 		EACAE0BB17094A3100E7088F /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				EAD9603F172115CB00A72A9C /* JSONKit */,
 				EA844A28171FBE2200658015 /* DCRoundSwitch */,
 				EA7180D11715008900347EA4 /* FXPageControl */,
 				EA0907E1171258D700BCD4C4 /* SDWebImage */,
@@ -1108,6 +1112,15 @@
 				EAD9603D1720F35F00A72A9C /* GGComDetailProfileCell.xib */,
 			);
 			path = CompanyDetail;
+			sourceTree = "<group>";
+		};
+		EAD9603F172115CB00A72A9C /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				EAD96040172115CB00A72A9C /* JSONKit.h */,
+				EAD96041172115CB00A72A9C /* JSONKit.m */,
+			);
+			path = JSONKit;
 			sourceTree = "<group>";
 		};
 		EAEFB4CA1717A8100013634F /* Company */ = {
@@ -1403,6 +1416,7 @@
 				EAD960341720EA5E00A72A9C /* GGCompanyDetailUpdateCell.m in Sources */,
 				EAD960391720ED3A00A72A9C /* GGComDetailEmployeeCell.m in Sources */,
 				EAD9603C1720F35100A72A9C /* GGComDetailProfileCell.m in Sources */,
+				EAD96042172115CB00A72A9C /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
