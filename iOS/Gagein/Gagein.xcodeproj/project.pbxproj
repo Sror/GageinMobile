@@ -58,7 +58,6 @@
 		EA24FA441713D939003AFBA9 /* GGSelectFuncAreasVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA421713D939003AFBA9 /* GGSelectFuncAreasVC.m */; };
 		EA24FA4E17140293003AFBA9 /* GGUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA4D17140293003AFBA9 /* GGUtils.m */; };
 		EA24FA5417140CFF003AFBA9 /* GGFunctionalArea.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA5317140CFF003AFBA9 /* GGFunctionalArea.m */; };
-		EA381C5B171F8918004535B5 /* shadowedBgWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = EA381C5A171F8918004535B5 /* shadowedBgWhite.png */; };
 		EA381C5E171FA6C2004535B5 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = EA381C5D171FA6C2004535B5 /* placeholder.png */; };
 		EA381C61171FA700004535B5 /* GGImagePool.m in Sources */ = {isa = PBXBuildFile; fileRef = EA381C60171FA700004535B5 /* GGImagePool.m */; };
 		EA381C65171FBBEB004535B5 /* GGSavedUpdatesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA381C63171FBBEB004535B5 /* GGSavedUpdatesVC.m */; };
@@ -158,6 +157,9 @@
 		EAD4820A17116F8F00556288 /* GGSlideSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD4820917116F8F00556288 /* GGSlideSettingView.m */; };
 		EAD960251720D9BF00A72A9C /* GGCompanyDetailOverviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD960241720D9BF00A72A9C /* GGCompanyDetailOverviewCell.xib */; };
 		EAD960281720DB0600A72A9C /* GGCompanyDetailOverviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD960271720DB0600A72A9C /* GGCompanyDetailOverviewCell.m */; };
+		EAD9602A1720DE9F00A72A9C /* GGCompanyDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD960291720DE9F00A72A9C /* GGCompanyDetailHeaderView.xib */; };
+		EAD9602D1720DF9000A72A9C /* GGCompanyDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD9602C1720DF9000A72A9C /* GGCompanyDetailHeaderView.m */; };
+		EAD9602F1720E5A300A72A9C /* shadowedBgWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD9602E1720E5A300A72A9C /* shadowedBgWhite@2x.png */; };
 		EAEFB4DF1717A8100013634F /* GGCompanyDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CB1717A8100013634F /* GGCompanyDetailVC.xib */; };
 		EAEFB4E01717A8100013634F /* GGCompanyUpdateDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CC1717A8100013634F /* GGCompanyUpdateDetailVC.xib */; };
 		EAEFB4E11717A8100013634F /* GGFollowCompanyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CD1717A8100013634F /* GGFollowCompanyVC.xib */; };
@@ -280,7 +282,6 @@
 		EA24FA4D17140293003AFBA9 /* GGUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUtils.m; sourceTree = "<group>"; };
 		EA24FA5217140CFF003AFBA9 /* GGFunctionalArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFunctionalArea.h; sourceTree = "<group>"; };
 		EA24FA5317140CFF003AFBA9 /* GGFunctionalArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFunctionalArea.m; sourceTree = "<group>"; };
-		EA381C5A171F8918004535B5 /* shadowedBgWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadowedBgWhite.png; sourceTree = "<group>"; };
 		EA381C5D171FA6C2004535B5 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		EA381C5F171FA700004535B5 /* GGImagePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGImagePool.h; sourceTree = "<group>"; };
 		EA381C60171FA700004535B5 /* GGImagePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGImagePool.m; sourceTree = "<group>"; };
@@ -423,6 +424,10 @@
 		EAD960241720D9BF00A72A9C /* GGCompanyDetailOverviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyDetailOverviewCell.xib; sourceTree = "<group>"; };
 		EAD960261720DB0600A72A9C /* GGCompanyDetailOverviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyDetailOverviewCell.h; sourceTree = "<group>"; };
 		EAD960271720DB0600A72A9C /* GGCompanyDetailOverviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyDetailOverviewCell.m; sourceTree = "<group>"; };
+		EAD960291720DE9F00A72A9C /* GGCompanyDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyDetailHeaderView.xib; sourceTree = "<group>"; };
+		EAD9602B1720DF9000A72A9C /* GGCompanyDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyDetailHeaderView.h; sourceTree = "<group>"; };
+		EAD9602C1720DF9000A72A9C /* GGCompanyDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyDetailHeaderView.m; sourceTree = "<group>"; };
+		EAD9602E1720E5A300A72A9C /* shadowedBgWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadowedBgWhite@2x.png"; sourceTree = "<group>"; };
 		EAEFB4CB1717A8100013634F /* GGCompanyDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyDetailVC.xib; sourceTree = "<group>"; };
 		EAEFB4CC1717A8100013634F /* GGCompanyUpdateDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyUpdateDetailVC.xib; sourceTree = "<group>"; };
 		EAEFB4CD1717A8100013634F /* GGFollowCompanyVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGFollowCompanyVC.xib; sourceTree = "<group>"; };
@@ -767,7 +772,6 @@
 			isa = PBXGroup;
 			children = (
 				EA381C5D171FA6C2004535B5 /* placeholder.png */,
-				EA381C5A171F8918004535B5 /* shadowedBgWhite.png */,
 				EACAE0E8170954DE00E7088F /* first.png */,
 				EACAE0E9170954DE00E7088F /* Gestures.png */,
 				EACAE0EA170954DE00E7088F /* Players.png */,
@@ -779,6 +783,7 @@
 		EACAE0B117094A3100E7088F /* 2X */ = {
 			isa = PBXGroup;
 			children = (
+				EAD9602E1720E5A300A72A9C /* shadowedBgWhite@2x.png */,
 				EA525E9B1715ADF800052B17 /* bgLoginField@2x.png */,
 				EA525E9C1715ADF800052B17 /* bgNavibar@2x.png */,
 				EA525E9D1715ADF800052B17 /* bgNavibarNoTop@2x.png */,
@@ -1074,6 +1079,9 @@
 				EAD960241720D9BF00A72A9C /* GGCompanyDetailOverviewCell.xib */,
 				EAD960261720DB0600A72A9C /* GGCompanyDetailOverviewCell.h */,
 				EAD960271720DB0600A72A9C /* GGCompanyDetailOverviewCell.m */,
+				EAD960291720DE9F00A72A9C /* GGCompanyDetailHeaderView.xib */,
+				EAD9602B1720DF9000A72A9C /* GGCompanyDetailHeaderView.h */,
+				EAD9602C1720DF9000A72A9C /* GGCompanyDetailHeaderView.m */,
 			);
 			path = CompanyDetail;
 			sourceTree = "<group>";
@@ -1262,11 +1270,12 @@
 				EAEFB4F71717B6E40013634F /* GGSettingHeaderView.xib in Resources */,
 				EA1995F01717E312006D95E4 /* GGSettingMenuCell.xib in Resources */,
 				EA4F3A18171E7B5100530185 /* GGCompanyHappeningCell.xib in Resources */,
-				EA381C5B171F8918004535B5 /* shadowedBgWhite.png in Resources */,
 				EA381C5E171FA6C2004535B5 /* placeholder.png in Resources */,
 				EA381C68171FBC19004535B5 /* GGSavedUpdatesVC.xib in Resources */,
 				EA844A22171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib in Resources */,
 				EAD960251720D9BF00A72A9C /* GGCompanyDetailOverviewCell.xib in Resources */,
+				EAD9602A1720DE9F00A72A9C /* GGCompanyDetailHeaderView.xib in Resources */,
+				EAD9602F1720E5A300A72A9C /* shadowedBgWhite@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1363,6 +1372,7 @@
 				EA844A33171FBE2200658015 /* DCRoundSwitchOutlineLayer.m in Sources */,
 				EA844A34171FBE2200658015 /* DCRoundSwitchToggleLayer.m in Sources */,
 				EAD960281720DB0600A72A9C /* GGCompanyDetailOverviewCell.m in Sources */,
+				EAD9602D1720DF9000A72A9C /* GGCompanyDetailHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

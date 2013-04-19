@@ -11,6 +11,7 @@
 @interface GGCompanyDetailOverviewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *viewCellBg;
 @property (weak, nonatomic) IBOutlet UIView *viewBg;
+@property (weak, nonatomic) IBOutlet UIImageView *ivBg;
 @property (weak, nonatomic) IBOutlet UILabel *lblIndustry;
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
 @property (weak, nonatomic) IBOutlet UILabel *lblAddress;

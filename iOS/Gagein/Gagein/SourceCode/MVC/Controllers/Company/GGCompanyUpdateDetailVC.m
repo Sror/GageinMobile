@@ -75,7 +75,7 @@
     self.scrollView.hidden = YES;
     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, CGRectGetMaxY(self.viewUpdate.frame) + 10);
     
-    self.ivUpdateBg.image = [[UIImage imageNamed:@"shadowedBgWhite.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+    self.ivUpdateBg.image = GGSharedImagePool.stretchShadowBgWite;
     
     [self _callApiGetCompanyUpdateDetail];
 }

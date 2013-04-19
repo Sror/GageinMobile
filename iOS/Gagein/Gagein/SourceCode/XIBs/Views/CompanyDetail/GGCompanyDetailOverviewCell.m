@@ -26,6 +26,12 @@
     // Configure the view for the selected state
 }
 
+-(void)awakeFromNib
+{
+    self.viewCellBg.backgroundColor = GGSharedColor.silver;
+    self.ivBg.image = GGSharedImagePool.stretchShadowBgWite;
+}
+
 +(float)HEIGHT
 {
     return 130.f;

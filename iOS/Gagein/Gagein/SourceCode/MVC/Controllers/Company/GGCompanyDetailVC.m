@@ -10,6 +10,7 @@
 #import "GGCompany.h"
 
 #import "GGCompanyDetailOverviewCell.h"
+#import "GGCompanyDetailHeaderView.h"
 
 @interface GGCompanyDetailVC ()
 
@@ -46,6 +47,7 @@
     _tvDetail.delegate = self;
     _tvDetail.dataSource = self;
     _tvDetail.tableHeaderView = self.viewBaseInfo;
+    _tvDetail.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.viewBaseInfo.backgroundColor = GGSharedColor.ironGray;
     _tvDetail.backgroundColor = GGSharedColor.ironGray;
     [self.view addSubview:_tvDetail];
@@ -88,24 +90,6 @@
     return 0;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if (section == 0) {
-        return @"OVERVIEW";
-    } else if (section == 1) {
-        return @"UPDATES";
-    } else if (section == 2) {
-        return @"HAPPENINGS";
-    } else if (section == 3) {
-        return @"EMPLOYEES";
-    } else if (section == 4) {
-        return @"SIMILAR COMPANIES";
-    } else if (section == 5) {
-        return @"LINKED PROFILES";
-    }
-    
-    return nil;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -116,6 +100,10 @@
             cell = [GGCompanyDetailOverviewCell viewFromNibWithOwner:self];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        
+        cell.lblIndustry.text = @"Computer software";
+        cell.lblDescription.text = @"asdjhaskdhakshdkashdkashdkjhaskjdhkhkahdalioeoiqoiewurqpourevskjghsakhfdakfldhfkasjfhdk";
+        cell.lblAddress.text = @"Silicon Vally, CA";
         
         return cell;
     }
@@ -139,6 +127,33 @@
     }
     
     return 44;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return [GGCompanyDetailHeaderView HEIGHT];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    GGCompanyDetailHeaderView *header = [GGCompanyDetailHeaderView viewFromNibWithOwner:self];
+    
+    if (section == 0) {
+        header.lblTitle.text = @"OVERVIEW";
+        header.lblAction.hidden = YES;
+    } else if (section == 1) {
+        header.lblTitle.text = @"UPDATES";
+    } else if (section == 2) {
+        header.lblTitle.text = @"HAPPENINGS";
+    } else if (section == 3) {
+        header.lblTitle.text = @"EMPLOYEES";
+    } else if (section == 4) {
+        header.lblTitle.text = @"SIMILAR COMPANIES";
+    } else if (section == 5) {
+        header.lblTitle.text = @"LINKED PROFILES";
+    }
+    
+    return header;
 }
 
 #pragma mark - API calls

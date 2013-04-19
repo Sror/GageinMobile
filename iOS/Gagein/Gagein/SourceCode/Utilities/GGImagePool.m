@@ -16,9 +16,11 @@ DEF_SINGLETON(GGImagePool)
     self = [super init];
     if (self) {
         _placeholder = [UIImage imageNamed:@"placeholder.png"];
+        _stretchShadowBgWite = [[UIImage imageNamed:@"shadowedBgWhite"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
     }
     return self;
 }
+
 
 
 @end
