@@ -241,19 +241,6 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Gagein/ThirdParty/AFNetworking/AFJSONRequestOperation.m"
-         timestampString = "388047958.425684"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "87"
-         endingLineNumber = "87"
-         landmarkName = "-responseJSON"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "Gagein/ThirdParty/JSONKit/JSONKit.m"
          timestampString = "388046813.896531"
          startingColumnNumber = "9223372036854775807"
@@ -281,11 +268,37 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/APIEngine/GGAPITest.m"
-         timestampString = "388051336.970968"
+         timestampString = "388056861.693551"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "24"
-         endingLineNumber = "24"
+         startingLineNumber = "34"
+         endingLineNumber = "34"
+         landmarkName = "-_testJsonParse"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/APIEngine/GGAPITest.m"
+         timestampString = "388056852.459694"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "27"
+         endingLineNumber = "27"
+         landmarkName = "-_testJsonParse"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/APIEngine/GGAPITest.m"
+         timestampString = "388056892.300686"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "25"
+         endingLineNumber = "25"
          landmarkName = "-_testJsonParse"
          landmarkType = "5">
       </FileBreakpoint>

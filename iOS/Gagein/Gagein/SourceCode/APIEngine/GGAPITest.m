@@ -8,6 +8,7 @@
 
 #import "GGAPITest.h"
 #import "JSONKit.h"
+#import "SBJson.h"
 
 @implementation GGAPITest
 DEF_SINGLETON(GGAPITest)
@@ -19,10 +20,19 @@ DEF_SINGLETON(GGAPITest)
 
 -(void)_testJsonParse
 {
-    NSString *str = @"{\"key1\":\"\u4f60\u597d sf \", \"key2\":\" \ufffd\ufffd\u2640\",\"key3\":\"hello world\"}";//@"{\"key1\":\"你好 sf \", \"key2\":\" ��♀\",\"key3\":\"hello world\"}";
-    id obj = [str objectFromJSONString];
+    NSString *str = @"{\"key1\":\"\u4f60\u597d s\r\nf \", \"key2\":\" \ufffd\ufffd\u2640\",\"key3\":\"hello world\"}";//@"{\"key1\":\"你好 sf \", \"key2\":\" ��♀\",\"key3\":\"hello world\"}";
+    
+    str = [[str stringByReplacingOccurrencesOfString:@"\r" withString:@"\\r"] stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
+    
+    NSData *JSONData = [str dataUsingEncoding:NSUTF8StringEncoding];
+    id obj = [NSJSONSerialization JSONObjectWithData:JSONData options:NSJSONReadingMutableContainers error:nil];
+    
+    //SBJsonParser *parser = [[SBJsonParser alloc] init];
+    //id obj = [parser objectWithString:str];
+    
+    //id obj = [str objectFromJSONString];
     DLog(@"%@", obj);
-    [GGAlert alert:[obj objectForKey:@"key2"]];
+    [GGAlert alert:[obj objectForKey:@"key1"]];
 }
 
 -(void)_testSearchForCompanyUpdatesWithKeyword
