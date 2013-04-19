@@ -11,6 +11,7 @@
 
 #import "GGCompanyDetailOverviewCell.h"
 #import "GGCompanyDetailHeaderView.h"
+#import "GGCompanyDetailUpdateCell.h"
 
 @interface GGCompanyDetailVC ()
 
@@ -47,7 +48,8 @@
     _tvDetail.delegate = self;
     _tvDetail.dataSource = self;
     _tvDetail.tableHeaderView = self.viewBaseInfo;
-    _tvDetail.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tvDetail.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    _tvDetail.separatorColor = GGSharedColor.silver;
     self.viewBaseInfo.backgroundColor = GGSharedColor.ironGray;
     _tvDetail.backgroundColor = GGSharedColor.ironGray;
     [self.view addSubview:_tvDetail];
@@ -101,11 +103,40 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        cell.lblIndustry.text = @"Computer software";
-        cell.lblDescription.text = @"asdjhaskdhakshdkashdkashdkjhaskjdhkhkahdalioeoiqoiewurqpourevskjghsakhfdakfldhfkasjfhdk";
-        cell.lblAddress.text = @"Silicon Vally, CA";
+        cell.lblIndustry.text = _companyOverview.industries;
+        cell.lblDescription.text = _companyOverview.description;
+        cell.lblAddress.text = _companyOverview.address;
         
         return cell;
+        
+    } else if (section == 1) {
+        
+        GGCompanyDetailUpdateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGCompanyDetailUpdateCell"];
+        if (!cell) {
+            cell = [GGCompanyDetailUpdateCell viewFromNibWithOwner:self];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        cell.lblSource.text = @"Yahoo";
+        cell.lblInterval.text = @"1d ago";
+        cell.lblHeadLine.text = @"asjdhkasdhkjashdkjashdkjahsdkjasdkjasasdhsahdashdkahd";
+        
+        return cell;
+        
+    } else if (section == 2) {
+        
+        GGCompanyDetailUpdateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGCompanyDetailUpdateCell"];
+        if (!cell) {
+            cell = [GGCompanyDetailUpdateCell viewFromNibWithOwner:self];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        cell.lblSource.text = @"Yahoo";
+        cell.lblInterval.text = @"1d ago";
+        cell.lblHeadLine.text = @"asjdhkasdhkjashdkjashdkjahsdkjasdkjasasdhsahdashdkahd";
+        
+        return cell;
+        
     }
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"test"];
@@ -119,11 +150,23 @@
 }
 
 #pragma mark - tableview delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int section = indexPath.section;
+    if (section == 0) {
+#warning to do
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int section = indexPath.section;
     if (section == 0) {
         return [GGCompanyDetailOverviewCell HEIGHT];
+    } else if (section == 1) {
+        return [GGCompanyDetailUpdateCell HEIGHT];
+    } else if (section == 2) {
+        return [GGCompanyDetailUpdateCell HEIGHT];
     }
     
     return 44;
@@ -182,6 +225,8 @@
     self.navigationItem.title = _companyOverview.name;
     self.lblWebsite.text = _companyOverview.website;
     [self _updateUiBtnFollow];
+    
+    [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 -(void)_updateUiBtnFollow

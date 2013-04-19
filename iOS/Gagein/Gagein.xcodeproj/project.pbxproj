@@ -160,6 +160,8 @@
 		EAD9602A1720DE9F00A72A9C /* GGCompanyDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD960291720DE9F00A72A9C /* GGCompanyDetailHeaderView.xib */; };
 		EAD9602D1720DF9000A72A9C /* GGCompanyDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD9602C1720DF9000A72A9C /* GGCompanyDetailHeaderView.m */; };
 		EAD9602F1720E5A300A72A9C /* shadowedBgWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD9602E1720E5A300A72A9C /* shadowedBgWhite@2x.png */; };
+		EAD960311720E87C00A72A9C /* GGCompanyDetailUpdateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD960301720E87C00A72A9C /* GGCompanyDetailUpdateCell.xib */; };
+		EAD960341720EA5E00A72A9C /* GGCompanyDetailUpdateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD960331720EA5E00A72A9C /* GGCompanyDetailUpdateCell.m */; };
 		EAEFB4DF1717A8100013634F /* GGCompanyDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CB1717A8100013634F /* GGCompanyDetailVC.xib */; };
 		EAEFB4E01717A8100013634F /* GGCompanyUpdateDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CC1717A8100013634F /* GGCompanyUpdateDetailVC.xib */; };
 		EAEFB4E11717A8100013634F /* GGFollowCompanyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CD1717A8100013634F /* GGFollowCompanyVC.xib */; };
@@ -428,6 +430,9 @@
 		EAD9602B1720DF9000A72A9C /* GGCompanyDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyDetailHeaderView.h; sourceTree = "<group>"; };
 		EAD9602C1720DF9000A72A9C /* GGCompanyDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyDetailHeaderView.m; sourceTree = "<group>"; };
 		EAD9602E1720E5A300A72A9C /* shadowedBgWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadowedBgWhite@2x.png"; sourceTree = "<group>"; };
+		EAD960301720E87C00A72A9C /* GGCompanyDetailUpdateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyDetailUpdateCell.xib; sourceTree = "<group>"; };
+		EAD960321720EA5E00A72A9C /* GGCompanyDetailUpdateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyDetailUpdateCell.h; sourceTree = "<group>"; };
+		EAD960331720EA5E00A72A9C /* GGCompanyDetailUpdateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyDetailUpdateCell.m; sourceTree = "<group>"; };
 		EAEFB4CB1717A8100013634F /* GGCompanyDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyDetailVC.xib; sourceTree = "<group>"; };
 		EAEFB4CC1717A8100013634F /* GGCompanyUpdateDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyUpdateDetailVC.xib; sourceTree = "<group>"; };
 		EAEFB4CD1717A8100013634F /* GGFollowCompanyVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGFollowCompanyVC.xib; sourceTree = "<group>"; };
@@ -1082,6 +1087,9 @@
 				EAD960291720DE9F00A72A9C /* GGCompanyDetailHeaderView.xib */,
 				EAD9602B1720DF9000A72A9C /* GGCompanyDetailHeaderView.h */,
 				EAD9602C1720DF9000A72A9C /* GGCompanyDetailHeaderView.m */,
+				EAD960301720E87C00A72A9C /* GGCompanyDetailUpdateCell.xib */,
+				EAD960321720EA5E00A72A9C /* GGCompanyDetailUpdateCell.h */,
+				EAD960331720EA5E00A72A9C /* GGCompanyDetailUpdateCell.m */,
 			);
 			path = CompanyDetail;
 			sourceTree = "<group>";
@@ -1276,6 +1284,7 @@
 				EAD960251720D9BF00A72A9C /* GGCompanyDetailOverviewCell.xib in Resources */,
 				EAD9602A1720DE9F00A72A9C /* GGCompanyDetailHeaderView.xib in Resources */,
 				EAD9602F1720E5A300A72A9C /* shadowedBgWhite@2x.png in Resources */,
+				EAD960311720E87C00A72A9C /* GGCompanyDetailUpdateCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1373,6 +1382,7 @@
 				EA844A34171FBE2200658015 /* DCRoundSwitchToggleLayer.m in Sources */,
 				EAD960281720DB0600A72A9C /* GGCompanyDetailOverviewCell.m in Sources */,
 				EAD9602D1720DF9000A72A9C /* GGCompanyDetailHeaderView.m in Sources */,
+				EAD960341720EA5E00A72A9C /* GGCompanyDetailUpdateCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
