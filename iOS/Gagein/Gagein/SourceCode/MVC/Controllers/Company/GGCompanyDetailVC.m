@@ -13,6 +13,7 @@
 #import "GGCompanyDetailHeaderView.h"
 #import "GGCompanyDetailUpdateCell.h"
 #import "GGComDetailEmployeeCell.h"
+#import "GGComDetailProfileCell.h"
 
 @interface GGCompanyDetailVC ()
 
@@ -45,6 +46,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"";
     
+    //
     _tvDetail = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tvDetail.delegate = self;
     _tvDetail.dataSource = self;
@@ -55,6 +57,11 @@
     _tvDetail.backgroundColor = GGSharedColor.ironGray;
     [self.view addSubview:_tvDetail];
     
+    UIView *tvBgView = [[UIView alloc] initWithFrame:CGRectZero];
+    tvBgView.backgroundColor = GGSharedColor.silver;
+    _tvDetail.backgroundView = tvBgView;
+    
+    //
     [self _getOverView];
 }
 
@@ -166,16 +173,20 @@
         
         return cell;
         
+    } else if (section == 5) {
+        
+        GGComDetailProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGComDetailProfileCell"];
+        if (!cell) {
+            cell = [GGComDetailProfileCell viewFromNibWithOwner:self];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        cell.lblTitle.text = @"LinkedIn";
+        
+        return cell;
     }
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"test"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"test"];
-    }
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];
-    cell.backgroundColor = GGSharedColor.white;
-    return cell;
+
+    return nil;
 }
 
 #pragma mark - tableview delegate
@@ -183,7 +194,17 @@
 {
     int section = indexPath.section;
     if (section == 0) {
-#warning to do
+       
+    } else if (section == 1) {
+
+    } else if (section == 2) {
+
+    } else if (section == 3) {
+
+    } else if (section == 4) {
+
+    } else if (section == 5) {
+
     }
 }
 
@@ -200,6 +221,8 @@
         return [GGComDetailEmployeeCell HEIGHT];
     } else if (section == 4) {
         return [GGComDetailEmployeeCell HEIGHT];
+    } else if (section == 5) {
+        return [GGComDetailProfileCell HEIGHT];
     }
     
     return 44;

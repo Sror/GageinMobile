@@ -164,6 +164,8 @@
 		EAD960341720EA5E00A72A9C /* GGCompanyDetailUpdateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD960331720EA5E00A72A9C /* GGCompanyDetailUpdateCell.m */; };
 		EAD960361720ED1000A72A9C /* GGComDetailEmployeeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD960351720ED1000A72A9C /* GGComDetailEmployeeCell.xib */; };
 		EAD960391720ED3A00A72A9C /* GGComDetailEmployeeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD960381720ED3A00A72A9C /* GGComDetailEmployeeCell.m */; };
+		EAD9603C1720F35100A72A9C /* GGComDetailProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD9603B1720F35000A72A9C /* GGComDetailProfileCell.m */; };
+		EAD9603E1720F35F00A72A9C /* GGComDetailProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD9603D1720F35F00A72A9C /* GGComDetailProfileCell.xib */; };
 		EAEFB4DF1717A8100013634F /* GGCompanyDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CB1717A8100013634F /* GGCompanyDetailVC.xib */; };
 		EAEFB4E01717A8100013634F /* GGCompanyUpdateDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CC1717A8100013634F /* GGCompanyUpdateDetailVC.xib */; };
 		EAEFB4E11717A8100013634F /* GGFollowCompanyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CD1717A8100013634F /* GGFollowCompanyVC.xib */; };
@@ -438,6 +440,9 @@
 		EAD960351720ED1000A72A9C /* GGComDetailEmployeeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGComDetailEmployeeCell.xib; sourceTree = "<group>"; };
 		EAD960371720ED3900A72A9C /* GGComDetailEmployeeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComDetailEmployeeCell.h; sourceTree = "<group>"; };
 		EAD960381720ED3A00A72A9C /* GGComDetailEmployeeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComDetailEmployeeCell.m; sourceTree = "<group>"; };
+		EAD9603A1720F35000A72A9C /* GGComDetailProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComDetailProfileCell.h; sourceTree = "<group>"; };
+		EAD9603B1720F35000A72A9C /* GGComDetailProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComDetailProfileCell.m; sourceTree = "<group>"; };
+		EAD9603D1720F35F00A72A9C /* GGComDetailProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGComDetailProfileCell.xib; sourceTree = "<group>"; };
 		EAEFB4CB1717A8100013634F /* GGCompanyDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyDetailVC.xib; sourceTree = "<group>"; };
 		EAEFB4CC1717A8100013634F /* GGCompanyUpdateDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyUpdateDetailVC.xib; sourceTree = "<group>"; };
 		EAEFB4CD1717A8100013634F /* GGFollowCompanyVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGFollowCompanyVC.xib; sourceTree = "<group>"; };
@@ -1098,6 +1103,9 @@
 				EAD960351720ED1000A72A9C /* GGComDetailEmployeeCell.xib */,
 				EAD960371720ED3900A72A9C /* GGComDetailEmployeeCell.h */,
 				EAD960381720ED3A00A72A9C /* GGComDetailEmployeeCell.m */,
+				EAD9603A1720F35000A72A9C /* GGComDetailProfileCell.h */,
+				EAD9603B1720F35000A72A9C /* GGComDetailProfileCell.m */,
+				EAD9603D1720F35F00A72A9C /* GGComDetailProfileCell.xib */,
 			);
 			path = CompanyDetail;
 			sourceTree = "<group>";
@@ -1294,6 +1302,7 @@
 				EAD9602F1720E5A300A72A9C /* shadowedBgWhite@2x.png in Resources */,
 				EAD960311720E87C00A72A9C /* GGCompanyDetailUpdateCell.xib in Resources */,
 				EAD960361720ED1000A72A9C /* GGComDetailEmployeeCell.xib in Resources */,
+				EAD9603E1720F35F00A72A9C /* GGComDetailProfileCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1393,6 +1402,7 @@
 				EAD9602D1720DF9000A72A9C /* GGCompanyDetailHeaderView.m in Sources */,
 				EAD960341720EA5E00A72A9C /* GGCompanyDetailUpdateCell.m in Sources */,
 				EAD960391720ED3A00A72A9C /* GGComDetailEmployeeCell.m in Sources */,
+				EAD9603C1720F35100A72A9C /* GGComDetailProfileCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
