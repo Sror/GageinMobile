@@ -12,6 +12,7 @@
 #import "GGCompanyDetailOverviewCell.h"
 #import "GGCompanyDetailHeaderView.h"
 #import "GGCompanyDetailUpdateCell.h"
+#import "GGComDetailEmployeeCell.h"
 
 @interface GGCompanyDetailVC ()
 
@@ -137,6 +138,34 @@
         
         return cell;
         
+    } else if (section == 3) {
+        
+        GGComDetailEmployeeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGComDetailEmployeeCell"];
+        if (!cell) {
+            cell = [GGComDetailEmployeeCell viewFromNibWithOwner:self];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        cell.lblTitle.text = @"Bill Gates";
+        cell.lblSubTitle.text = @"CEO, Microsoft";
+        cell.ivPhoto.image = GGSharedImagePool.placeholder;
+        
+        return cell;
+        
+    } else if (section == 4) {
+        
+        GGComDetailEmployeeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGComDetailEmployeeCell"];
+        if (!cell) {
+            cell = [GGComDetailEmployeeCell viewFromNibWithOwner:self];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        cell.lblTitle.text = @"Apple inc.";
+        cell.lblSubTitle.text = @"www.apple.com";
+        cell.ivPhoto.image = GGSharedImagePool.placeholder;
+        
+        return cell;
+        
     }
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"test"];
@@ -167,6 +196,10 @@
         return [GGCompanyDetailUpdateCell HEIGHT];
     } else if (section == 2) {
         return [GGCompanyDetailUpdateCell HEIGHT];
+    } else if (section == 3) {
+        return [GGComDetailEmployeeCell HEIGHT];
+    } else if (section == 4) {
+        return [GGComDetailEmployeeCell HEIGHT];
     }
     
     return 44;
