@@ -9,6 +9,8 @@
 #import "GGCompanyDetailVC.h"
 #import "GGCompany.h"
 
+#import "GGCompanyDetailOverviewCell.h"
+
 @interface GGCompanyDetailVC ()
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -62,20 +64,81 @@
 }
 
 #pragma mark - table view datasource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 6;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 100;
+    if (section == 0) {
+        return 1;
+    } else if (section == 1) {
+        return 3;
+    } else if (section == 2) {
+        return 3;
+    } else if (section == 3) {
+        return 3;
+    } else if (section == 4) {
+        return 3;
+    } else if (section == 5) {
+        return 4;
+    } 
+    
+    return 0;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return @"OVERVIEW";
+    } else if (section == 1) {
+        return @"UPDATES";
+    } else if (section == 2) {
+        return @"HAPPENINGS";
+    } else if (section == 3) {
+        return @"EMPLOYEES";
+    } else if (section == 4) {
+        return @"SIMILAR COMPANIES";
+    } else if (section == 5) {
+        return @"LINKED PROFILES";
+    }
+    
+    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    int section = indexPath.section;
+    if (section == 0) {
+        GGCompanyDetailOverviewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGCompanyDetailOverviewCell"];
+        if (!cell) {
+            cell = [GGCompanyDetailOverviewCell viewFromNibWithOwner:self];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        return cell;
+    }
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"test"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"test"];
     }
     
     cell.textLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];
+    cell.backgroundColor = GGSharedColor.white;
     return cell;
+}
+
+#pragma mark - tableview delegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int section = indexPath.section;
+    if (section == 0) {
+        return [GGCompanyDetailOverviewCell HEIGHT];
+    }
+    
+    return 44;
 }
 
 #pragma mark - API calls

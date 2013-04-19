@@ -156,6 +156,8 @@
 		EAD481FB1711060500556288 /* comLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD481FA1711060500556288 /* comLogo.png */; };
 		EAD481FE17111BB800556288 /* GGDataPage.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD481FD17111BB800556288 /* GGDataPage.m */; };
 		EAD4820A17116F8F00556288 /* GGSlideSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD4820917116F8F00556288 /* GGSlideSettingView.m */; };
+		EAD960251720D9BF00A72A9C /* GGCompanyDetailOverviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD960241720D9BF00A72A9C /* GGCompanyDetailOverviewCell.xib */; };
+		EAD960281720DB0600A72A9C /* GGCompanyDetailOverviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD960271720DB0600A72A9C /* GGCompanyDetailOverviewCell.m */; };
 		EAEFB4DF1717A8100013634F /* GGCompanyDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CB1717A8100013634F /* GGCompanyDetailVC.xib */; };
 		EAEFB4E01717A8100013634F /* GGCompanyUpdateDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CC1717A8100013634F /* GGCompanyUpdateDetailVC.xib */; };
 		EAEFB4E11717A8100013634F /* GGFollowCompanyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CD1717A8100013634F /* GGFollowCompanyVC.xib */; };
@@ -418,6 +420,9 @@
 		EAD481FD17111BB800556288 /* GGDataPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGDataPage.m; sourceTree = "<group>"; };
 		EAD4820817116F8E00556288 /* GGSlideSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSlideSettingView.h; sourceTree = "<group>"; };
 		EAD4820917116F8F00556288 /* GGSlideSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSlideSettingView.m; sourceTree = "<group>"; };
+		EAD960241720D9BF00A72A9C /* GGCompanyDetailOverviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyDetailOverviewCell.xib; sourceTree = "<group>"; };
+		EAD960261720DB0600A72A9C /* GGCompanyDetailOverviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyDetailOverviewCell.h; sourceTree = "<group>"; };
+		EAD960271720DB0600A72A9C /* GGCompanyDetailOverviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyDetailOverviewCell.m; sourceTree = "<group>"; };
 		EAEFB4CB1717A8100013634F /* GGCompanyDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyDetailVC.xib; sourceTree = "<group>"; };
 		EAEFB4CC1717A8100013634F /* GGCompanyUpdateDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyUpdateDetailVC.xib; sourceTree = "<group>"; };
 		EAEFB4CD1717A8100013634F /* GGFollowCompanyVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGFollowCompanyVC.xib; sourceTree = "<group>"; };
@@ -655,6 +660,7 @@
 		EAC96C35170983B5003FAFAA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EAD960221720D98300A72A9C /* CompanyDetail */,
 				EAEFB4F61717B6E40013634F /* GGSettingHeaderView.xib */,
 				EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */,
 				EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */,
@@ -1062,6 +1068,16 @@
 			path = Demo;
 			sourceTree = "<group>";
 		};
+		EAD960221720D98300A72A9C /* CompanyDetail */ = {
+			isa = PBXGroup;
+			children = (
+				EAD960241720D9BF00A72A9C /* GGCompanyDetailOverviewCell.xib */,
+				EAD960261720DB0600A72A9C /* GGCompanyDetailOverviewCell.h */,
+				EAD960271720DB0600A72A9C /* GGCompanyDetailOverviewCell.m */,
+			);
+			path = CompanyDetail;
+			sourceTree = "<group>";
+		};
 		EAEFB4CA1717A8100013634F /* Company */ = {
 			isa = PBXGroup;
 			children = (
@@ -1250,6 +1266,7 @@
 				EA381C5E171FA6C2004535B5 /* placeholder.png in Resources */,
 				EA381C68171FBC19004535B5 /* GGSavedUpdatesVC.xib in Resources */,
 				EA844A22171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib in Resources */,
+				EAD960251720D9BF00A72A9C /* GGCompanyDetailOverviewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1345,6 +1362,7 @@
 				EA844A32171FBE2200658015 /* DCRoundSwitchKnobLayer.m in Sources */,
 				EA844A33171FBE2200658015 /* DCRoundSwitchOutlineLayer.m in Sources */,
 				EA844A34171FBE2200658015 /* DCRoundSwitchToggleLayer.m in Sources */,
+				EAD960281720DB0600A72A9C /* GGCompanyDetailOverviewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
