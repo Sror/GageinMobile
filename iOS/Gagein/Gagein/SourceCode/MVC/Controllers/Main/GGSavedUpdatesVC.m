@@ -71,6 +71,7 @@
     _tvUpdates.rowHeight = [GGCompanyUpdateCell HEIGHT];
     _tvUpdates.dataSource = self;
     _tvUpdates.delegate = self;
+    _tvUpdates.backgroundColor = GGSharedColor.silver;
     [self.view addSubview:_tvUpdates];
     
     // setup pull-to-refresh and infinite scrolling

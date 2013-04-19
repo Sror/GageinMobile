@@ -24,6 +24,7 @@
 #import "GGSettingMenuCell.h"
 #import "GGAppDelegate.h"
 #import "GGCompanyHappeningCell.h"
+#import "GGSelectAgentsVC.h"
 
 //#define USE_CUSTOM_NAVI_BAR       // 是否使用自定义导航条
 
@@ -73,18 +74,14 @@
     [super viewDidLoad];
     
     UIBarButtonItem *menuBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(optionMenuAction:)];
-    UIBarButtonItem *searchUpdateBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchUpdateAction:)];
-    UIBarButtonItem *savedUpdateBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(savedUpdateAction:)];
     
 #if defined(USE_CUSTOM_NAVI_BAR)
     self.naviItem.title = @"EXPLORING";
     self.naviItem.leftBarButtonItem = menuBtn;
-    self.naviItem.rightBarButtonItems = [NSArray arrayWithObjects:savedUpdateBtn, searchUpdateBtn, nil];
 #else
     self.naviBar.hidden = YES;
     self.title = @"EXPLORING";
     self.navigationItem.leftBarButtonItem = menuBtn;
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:savedUpdateBtn, searchUpdateBtn, nil];
 #endif
     
     
@@ -115,12 +112,14 @@
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
     [_scrollingView addPage:self.updatesTV];
+    self.updatesTV.backgroundColor = GGSharedColor.silver;
     
     self.happeningsTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
     self.happeningsTV.rowHeight = [GGCompanyHappeningCell HEIGHT];
     self.happeningsTV.dataSource = self;
     self.happeningsTV.delegate = self;
     [_scrollingView addPage:self.happeningsTV];
+    self.happeningsTV.backgroundColor = GGSharedColor.silver;
     
     //
     [self.view bringSubviewToFront:_slideSettingView];
@@ -192,6 +191,8 @@
         _followingSectionView.lblTitle.text = @"FOLLOWING";
         _followingSectionView.ivSelected.hidden = YES;
         [_followingSectionView.btnBg addTarget:self action:@selector(_followingTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [_followingSectionView.btnAdd addTarget:self action:@selector(_addCompanyAction:) forControlEvents:UIControlEventTouchUpInside];
+        
     }
     
     return _followingSectionView;
@@ -212,6 +213,13 @@
     return _exploringSectionView;
 }
 
+
+-(IBAction)_addCompanyAction:(id)sender
+{
+    [_slideSettingView hideSlide];
+    [self searchForCompanyAction:nil];
+}
+
 -(IBAction)_followingTapped:(id)sender
 {
     self.title = @"FOLLOWING";
@@ -227,7 +235,9 @@
 
 -(IBAction)_exploringConfigTapped:(id)sender
 {
-    [self searchUpdateAction:nil];
+    [_slideSettingView hideSlide];
+    GGSelectAgentsVC *vc = [[GGSelectAgentsVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(IBAction)_exploringTapped:(id)sender
@@ -292,10 +302,8 @@
     }
 }
 
--(void)searchUpdateAction:(id)sender
+-(void)searchForCompanyAction:(id)sender
 {
-    DLog(@"search update clicked");
-    
     GGFollowCompanyVC *vc = [[GGFollowCompanyVC alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -355,6 +363,7 @@
         if (cell == nil) {
             cell = [GGCompanyUpdateCell viewFromNibWithOwner:self];
             [cell.logoBtn addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
         GGCompanyUpdate *updateData = [self.updates objectAtIndex:indexPath.row];
@@ -381,6 +390,7 @@
         GGCompanyHappeningCell *cell = [tableView dequeueReusableCellWithIdentifier:happeningCellId];
         if (cell == nil) {
             cell = [GGCompanyHappeningCell viewFromNibWithOwner:self];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
         GGCompanyHappening *data = _happenings[indexPath.row];

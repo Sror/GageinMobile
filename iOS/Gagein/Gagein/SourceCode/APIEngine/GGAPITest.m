@@ -7,13 +7,22 @@
 //
 
 #import "GGAPITest.h"
+#import "JSONKit.h"
 
 @implementation GGAPITest
 DEF_SINGLETON(GGAPITest)
 
 -(void)run
 {
-    [self _testGetCompanyOverviewWithID];
+    [self _testJsonParse];
+}
+
+-(void)_testJsonParse
+{
+    NSString *str = @"{\"key1\":\"\u4f60\u597d sf \", \"key2\":\" \ufffd\ufffd\u2640\",\"key3\":\"hello world\"}";//@"{\"key1\":\"你好 sf \", \"key2\":\" ��♀\",\"key3\":\"hello world\"}";
+    id obj = [str objectFromJSONString];
+    DLog(@"%@", obj);
+    [GGAlert alert:[obj objectForKey:@"key2"]];
 }
 
 -(void)_testSearchForCompanyUpdatesWithKeyword
