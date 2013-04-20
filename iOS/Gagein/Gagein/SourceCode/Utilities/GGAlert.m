@@ -22,6 +22,7 @@
 
 +(void)alert:(NSString *)aMessage delegate:(id/*<UIAlertViewDelegate>*/)aDelegate
 {
+    //aMessage = [aMessage stringByReplacingOccurrencesOfString:@"\\\"" withString:@"\""];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
                                                     message:aMessage
                                                    delegate:aDelegate

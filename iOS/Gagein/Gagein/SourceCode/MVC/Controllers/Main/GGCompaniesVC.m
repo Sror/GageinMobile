@@ -316,8 +316,9 @@
 
 -(void)companyDetailAction:(id)sender
 {
-    GGCompanyUpdateCell *cell = (GGCompanyUpdateCell *)((UIButton*)sender).superview.superview;
-    GGCompanyUpdate *update = [_updates objectAtIndex:cell.tag];
+    //GGCompanyUpdateCell *cell = (GGCompanyUpdateCell *)((UIButton*)sender).superview.superview;
+    int index = ((UIButton*)sender).tag;
+    GGCompanyUpdate *update = [_updates objectAtIndex:index];
     
     GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
     vc.companyID = update.company.ID;
@@ -369,7 +370,8 @@
         GGCompanyUpdate *updateData = [self.updates objectAtIndex:indexPath.row];
         
         cell.ID = updateData.ID;
-        cell.tag = indexPath.row;
+        cell.logoBtn.tag = indexPath.row;
+        //cell.tag = indexPath.row;
         cell.titleLbl.text = updateData.headline;
         cell.sourceLbl.text = updateData.fromSource;
         cell.descriptionLbl.text = updateData.content;

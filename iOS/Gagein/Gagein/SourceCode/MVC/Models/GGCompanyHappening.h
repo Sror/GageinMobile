@@ -47,6 +47,7 @@ typedef enum {
 @interface GGCompanyHappening : GGDataModel
 @property (assign) long long                    timestamp;
 @property (copy) NSString                       *jobTitle;
+@property (copy) NSString                       *oldJobTitle;
 @property (strong) GGCompanyHappeningPerson      *person;
 @property (strong) GGCompanyHappeningPerson      *company;
 @property (copy) NSString                       *change;        // e.g. LEAVE

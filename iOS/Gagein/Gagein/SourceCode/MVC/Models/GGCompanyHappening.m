@@ -92,6 +92,7 @@
     self.change = [aData objectForKey:@"change"];
     self.timestamp = [[[aData objectForKey:@"timestamp"] objectForKey:@"timestamp"] longLongValue];
     self.jobTitle = [[aData objectForKey:@"jobtitle"] objectForKey:@"title"];
+    self.oldJobTitle = [[aData objectForKey:@"oldjobtitle"] objectForKey:@"title"];
     [self.person parseWithData:[aData objectForKey:@"person"]];
     [self.company parseWithData:[aData objectForKey:@"company"]];
     self.ID = [[aData objectForKey:@"eventid"] longLongValue];
@@ -159,6 +160,7 @@
         {
             //<contact name>, <old job title>, is now <new job title> at <company name>
             //#define EVENT_MSG_COM_PERSON_TITLE_CHANGED @"%@, %@, is now %@ at %@"
+            return [NSString stringWithFormat:EVENT_MSG_COM_PERSON_TITLE_CHANGED, self.person.name, self.oldJobTitle, self.jobTitle, self.company.name];
             return nil;
         }
             break;

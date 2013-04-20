@@ -330,6 +330,10 @@
                 _companyOverview.followed = 1;
                 [self _updateUiBtnFollow];
             }
+            else
+            {
+                [GGAlert alert:parser.message];
+            }
             
         }];
     }
