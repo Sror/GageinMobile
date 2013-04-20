@@ -9,13 +9,14 @@
 #import "GGAPITest.h"
 #import "JSONKit.h"
 #import "SBJson.h"
+#import "GGDataPage.h"
 
 @implementation GGAPITest
 DEF_SINGLETON(GGAPITest)
 
 -(void)run
 {
-    [self _testJsonParse];
+    [self _testGetCompanyPeopleWithOrgID];
 }
 
 -(void)_testJsonParse
@@ -135,6 +136,23 @@ DEF_SINGLETON(GGAPITest)
 }
 
 /////////////////////////////////////////////////////////////////
+-(void)_testGetCompanyPeopleWithOrgID
+{
+    [GGSharedAPI getCompanyPeopleWithOrgID:1399794 pageNumber:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            GGDataPage *page = [parser parseGetCompanyPeople];
+            for (id item in page.items)
+            {
+                DLog(@"%@", item);
+            }
+        }
+        
+    }];
+}
+
 -(void)_testGetCompanyOverviewWithID
 {
     [GGSharedAPI getCompanyOverviewWithID:1399794 needSocialProfile:YES callback:^(id operation, id aResultObject, NSError *anError) {

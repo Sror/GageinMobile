@@ -15,6 +15,7 @@
 #import "GGFunctionalArea.h"
 #import "GGMenuData.h"
 #import "GGCompanyHappening.h"
+#import "GGPerson.h"
 
 #define GG_ASSERT_API_DATA_IS_DIC   NSAssert([_apiData isKindOfClass:[NSDictionary class]], @"Api Data should be a NSDictionary");
 
@@ -143,6 +144,11 @@
 -(GGDataPage *)parseGetCompanyHappenings
 {
     return [self _parsePageforClass:[GGCompanyHappening class]];
+}
+
+-(GGDataPage *)parseGetCompanyPeople
+{
+    return [self _parsePageforClass:[GGPerson class]];
 }
 
 -(GGCompany *)parseGetCompanyOverview

@@ -18,6 +18,10 @@
 @property (copy)    NSString *orgTitle;
 @property (copy)    NSString *jobLevel;
 @property (copy)    NSString *photoPath;
+@property (copy)    NSString *linkedInID;
+@property (copy)    NSString *actionType;
+@property (copy)    NSString *address;
+
 @property (strong)  GGCompany *company;
 @property (strong)  NSMutableArray  *socialProfiles;    // each element is a GGSocialProfile
 @end

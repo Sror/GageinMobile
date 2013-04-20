@@ -12,4 +12,5 @@
 @interface GGSocialProfile : GGDataModel
 @property (copy) NSString   *type;          // salesforce, linkedIn ...
 @property (copy) NSString   *url;           // social profile url
+@property (assign) BOOL     hasProfileUrl;
 @end

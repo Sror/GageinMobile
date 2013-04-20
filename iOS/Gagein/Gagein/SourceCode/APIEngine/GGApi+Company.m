@@ -256,7 +256,43 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:[NSNumber numberWithLongLong:aNewsID] forKey:@"newsid"];
+    //[parameters setObject:[NSNumber numberWithLongLong:aNewsID] forKey:@"newsid"];
+    
+    [self _execGetWithPath:path params:parameters callback:aCallback];
+}
+
+//OC01:Get Company ContactsBack to top
+//GET
+///svc/company/<orgid>/contacts, e,g, /svc/company/1399794/contacts
+-(void)getCompanyPeopleWithOrgID:(long long)anOrgID
+                      pageNumber:(NSUInteger)aPageNumber
+                        callback:(GGApiBlock)aCallback
+{
+    //GET
+    NSString *path = [NSString stringWithFormat:@"company/%lld/contacts", anOrgID];
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:[NSNumber numberWithLongLong:aPageNumber] forKey:@"page"];
+    
+    [self _execGetWithPath:path params:parameters callback:aCallback];
+}
+
+//OT01:Get Company CompetitorsBack to top
+//GET
+///svc/company/<orgid>/competitors, e,g, /svc/company/1399794/competitors
+-(void)getSimilarCompaniesWithOrgID:(long long)anOrgID
+                         pageNumber:(NSUInteger)aPageNumber
+                           callback:(GGApiBlock)aCallback
+{
+    //GET
+    NSString *path = [NSString stringWithFormat:@"company/%lld/competitors", anOrgID];
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:[NSNumber numberWithLongLong:aPageNumber] forKey:@"page"];
     
     [self _execGetWithPath:path params:parameters callback:aCallback];
 }

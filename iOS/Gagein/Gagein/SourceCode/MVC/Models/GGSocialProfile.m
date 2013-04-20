@@ -10,4 +10,13 @@
 
 @implementation GGSocialProfile
 
+-(void)parseWithData:(NSDictionary *)aData
+{
+    [super parseWithData:aData];
+    
+    self.type = [aData objectForKey:@"type"];
+    self.url = [aData objectForKey:@"url"];
+    self.hasProfileUrl = [[aData objectForKey:@"hasProfileUrl"] boolValue];
+}
+
 @end

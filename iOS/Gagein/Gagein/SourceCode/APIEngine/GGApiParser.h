@@ -39,6 +39,7 @@
 -(GGDataPage *)parseGetCompanyUpdates;
 -(GGDataPage *)parseGetSavedUpdates;
 -(GGDataPage *)parseGetCompanyHappenings;
+-(GGDataPage *)parseGetCompanyPeople;
 -(GGCompany *)parseGetCompanyOverview;
 -(GGDataPage *)parseSearchCompany;
 -(GGDataPage *)parseFollowedCompanies;

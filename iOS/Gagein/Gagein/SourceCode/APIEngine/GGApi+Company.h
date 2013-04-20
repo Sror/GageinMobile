@@ -65,5 +65,18 @@ typedef enum
 //3.Get a update detail
 -(void)getCompanyUpdateDetailWithNewsID:(long long)aNewsID callback:(GGApiBlock)aCallback;
 
+//OC01:Get Company ContactsBack to top
+//GET
+///svc/company/<orgid>/contacts, e,g, /svc/company/1399794/contacts
+-(void)getCompanyPeopleWithOrgID:(long long)anOrgID
+                      pageNumber:(NSUInteger)aPageNumber
+                        callback:(GGApiBlock)aCallback;
+
+//OT01:Get Company CompetitorsBack to top
+//GET
+///svc/company/<orgid>/competitors, e,g, /svc/company/1399794/competitors
+-(void)getSimilarCompaniesWithOrgID:(long long)anOrgID
+                         pageNumber:(NSUInteger)aPageNumber
+                           callback:(GGApiBlock)aCallback;
 
 @end
