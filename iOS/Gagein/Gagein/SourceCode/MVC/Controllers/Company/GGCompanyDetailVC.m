@@ -80,6 +80,7 @@
     [self _callApiGetUpdates];
     [self _callApiGetHappenings];
     [self _callApiGetPeople];
+    [self _callApiGetSimilarCompanies];
 }
 
 - (void)viewDidUnload {
@@ -192,9 +193,11 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        cell.lblTitle.text = @"Apple inc.";
-        cell.lblSubTitle.text = @"www.apple.com";
-        cell.ivPhoto.image = GGSharedImagePool.placeholder;
+        GGCompany *data = _similarCompanies[row];
+        
+        cell.lblTitle.text = data.name;
+        cell.lblSubTitle.text = data.website;
+        [cell.ivPhoto setImageWithURL:[NSURL URLWithString:data.logoPath] placeholderImage:GGSharedImagePool.placeholder];
         
         return cell;
         
@@ -441,6 +444,22 @@
             [_people addObjectsFromArray:[self _getArray:page.items maxCount:3]];
             
             [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    }];
+}
+
+-(void)_callApiGetSimilarCompanies
+{
+    [GGSharedAPI getSimilarCompaniesWithOrgID:_companyID pageNumber:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            GGDataPage *page = [parser parseGetSimilarCompanies];
+            
+            [_similarCompanies removeAllObjects];
+            [_similarCompanies addObjectsFromArray:[self _getArray:page.items maxCount:3]];
+            
+            [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:4] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
     }];
 }
