@@ -26,13 +26,11 @@
 #import "GGCompanyHappeningCell.h"
 #import "GGSelectAgentsVC.h"
 
-//#define USE_CUSTOM_NAVI_BAR       // 是否使用自定义导航条
-
 @interface GGCompaniesVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
 @property (nonatomic, strong) UITableView *happeningsTV;
-@property (weak, nonatomic) IBOutlet UINavigationBar *naviBar;
-@property (weak, nonatomic) IBOutlet UINavigationItem *naviItem;
+//@property (weak, nonatomic) IBOutlet UINavigationBar *naviBar;
+//@property (weak, nonatomic) IBOutlet UINavigationItem *naviItem;
 //@property (nonatomic, strong) NSMutableArray *dataSource;
 @end
 
@@ -67,29 +65,17 @@
     [self observeNotification:GG_NOTIFY_LOG_OUT];
     [self observeNotification:GG_NOTIFY_LOG_IN];
     
-    
-#if defined(USE_CUSTOM_NAVI_BAR)
-    self.navigationController.navigationBarHidden = YES;
-#endif
     [super viewDidLoad];
     
     UIBarButtonItem *menuBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(optionMenuAction:)];
     
-#if defined(USE_CUSTOM_NAVI_BAR)
-    self.naviItem.title = @"EXPLORING";
-    self.naviItem.leftBarButtonItem = menuBtn;
-#else
-    self.naviBar.hidden = YES;
-    self.title = @"EXPLORING";
+
+    //self.naviBar.hidden = YES;
+    self.navigationItem.title = @"EXPLORING";
     self.navigationItem.leftBarButtonItem = menuBtn;
-#endif
     
     
     CGRect updateRc = self.view.bounds;
-#if defined(USE_CUSTOM_NAVI_BAR)
-    updateRc.origin.y += self.naviBar.frame.size.height;
-    updateRc.size.height -= self.naviBar.frame.size.height;
-#endif
     
     //
     _slideSettingView = [[GGSlideSettingView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
@@ -153,8 +139,8 @@
 }
 
 - (void)viewDidUnload {
-    [self setNaviBar:nil];
-    [self setNaviItem:nil];
+    //[self setNaviBar:nil];
+    //[self setNaviItem:nil];
     [_updates removeAllObjects];
     [super viewDidUnload];
 }
@@ -222,7 +208,7 @@
 
 -(IBAction)_followingTapped:(id)sender
 {
-    self.title = @"FOLLOWING";
+    self.navigationItem.title = @"FOLLOWING";
     
     [self _followingSectionView].ivSelected.hidden = NO;
     [self _exploringSectionView].ivSelected.hidden = YES;
@@ -242,7 +228,7 @@
 
 -(IBAction)_exploringTapped:(id)sender
 {
-    self.title = @"EXPLORING";
+    self.navigationItem.title = @"EXPLORING";
     
     [self _followingSectionView].ivSelected.hidden = YES;
     [self _exploringSectionView].ivSelected.hidden = NO;
@@ -460,7 +446,7 @@
         //GGCompanyUpdate *updateData = [self.updates objectAtIndex:indexPath.row];
         GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
         //vc.newsID = updateData.ID;
-        vc.naviTitle = self.title;
+        vc.naviTitle = self.navigationItem.title;
         vc.updates = self.updates;
         vc.updateIndex = indexPath.row;
         [self.navigationController pushViewController:vc animated:YES];
@@ -481,7 +467,7 @@
             }
         }
         
-        self.title = theData.name;
+        self.navigationItem.title = theData.name;
         [self _exploringSectionView].ivSelected.hidden = YES;
         [self _followingSectionView].ivSelected.hidden = YES;
         

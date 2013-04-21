@@ -56,10 +56,14 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.navigationItem.title = @"";
+    self.lblName.text = @"";
+    self.lblWebsite.text = @"";
+
     
     //
     _tvDetail = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
@@ -273,14 +277,19 @@
         header.lblAction.hidden = YES;
     } else if (section == 1) {
         header.lblTitle.text = @"UPDATES";
+        header.lblAction.hidden = (_updates.count <= 0);
     } else if (section == 2) {
         header.lblTitle.text = @"HAPPENINGS";
+        header.lblAction.hidden = (_happenings.count <= 0);
     } else if (section == 3) {
         header.lblTitle.text = @"EMPLOYEES";
+        header.lblAction.hidden = (_people.count <= 0);
     } else if (section == 4) {
         header.lblTitle.text = @"SIMILAR COMPANIES";
+        header.lblAction.hidden = (_similarCompanies.count <= 0);
     } else if (section == 5) {
         header.lblTitle.text = @"LINKED PROFILES";
+        header.lblAction.hidden = (_companyOverview.socialProfiles.count <= 0);
     }
     
     return header;
