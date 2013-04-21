@@ -20,7 +20,9 @@
 #import "GGCompanyDetailUpdateCell.h"
 #import "GGComDetailEmployeeCell.h"
 #import "GGComDetailProfileCell.h"
+
 #import "GGWebVC.h"
+#import "GGUpdatesVC.h"
 
 typedef enum
 {
@@ -305,24 +307,51 @@ typedef enum
     } else if (section == kGGSectionUpdates) {
         header.lblTitle.text = @"UPDATES";
         header.lblAction.hidden = (_updates.count <= 0);
+        [header.lblAction addTarget:self action:@selector(_seeAllUpdatesAction:) forControlEvents:UIControlEventTouchUpInside];
     } else if (section == kGGSectionHappenings) {
         header.lblTitle.text = @"HAPPENINGS";
         header.lblAction.hidden = (_happenings.count <= 0);
+        [header.lblAction addTarget:self action:@selector(_seeAllHappeningsAction:) forControlEvents:UIControlEventTouchUpInside];
     } else if (section == kGGSectionEmployees) {
         header.lblTitle.text = @"EMPLOYEES";
         header.lblAction.hidden = (_people.count <= 0);
+        [header.lblAction addTarget:self action:@selector(_seeAllEmployeesAction:) forControlEvents:UIControlEventTouchUpInside];
     } else if (section == kGGSectionSimilarCompanies) {
         header.lblTitle.text = @"SIMILAR COMPANIES";
         header.lblAction.hidden = (_similarCompanies.count <= 0);
+        [header.lblAction addTarget:self action:@selector(_seeAllSimilarCompaniesAction:) forControlEvents:UIControlEventTouchUpInside];
     } else if (section == kGGSectionLinkedProfiles) {
         header.lblTitle.text = @"LINKED PROFILES";
-        header.lblAction.hidden = (_companyOverview.socialProfiles.count <= 0);
+        header.lblAction.hidden = YES;
     }
     
     return header;
 }
 
+#pragma mark - see all
+-(void)_seeAllUpdatesAction:(id)sender
+{
+    GGUpdatesVC *vc = [[GGUpdatesVC alloc] init];
+    vc.updates = _updates;
+    vc.companyID = _companyID;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
+-(void)_seeAllHappeningsAction:(id)sender
+{
+    
+}
+
+-(void)_seeAllEmployeesAction:(id)sender
+{
+    
+}
+
+-(void)_seeAllSimilarCompaniesAction:(id)sender
+{
+    
+}
 
 #pragma mark - UI update
 -(void)_updateUiOverview

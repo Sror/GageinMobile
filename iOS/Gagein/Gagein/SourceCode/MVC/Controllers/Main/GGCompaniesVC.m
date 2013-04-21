@@ -29,9 +29,6 @@
 @interface GGCompaniesVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
 @property (nonatomic, strong) UITableView *happeningsTV;
-//@property (weak, nonatomic) IBOutlet UINavigationBar *naviBar;
-//@property (weak, nonatomic) IBOutlet UINavigationItem *naviItem;
-//@property (nonatomic, strong) NSMutableArray *dataSource;
 @end
 
 @implementation GGCompaniesVC
@@ -294,11 +291,11 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
--(void)savedUpdateAction:(id)sender
-{
-    DLog(@"saved update clicked");
-    [GGAlert alert:@"Saved updates (TODO)"];
-}
+//-(void)savedUpdateAction:(id)sender
+//{
+//    DLog(@"saved update clicked");
+//    [GGAlert alert:@"Saved updates (TODO)"];
+//}
 
 -(void)companyDetailAction:(id)sender
 {
