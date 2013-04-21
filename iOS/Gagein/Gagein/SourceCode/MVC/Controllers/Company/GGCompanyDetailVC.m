@@ -20,6 +20,7 @@
 #import "GGCompanyDetailUpdateCell.h"
 #import "GGComDetailEmployeeCell.h"
 #import "GGComDetailProfileCell.h"
+#import "GGWebVC.h"
 
 @interface GGCompanyDetailVC ()
 
@@ -228,6 +229,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int section = indexPath.section;
+    int row = indexPath.row;
+    
     if (section == 0) {
        
     } else if (section == 1) {
@@ -239,7 +242,11 @@
     } else if (section == 4) {
 
     } else if (section == 5) {
-
+        GGSocialProfile *data = _companyOverview.socialProfiles[row];
+        GGWebVC *vc = [[GGWebVC alloc] init];
+        vc.urlStr = data.url;
+        vc.navigationItem.title = self.navigationItem.title;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

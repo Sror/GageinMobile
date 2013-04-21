@@ -36,6 +36,7 @@
 		EA0CA58B170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA589170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m */; };
 		EA0CA58D170BF4C000DBCD83 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0CA58C170BF4C000DBCD83 /* QuartzCore.framework */; };
 		EA12C60A172384A7001C0289 /* GGTickerSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = EA12C609172384A7001C0289 /* GGTickerSymbol.m */; };
+		EA12C60E172399A6001C0289 /* GGWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA12C60D172399A5001C0289 /* GGWebVC.m */; };
 		EA1995ED1717E301006D95E4 /* GGSettingMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */; };
 		EA1995F01717E312006D95E4 /* GGSettingMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */; };
 		EA1A61F7170A6478000B4EAE /* GGDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61F6170A6478000B4EAE /* GGDataModel.m */; };
@@ -254,6 +255,8 @@
 		EA0CA58C170BF4C000DBCD83 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EA12C608172384A7001C0289 /* GGTickerSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTickerSymbol.h; sourceTree = "<group>"; };
 		EA12C609172384A7001C0289 /* GGTickerSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGTickerSymbol.m; sourceTree = "<group>"; };
+		EA12C60C172399A5001C0289 /* GGWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGWebVC.h; sourceTree = "<group>"; };
+		EA12C60D172399A5001C0289 /* GGWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGWebVC.m; sourceTree = "<group>"; };
 		EA1995EB1717E301006D95E4 /* GGSettingMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingMenuCell.h; sourceTree = "<group>"; };
 		EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingMenuCell.m; sourceTree = "<group>"; };
 		EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingMenuCell.xib; sourceTree = "<group>"; };
@@ -942,6 +945,8 @@
 				EAC96C2617098313003FAFAA /* Signup */,
 				EA0CA568170BD5AD00DBCD83 /* GGBaseViewController.h */,
 				EA0CA569170BD5AD00DBCD83 /* GGBaseViewController.m */,
+				EA12C60C172399A5001C0289 /* GGWebVC.h */,
+				EA12C60D172399A5001C0289 /* GGWebVC.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1501,6 +1506,7 @@
 				EAD96079172142DD00A72A9C /* SBJsonStreamWriterState.m in Sources */,
 				EAD9607A172142DD00A72A9C /* SBJsonWriter.m in Sources */,
 				EA12C60A172384A7001C0289 /* GGTickerSymbol.m in Sources */,
+				EA12C60E172399A6001C0289 /* GGWebVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

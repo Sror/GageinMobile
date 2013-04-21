@@ -203,11 +203,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Company/GGCompanyDetailVC.m"
-         timestampString = "388208470.447125"
+         timestampString = "388209748.215918"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "423"
-         endingLineNumber = "423"
+         startingLineNumber = "430"
+         endingLineNumber = "430"
          landmarkName = "-_callApiGetUpdates"
          landmarkType = "5">
       </FileBreakpoint>
@@ -320,11 +320,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Company/GGCompanyDetailVC.m"
-         timestampString = "388208470.447125"
+         timestampString = "388209748.215918"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "347"
-         endingLineNumber = "347"
+         startingLineNumber = "354"
+         endingLineNumber = "354"
          landmarkName = "-followCompanyAction:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -345,13 +345,39 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Gagein/SourceCode/MVC/Controllers/Company/GGCompanyDetailVC.m"
-         timestampString = "388208470.447125"
+         filePath = "Gagein/SourceCode/MVC/Controllers/GGWebVC.m"
+         timestampString = "388209453.870597"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "458"
-         endingLineNumber = "458"
-         landmarkName = "-_callApiGetPeople"
+         startingLineNumber = "54"
+         endingLineNumber = "54"
+         landmarkName = "-webViewDidFinishLoad:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Controllers/GGWebVC.m"
+         timestampString = "388209454.919374"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "59"
+         endingLineNumber = "59"
+         landmarkName = "-webView:didFailLoadWithError:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Controllers/GGWebVC.m"
+         timestampString = "388209509.458495"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "49"
+         endingLineNumber = "49"
+         landmarkName = "-webViewDidStartLoad:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
