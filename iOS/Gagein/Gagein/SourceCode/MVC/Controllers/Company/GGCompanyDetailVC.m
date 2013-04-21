@@ -22,6 +22,17 @@
 #import "GGComDetailProfileCell.h"
 #import "GGWebVC.h"
 
+typedef enum
+{
+    kGGSectionOverview = 0
+    , kGGSectionUpdates
+    , kGGSectionHappenings
+    , kGGSectionEmployees
+    , kGGSectionSimilarCompanies
+    , kGGSectionLinkedProfiles
+    , kGGSectionCount
+}EGGComDetailSection;
+
 @interface GGCompanyDetailVC ()
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -102,22 +113,22 @@
 #pragma mark - table view datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 6;
+    return kGGSectionCount;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if (section == kGGSectionOverview) {
         return 1;
-    } else if (section == 1) {
+    } else if (section == kGGSectionUpdates) {
         return _updates.count;
-    } else if (section == 2) {
+    } else if (section == kGGSectionHappenings) {
         return _happenings.count;
-    } else if (section == 3) {
+    } else if (section == kGGSectionEmployees) {
         return _people.count;
-    } else if (section == 4) {
+    } else if (section == kGGSectionSimilarCompanies) {
         return _similarCompanies.count;
-    } else if (section == 5) {
+    } else if (section == kGGSectionLinkedProfiles) {
         return _companyOverview.socialProfiles.count;
     } 
     
@@ -130,7 +141,7 @@
     int section = indexPath.section;
     int row = indexPath.row;
     
-    if (section == 0) {
+    if (section == kGGSectionOverview) {
         GGCompanyDetailOverviewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGCompanyDetailOverviewCell"];
         if (!cell) {
             cell = [GGCompanyDetailOverviewCell viewFromNibWithOwner:self];
@@ -143,7 +154,7 @@
         
         return cell;
         
-    } else if (section == 1) {  // update cell
+    } else if (section == kGGSectionUpdates) {  // update cell
         
         GGCompanyDetailUpdateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGCompanyDetailUpdateCell"];
         if (!cell) {
@@ -159,7 +170,7 @@
         
         return cell;
         
-    } else if (section == 2) { // happening cell
+    } else if (section == kGGSectionHappenings) { // happening cell
         
         GGCompanyDetailUpdateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGCompanyDetailUpdateCell"];
         if (!cell) {
@@ -175,7 +186,7 @@
         
         return cell;
         
-    } else if (section == 3) {
+    } else if (section == kGGSectionEmployees) {
         
         GGComDetailEmployeeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGComDetailEmployeeCell"];
         if (!cell) {
@@ -191,7 +202,7 @@
         
         return cell;
         
-    } else if (section == 4) {
+    } else if (section == kGGSectionSimilarCompanies) {
         
         GGComDetailEmployeeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGComDetailEmployeeCell"];
         if (!cell) {
@@ -207,7 +218,7 @@
         
         return cell;
         
-    } else if (section == 5) {
+    } else if (section == kGGSectionLinkedProfiles) {
         
         GGComDetailProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGComDetailProfileCell"];
         if (!cell) {
@@ -225,45 +236,54 @@
     return nil;
 }
 
+
+
 #pragma mark - tableview delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int section = indexPath.section;
     int row = indexPath.row;
     
-    if (section == 0) {
+    if (section == kGGSectionOverview) {
        
-    } else if (section == 1) {
+    } else if (section == kGGSectionUpdates) {
 
-    } else if (section == 2) {
+    } else if (section == kGGSectionHappenings) {
 
-    } else if (section == 3) {
+    } else if (section == kGGSectionEmployees) {
 
-    } else if (section == 4) {
-
-    } else if (section == 5) {
+    } else if (section == kGGSectionSimilarCompanies) {
+        
+        GGCompany *data = _similarCompanies[row];
+        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+        vc.companyID = data.ID;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    } else if (section == kGGSectionLinkedProfiles) {
+        
         GGSocialProfile *data = _companyOverview.socialProfiles[row];
         GGWebVC *vc = [[GGWebVC alloc] init];
         vc.urlStr = data.url;
         vc.navigationItem.title = self.navigationItem.title;
         [self.navigationController pushViewController:vc animated:YES];
+        
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int section = indexPath.section;
-    if (section == 0) {
+    if (section == kGGSectionOverview) {
         return [GGCompanyDetailOverviewCell HEIGHT];
-    } else if (section == 1) {
+    } else if (section == kGGSectionUpdates) {
         return [GGCompanyDetailUpdateCell HEIGHT];
-    } else if (section == 2) {
+    } else if (section == kGGSectionHappenings) {
         return [GGCompanyDetailUpdateCell HEIGHT];
-    } else if (section == 3) {
+    } else if (section == kGGSectionEmployees) {
         return [GGComDetailEmployeeCell HEIGHT];
-    } else if (section == 4) {
+    } else if (section == kGGSectionSimilarCompanies) {
         return [GGComDetailEmployeeCell HEIGHT];
-    } else if (section == 5) {
+    } else if (section == kGGSectionLinkedProfiles) {
         return [GGComDetailProfileCell HEIGHT];
     }
     
@@ -279,22 +299,22 @@
 {
     GGCompanyDetailHeaderView *header = [GGCompanyDetailHeaderView viewFromNibWithOwner:self];
     
-    if (section == 0) {
+    if (section == kGGSectionOverview) {
         header.lblTitle.text = @"OVERVIEW";
         header.lblAction.hidden = YES;
-    } else if (section == 1) {
+    } else if (section == kGGSectionUpdates) {
         header.lblTitle.text = @"UPDATES";
         header.lblAction.hidden = (_updates.count <= 0);
-    } else if (section == 2) {
+    } else if (section == kGGSectionHappenings) {
         header.lblTitle.text = @"HAPPENINGS";
         header.lblAction.hidden = (_happenings.count <= 0);
-    } else if (section == 3) {
+    } else if (section == kGGSectionEmployees) {
         header.lblTitle.text = @"EMPLOYEES";
         header.lblAction.hidden = (_people.count <= 0);
-    } else if (section == 4) {
+    } else if (section == kGGSectionSimilarCompanies) {
         header.lblTitle.text = @"SIMILAR COMPANIES";
         header.lblAction.hidden = (_similarCompanies.count <= 0);
-    } else if (section == 5) {
+    } else if (section == kGGSectionLinkedProfiles) {
         header.lblTitle.text = @"LINKED PROFILES";
         header.lblAction.hidden = (_companyOverview.socialProfiles.count <= 0);
     }
@@ -427,7 +447,7 @@
         [_updates removeAllObjects];
         [_updates addObjectsFromArray:[self _getArray:page.items maxCount:3]];
         
-        [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:kGGSectionUpdates] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
     
     [GGSharedAPI getCompanyUpdatesWithCompanyID:_companyID newsID:0 pageFlag:kGGPageFlagFirstPage pageTime:0 relevance:kGGCompanyUpdateRelevanceNormal callback:callback];
@@ -447,7 +467,7 @@
         [_happenings removeAllObjects];
         [_happenings addObjectsFromArray:[self _getArray:page.items maxCount:3]];
         
-        [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:kGGSectionHappenings] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
     
     [GGSharedAPI getHappeningsWithCompanyID:_companyID pageFlag:kGGPageFlagFirstPage pageTime:0 callback:callback];
@@ -464,7 +484,7 @@
             [_people removeAllObjects];
             [_people addObjectsFromArray:[self _getArray:page.items maxCount:3]];
             
-            [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:kGGSectionEmployees] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
     }];
 }
@@ -480,7 +500,7 @@
             [_similarCompanies removeAllObjects];
             [_similarCompanies addObjectsFromArray:[self _getArray:page.items maxCount:3]];
             
-            [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:4] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:kGGSectionSimilarCompanies] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
     }];
 }
