@@ -151,6 +151,11 @@
     return [self _parsePageforClass:[GGPerson class]];
 }
 
+-(GGDataPage *)parseGetSimilarCompanies
+{
+    return [self _parsePageforClass:[GGCompany class]];
+}
+
 -(GGCompany *)parseGetCompanyOverview
 {
     GG_ASSERT_API_DATA_IS_DIC;

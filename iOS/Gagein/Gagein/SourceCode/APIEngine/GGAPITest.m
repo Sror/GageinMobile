@@ -11,12 +11,14 @@
 #import "SBJson.h"
 #import "GGDataPage.h"
 
+#define EXAMPLE_COMPANY_ID  1399794
+
 @implementation GGAPITest
 DEF_SINGLETON(GGAPITest)
 
 -(void)run
 {
-    [self _testGetCompanyPeopleWithOrgID];
+    [self _testGetSimilarCompaniesWithOrgID];
 }
 
 -(void)_testJsonParse
@@ -138,7 +140,7 @@ DEF_SINGLETON(GGAPITest)
 /////////////////////////////////////////////////////////////////
 -(void)_testGetCompanyPeopleWithOrgID
 {
-    [GGSharedAPI getCompanyPeopleWithOrgID:1399794 pageNumber:0 callback:^(id operation, id aResultObject, NSError *anError) {
+    [GGSharedAPI getCompanyPeopleWithOrgID:EXAMPLE_COMPANY_ID pageNumber:0 callback:^(id operation, id aResultObject, NSError *anError) {
         
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
@@ -153,10 +155,25 @@ DEF_SINGLETON(GGAPITest)
     }];
 }
 
+-(void)_testGetSimilarCompaniesWithOrgID
+{
+    [GGSharedAPI getSimilarCompaniesWithOrgID:EXAMPLE_COMPANY_ID pageNumber:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            GGDataPage *page = [parser parseGetSimilarCompanies];
+            for (id item in page.items)
+            {
+                DLog(@"%@", item);
+            }
+        }
+    }];
+}
+
 -(void)_testGetCompanyOverviewWithID
 {
-    [GGSharedAPI getCompanyOverviewWithID:1399794 needSocialProfile:YES callback:^(id operation, id aResultObject, NSError *anError) {
-        //
+    [GGSharedAPI getCompanyOverviewWithID:EXAMPLE_COMPANY_ID needSocialProfile:YES callback:^(id operation, id aResultObject, NSError *anError) {
+        
     }];
 }
 
