@@ -12,6 +12,7 @@
 #import "GGDataPage.h"
 #import "GGCompanyUpdate.h"
 #import "GGCompanyHappening.h"
+#import "GGPerson.h"
 
 #import "GGCompanyDetailOverviewCell.h"
 #import "GGCompanyDetailHeaderView.h"
@@ -34,8 +35,11 @@
 {
     GGCompany           *_companyOverview;
     UITableView         *_tvDetail;
+    
     NSMutableArray      *_updates;
     NSMutableArray      *_happenings;
+    NSMutableArray      *_people;
+    NSMutableArray      *_similarCompanies;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -44,7 +48,10 @@
     if (self) {
         _updates = [NSMutableArray array];
         _happenings = [NSMutableArray array];
+        _people = [NSMutableArray array];
+        _similarCompanies = [NSMutableArray array];
     }
+    
     return self;
 }
 
@@ -72,6 +79,7 @@
     [self _callApiGetOverView];
     [self _callApiGetUpdates];
     [self _callApiGetHappenings];
+    [self _callApiGetPeople];
 }
 
 - (void)viewDidUnload {
@@ -99,9 +107,9 @@
     } else if (section == 2) {
         return _happenings.count;
     } else if (section == 3) {
-        return 3;
+        return _people.count;
     } else if (section == 4) {
-        return 3;
+        return _similarCompanies.count;
     } else if (section == 5) {
         return 4;
     } 
@@ -152,7 +160,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        GGCompanyHappening *data = _happenings[indexPath.row];
+        GGCompanyHappening *data = _happenings[row];
         
         cell.lblSource.text = data.sourceText;
         cell.lblInterval.text = @"1d ago";
@@ -168,9 +176,11 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        cell.lblTitle.text = @"Bill Gates";
-        cell.lblSubTitle.text = @"CEO, Microsoft";
-        cell.ivPhoto.image = GGSharedImagePool.placeholder;
+        GGPerson *data = _people[row];
+        
+        cell.lblTitle.text = data.name;
+        cell.lblSubTitle.text = data.orgTitle;
+        [cell.ivPhoto setImageWithURL:[NSURL URLWithString:data.photoPath] placeholderImage:GGSharedImagePool.placeholder];
         
         return cell;
         
@@ -358,6 +368,28 @@
 
 #pragma mark - api calls
 
+-(NSArray *)_getArray:(NSArray *)anArray maxCount:(NSUInteger)aIndex
+{
+    NSMutableArray *returnedArray = nil;
+    
+    if (anArray.count && aIndex)
+    {
+        int count = 0;
+        returnedArray = [NSMutableArray array];
+        for (id item in anArray)
+        {
+            [returnedArray addObject:item];
+            count++;
+            if (count > aIndex - 1)
+            {
+                break;
+            }
+        }
+    }
+    
+    return returnedArray;
+}
+
 -(void)_callApiGetUpdates
 {
     GGApiBlock callback = ^(id operation, id aResultObject, NSError* anError) {
@@ -369,17 +401,7 @@
         //DLog(@"%@", page);
         
         [_updates removeAllObjects];
-        
-        int maxCount = 0;
-        for (id item in page.items) {
-            [_updates addObject:item];
-            maxCount ++;
-            if (maxCount > 2) {
-                break;
-            }
-        }
-        //[_updates addObjectsFromArray:page.items];
-        
+        [_updates addObjectsFromArray:[self _getArray:page.items maxCount:3]];
         
         [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
@@ -399,20 +421,28 @@
         //DLog(@"%@", page);
         
         [_happenings removeAllObjects];
-        
-        int maxCount = 0;
-        for (id item in page.items) {
-            [_happenings addObject:item];
-            maxCount ++;
-            if (maxCount > 2) {
-                break;
-            }
-        }
-        //[_happenings addObjectsFromArray:page.items];
+        [_happenings addObjectsFromArray:[self _getArray:page.items maxCount:3]];
         
         [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
     
-    [GGSharedAPI getHappeningsWithCompanyID:_companyID pageFlag:kGGPageFlagFirstPage pageTime:0 callback:callback];}
+    [GGSharedAPI getHappeningsWithCompanyID:_companyID pageFlag:kGGPageFlagFirstPage pageTime:0 callback:callback];
+}
+
+-(void)_callApiGetPeople
+{
+    [GGSharedAPI getCompanyPeopleWithOrgID:_companyID pageNumber:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            GGDataPage *page = [parser parseGetCompanyPeople];
+            
+            [_people removeAllObjects];
+            [_people addObjectsFromArray:[self _getArray:page.items maxCount:3]];
+            
+            [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    }];
+}
 
 @end
