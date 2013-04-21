@@ -16,6 +16,7 @@ typedef enum {
 }EGGCompanyType;
 
 @class GGSocialProfile;
+@class GGTickerSymbol;
 
 @interface GGCompany : GGDataModel
 
@@ -28,6 +29,7 @@ typedef enum {
 @property (copy)    NSString *revenueSize;
 @property (copy)    NSString *type;                 // eg. "Private Company"
 @property (strong)  NSMutableArray *socialProfiles; // each profile is a GGSocialProfile
+@property (strong)  NSMutableArray *tickerSymbols; // each profile is a GGTickerSymbol
 @property (copy)    NSString *address;
 @property (copy)    NSString *faxNumber;
 @property (copy)    NSString *fiscalYear;

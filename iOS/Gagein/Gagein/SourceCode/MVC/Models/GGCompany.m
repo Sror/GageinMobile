@@ -7,8 +7,20 @@
 //
 
 #import "GGCompany.h"
+#import "GGTickerSymbol.h"
+#import "GGSocialProfile.h"
 
 @implementation GGCompany
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _socialProfiles = [NSMutableArray array];
+        _tickerSymbol = [NSMutableArray array];
+    }
+    return self;
+}
 
 -(void)parseWithData:(NSDictionary *)aData
 {
@@ -45,6 +57,34 @@
     self.address = [aData objectForKey:@"address"];
     self.googleMapUrl = [aData objectForKey:@"google_map_url"];
     self.latestDate = [aData objectForKey:@"latest_date"];
+    
+    [_socialProfiles removeAllObjects];
+    NSArray *snProfiles = [aData objectForKey:@"social_profiles"];
+    if (snProfiles.count)
+    {
+        for (id item in snProfiles)
+        {
+            NSAssert([item isKindOfClass:[NSDictionary class]], @"sn profile data should be a Dic");
+            
+            GGSocialProfile *profile = [GGSocialProfile model];
+            [profile parseWithData:item];
+            [_socialProfiles addObject:profile];
+        }
+    }
+    
+    [_tickerSymbols removeAllObjects];
+    NSArray *symbols = [aData objectForKey:@"ticker_symbol"];
+    if (symbols.count)
+    {
+        for (id item in symbols)
+        {
+            NSAssert([item isKindOfClass:[NSDictionary class]], @"sn profile data should be a Dic");
+            
+            GGTickerSymbol *symbol = [GGTickerSymbol model];
+            [symbol parseWithData:item];
+            [_tickerSymbols addObject:symbol];
+        }
+    }
 }
 
 -(EGGCompanyType)getType

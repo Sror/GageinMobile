@@ -159,7 +159,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:[NSNumber numberWithBool:aNeedSP] forKey:@"include_sp"];
+    [parameters setObject:(aNeedSP ? @"true" : @"false") forKey:@"include_sp"];
     
     [self _execGetWithPath:path params:parameters callback:aCallback];
 }

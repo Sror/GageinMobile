@@ -13,6 +13,7 @@
 #import "GGCompanyUpdate.h"
 #import "GGCompanyHappening.h"
 #import "GGPerson.h"
+#import "GGSocialProfile.h"
 
 #import "GGCompanyDetailOverviewCell.h"
 #import "GGCompanyDetailHeaderView.h"
@@ -112,7 +113,7 @@
     } else if (section == 4) {
         return _similarCompanies.count;
     } else if (section == 5) {
-        return 4;
+        return _companyOverview.socialProfiles.count;
     } 
     
     return 0;
@@ -209,7 +210,9 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        cell.lblTitle.text = @"LinkedIn";
+        GGSocialProfile *data = _companyOverview.socialProfiles[row];
+        
+        cell.lblTitle.text = data.type;
         
         return cell;
     }
@@ -283,16 +286,7 @@
     return header;
 }
 
-#pragma mark - API calls
--(void)_callApiGetOverView
-{
-    [GGSharedAPI getCompanyOverviewWithID:_companyID needSocialProfile:YES callback:^(id operation, id aResultObject, NSError *anError) {
-        
-        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-        _companyOverview = [parser parseGetCompanyOverview];
-        [self _updateUiOverview];
-    }];
-}
+
 
 #pragma mark - UI update
 -(void)_updateUiOverview
@@ -310,7 +304,9 @@
     self.lblWebsite.text = _companyOverview.website;
     [self _updateUiBtnFollow];
     
-    [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [_tvDetail reloadData];
+    //[_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    //[_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:5] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 -(void)_updateUiBtnFollow
@@ -369,7 +365,16 @@
     }
 }
 
-#pragma mark - api calls
+#pragma mark - API calls
+-(void)_callApiGetOverView
+{
+    [GGSharedAPI getCompanyOverviewWithID:_companyID needSocialProfile:YES callback:^(id operation, id aResultObject, NSError *anError) {
+        
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        _companyOverview = [parser parseGetCompanyOverview];
+        [self _updateUiOverview];
+    }];
+}
 
 -(NSArray *)_getArray:(NSArray *)anArray maxCount:(NSUInteger)aIndex
 {

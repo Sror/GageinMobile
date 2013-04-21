@@ -35,6 +35,7 @@
 		EA0CA58A170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA587170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m */; };
 		EA0CA58B170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA589170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m */; };
 		EA0CA58D170BF4C000DBCD83 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0CA58C170BF4C000DBCD83 /* QuartzCore.framework */; };
+		EA12C60A172384A7001C0289 /* GGTickerSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = EA12C609172384A7001C0289 /* GGTickerSymbol.m */; };
 		EA1995ED1717E301006D95E4 /* GGSettingMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */; };
 		EA1995F01717E312006D95E4 /* GGSettingMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */; };
 		EA1A61F7170A6478000B4EAE /* GGDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61F6170A6478000B4EAE /* GGDataModel.m */; };
@@ -251,6 +252,8 @@
 		EA0CA588170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		EA0CA589170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		EA0CA58C170BF4C000DBCD83 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EA12C608172384A7001C0289 /* GGTickerSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTickerSymbol.h; sourceTree = "<group>"; };
+		EA12C609172384A7001C0289 /* GGTickerSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGTickerSymbol.m; sourceTree = "<group>"; };
 		EA1995EB1717E301006D95E4 /* GGSettingMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingMenuCell.h; sourceTree = "<group>"; };
 		EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingMenuCell.m; sourceTree = "<group>"; };
 		EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingMenuCell.xib; sourceTree = "<group>"; };
@@ -972,6 +975,8 @@
 				EAEFB4F91717BC620013634F /* GGMenuData.m */,
 				EA4F3A1D171E7FC800530185 /* GGCompanyHappening.h */,
 				EA4F3A1E171E7FC800530185 /* GGCompanyHappening.m */,
+				EA12C608172384A7001C0289 /* GGTickerSymbol.h */,
+				EA12C609172384A7001C0289 /* GGTickerSymbol.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1495,6 +1500,7 @@
 				EAD96078172142DD00A72A9C /* SBJsonStreamWriterAccumulator.m in Sources */,
 				EAD96079172142DD00A72A9C /* SBJsonStreamWriterState.m in Sources */,
 				EAD9607A172142DD00A72A9C /* SBJsonWriter.m in Sources */,
+				EA12C60A172384A7001C0289 /* GGTickerSymbol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
