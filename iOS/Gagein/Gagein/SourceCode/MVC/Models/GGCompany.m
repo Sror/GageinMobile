@@ -10,6 +10,18 @@
 #import "GGTicker.h"
 #import "GGSocialProfile.h"
 
+@implementation GGCompanyBrief
+
+-(void)parseWithData:(NSDictionary *)aData
+{
+    [super parseWithData:aData];
+    
+    self.ID = [[aData objectForKey:@"orgid"] longLongValue];
+    self.name = [aData objectForKey:@"org_name"];
+}
+
+@end
+
 @implementation GGCompany
 
 - (id)init
@@ -18,6 +30,8 @@
     if (self) {
         _socialProfiles = [NSMutableArray array];
         _tickerSymbols = [NSMutableArray array];
+        _divisions = [NSMutableArray array];
+        _subsidiaries = [NSMutableArray array];
     }
     return self;
 }
@@ -84,6 +98,34 @@
             GGTicker *symbol = [GGTicker model];
             [symbol parseWithData:item];
             [_tickerSymbols addObject:symbol];
+        }
+    }
+    
+    [_divisions removeAllObjects];
+    NSArray *divisions = [aData objectForKey:@"divisions"];
+    if (divisions.count)
+    {
+        for (id item in divisions)
+        {
+            NSAssert([item isKindOfClass:[NSDictionary class]], @"sn profile data should be a Dic");
+            
+            GGCompanyBrief *comBrief = [GGCompanyBrief model];
+            [comBrief parseWithData:item];
+            [_divisions addObject:comBrief];
+        }
+    }
+    
+    [_subsidiaries removeAllObjects];
+    NSArray *subsidiaries = [aData objectForKey:@"subsidiaries"];
+    if (subsidiaries.count)
+    {
+        for (id item in subsidiaries)
+        {
+            NSAssert([item isKindOfClass:[NSDictionary class]], @"sn profile data should be a Dic");
+            
+            GGCompanyBrief *comBrief = [GGCompanyBrief model];
+            [comBrief parseWithData:item];
+            [_subsidiaries addObject:comBrief];
         }
     }
 }

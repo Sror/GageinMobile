@@ -8,6 +8,7 @@
 
 #import "GGComOverviewDetailVC.h"
 #import "GGWebVC.h"
+#import "GGCompanyDetailVC.h"
 #import "GGCompanyDetailHeaderView.h"
 #import "GGCompany.h"
 #import "GGTicker.h"
@@ -17,6 +18,7 @@
 #import "GGComOverviewStockCell.h"
 #import "GGComOverviewRevenuesCell.h"
 #import "GGComOverviewContactCell.h"
+#import "GGComDetailProfileCell.h"
 
 typedef enum
 {
@@ -58,7 +60,8 @@ typedef enum
     _tv.backgroundColor = GGSharedColor.silver;
     _tv.dataSource = self;
     _tv.delegate = self;
-    _tv.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //_tv.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tv.separatorColor = GGSharedColor.silver;
     [self.view addSubview:_tv];
 }
 
@@ -189,9 +192,9 @@ typedef enum
     } else if (section == kGGSectionRevenues) {
         return 1;
     } else if (section == kGGSectionSubsidaries) {
-        return 1;
+        return _overview.subsidiaries.count;
     } else if (section == kGGSectionDivisions) {
-        return 1;
+        return _overview.divisions.count;
     }  else if (section == kGGSectionContact) {
         return 1;
     }
@@ -202,7 +205,7 @@ typedef enum
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int section = indexPath.section;
-    //int row = indexPath.row;
+    int row = indexPath.row;
     
     if (section == kGGSectionAbout) {
         
@@ -222,8 +225,30 @@ typedef enum
 
     } else if (section == kGGSectionSubsidaries) {
 
+        GGComDetailProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGComDetailProfileCell"];
+        if (!cell)
+        {
+            cell = [GGComDetailProfileCell viewFromNibWithOwner:self];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        GGCompanyBrief *comBrief = _overview.subsidiaries[row];
+        cell.lblTitle.text = comBrief.name;
+        return cell;
+        
     } else if (section == kGGSectionDivisions) {
-
+        
+        GGComDetailProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGComDetailProfileCell"];
+        if (!cell)
+        {
+            cell = [GGComDetailProfileCell viewFromNibWithOwner:self];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        GGCompanyBrief *comBrief = _overview.divisions[row];
+        cell.lblTitle.text = comBrief.name;
+        return cell;
+        
     }  else if (section == kGGSectionContact) {
         
         return [self _tvCellContact];
@@ -239,7 +264,7 @@ typedef enum
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int section = indexPath.section;
-    //int row = indexPath.row;
+    int row = indexPath.row;
     
     if (section == kGGSectionAbout) {
         
@@ -260,7 +285,17 @@ typedef enum
         
     } else if (section == kGGSectionSubsidaries) {
         
+        GGCompanyBrief *comBrief = _overview.subsidiaries[row];
+        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+        vc.companyID = comBrief.ID;
+        [self.navigationController pushViewController:vc animated:YES];
+        
     } else if (section == kGGSectionDivisions) {
+        
+        GGCompanyBrief *comBrief = _overview.divisions[row];
+        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+        vc.companyID = comBrief.ID;
+        [self.navigationController pushViewController:vc animated:YES];
         
     }  else if (section == kGGSectionContact) {
         
@@ -289,7 +324,11 @@ typedef enum
         
     } else if (section == kGGSectionSubsidaries) {
         
+        return [GGComDetailProfileCell HEIGHT];
+        
     } else if (section == kGGSectionDivisions) {
+        
+        return [GGComDetailProfileCell HEIGHT];
         
     }  else if (section == kGGSectionContact) {
         

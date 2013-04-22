@@ -18,6 +18,10 @@ typedef enum {
 @class GGSocialProfile;
 @class GGTicker;
 
+@interface GGCompanyBrief : GGDataModel
+@property (copy)    NSString *name;
+@end
+
 @interface GGCompany : GGDataModel
 
 @property (copy)    NSString *name;
@@ -28,8 +32,12 @@ typedef enum {
 @property (copy)    NSString *ownership;
 @property (copy)    NSString *revenueSize;
 @property (copy)    NSString *type;                 // eg. "Private Company"
+
 @property (strong)  NSMutableArray *socialProfiles; // each profile is a GGSocialProfile
 @property (strong)  NSMutableArray *tickerSymbols; // each profile is a GGTicker
+@property (strong)  NSMutableArray *divisions; // each profile is a GGCompanyBrief
+@property (strong)  NSMutableArray *subsidiaries; // each profile is a GGCompanyBrief
+
 @property (copy)    NSString *address;
 @property (copy)    NSString *faxNumber;
 @property (copy)    NSString *fiscalYear;
