@@ -23,6 +23,7 @@
 
 #import "GGWebVC.h"
 #import "GGUpdatesVC.h"
+#import "GGHappeningsVC.h"
 
 typedef enum
 {
@@ -340,7 +341,11 @@ typedef enum
 
 -(void)_seeAllHappeningsAction:(id)sender
 {
+    GGHappeningsVC *vc = [[GGHappeningsVC alloc] init];
+    vc.happenings = _happenings;
+    vc.companyID = _companyID;
     
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)_seeAllEmployeesAction:(id)sender

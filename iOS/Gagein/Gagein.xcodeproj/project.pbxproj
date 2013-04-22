@@ -31,13 +31,10 @@
 		EA0CA563170BD54000DBCD83 /* GGProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA55E170BD54000DBCD83 /* GGProfileVC.m */; };
 		EA0CA564170BD54000DBCD83 /* GGSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA560170BD54000DBCD83 /* GGSettingVC.m */; };
 		EA0CA567170BD57200DBCD83 /* GGWelcomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA566170BD57200DBCD83 /* GGWelcomeVC.m */; };
-		EA0CA56A170BD5AD00DBCD83 /* GGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA569170BD5AD00DBCD83 /* GGBaseViewController.m */; };
 		EA0CA58A170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA587170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m */; };
 		EA0CA58B170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA589170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m */; };
 		EA0CA58D170BF4C000DBCD83 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0CA58C170BF4C000DBCD83 /* QuartzCore.framework */; };
 		EA12C60A172384A7001C0289 /* GGTickerSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = EA12C609172384A7001C0289 /* GGTickerSymbol.m */; };
-		EA12C60E172399A6001C0289 /* GGWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA12C60D172399A5001C0289 /* GGWebVC.m */; };
-		EA12C6111723C90F001C0289 /* GGUpdatesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA12C6101723C90F001C0289 /* GGUpdatesVC.m */; };
 		EA1995ED1717E301006D95E4 /* GGSettingMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */; };
 		EA1995F01717E312006D95E4 /* GGSettingMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */; };
 		EA1A61F7170A6478000B4EAE /* GGDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61F6170A6478000B4EAE /* GGDataModel.m */; };
@@ -180,6 +177,10 @@
 		EAD96078172142DD00A72A9C /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD9606C172142DD00A72A9C /* SBJsonStreamWriterAccumulator.m */; };
 		EAD96079172142DD00A72A9C /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD9606E172142DD00A72A9C /* SBJsonStreamWriterState.m */; };
 		EAD9607A172142DD00A72A9C /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD96070172142DD00A72A9C /* SBJsonWriter.m */; };
+		EAEABBFD1724C89300947BE9 /* GGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEABBF81724C89300947BE9 /* GGBaseViewController.m */; };
+		EAEABBFE1724C89300947BE9 /* GGUpdatesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEABBFA1724C89300947BE9 /* GGUpdatesVC.m */; };
+		EAEABBFF1724C89300947BE9 /* GGWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEABBFC1724C89300947BE9 /* GGWebVC.m */; };
+		EAEABC031724C8E400947BE9 /* GGHappeningsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEABC021724C8E400947BE9 /* GGHappeningsVC.m */; };
 		EAEFB4DF1717A8100013634F /* GGCompanyDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CB1717A8100013634F /* GGCompanyDetailVC.xib */; };
 		EAEFB4E01717A8100013634F /* GGCompanyUpdateDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CC1717A8100013634F /* GGCompanyUpdateDetailVC.xib */; };
 		EAEFB4E11717A8100013634F /* GGFollowCompanyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CD1717A8100013634F /* GGFollowCompanyVC.xib */; };
@@ -246,8 +247,6 @@
 		EA0CA560170BD54000DBCD83 /* GGSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingVC.m; sourceTree = "<group>"; };
 		EA0CA565170BD57200DBCD83 /* GGWelcomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGWelcomeVC.h; sourceTree = "<group>"; };
 		EA0CA566170BD57200DBCD83 /* GGWelcomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGWelcomeVC.m; sourceTree = "<group>"; };
-		EA0CA568170BD5AD00DBCD83 /* GGBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGBaseViewController.h; sourceTree = "<group>"; };
-		EA0CA569170BD5AD00DBCD83 /* GGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGBaseViewController.m; sourceTree = "<group>"; };
 		EA0CA585170BF4A700DBCD83 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
 		EA0CA586170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
 		EA0CA587170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
@@ -256,10 +255,6 @@
 		EA0CA58C170BF4C000DBCD83 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EA12C608172384A7001C0289 /* GGTickerSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTickerSymbol.h; sourceTree = "<group>"; };
 		EA12C609172384A7001C0289 /* GGTickerSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGTickerSymbol.m; sourceTree = "<group>"; };
-		EA12C60C172399A5001C0289 /* GGWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGWebVC.h; sourceTree = "<group>"; };
-		EA12C60D172399A5001C0289 /* GGWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGWebVC.m; sourceTree = "<group>"; };
-		EA12C60F1723C90F001C0289 /* GGUpdatesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGUpdatesVC.h; sourceTree = "<group>"; };
-		EA12C6101723C90F001C0289 /* GGUpdatesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUpdatesVC.m; sourceTree = "<group>"; };
 		EA1995EB1717E301006D95E4 /* GGSettingMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingMenuCell.h; sourceTree = "<group>"; };
 		EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingMenuCell.m; sourceTree = "<group>"; };
 		EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingMenuCell.xib; sourceTree = "<group>"; };
@@ -486,6 +481,14 @@
 		EAD9606E172142DD00A72A9C /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterState.m; sourceTree = "<group>"; };
 		EAD9606F172142DD00A72A9C /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		EAD96070172142DD00A72A9C /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		EAEABBF71724C89300947BE9 /* GGBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGBaseViewController.h; sourceTree = "<group>"; };
+		EAEABBF81724C89300947BE9 /* GGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGBaseViewController.m; sourceTree = "<group>"; };
+		EAEABBF91724C89300947BE9 /* GGUpdatesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGUpdatesVC.h; sourceTree = "<group>"; };
+		EAEABBFA1724C89300947BE9 /* GGUpdatesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUpdatesVC.m; sourceTree = "<group>"; };
+		EAEABBFB1724C89300947BE9 /* GGWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGWebVC.h; sourceTree = "<group>"; };
+		EAEABBFC1724C89300947BE9 /* GGWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGWebVC.m; sourceTree = "<group>"; };
+		EAEABC011724C8E400947BE9 /* GGHappeningsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGHappeningsVC.h; sourceTree = "<group>"; };
+		EAEABC021724C8E400947BE9 /* GGHappeningsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGHappeningsVC.m; sourceTree = "<group>"; };
 		EAEFB4CB1717A8100013634F /* GGCompanyDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyDetailVC.xib; sourceTree = "<group>"; };
 		EAEFB4CC1717A8100013634F /* GGCompanyUpdateDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyUpdateDetailVC.xib; sourceTree = "<group>"; };
 		EAEFB4CD1717A8100013634F /* GGFollowCompanyVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGFollowCompanyVC.xib; sourceTree = "<group>"; };
@@ -602,8 +605,6 @@
 				EA0CA560170BD54000DBCD83 /* GGSettingVC.m */,
 				EA381C62171FBBEB004535B5 /* GGSavedUpdatesVC.h */,
 				EA381C63171FBBEB004535B5 /* GGSavedUpdatesVC.m */,
-				EA12C60F1723C90F001C0289 /* GGUpdatesVC.h */,
-				EA12C6101723C90F001C0289 /* GGUpdatesVC.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -941,6 +942,7 @@
 		EACAE0B817094A3100E7088F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EAEABBF61724C89300947BE9 /* General */,
 				EA24FA361713D8BF003AFBA9 /* Config */,
 				EA09080A1712659E00BCD4C4 /* Company */,
 				EA09080B1712659E00BCD4C4 /* People */,
@@ -948,10 +950,6 @@
 				EA09080D1712659E00BCD4C4 /* Setting */,
 				EA0CA558170BD54000DBCD83 /* Main */,
 				EAC96C2617098313003FAFAA /* Signup */,
-				EA0CA568170BD5AD00DBCD83 /* GGBaseViewController.h */,
-				EA0CA569170BD5AD00DBCD83 /* GGBaseViewController.m */,
-				EA12C60C172399A5001C0289 /* GGWebVC.h */,
-				EA12C60D172399A5001C0289 /* GGWebVC.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1206,6 +1204,21 @@
 			path = SBJson;
 			sourceTree = "<group>";
 		};
+		EAEABBF61724C89300947BE9 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				EAEABBF71724C89300947BE9 /* GGBaseViewController.h */,
+				EAEABBF81724C89300947BE9 /* GGBaseViewController.m */,
+				EAEABBF91724C89300947BE9 /* GGUpdatesVC.h */,
+				EAEABBFA1724C89300947BE9 /* GGUpdatesVC.m */,
+				EAEABC011724C8E400947BE9 /* GGHappeningsVC.h */,
+				EAEABC021724C8E400947BE9 /* GGHappeningsVC.m */,
+				EAEABBFB1724C89300947BE9 /* GGWebVC.h */,
+				EAEABBFC1724C89300947BE9 /* GGWebVC.m */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
 		EAEFB4CA1717A8100013634F /* Company */ = {
 			isa = PBXGroup;
 			children = (
@@ -1448,7 +1461,6 @@
 				EA0CA563170BD54000DBCD83 /* GGProfileVC.m in Sources */,
 				EA0CA564170BD54000DBCD83 /* GGSettingVC.m in Sources */,
 				EA0CA567170BD57200DBCD83 /* GGWelcomeVC.m in Sources */,
-				EA0CA56A170BD5AD00DBCD83 /* GGBaseViewController.m in Sources */,
 				EA0CA58A170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				EA0CA58B170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				EAD481F91710FFB300556288 /* GGCompanyUpdateCell.m in Sources */,
@@ -1511,8 +1523,10 @@
 				EAD96079172142DD00A72A9C /* SBJsonStreamWriterState.m in Sources */,
 				EAD9607A172142DD00A72A9C /* SBJsonWriter.m in Sources */,
 				EA12C60A172384A7001C0289 /* GGTickerSymbol.m in Sources */,
-				EA12C60E172399A6001C0289 /* GGWebVC.m in Sources */,
-				EA12C6111723C90F001C0289 /* GGUpdatesVC.m in Sources */,
+				EAEABBFD1724C89300947BE9 /* GGBaseViewController.m in Sources */,
+				EAEABBFE1724C89300947BE9 /* GGUpdatesVC.m in Sources */,
+				EAEABBFF1724C89300947BE9 /* GGWebVC.m in Sources */,
+				EAEABC031724C8E400947BE9 /* GGHappeningsVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -102,6 +102,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark - table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.updates.count;

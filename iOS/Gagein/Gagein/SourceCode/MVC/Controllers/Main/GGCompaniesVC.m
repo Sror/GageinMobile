@@ -701,7 +701,7 @@
     }
     else if (_menuType == kGGMenuTypeAgent)
     {
-#warning no happenings for agent!
+//#warning no happenings for agent!
         [self performSelector:@selector(_delayedStopHappeningAnimating) withObject:nil afterDelay:.5f];
     }
 }
