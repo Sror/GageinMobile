@@ -26,6 +26,7 @@
 #import "GGHappeningsVC.h"
 #import "GGCompanyEmployeesVC.h"
 #import "GGSimilarCompaniesVC.h"
+#import "GGComOverviewDetailVC.h"
 
 typedef enum
 {
@@ -253,6 +254,11 @@ typedef enum
     
     if (section == kGGSectionOverview) {
        
+        GGComOverviewDetailVC *vc = [[GGComOverviewDetailVC alloc] init];
+        vc.overview = _companyOverview;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+        
     } else if (section == kGGSectionUpdates) {
 
     } else if (section == kGGSectionHappenings) {
