@@ -10,6 +10,8 @@
 #import "GGCompanyDetailHeaderView.h"
 #import "GGCompany.h"
 
+#import "GGComOverviewAboutCell.h"
+
 typedef enum
 {
     kGGSectionAbout = 0
@@ -80,6 +82,19 @@ typedef enum
     return 0;
 }
 
+-(GGComOverviewAboutCell *)_tvCellAbout
+{
+    GGComOverviewAboutCell * cell;
+    if (!cell)
+    {
+        cell = [GGComOverviewAboutCell viewFromNibWithOwner:self];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    cell.textView.text = _overview.description;
+    
+    return cell;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -87,6 +102,14 @@ typedef enum
     int row = indexPath.row;
     
     if (section == kGGSectionAbout) {
+        
+        GGComOverviewAboutCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGComOverviewAboutCell"];
+        if (!cell)
+        {
+            cell = [self _tvCellAbout];
+        }
+        
+        return cell;
         
     } else if (section == kGGSectionProfile) {
 
@@ -136,6 +159,8 @@ typedef enum
     int section = indexPath.section;
     
     if (section == kGGSectionAbout) {
+        
+        return [self _tvCellAbout].height;
         
     } else if (section == kGGSectionProfile) {
         

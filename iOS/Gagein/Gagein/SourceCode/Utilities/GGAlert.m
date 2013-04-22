@@ -17,7 +17,7 @@
 
 +(void)alertNetError
 {
-    [self alert:@"网络异常，请检查网络配置..."];
+    [self alert:@"Sorry, the network is not available currently."];
 }
 
 +(void)alert:(NSString *)aMessage delegate:(id/*<UIAlertViewDelegate>*/)aDelegate
@@ -26,7 +26,7 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
                                                     message:aMessage
                                                    delegate:aDelegate
-                                          cancelButtonTitle:@"确定"
+                                          cancelButtonTitle:@"Ok"
                                           otherButtonTitles:nil];
     [alert show];
 }
@@ -41,8 +41,8 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:aTitle
                                                     message:aMessage
                                                    delegate:aDelegate
-                                          cancelButtonTitle:@"取消"
-                                          otherButtonTitles:@"确定", nil];
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Ok", nil];
     [alert show];
 }
 
