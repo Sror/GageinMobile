@@ -24,6 +24,7 @@
 #import "GGWebVC.h"
 #import "GGUpdatesVC.h"
 #import "GGHappeningsVC.h"
+#import "GGCompanyEmployeesVC.h"
 
 typedef enum
 {
@@ -78,7 +79,9 @@ typedef enum
     self.navigationItem.title = @"";
     self.lblName.text = @"";
     self.lblWebsite.text = @"";
-
+    self.ivLogo.layer.borderWidth = 1.f;
+    self.ivLogo.layer.borderColor = GGSharedColor.silver.CGColor;
+    self.ivLogo.layer.cornerRadius = 3.f;
     
     //
     _tvDetail = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
@@ -350,7 +353,11 @@ typedef enum
 
 -(void)_seeAllEmployeesAction:(id)sender
 {
+    GGCompanyEmployeesVC *vc = [[GGCompanyEmployeesVC alloc] init];
+    vc.employees = _people;
+    vc.companyID = _companyID;
     
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)_seeAllSimilarCompaniesAction:(id)sender
@@ -369,7 +376,7 @@ typedef enum
 //        UIImageView *iv = [[UIImageView alloc] initWithImage:image];
 //        [self.view addSubview:iv];
 //    }];
-    [self.ivLogo setImageWithURL:url placeholderImage:nil];
+    [self.ivLogo setImageWithURL:url placeholderImage:GGSharedImagePool.placeholder];
     self.navigationItem.title = _companyOverview.name;
     self.lblWebsite.text = _companyOverview.website;
     [self _updateUiBtnFollow];
@@ -438,8 +445,9 @@ typedef enum
 #pragma mark - API calls
 -(void)_callApiGetOverView
 {
+    [self showLoadingHUD];
     [GGSharedAPI getCompanyOverviewWithID:_companyID needSocialProfile:YES callback:^(id operation, id aResultObject, NSError *anError) {
-        
+        [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         _companyOverview = [parser parseGetCompanyOverview];
         [self _updateUiOverview];

@@ -49,12 +49,17 @@
 									<object class="IBUIImageView" id="670032226">
 										<reference key="NSNextResponder" ref="736472750"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{104, 12}, {111, 102}}</string>
+										<string key="NSFrame">{{110, 20}, {100, 100}}</string>
 										<reference key="NSSuperview" ref="736472750"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView" ref="366306926"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+										<object class="NSCustomResource" key="IBUIImage">
+											<string key="NSClassName">NSImage</string>
+											<string key="NSResourceName">placeholder.png</string>
+										</object>
 									</object>
 									<object class="IBUIButton" id="942115418">
 										<reference key="NSNextResponder" ref="736472750"/>
@@ -62,7 +67,7 @@
 										<string key="NSFrame">{{42, 158}, {236, 36}}</string>
 										<reference key="NSSuperview" ref="736472750"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="670032226"/>
+										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -128,7 +133,7 @@
 								<string key="NSFrameSize">{320, 213}</string>
 								<reference key="NSSuperview" ref="455175203"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="366306926"/>
+								<reference key="NSNextKeyView" ref="670032226"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -181,6 +186,7 @@
 				<string key="NSFrameSize">{280, 21}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClipsSubviews">YES</bool>
@@ -381,17 +387,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">GGCompanyDetailVC</string>
 					<string key="superclassName">GGBaseViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">followCompanyAction:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">followCompanyAction:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">followCompanyAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="btnFollow">UIButton</string>
 						<string key="ivLogo">UIImageView</string>
@@ -437,6 +432,10 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">placeholder.png</string>
+			<string key="NS.object.0">{200, 200}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>
 </archive>

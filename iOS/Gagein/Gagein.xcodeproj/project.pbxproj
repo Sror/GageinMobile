@@ -99,6 +99,7 @@
 		EA79B8A01724CEDF00141E6D /* GGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B89F1724CEDF00141E6D /* GGBaseViewController.m */; };
 		EA79B8A51724D36200141E6D /* GGPersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA79B8A41724D36200141E6D /* GGPersonCell.xib */; };
 		EA79B8A81724D57A00141E6D /* GGPersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8A71724D57A00141E6D /* GGPersonCell.m */; };
+		EA79B8AE1724D98F00141E6D /* GGCompanyEmployeesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8AD1724D98F00141E6D /* GGCompanyEmployeesVC.m */; };
 		EA844A22171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */; };
 		EA844A31171FBE2200658015 /* DCRoundSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2A171FBE2200658015 /* DCRoundSwitch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA844A32171FBE2200658015 /* DCRoundSwitchKnobLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2C171FBE2200658015 /* DCRoundSwitchKnobLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -355,6 +356,8 @@
 		EA79B8A41724D36200141E6D /* GGPersonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGPersonCell.xib; sourceTree = "<group>"; };
 		EA79B8A61724D57A00141E6D /* GGPersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPersonCell.h; sourceTree = "<group>"; };
 		EA79B8A71724D57A00141E6D /* GGPersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPersonCell.m; sourceTree = "<group>"; };
+		EA79B8AC1724D98F00141E6D /* GGCompanyEmployeesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyEmployeesVC.h; sourceTree = "<group>"; };
+		EA79B8AD1724D98F00141E6D /* GGCompanyEmployeesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyEmployeesVC.m; sourceTree = "<group>"; };
 		EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSavedUpdatesVC_iPad.xib; sourceTree = "<group>"; };
 		EA844A29171FBE2200658015 /* DCRoundSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitch.h; sourceTree = "<group>"; };
 		EA844A2A171FBE2200658015 /* DCRoundSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitch.m; sourceTree = "<group>"; };
@@ -572,6 +575,8 @@
 				EA09081917129EE000BCD4C4 /* GGCompanyUpdateDetailVC.m */,
 				EA7180D617150AAF00347EA4 /* GGFollowCompanyVC.h */,
 				EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */,
+				EA79B8AC1724D98F00141E6D /* GGCompanyEmployeesVC.h */,
+				EA79B8AD1724D98F00141E6D /* GGCompanyEmployeesVC.m */,
 			);
 			path = Company;
 			sourceTree = "<group>";
@@ -1537,6 +1542,7 @@
 				EAEABC031724C8E400947BE9 /* GGHappeningsVC.m in Sources */,
 				EA79B8A01724CEDF00141E6D /* GGBaseViewController.m in Sources */,
 				EA79B8A81724D57A00141E6D /* GGPersonCell.m in Sources */,
+				EA79B8AE1724D98F00141E6D /* GGCompanyEmployeesVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,7 @@
 #import "SVPullToRefresh.h"
 #import "GGCompany.h"
 #import "GGCompanyDetailVC.h"
-#import "GGCompanyUpdateDetailVC.h"
+
 #import "GGCompanyHappeningCell.h"
 #import "GGCompanyHappening.h"
 
