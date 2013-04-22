@@ -104,6 +104,8 @@
 		EA79B8B61724FEDA00141E6D /* GGComOverviewDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8B51724FEDA00141E6D /* GGComOverviewDetailVC.m */; };
 		EA79B8BA17250B7900141E6D /* GGComOverviewAboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8B917250B7900141E6D /* GGComOverviewAboutCell.m */; };
 		EA79B8BC17250B8800141E6D /* GGComOverviewAboutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA79B8BB17250B8800141E6D /* GGComOverviewAboutCell.xib */; };
+		EA79B8BF1725164A00141E6D /* GGComOverviewProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8BE1725164A00141E6D /* GGComOverviewProfileCell.m */; };
+		EA79B8C11725165800141E6D /* GGComOverviewProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA79B8C01725165800141E6D /* GGComOverviewProfileCell.xib */; };
 		EA844A22171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */; };
 		EA844A31171FBE2200658015 /* DCRoundSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2A171FBE2200658015 /* DCRoundSwitch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA844A32171FBE2200658015 /* DCRoundSwitchKnobLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2C171FBE2200658015 /* DCRoundSwitchKnobLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -369,6 +371,9 @@
 		EA79B8B817250B7900141E6D /* GGComOverviewAboutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComOverviewAboutCell.h; sourceTree = "<group>"; };
 		EA79B8B917250B7900141E6D /* GGComOverviewAboutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComOverviewAboutCell.m; sourceTree = "<group>"; };
 		EA79B8BB17250B8800141E6D /* GGComOverviewAboutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGComOverviewAboutCell.xib; sourceTree = "<group>"; };
+		EA79B8BD1725164900141E6D /* GGComOverviewProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComOverviewProfileCell.h; sourceTree = "<group>"; };
+		EA79B8BE1725164A00141E6D /* GGComOverviewProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComOverviewProfileCell.m; sourceTree = "<group>"; };
+		EA79B8C01725165800141E6D /* GGComOverviewProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGComOverviewProfileCell.xib; sourceTree = "<group>"; };
 		EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSavedUpdatesVC_iPad.xib; sourceTree = "<group>"; };
 		EA844A29171FBE2200658015 /* DCRoundSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitch.h; sourceTree = "<group>"; };
 		EA844A2A171FBE2200658015 /* DCRoundSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitch.m; sourceTree = "<group>"; };
@@ -684,6 +689,9 @@
 				EA79B8B817250B7900141E6D /* GGComOverviewAboutCell.h */,
 				EA79B8B917250B7900141E6D /* GGComOverviewAboutCell.m */,
 				EA79B8BB17250B8800141E6D /* GGComOverviewAboutCell.xib */,
+				EA79B8BD1725164900141E6D /* GGComOverviewProfileCell.h */,
+				EA79B8BE1725164A00141E6D /* GGComOverviewProfileCell.m */,
+				EA79B8C01725165800141E6D /* GGComOverviewProfileCell.xib */,
 			);
 			path = CompanyOverview;
 			sourceTree = "<group>";
@@ -1453,6 +1461,7 @@
 				EAD9603E1720F35F00A72A9C /* GGComDetailProfileCell.xib in Resources */,
 				EA79B8A51724D36200141E6D /* GGPersonCell.xib in Resources */,
 				EA79B8BC17250B8800141E6D /* GGComOverviewAboutCell.xib in Resources */,
+				EA79B8C11725165800141E6D /* GGComOverviewProfileCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1573,6 +1582,7 @@
 				EA79B8B31724FD0400141E6D /* GGTicker.m in Sources */,
 				EA79B8B61724FEDA00141E6D /* GGComOverviewDetailVC.m in Sources */,
 				EA79B8BA17250B7900141E6D /* GGComOverviewAboutCell.m in Sources */,
+				EA79B8BF1725164A00141E6D /* GGComOverviewProfileCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

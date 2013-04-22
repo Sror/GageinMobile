@@ -22,7 +22,7 @@ typedef enum
 #define GGN_STR_CN_SERVER_URL                       @"http://gageincn.dyndns.org:3031"
 #define GGN_STR_STAGING_SERVER_URL                  @"http://gageinstaging.dyndns.org"
 
-#define CURRENT_ENV 3
+#define CURRENT_ENV 4
 
 #undef CURRENT_SERVER_URL
 #if (CURRENT_ENV == 1)

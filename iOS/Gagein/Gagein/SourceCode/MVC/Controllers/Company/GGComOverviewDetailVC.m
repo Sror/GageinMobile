@@ -11,6 +11,7 @@
 #import "GGCompany.h"
 
 #import "GGComOverviewAboutCell.h"
+#import "GGComOverviewProfileCell.h"
 
 typedef enum
 {
@@ -55,6 +56,41 @@ typedef enum
     [self.view addSubview:_tv];
 }
 
+#pragma mark - table view cells
+-(GGComOverviewAboutCell *)_tvCellAbout
+{
+    GGComOverviewAboutCell * cell;
+    if (!cell)
+    {
+        cell = [GGComOverviewAboutCell viewFromNibWithOwner:self];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    cell.textView.text = _overview.description;
+    
+    return cell;
+}
+
+-(GGComOverviewProfileCell *)_tvCellProfile
+{
+    GGComOverviewProfileCell * cell;
+    if (!cell)
+    {
+        cell = [GGComOverviewProfileCell viewFromNibWithOwner:self];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    cell.lblFounded.text = _overview.founded;
+    cell.lblIndustry.text = _overview.industries;
+    cell.lblSpeciality.text = _overview.specialities;
+    cell.lblEmployees.text = _overview.employeeSize;
+    cell.lblRevenue.text = _overview.revenueSize;
+    cell.lblFortuneRank.text = _overview.fortuneRank;
+    cell.lblFiscalYear.text = _overview.fiscalYear;
+    
+    return cell;
+}
+
 #pragma mark - table view datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -82,20 +118,6 @@ typedef enum
     return 0;
 }
 
--(GGComOverviewAboutCell *)_tvCellAbout
-{
-    GGComOverviewAboutCell * cell;
-    if (!cell)
-    {
-        cell = [GGComOverviewAboutCell viewFromNibWithOwner:self];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
-    cell.textView.text = _overview.description;
-    
-    return cell;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int section = indexPath.section;
@@ -103,16 +125,18 @@ typedef enum
     
     if (section == kGGSectionAbout) {
         
-        GGComOverviewAboutCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGComOverviewAboutCell"];
-        if (!cell)
-        {
-            cell = [self _tvCellAbout];
-        }
+//        GGComOverviewAboutCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGComOverviewAboutCell"];
+//        if (!cell)
+//        {
+//            cell = [self _tvCellAbout];
+//        }
         
-        return cell;
+        return [self _tvCellAbout];
         
     } else if (section == kGGSectionProfile) {
-
+        
+        return [self _tvCellProfile];
+        
     } else if (section == kGGSectionStock) {
 
     } else if (section == kGGSectionRevenues) {
@@ -163,6 +187,8 @@ typedef enum
         return [self _tvCellAbout].height;
         
     } else if (section == kGGSectionProfile) {
+        
+        return [self _tvCellProfile].height;
         
     } else if (section == kGGSectionStock) {
         
