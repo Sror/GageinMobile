@@ -96,6 +96,7 @@
 		EA7180D41715008900347EA4 /* FXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D31715008900347EA4 /* FXPageControl.m */; };
 		EA7180D917150AAF00347EA4 /* GGFollowCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */; };
 		EA7180E4171511B700347EA4 /* GGSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180E3171511B700347EA4 /* GGSearchBar.m */; };
+		EA79B8A01724CEDF00141E6D /* GGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B89F1724CEDF00141E6D /* GGBaseViewController.m */; };
 		EA844A22171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */; };
 		EA844A31171FBE2200658015 /* DCRoundSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2A171FBE2200658015 /* DCRoundSwitch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA844A32171FBE2200658015 /* DCRoundSwitchKnobLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2C171FBE2200658015 /* DCRoundSwitchKnobLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -177,7 +178,6 @@
 		EAD96078172142DD00A72A9C /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD9606C172142DD00A72A9C /* SBJsonStreamWriterAccumulator.m */; };
 		EAD96079172142DD00A72A9C /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD9606E172142DD00A72A9C /* SBJsonStreamWriterState.m */; };
 		EAD9607A172142DD00A72A9C /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD96070172142DD00A72A9C /* SBJsonWriter.m */; };
-		EAEABBFD1724C89300947BE9 /* GGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEABBF81724C89300947BE9 /* GGBaseViewController.m */; };
 		EAEABBFE1724C89300947BE9 /* GGUpdatesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEABBFA1724C89300947BE9 /* GGUpdatesVC.m */; };
 		EAEABBFF1724C89300947BE9 /* GGWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEABBFC1724C89300947BE9 /* GGWebVC.m */; };
 		EAEABC031724C8E400947BE9 /* GGHappeningsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEABC021724C8E400947BE9 /* GGHappeningsVC.m */; };
@@ -348,6 +348,8 @@
 		EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFollowCompanyVC.m; sourceTree = "<group>"; };
 		EA7180E2171511B700347EA4 /* GGSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSearchBar.h; sourceTree = "<group>"; };
 		EA7180E3171511B700347EA4 /* GGSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSearchBar.m; sourceTree = "<group>"; };
+		EA79B89E1724CEDF00141E6D /* GGBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGBaseViewController.h; sourceTree = "<group>"; };
+		EA79B89F1724CEDF00141E6D /* GGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGBaseViewController.m; sourceTree = "<group>"; };
 		EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSavedUpdatesVC_iPad.xib; sourceTree = "<group>"; };
 		EA844A29171FBE2200658015 /* DCRoundSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitch.h; sourceTree = "<group>"; };
 		EA844A2A171FBE2200658015 /* DCRoundSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitch.m; sourceTree = "<group>"; };
@@ -481,8 +483,6 @@
 		EAD9606E172142DD00A72A9C /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterState.m; sourceTree = "<group>"; };
 		EAD9606F172142DD00A72A9C /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		EAD96070172142DD00A72A9C /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		EAEABBF71724C89300947BE9 /* GGBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGBaseViewController.h; sourceTree = "<group>"; };
-		EAEABBF81724C89300947BE9 /* GGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGBaseViewController.m; sourceTree = "<group>"; };
 		EAEABBF91724C89300947BE9 /* GGUpdatesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGUpdatesVC.h; sourceTree = "<group>"; };
 		EAEABBFA1724C89300947BE9 /* GGUpdatesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUpdatesVC.m; sourceTree = "<group>"; };
 		EAEABBFB1724C89300947BE9 /* GGWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGWebVC.h; sourceTree = "<group>"; };
@@ -942,6 +942,8 @@
 		EACAE0B817094A3100E7088F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EA79B89E1724CEDF00141E6D /* GGBaseViewController.h */,
+				EA79B89F1724CEDF00141E6D /* GGBaseViewController.m */,
 				EAEABBF61724C89300947BE9 /* General */,
 				EA24FA361713D8BF003AFBA9 /* Config */,
 				EA09080A1712659E00BCD4C4 /* Company */,
@@ -1207,8 +1209,6 @@
 		EAEABBF61724C89300947BE9 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				EAEABBF71724C89300947BE9 /* GGBaseViewController.h */,
-				EAEABBF81724C89300947BE9 /* GGBaseViewController.m */,
 				EAEABBF91724C89300947BE9 /* GGUpdatesVC.h */,
 				EAEABBFA1724C89300947BE9 /* GGUpdatesVC.m */,
 				EAEABC011724C8E400947BE9 /* GGHappeningsVC.h */,
@@ -1523,10 +1523,10 @@
 				EAD96079172142DD00A72A9C /* SBJsonStreamWriterState.m in Sources */,
 				EAD9607A172142DD00A72A9C /* SBJsonWriter.m in Sources */,
 				EA12C60A172384A7001C0289 /* GGTickerSymbol.m in Sources */,
-				EAEABBFD1724C89300947BE9 /* GGBaseViewController.m in Sources */,
 				EAEABBFE1724C89300947BE9 /* GGUpdatesVC.m in Sources */,
 				EAEABBFF1724C89300947BE9 /* GGWebVC.m in Sources */,
 				EAEABC031724C8E400947BE9 /* GGHappeningsVC.m in Sources */,
+				EA79B8A01724CEDF00141E6D /* GGBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

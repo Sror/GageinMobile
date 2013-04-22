@@ -26,6 +26,11 @@
     // Configure the view for the selected state
 }
 
+-(void)awakeFromNib
+{
+    self.ivCellBg.image = GGSharedImagePool.stretchShadowBgWite;
+}
+
 +(float)HEIGHT
 {
     return 65;

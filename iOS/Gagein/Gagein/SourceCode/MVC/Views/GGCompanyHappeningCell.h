@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblInterval;
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
+@property (weak, nonatomic) IBOutlet UIImageView *ivCellBg;
 
 +(float)HEIGHT;
 @end
