@@ -25,6 +25,7 @@
 #import "GGUpdatesVC.h"
 #import "GGHappeningsVC.h"
 #import "GGCompanyEmployeesVC.h"
+#import "GGSimilarCompaniesVC.h"
 
 typedef enum
 {
@@ -408,7 +409,11 @@ typedef enum
 
 -(void)_seeAllSimilarCompaniesAction:(id)sender
 {
+    GGSimilarCompaniesVC *vc = [[GGSimilarCompaniesVC alloc] init];
+    vc.similarCompanies = _similarCompanies;
+    vc.companyID = _companyID;
     
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UI update
