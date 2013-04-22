@@ -17,6 +17,7 @@ DEF_SINGLETON(GGImagePool)
     if (self) {
         _placeholder = [UIImage imageNamed:@"placeholder.png"];
         _stretchShadowBgWite = [[UIImage imageNamed:@"shadowedBgWhite"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+        _bgNavibar = [UIImage imageNamed:@"bgNavibar"];
     }
     return self;
 }

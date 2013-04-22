@@ -67,7 +67,7 @@
     _roundSwitch.on = YES;
     
     //
-    _tvUpdates = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    _tvUpdates = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
     _tvUpdates.rowHeight = [GGCompanyUpdateCell HEIGHT];
     _tvUpdates.dataSource = self;
     _tvUpdates.delegate = self;

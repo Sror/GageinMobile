@@ -49,7 +49,7 @@
     
     self.navigationItem.title = @"Employees";
     
-    self.tvEmployees = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.tvEmployees = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
     self.tvEmployees.rowHeight = [GGPersonCell HEIGHT];
     self.tvEmployees.dataSource = self;
     self.tvEmployees.delegate = self;

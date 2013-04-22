@@ -13,6 +13,7 @@ AS_SINGLETON(GGImagePool)
 
 @property (strong) UIImage *placeholder;
 @property (strong) UIImage  *stretchShadowBgWite;
+@property (strong) UIImage  *bgNavibar;
 
 @end
 

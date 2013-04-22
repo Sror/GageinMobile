@@ -51,7 +51,7 @@
     
     self.navigationItem.title = @"Updates";
     
-    self.updatesTV = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.updatesTV = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
     self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;

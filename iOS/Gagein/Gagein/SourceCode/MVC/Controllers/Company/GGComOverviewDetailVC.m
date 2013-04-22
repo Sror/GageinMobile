@@ -15,6 +15,7 @@
 #import "GGComOverviewAboutCell.h"
 #import "GGComOverviewProfileCell.h"
 #import "GGComOverviewStockCell.h"
+#import "GGComOverviewRevenuesCell.h"
 
 typedef enum
 {
@@ -137,6 +138,21 @@ typedef enum
     return cell;
 }
 
+-(GGComOverviewRevenuesCell *)_tvCellRevernues
+{
+    GGComOverviewRevenuesCell * cell;
+    if (!cell)
+    {
+        cell = [GGComOverviewRevenuesCell viewFromNibWithOwner:self];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    [cell.ivChart setImageWithURL:[NSURL URLWithString:_overview.revenuesChartUrl] placeholderImage:nil];
+    
+    return cell;
+}
+
+
 
 
 #pragma mark - table view datasource
@@ -184,6 +200,8 @@ typedef enum
         return [self _tvCellStock];
         
     } else if (section == kGGSectionRevenues) {
+        
+        return [self _tvCellRevernues];
 
     } else if (section == kGGSectionSubsidaries) {
 
@@ -213,6 +231,15 @@ typedef enum
         
     } else if (section == kGGSectionRevenues) {
         
+        if (_overview.revenuesChartUrl)
+        {
+            GGWebVC *vc = [[GGWebVC alloc] init];
+            vc.urlStr = _overview.revenuesChartUrl;
+            vc.navigationItem.title = @"Chart";
+            
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
     } else if (section == kGGSectionSubsidaries) {
         
     } else if (section == kGGSectionDivisions) {
@@ -239,6 +266,8 @@ typedef enum
         return [self _tvCellStock].height;
         
     } else if (section == kGGSectionRevenues) {
+        
+        return [self _tvCellRevernues].height;
         
     } else if (section == kGGSectionSubsidaries) {
         

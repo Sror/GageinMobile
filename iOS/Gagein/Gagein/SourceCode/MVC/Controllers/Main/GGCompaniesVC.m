@@ -72,7 +72,7 @@
     self.navigationItem.leftBarButtonItem = menuBtn;
     
     
-    CGRect updateRc = self.view.bounds;
+    CGRect updateRc = [self viewportAdjsted];
     
     //
     _slideSettingView = [[GGSlideSettingView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];

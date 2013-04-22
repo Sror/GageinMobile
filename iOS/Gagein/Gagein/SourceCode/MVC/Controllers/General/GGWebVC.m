@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
 	
-    _webview = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    _webview = [[UIWebView alloc] initWithFrame:[self viewportAdjsted]];
     _webview.delegate = self;
     _webview.scalesPageToFit = YES;
     [self.view addSubview:_webview];

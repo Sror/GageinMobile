@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/GGBaseViewController.m"
-         timestampString = "387422326.382147"
+         timestampString = "388311444.675363"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "112"
-         endingLineNumber = "112"
+         startingLineNumber = "110"
+         endingLineNumber = "110"
          landmarkName = "-naviBackAction:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -443,6 +443,19 @@
          startingLineNumber = "158"
          endingLineNumber = "158"
          landmarkName = "-_getEmployeesDataAppended:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Controllers/GGBaseViewController.m"
+         timestampString = "388312329.529742"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "124"
+         endingLineNumber = "124"
+         landmarkName = "-viewportFrame"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

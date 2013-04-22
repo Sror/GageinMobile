@@ -47,7 +47,7 @@
     
     self.navigationItem.title = @"Happenings";
     
-    self.tvHappenings = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.tvHappenings = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
     self.tvHappenings.rowHeight = [GGCompanyHappeningCell HEIGHT];
     self.tvHappenings.dataSource = self;
     self.tvHappenings.delegate = self;

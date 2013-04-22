@@ -22,4 +22,7 @@
 
 // for overriding
 -(void)naviBackAction:(id)aSender;
+
+//unknown reason cause view a little hide at top, adjust using this method
+-(CGRect)viewportAdjsted;
 @end

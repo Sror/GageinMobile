@@ -50,7 +50,7 @@
     
     self.navigationItem.title = @"Similar Companies";
     
-    self.tvSimilarCompanies = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.tvSimilarCompanies = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
     self.tvSimilarCompanies.rowHeight = [GGPersonCell HEIGHT];
     self.tvSimilarCompanies.dataSource = self;
     self.tvSimilarCompanies.delegate = self;

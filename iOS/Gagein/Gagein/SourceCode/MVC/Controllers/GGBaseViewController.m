@@ -35,11 +35,9 @@
     self.view.backgroundColor = GGSharedColor.bgGray;
 	self.view.frame = [self viewportFrame];
     
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"bgNavibar"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundImage:GGSharedImagePool.bgNavibar forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
     self.navigationItem.hidesBackButton = YES;
-    
-    
 }
 
 -(GGNaviBackButton *)__globalBackButton
@@ -124,6 +122,17 @@
     }
     
     return viewPortFrame;
+}
+
+#define VIEW_PORT_ADJUSTION_Y   5
+//unknown reason cause view a little hide at top, adjust using this method
+-(CGRect)viewportAdjsted
+{
+    CGRect rc = self.view.bounds;
+    rc.origin.y += VIEW_PORT_ADJUSTION_Y;
+    rc.size.height -= VIEW_PORT_ADJUSTION_Y;
+    
+    return rc;
 }
 
 -(void)showLoadingHUD
