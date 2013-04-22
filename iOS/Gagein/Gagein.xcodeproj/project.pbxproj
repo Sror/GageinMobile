@@ -97,6 +97,8 @@
 		EA7180D917150AAF00347EA4 /* GGFollowCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */; };
 		EA7180E4171511B700347EA4 /* GGSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180E3171511B700347EA4 /* GGSearchBar.m */; };
 		EA79B8A01724CEDF00141E6D /* GGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B89F1724CEDF00141E6D /* GGBaseViewController.m */; };
+		EA79B8A51724D36200141E6D /* GGPersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA79B8A41724D36200141E6D /* GGPersonCell.xib */; };
+		EA79B8A81724D57A00141E6D /* GGPersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8A71724D57A00141E6D /* GGPersonCell.m */; };
 		EA844A22171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */; };
 		EA844A31171FBE2200658015 /* DCRoundSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2A171FBE2200658015 /* DCRoundSwitch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA844A32171FBE2200658015 /* DCRoundSwitchKnobLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2C171FBE2200658015 /* DCRoundSwitchKnobLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -127,7 +129,7 @@
 		EACAE0C217094AD600E7088F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAE0C117094AD600E7088F /* MobileCoreServices.framework */; };
 		EACAE0C417094ADE00E7088F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAE0C317094ADE00E7088F /* SystemConfiguration.framework */; };
 		EACAE0D917094D3200E7088F /* GGCompaniesVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0D817094D3200E7088F /* GGCompaniesVC_iPad.xib */; };
-		EACAE0DB17094D5F00E7088F /* GGPeopleVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0DA17094D5F00E7088F /* GGPeopleVC_iPad.xib */; };
+		EACAE0DB17094D5F00E7088F /* GGCompanyPeopleVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0DA17094D5F00E7088F /* GGCompanyPeopleVC_iPad.xib */; };
 		EACAE0DF17094DA000E7088F /* GGSettingVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0DE17094DA000E7088F /* GGSettingVC_iPad.xib */; };
 		EACAE0EC170954DE00E7088F /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0E8170954DE00E7088F /* first.png */; };
 		EACAE0ED170954DE00E7088F /* Gestures.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE0E9170954DE00E7088F /* Gestures.png */; };
@@ -188,7 +190,7 @@
 		EAEFB4E31717A8100013634F /* GGSelectAgentsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4D01717A8100013634F /* GGSelectAgentsVC.xib */; };
 		EAEFB4E41717A8100013634F /* GGSelectFuncAreasVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4D11717A8100013634F /* GGSelectFuncAreasVC.xib */; };
 		EAEFB4E51717A8100013634F /* GGCompaniesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4D31717A8100013634F /* GGCompaniesVC.xib */; };
-		EAEFB4E61717A8100013634F /* GGPeopleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4D41717A8100013634F /* GGPeopleVC.xib */; };
+		EAEFB4E61717A8100013634F /* GGCompanyPeopleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4D41717A8100013634F /* GGCompanyPeopleVC.xib */; };
 		EAEFB4E71717A8100013634F /* GGProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4D51717A8100013634F /* GGProfileVC.xib */; };
 		EAEFB4E81717A8100013634F /* GGSettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4D61717A8100013634F /* GGSettingVC.xib */; };
 		EAEFB4E91717A8100013634F /* GGLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4DB1717A8100013634F /* GGLoginVC.xib */; };
@@ -350,6 +352,9 @@
 		EA7180E3171511B700347EA4 /* GGSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSearchBar.m; sourceTree = "<group>"; };
 		EA79B89E1724CEDF00141E6D /* GGBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGBaseViewController.h; sourceTree = "<group>"; };
 		EA79B89F1724CEDF00141E6D /* GGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGBaseViewController.m; sourceTree = "<group>"; };
+		EA79B8A41724D36200141E6D /* GGPersonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGPersonCell.xib; sourceTree = "<group>"; };
+		EA79B8A61724D57A00141E6D /* GGPersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPersonCell.h; sourceTree = "<group>"; };
+		EA79B8A71724D57A00141E6D /* GGPersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPersonCell.m; sourceTree = "<group>"; };
 		EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSavedUpdatesVC_iPad.xib; sourceTree = "<group>"; };
 		EA844A29171FBE2200658015 /* DCRoundSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitch.h; sourceTree = "<group>"; };
 		EA844A2A171FBE2200658015 /* DCRoundSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitch.m; sourceTree = "<group>"; };
@@ -396,7 +401,7 @@
 		EACAE0C117094AD600E7088F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		EACAE0C317094ADE00E7088F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EACAE0D817094D3200E7088F /* GGCompaniesVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompaniesVC_iPad.xib; sourceTree = "<group>"; };
-		EACAE0DA17094D5F00E7088F /* GGPeopleVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGPeopleVC_iPad.xib; sourceTree = "<group>"; };
+		EACAE0DA17094D5F00E7088F /* GGCompanyPeopleVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyPeopleVC_iPad.xib; sourceTree = "<group>"; };
 		EACAE0DE17094DA000E7088F /* GGSettingVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingVC_iPad.xib; sourceTree = "<group>"; };
 		EACAE0E8170954DE00E7088F /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		EACAE0E9170954DE00E7088F /* Gestures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gestures.png; sourceTree = "<group>"; };
@@ -496,7 +501,7 @@
 		EAEFB4D01717A8100013634F /* GGSelectAgentsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSelectAgentsVC.xib; sourceTree = "<group>"; };
 		EAEFB4D11717A8100013634F /* GGSelectFuncAreasVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSelectFuncAreasVC.xib; sourceTree = "<group>"; };
 		EAEFB4D31717A8100013634F /* GGCompaniesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompaniesVC.xib; sourceTree = "<group>"; };
-		EAEFB4D41717A8100013634F /* GGPeopleVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGPeopleVC.xib; sourceTree = "<group>"; };
+		EAEFB4D41717A8100013634F /* GGCompanyPeopleVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyPeopleVC.xib; sourceTree = "<group>"; };
 		EAEFB4D51717A8100013634F /* GGProfileVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGProfileVC.xib; sourceTree = "<group>"; };
 		EAEFB4D61717A8100013634F /* GGSettingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingVC.xib; sourceTree = "<group>"; };
 		EAEFB4DB1717A8100013634F /* GGLoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGLoginVC.xib; sourceTree = "<group>"; };
@@ -734,6 +739,7 @@
 				EA959D71171539B5005B06F6 /* GGCompanySearchCell.xib */,
 				EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */,
 				EA4F3A17171E7B5100530185 /* GGCompanyHappeningCell.xib */,
+				EA79B8A41724D36200141E6D /* GGPersonCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -995,6 +1001,8 @@
 			isa = PBXGroup;
 			children = (
 				EAD960431721327700A72A9C /* CompanyDetail */,
+				EA79B8A61724D57A00141E6D /* GGPersonCell.h */,
+				EA79B8A71724D57A00141E6D /* GGPersonCell.m */,
 				EACAE13E1709629400E7088F /* GGWelcomePageView.h */,
 				EACAE13F1709629400E7088F /* GGWelcomePageView.m */,
 				EAD481F71710FFB300556288 /* GGCompanyUpdateCell.h */,
@@ -1063,7 +1071,7 @@
 			children = (
 				EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */,
 				EACAE0D817094D3200E7088F /* GGCompaniesVC_iPad.xib */,
-				EACAE0DA17094D5F00E7088F /* GGPeopleVC_iPad.xib */,
+				EACAE0DA17094D5F00E7088F /* GGCompanyPeopleVC_iPad.xib */,
 				EACAE0DE17094DA000E7088F /* GGSettingVC_iPad.xib */,
 			);
 			path = XIBs;
@@ -1244,7 +1252,7 @@
 			children = (
 				EA381C67171FBC19004535B5 /* GGSavedUpdatesVC.xib */,
 				EAEFB4D31717A8100013634F /* GGCompaniesVC.xib */,
-				EAEFB4D41717A8100013634F /* GGPeopleVC.xib */,
+				EAEFB4D41717A8100013634F /* GGCompanyPeopleVC.xib */,
 				EAEFB4D51717A8100013634F /* GGProfileVC.xib */,
 				EAEFB4D61717A8100013634F /* GGSettingVC.xib */,
 			);
@@ -1340,7 +1348,7 @@
 				EACAE08B1709486800E7088F /* Default@2x.png in Resources */,
 				EACAE08D1709486800E7088F /* Default-568h@2x.png in Resources */,
 				EACAE0D917094D3200E7088F /* GGCompaniesVC_iPad.xib in Resources */,
-				EACAE0DB17094D5F00E7088F /* GGPeopleVC_iPad.xib in Resources */,
+				EACAE0DB17094D5F00E7088F /* GGCompanyPeopleVC_iPad.xib in Resources */,
 				EACAE0DF17094DA000E7088F /* GGSettingVC_iPad.xib in Resources */,
 				EACAE0EC170954DE00E7088F /* first.png in Resources */,
 				EACAE0ED170954DE00E7088F /* Gestures.png in Resources */,
@@ -1393,7 +1401,7 @@
 				EAEFB4E31717A8100013634F /* GGSelectAgentsVC.xib in Resources */,
 				EAEFB4E41717A8100013634F /* GGSelectFuncAreasVC.xib in Resources */,
 				EAEFB4E51717A8100013634F /* GGCompaniesVC.xib in Resources */,
-				EAEFB4E61717A8100013634F /* GGPeopleVC.xib in Resources */,
+				EAEFB4E61717A8100013634F /* GGCompanyPeopleVC.xib in Resources */,
 				EAEFB4E71717A8100013634F /* GGProfileVC.xib in Resources */,
 				EAEFB4E81717A8100013634F /* GGSettingVC.xib in Resources */,
 				EAEFB4E91717A8100013634F /* GGLoginVC.xib in Resources */,
@@ -1412,6 +1420,7 @@
 				EAD960311720E87C00A72A9C /* GGCompanyDetailUpdateCell.xib in Resources */,
 				EAD960361720ED1000A72A9C /* GGComDetailEmployeeCell.xib in Resources */,
 				EAD9603E1720F35F00A72A9C /* GGComDetailProfileCell.xib in Resources */,
+				EA79B8A51724D36200141E6D /* GGPersonCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1527,6 +1536,7 @@
 				EAEABBFF1724C89300947BE9 /* GGWebVC.m in Sources */,
 				EAEABC031724C8E400947BE9 /* GGHappeningsVC.m in Sources */,
 				EA79B8A01724CEDF00141E6D /* GGBaseViewController.m in Sources */,
+				EA79B8A81724D57A00141E6D /* GGPersonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

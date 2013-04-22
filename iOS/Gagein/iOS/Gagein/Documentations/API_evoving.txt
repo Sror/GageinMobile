@@ -1,0 +1,21 @@
+Here is the new added api:
+ 
+1.Get Menu
+GET:/member/me/tracker/menu
+Parameters:type=companies or type=people
+ 
+2.tracker event
+GET: /member/me/event/tracker
+Parameters:
+Get company events:orgid=xxx&pageflag=0&pagetime=0&eventid=0
+Get people events:  contactid=xxx&pageflag=0&pagetime=0&eventid=0
+Get funcational area events: functional_areaid=xxx&pageflag=0&pagetime=0&eventid=0
+         xxx is the id value, if the value is -10,return the all result.
+3.Get a update detail
+GET:update/<newsid>/detail
+ 
+4.Get a company event detail
+GET:company/event/{eventid}/detail
+ 
+5.get a people event detail
+GET:contact/event/{eventid}/detail

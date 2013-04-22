@@ -195,6 +195,7 @@
     if (cell == nil) {
         cell = [GGCompanyUpdateCell viewFromNibWithOwner:self];
         [cell.logoBtn addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     GGCompanyUpdate *updateData = [_updates objectAtIndex:indexPath.row];

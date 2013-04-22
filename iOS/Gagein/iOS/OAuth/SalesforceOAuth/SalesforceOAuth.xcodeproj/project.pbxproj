@@ -1,0 +1,361 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EA0214AA17041F5A009D4C9A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0214A917041F5A009D4C9A /* UIKit.framework */; };
+		EA0214AC17041F5A009D4C9A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0214AB17041F5A009D4C9A /* Foundation.framework */; };
+		EA0214AE17041F5A009D4C9A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0214AD17041F5A009D4C9A /* CoreGraphics.framework */; };
+		EA0214B417041F5A009D4C9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA0214B217041F5A009D4C9A /* InfoPlist.strings */; };
+		EA0214B617041F5A009D4C9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0214B517041F5A009D4C9A /* main.m */; };
+		EA0214BA17041F5A009D4C9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0214B917041F5A009D4C9A /* AppDelegate.m */; };
+		EA0214BC17041F5A009D4C9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0214BB17041F5A009D4C9A /* Default.png */; };
+		EA0214BE17041F5A009D4C9A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0214BD17041F5A009D4C9A /* Default@2x.png */; };
+		EA0214C017041F5A009D4C9A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0214BF17041F5A009D4C9A /* Default-568h@2x.png */; };
+		EA0214C317041F5A009D4C9A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA0214C117041F5A009D4C9A /* MainStoryboard.storyboard */; };
+		EA0214C617041F5A009D4C9A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0214C517041F5A009D4C9A /* ViewController.m */; };
+		EA0214DE17042037009D4C9A /* SFOAuth_NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0214D017042037009D4C9A /* SFOAuth_NSString+Additions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA0214DF17042037009D4C9A /* SFOAuth_UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0214D217042037009D4C9A /* SFOAuth_UIDevice+Hardware.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA0214E017042037009D4C9A /* SFOAuthCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0214D517042037009D4C9A /* SFOAuthCoordinator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA0214E117042037009D4C9A /* SFOAuthCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0214D817042037009D4C9A /* SFOAuthCredentials.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA0214E217042037009D4C9A /* SFOAuthCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0214DA17042037009D4C9A /* SFOAuthCrypto.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA0214E317042037009D4C9A /* SFOAuthInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0214DD17042037009D4C9A /* SFOAuthInfo.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA0214E51704205D009D4C9A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0214E41704205D009D4C9A /* Security.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EA0214A517041F5A009D4C9A /* SalesforceOAuth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalesforceOAuth.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA0214A917041F5A009D4C9A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EA0214AB17041F5A009D4C9A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EA0214AD17041F5A009D4C9A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EA0214B117041F5A009D4C9A /* SalesforceOAuth-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SalesforceOAuth-Info.plist"; sourceTree = "<group>"; };
+		EA0214B317041F5A009D4C9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EA0214B517041F5A009D4C9A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EA0214B717041F5A009D4C9A /* SalesforceOAuth-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SalesforceOAuth-Prefix.pch"; sourceTree = "<group>"; };
+		EA0214B817041F5A009D4C9A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EA0214B917041F5A009D4C9A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EA0214BB17041F5A009D4C9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		EA0214BD17041F5A009D4C9A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		EA0214BF17041F5A009D4C9A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		EA0214C217041F5A009D4C9A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		EA0214C417041F5A009D4C9A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		EA0214C517041F5A009D4C9A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		EA0214CF17042037009D4C9A /* SFOAuth_NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SFOAuth_NSString+Additions.h"; sourceTree = "<group>"; };
+		EA0214D017042037009D4C9A /* SFOAuth_NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SFOAuth_NSString+Additions.m"; sourceTree = "<group>"; };
+		EA0214D117042037009D4C9A /* SFOAuth_UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SFOAuth_UIDevice+Hardware.h"; sourceTree = "<group>"; };
+		EA0214D217042037009D4C9A /* SFOAuth_UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SFOAuth_UIDevice+Hardware.m"; sourceTree = "<group>"; };
+		EA0214D317042037009D4C9A /* SFOAuthCoordinator+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SFOAuthCoordinator+Internal.h"; sourceTree = "<group>"; };
+		EA0214D417042037009D4C9A /* SFOAuthCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFOAuthCoordinator.h; sourceTree = "<group>"; };
+		EA0214D517042037009D4C9A /* SFOAuthCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFOAuthCoordinator.m; sourceTree = "<group>"; };
+		EA0214D617042037009D4C9A /* SFOAuthCredentials+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SFOAuthCredentials+Internal.h"; sourceTree = "<group>"; };
+		EA0214D717042037009D4C9A /* SFOAuthCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFOAuthCredentials.h; sourceTree = "<group>"; };
+		EA0214D817042037009D4C9A /* SFOAuthCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFOAuthCredentials.m; sourceTree = "<group>"; };
+		EA0214D917042037009D4C9A /* SFOAuthCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFOAuthCrypto.h; sourceTree = "<group>"; };
+		EA0214DA17042037009D4C9A /* SFOAuthCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFOAuthCrypto.m; sourceTree = "<group>"; };
+		EA0214DB17042037009D4C9A /* SFOAuthInfo+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SFOAuthInfo+Internal.h"; sourceTree = "<group>"; };
+		EA0214DC17042037009D4C9A /* SFOAuthInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFOAuthInfo.h; sourceTree = "<group>"; };
+		EA0214DD17042037009D4C9A /* SFOAuthInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFOAuthInfo.m; sourceTree = "<group>"; };
+		EA0214E41704205D009D4C9A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EA0214A217041F5A009D4C9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA0214E51704205D009D4C9A /* Security.framework in Frameworks */,
+				EA0214AE17041F5A009D4C9A /* CoreGraphics.framework in Frameworks */,
+				EA0214AA17041F5A009D4C9A /* UIKit.framework in Frameworks */,
+				EA0214AC17041F5A009D4C9A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EA02149A17041F59009D4C9A = {
+			isa = PBXGroup;
+			children = (
+				EA0214CD17042037009D4C9A /* SfOAuth */,
+				EA0214AF17041F5A009D4C9A /* SalesforceOAuth */,
+				EA0214A817041F5A009D4C9A /* Frameworks */,
+				EA0214A617041F5A009D4C9A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EA0214A617041F5A009D4C9A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA0214A517041F5A009D4C9A /* SalesforceOAuth.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EA0214A817041F5A009D4C9A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA0214E41704205D009D4C9A /* Security.framework */,
+				EA0214A917041F5A009D4C9A /* UIKit.framework */,
+				EA0214AB17041F5A009D4C9A /* Foundation.framework */,
+				EA0214AD17041F5A009D4C9A /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA0214AF17041F5A009D4C9A /* SalesforceOAuth */ = {
+			isa = PBXGroup;
+			children = (
+				EA0214B817041F5A009D4C9A /* AppDelegate.h */,
+				EA0214B917041F5A009D4C9A /* AppDelegate.m */,
+				EA0214C117041F5A009D4C9A /* MainStoryboard.storyboard */,
+				EA0214C417041F5A009D4C9A /* ViewController.h */,
+				EA0214C517041F5A009D4C9A /* ViewController.m */,
+				EA0214B017041F5A009D4C9A /* Supporting Files */,
+			);
+			path = SalesforceOAuth;
+			sourceTree = "<group>";
+		};
+		EA0214B017041F5A009D4C9A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EA0214B117041F5A009D4C9A /* SalesforceOAuth-Info.plist */,
+				EA0214B217041F5A009D4C9A /* InfoPlist.strings */,
+				EA0214B517041F5A009D4C9A /* main.m */,
+				EA0214B717041F5A009D4C9A /* SalesforceOAuth-Prefix.pch */,
+				EA0214BB17041F5A009D4C9A /* Default.png */,
+				EA0214BD17041F5A009D4C9A /* Default@2x.png */,
+				EA0214BF17041F5A009D4C9A /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EA0214CD17042037009D4C9A /* SfOAuth */ = {
+			isa = PBXGroup;
+			children = (
+				EA0214CE17042037009D4C9A /* Additions */,
+				EA0214D317042037009D4C9A /* SFOAuthCoordinator+Internal.h */,
+				EA0214D417042037009D4C9A /* SFOAuthCoordinator.h */,
+				EA0214D517042037009D4C9A /* SFOAuthCoordinator.m */,
+				EA0214D617042037009D4C9A /* SFOAuthCredentials+Internal.h */,
+				EA0214D717042037009D4C9A /* SFOAuthCredentials.h */,
+				EA0214D817042037009D4C9A /* SFOAuthCredentials.m */,
+				EA0214D917042037009D4C9A /* SFOAuthCrypto.h */,
+				EA0214DA17042037009D4C9A /* SFOAuthCrypto.m */,
+				EA0214DB17042037009D4C9A /* SFOAuthInfo+Internal.h */,
+				EA0214DC17042037009D4C9A /* SFOAuthInfo.h */,
+				EA0214DD17042037009D4C9A /* SFOAuthInfo.m */,
+			);
+			path = SfOAuth;
+			sourceTree = "<group>";
+		};
+		EA0214CE17042037009D4C9A /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				EA0214CF17042037009D4C9A /* SFOAuth_NSString+Additions.h */,
+				EA0214D017042037009D4C9A /* SFOAuth_NSString+Additions.m */,
+				EA0214D117042037009D4C9A /* SFOAuth_UIDevice+Hardware.h */,
+				EA0214D217042037009D4C9A /* SFOAuth_UIDevice+Hardware.m */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EA0214A417041F5A009D4C9A /* SalesforceOAuth */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA0214C917041F5A009D4C9A /* Build configuration list for PBXNativeTarget "SalesforceOAuth" */;
+			buildPhases = (
+				EA0214A117041F5A009D4C9A /* Sources */,
+				EA0214A217041F5A009D4C9A /* Frameworks */,
+				EA0214A317041F5A009D4C9A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SalesforceOAuth;
+			productName = SalesforceOAuth;
+			productReference = EA0214A517041F5A009D4C9A /* SalesforceOAuth.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EA02149C17041F59009D4C9A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = gagein;
+			};
+			buildConfigurationList = EA02149F17041F5A009D4C9A /* Build configuration list for PBXProject "SalesforceOAuth" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EA02149A17041F59009D4C9A;
+			productRefGroup = EA0214A617041F5A009D4C9A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EA0214A417041F5A009D4C9A /* SalesforceOAuth */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EA0214A317041F5A009D4C9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA0214B417041F5A009D4C9A /* InfoPlist.strings in Resources */,
+				EA0214BC17041F5A009D4C9A /* Default.png in Resources */,
+				EA0214BE17041F5A009D4C9A /* Default@2x.png in Resources */,
+				EA0214C017041F5A009D4C9A /* Default-568h@2x.png in Resources */,
+				EA0214C317041F5A009D4C9A /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EA0214A117041F5A009D4C9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA0214B617041F5A009D4C9A /* main.m in Sources */,
+				EA0214BA17041F5A009D4C9A /* AppDelegate.m in Sources */,
+				EA0214C617041F5A009D4C9A /* ViewController.m in Sources */,
+				EA0214DE17042037009D4C9A /* SFOAuth_NSString+Additions.m in Sources */,
+				EA0214DF17042037009D4C9A /* SFOAuth_UIDevice+Hardware.m in Sources */,
+				EA0214E017042037009D4C9A /* SFOAuthCoordinator.m in Sources */,
+				EA0214E117042037009D4C9A /* SFOAuthCredentials.m in Sources */,
+				EA0214E217042037009D4C9A /* SFOAuthCrypto.m in Sources */,
+				EA0214E317042037009D4C9A /* SFOAuthInfo.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EA0214B217041F5A009D4C9A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA0214B317041F5A009D4C9A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		EA0214C117041F5A009D4C9A /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA0214C217041F5A009D4C9A /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EA0214C717041F5A009D4C9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EA0214C817041F5A009D4C9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EA0214CA17041F5A009D4C9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SalesforceOAuth/SalesforceOAuth-Prefix.pch";
+				INFOPLIST_FILE = "SalesforceOAuth/SalesforceOAuth-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EA0214CB17041F5A009D4C9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SalesforceOAuth/SalesforceOAuth-Prefix.pch";
+				INFOPLIST_FILE = "SalesforceOAuth/SalesforceOAuth-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EA02149F17041F5A009D4C9A /* Build configuration list for PBXProject "SalesforceOAuth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA0214C717041F5A009D4C9A /* Debug */,
+				EA0214C817041F5A009D4C9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA0214C917041F5A009D4C9A /* Build configuration list for PBXNativeTarget "SalesforceOAuth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA0214CA17041F5A009D4C9A /* Debug */,
+				EA0214CB17041F5A009D4C9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EA02149C17041F59009D4C9A /* Project object */;
+}
