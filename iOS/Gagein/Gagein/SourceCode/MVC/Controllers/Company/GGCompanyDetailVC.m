@@ -279,18 +279,31 @@ typedef enum
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int section = indexPath.section;
+    
     if (section == kGGSectionOverview) {
+        
         return [GGCompanyDetailOverviewCell HEIGHT];
+        
     } else if (section == kGGSectionUpdates) {
+        
         return [GGCompanyDetailUpdateCell HEIGHT];
+        
     } else if (section == kGGSectionHappenings) {
+        
         return [GGCompanyDetailUpdateCell HEIGHT];
+        
     } else if (section == kGGSectionEmployees) {
+    
         return [GGComDetailEmployeeCell HEIGHT];
+        
     } else if (section == kGGSectionSimilarCompanies) {
+        
         return [GGComDetailEmployeeCell HEIGHT];
+        
     } else if (section == kGGSectionLinkedProfiles) {
+        
         return [GGComDetailProfileCell HEIGHT];
+        
     }
     
     return 44;
@@ -298,6 +311,28 @@ typedef enum
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if (section == kGGSectionUpdates && _updates.count <= 0) {
+        
+        return 0.f;
+        
+    } else if (section == kGGSectionHappenings && _happenings.count <= 0) {
+        
+        return 0.f;
+        
+    } else if (section == kGGSectionEmployees && _people.count <= 0) {
+        
+        return 0.f;
+        
+    } else if (section == kGGSectionSimilarCompanies && _similarCompanies.count <= 0) {
+        
+        return 0.f;
+        
+    } else if (section == kGGSectionLinkedProfiles && _companyOverview.socialProfiles.count <= 0) {
+        
+        return 0.f;
+        
+    }
+    
     return [GGCompanyDetailHeaderView HEIGHT];
 }
 
@@ -306,25 +341,36 @@ typedef enum
     GGCompanyDetailHeaderView *header = [GGCompanyDetailHeaderView viewFromNibWithOwner:self];
     
     if (section == kGGSectionOverview) {
+        
         header.lblTitle.text = @"OVERVIEW";
         header.lblAction.hidden = YES;
+        
     } else if (section == kGGSectionUpdates) {
+        
         header.lblTitle.text = @"UPDATES";
-        header.lblAction.hidden = (_updates.count <= 0);
+        //header.lblAction.hidden = (_updates.count <= 0);
         [header.lblAction addTarget:self action:@selector(_seeAllUpdatesAction:) forControlEvents:UIControlEventTouchUpInside];
+        
     } else if (section == kGGSectionHappenings) {
+        
         header.lblTitle.text = @"HAPPENINGS";
-        header.lblAction.hidden = (_happenings.count <= 0);
+        //header.lblAction.hidden = (_happenings.count <= 0);
         [header.lblAction addTarget:self action:@selector(_seeAllHappeningsAction:) forControlEvents:UIControlEventTouchUpInside];
+        
     } else if (section == kGGSectionEmployees) {
+        
         header.lblTitle.text = @"EMPLOYEES";
-        header.lblAction.hidden = (_people.count <= 0);
+        //header.lblAction.hidden = (_people.count <= 0);
         [header.lblAction addTarget:self action:@selector(_seeAllEmployeesAction:) forControlEvents:UIControlEventTouchUpInside];
+        
     } else if (section == kGGSectionSimilarCompanies) {
+        
         header.lblTitle.text = @"SIMILAR COMPANIES";
-        header.lblAction.hidden = (_similarCompanies.count <= 0);
+        //header.lblAction.hidden = (_similarCompanies.count <= 0);
         [header.lblAction addTarget:self action:@selector(_seeAllSimilarCompaniesAction:) forControlEvents:UIControlEventTouchUpInside];
+        
     } else if (section == kGGSectionLinkedProfiles) {
+        
         header.lblTitle.text = @"LINKED PROFILES";
         header.lblAction.hidden = YES;
     }
