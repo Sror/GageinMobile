@@ -43,7 +43,6 @@ typedef enum {
 @property (copy)    NSString *profile;
 @property (copy)    NSString *specialities;
 @property (copy)    NSString *telephone;
-@property (copy)    NSString *tickerSymbol;
 @property (copy)    NSString *aliases;
 @property (copy)    NSString *keywords;
 @property (copy)    NSString *country;

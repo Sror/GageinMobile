@@ -17,7 +17,7 @@
     self = [super init];
     if (self) {
         _socialProfiles = [NSMutableArray array];
-        _tickerSymbol = [NSMutableArray array];
+        _tickerSymbols = [NSMutableArray array];
     }
     return self;
 }

@@ -36,6 +36,7 @@
     [self.view addSubview:_webview];
     
     [_webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_urlStr]]];
+    DLog(@"webview loading: {%@}", _urlStr);
 }
 
 -(void)dealloc

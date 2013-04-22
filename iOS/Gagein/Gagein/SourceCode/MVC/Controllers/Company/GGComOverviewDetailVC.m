@@ -7,11 +7,14 @@
 //
 
 #import "GGComOverviewDetailVC.h"
+#import "GGWebVC.h"
 #import "GGCompanyDetailHeaderView.h"
 #import "GGCompany.h"
+#import "GGTicker.h"
 
 #import "GGComOverviewAboutCell.h"
 #import "GGComOverviewProfileCell.h"
+#import "GGComOverviewStockCell.h"
 
 typedef enum
 {
@@ -47,6 +50,7 @@ typedef enum
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.title = @"Overview";
 	
     _tv = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tv.backgroundColor = GGSharedColor.silver;
@@ -54,6 +58,22 @@ typedef enum
     _tv.delegate = self;
     _tv.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tv];
+}
+
+#pragma mark - actions
+-(IBAction)_seeStockAction:(id)sender
+{
+    if (_overview.tickerSymbols.count)
+    {
+        GGTicker *ticker = _overview.tickerSymbols[0];
+        if (ticker.url.length)
+        {
+            GGWebVC *vc = [[GGWebVC alloc] init];
+            vc.urlStr = ticker.url;
+            vc.navigationItem.title = ticker.name;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
 }
 
 #pragma mark - table view cells
@@ -91,6 +111,34 @@ typedef enum
     return cell;
 }
 
+-(GGComOverviewStockCell *)_tvCellStock
+{
+    GGComOverviewStockCell * cell;
+    if (!cell)
+    {
+        cell = [GGComOverviewStockCell viewFromNibWithOwner:self];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    cell.lblOwnership.text = _overview.ownership;
+    if (_overview.tickerSymbols.count)
+    {
+        GGTicker *ticker = _overview.tickerSymbols[0];
+        NSArray *stockStings = [ticker.name componentsSeparatedByString:@": "];
+        if (stockStings.count == 2)
+        {
+            cell.lblStockChange.text = stockStings[0];
+            cell.lblStockSymbol.text = stockStings[1];
+        }
+        
+        [cell.btnStock addTarget:self action:@selector(_seeStockAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return cell;
+}
+
+
+
 #pragma mark - table view datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -121,15 +169,9 @@ typedef enum
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int section = indexPath.section;
-    int row = indexPath.row;
+    //int row = indexPath.row;
     
     if (section == kGGSectionAbout) {
-        
-//        GGComOverviewAboutCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGComOverviewAboutCell"];
-//        if (!cell)
-//        {
-//            cell = [self _tvCellAbout];
-//        }
         
         return [self _tvCellAbout];
         
@@ -139,6 +181,8 @@ typedef enum
         
     } else if (section == kGGSectionStock) {
 
+        return [self _tvCellStock];
+        
     } else if (section == kGGSectionRevenues) {
 
     } else if (section == kGGSectionSubsidaries) {
@@ -159,7 +203,7 @@ typedef enum
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int section = indexPath.section;
-    int row = indexPath.row;
+    //int row = indexPath.row;
     
     if (section == kGGSectionAbout) {
         
@@ -191,6 +235,8 @@ typedef enum
         return [self _tvCellProfile].height;
         
     } else if (section == kGGSectionStock) {
+        
+        return [self _tvCellStock].height;
         
     } else if (section == kGGSectionRevenues) {
         
