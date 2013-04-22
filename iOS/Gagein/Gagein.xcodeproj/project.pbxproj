@@ -34,7 +34,6 @@
 		EA0CA58A170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA587170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m */; };
 		EA0CA58B170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA589170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m */; };
 		EA0CA58D170BF4C000DBCD83 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0CA58C170BF4C000DBCD83 /* QuartzCore.framework */; };
-		EA12C60A172384A7001C0289 /* GGTickerSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = EA12C609172384A7001C0289 /* GGTickerSymbol.m */; };
 		EA1995ED1717E301006D95E4 /* GGSettingMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */; };
 		EA1995F01717E312006D95E4 /* GGSettingMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */; };
 		EA1A61F7170A6478000B4EAE /* GGDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61F6170A6478000B4EAE /* GGDataModel.m */; };
@@ -101,6 +100,7 @@
 		EA79B8A81724D57A00141E6D /* GGPersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8A71724D57A00141E6D /* GGPersonCell.m */; };
 		EA79B8AE1724D98F00141E6D /* GGCompanyEmployeesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8AD1724D98F00141E6D /* GGCompanyEmployeesVC.m */; };
 		EA79B8B11724F69100141E6D /* GGSimilarCompaniesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8B01724F69100141E6D /* GGSimilarCompaniesVC.m */; };
+		EA79B8B31724FD0400141E6D /* GGTicker.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8B21724FD0400141E6D /* GGTicker.m */; };
 		EA844A22171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */; };
 		EA844A31171FBE2200658015 /* DCRoundSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2A171FBE2200658015 /* DCRoundSwitch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA844A32171FBE2200658015 /* DCRoundSwitchKnobLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2C171FBE2200658015 /* DCRoundSwitchKnobLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -257,8 +257,7 @@
 		EA0CA588170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		EA0CA589170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		EA0CA58C170BF4C000DBCD83 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		EA12C608172384A7001C0289 /* GGTickerSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTickerSymbol.h; sourceTree = "<group>"; };
-		EA12C609172384A7001C0289 /* GGTickerSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGTickerSymbol.m; sourceTree = "<group>"; };
+		EA12C608172384A7001C0289 /* GGTicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTicker.h; sourceTree = "<group>"; };
 		EA1995EB1717E301006D95E4 /* GGSettingMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingMenuCell.h; sourceTree = "<group>"; };
 		EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingMenuCell.m; sourceTree = "<group>"; };
 		EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingMenuCell.xib; sourceTree = "<group>"; };
@@ -361,6 +360,7 @@
 		EA79B8AD1724D98F00141E6D /* GGCompanyEmployeesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyEmployeesVC.m; sourceTree = "<group>"; };
 		EA79B8AF1724F69100141E6D /* GGSimilarCompaniesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSimilarCompaniesVC.h; sourceTree = "<group>"; };
 		EA79B8B01724F69100141E6D /* GGSimilarCompaniesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSimilarCompaniesVC.m; sourceTree = "<group>"; };
+		EA79B8B21724FD0400141E6D /* GGTicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGTicker.m; sourceTree = "<group>"; };
 		EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSavedUpdatesVC_iPad.xib; sourceTree = "<group>"; };
 		EA844A29171FBE2200658015 /* DCRoundSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitch.h; sourceTree = "<group>"; };
 		EA844A2A171FBE2200658015 /* DCRoundSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitch.m; sourceTree = "<group>"; };
@@ -1001,8 +1001,8 @@
 				EAEFB4F91717BC620013634F /* GGMenuData.m */,
 				EA4F3A1D171E7FC800530185 /* GGCompanyHappening.h */,
 				EA4F3A1E171E7FC800530185 /* GGCompanyHappening.m */,
-				EA12C608172384A7001C0289 /* GGTickerSymbol.h */,
-				EA12C609172384A7001C0289 /* GGTickerSymbol.m */,
+				EA12C608172384A7001C0289 /* GGTicker.h */,
+				EA79B8B21724FD0400141E6D /* GGTicker.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1541,7 +1541,6 @@
 				EAD96078172142DD00A72A9C /* SBJsonStreamWriterAccumulator.m in Sources */,
 				EAD96079172142DD00A72A9C /* SBJsonStreamWriterState.m in Sources */,
 				EAD9607A172142DD00A72A9C /* SBJsonWriter.m in Sources */,
-				EA12C60A172384A7001C0289 /* GGTickerSymbol.m in Sources */,
 				EAEABBFE1724C89300947BE9 /* GGUpdatesVC.m in Sources */,
 				EAEABBFF1724C89300947BE9 /* GGWebVC.m in Sources */,
 				EAEABC031724C8E400947BE9 /* GGHappeningsVC.m in Sources */,
@@ -1549,6 +1548,7 @@
 				EA79B8A81724D57A00141E6D /* GGPersonCell.m in Sources */,
 				EA79B8AE1724D98F00141E6D /* GGCompanyEmployeesVC.m in Sources */,
 				EA79B8B11724F69100141E6D /* GGSimilarCompaniesVC.m in Sources */,
+				EA79B8B31724FD0400141E6D /* GGTicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 gagein. All rights reserved.
 //
 
-#import "GGTickerSymbol.h"
+#import "GGTicker.h"
 
-@implementation GGTickerSymbol
+@implementation GGTicker
 
 -(void)parseWithData:(NSDictionary *)aData
 {

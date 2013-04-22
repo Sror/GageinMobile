@@ -7,7 +7,7 @@
 //
 
 #import "GGCompany.h"
-#import "GGTickerSymbol.h"
+#import "GGTicker.h"
 #import "GGSocialProfile.h"
 
 @implementation GGCompany
@@ -57,6 +57,7 @@
     self.address = [aData objectForKey:@"address"];
     self.googleMapUrl = [aData objectForKey:@"google_map_url"];
     self.latestDate = [aData objectForKey:@"latest_date"];
+    self.revenuesChartUrl = [aData objectForKey:@"revenues_chart_url"];
     
     [_socialProfiles removeAllObjects];
     NSArray *snProfiles = [aData objectForKey:@"social_profiles"];
@@ -80,7 +81,7 @@
         {
             NSAssert([item isKindOfClass:[NSDictionary class]], @"sn profile data should be a Dic");
             
-            GGTickerSymbol *symbol = [GGTickerSymbol model];
+            GGTicker *symbol = [GGTicker model];
             [symbol parseWithData:item];
             [_tickerSymbols addObject:symbol];
         }
