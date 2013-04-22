@@ -110,6 +110,8 @@
 		EA79B8C617251C3400141E6D /* GGComOverviewStockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA79B8C517251C3300141E6D /* GGComOverviewStockCell.xib */; };
 		EA79B8C91725257A00141E6D /* GGComOverviewRevenuesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8C81725257500141E6D /* GGComOverviewRevenuesCell.m */; };
 		EA79B8CB1725259E00141E6D /* GGComOverviewRevenuesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA79B8CA1725259D00141E6D /* GGComOverviewRevenuesCell.xib */; };
+		EA79B8CE17252FCE00141E6D /* GGComOverviewContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8CD17252FCD00141E6D /* GGComOverviewContactCell.m */; };
+		EA79B8D017252FE300141E6D /* GGComOverviewContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA79B8CF17252FE200141E6D /* GGComOverviewContactCell.xib */; };
 		EA844A22171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */; };
 		EA844A31171FBE2200658015 /* DCRoundSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2A171FBE2200658015 /* DCRoundSwitch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA844A32171FBE2200658015 /* DCRoundSwitchKnobLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2C171FBE2200658015 /* DCRoundSwitchKnobLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -384,6 +386,9 @@
 		EA79B8C71725257400141E6D /* GGComOverviewRevenuesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComOverviewRevenuesCell.h; sourceTree = "<group>"; };
 		EA79B8C81725257500141E6D /* GGComOverviewRevenuesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComOverviewRevenuesCell.m; sourceTree = "<group>"; };
 		EA79B8CA1725259D00141E6D /* GGComOverviewRevenuesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGComOverviewRevenuesCell.xib; sourceTree = "<group>"; };
+		EA79B8CC17252FCC00141E6D /* GGComOverviewContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComOverviewContactCell.h; sourceTree = "<group>"; };
+		EA79B8CD17252FCD00141E6D /* GGComOverviewContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComOverviewContactCell.m; sourceTree = "<group>"; };
+		EA79B8CF17252FE200141E6D /* GGComOverviewContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGComOverviewContactCell.xib; sourceTree = "<group>"; };
 		EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSavedUpdatesVC_iPad.xib; sourceTree = "<group>"; };
 		EA844A29171FBE2200658015 /* DCRoundSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitch.h; sourceTree = "<group>"; };
 		EA844A2A171FBE2200658015 /* DCRoundSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitch.m; sourceTree = "<group>"; };
@@ -708,6 +713,9 @@
 				EA79B8C71725257400141E6D /* GGComOverviewRevenuesCell.h */,
 				EA79B8C81725257500141E6D /* GGComOverviewRevenuesCell.m */,
 				EA79B8CA1725259D00141E6D /* GGComOverviewRevenuesCell.xib */,
+				EA79B8CC17252FCC00141E6D /* GGComOverviewContactCell.h */,
+				EA79B8CD17252FCD00141E6D /* GGComOverviewContactCell.m */,
+				EA79B8CF17252FE200141E6D /* GGComOverviewContactCell.xib */,
 			);
 			path = CompanyOverview;
 			sourceTree = "<group>";
@@ -1480,6 +1488,7 @@
 				EA79B8C11725165800141E6D /* GGComOverviewProfileCell.xib in Resources */,
 				EA79B8C617251C3400141E6D /* GGComOverviewStockCell.xib in Resources */,
 				EA79B8CB1725259E00141E6D /* GGComOverviewRevenuesCell.xib in Resources */,
+				EA79B8D017252FE300141E6D /* GGComOverviewContactCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1603,6 +1612,7 @@
 				EA79B8BF1725164A00141E6D /* GGComOverviewProfileCell.m in Sources */,
 				EA79B8C417251C2100141E6D /* GGComOverviewStockCell.m in Sources */,
 				EA79B8C91725257A00141E6D /* GGComOverviewRevenuesCell.m in Sources */,
+				EA79B8CE17252FCE00141E6D /* GGComOverviewContactCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

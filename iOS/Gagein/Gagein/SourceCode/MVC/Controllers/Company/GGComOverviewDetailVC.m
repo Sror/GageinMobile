@@ -16,6 +16,7 @@
 #import "GGComOverviewProfileCell.h"
 #import "GGComOverviewStockCell.h"
 #import "GGComOverviewRevenuesCell.h"
+#import "GGComOverviewContactCell.h"
 
 typedef enum
 {
@@ -152,6 +153,22 @@ typedef enum
     return cell;
 }
 
+-(GGComOverviewContactCell *)_tvCellContact
+{
+    GGComOverviewContactCell * cell;
+    if (!cell)
+    {
+        cell = [GGComOverviewContactCell viewFromNibWithOwner:self];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    cell.lblTelephone.text = _overview.telephone;
+    cell.lblAddress.text = _overview.address;
+    cell.lblFax.text = _overview.faxNumber;
+    
+    return cell;
+}
+
 
 
 
@@ -208,7 +225,8 @@ typedef enum
     } else if (section == kGGSectionDivisions) {
 
     }  else if (section == kGGSectionContact) {
-
+        
+        return [self _tvCellContact];
     }
     
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
@@ -275,6 +293,7 @@ typedef enum
         
     }  else if (section == kGGSectionContact) {
         
+        return [self _tvCellContact].height;
     }
     
     return 44;
