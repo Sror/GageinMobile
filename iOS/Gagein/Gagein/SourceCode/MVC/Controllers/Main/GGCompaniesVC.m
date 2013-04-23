@@ -15,7 +15,7 @@
 #import "GGCompanyHappening.h"
 #import "GGMenuData.h"
 
-#import "GGSlideSettingView.h"
+
 #import "GGCompanyDetailVC.h"
 #import "GGCompanyUpdateDetailVC.h"
 #import "GGScrollingView.h"
@@ -76,6 +76,7 @@
     
     //
     _slideSettingView = [[GGSlideSettingView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
+    _slideSettingView.delegate = self;
     _slideSettingView.viewTable.backgroundColor = GGSharedColor.clear;
     _slideSettingView.viewTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     _slideSettingView.viewTable.dataSource = self;
@@ -83,6 +84,7 @@
     _slideSettingView.viewTable.rowHeight = [GGSettingMenuCell HEIGHT];
     UIView *theWindow = GGSharedDelegate.window;
     [theWindow addSubview:_slideSettingView];
+    [theWindow sendSubviewToBack:_slideSettingView];
     
     // ------- add scrolling view
     _scrollingView = [GGScrollingView viewFromNibWithOwner:self];
@@ -103,9 +105,6 @@
     self.happeningsTV.delegate = self;
     [_scrollingView addPage:self.happeningsTV];
     self.happeningsTV.backgroundColor = GGSharedColor.silver;
-    
-    //
-    [self.view bringSubviewToFront:_slideSettingView];
     
     
     // setup pull-to-refresh and infinite scrolling
@@ -145,6 +144,12 @@
 -(void)dealloc
 {
     [self unobserveAllNotifications];
+}
+
+#pragma mark - slide setting view delegate
+-(void)slideview:(GGSlideSettingView *)aSlideView isShowed:(BOOL)aIsShowed
+{
+    self.view.userInteractionEnabled = !aIsShowed;
 }
 
 #pragma mark - notification handling

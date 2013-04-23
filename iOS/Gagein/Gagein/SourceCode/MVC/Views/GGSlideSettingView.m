@@ -21,8 +21,17 @@
         self.backgroundColor = GGSharedColor.darkGray;
         
         self.frame = [self _slideHideRect];
+//        // back ground view
+//        CGRect bgRc = CGRectMake(0, 0, SELF_WIDTH, self.frame.size.height);
+//        UIView *bgView = [[UIView alloc] initWithFrame:bgRc];
+//        bgView.backgroundColor = GGSharedColor.darkGray;
+//        [self addSubview:bgView];
+        
+        //CGRect tableRc = bgRc;
+        
         _viewTable = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
         _viewTable.showsVerticalScrollIndicator = NO;
+        _viewTable.backgroundColor = GGSharedColor.darkGray;
         [self addSubview:_viewTable];
 
         UISwipeGestureRecognizer *leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideSlide)];
@@ -64,6 +73,8 @@
             
         } completion:^(BOOL finished) {
             
+            [self.superview bringSubviewToFront:self];
+            [_delegate slideview:self isShowed:YES];
         }];
     }
 }
@@ -80,6 +91,9 @@
             GGSharedDelegate.naviController.view.frame = [GGUtils setX:0 rect:GGSharedDelegate.naviController.view.frame];
             
         } completion:^(BOOL finished) {
+            
+            [self.superview sendSubviewToBack:self];
+            [_delegate slideview:self isShowed:NO];
         }];
     }
 }

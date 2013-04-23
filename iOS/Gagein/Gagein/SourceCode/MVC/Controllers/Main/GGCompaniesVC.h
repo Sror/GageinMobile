@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "GGScrollingView.h"
+#import "GGSlideSettingView.h"
 
 @interface GGCompaniesVC : GGBaseViewController
-<UITableViewDelegate, UITableViewDataSource, GGScrollingViewDelegate>
+<UITableViewDelegate, UITableViewDataSource, GGScrollingViewDelegate, GGSlideSettingViewDelegate>
 @property (strong)   NSMutableArray              *updates;
 @property (strong)   NSMutableArray              *happenings;
 @end
