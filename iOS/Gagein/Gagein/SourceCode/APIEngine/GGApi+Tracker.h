@@ -55,7 +55,9 @@
 //POST
 //
 ///svc/member/me/update/get_saved
--(void)getSaveUpdatesWithPageIndex:(int)aPageIndex callback:(GGApiBlock)aCallback;
+-(void)getSaveUpdatesWithPageIndex:(int)aPageIndex
+                          isUnread:(BOOL)aIsUnread
+                          callback:(GGApiBlock)aCallback;
 
 //SU01:Search UpdatesBack to top
 //POST

@@ -47,7 +47,7 @@ DEF_SINGLETON(GGAPITest)
 
 -(void)_testGetSaveUpdatesWithPageIndex
 {
-    [GGSharedAPI getSaveUpdatesWithPageIndex:0 callback:^(id operation, id aResultObject, NSError *anError) {
+    [GGSharedAPI getSaveUpdatesWithPageIndex:0 isUnread:YES callback:^(id operation, id aResultObject, NSError *anError) {
         //
     }];
 }

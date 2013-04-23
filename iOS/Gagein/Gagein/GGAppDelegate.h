@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GGTabBarController.h"
 @class GGSlideSettingView;
 
 @interface GGAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) UITabBarController *tabBarController;
+@property (strong, nonatomic) GGTabBarController *tabBarController;
 @property (strong, nonatomic) UINavigationController *naviController;
 @property (strong, nonatomic) GGSlideSettingView *slideSettingView;
 

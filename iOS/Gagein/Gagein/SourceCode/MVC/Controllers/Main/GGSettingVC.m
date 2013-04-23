@@ -25,8 +25,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.tabBarItem.title = @"Settings";
-        self.tabBarItem.image = [UIImage imageNamed:@"Gestures"];
+        //self.tabBarItem.title = @"Settings";
+        //self.tabBarItem.image = [UIImage imageNamed:@"Gestures"];
     }
     return self;
 }
@@ -34,7 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.navigationItem.title = @"Settings";
     
 }
 

@@ -18,8 +18,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.tabBarItem.title = @"People";
-        self.tabBarItem.image = [UIImage imageNamed:@"second"];
+        //self.tabBarItem.title = @"People";
+        //self.tabBarItem.image = [UIImage imageNamed:@"second"];
     }
     return self;
 }
@@ -27,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.navigationItem.title = @"People";
     
 }
 

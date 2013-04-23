@@ -49,8 +49,7 @@
     nc3 = [[UINavigationController alloc] initWithRootViewController:viewController3];
     nc4 = [[UINavigationController alloc] initWithRootViewController:viewController4];
     
-    self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[nc1, nc2, nc3, nc4];
+    self.tabBarController = [[GGTabBarController alloc] initWithViewControllers:@[nc1, nc2, nc3, nc4]];
     
     self.naviController = [[UINavigationController alloc] initWithRootViewController:self.tabBarController];
     self.naviController.navigationBarHidden = YES;

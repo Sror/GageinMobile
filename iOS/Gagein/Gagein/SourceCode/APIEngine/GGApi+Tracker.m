@@ -159,7 +159,9 @@
 //POST
 //
 ///svc/member/me/update/get_saved
--(void)getSaveUpdatesWithPageIndex:(int)aPageIndex callback:(GGApiBlock)aCallback
+-(void)getSaveUpdatesWithPageIndex:(int)aPageIndex
+                          isUnread:(BOOL)aIsUnread
+                          callback:(GGApiBlock)aCallback
 {
     //POST
     NSString *path = @"member/me/update/get_saved";
@@ -168,6 +170,7 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:__INT(aPageIndex) forKey:@"page"];
+    [parameters setObject:(aIsUnread ? @"unread" : @"all") forKey:@"type"];
     
     [self _execPostWithPath:path params:parameters callback:aCallback];
 }

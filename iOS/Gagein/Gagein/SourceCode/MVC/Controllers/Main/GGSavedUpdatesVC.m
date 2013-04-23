@@ -30,14 +30,15 @@
     BOOL            _hasMore;
     NSMutableArray  *_updates;
     
+    BOOL            _isUnread;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.tabBarItem.title = @"Saved";
-        self.tabBarItem.image = [UIImage imageNamed:@"Players"];
+        //self.tabBarItem.title = @"Saved";
+        //self.tabBarItem.image = [UIImage imageNamed:@"Players"];
         _updates = [NSMutableArray array];
         _currentPageIndex = GG_PAGE_START_INDEX;
     }
@@ -159,7 +160,7 @@
 
 -(void)_callGetSavedUpdates
 {
-    [GGSharedAPI getSaveUpdatesWithPageIndex:_currentPageIndex callback:^(id operation, id aResultObject, NSError *anError) {
+    [GGSharedAPI getSaveUpdatesWithPageIndex:_currentPageIndex isUnread:_isUnread callback:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {

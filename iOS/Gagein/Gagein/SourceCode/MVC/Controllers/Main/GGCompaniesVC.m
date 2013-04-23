@@ -47,8 +47,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.tabBarItem.title = @"Companies";
-        self.tabBarItem.image = [UIImage imageNamed:@"first"];
+        //self.tabBarItem.title = @"Companies";
+        //self.tabBarItem.image = [UIImage imageNamed:@"first"];
         _relevance = kGGCompanyUpdateRelevanceNormal;
         _updates = [NSMutableArray array];
         _happenings = [NSMutableArray array];
