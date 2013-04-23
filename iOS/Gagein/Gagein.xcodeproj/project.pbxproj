@@ -34,6 +34,11 @@
 		EA0CA58A170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA587170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m */; };
 		EA0CA58B170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA589170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m */; };
 		EA0CA58D170BF4C000DBCD83 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0CA58C170BF4C000DBCD83 /* QuartzCore.framework */; };
+		EA0E6201172617B00002F113 /* GGComOverviewAboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0E61F8172617B00002F113 /* GGComOverviewAboutCell.m */; };
+		EA0E6202172617B00002F113 /* GGComOverviewContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0E61FA172617B00002F113 /* GGComOverviewContactCell.m */; };
+		EA0E6203172617B00002F113 /* GGComOverviewProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0E61FC172617B00002F113 /* GGComOverviewProfileCell.m */; };
+		EA0E6204172617B00002F113 /* GGComOverviewRevenuesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0E61FE172617B00002F113 /* GGComOverviewRevenuesCell.m */; };
+		EA0E6205172617B00002F113 /* GGComOverviewStockCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0E6200172617B00002F113 /* GGComOverviewStockCell.m */; };
 		EA1995ED1717E301006D95E4 /* GGSettingMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */; };
 		EA1995F01717E312006D95E4 /* GGSettingMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */; };
 		EA1A61F7170A6478000B4EAE /* GGDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61F6170A6478000B4EAE /* GGDataModel.m */; };
@@ -102,15 +107,10 @@
 		EA79B8B11724F69100141E6D /* GGSimilarCompaniesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8B01724F69100141E6D /* GGSimilarCompaniesVC.m */; };
 		EA79B8B31724FD0400141E6D /* GGTicker.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8B21724FD0400141E6D /* GGTicker.m */; };
 		EA79B8B61724FEDA00141E6D /* GGComOverviewDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8B51724FEDA00141E6D /* GGComOverviewDetailVC.m */; };
-		EA79B8BA17250B7900141E6D /* GGComOverviewAboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8B917250B7900141E6D /* GGComOverviewAboutCell.m */; };
 		EA79B8BC17250B8800141E6D /* GGComOverviewAboutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA79B8BB17250B8800141E6D /* GGComOverviewAboutCell.xib */; };
-		EA79B8BF1725164A00141E6D /* GGComOverviewProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8BE1725164A00141E6D /* GGComOverviewProfileCell.m */; };
 		EA79B8C11725165800141E6D /* GGComOverviewProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA79B8C01725165800141E6D /* GGComOverviewProfileCell.xib */; };
-		EA79B8C417251C2100141E6D /* GGComOverviewStockCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8C317251C2100141E6D /* GGComOverviewStockCell.m */; };
 		EA79B8C617251C3400141E6D /* GGComOverviewStockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA79B8C517251C3300141E6D /* GGComOverviewStockCell.xib */; };
-		EA79B8C91725257A00141E6D /* GGComOverviewRevenuesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8C81725257500141E6D /* GGComOverviewRevenuesCell.m */; };
 		EA79B8CB1725259E00141E6D /* GGComOverviewRevenuesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA79B8CA1725259D00141E6D /* GGComOverviewRevenuesCell.xib */; };
-		EA79B8CE17252FCE00141E6D /* GGComOverviewContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8CD17252FCD00141E6D /* GGComOverviewContactCell.m */; };
 		EA79B8D017252FE300141E6D /* GGComOverviewContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA79B8CF17252FE200141E6D /* GGComOverviewContactCell.xib */; };
 		EA844A22171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */; };
 		EA844A31171FBE2200658015 /* DCRoundSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2A171FBE2200658015 /* DCRoundSwitch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -268,6 +268,16 @@
 		EA0CA588170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		EA0CA589170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		EA0CA58C170BF4C000DBCD83 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EA0E61F7172617B00002F113 /* GGComOverviewAboutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComOverviewAboutCell.h; sourceTree = "<group>"; };
+		EA0E61F8172617B00002F113 /* GGComOverviewAboutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComOverviewAboutCell.m; sourceTree = "<group>"; };
+		EA0E61F9172617B00002F113 /* GGComOverviewContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComOverviewContactCell.h; sourceTree = "<group>"; };
+		EA0E61FA172617B00002F113 /* GGComOverviewContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComOverviewContactCell.m; sourceTree = "<group>"; };
+		EA0E61FB172617B00002F113 /* GGComOverviewProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComOverviewProfileCell.h; sourceTree = "<group>"; };
+		EA0E61FC172617B00002F113 /* GGComOverviewProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComOverviewProfileCell.m; sourceTree = "<group>"; };
+		EA0E61FD172617B00002F113 /* GGComOverviewRevenuesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComOverviewRevenuesCell.h; sourceTree = "<group>"; };
+		EA0E61FE172617B00002F113 /* GGComOverviewRevenuesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComOverviewRevenuesCell.m; sourceTree = "<group>"; };
+		EA0E61FF172617B00002F113 /* GGComOverviewStockCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComOverviewStockCell.h; sourceTree = "<group>"; };
+		EA0E6200172617B00002F113 /* GGComOverviewStockCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComOverviewStockCell.m; sourceTree = "<group>"; };
 		EA12C608172384A7001C0289 /* GGTicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTicker.h; sourceTree = "<group>"; };
 		EA1995EB1717E301006D95E4 /* GGSettingMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingMenuCell.h; sourceTree = "<group>"; };
 		EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingMenuCell.m; sourceTree = "<group>"; };
@@ -374,20 +384,10 @@
 		EA79B8B21724FD0400141E6D /* GGTicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGTicker.m; sourceTree = "<group>"; };
 		EA79B8B41724FEDA00141E6D /* GGComOverviewDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComOverviewDetailVC.h; sourceTree = "<group>"; };
 		EA79B8B51724FEDA00141E6D /* GGComOverviewDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComOverviewDetailVC.m; sourceTree = "<group>"; };
-		EA79B8B817250B7900141E6D /* GGComOverviewAboutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComOverviewAboutCell.h; sourceTree = "<group>"; };
-		EA79B8B917250B7900141E6D /* GGComOverviewAboutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComOverviewAboutCell.m; sourceTree = "<group>"; };
 		EA79B8BB17250B8800141E6D /* GGComOverviewAboutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGComOverviewAboutCell.xib; sourceTree = "<group>"; };
-		EA79B8BD1725164900141E6D /* GGComOverviewProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComOverviewProfileCell.h; sourceTree = "<group>"; };
-		EA79B8BE1725164A00141E6D /* GGComOverviewProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComOverviewProfileCell.m; sourceTree = "<group>"; };
 		EA79B8C01725165800141E6D /* GGComOverviewProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGComOverviewProfileCell.xib; sourceTree = "<group>"; };
-		EA79B8C217251C2100141E6D /* GGComOverviewStockCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComOverviewStockCell.h; sourceTree = "<group>"; };
-		EA79B8C317251C2100141E6D /* GGComOverviewStockCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComOverviewStockCell.m; sourceTree = "<group>"; };
 		EA79B8C517251C3300141E6D /* GGComOverviewStockCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGComOverviewStockCell.xib; sourceTree = "<group>"; };
-		EA79B8C71725257400141E6D /* GGComOverviewRevenuesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComOverviewRevenuesCell.h; sourceTree = "<group>"; };
-		EA79B8C81725257500141E6D /* GGComOverviewRevenuesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComOverviewRevenuesCell.m; sourceTree = "<group>"; };
 		EA79B8CA1725259D00141E6D /* GGComOverviewRevenuesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGComOverviewRevenuesCell.xib; sourceTree = "<group>"; };
-		EA79B8CC17252FCC00141E6D /* GGComOverviewContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComOverviewContactCell.h; sourceTree = "<group>"; };
-		EA79B8CD17252FCD00141E6D /* GGComOverviewContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComOverviewContactCell.m; sourceTree = "<group>"; };
 		EA79B8CF17252FE200141E6D /* GGComOverviewContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGComOverviewContactCell.xib; sourceTree = "<group>"; };
 		EA844A21171FBD5900658015 /* GGSavedUpdatesVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSavedUpdatesVC_iPad.xib; sourceTree = "<group>"; };
 		EA844A29171FBE2200658015 /* DCRoundSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitch.h; sourceTree = "<group>"; };
@@ -666,6 +666,23 @@
 			path = SVPullToRefresh;
 			sourceTree = "<group>";
 		};
+		EA0E61F6172617B00002F113 /* CompanyOverview */ = {
+			isa = PBXGroup;
+			children = (
+				EA0E61F7172617B00002F113 /* GGComOverviewAboutCell.h */,
+				EA0E61F8172617B00002F113 /* GGComOverviewAboutCell.m */,
+				EA0E61F9172617B00002F113 /* GGComOverviewContactCell.h */,
+				EA0E61FA172617B00002F113 /* GGComOverviewContactCell.m */,
+				EA0E61FB172617B00002F113 /* GGComOverviewProfileCell.h */,
+				EA0E61FC172617B00002F113 /* GGComOverviewProfileCell.m */,
+				EA0E61FD172617B00002F113 /* GGComOverviewRevenuesCell.h */,
+				EA0E61FE172617B00002F113 /* GGComOverviewRevenuesCell.m */,
+				EA0E61FF172617B00002F113 /* GGComOverviewStockCell.h */,
+				EA0E6200172617B00002F113 /* GGComOverviewStockCell.m */,
+			);
+			path = CompanyOverview;
+			sourceTree = "<group>";
+		};
 		EA24FA311713BE9D003AFBA9 /* Deprecated */ = {
 			isa = PBXGroup;
 			children = (
@@ -701,20 +718,10 @@
 		EA79B8B717250B4F00141E6D /* CompanyOverview */ = {
 			isa = PBXGroup;
 			children = (
-				EA79B8B817250B7900141E6D /* GGComOverviewAboutCell.h */,
-				EA79B8B917250B7900141E6D /* GGComOverviewAboutCell.m */,
 				EA79B8BB17250B8800141E6D /* GGComOverviewAboutCell.xib */,
-				EA79B8BD1725164900141E6D /* GGComOverviewProfileCell.h */,
-				EA79B8BE1725164A00141E6D /* GGComOverviewProfileCell.m */,
 				EA79B8C01725165800141E6D /* GGComOverviewProfileCell.xib */,
-				EA79B8C217251C2100141E6D /* GGComOverviewStockCell.h */,
-				EA79B8C317251C2100141E6D /* GGComOverviewStockCell.m */,
 				EA79B8C517251C3300141E6D /* GGComOverviewStockCell.xib */,
-				EA79B8C71725257400141E6D /* GGComOverviewRevenuesCell.h */,
-				EA79B8C81725257500141E6D /* GGComOverviewRevenuesCell.m */,
 				EA79B8CA1725259D00141E6D /* GGComOverviewRevenuesCell.xib */,
-				EA79B8CC17252FCC00141E6D /* GGComOverviewContactCell.h */,
-				EA79B8CD17252FCD00141E6D /* GGComOverviewContactCell.m */,
 				EA79B8CF17252FE200141E6D /* GGComOverviewContactCell.xib */,
 			);
 			path = CompanyOverview;
@@ -1063,6 +1070,7 @@
 		EACAE0BA17094A3100E7088F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EA0E61F6172617B00002F113 /* CompanyOverview */,
 				EAD960431721327700A72A9C /* CompanyDetail */,
 				EA79B8A61724D57A00141E6D /* GGPersonCell.h */,
 				EA79B8A71724D57A00141E6D /* GGPersonCell.m */,
@@ -1608,11 +1616,11 @@
 				EA79B8B11724F69100141E6D /* GGSimilarCompaniesVC.m in Sources */,
 				EA79B8B31724FD0400141E6D /* GGTicker.m in Sources */,
 				EA79B8B61724FEDA00141E6D /* GGComOverviewDetailVC.m in Sources */,
-				EA79B8BA17250B7900141E6D /* GGComOverviewAboutCell.m in Sources */,
-				EA79B8BF1725164A00141E6D /* GGComOverviewProfileCell.m in Sources */,
-				EA79B8C417251C2100141E6D /* GGComOverviewStockCell.m in Sources */,
-				EA79B8C91725257A00141E6D /* GGComOverviewRevenuesCell.m in Sources */,
-				EA79B8CE17252FCE00141E6D /* GGComOverviewContactCell.m in Sources */,
+				EA0E6201172617B00002F113 /* GGComOverviewAboutCell.m in Sources */,
+				EA0E6202172617B00002F113 /* GGComOverviewContactCell.m in Sources */,
+				EA0E6203172617B00002F113 /* GGComOverviewProfileCell.m in Sources */,
+				EA0E6204172617B00002F113 /* GGComOverviewRevenuesCell.m in Sources */,
+				EA0E6205172617B00002F113 /* GGComOverviewStockCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
