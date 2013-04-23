@@ -78,7 +78,7 @@ typedef enum
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"";
+    self.naviTitle = @"";
     self.lblName.text = @"";
     self.lblWebsite.text = @"";
     self.ivLogo.layer.borderWidth = 1.f;
@@ -277,7 +277,7 @@ typedef enum
         GGSocialProfile *data = _companyOverview.socialProfiles[row];
         GGWebVC *vc = [[GGWebVC alloc] init];
         vc.urlStr = data.url;
-        vc.navigationItem.title = self.navigationItem.title;
+        vc.naviTitle = self.naviTitle;
         [self.navigationController pushViewController:vc animated:YES];
         
     }
@@ -434,7 +434,7 @@ typedef enum
 //        [self.view addSubview:iv];
 //    }];
     [self.ivLogo setImageWithURL:url placeholderImage:GGSharedImagePool.placeholder];
-    self.navigationItem.title = _companyOverview.name;
+    self.naviTitle = _companyOverview.name;
     self.lblWebsite.text = _companyOverview.website;
     [self _updateUiBtnFollow];
     

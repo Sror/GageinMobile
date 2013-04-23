@@ -12,7 +12,7 @@
 @interface GGCompanyUpdateDetailVC : GGBaseViewController
 <UIWebViewDelegate, MFMailComposeViewControllerDelegate>
 //@property (assign) long long    newsID;
-@property (copy)    NSString    *naviTitle;
+@property (copy)    NSString    *naviTitleString;
 @property (strong)  NSArray     *updates;
 @property (assign) NSUInteger   updateIndex;
 @end

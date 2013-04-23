@@ -37,7 +37,25 @@
     
     [[UINavigationBar appearance] setBackgroundImage:GGSharedImagePool.bgNavibar forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
+    [self _customizeNaviTitleView];
     self.navigationItem.hidesBackButton = YES;
+}
+
+-(void)_customizeNaviTitleView
+{
+    _customNaviTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 310, 44)];
+	_customNaviTitle.backgroundColor = [UIColor clearColor];
+	_customNaviTitle.font = [UIFont boldSystemFontOfSize:16.0];
+	_customNaviTitle.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+	_customNaviTitle.textAlignment = UITextAlignmentCenter;
+	_customNaviTitle.textColor = GGSharedColor.white;
+    
+    CGRect titleRc = CGRectMake(0, 0, 320, 44);
+    UIView *titleView = [[UIView alloc] initWithFrame:titleRc];
+    //titleView.backgroundColor = GGSharedColor.darkRed;
+    [titleView addSubview:_customNaviTitle];
+    
+    self.navigationItem.titleView = titleView;
 }
 
 -(GGNaviBackButton *)__globalBackButton
@@ -64,9 +82,26 @@
     {
         [self showBackButton];
     }
+    
+    if (self.navigationItem.leftBarButtonItem)
+    {
+        CGRect rc = _customNaviTitle.frame;
+        _customNaviTitle.frame = CGRectMake(-50, rc.origin.y, rc.size.width, rc.size.height);
+    }
 }
 
 #pragma mark - UI element
+-(void)setNaviTitle:(NSString *)aNaviTitle
+{
+    self.navigationItem.title = aNaviTitle;
+    self.customNaviTitle.text = aNaviTitle;
+}
+
+-(NSString *)naviTitle
+{
+    return self.customNaviTitle.text;
+}
+
 -(void)hideBackButton
 {
     [[self __globalBackButton] removeFromSuperview];

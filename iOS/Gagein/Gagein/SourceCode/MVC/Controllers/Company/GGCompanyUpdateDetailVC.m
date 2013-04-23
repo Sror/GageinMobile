@@ -47,7 +47,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = _naviTitle;
+    self.naviTitle = _naviTitleString;
     self.view.backgroundColor = GGSharedColor.silver;
     
     //

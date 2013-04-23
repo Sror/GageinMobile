@@ -47,8 +47,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        //self.tabBarItem.title = @"Companies";
-        //self.tabBarItem.image = [UIImage imageNamed:@"first"];
         _relevance = kGGCompanyUpdateRelevanceNormal;
         _updates = [NSMutableArray array];
         _happenings = [NSMutableArray array];
@@ -79,8 +77,8 @@
     UIBarButtonItem *menuBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(optionMenuAction:)];
     
 
-    //self.naviBar.hidden = YES;
-    self.navigationItem.title = @"EXPLORING";
+    self.naviTitle = @"EXPLORING";
+    //self.navigationItem.title = @"EXPLORING";
     self.navigationItem.leftBarButtonItem = menuBtn;
     
     
@@ -236,7 +234,7 @@
 
 -(IBAction)_followingTapped:(id)sender
 {
-    self.navigationItem.title = @"FOLLOWING";
+    self.naviTitle = @"FOLLOWING";
     
     [self _followingSectionView].ivSelected.hidden = NO;
     [self _exploringSectionView].ivSelected.hidden = YES;
@@ -256,7 +254,7 @@
 
 -(IBAction)_exploringTapped:(id)sender
 {
-    self.navigationItem.title = @"EXPLORING";
+    self.naviTitle = @"EXPLORING";
     
     [self _followingSectionView].ivSelected.hidden = YES;
     [self _exploringSectionView].ivSelected.hidden = NO;
@@ -474,7 +472,7 @@
         //GGCompanyUpdate *updateData = [self.updates objectAtIndex:indexPath.row];
         GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
         //vc.newsID = updateData.ID;
-        vc.naviTitle = self.navigationItem.title;
+        vc.naviTitleString = self.naviTitle;
         vc.updates = self.updates;
         vc.updateIndex = indexPath.row;
         [self.navigationController pushViewController:vc animated:YES];
@@ -495,7 +493,7 @@
             }
         }
         
-        self.navigationItem.title = theData.name;
+        self.naviTitle = theData.name;
         [self _exploringSectionView].ivSelected.hidden = YES;
         [self _followingSectionView].ivSelected.hidden = YES;
         

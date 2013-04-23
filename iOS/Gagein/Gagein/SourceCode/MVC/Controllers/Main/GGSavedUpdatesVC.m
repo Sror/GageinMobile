@@ -56,7 +56,7 @@
     
     [super viewDidLoad];
     self.view.backgroundColor = GGSharedColor.silver;
-    self.navigationItem.title = @"Saved Updates";
+    self.naviTitle = @"Saved Updates";
     
     CGRect naviRc = self.navigationController.navigationBar.frame;
     
@@ -134,8 +134,8 @@
 
 -(void)companyDetailAction:(id)sender
 {
-    GGCompanyUpdateCell *cell = (GGCompanyUpdateCell *)((UIButton*)sender).superview.superview;
-    GGCompanyUpdate *update = [_updates objectAtIndex:cell.tag];
+    UIButton *button = sender;
+    GGCompanyUpdate *update = [_updates objectAtIndex:button.tag];
     
     GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
     vc.companyID = update.company.ID;
@@ -211,7 +211,7 @@
     GGCompanyUpdate *updateData = [_updates objectAtIndex:indexPath.row];
     
     cell.ID = updateData.ID;
-    cell.tag = indexPath.row;
+    cell.logoBtn.tag = indexPath.row;
     cell.titleLbl.text = updateData.headline;
     cell.sourceLbl.text = updateData.fromSource;
     cell.descriptionLbl.text = updateData.content;
@@ -229,7 +229,7 @@
     
     GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
     //vc.newsID = updateData.ID;
-    vc.naviTitle = self.navigationItem.title;
+    vc.naviTitleString = self.customNaviTitle.text;
     vc.updates = _updates;
     vc.updateIndex = indexPath.row;
     [self.navigationController pushViewController:vc animated:YES];

@@ -54,7 +54,7 @@ typedef enum
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"Overview";
+    self.naviTitle = @"Overview";
 	
     _tv = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tv.backgroundColor = GGSharedColor.silver;
@@ -75,7 +75,8 @@ typedef enum
         {
             GGWebVC *vc = [[GGWebVC alloc] init];
             vc.urlStr = ticker.url;
-            vc.navigationItem.title = ticker.name;
+            vc.naviTitle = ticker.name;
+            
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
@@ -278,7 +279,7 @@ typedef enum
         {
             GGWebVC *vc = [[GGWebVC alloc] init];
             vc.urlStr = _overview.revenuesChartUrl;
-            vc.navigationItem.title = @"Chart";
+            vc.naviTitle = @"Chart";
             
             [self.navigationController pushViewController:vc animated:YES];
         }

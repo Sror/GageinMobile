@@ -45,7 +45,7 @@
     
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Happenings";
+    self.naviTitle = @"Happenings";
     
     self.tvHappenings = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
     self.tvHappenings.rowHeight = [GGCompanyHappeningCell HEIGHT];
@@ -117,7 +117,7 @@
     
 //    GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
 //    
-//    vc.naviTitle = self.navigationItem.title;
+//    vc.naviTitleString = self.customNaviTitle.text;
 //    vc.updates = self.updates;
 //    vc.updateIndex = indexPath.row;
 //    [self.navigationController pushViewController:vc animated:YES];

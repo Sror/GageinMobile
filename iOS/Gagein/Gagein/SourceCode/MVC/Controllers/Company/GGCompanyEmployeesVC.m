@@ -47,7 +47,7 @@
     
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Employees";
+    self.naviTitle = @"Employees";
     
     self.tvEmployees = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
     self.tvEmployees.rowHeight = [GGPersonCell HEIGHT];

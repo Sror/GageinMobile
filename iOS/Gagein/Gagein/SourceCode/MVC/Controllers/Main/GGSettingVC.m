@@ -34,7 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"Settings";
+    self.naviTitle = @"Settings";
     
 }
 

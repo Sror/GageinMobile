@@ -10,6 +10,9 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface GGBaseViewController : UIViewController
+@property (strong) UILabel  *customNaviTitle;
+@property (copy) NSString *naviTitle;
+
 -(void)showLoadingHUD;
 -(void)hideLoadingHUD;
 

@@ -48,7 +48,7 @@
     
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Similar Companies";
+    self.naviTitle = @"Similar Companies";
     
     self.tvSimilarCompanies = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
     self.tvSimilarCompanies.rowHeight = [GGPersonCell HEIGHT];
