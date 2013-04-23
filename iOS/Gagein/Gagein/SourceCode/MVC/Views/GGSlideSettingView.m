@@ -92,6 +92,10 @@
             
             [self.superview sendSubviewToBack:self];
             [_delegate slideview:self isShowed:NO];
+            
+            _searchBar.text = @"";
+            [_searchBar resignFirstResponder];
+            
         }];
     }
 }

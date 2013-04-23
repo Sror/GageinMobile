@@ -66,6 +66,7 @@
     _slideSettingView.viewTable.delegate = self;
     _slideSettingView.viewTable.rowHeight = [GGSettingMenuCell HEIGHT];
     _slideSettingView.searchBar.delegate = self;
+    _slideSettingView.searchBar.placeholder = @"Search for updates";
 }
 
 - (void)viewDidLoad
@@ -146,6 +147,29 @@
 -(void)dealloc
 {
     [self unobserveAllNotifications];
+}
+
+#pragma mark - UISearchBar delegate
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    
+    if (searchBar.text.length)
+    {
+        [_slideSettingView hideSlide];
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [_slideSettingView hideSlide];
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    
 }
 
 #pragma mark - slide setting view delegate
@@ -481,13 +505,6 @@
         _menuType = theData.type;
         _menuID = theData.ID;
         
-//        [self.updates removeAllObjects];
-//        [self.updatesTV reloadData];
-//        [self.updatesTV triggerPullToRefresh];
-//        [self.happenings removeAllObjects];
-//        [self.happeningsTV reloadData];
-//        [self.happeningsTV triggerPullToRefresh];
-        
         [self _refreshWithMenuId:theData.ID type:theData.type];
     }
 }
@@ -497,6 +514,14 @@
 {
     DLog(@"scrolling to index:%d", aPageIndex);
 }
+
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    if (scrollView == _slideSettingView.viewTable)
+//    {
+//        [_slideSettingView.searchBar resignFirstResponder];
+//    }
+//}
 
 
 #pragma mark - data handling
