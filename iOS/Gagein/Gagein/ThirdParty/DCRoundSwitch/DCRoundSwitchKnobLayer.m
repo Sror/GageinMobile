@@ -32,7 +32,7 @@ CGGradientRef CreateGradientRefWithColors(CGColorSpaceRef colorSpace, CGColorRef
 	CGContextAddEllipseInRect(context, knobRect);
 	CGContextClip(context);
 	CGColorRef knobStartColor = [UIColor colorWithWhite:0.8 alpha:1.0].CGColor;
-	CGColorRef knobEndColor = (self.gripped) ? [UIColor colorWithWhite:0.4 alpha:1.0].CGColor : [UIColor colorWithWhite:0.5 alpha:1.0].CGColor;
+	CGColorRef knobEndColor = (self.gripped) ? [UIColor colorWithWhite:0.3 alpha:1.0].CGColor : [UIColor colorWithWhite:0.5 alpha:1.0].CGColor;
 	CGPoint topPoint = CGPointMake(0, 0);
 	CGPoint bottomPoint = CGPointMake(0, knobRadius + 2);
 	CGGradientRef knobGradient = CreateGradientRefWithColors(colorSpace, knobStartColor, knobEndColor);
@@ -40,12 +40,12 @@ CGGradientRef CreateGradientRefWithColors(CGColorSpaceRef colorSpace, CGColorRef
 	CGGradientRelease(knobGradient);
 
 	// knob inner highlight
-	CGContextAddEllipseInRect(context, CGRectInset(knobRect, 0.5, 0.5));
-	CGContextAddEllipseInRect(context, CGRectInset(knobRect, 1.5, 1.5));
-	CGContextEOClip(context);
-	CGGradientRef knobHighlightGradient = CreateGradientRefWithColors(colorSpace, [UIColor whiteColor].CGColor, [UIColor colorWithWhite:1.0 alpha:0.5].CGColor);
-	CGContextDrawLinearGradient(context, knobHighlightGradient, topPoint, bottomPoint, 0);
-	CGGradientRelease(knobHighlightGradient);
+//	CGContextAddEllipseInRect(context, CGRectInset(knobRect, 0.5, 0.5));
+//	CGContextAddEllipseInRect(context, CGRectInset(knobRect, 1.5, 1.5));
+//	CGContextEOClip(context);
+//	CGGradientRef knobHighlightGradient = CreateGradientRefWithColors(colorSpace, [UIColor whiteColor].CGColor, [UIColor colorWithWhite:1.0 alpha:0.5].CGColor);
+//	CGContextDrawLinearGradient(context, knobHighlightGradient, topPoint, bottomPoint, 0);
+//	CGGradientRelease(knobHighlightGradient);
 
 	CGColorSpaceRelease(colorSpace);
 }

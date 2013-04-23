@@ -344,6 +344,8 @@
 	BOOL previousOn = self.on;
 	on = newOn;
 	self.ignoreTap = YES;
+    
+    [self sendActionsForControlEvents:UIControlEventValueChanged];
 
 	[CATransaction setAnimationDuration:0.014];
 	self.knobLayer.gripped = YES;
@@ -397,7 +399,7 @@
 
 			// send the action here so it get's sent at the end of the animations
 			if (previousOn != on && !ignoreControlEvents)
-				[self sendActionsForControlEvents:UIControlEventValueChanged];
+				//[self sendActionsForControlEvents:UIControlEventValueChanged];
 
 			[[self allTargets] makeObjectsPerformSelector:@selector(release)];
 		}];

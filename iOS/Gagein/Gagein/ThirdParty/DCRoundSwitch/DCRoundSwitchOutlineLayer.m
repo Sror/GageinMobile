@@ -57,7 +57,7 @@
 	UIBezierPath *outlinePath = [UIBezierPath bezierPathWithRoundedRect:CGRectOffset(self.bounds, -0.5, 0.0) cornerRadius:self.bounds.size.height / 2.0];
 	CGContextAddPath(context, outlinePath.CGPath);
 	CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:0.60 alpha:1.0].CGColor);
-	CGContextStrokePath(context);
+	//CGContextStrokePath(context);
 
 	CGContextAddPath(context, outlinePath.CGPath);
 	CGContextStrokePath(context);

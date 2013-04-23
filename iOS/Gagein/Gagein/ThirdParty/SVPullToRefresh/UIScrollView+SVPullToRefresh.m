@@ -470,6 +470,11 @@ static char UIScrollViewPullToRefreshView;
         [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffset.x, -self.originalTopInset) animated:YES];
 }
 
+- (BOOL)isLoading
+{
+    return self.state == SVPullToRefreshStateLoading;
+}
+
 - (void)setState:(SVPullToRefreshState)newState {
     
     if(_state == newState)

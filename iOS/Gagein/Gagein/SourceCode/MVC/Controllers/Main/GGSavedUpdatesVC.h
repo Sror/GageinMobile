@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GGSwitchButton.h"
 
 @interface GGSavedUpdatesVC : GGBaseViewController
-<UITableViewDelegate, UITableViewDataSource>
+<UITableViewDelegate, UITableViewDataSource, GGSwitchButtonDelegate>
 @end

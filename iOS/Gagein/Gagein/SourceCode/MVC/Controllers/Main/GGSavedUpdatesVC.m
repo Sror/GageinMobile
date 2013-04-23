@@ -7,7 +7,10 @@
 //
 
 #import "GGSavedUpdatesVC.h"
-#import "DCRoundSwitch.h"
+
+//#import "DCRoundSwitch.h"
+
+
 #import "GGDataPage.h"
 #import "GGCompanyUpdate.h"
 #import "GGCompanyUpdateCell.h"
@@ -16,7 +19,7 @@
 #import "GGCompanyDetailVC.h"
 #import "GGCompanyUpdateDetailVC.h"
 
-#define SWITCH_WIDTH 70
+#define SWITCH_WIDTH 80
 #define SWITCH_HEIGHT 20
 
 @interface GGSavedUpdatesVC ()
@@ -25,7 +28,7 @@
 
 @implementation GGSavedUpdatesVC
 {
-    DCRoundSwitch   *_roundSwitch;
+    GGSwitchButton   *_roundSwitch;
     NSUInteger      _currentPageIndex;
     BOOL            _hasMore;
     NSMutableArray  *_updates;
@@ -41,6 +44,7 @@
         //self.tabBarItem.image = [UIImage imageNamed:@"Players"];
         _updates = [NSMutableArray array];
         _currentPageIndex = GG_PAGE_START_INDEX;
+        _isUnread = YES;
     }
     return self;
 }
@@ -55,17 +59,18 @@
     self.navigationItem.title = @"Saved Updates";
     
     CGRect naviRc = self.navigationController.navigationBar.frame;
-
-    CGRect switchRc = CGRectMake(naviRc.size.width - SWITCH_WIDTH - 10
-                                 , (naviRc.size.height - SWITCH_HEIGHT) / 2 + 5
+    
+    _roundSwitch = [GGSwitchButton viewFromNibWithOwner:self];
+    _roundSwitch.delegate = self;
+    _roundSwitch.lblOn.text = @"Unread";
+    _roundSwitch.lblOff.text = @"All";
+    
+    CGRect switchRc = CGRectMake(naviRc.size.width - SWITCH_WIDTH - 5
+                                 , (naviRc.size.height - [GGSwitchButton HEIGHT]) / 2 + 5
                                  , SWITCH_WIDTH
-                                 , SWITCH_HEIGHT);
-    _roundSwitch = [[DCRoundSwitch alloc] initWithFrame:switchRc];
-    _roundSwitch.onTintColor = GGSharedColor.orange;
-    _roundSwitch.onText = @"All";
-    _roundSwitch.offText = @"Unread";
-    [_roundSwitch addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
-    _roundSwitch.on = YES;
+                                 , [GGSwitchButton HEIGHT]);
+    _roundSwitch.frame = switchRc;
+    [self.navigationController.navigationBar addSubview:_roundSwitch];
     
     //
     _tvUpdates = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
@@ -121,9 +126,10 @@
 }
 
 #pragma mark - actions
--(void)switchAction:(DCRoundSwitch *)aSwitch
+-(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
 {
-    
+    _isUnread = aIsOn;
+    [_tvUpdates triggerPullToRefresh];
 }
 
 -(void)companyDetailAction:(id)sender
@@ -160,6 +166,7 @@
 
 -(void)_callGetSavedUpdates
 {
+    _roundSwitch.btnSwitch.enabled = NO;
     [GGSharedAPI getSaveUpdatesWithPageIndex:_currentPageIndex isUnread:_isUnread callback:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
@@ -181,6 +188,8 @@
     __weak GGSavedUpdatesVC *weakSelf = self;
     [weakSelf.tvUpdates.pullToRefreshView stopAnimating];
     [weakSelf.tvUpdates.infiniteScrollingView stopAnimating];
+    
+    _roundSwitch.btnSwitch.enabled = YES;
 }
 
 #pragma mark - tableView datasource

@@ -49,6 +49,11 @@
 		EA0E629F172663550002F113 /* tab_settings_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0E6296172663550002F113 /* tab_settings_selected@2x.png */; };
 		EA0E62A0172663550002F113 /* transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0E6297172663550002F113 /* transparent.png */; };
 		EA0E62A4172663740002F113 /* GGTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0E62A3172663740002F113 /* GGTabBarController.m */; };
+		EA0E62EE172687050002F113 /* GGSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0E62ED172687050002F113 /* GGSwitchButton.m */; };
+		EA0E62F1172687220002F113 /* GGSwitchButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0E62F0172687220002F113 /* GGSwitchButton.xib */; };
+		EA0E62F61726873E0002F113 /* switch_bg_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0E62F31726873E0002F113 /* switch_bg_gray@2x.png */; };
+		EA0E62F71726873E0002F113 /* switch_bg_orange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0E62F41726873E0002F113 /* switch_bg_orange@2x.png */; };
+		EA0E62F81726873E0002F113 /* switch_knob_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0E62F51726873E0002F113 /* switch_knob_gray@2x.png */; };
 		EA1995ED1717E301006D95E4 /* GGSettingMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */; };
 		EA1995F01717E312006D95E4 /* GGSettingMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */; };
 		EA1A61F7170A6478000B4EAE /* GGDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61F6170A6478000B4EAE /* GGDataModel.m */; };
@@ -299,6 +304,12 @@
 		EA0E6297172663550002F113 /* transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparent.png; sourceTree = "<group>"; };
 		EA0E62A2172663740002F113 /* GGTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTabBarController.h; sourceTree = "<group>"; };
 		EA0E62A3172663740002F113 /* GGTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGTabBarController.m; sourceTree = "<group>"; };
+		EA0E62EC172687050002F113 /* GGSwitchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSwitchButton.h; sourceTree = "<group>"; };
+		EA0E62ED172687050002F113 /* GGSwitchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSwitchButton.m; sourceTree = "<group>"; };
+		EA0E62F0172687220002F113 /* GGSwitchButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSwitchButton.xib; sourceTree = "<group>"; };
+		EA0E62F31726873E0002F113 /* switch_bg_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_bg_gray@2x.png"; sourceTree = "<group>"; };
+		EA0E62F41726873E0002F113 /* switch_bg_orange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_bg_orange@2x.png"; sourceTree = "<group>"; };
+		EA0E62F51726873E0002F113 /* switch_knob_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_knob_gray@2x.png"; sourceTree = "<group>"; };
 		EA12C608172384A7001C0289 /* GGTicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTicker.h; sourceTree = "<group>"; };
 		EA1995EB1717E301006D95E4 /* GGSettingMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingMenuCell.h; sourceTree = "<group>"; };
 		EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingMenuCell.m; sourceTree = "<group>"; };
@@ -720,6 +731,33 @@
 			path = tabIcon;
 			sourceTree = "<group>";
 		};
+		EA0E62EB172686F90002F113 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				EA0E62EC172687050002F113 /* GGSwitchButton.h */,
+				EA0E62ED172687050002F113 /* GGSwitchButton.m */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		EA0E62EF172687180002F113 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				EA0E62F0172687220002F113 /* GGSwitchButton.xib */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		EA0E62F21726873E0002F113 /* switch */ = {
+			isa = PBXGroup;
+			children = (
+				EA0E62F31726873E0002F113 /* switch_bg_gray@2x.png */,
+				EA0E62F41726873E0002F113 /* switch_bg_orange@2x.png */,
+				EA0E62F51726873E0002F113 /* switch_knob_gray@2x.png */,
+			);
+			path = switch;
+			sourceTree = "<group>";
+		};
 		EA24FA311713BE9D003AFBA9 /* Deprecated */ = {
 			isa = PBXGroup;
 			children = (
@@ -837,6 +875,7 @@
 		EAC96C35170983B5003FAFAA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EA0E62EF172687180002F113 /* Widgets */,
 				EA79B8B717250B4F00141E6D /* CompanyOverview */,
 				EAD960221720D98300A72A9C /* CompanyDetail */,
 				EAEFB4F61717B6E40013634F /* GGSettingHeaderView.xib */,
@@ -957,6 +996,7 @@
 		EACAE0B117094A3100E7088F /* 2X */ = {
 			isa = PBXGroup;
 			children = (
+				EA0E62F21726873E0002F113 /* switch */,
 				EA0E628E172663550002F113 /* tabIcon */,
 				EAD9602E1720E5A300A72A9C /* shadowedBgWhite@2x.png */,
 				EA525E9B1715ADF800052B17 /* bgLoginField@2x.png */,
@@ -1110,6 +1150,7 @@
 		EACAE0BA17094A3100E7088F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EA0E62EB172686F90002F113 /* Widgets */,
 				EA0E61F6172617B00002F113 /* CompanyOverview */,
 				EAD960431721327700A72A9C /* CompanyDetail */,
 				EA79B8A61724D57A00141E6D /* GGPersonCell.h */,
@@ -1546,6 +1587,10 @@
 				EA0E629E172663550002F113 /* tab_settings_normal@2x.png in Resources */,
 				EA0E629F172663550002F113 /* tab_settings_selected@2x.png in Resources */,
 				EA0E62A0172663550002F113 /* transparent.png in Resources */,
+				EA0E62F1172687220002F113 /* GGSwitchButton.xib in Resources */,
+				EA0E62F61726873E0002F113 /* switch_bg_gray@2x.png in Resources */,
+				EA0E62F71726873E0002F113 /* switch_bg_orange@2x.png in Resources */,
+				EA0E62F81726873E0002F113 /* switch_knob_gray@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1671,6 +1716,7 @@
 				EA0E6204172617B00002F113 /* GGComOverviewRevenuesCell.m in Sources */,
 				EA0E6205172617B00002F113 /* GGComOverviewStockCell.m in Sources */,
 				EA0E62A4172663740002F113 /* GGTabBarController.m in Sources */,
+				EA0E62EE172687050002F113 /* GGSwitchButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
