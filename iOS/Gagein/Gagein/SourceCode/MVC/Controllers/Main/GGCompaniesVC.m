@@ -25,6 +25,7 @@
 #import "GGAppDelegate.h"
 #import "GGCompanyHappeningCell.h"
 #import "GGSelectAgentsVC.h"
+#import "GGSearchBar.h"
 
 @interface GGCompaniesVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
@@ -57,6 +58,16 @@
     return self;
 }
 
+-(void)_initSlideSettingView
+{
+    _slideSettingView = GGSharedDelegate.slideSettingView;
+    _slideSettingView.delegate = self;
+    _slideSettingView.viewTable.dataSource = self;
+    _slideSettingView.viewTable.delegate = self;
+    _slideSettingView.viewTable.rowHeight = [GGSettingMenuCell HEIGHT];
+    _slideSettingView.searchBar.delegate = self;
+}
+
 - (void)viewDidLoad
 {
     [self observeNotification:GG_NOTIFY_LOG_OUT];
@@ -75,16 +86,7 @@
     CGRect updateRc = [self viewportAdjsted];
     
     //
-    _slideSettingView = [[GGSlideSettingView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
-    _slideSettingView.delegate = self;
-    _slideSettingView.viewTable.backgroundColor = GGSharedColor.clear;
-    _slideSettingView.viewTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _slideSettingView.viewTable.dataSource = self;
-    _slideSettingView.viewTable.delegate = self;
-    _slideSettingView.viewTable.rowHeight = [GGSettingMenuCell HEIGHT];
-    UIView *theWindow = GGSharedDelegate.window;
-    [theWindow addSubview:_slideSettingView];
-    [theWindow sendSubviewToBack:_slideSettingView];
+    [self _initSlideSettingView];
     
     // ------- add scrolling view
     _scrollingView = [GGScrollingView viewFromNibWithOwner:self];

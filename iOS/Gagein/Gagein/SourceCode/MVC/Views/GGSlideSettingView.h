@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class GGSlideSettingView;
+@class GGSearchBar;
 
 @protocol GGSlideSettingViewDelegate
 
@@ -17,9 +18,10 @@
 @end
 
 @interface GGSlideSettingView : UIView
-@property (nonatomic, assign) BOOL          isShowing;
-@property (nonatomic, strong) UITableView   *viewTable;
-@property (weak) id<GGSlideSettingViewDelegate> delegate;
+@property (nonatomic, assign) BOOL              isShowing;
+@property (nonatomic, strong) UITableView       *viewTable;
+@property (nonatomic, strong) GGSearchBar       *searchBar;
+@property (weak) id<GGSlideSettingViewDelegate>     delegate;
 -(void)showSlide;
 -(void)hideSlide;
 @end

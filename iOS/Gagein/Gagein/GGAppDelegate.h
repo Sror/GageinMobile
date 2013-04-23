@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class GGSlideSettingView;
 
 @interface GGAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
@@ -14,6 +15,7 @@
 
 @property (strong, nonatomic) UITabBarController *tabBarController;
 @property (strong, nonatomic) UINavigationController *naviController;
+@property (strong, nonatomic) GGSlideSettingView *slideSettingView;
 
 -(void)enterLoginIfNeeded;
 -(void)popNaviToRoot;

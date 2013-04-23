@@ -11,7 +11,12 @@
 #import "GGSlideSettingView.h"
 
 @interface GGCompaniesVC : GGBaseViewController
-<UITableViewDelegate, UITableViewDataSource, GGScrollingViewDelegate, GGSlideSettingViewDelegate>
+<UITableViewDelegate
+, UITableViewDataSource
+, UISearchBarDelegate
+, GGScrollingViewDelegate
+, GGSlideSettingViewDelegate>
+
 @property (strong)   NSMutableArray              *updates;
 @property (strong)   NSMutableArray              *happenings;
 @end

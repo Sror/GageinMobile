@@ -17,7 +17,7 @@
 
 #import "GGWelcomeVC.h"
 #import "GGRuntimeData.h"
-
+#import "GGSlideSettingView.h"
 
 
 @implementation GGAppDelegate
@@ -25,6 +25,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    [self _installSlideSettingView];
     
     // Override point for customization after application launch.
     UIViewController *viewController1, *viewController2, *viewController3, *viewController4;
@@ -55,18 +57,22 @@
     
     self.window.rootViewController = self.naviController;
     [self.window makeKeyAndVisible];
-    //self.window.clipsToBounds = NO;
     
-//    [[GGApi sharedApi] getCompanyInfoWithID:1399794 includeSp:YES callback:^(id operation, id aResultObject, NSError *anError) {
-//        DLog(@"%@", aResultObject);
-//    }];
-    
+    //
     [self enterLoginIfNeeded];
     
-    //[self _alertEnv];
     [self performSelector:@selector(_alertEnv) withObject:nil afterDelay:0.0];
     
     return YES;
+}
+
+-(void)_installSlideSettingView
+{
+    _slideSettingView = [[GGSlideSettingView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
+    
+    UIView *theWindow = GGSharedDelegate.window;
+    [theWindow addSubview:_slideSettingView];
+    [theWindow sendSubviewToBack:_slideSettingView];
 }
 
 -(void)_alertEnv
