@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface GGComUpdateSearchVC : GGBaseViewController
-<UITableViewDataSource, UITableViewDelegate>
+<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 @property (copy)    NSString    *keyword;
 @end

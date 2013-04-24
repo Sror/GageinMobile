@@ -58,7 +58,10 @@
     
     
     _searchBarRect = self.searchBar.frame;
-    _searchBarRectOnNavi = CGRectMake(10, (self.navigationController.navigationBar.frame.size.height - _searchBarRect.size.height) / 2, _searchBarRect.size.width, _searchBarRect.size.height);
+    _searchBarRectOnNavi = CGRectMake((self.navigationController.navigationBar.frame.size.width - _searchBarRect.size.width) / 2
+                                      , (self.navigationController.navigationBar.frame.size.height - _searchBarRect.size.height) / 2
+                                      , _searchBarRect.size.width
+                                      , _searchBarRect.size.height);
     _tvSearchResultRect = self.tableViewSearchResult.frame;
     float height = self.view.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT + self.tabBarController.tabBar.frame.size.height;
     _tvSearchResultRectShort = [GGUtils setH:height rect:_tvSearchResultRect];

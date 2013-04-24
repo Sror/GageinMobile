@@ -230,6 +230,8 @@
 		EAEFB4FA1717BC620013634F /* GGMenuData.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEFB4F91717BC620013634F /* GGMenuData.m */; };
 		EAF0F08717276BA90065C39A /* GGComUpdateSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF0F08517276BA90065C39A /* GGComUpdateSearchVC.m */; };
 		EAF0F08817276BA90065C39A /* GGComUpdateSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F08617276BA90065C39A /* GGComUpdateSearchVC.xib */; };
+		EAF0F08C17277FD10065C39A /* GGKeywordExampleView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF0F08B17277FD10065C39A /* GGKeywordExampleView.m */; };
+		EAF0F08E17277FF00065C39A /* GGKeywordExampleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F08D17277FF00065C39A /* GGKeywordExampleView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -584,6 +586,9 @@
 		EAF0F08417276BA90065C39A /* GGComUpdateSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComUpdateSearchVC.h; sourceTree = "<group>"; };
 		EAF0F08517276BA90065C39A /* GGComUpdateSearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComUpdateSearchVC.m; sourceTree = "<group>"; };
 		EAF0F08617276BA90065C39A /* GGComUpdateSearchVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGComUpdateSearchVC.xib; sourceTree = "<group>"; };
+		EAF0F08A17277FD10065C39A /* GGKeywordExampleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGKeywordExampleView.h; sourceTree = "<group>"; };
+		EAF0F08B17277FD10065C39A /* GGKeywordExampleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGKeywordExampleView.m; sourceTree = "<group>"; };
+		EAF0F08D17277FF00065C39A /* GGKeywordExampleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGKeywordExampleView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -894,6 +899,7 @@
 				EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */,
 				EA4F3A17171E7B5100530185 /* GGCompanyHappeningCell.xib */,
 				EA79B8A41724D36200141E6D /* GGPersonCell.xib */,
+				EAF0F08D17277FF00065C39A /* GGKeywordExampleView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1183,6 +1189,8 @@
 				EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */,
 				EA4F3A1A171E7C4C00530185 /* GGCompanyHappeningCell.h */,
 				EA4F3A1B171E7C4C00530185 /* GGCompanyHappeningCell.m */,
+				EAF0F08A17277FD10065C39A /* GGKeywordExampleView.h */,
+				EAF0F08B17277FD10065C39A /* GGKeywordExampleView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1600,6 +1608,7 @@
 				EA0E62F71726873E0002F113 /* switch_bg_orange@2x.png in Resources */,
 				EA0E62F81726873E0002F113 /* switch_knob_gray@2x.png in Resources */,
 				EAF0F08817276BA90065C39A /* GGComUpdateSearchVC.xib in Resources */,
+				EAF0F08E17277FF00065C39A /* GGKeywordExampleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1727,6 +1736,7 @@
 				EA0E62A4172663740002F113 /* GGTabBarController.m in Sources */,
 				EA0E62EE172687050002F113 /* GGSwitchButton.m in Sources */,
 				EAF0F08717276BA90065C39A /* GGComUpdateSearchVC.m in Sources */,
+				EAF0F08C17277FD10065C39A /* GGKeywordExampleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
