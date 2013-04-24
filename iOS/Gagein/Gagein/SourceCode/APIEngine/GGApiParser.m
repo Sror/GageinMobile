@@ -27,7 +27,9 @@
     if (anApiData == nil || ![anApiData isKindOfClass:[NSDictionary class]]) {
         return nil;
     }
-    return [[self alloc] initWithApiData:anApiData];
+    
+    GGApiParser * parser = [[self alloc] initWithApiData:anApiData];
+    return parser;
 }
 
 -(id)initWithApiData:(NSDictionary *)anApiData

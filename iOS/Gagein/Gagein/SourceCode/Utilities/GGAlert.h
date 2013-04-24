@@ -14,4 +14,5 @@
 +(void)alertNetError;
 +(void)alertCancelOK:(NSString *)aMessage delegate:(id)aDelegate;
 +(void)alertCancelOK:(NSString *)aMessage  title:(NSString *)aTitle  delegate:(id)aDelegate;
++(void)alertErrorForParser:(GGApiParser *)aParser;
 @end

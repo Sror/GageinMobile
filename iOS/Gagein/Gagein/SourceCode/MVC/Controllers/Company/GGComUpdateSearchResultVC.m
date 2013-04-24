@@ -166,12 +166,18 @@
         
         //[self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-        GGDataPage *page = [parser parseGetCompanyUpdates];
-        //DLog(@"%@", page);
-        
-        if (page.items.count)
+        if (parser.isOK)
         {
-            [_updates addObjectsFromArray:page.items];
+            GGDataPage *page = [parser parseGetCompanyUpdates];
+            
+            if (page.items.count)
+            {
+                [_updates addObjectsFromArray:page.items];
+            }
+        }
+        else
+        {
+            [GGAlert alertErrorForParser:parser];
         }
         
         [self.updatesTV reloadData];

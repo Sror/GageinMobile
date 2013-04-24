@@ -20,6 +20,15 @@
     [self alert:@"Sorry, the network is not available currently."];
 }
 
++(void)alertErrorForParser:(GGApiParser *)aParser
+{
+    if (aParser && !aParser.isOK)
+    {
+        NSString *message = [NSString stringWithFormat:@"Ops, Server status problem.\n status: %d\n message: %@", aParser.status, aParser.message];
+        [self alert:message];
+    }
+}
+
 +(void)alert:(NSString *)aMessage delegate:(id/*<UIAlertViewDelegate>*/)aDelegate
 {
     //aMessage = [aMessage stringByReplacingOccurrencesOfString:@"\\\"" withString:@"\""];
