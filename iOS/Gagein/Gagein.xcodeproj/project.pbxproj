@@ -238,6 +238,8 @@
 		EAF0F09E1727CC700065C39A /* switch_on_light@x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F09B1727CC700065C39A /* switch_on_light@x.png */; };
 		EAF0F0A11727CC830065C39A /* menuBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F09F1727CC830065C39A /* menuBtn@2x.png */; };
 		EAF0F0A21727CC830065C39A /* topWhiteBgBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F0A01727CC830065C39A /* topWhiteBgBar@2x.png */; };
+		EAF0F0A61727DBCA0065C39A /* GGHappeningDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF0F0A41727DBCA0065C39A /* GGHappeningDetailVC.m */; };
+		EAF0F0AA1727DC260065C39A /* GGHappeningDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F0A91727DC260065C39A /* GGHappeningDetailVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -602,6 +604,9 @@
 		EAF0F09B1727CC700065C39A /* switch_on_light@x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_on_light@x.png"; sourceTree = "<group>"; };
 		EAF0F09F1727CC830065C39A /* menuBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuBtn@2x.png"; sourceTree = "<group>"; };
 		EAF0F0A01727CC830065C39A /* topWhiteBgBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topWhiteBgBar@2x.png"; sourceTree = "<group>"; };
+		EAF0F0A31727DBCA0065C39A /* GGHappeningDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGHappeningDetailVC.h; sourceTree = "<group>"; };
+		EAF0F0A41727DBCA0065C39A /* GGHappeningDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGHappeningDetailVC.m; sourceTree = "<group>"; };
+		EAF0F0A91727DC260065C39A /* GGHappeningDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGHappeningDetailVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -892,6 +897,7 @@
 		EAC96C2E170983B5003FAFAA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				EAF0F0A81727DC260065C39A /* General */,
 				EAEFB4CA1717A8100013634F /* Company */,
 				EAEFB4CE1717A8100013634F /* Config */,
 				EAEFB4D21717A8100013634F /* Main */,
@@ -1411,6 +1417,8 @@
 				EAEABC021724C8E400947BE9 /* GGHappeningsVC.m */,
 				EAEABBFB1724C89300947BE9 /* GGWebVC.h */,
 				EAEABBFC1724C89300947BE9 /* GGWebVC.m */,
+				EAF0F0A31727DBCA0065C39A /* GGHappeningDetailVC.h */,
+				EAF0F0A41727DBCA0065C39A /* GGHappeningDetailVC.m */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -1477,6 +1485,14 @@
 				EAEFB4DE1717A8100013634F /* GGWelcomeVC.xib */,
 			);
 			path = Signup;
+			sourceTree = "<group>";
+		};
+		EAF0F0A81727DC260065C39A /* General */ = {
+			isa = PBXGroup;
+			children = (
+				EAF0F0A91727DC260065C39A /* GGHappeningDetailVC.xib */,
+			);
+			path = General;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1634,6 +1650,7 @@
 				EAF0F09E1727CC700065C39A /* switch_on_light@x.png in Resources */,
 				EAF0F0A11727CC830065C39A /* menuBtn@2x.png in Resources */,
 				EAF0F0A21727CC830065C39A /* topWhiteBgBar@2x.png in Resources */,
+				EAF0F0AA1727DC260065C39A /* GGHappeningDetailVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1763,6 +1780,7 @@
 				EAF0F08717276BA90065C39A /* GGComUpdateSearchVC.m in Sources */,
 				EAF0F0951727A39E0065C39A /* GGKeywordExampleCell.m in Sources */,
 				EAF0F0981727A8830065C39A /* GGComUpdateSearchResultVC.m in Sources */,
+				EAF0F0A61727DBCA0065C39A /* GGHappeningDetailVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

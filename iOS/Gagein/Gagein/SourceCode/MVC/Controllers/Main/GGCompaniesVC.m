@@ -19,6 +19,7 @@
 #import "GGCompanyDetailVC.h"
 #import "GGCompanyUpdateDetailVC.h"
 #import "GGComUpdateSearchVC.h"
+#import "GGHappeningDetailVC.h"
 
 #import "GGScrollingView.h"
 #import "GGFollowCompanyVC.h"
@@ -451,6 +452,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    int row = indexPath.row;
+    
     if (tableView == self.updatesTV)
     {
         static NSString *updateCellId = @"GGCompanyUpdateCell";
@@ -461,10 +464,10 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        GGCompanyUpdate *updateData = [self.updates objectAtIndex:indexPath.row];
+        GGCompanyUpdate *updateData = self.updates[row];
         
         cell.ID = updateData.ID;
-        cell.logoBtn.tag = indexPath.row;
+        cell.logoBtn.tag = row;
         //cell.tag = indexPath.row;
         cell.titleLbl.text = updateData.headline;
         cell.sourceLbl.text = updateData.fromSource;
@@ -489,7 +492,8 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        GGCompanyHappening *data = _happenings[indexPath.row];
+        GGCompanyHappening *data = _happenings[row];
+        cell.tag = row;
         cell.lblName.text = data.sourceText;
         cell.lblDescription.text = data.headLineText;
         [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.orgLogoPath] placeholderImage:nil];
@@ -505,7 +509,7 @@
         }
         
         GGDataPage *page = _menuDatas[indexPath.section];
-        GGMenuData *menuData = page.items[indexPath.row];
+        GGMenuData *menuData = page.items[row];
         cell.lblInterval.text = menuData.timeInterval;
         cell.lblName.text = menuData.name;
         
@@ -548,25 +552,27 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    int row = indexPath.row;
     
     if (tableView == self.updatesTV)
     {
-        //GGCompanyUpdate *updateData = [self.updates objectAtIndex:indexPath.row];
         GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
-        //vc.newsID = updateData.ID;
         vc.naviTitleString = self.naviTitle;
         vc.updates = self.updates;
-        vc.updateIndex = indexPath.row;
+        vc.updateIndex = row;
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (tableView == self.happeningsTV)
     {
-        //
+        GGHappeningDetailVC *vc = [[GGHappeningDetailVC alloc] init];
+        vc.happenings = _happenings;
+        vc.currentIdex = row;
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (tableView == _slideSettingView.viewTable)
     {
         GGDataPage *thePage = _menuDatas[indexPath.section];
-        GGMenuData *theData = thePage.items[indexPath.row];
+        GGMenuData *theData = thePage.items[row];
         
         for (GGDataPage *page in _menuDatas) {
             BOOL isPageMatch = (thePage == page);
@@ -673,12 +679,9 @@
 -(void)_getDataWithNewsID:(long long)aNewsID pageFlag:(int)aPageFlag pageTime:(long long)aPageTime relevance:(int)aRelevance
 {
     GGApiBlock callback = ^(id operation, id aResultObject, NSError* anError) {
-        //DLog(@"%@", aResultObject);
-        
-        //[self hideLoadingHUD];
+
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         GGDataPage *page = [parser parseGetCompanyUpdates];
-        //DLog(@"%@", page);
         
         if (page.items.count)
         {
@@ -761,12 +764,9 @@
 -(void)_getHappeningsDataWithPageFlag:(int)aPageFlag pageTime:(long long)aPageTime
 {
     GGApiBlock callback = ^(id operation, id aResultObject, NSError* anError) {
-        //DLog(@"%@", aResultObject);
-        
-        //[self hideLoadingHUD];
+
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         GGDataPage *page = [parser parseGetCompanyHappenings];
-        //DLog(@"%@", page);
         
         if (page.items.count)
         {
