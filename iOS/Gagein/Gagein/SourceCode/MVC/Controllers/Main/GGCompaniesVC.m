@@ -154,14 +154,17 @@
 {
     if (searchBar.text.length)
     {
+        GGComUpdateSearchVC *vc = [[GGComUpdateSearchVC alloc] init];
+        vc.keyword = searchBar.text;
+        searchBar.text = @"";
+        
         [_slideSettingView hideSlideOnCompletion:^{
             
-            GGComUpdateSearchVC *vc = [[GGComUpdateSearchVC alloc] init];
-            vc.keyword = searchBar.text;
-            searchBar.text = @"";
-            [self.navigationController pushViewController:vc animated:YES];
+            //[self.navigationController pushViewController:vc animated:YES];
             
         }];
+        
+        [self.navigationController pushViewController:vc animated:NO];
         
         return YES;
     }
