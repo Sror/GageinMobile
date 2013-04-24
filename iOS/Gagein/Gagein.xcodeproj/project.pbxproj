@@ -232,6 +232,7 @@
 		EAF0F08817276BA90065C39A /* GGComUpdateSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F08617276BA90065C39A /* GGComUpdateSearchVC.xib */; };
 		EAF0F0921727A37F0065C39A /* GGKeywordExampleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F0911727A37F0065C39A /* GGKeywordExampleCell.xib */; };
 		EAF0F0951727A39E0065C39A /* GGKeywordExampleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF0F0941727A39E0065C39A /* GGKeywordExampleCell.m */; };
+		EAF0F0981727A8830065C39A /* GGComUpdateSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF0F0971727A8830065C39A /* GGComUpdateSearchResultVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -589,6 +590,8 @@
 		EAF0F0911727A37F0065C39A /* GGKeywordExampleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGKeywordExampleCell.xib; sourceTree = "<group>"; };
 		EAF0F0931727A39D0065C39A /* GGKeywordExampleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGKeywordExampleCell.h; sourceTree = "<group>"; };
 		EAF0F0941727A39E0065C39A /* GGKeywordExampleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGKeywordExampleCell.m; sourceTree = "<group>"; };
+		EAF0F0961727A8830065C39A /* GGComUpdateSearchResultVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComUpdateSearchResultVC.h; sourceTree = "<group>"; };
+		EAF0F0971727A8830065C39A /* GGComUpdateSearchResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComUpdateSearchResultVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -657,6 +660,8 @@
 				EAF0F08417276BA90065C39A /* GGComUpdateSearchVC.h */,
 				EAF0F08517276BA90065C39A /* GGComUpdateSearchVC.m */,
 				EAF0F08617276BA90065C39A /* GGComUpdateSearchVC.xib */,
+				EAF0F0961727A8830065C39A /* GGComUpdateSearchResultVC.h */,
+				EAF0F0971727A8830065C39A /* GGComUpdateSearchResultVC.m */,
 			);
 			path = Company;
 			sourceTree = "<group>";
@@ -1737,6 +1742,7 @@
 				EA0E62EE172687050002F113 /* GGSwitchButton.m in Sources */,
 				EAF0F08717276BA90065C39A /* GGComUpdateSearchVC.m in Sources */,
 				EAF0F0951727A39E0065C39A /* GGKeywordExampleCell.m in Sources */,
+				EAF0F0981727A8830065C39A /* GGComUpdateSearchResultVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

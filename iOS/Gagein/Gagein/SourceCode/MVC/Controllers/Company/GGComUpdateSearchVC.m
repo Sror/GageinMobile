@@ -8,8 +8,8 @@
 
 #import "GGComUpdateSearchVC.h"
 #import "GGSearchBar.h"
-//#import "GGKeywordExampleView.h"
 #import "GGKeywordExampleCell.h"
+#import "GGComUpdateSearchResultVC.h"
 
 #define SEARCH_BAR_HEIGHT   44
 
@@ -28,6 +28,8 @@
     CGRect                _tvRectShort;
     
     NSTimer                 *_searchTimer;
+    
+    BOOL                    _isFirstTimeDidAppear;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -35,6 +37,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _suggestedKeywords = [NSMutableArray array];
+        _isFirstTimeDidAppear = YES;
     }
     return self;
 }
@@ -43,16 +46,8 @@
 {
     [super viewDidLoad];
     
-    CGRect searchRc = CGRectMake(0
-                                 , (self.navigationController.navigationBar.frame.size.height - SEARCH_BAR_HEIGHT) / 2 + 4
-                                 , self.view.bounds.size.width
-                                 , SEARCH_BAR_HEIGHT);
-    _searchBar = [[GGSearchBar alloc] initWithFrame:searchRc];
-    _searchBar.delegate = self;
-    _searchBar.text = self.keyword;
-    _searchBar.showsCancelButton = YES;
-    [_searchBar becomeFirstResponder];
-    
+    [self _initSearchBar];
+    [self.navigationController.navigationBar addSubview:_searchBar];
     
     _tvRect = self.view.bounds;
     float height = self.view.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT + self.tabBarController.tabBar.frame.size.height;
@@ -62,24 +57,79 @@
     _keywordExampleCell = [GGKeywordExampleCell viewFromNibWithOwner:self];
 }
 
+-(void)_initSearchBar
+{
+    CGRect searchRc = CGRectMake(0
+                                 , (self.navigationController.navigationBar.frame.size.height - SEARCH_BAR_HEIGHT) / 2 + 4
+                                 , self.view.bounds.size.width
+                                 , SEARCH_BAR_HEIGHT);
+    
+    [_searchBar removeFromSuperview];
+    _searchBar = [[GGSearchBar alloc] initWithFrame:searchRc];
+    _searchBar.delegate = self;
+    _searchBar.showsCancelButton = YES;
+    _searchBar.text = self.keyword;
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
     [self hideBackButton];
-    [self.navigationController.navigationBar addSubview:_searchBar];
 }
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    _searchBar.hidden = NO;
+    [self.navigationController.navigationBar addSubview:_searchBar];
+    
+    if (_isFirstTimeDidAppear)
+    {
+        _isFirstTimeDidAppear = NO;
+        [self _callApiGetSuggestions];
+    }
+}
+
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
-    [_searchBar removeFromSuperview];
+    _searchBar.hidden = YES;
+    [self.view addSubview:_searchBar];
 }
 
 - (void)viewDidUnload {
     [self setTv:nil];
     [super viewDidUnload];
+}
+
+-(void)dealloc
+{
+    [_searchBar removeFromSuperview];
+}
+
+#pragma mark - actions
+-(void)_doSearch:(NSString *)aKeyword
+{
+    if (!aKeyword.length) { return;}
+    
+    [_searchTimer invalidate];
+    _searchTimer = nil;
+    
+    GGComUpdateSearchResultVC *vc = [[GGComUpdateSearchResultVC alloc] init];
+    vc.keyword = aKeyword;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    [_searchBar resignFirstResponder];
+}
+
+-(void)_refreshTimer
+{
+    [_searchTimer invalidate];
+    _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2.f target:self selector:@selector(_callApiGetSuggestions) userInfo:nil repeats:NO];
 }
 
 #pragma mark - table view datasource
@@ -133,8 +183,15 @@
     
     if (indexPath.row < _suggestedKeywords.count)
     {
-        _searchBar.text = _suggestedKeywords[indexPath.row];
+        [self _doSearch:_suggestedKeywords[indexPath.row]];
     }
+}
+
+#pragma mark - scroll view delegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [_searchBar resignFirstResponder];
+    self.tv.frame = _tvRect;
 }
 
 #pragma mark - search bar delegate
@@ -145,27 +202,19 @@
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
-    //self.tableViewSearchResult.frame = _tvSearchResultRect;
+    _searchBar.cancelButton.enabled = YES;
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    [_searchTimer invalidate];
-    _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2.f target:self selector:@selector(_callApiGetSuggestions) userInfo:nil repeats:NO];
+    [self _refreshTimer];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     DLog(@"seach button clicked");
     // search and show result
-    [_searchTimer invalidate];
-    _searchTimer = nil;
-    
-//    [self _callSearchCompany];
-//    [searchBar resignFirstResponder];
-//    
-//    UIButton *cancelBtn = ((GGSearchBar *)searchBar).cancelButton;
-//    cancelBtn.enabled = YES;
+    [self _doSearch:_searchBar.text];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
@@ -173,28 +222,15 @@
     DLog(@"cancel button clicked");
     [self.navigationController popViewControllerAnimated:YES];
     [searchBar resignFirstResponder];
-//    
-//    [_searchedCompanies removeAllObjects];
-//    [self.tableViewSearchResult reloadData];
-//    
-//    searchBar.text = @"";
-//    [searchBar resignFirstResponder];
-//    searchBar.showsCancelButton = NO;
-//    searchBar.frame = _searchBarRect;
-//    [self.viewScroll addSubview:searchBar];
-//    
-//    [self _showTitle:YES];
-//    [self _showDoneBtn:YES];
-//    //[self hideBackButton];
-//    
-//    self.viewSearchBg.hidden = YES;
 }
 
 -(void)_callApiGetSuggestions
 {
     if (_searchBar.text.length)
     {
+        [self showLoadingHUD];
         [GGSharedAPI getUpdateSuggestionWithKeyword:_searchBar.text callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {

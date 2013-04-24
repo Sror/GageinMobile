@@ -158,6 +158,7 @@
             
             GGComUpdateSearchVC *vc = [[GGComUpdateSearchVC alloc] init];
             vc.keyword = searchBar.text;
+            searchBar.text = @"";
             [self.navigationController pushViewController:vc animated:YES];
             
         }];
