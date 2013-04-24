@@ -232,6 +232,8 @@
 		EAF0F08817276BA90065C39A /* GGComUpdateSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F08617276BA90065C39A /* GGComUpdateSearchVC.xib */; };
 		EAF0F08C17277FD10065C39A /* GGKeywordExampleView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF0F08B17277FD10065C39A /* GGKeywordExampleView.m */; };
 		EAF0F08E17277FF00065C39A /* GGKeywordExampleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F08D17277FF00065C39A /* GGKeywordExampleView.xib */; };
+		EAF0F0921727A37F0065C39A /* GGKeywordExampleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F0911727A37F0065C39A /* GGKeywordExampleCell.xib */; };
+		EAF0F0951727A39E0065C39A /* GGKeywordExampleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF0F0941727A39E0065C39A /* GGKeywordExampleCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -589,6 +591,9 @@
 		EAF0F08A17277FD10065C39A /* GGKeywordExampleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGKeywordExampleView.h; sourceTree = "<group>"; };
 		EAF0F08B17277FD10065C39A /* GGKeywordExampleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGKeywordExampleView.m; sourceTree = "<group>"; };
 		EAF0F08D17277FF00065C39A /* GGKeywordExampleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGKeywordExampleView.xib; sourceTree = "<group>"; };
+		EAF0F0911727A37F0065C39A /* GGKeywordExampleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGKeywordExampleCell.xib; sourceTree = "<group>"; };
+		EAF0F0931727A39D0065C39A /* GGKeywordExampleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGKeywordExampleCell.h; sourceTree = "<group>"; };
+		EAF0F0941727A39E0065C39A /* GGKeywordExampleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGKeywordExampleCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -900,6 +905,7 @@
 				EA4F3A17171E7B5100530185 /* GGCompanyHappeningCell.xib */,
 				EA79B8A41724D36200141E6D /* GGPersonCell.xib */,
 				EAF0F08D17277FF00065C39A /* GGKeywordExampleView.xib */,
+				EAF0F0911727A37F0065C39A /* GGKeywordExampleCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1191,6 +1197,8 @@
 				EA4F3A1B171E7C4C00530185 /* GGCompanyHappeningCell.m */,
 				EAF0F08A17277FD10065C39A /* GGKeywordExampleView.h */,
 				EAF0F08B17277FD10065C39A /* GGKeywordExampleView.m */,
+				EAF0F0931727A39D0065C39A /* GGKeywordExampleCell.h */,
+				EAF0F0941727A39E0065C39A /* GGKeywordExampleCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1609,6 +1617,7 @@
 				EA0E62F81726873E0002F113 /* switch_knob_gray@2x.png in Resources */,
 				EAF0F08817276BA90065C39A /* GGComUpdateSearchVC.xib in Resources */,
 				EAF0F08E17277FF00065C39A /* GGKeywordExampleView.xib in Resources */,
+				EAF0F0921727A37F0065C39A /* GGKeywordExampleCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1737,6 +1746,7 @@
 				EA0E62EE172687050002F113 /* GGSwitchButton.m in Sources */,
 				EAF0F08717276BA90065C39A /* GGComUpdateSearchVC.m in Sources */,
 				EAF0F08C17277FD10065C39A /* GGKeywordExampleView.m in Sources */,
+				EAF0F0951727A39E0065C39A /* GGKeywordExampleCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

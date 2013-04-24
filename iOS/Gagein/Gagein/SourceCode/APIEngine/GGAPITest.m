@@ -18,7 +18,7 @@ DEF_SINGLETON(GGAPITest)
 
 -(void)run
 {
-    [self _testGetSimilarCompaniesWithOrgID];
+    [self _testGetUpdateSuggestionWithKeyword];
 }
 
 -(void)_testJsonParse
@@ -36,6 +36,14 @@ DEF_SINGLETON(GGAPITest)
     //id obj = [str objectFromJSONString];
     DLog(@"%@", obj);
     [GGAlert alert:[obj objectForKey:@"key1"]];
+}
+
+-(void)_testGetUpdateSuggestionWithKeyword
+{
+    [GGSharedAPI getUpdateSuggestionWithKeyword:@"apple" callback:^(id operation, id aResultObject, NSError *anError) {
+        //GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        
+    }];
 }
 
 -(void)_testSearchForCompanyUpdatesWithKeyword

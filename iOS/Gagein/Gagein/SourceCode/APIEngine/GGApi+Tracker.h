@@ -67,4 +67,10 @@
                                 pageIndex:(NSUInteger)aPageIndex
                                  callback:(GGApiBlock)aCallback;
 
+//SU04:Get Keywords Suggestion for UpdatesBack to top
+//POST
+///svc/search/updates/get_suggestions
+-(void)getUpdateSuggestionWithKeyword:(NSString *)aKeyword
+                             callback:(GGApiBlock)aCallback;
+
 @end

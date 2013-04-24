@@ -195,4 +195,21 @@
     [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
+//SU04:Get Keywords Suggestion for UpdatesBack to top
+//POST
+///svc/search/updates/get_suggestions
+-(void)getUpdateSuggestionWithKeyword:(NSString *)aKeyword
+                                 callback:(GGApiBlock)aCallback
+{
+    //POST
+    NSString *path = @"search/updates/get_suggestions";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:aKeyword forKey:@"q"];
+    
+    [self _execPostWithPath:path params:parameters callback:aCallback];
+}
+
 @end
