@@ -69,6 +69,23 @@
     _slideSettingView.searchBar.placeholder = @"Search for updates";
 }
 
+-(void)_installMenuButton
+{
+    //UIBarButtonItem *menuBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(optionMenuAction:)];
+    
+    UIImage *menuBtnImg = [UIImage imageNamed:@"menuBtn"];
+    UIView *containingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, menuBtnImg.size.width, menuBtnImg.size.height)];
+    UIButton *menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [menuBtn setImage:menuBtnImg forState:UIControlStateNormal];
+    menuBtn.frame = CGRectMake(0, 3, menuBtnImg.size.width
+                               , menuBtnImg.size.height);
+    [menuBtn addTarget:self action:@selector(optionMenuAction:) forControlEvents:UIControlEventTouchUpInside];
+    [containingView addSubview:menuBtn];
+    
+    UIBarButtonItem *menuBtnItem = [[UIBarButtonItem alloc] initWithCustomView:containingView];
+    self.navigationItem.leftBarButtonItem = menuBtnItem;
+}
+
 - (void)viewDidLoad
 {
     [self observeNotification:GG_NOTIFY_LOG_OUT];
@@ -76,14 +93,10 @@
     
     [super viewDidLoad];
     
-    UIBarButtonItem *menuBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(optionMenuAction:)];
-    
+    [self _installMenuButton];
 
     self.naviTitle = @"EXPLORING";
-    //self.navigationItem.title = @"EXPLORING";
-    self.navigationItem.leftBarButtonItem = menuBtn;
-    
-    
+
     CGRect updateRc = [self viewportAdjsted];
     
     //

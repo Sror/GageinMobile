@@ -9,7 +9,7 @@
 #import "GGBaseViewController.h"
 #import "GGNaviBackButton.h"
 
-
+#define MAX_NAVI_TITLE_LENGTH   15
 
 @interface GGBaseViewController ()
 
@@ -93,6 +93,10 @@
 #pragma mark - UI element
 -(void)setNaviTitle:(NSString *)aNaviTitle
 {
+    if (aNaviTitle.length > MAX_NAVI_TITLE_LENGTH)
+    {
+        aNaviTitle = [NSString stringWithFormat:@"%@...", [aNaviTitle substringToIndex:MAX_NAVI_TITLE_LENGTH]];
+    }
     self.navigationItem.title = aNaviTitle;
     self.customNaviTitle.text = aNaviTitle;
 }

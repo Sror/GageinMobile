@@ -233,6 +233,11 @@
 		EAF0F0921727A37F0065C39A /* GGKeywordExampleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F0911727A37F0065C39A /* GGKeywordExampleCell.xib */; };
 		EAF0F0951727A39E0065C39A /* GGKeywordExampleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF0F0941727A39E0065C39A /* GGKeywordExampleCell.m */; };
 		EAF0F0981727A8830065C39A /* GGComUpdateSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF0F0971727A8830065C39A /* GGComUpdateSearchResultVC.m */; };
+		EAF0F09C1727CC700065C39A /* switch_knob_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F0991727CC700065C39A /* switch_knob_light@2x.png */; };
+		EAF0F09D1727CC700065C39A /* switch_off_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F09A1727CC700065C39A /* switch_off_light@2x.png */; };
+		EAF0F09E1727CC700065C39A /* switch_on_light@x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F09B1727CC700065C39A /* switch_on_light@x.png */; };
+		EAF0F0A11727CC830065C39A /* menuBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F09F1727CC830065C39A /* menuBtn@2x.png */; };
+		EAF0F0A21727CC830065C39A /* topWhiteBgBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F0A01727CC830065C39A /* topWhiteBgBar@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -592,6 +597,11 @@
 		EAF0F0941727A39E0065C39A /* GGKeywordExampleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGKeywordExampleCell.m; sourceTree = "<group>"; };
 		EAF0F0961727A8830065C39A /* GGComUpdateSearchResultVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComUpdateSearchResultVC.h; sourceTree = "<group>"; };
 		EAF0F0971727A8830065C39A /* GGComUpdateSearchResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComUpdateSearchResultVC.m; sourceTree = "<group>"; };
+		EAF0F0991727CC700065C39A /* switch_knob_light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_knob_light@2x.png"; sourceTree = "<group>"; };
+		EAF0F09A1727CC700065C39A /* switch_off_light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_off_light@2x.png"; sourceTree = "<group>"; };
+		EAF0F09B1727CC700065C39A /* switch_on_light@x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_on_light@x.png"; sourceTree = "<group>"; };
+		EAF0F09F1727CC830065C39A /* menuBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuBtn@2x.png"; sourceTree = "<group>"; };
+		EAF0F0A01727CC830065C39A /* topWhiteBgBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topWhiteBgBar@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -769,6 +779,9 @@
 		EA0E62F21726873E0002F113 /* switch */ = {
 			isa = PBXGroup;
 			children = (
+				EAF0F0991727CC700065C39A /* switch_knob_light@2x.png */,
+				EAF0F09A1727CC700065C39A /* switch_off_light@2x.png */,
+				EAF0F09B1727CC700065C39A /* switch_on_light@x.png */,
 				EA0E62F31726873E0002F113 /* switch_bg_gray@2x.png */,
 				EA0E62F41726873E0002F113 /* switch_bg_orange@2x.png */,
 				EA0E62F51726873E0002F113 /* switch_knob_gray@2x.png */,
@@ -1015,6 +1028,8 @@
 		EACAE0B117094A3100E7088F /* 2X */ = {
 			isa = PBXGroup;
 			children = (
+				EAF0F09F1727CC830065C39A /* menuBtn@2x.png */,
+				EAF0F0A01727CC830065C39A /* topWhiteBgBar@2x.png */,
 				EA0E62F21726873E0002F113 /* switch */,
 				EA0E628E172663550002F113 /* tabIcon */,
 				EAD9602E1720E5A300A72A9C /* shadowedBgWhite@2x.png */,
@@ -1614,6 +1629,11 @@
 				EA0E62F81726873E0002F113 /* switch_knob_gray@2x.png in Resources */,
 				EAF0F08817276BA90065C39A /* GGComUpdateSearchVC.xib in Resources */,
 				EAF0F0921727A37F0065C39A /* GGKeywordExampleCell.xib in Resources */,
+				EAF0F09C1727CC700065C39A /* switch_knob_light@2x.png in Resources */,
+				EAF0F09D1727CC700065C39A /* switch_off_light@2x.png in Resources */,
+				EAF0F09E1727CC700065C39A /* switch_on_light@x.png in Resources */,
+				EAF0F0A11727CC830065C39A /* menuBtn@2x.png in Resources */,
+				EAF0F0A21727CC830065C39A /* topWhiteBgBar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
