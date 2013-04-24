@@ -34,12 +34,12 @@
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         viewController1 = [[GGCompaniesVC alloc] initWithNibName:@"GGCompaniesVC" bundle:nil];
-        viewController2 = [[GGPeopleVC alloc] initWithNibName:@"GGPeopleVC" bundle:nil];
+        viewController2 = [[GGPeopleVC alloc] init];
         viewController3 = [[GGSavedUpdatesVC alloc] initWithNibName:@"GGSavedUpdatesVC" bundle:nil];
         viewController4 = [[GGSettingVC alloc] initWithNibName:@"GGSettingVC" bundle:nil];
     } else {
         viewController1 = [[GGCompaniesVC alloc] initWithNibName:@"GGCompaniesVC_iPad" bundle:nil];
-        viewController2 = [[GGPeopleVC alloc] initWithNibName:@"GGPeopleVC_iPad" bundle:nil];
+        viewController2 = [[GGPeopleVC alloc] init];
         viewController3 = [[GGSavedUpdatesVC alloc] initWithNibName:@"GGSavedUpdatesVC_iPad" bundle:nil];
         viewController4 = [[GGSettingVC alloc] initWithNibName:@"GGSettingVC_iPad" bundle:nil];
     }

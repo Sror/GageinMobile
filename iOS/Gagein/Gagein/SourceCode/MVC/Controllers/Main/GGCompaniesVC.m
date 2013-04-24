@@ -171,7 +171,8 @@
 
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
 {
-    return [self _searchAction:searchBar];
+    [self _searchAction:searchBar];
+    return YES;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
