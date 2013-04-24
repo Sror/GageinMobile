@@ -49,15 +49,8 @@
     return self;
 }
 
-- (void)viewDidLoad
+-(void)_initRoundSwitch
 {
-    [self observeNotification:GG_NOTIFY_LOG_OUT];
-    [self observeNotification:GG_NOTIFY_LOG_IN];
-    
-    [super viewDidLoad];
-    self.view.backgroundColor = GGSharedColor.silver;
-    self.naviTitle = @"Saved Updates";
-    
     CGRect naviRc = self.navigationController.navigationBar.frame;
     
     _roundSwitch = [GGSwitchButton viewFromNibWithOwner:self];
@@ -70,6 +63,18 @@
                                  , SWITCH_WIDTH
                                  , [GGSwitchButton HEIGHT]);
     _roundSwitch.frame = switchRc;
+}
+
+- (void)viewDidLoad
+{
+    [self observeNotification:GG_NOTIFY_LOG_OUT];
+    [self observeNotification:GG_NOTIFY_LOG_IN];
+    
+    [super viewDidLoad];
+    self.view.backgroundColor = GGSharedColor.silver;
+    self.naviTitle = @"Saved Updates";
+    
+    [self _initRoundSwitch];
     [self.navigationController.navigationBar addSubview:_roundSwitch];
     
     //

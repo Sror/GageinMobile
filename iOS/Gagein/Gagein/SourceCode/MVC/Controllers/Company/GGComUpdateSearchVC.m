@@ -82,7 +82,7 @@
 {
     [super viewDidAppear:animated];
     
-    _searchBar.hidden = NO;
+    //_searchBar.hidden = NO;
     [self.navigationController.navigationBar addSubview:_searchBar];
     
     if (_isFirstTimeDidAppear)
@@ -96,8 +96,9 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    _searchBar.hidden = YES;
-    [self.view addSubview:_searchBar];
+    [_searchBar removeFromSuperview];
+    //_searchBar.hidden = YES;
+    //[self.view addSubview:_searchBar];
 }
 
 - (void)viewDidUnload {

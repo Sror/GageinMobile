@@ -28,6 +28,10 @@
 #import "GGCompanyHappeningCell.h"
 #import "GGSelectAgentsVC.h"
 #import "GGSearchBar.h"
+#import "GGSwitchButton.h"
+
+#define SWITCH_WIDTH 90
+#define SWITCH_HEIGHT 20
 
 @interface GGCompaniesVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
@@ -37,8 +41,12 @@
 @implementation GGCompaniesVC
 {
     EGGCompanyUpdateRelevance   _relevance;
-    GGScrollingView             *_scrollingView;
+    //GGScrollingView             *_scrollingView;
     GGSlideSettingView          *_slideSettingView;
+    
+    GGSwitchButton             *_btnSwitchUpdate;
+    BOOL                       _isShowingUpdate;
+    
     NSArray                    *_menuDatas;
     
     EGGMenuType                _menuType;
@@ -54,6 +62,7 @@
         _happenings = [NSMutableArray array];
         _menuType = kGGMenuTypeAgent;   // exploring...
         _menuID = GG_ALL_RESULT_ID;
+        _isShowingUpdate = YES;
     }
     return self;
 }
@@ -86,6 +95,23 @@
     self.navigationItem.leftBarButtonItem = menuBtnItem;
 }
 
+-(void)_initRoundSwitch
+{
+    CGRect naviRc = self.navigationController.navigationBar.frame;
+    
+    _btnSwitchUpdate = [GGSwitchButton viewFromNibWithOwner:self];
+    _btnSwitchUpdate.delegate = self;
+    _btnSwitchUpdate.lblOn.text = @"Updates";
+    _btnSwitchUpdate.lblOff.text = @"Happenings";
+    _btnSwitchUpdate.isOn = _isShowingUpdate;
+    
+    CGRect switchRc = CGRectMake(naviRc.size.width - SWITCH_WIDTH - 5
+                                 , (naviRc.size.height - [GGSwitchButton HEIGHT]) / 2 + 5
+                                 , SWITCH_WIDTH
+                                 , [GGSwitchButton HEIGHT]);
+    _btnSwitchUpdate.frame = switchRc;
+}
+
 - (void)viewDidLoad
 {
     [self observeNotification:GG_NOTIFY_LOG_OUT];
@@ -94,8 +120,10 @@
     [super viewDidLoad];
     
     [self _installMenuButton];
-
     self.naviTitle = @"EXPLORING";
+    
+    [self _initRoundSwitch];
+    
 
     CGRect updateRc = [self viewportAdjsted];
     
@@ -103,25 +131,26 @@
     [self _initSlideSettingView];
     
     // ------- add scrolling view
-    _scrollingView = [GGScrollingView viewFromNibWithOwner:self];
-    _scrollingView.frame = self.view.bounds;
-    _scrollingView.delegate = self;
-    [self.view addSubview:_scrollingView];
-    
-    self.updatesTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
-    self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
-    self.updatesTV.dataSource = self;
-    self.updatesTV.delegate = self;
-    [_scrollingView addPage:self.updatesTV];
-    self.updatesTV.backgroundColor = GGSharedColor.silver;
+//    _scrollingView = [GGScrollingView viewFromNibWithOwner:self];
+//    _scrollingView.frame = self.view.bounds;
+//    _scrollingView.delegate = self;
+//    [self.view addSubview:_scrollingView];
     
     self.happeningsTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
     self.happeningsTV.rowHeight = [GGCompanyHappeningCell HEIGHT];
     self.happeningsTV.dataSource = self;
     self.happeningsTV.delegate = self;
-    [_scrollingView addPage:self.happeningsTV];
+    //[_scrollingView addPage:self.happeningsTV];
     self.happeningsTV.backgroundColor = GGSharedColor.silver;
+    [self.view addSubview:self.happeningsTV];
     
+    self.updatesTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
+    self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
+    self.updatesTV.dataSource = self;
+    self.updatesTV.delegate = self;
+    //[_scrollingView addPage:self.updatesTV];
+    self.updatesTV.backgroundColor = GGSharedColor.silver;
+    [self.view addSubview:self.updatesTV];
     
     // setup pull-to-refresh and infinite scrolling
     __weak GGCompaniesVC *weakSelf = self;
@@ -146,6 +175,18 @@
     [self. happeningsTV triggerPullToRefresh];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar addSubview:_btnSwitchUpdate];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [_btnSwitchUpdate removeFromSuperview];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 }
@@ -160,6 +201,16 @@
 -(void)dealloc
 {
     [self unobserveAllNotifications];
+}
+
+#pragma mark - switch button delegate
+-(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
+{
+    if (aSwitchButton == _btnSwitchUpdate)
+    {
+        _isShowingUpdate = aIsOn;
+        self.updatesTV.hidden = !_isShowingUpdate;
+    }
 }
 
 #pragma mark - UISearchBar delegate
@@ -538,11 +589,11 @@
     }
 }
 
-#pragma mark - scrolling view delegate
--(void)scrollingView:(GGScrollingView *)aScrollingView didScrollToIndex:(NSUInteger)aPageIndex;
-{
-    DLog(@"scrolling to index:%d", aPageIndex);
-}
+//#pragma mark - scrolling view delegate
+//-(void)scrollingView:(GGScrollingView *)aScrollingView didScrollToIndex:(NSUInteger)aPageIndex;
+//{
+//    DLog(@"scrolling to index:%d", aPageIndex);
+//}
 
 //-(void)scrollViewDidScroll:(UIScrollView *)scrollView
 //{

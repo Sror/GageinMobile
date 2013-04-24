@@ -94,6 +94,7 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
+								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUITextAlignment">1</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="935404286">
 									<int key="type">2</int>
@@ -104,7 +105,6 @@
 									<double key="NSSize">12</double>
 									<int key="NSfFlags">16</int>
 								</object>
-								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 						</array>
 						<string key="NSFrameSize">{120, 24}</string>
@@ -152,7 +152,7 @@
 							<object class="IBUILabel" id="881385280">
 								<reference key="NSNextResponder" ref="697552453"/>
 								<int key="NSvFlags">298</int>
-								<string key="NSFrame">{{19, 0}, {90, 24}}</string>
+								<string key="NSFrame">{{25, 0}, {90, 24}}</string>
 								<reference key="NSSuperview" ref="697552453"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="721799683"/>
@@ -170,10 +170,10 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
+								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUITextAlignment">1</int>
 								<reference key="IBUIFontDescription" ref="935404286"/>
 								<reference key="IBUIFont" ref="504020934"/>
-								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 						</array>
 						<string key="NSFrameSize">{120, 24}</string>
@@ -190,6 +190,7 @@
 						<string key="NSFrameSize">{120, 24}</string>
 						<reference key="NSSuperview" ref="103965881"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

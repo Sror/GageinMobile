@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GGScrollingView.h"
+#import "GGSwitchButton.h"
 #import "GGSlideSettingView.h"
 
 @interface GGCompaniesVC : GGBaseViewController
 <UITableViewDelegate
 , UITableViewDataSource
 , UISearchBarDelegate
-, GGScrollingViewDelegate
+, GGSwitchButtonDelegate
 , GGSlideSettingViewDelegate>
 
 @property (strong)   NSMutableArray              *updates;

@@ -35,9 +35,26 @@
 
 -(void)switchAction
 {
-    _isOn = !_isOn;
-    _viewOff.hidden = _isOn;
-    [_delegate switchButton:self isOn:_isOn];
+    [self switchOn:!_isOn];
+}
+
+-(void)switchOn:(BOOL)aIsOn
+{
+    if (_isOn != aIsOn)
+    {
+        _isOn = aIsOn;
+        _viewOff.hidden = _isOn;
+        [_delegate switchButton:self isOn:_isOn];
+    }
+}
+
+-(void)setIsOn:(BOOL)aIsOn
+{
+    if (_isOn != aIsOn)
+    {
+        _isOn = aIsOn;
+        _viewOff.hidden = _isOn;
+    }
 }
 
 +(float)HEIGHT
