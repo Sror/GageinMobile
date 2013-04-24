@@ -79,9 +79,16 @@
 
 -(void)hideSlide
 {
+    [self hideSlideOnCompletion:nil];
+}
+
+-(void)hideSlideOnCompletion:(void(^)(void))completion
+{
     if (_isShowing)
     {
         _isShowing = NO;
+        
+        [_searchBar resignFirstResponder];
         
         [UIView animateWithDuration:.3f animations:^{
             
@@ -94,8 +101,11 @@
             [_delegate slideview:self isShowed:NO];
             
             _searchBar.text = @"";
-            [_searchBar resignFirstResponder];
             
+            if (completion)
+            {
+                completion();
+            }
         }];
     }
 }

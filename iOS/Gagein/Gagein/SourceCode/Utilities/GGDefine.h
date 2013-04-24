@@ -22,7 +22,7 @@ typedef enum
 #define GGN_STR_CN_SERVER_URL                       @"http://gageincn.dyndns.org:3031"
 #define GGN_STR_STAGING_SERVER_URL                  @"http://gageinstaging.dyndns.org"
 
-#define CURRENT_ENV 4
+#define CURRENT_ENV 3
 
 #undef CURRENT_SERVER_URL
 #if (CURRENT_ENV == 1)
@@ -37,7 +37,8 @@ typedef enum
 //
 
 #define APP_CODE_VALUE      @"09ad5d624c0294d1"
-//#define ACCESS_TOKEN_VALUE  @"4d861dfe219170e3c58c7031578028a5"
+#define APP_CODE_IPHONE     @"78cfc17502a1e05a"
+#define APP_CODE_IPAD       @"c0d67d02e7c74d36"
 
 //
 #undef	__INT

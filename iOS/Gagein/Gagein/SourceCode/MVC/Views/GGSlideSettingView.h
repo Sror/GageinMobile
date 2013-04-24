@@ -24,4 +24,5 @@
 @property (weak) id<GGSlideSettingViewDelegate>     delegate;
 -(void)showSlide;
 -(void)hideSlide;
+-(void)hideSlideOnCompletion:(void(^)(void))completion;
 @end

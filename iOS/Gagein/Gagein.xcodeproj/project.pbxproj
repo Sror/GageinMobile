@@ -228,6 +228,8 @@
 		EAEFB4EF1717B1570013634F /* GGSettingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEFB4EE1717B1560013634F /* GGSettingHeaderView.m */; };
 		EAEFB4F71717B6E40013634F /* GGSettingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4F61717B6E40013634F /* GGSettingHeaderView.xib */; };
 		EAEFB4FA1717BC620013634F /* GGMenuData.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEFB4F91717BC620013634F /* GGMenuData.m */; };
+		EAF0F08717276BA90065C39A /* GGComUpdateSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF0F08517276BA90065C39A /* GGComUpdateSearchVC.m */; };
+		EAF0F08817276BA90065C39A /* GGComUpdateSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F08617276BA90065C39A /* GGComUpdateSearchVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -579,6 +581,9 @@
 		EAEFB4F61717B6E40013634F /* GGSettingHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingHeaderView.xib; sourceTree = "<group>"; };
 		EAEFB4F81717BC620013634F /* GGMenuData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGMenuData.h; sourceTree = "<group>"; };
 		EAEFB4F91717BC620013634F /* GGMenuData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGMenuData.m; sourceTree = "<group>"; };
+		EAF0F08417276BA90065C39A /* GGComUpdateSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComUpdateSearchVC.h; sourceTree = "<group>"; };
+		EAF0F08517276BA90065C39A /* GGComUpdateSearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComUpdateSearchVC.m; sourceTree = "<group>"; };
+		EAF0F08617276BA90065C39A /* GGComUpdateSearchVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGComUpdateSearchVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -644,6 +649,9 @@
 				EA79B8B01724F69100141E6D /* GGSimilarCompaniesVC.m */,
 				EA79B8B41724FEDA00141E6D /* GGComOverviewDetailVC.h */,
 				EA79B8B51724FEDA00141E6D /* GGComOverviewDetailVC.m */,
+				EAF0F08417276BA90065C39A /* GGComUpdateSearchVC.h */,
+				EAF0F08517276BA90065C39A /* GGComUpdateSearchVC.m */,
+				EAF0F08617276BA90065C39A /* GGComUpdateSearchVC.xib */,
 			);
 			path = Company;
 			sourceTree = "<group>";
@@ -1591,6 +1599,7 @@
 				EA0E62F61726873E0002F113 /* switch_bg_gray@2x.png in Resources */,
 				EA0E62F71726873E0002F113 /* switch_bg_orange@2x.png in Resources */,
 				EA0E62F81726873E0002F113 /* switch_knob_gray@2x.png in Resources */,
+				EAF0F08817276BA90065C39A /* GGComUpdateSearchVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1717,6 +1726,7 @@
 				EA0E6205172617B00002F113 /* GGComOverviewStockCell.m in Sources */,
 				EA0E62A4172663740002F113 /* GGTabBarController.m in Sources */,
 				EA0E62EE172687050002F113 /* GGSwitchButton.m in Sources */,
+				EAF0F08717276BA90065C39A /* GGComUpdateSearchVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

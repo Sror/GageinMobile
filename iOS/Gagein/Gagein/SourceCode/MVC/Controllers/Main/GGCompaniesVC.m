@@ -18,6 +18,8 @@
 
 #import "GGCompanyDetailVC.h"
 #import "GGCompanyUpdateDetailVC.h"
+#import "GGComUpdateSearchVC.h"
+
 #import "GGScrollingView.h"
 #import "GGFollowCompanyVC.h"
 #import "GGSettingHeaderView.h"
@@ -148,21 +150,32 @@
 }
 
 #pragma mark - UISearchBar delegate
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+-(BOOL)_searchAction:(UISearchBar *)searchBar
 {
-    
     if (searchBar.text.length)
     {
-        [_slideSettingView hideSlide];
+        [_slideSettingView hideSlideOnCompletion:^{
+            
+            GGComUpdateSearchVC *vc = [[GGComUpdateSearchVC alloc] init];
+            vc.keyword = searchBar.text;
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        }];
+        
         return YES;
     }
     
     return NO;
 }
 
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    return [self _searchAction:searchBar];
+}
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    [_slideSettingView hideSlide];
+    [self _searchAction:searchBar];
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
