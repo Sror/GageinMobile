@@ -8,10 +8,12 @@
 
 #import "GGHappeningDetailVC.h"
 #import "GGCompanyHappening.h"
+#import "GGPersonCell.h"
 
 @interface GGHappeningDetailVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tvDetail;
 @property (weak, nonatomic) IBOutlet UIView *viewBottomBar;
+@property (weak, nonatomic) IBOutlet UIScrollView *svContent;
 
 @end
 
@@ -33,7 +35,7 @@
 {
     [super viewDidLoad];
     self.naviTitle = @"Happening";
-    
+    self.svContent.frame = [self viewportAdjsted];
     self.tvDetail.backgroundColor = GGSharedColor.silver;
     
     [self _callApiGetHappeningDetail];
@@ -55,6 +57,7 @@
 - (void)viewDidUnload {
     [self setTvDetail:nil];
     [self setViewBottomBar:nil];
+    [self setSvContent:nil];
     [super viewDidUnload];
 }
 
@@ -67,9 +70,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    cell.textLabel.text = @"aaa";
+    static NSString *updateCellId = @"GGPersonCell";
+    GGPersonCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
+    if (cell == nil) {
+        cell = [GGPersonCell viewFromNibWithOwner:self];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    cell.lblName.text = @"name";
+    cell.lblTitle.text = @"web";
+    cell.lblAddress.text = @"addr";
+    
     return cell;
+}
+
+#pragma mark - table view delegate
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [GGPersonCell HEIGHT];
 }
 
 @end
