@@ -490,6 +490,7 @@
         cell.tag = row;
         cell.lblName.text = data.sourceText;
         cell.lblDescription.text = data.headLineText;
+        cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
         [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.orgLogoPath] placeholderImage:nil];
         
         return cell;

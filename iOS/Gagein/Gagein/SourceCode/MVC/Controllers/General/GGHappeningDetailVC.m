@@ -82,7 +82,7 @@
     {
         _happeningDetailCell.lblSource.text = _currentDetail.sourceText;
         _happeningDetailCell.lblHeadline.text = _currentDetail.headLineText;
-        _happeningDetailCell.lblInterval.text = @"1d ago";
+        _happeningDetailCell.lblInterval.text = [_currentDetail intervalStringWithDate:_currentDetail.timestamp];
         
         switch (_currentDetail.type)
         {

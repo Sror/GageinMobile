@@ -173,7 +173,7 @@ typedef enum
         GGCompanyUpdate *data = _updates[row];
         
         cell.lblSource.text = data.fromSource;
-        cell.lblInterval.text = @"1d ago";
+        cell.lblInterval.text = [data intervalStringWithDate:data.date];//@"1d ago";
         cell.lblHeadLine.text = data.headline;
         
         return cell;
@@ -189,7 +189,7 @@ typedef enum
         GGCompanyHappening *data = _happenings[row];
         
         cell.lblSource.text = data.sourceText;
-        cell.lblInterval.text = @"1d ago";
+        cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
         cell.lblHeadLine.text = data.headLineText;
         
         return cell;
