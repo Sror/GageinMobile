@@ -9,6 +9,7 @@
 #import "GGHappeningDetailVC.h"
 #import "GGCompanyHappening.h"
 #import "GGPersonCell.h"
+#import "GGHappeningDetailCell.h"
 
 @interface GGHappeningDetailVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tvDetail;
@@ -19,7 +20,8 @@
 
 @implementation GGHappeningDetailVC
 {
-    GGCompanyHappening *_currentDetail;
+    GGCompanyHappening          *_currentDetail;
+    GGHappeningDetailCell       *_happeningDetailCell;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,6 +39,9 @@
     self.naviTitle = @"Happening";
     self.svContent.frame = [self viewportAdjsted];
     self.tvDetail.backgroundColor = GGSharedColor.silver;
+    
+    //
+    _happeningDetailCell = [GGHappeningDetailCell viewFromNibWithOwner:self];
     
     [self _callApiGetHappeningDetail];
 }
@@ -70,6 +75,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    int row = indexPath.row;
+    if (row == 0)
+    {
+        return _happeningDetailCell;
+    }
+    
     static NSString *updateCellId = @"GGPersonCell";
     GGPersonCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
     if (cell == nil) {
@@ -87,6 +98,12 @@
 #pragma mark - table view delegate
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    int row = indexPath.row;
+    if (row == 0)
+    {
+        return _happeningDetailCell.height;
+    }
+    
     return [GGPersonCell HEIGHT];
 }
 

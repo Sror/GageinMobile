@@ -81,6 +81,8 @@
 		EA381C61171FA700004535B5 /* GGImagePool.m in Sources */ = {isa = PBXBuildFile; fileRef = EA381C60171FA700004535B5 /* GGImagePool.m */; };
 		EA381C65171FBBEB004535B5 /* GGSavedUpdatesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA381C63171FBBEB004535B5 /* GGSavedUpdatesVC.m */; };
 		EA381C68171FBC19004535B5 /* GGSavedUpdatesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA381C67171FBC19004535B5 /* GGSavedUpdatesVC.xib */; };
+		EA4022311728F1A000E5D179 /* GGHappeningDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4022301728F1A000E5D179 /* GGHappeningDetailCell.m */; };
+		EA4022341728F1B800E5D179 /* GGHappeningDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4022331728F1B800E5D179 /* GGHappeningDetailCell.xib */; };
 		EA4F3A18171E7B5100530185 /* GGCompanyHappeningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4F3A17171E7B5100530185 /* GGCompanyHappeningCell.xib */; };
 		EA4F3A1C171E7C4C00530185 /* GGCompanyHappeningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4F3A1B171E7C4C00530185 /* GGCompanyHappeningCell.m */; };
 		EA4F3A1F171E7FC800530185 /* GGCompanyHappening.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4F3A1E171E7FC800530185 /* GGCompanyHappening.m */; };
@@ -377,6 +379,9 @@
 		EA381C62171FBBEB004535B5 /* GGSavedUpdatesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSavedUpdatesVC.h; sourceTree = "<group>"; };
 		EA381C63171FBBEB004535B5 /* GGSavedUpdatesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSavedUpdatesVC.m; sourceTree = "<group>"; };
 		EA381C67171FBC19004535B5 /* GGSavedUpdatesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSavedUpdatesVC.xib; sourceTree = "<group>"; };
+		EA40222F1728F1A000E5D179 /* GGHappeningDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGHappeningDetailCell.h; sourceTree = "<group>"; };
+		EA4022301728F1A000E5D179 /* GGHappeningDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGHappeningDetailCell.m; sourceTree = "<group>"; };
+		EA4022331728F1B800E5D179 /* GGHappeningDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGHappeningDetailCell.xib; sourceTree = "<group>"; };
 		EA4F3A17171E7B5100530185 /* GGCompanyHappeningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyHappeningCell.xib; sourceTree = "<group>"; };
 		EA4F3A1A171E7C4C00530185 /* GGCompanyHappeningCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyHappeningCell.h; sourceTree = "<group>"; };
 		EA4F3A1B171E7C4C00530185 /* GGCompanyHappeningCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyHappeningCell.m; sourceTree = "<group>"; };
@@ -924,6 +929,7 @@
 				EA4F3A17171E7B5100530185 /* GGCompanyHappeningCell.xib */,
 				EA79B8A41724D36200141E6D /* GGPersonCell.xib */,
 				EAF0F0911727A37F0065C39A /* GGKeywordExampleCell.xib */,
+				EA4022331728F1B800E5D179 /* GGHappeningDetailCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1217,6 +1223,8 @@
 				EA4F3A1B171E7C4C00530185 /* GGCompanyHappeningCell.m */,
 				EAF0F0931727A39D0065C39A /* GGKeywordExampleCell.h */,
 				EAF0F0941727A39E0065C39A /* GGKeywordExampleCell.m */,
+				EA40222F1728F1A000E5D179 /* GGHappeningDetailCell.h */,
+				EA4022301728F1A000E5D179 /* GGHappeningDetailCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1651,6 +1659,7 @@
 				EAF0F0A11727CC830065C39A /* menuBtn@2x.png in Resources */,
 				EAF0F0A21727CC830065C39A /* topWhiteBgBar@2x.png in Resources */,
 				EAF0F0AA1727DC260065C39A /* GGHappeningDetailVC.xib in Resources */,
+				EA4022341728F1B800E5D179 /* GGHappeningDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1781,6 +1790,7 @@
 				EAF0F0951727A39E0065C39A /* GGKeywordExampleCell.m in Sources */,
 				EAF0F0981727A8830065C39A /* GGComUpdateSearchResultVC.m in Sources */,
 				EAF0F0A61727DBCA0065C39A /* GGHappeningDetailVC.m in Sources */,
+				EA4022311728F1A000E5D179 /* GGHappeningDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

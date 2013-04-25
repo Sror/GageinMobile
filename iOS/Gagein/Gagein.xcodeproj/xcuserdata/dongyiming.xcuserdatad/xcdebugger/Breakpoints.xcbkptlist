@@ -476,11 +476,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/General/GGHappeningDetailVC.m"
-         timestampString = "388553442.386296"
+         timestampString = "388561158.165597"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "50"
-         endingLineNumber = "50"
+         startingLineNumber = "55"
+         endingLineNumber = "55"
          landmarkName = "-_callApiGetHappeningDetail"
          landmarkType = "5">
       </FileBreakpoint>
