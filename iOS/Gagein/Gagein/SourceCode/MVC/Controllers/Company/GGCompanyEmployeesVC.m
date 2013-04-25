@@ -10,7 +10,7 @@
 
 #import "GGDataPage.h"
 #import "SVPullToRefresh.h"
-#import "GGPersonCell.h"
+#import "GGCustomBriefCell.h"
 #import "GGPerson.h"
 
 @interface GGCompanyEmployeesVC ()
@@ -50,7 +50,7 @@
     self.naviTitle = @"Employees";
     
     self.tvEmployees = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
-    self.tvEmployees.rowHeight = [GGPersonCell HEIGHT];
+    self.tvEmployees.rowHeight = [GGCustomBriefCell HEIGHT];
     self.tvEmployees.dataSource = self;
     self.tvEmployees.delegate = self;
     [self.view addSubview:self.tvEmployees];
@@ -97,9 +97,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *updateCellId = @"GGPersonCell";
-    GGPersonCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
+    GGCustomBriefCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
     if (cell == nil) {
-        cell = [GGPersonCell viewFromNibWithOwner:self];
+        cell = [GGCustomBriefCell viewFromNibWithOwner:self];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     

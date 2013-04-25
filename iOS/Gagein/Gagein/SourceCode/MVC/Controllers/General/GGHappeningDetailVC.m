@@ -8,8 +8,9 @@
 
 #import "GGHappeningDetailVC.h"
 #import "GGCompanyHappening.h"
-#import "GGPersonCell.h"
+#import "GGCustomBriefCell.h"
 #import "GGHappeningDetailCell.h"
+#import "GGCompanyDetailVC.h"
 
 @interface GGHappeningDetailVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tvDetail;
@@ -46,19 +47,10 @@
     [self _callApiGetHappeningDetail];
 }
 
-#pragma mark - API calls
--(void)_callApiGetHappeningDetail
+-(void)viewDidAppear:(BOOL)animated
 {
-    GGCompanyHappening *data = _happenings[_currentIndex];
-    [GGSharedAPI getCompanyEventDetailWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
-        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-        if (parser.isOK)
-        {
-            _currentDetail = [parser parseCompanyEventDetail];
-        }
-        
-        [_tvDetail reloadData];
-    }];
+    [super viewDidAppear:animated];
+    [self pushBackButtonFront];
 }
 
 - (void)viewDidUnload {
@@ -72,7 +64,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    NSUInteger count = 1;
+    if (_currentDetail.person.ID) {
+        count++;
+    }
+    if (_currentDetail.company.ID) {
+        count++;
+    }
+    
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,20 +99,37 @@
         }
         
         return _happeningDetailCell;
+        
+    } else {
+        
+        static NSString *updateCellId = @"GGPersonCell";
+        GGCustomBriefCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
+        if (cell == nil) {
+            cell = [GGCustomBriefCell viewFromNibWithOwner:self];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        if (row == 1 && _currentDetail.person) { // if person exists, show person
+            
+            cell.lblName.text = _currentDetail.person.name;
+            cell.lblTitle.text = _currentDetail.freshJobTitle;
+            cell.lblAddress.text = @"address";
+            cell.type = kGGCustomBriefCellPerson;
+            
+        }  else { // this index represent comany
+            
+            cell.lblName.text = _currentDetail.company.name;
+            cell.lblTitle.text = @"website";
+            cell.lblAddress.text = @"address";
+            cell.type = kGGCustomBriefCellCompany;
+            
+        }
+        
+        return cell;
+        
     }
     
-    static NSString *updateCellId = @"GGPersonCell";
-    GGPersonCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
-    if (cell == nil) {
-        cell = [GGPersonCell viewFromNibWithOwner:self];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
-    cell.lblName.text = @"name";
-    cell.lblTitle.text = @"web";
-    cell.lblAddress.text = @"addr";
-    
-    return cell;
+    return nil;
 }
 
 #pragma mark - table view delegate
@@ -124,7 +141,46 @@
         return _happeningDetailCell.height;
     }
     
-    return [GGPersonCell HEIGHT];
+    return [GGCustomBriefCell HEIGHT];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int row = indexPath.row;
+    if (row > 0)
+    {
+        GGCustomBriefCell *cell = (GGCustomBriefCell *)[tableView cellForRowAtIndexPath:indexPath];
+        if (cell.type == kGGCustomBriefCellCompany)
+        {
+            GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+            vc.companyID = _currentDetail.company.ID;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else
+        {
+            // person
+        }
+    }
+}
+
+
+#pragma mark - API calls
+-(void)_callApiGetHappeningDetail
+{
+    GGCompanyHappening *data = _happenings[_currentIndex];
+    
+    [self showLoadingHUD];
+    [GGSharedAPI getCompanyEventDetailWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            _currentDetail = [parser parseCompanyEventDetail];
+        }
+        
+        [_tvDetail reloadData];
+    }];
 }
 
 @end

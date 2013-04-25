@@ -22,6 +22,7 @@
 
 -(void)showBackButton;
 -(void)hideBackButton;
+-(void)pushBackButtonFront;
 
 // for overriding
 -(void)naviBackAction:(id)aSender;

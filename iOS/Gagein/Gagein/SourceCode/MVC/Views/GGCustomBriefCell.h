@@ -8,13 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGPersonCell : UITableViewCell
+typedef enum {
+    kGGCustomBriefCellCompany = 0
+    , kGGCustomBriefCellPerson
+}EGGCustomBriefCellType;
+
+@interface GGCustomBriefCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *viewContent;
 @property (weak, nonatomic) IBOutlet UIImageView *ivCellBg;
 @property (weak, nonatomic) IBOutlet UIImageView *ivPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblAddress;
+
+@property (assign, nonatomic) EGGCustomBriefCellType    type;
 
 +(float)HEIGHT;
 @end

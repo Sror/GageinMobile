@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 gagein. All rights reserved.
 //
 
-#import "GGPersonCell.h"
+#import "GGCustomBriefCell.h"
 
-@implementation GGPersonCell
+@implementation GGCustomBriefCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

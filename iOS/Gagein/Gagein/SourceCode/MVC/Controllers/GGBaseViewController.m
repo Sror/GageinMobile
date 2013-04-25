@@ -119,6 +119,11 @@
     [backBtn addTarget:self action:@selector(naviBackAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+-(void)pushBackButtonFront
+{
+    [self.navigationController.navigationBar bringSubviewToFront:[self __globalBackButton]];
+}
+
 -(void)installGageinLogo
 {
     [self installGageinLogoTo:self.view];

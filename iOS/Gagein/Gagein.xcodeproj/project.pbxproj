@@ -118,8 +118,8 @@
 		EA7180D917150AAF00347EA4 /* GGFollowCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */; };
 		EA7180E4171511B700347EA4 /* GGSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180E3171511B700347EA4 /* GGSearchBar.m */; };
 		EA79B8A01724CEDF00141E6D /* GGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B89F1724CEDF00141E6D /* GGBaseViewController.m */; };
-		EA79B8A51724D36200141E6D /* GGPersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA79B8A41724D36200141E6D /* GGPersonCell.xib */; };
-		EA79B8A81724D57A00141E6D /* GGPersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8A71724D57A00141E6D /* GGPersonCell.m */; };
+		EA79B8A51724D36200141E6D /* GGCustomBriefCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA79B8A41724D36200141E6D /* GGCustomBriefCell.xib */; };
+		EA79B8A81724D57A00141E6D /* GGCustomBriefCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8A71724D57A00141E6D /* GGCustomBriefCell.m */; };
 		EA79B8AE1724D98F00141E6D /* GGCompanyEmployeesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8AD1724D98F00141E6D /* GGCompanyEmployeesVC.m */; };
 		EA79B8B11724F69100141E6D /* GGSimilarCompaniesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8B01724F69100141E6D /* GGSimilarCompaniesVC.m */; };
 		EA79B8B31724FD0400141E6D /* GGTicker.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8B21724FD0400141E6D /* GGTicker.m */; };
@@ -423,9 +423,9 @@
 		EA7180E3171511B700347EA4 /* GGSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSearchBar.m; sourceTree = "<group>"; };
 		EA79B89E1724CEDF00141E6D /* GGBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGBaseViewController.h; sourceTree = "<group>"; };
 		EA79B89F1724CEDF00141E6D /* GGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGBaseViewController.m; sourceTree = "<group>"; };
-		EA79B8A41724D36200141E6D /* GGPersonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGPersonCell.xib; sourceTree = "<group>"; };
-		EA79B8A61724D57A00141E6D /* GGPersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPersonCell.h; sourceTree = "<group>"; };
-		EA79B8A71724D57A00141E6D /* GGPersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPersonCell.m; sourceTree = "<group>"; };
+		EA79B8A41724D36200141E6D /* GGCustomBriefCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCustomBriefCell.xib; sourceTree = "<group>"; };
+		EA79B8A61724D57A00141E6D /* GGCustomBriefCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCustomBriefCell.h; sourceTree = "<group>"; };
+		EA79B8A71724D57A00141E6D /* GGCustomBriefCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCustomBriefCell.m; sourceTree = "<group>"; };
 		EA79B8AC1724D98F00141E6D /* GGCompanyEmployeesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyEmployeesVC.h; sourceTree = "<group>"; };
 		EA79B8AD1724D98F00141E6D /* GGCompanyEmployeesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyEmployeesVC.m; sourceTree = "<group>"; };
 		EA79B8AF1724F69100141E6D /* GGSimilarCompaniesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSimilarCompaniesVC.h; sourceTree = "<group>"; };
@@ -927,7 +927,7 @@
 				EA959D71171539B5005B06F6 /* GGCompanySearchCell.xib */,
 				EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */,
 				EA4F3A17171E7B5100530185 /* GGCompanyHappeningCell.xib */,
-				EA79B8A41724D36200141E6D /* GGPersonCell.xib */,
+				EA79B8A41724D36200141E6D /* GGCustomBriefCell.xib */,
 				EAF0F0911727A37F0065C39A /* GGKeywordExampleCell.xib */,
 				EA4022331728F1B800E5D179 /* GGHappeningDetailCell.xib */,
 			);
@@ -1199,8 +1199,8 @@
 				EA0E62EB172686F90002F113 /* Widgets */,
 				EA0E61F6172617B00002F113 /* CompanyOverview */,
 				EAD960431721327700A72A9C /* CompanyDetail */,
-				EA79B8A61724D57A00141E6D /* GGPersonCell.h */,
-				EA79B8A71724D57A00141E6D /* GGPersonCell.m */,
+				EA79B8A61724D57A00141E6D /* GGCustomBriefCell.h */,
+				EA79B8A71724D57A00141E6D /* GGCustomBriefCell.m */,
 				EACAE13E1709629400E7088F /* GGWelcomePageView.h */,
 				EACAE13F1709629400E7088F /* GGWelcomePageView.m */,
 				EAD481F71710FFB300556288 /* GGCompanyUpdateCell.h */,
@@ -1632,7 +1632,7 @@
 				EAD960311720E87C00A72A9C /* GGCompanyDetailUpdateCell.xib in Resources */,
 				EAD960361720ED1000A72A9C /* GGComDetailEmployeeCell.xib in Resources */,
 				EAD9603E1720F35F00A72A9C /* GGComDetailProfileCell.xib in Resources */,
-				EA79B8A51724D36200141E6D /* GGPersonCell.xib in Resources */,
+				EA79B8A51724D36200141E6D /* GGCustomBriefCell.xib in Resources */,
 				EA79B8BC17250B8800141E6D /* GGComOverviewAboutCell.xib in Resources */,
 				EA79B8C11725165800141E6D /* GGComOverviewProfileCell.xib in Resources */,
 				EA79B8C617251C3400141E6D /* GGComOverviewStockCell.xib in Resources */,
@@ -1774,7 +1774,7 @@
 				EAEABBFF1724C89300947BE9 /* GGWebVC.m in Sources */,
 				EAEABC031724C8E400947BE9 /* GGHappeningsVC.m in Sources */,
 				EA79B8A01724CEDF00141E6D /* GGBaseViewController.m in Sources */,
-				EA79B8A81724D57A00141E6D /* GGPersonCell.m in Sources */,
+				EA79B8A81724D57A00141E6D /* GGCustomBriefCell.m in Sources */,
 				EA79B8AE1724D98F00141E6D /* GGCompanyEmployeesVC.m in Sources */,
 				EA79B8B11724F69100141E6D /* GGSimilarCompaniesVC.m in Sources */,
 				EA79B8B31724FD0400141E6D /* GGTicker.m in Sources */,

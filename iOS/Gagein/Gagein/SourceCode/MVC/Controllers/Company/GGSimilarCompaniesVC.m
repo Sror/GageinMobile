@@ -10,7 +10,7 @@
 
 #import "GGDataPage.h"
 #import "SVPullToRefresh.h"
-#import "GGPersonCell.h"
+#import "GGCustomBriefCell.h"
 #import "GGCompany.h"
 #import "GGCompanyDetailVC.h"
 
@@ -51,7 +51,7 @@
     self.naviTitle = @"Similar Companies";
     
     self.tvSimilarCompanies = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
-    self.tvSimilarCompanies.rowHeight = [GGPersonCell HEIGHT];
+    self.tvSimilarCompanies.rowHeight = [GGCustomBriefCell HEIGHT];
     self.tvSimilarCompanies.dataSource = self;
     self.tvSimilarCompanies.delegate = self;
     [self.view addSubview:self.tvSimilarCompanies];
@@ -98,9 +98,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *updateCellId = @"GGPersonCell";
-    GGPersonCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
+    GGCustomBriefCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
     if (cell == nil) {
-        cell = [GGPersonCell viewFromNibWithOwner:self];
+        cell = [GGCustomBriefCell viewFromNibWithOwner:self];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
