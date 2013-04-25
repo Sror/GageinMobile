@@ -29,4 +29,17 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblChangeRightSubTitle;
 
 -(float)height;
+
+-(void)showChangeLeftImage:(BOOL)aShow;
+
+-(void)showChangeRightImage:(BOOL)aShow;
+
+-(void)showChangeLeftText:(BOOL)aShow;
+
+-(void)showChangeRightText:(BOOL)aShow;
+
+-(void)showChart:(BOOL)aShow;
+
+-(void)showChangeView:(BOOL)aShow;
+
 @end

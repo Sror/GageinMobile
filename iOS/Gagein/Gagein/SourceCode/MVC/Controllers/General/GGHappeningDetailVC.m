@@ -56,6 +56,8 @@
         {
             _currentDetail = [parser parseCompanyEventDetail];
         }
+        
+        [_tvDetail reloadData];
     }];
 }
 
@@ -78,6 +80,24 @@
     int row = indexPath.row;
     if (row == 0)
     {
+        _happeningDetailCell.lblSource.text = _currentDetail.sourceText;
+        _happeningDetailCell.lblHeadline.text = _currentDetail.headLineText;
+        _happeningDetailCell.lblInterval.text = @"1d ago";
+        
+        switch (_currentDetail.type)
+        {
+            case kGGHappeningCompanyPersonJionDetail:
+            {
+                [_happeningDetailCell showChangeView:YES];
+                [_happeningDetailCell showChangeLeftImage:YES];
+                [_happeningDetailCell showChangeRightImage:YES];
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
         return _happeningDetailCell;
     }
     

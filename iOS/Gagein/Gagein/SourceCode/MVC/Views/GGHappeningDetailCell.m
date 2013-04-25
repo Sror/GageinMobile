@@ -30,11 +30,55 @@
 {
     self.ivCellBg.image = GGSharedImagePool.stretchShadowBgWite;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    self.ivChangeLeft.layer.cornerRadius = 5;
+    self.ivChangeLeft.layer.borderColor = GGSharedColor.silver.CGColor;
+    self.ivChangeLeft.layer.borderWidth = 2;
+    
+    self.ivChangeRight.layer.cornerRadius = 5;
+    self.ivChangeRight.layer.borderColor = GGSharedColor.silver.CGColor;
+    self.ivChangeRight.layer.borderWidth = 2;
 }
 
 -(float)height
 {
     return self.frame.size.height;
+}
+
+-(void)showChangeLeftImage:(BOOL)aShow
+{
+    _ivChangeLeft.hidden = !aShow;
+    _viewChangeLeft.hidden = YES;
+}
+
+-(void)showChangeRightImage:(BOOL)aShow
+{
+    _ivChangeRight.hidden = !aShow;
+    _viewChangeRight.hidden = YES;
+}
+
+-(void)showChangeLeftText:(BOOL)aShow
+{
+    _viewChangeLeft.hidden = !aShow;
+    _ivChangeLeft.hidden = YES;
+}
+
+-(void)showChangeRightText:(BOOL)aShow
+{
+    _viewChangeRight.hidden = !aShow;
+    _ivChangeRight.hidden = YES;
+}
+
+-(void)showChart:(BOOL)aShow
+{
+    _ivChart.hidden = !aShow;
+    _viewChange.hidden = YES;
+}
+
+-(void)showChangeView:(BOOL)aShow
+{
+    _viewChange.hidden = !aShow;
+    _ivChart.hidden = YES;
 }
 
 @end

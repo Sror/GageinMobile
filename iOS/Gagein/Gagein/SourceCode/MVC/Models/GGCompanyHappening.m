@@ -164,7 +164,7 @@
         {
             //<contact name>, <old job title>, is now <new job title> at <company name>
             //#define EVENT_MSG_COM_PERSON_TITLE_CHANGED @"%@, %@, is now %@ at %@"
-            return [NSString stringWithFormat:EVENT_MSG_COM_PERSON_TITLE_CHANGED, self.person.name, self.oldJobTitle, self.jobTitle, self.company.name];
+            return [NSString stringWithFormat:EVENT_MSG_COM_PERSON_TITLE_CHANGED, self.person.name, self.oldJobTitle, self.freshJobTitle, self.company.name];
             return nil;
         }
             break;
