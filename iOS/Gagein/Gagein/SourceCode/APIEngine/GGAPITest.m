@@ -18,7 +18,7 @@ DEF_SINGLETON(GGAPITest)
 
 -(void)run
 {
-    [self _testGetUpdateSuggestionWithKeyword];
+    [self _testGetHappeningsWithPersonID];
 }
 
 -(void)_testJsonParse

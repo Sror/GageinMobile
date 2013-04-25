@@ -182,7 +182,9 @@
         _followingSectionView.lblTitle.text = @"FOLLOWING";
         _followingSectionView.ivSelected.hidden = YES;
         [_followingSectionView.btnBg addTarget:self action:@selector(_followingTapped:) forControlEvents:UIControlEventTouchUpInside];
-        [_followingSectionView.btnAdd addTarget:self action:@selector(_addCompanyAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_followingSectionView.btnAdd addTarget:self action:@selector(_addPersonAction:) forControlEvents:UIControlEventTouchUpInside];
+        _followingSectionView.btnConfig.hidden = YES;
+        _followingSectionView.btnAdd.frame = _followingSectionView.btnConfig.frame;
         
     }
     
@@ -205,7 +207,7 @@
 }
 
 
--(IBAction)_addCompanyAction:(id)sender
+-(IBAction)_addPersonAction:(id)sender
 {
     [_slideSettingView hideSlide];
     //[self searchForCompanyAction:nil];
