@@ -93,11 +93,15 @@
     self.timestamp = [[[aData objectForKey:@"timestamp"] objectForKey:@"timestamp"] longLongValue];
     self.jobTitle = [[aData objectForKey:@"jobtitle"] objectForKey:@"title"];
     self.oldJobTitle = [[aData objectForKey:@"oldjobtitle"] objectForKey:@"title"];
+    self.freshJobTitle = [[aData objectForKey:@"newjobtitle"] objectForKey:@"title"];
+    
     [self.person parseWithData:[aData objectForKey:@"person"]];
     [self.company parseWithData:[aData objectForKey:@"company"]];
+    
     self.ID = [[aData objectForKey:@"eventid"] longLongValue];
     self.type = [[aData objectForKey:@"type"] intValue];
     self.source = [[aData objectForKey:@"source"] intValue];
+    
     self.orgID = [aData objectForKey:@"orgid"];
     self.orgName = [aData objectForKey:@"org_name"];
     self.orgLogoPath = [aData objectForKey:@"org_logo_path"];

@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/APIEngine/GGApiParser.m"
-         timestampString = "388481747.9766"
+         timestampString = "388551986.57943"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "233"
-         endingLineNumber = "233"
+         startingLineNumber = "241"
+         endingLineNumber = "241"
          landmarkName = "-parseGetFunctionalAreas"
          landmarkType = "5">
       </FileBreakpoint>
@@ -164,11 +164,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
-         timestampString = "388488902.971661"
+         timestampString = "388552352.808385"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "342"
-         endingLineNumber = "342"
+         startingLineNumber = "335"
+         endingLineNumber = "335"
          landmarkName = "-_exploringTapped:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -307,11 +307,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
-         timestampString = "388488902.971661"
+         timestampString = "388552352.808385"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "416"
-         endingLineNumber = "416"
+         startingLineNumber = "409"
+         endingLineNumber = "409"
          landmarkName = "-companyDetailAction:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -475,13 +475,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
-         timestampString = "388488902.971661"
+         filePath = "Gagein/SourceCode/MVC/Controllers/General/GGHappeningDetailVC.m"
+         timestampString = "388551986.57943"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "771"
-         endingLineNumber = "771"
-         landmarkName = "-_getHappeningsDataWithPageFlag:pageTime:"
+         startingLineNumber = "48"
+         endingLineNumber = "48"
+         landmarkName = "-_callApiGetHappeningDetail"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -489,12 +489,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
-         timestampString = "388488902.971661"
+         timestampString = "388552352.808385"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "686"
-         endingLineNumber = "686"
-         landmarkName = "-_getDataWithNewsID:pageFlag:pageTime:relevance:"
+         startingLineNumber = "203"
+         endingLineNumber = "203"
+         landmarkName = "-switchButton:isOn:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Views/Widgets/GGSwitchButton.m"
+         timestampString = "388552184.428799"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "38"
+         endingLineNumber = "38"
+         landmarkName = "-switchAction"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

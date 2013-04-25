@@ -185,6 +185,14 @@
     return update;
 }
 
+-(GGCompanyHappening *)parseCompanyEventDetail
+{
+    GGCompanyHappening *happening = [GGCompanyHappening model];
+    [happening parseWithData:self.data];
+    
+    return happening;
+}
+
 -(NSArray *)parseGetMenu
 {
     NSAssert([self.data isKindOfClass:[NSArray class]], @"data shuld be an array");

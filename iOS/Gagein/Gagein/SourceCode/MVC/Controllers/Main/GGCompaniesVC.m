@@ -124,19 +124,10 @@
     self.naviTitle = @"EXPLORING";
     
     [self _initRoundSwitch];
-    
 
-    CGRect updateRc = [self viewportAdjsted];
-    
-    //
     [self _initSlideSettingView];
     
-    // ------- add scrolling view
-//    _scrollingView = [GGScrollingView viewFromNibWithOwner:self];
-//    _scrollingView.frame = self.view.bounds;
-//    _scrollingView.delegate = self;
-//    [self.view addSubview:_scrollingView];
-    
+     CGRect updateRc = [self viewportAdjsted];
     self.happeningsTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
     self.happeningsTV.rowHeight = [GGCompanyHappeningCell HEIGHT];
     self.happeningsTV.dataSource = self;
@@ -190,6 +181,9 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    // this line to solve that when view appear again, update switch doesnt get touch event
+    [_btnSwitchUpdate.superview bringSubviewToFront:_btnSwitchUpdate];
 }
 
 - (void)viewDidUnload {
@@ -566,7 +560,7 @@
     {
         GGHappeningDetailVC *vc = [[GGHappeningDetailVC alloc] init];
         vc.happenings = _happenings;
-        vc.currentIdex = row;
+        vc.currentIndex = row;
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (tableView == _slideSettingView.viewTable)
