@@ -12,6 +12,8 @@
 typedef enum {
     kGGMenuTypeCompany = 0
     , kGGMenuTypeAgent
+    , kGGMenuTypePerson
+    , kGGMenuTypeFunctionalArea
 }EGGMenuType;
 
 @interface GGMenuData : GGDataModel

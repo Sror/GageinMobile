@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GGSlideSettingView.h"
 
 @interface GGPeopleVC : GGBaseViewController
+<UITableViewDelegate
+, UITableViewDataSource
+, UISearchBarDelegate
+, GGSlideSettingViewDelegate>
+
+@property (strong)   NSMutableArray              *updates;
 
 @end

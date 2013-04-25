@@ -190,6 +190,7 @@
     //[self setNaviBar:nil];
     //[self setNaviItem:nil];
     [_updates removeAllObjects];
+    [_happenings removeAllObjects];
     [super viewDidUnload];
 }
 
