@@ -351,7 +351,7 @@
         cell.lblName.text = data.sourceText;
         cell.lblDescription.text = data.headLineText;
         cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
-        [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.orgLogoPath] placeholderImage:nil];
+        [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.photoPath] placeholderImage:GGSharedImagePool.placeholder];
         
         return cell;
     }

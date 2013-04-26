@@ -49,11 +49,15 @@ typedef enum {
 @property (copy) NSString                       *jobTitle;
 @property (copy) NSString                       *oldJobTitle;
 @property (copy) NSString                       *freshJobTitle;
+@property (copy) NSString                       *address;
+@property (copy) NSString                       *photoPath;
+
 @property (strong) GGCompanyHappeningPerson      *person;
 @property (strong) GGCompanyHappeningPerson      *company;
 @property (copy) NSString                       *change;        // e.g. LEAVE
 @property (assign) EGGHappeningType             type;
 @property (assign) EGGHappeningSource           source;
+
 @property (copy) NSString                       *orgID;
 @property (copy) NSString                       *orgName;
 @property (copy) NSString                       *orgLogoPath;

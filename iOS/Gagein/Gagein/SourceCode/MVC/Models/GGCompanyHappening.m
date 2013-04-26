@@ -94,6 +94,8 @@
     self.jobTitle = [[aData objectForKey:@"jobtitle"] objectForKey:@"title"];
     self.oldJobTitle = [[aData objectForKey:@"oldjobtitle"] objectForKey:@"title"];
     self.freshJobTitle = [[aData objectForKey:@"newjobtitle"] objectForKey:@"title"];
+    self.address = [[aData objectForKey:@"address"] objectForKey:@"address"];
+    self.photoPath = [aData objectForKey:@"photo_path"];
     
     [self.person parseWithData:[aData objectForKey:@"person"]];
     [self.company parseWithData:[aData objectForKey:@"company"]];
@@ -165,7 +167,6 @@
             //<contact name>, <old job title>, is now <new job title> at <company name>
             //#define EVENT_MSG_COM_PERSON_TITLE_CHANGED @"%@, %@, is now %@ at %@"
             return [NSString stringWithFormat:EVENT_MSG_COM_PERSON_TITLE_CHANGED, self.person.name, self.oldJobTitle, self.freshJobTitle, self.company.name];
-            return nil;
         }
             break;
             
@@ -209,7 +210,7 @@
         {
 //            //<contact name> has an updated profile picture on Linkedin
 //#define EVENT_MSG_CON_HAS_UPDATED_PROFILE_PICTURE @"%@ has an updated profile picture on LinkedIn"
-
+            return [NSString stringWithFormat:EVENT_MSG_CON_HAS_UPDATED_PROFILE_PICTURE, self.person.name];
         }
             break;
             
@@ -217,7 +218,7 @@
         {
             //            //<contact name>,has joined another company:<company name>
             //#define EVENT_MSG_CON_JOIN_ANOTHER_COMPANY @"%@ has joined another company: %@"
-            
+            return [NSString stringWithFormat:EVENT_MSG_CON_JOIN_ANOTHER_COMPANY, self.person.name, self.company.name];
         }
             break;
             
@@ -225,7 +226,7 @@
         {
             //            //<contact name> has a new location:<location name>
             //#define EVENT_MSG_CON_NEW_LOCATION @"%@ has a new location: %@"
-            
+            return [NSString stringWithFormat:EVENT_MSG_CON_NEW_LOCATION, self.person.name, self.address];
         }
             break;
             
@@ -233,6 +234,7 @@
         {
             //            //<contact name> has a new job title:<job title>
             //#define EVENT_MSG_CON_NEW_JOB_TITLE @"%@ has a new job title: %@"
+            return [NSString stringWithFormat:EVENT_MSG_CON_NEW_JOB_TITLE, self.person.name, self.jobTitle];
         }
             break;
             
