@@ -127,7 +127,7 @@
 #pragma mark -
 -(void)_getFirstPage
 {
-    [self _getDataWithNewsID:0 pageFlag:kGGPageFlagFirstPage pageTime:0];
+    [self _getDataWithEventID:0 pageFlag:kGGPageFlagFirstPage pageTime:0];
 }
 
 -(void)_getNextPage
@@ -140,23 +140,10 @@
         pageTime = last.timestamp;
     }
     
-    [self _getDataWithNewsID:newsID pageFlag:kGGPageFlagMoveDown pageTime:pageTime];
+    [self _getDataWithEventID:newsID pageFlag:kGGPageFlagMoveDown pageTime:pageTime];
 }
 
--(void)_getPrevPage
-{
-    long long newsID = 0, pageTime = 0;
-    GGCompanyHappening *first = _happenings.count > 0 ? [_happenings objectAtIndex:0] : nil;
-    if (first)
-    {
-        newsID = first.ID;
-        pageTime = first.timestamp;
-    }
-    
-    [self _getDataWithNewsID:newsID pageFlag:kGGPageFlagMoveUp pageTime:pageTime];
-}
-
--(void)_getDataWithNewsID:(long long)aNewsID pageFlag:(int)aPageFlag pageTime:(long long)aPageTime
+-(void)_getDataWithEventID:(long long)anEventID pageFlag:(int)aPageFlag pageTime:(long long)aPageTime
 {
     GGApiBlock callback = ^(id operation, id aResultObject, NSError* anError) {
 
@@ -201,7 +188,7 @@
         [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:.5f];
     };
     
-    [GGSharedAPI getHappeningsWithCompanyID:_companyID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+    [GGSharedAPI getHappeningsWithCompanyID:_companyID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
 }
 
 -(void)_delayedStopAnimating

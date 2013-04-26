@@ -730,34 +730,23 @@
 
 -(void)_getFirstHappeningPage
 {
-    [self _getHappeningsDataWithPageFlag:kGGPageFlagFirstPage pageTime:0];
+    [self _getHappeningsDataWithPageFlag:kGGPageFlagFirstPage pageTime:0 eventID:0];
 }
 
 -(void)_getNextHappeningPage
 {
-    long long pageTime = 0;
+    long long happeningID = 0, pageTime = 0;
     GGCompanyHappening *lastHappening = [_happenings lastObject];
     if (lastHappening)
     {
+        happeningID = lastHappening.ID;
         pageTime = lastHappening.timestamp;
     }
     
-    [self _getHappeningsDataWithPageFlag:kGGPageFlagMoveDown pageTime:pageTime];
+    [self _getHappeningsDataWithPageFlag:kGGPageFlagMoveDown pageTime:pageTime eventID:happeningID];
 }
 
--(void)_getPrevHappeningPage
-{
-    long long pageTime = 0;
-    GGCompanyHappening *firstHappening = _happenings.count > 0 ? [_happenings objectAtIndex:0] : nil;
-    if (firstHappening)
-    {
-        pageTime = firstHappening.timestamp;
-    }
-    
-    [self _getHappeningsDataWithPageFlag:kGGPageFlagMoveUp pageTime:pageTime];
-}
-
--(void)_getHappeningsDataWithPageFlag:(int)aPageFlag pageTime:(long long)aPageTime
+-(void)_getHappeningsDataWithPageFlag:(int)aPageFlag pageTime:(long long)aPageTime eventID:(long long)anEventID
 {
     GGApiBlock callback = ^(id operation, id aResultObject, NSError* anError) {
 
@@ -805,7 +794,7 @@
     //[self showLoadingHUD];
     if (_menuType == kGGMenuTypeCompany)
     {
-        [GGSharedAPI getHappeningsWithCompanyID:_menuID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+        [GGSharedAPI getHappeningsWithCompanyID:_menuID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
     }
     else if (_menuType == kGGMenuTypeAgent)
     {

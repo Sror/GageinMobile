@@ -33,7 +33,7 @@
 //Parameters:
 //Get company events:orgid=xxx&pageflag=0&pagetime=0&eventid=0
 //xxx is the id value, if the value is -10,return the all result.
--(void)getHappeningsWithCompanyID:(long long)aCompanyID
+-(void)getHappeningsWithCompanyID:(long long)aCompanyID  eventID:(long long)anEventID
                          pageFlag:(EGGPageFlag)aPageFlag
                          pageTime:(long long)aPageTime
                          callback:(GGApiBlock)aCallback
@@ -44,7 +44,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:__LONGLONG(0) forKey:@"eventid"];
+    [parameters setObject:__LONGLONG(anEventID) forKey:@"eventid"];
     [parameters setObject:[NSNumber numberWithInt:aPageFlag] forKey:@"pageflag"];
     [parameters setObject:[NSNumber numberWithLongLong:aPageTime] forKey:@"pagetime"];
     
@@ -54,7 +54,7 @@
 }
 
 //Get people events:  contactid=xxx&pageflag=0&pagetime=0&eventid=0
--(void)getHappeningsWithPersonID:(long long)aPersonID
+-(void)getHappeningsWithPersonID:(long long)aPersonID eventID:(long long)anEventID
                          pageFlag:(EGGPageFlag)aPageFlag
                          pageTime:(long long)aPageTime
                          callback:(GGApiBlock)aCallback
@@ -65,7 +65,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:__LONGLONG(0) forKey:@"eventid"];
+    [parameters setObject:__LONGLONG(anEventID) forKey:@"eventid"];
     [parameters setObject:[NSNumber numberWithInt:aPageFlag] forKey:@"pageflag"];
     [parameters setObject:[NSNumber numberWithLongLong:aPageTime] forKey:@"pagetime"];
     
@@ -75,7 +75,7 @@
 }
 
 //Get funcational area events: functional_areaid=xxx&pageflag=0&pagetime=0&eventid=0
--(void)getHappeningsWithFunctionalAreaID:(long long)anAreaID
+-(void)getHappeningsWithFunctionalAreaID:(long long)anAreaID eventID:(long long)anEventID
                         pageFlag:(EGGPageFlag)aPageFlag
                         pageTime:(long long)aPageTime
                         callback:(GGApiBlock)aCallback
@@ -86,7 +86,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:__LONGLONG(0) forKey:@"eventid"];
+    [parameters setObject:__LONGLONG(anEventID) forKey:@"eventid"];
     [parameters setObject:[NSNumber numberWithInt:aPageFlag] forKey:@"pageflag"];
     [parameters setObject:[NSNumber numberWithLongLong:aPageTime] forKey:@"pagetime"];
     

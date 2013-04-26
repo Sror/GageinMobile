@@ -16,7 +16,10 @@
 
 -(void)parseWithData:(NSDictionary *)aData
 {
-    NSAssert([aData isKindOfClass:[NSDictionary class]], @"data must be a dictionary.");
+    if (aData)
+    {
+        NSAssert([aData isKindOfClass:[NSDictionary class]], @"data must be a dictionary.");
+    }
     // to be implemented in subclass
 }
 

@@ -24,19 +24,19 @@
 -(void)getPeopleEventDetailWithID:(long long)anEventID callback:(GGApiBlock)aCallback;
 
 //2.tracker company event
--(void)getHappeningsWithCompanyID:(long long)aCompanyID
+-(void)getHappeningsWithCompanyID:(long long)aCompanyID  eventID:(long long)anEventID
                          pageFlag:(EGGPageFlag)aPageFlag
                          pageTime:(long long)aPageTime
                          callback:(GGApiBlock)aCallback;
 
 //2.tracker people event
--(void)getHappeningsWithPersonID:(long long)aPersonID
+-(void)getHappeningsWithPersonID:(long long)aPersonID  eventID:(long long)anEventID
                         pageFlag:(EGGPageFlag)aPageFlag
                         pageTime:(long long)aPageTime
                         callback:(GGApiBlock)aCallback;
 
 //2.tracker function area event
--(void)getHappeningsWithFunctionalAreaID:(long long)anAreaID
+-(void)getHappeningsWithFunctionalAreaID:(long long)anAreaID  eventID:(long long)anEventID
                                 pageFlag:(EGGPageFlag)aPageFlag
                                 pageTime:(long long)aPageTime
                                 callback:(GGApiBlock)aCallback;

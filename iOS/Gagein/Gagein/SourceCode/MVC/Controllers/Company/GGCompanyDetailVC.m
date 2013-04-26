@@ -569,7 +569,7 @@ typedef enum
         [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:kGGSectionHappenings] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
     
-    [GGSharedAPI getHappeningsWithCompanyID:_companyID pageFlag:kGGPageFlagFirstPage pageTime:0 callback:callback];
+    [GGSharedAPI getHappeningsWithCompanyID:_companyID eventID:0 pageFlag:kGGPageFlagFirstPage pageTime:0 callback:callback];
 }
 
 -(void)_callApiGetPeople

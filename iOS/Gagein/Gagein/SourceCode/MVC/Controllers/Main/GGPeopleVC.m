@@ -488,28 +488,28 @@
 
 -(void)_getFirstPage
 {
-    [self _getDataWithPageFlag:kGGPageFlagFirstPage pageTime:0];
+    [self _getDataWithPageFlag:kGGPageFlagFirstPage pageTime:0 eventID:0];
 }
 
 -(void)_getNextPage
 {
-    long long newsID = 0, pageTime = 0;
-    GGCompanyHappening *lastUpdate = [_updates lastObject];
-    if (lastUpdate)
+    long long happeningID = 0, pageTime = 0;
+    GGCompanyHappening *lastOne = [_updates lastObject];
+    if (lastOne)
     {
-        newsID = lastUpdate.ID;
-        pageTime = lastUpdate.timestamp;
+        happeningID = lastOne.ID;
+        pageTime = lastOne.timestamp;
     }
     
-    [self _getDataWithPageFlag:kGGPageFlagMoveDown pageTime:pageTime];
+    [self _getDataWithPageFlag:kGGPageFlagMoveDown pageTime:pageTime eventID:happeningID];
 }
 
--(void)_getDataWithPageFlag:(int)aPageFlag pageTime:(long long)aPageTime
+-(void)_getDataWithPageFlag:(int)aPageFlag pageTime:(long long)aPageTime eventID:(long long)anEventID
 {
     GGApiBlock callback = ^(id operation, id aResultObject, NSError* anError) {
         
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-        GGDataPage *page = [parser parseGetCompanyUpdates];
+        GGDataPage *page = [parser parseGetCompanyHappenings];
         
         if (page.items.count)
         {
@@ -549,11 +549,11 @@
     
     if (_menuType == kGGMenuTypePerson)
     {
-        [GGSharedAPI getHappeningsWithPersonID:_menuID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+        [GGSharedAPI getHappeningsWithPersonID:_menuID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
     }
     else if (_menuType == kGGMenuTypeFunctionalArea)
     {
-        [GGSharedAPI getHappeningsWithFunctionalAreaID:_menuID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+        [GGSharedAPI getHappeningsWithFunctionalAreaID:_menuID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
     }
 }
 
