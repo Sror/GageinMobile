@@ -25,4 +25,9 @@
 -(void)showSlide;
 -(void)hideSlide;
 -(void)hideSlideOnCompletion:(void(^)(void))completion;
+
+-(void)changeDelegate:(id<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>)aNewDelegate;
+
+-(void)showLoadingHUD;
+-(void)hideLoadingHUD;
 @end

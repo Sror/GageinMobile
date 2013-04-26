@@ -47,11 +47,12 @@
 {
     _slideSettingView = GGSharedDelegate.slideSettingView;
     _slideSettingView.delegate = self;
-    _slideSettingView.viewTable.dataSource = self;
-    _slideSettingView.viewTable.delegate = self;
+    //_slideSettingView.viewTable.dataSource = self;
+    //_slideSettingView.viewTable.delegate = self;
     _slideSettingView.viewTable.rowHeight = [GGSettingMenuCell HEIGHT];
-    _slideSettingView.searchBar.delegate = self;
+    //_slideSettingView.searchBar.delegate = self;
     _slideSettingView.searchBar.placeholder = @"Search for updates";
+    [_slideSettingView changeDelegate:self];
 }
 
 -(void)_installMenuButton
@@ -105,6 +106,13 @@
     }];
     
     [self.updatesTV triggerPullToRefresh];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_slideSettingView changeDelegate:self];
+    [self _callApiGetMenu];
 }
 
 - (void)viewDidUnload {
@@ -457,8 +465,9 @@
 #pragma mark - data handling
 -(void)_callApiGetMenu
 {
+    [_slideSettingView showLoadingHUD];
     [GGSharedAPI getMenuByType:kGGStrMenuTypePeople callback:^(id operation, id aResultObject, NSError *anError) {
-        
+        [_slideSettingView hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {

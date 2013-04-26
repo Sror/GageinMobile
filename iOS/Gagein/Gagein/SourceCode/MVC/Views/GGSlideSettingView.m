@@ -14,6 +14,9 @@
 #define SELF_WIDTH    240
 
 @implementation GGSlideSettingView
+{
+    MBProgressHUD *_hud;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -106,6 +109,27 @@
             }
         }];
     }
+}
+
+-(void)changeDelegate:(id<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>)aNewDelegate
+{
+    self.viewTable.dataSource = aNewDelegate;
+    self.viewTable.delegate = aNewDelegate;
+    self.searchBar.delegate = aNewDelegate;
+}
+
+-(void)showLoadingHUD
+{
+    //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [_hud hide:YES];
+    _hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+    _hud.mode = MBProgressHUDModeIndeterminate;
+    _hud.labelText = @"Loading";
+}
+
+-(void)hideLoadingHUD
+{
+    [_hud hide:YES];
 }
 
 @end
