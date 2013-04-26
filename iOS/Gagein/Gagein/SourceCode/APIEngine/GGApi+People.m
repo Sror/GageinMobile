@@ -62,6 +62,19 @@
 }
 
 
-
+//C01:Contact OverviewBack to top
+//GET
+///svc/contact/<contactid>/overview, e,g, /svc/contact/150704/overview
+-(void)getPersonOverviewWithID:(long long)aPersonID callback:(GGApiBlock)aCallback
+{
+    // GET
+    NSString *path = [NSString stringWithFormat:@"contact/%lld/overview", aPersonID];
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    
+    [self _execGetWithPath:path params:parameters callback:aCallback];
+}
 
 @end

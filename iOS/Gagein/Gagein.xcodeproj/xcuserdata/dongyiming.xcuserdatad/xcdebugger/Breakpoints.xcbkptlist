@@ -476,11 +476,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGPeopleVC.m"
-         timestampString = "388659311.739563"
+         timestampString = "388678322.573892"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "459"
-         endingLineNumber = "459"
+         startingLineNumber = "469"
+         endingLineNumber = "469"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -514,13 +514,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
-         timestampString = "388659311.739563"
+         filePath = "Gagein/SourceCode/MVC/Controllers/People/GGPersonDetailVC.m"
+         timestampString = "388678322.573892"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "517"
-         endingLineNumber = "517"
-         landmarkName = "-tableView:cellForRowAtIndexPath:"
+         startingLineNumber = "38"
+         endingLineNumber = "38"
+         landmarkName = "-_callApiGetPersonOverview"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

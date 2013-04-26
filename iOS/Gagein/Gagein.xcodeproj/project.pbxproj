@@ -249,6 +249,8 @@
 		EAF0F0A21727CC830065C39A /* topWhiteBgBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F0A01727CC830065C39A /* topWhiteBgBar@2x.png */; };
 		EAF0F0A61727DBCA0065C39A /* GGHappeningDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF0F0A41727DBCA0065C39A /* GGHappeningDetailVC.m */; };
 		EAF0F0AA1727DC260065C39A /* GGHappeningDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F0A91727DC260065C39A /* GGHappeningDetailVC.xib */; };
+		EAF3E93D172AC0600079344D /* GGPersonDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF3E93B172AC0600079344D /* GGPersonDetailVC.m */; };
+		EAF3E93E172AC0600079344D /* GGPersonDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF3E93C172AC0600079344D /* GGPersonDetailVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -629,6 +631,9 @@
 		EAF0F0A31727DBCA0065C39A /* GGHappeningDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGHappeningDetailVC.h; sourceTree = "<group>"; };
 		EAF0F0A41727DBCA0065C39A /* GGHappeningDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGHappeningDetailVC.m; sourceTree = "<group>"; };
 		EAF0F0A91727DC260065C39A /* GGHappeningDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGHappeningDetailVC.xib; sourceTree = "<group>"; };
+		EAF3E93A172AC0600079344D /* GGPersonDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPersonDetailVC.h; sourceTree = "<group>"; };
+		EAF3E93B172AC0600079344D /* GGPersonDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPersonDetailVC.m; sourceTree = "<group>"; };
+		EAF3E93C172AC0600079344D /* GGPersonDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGPersonDetailVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -708,6 +713,9 @@
 			children = (
 				EA559759172A24CB000CE9E3 /* GGFollowPeopleVC.h */,
 				EA55975A172A24CB000CE9E3 /* GGFollowPeopleVC.m */,
+				EAF3E93A172AC0600079344D /* GGPersonDetailVC.h */,
+				EAF3E93B172AC0600079344D /* GGPersonDetailVC.m */,
+				EAF3E93C172AC0600079344D /* GGPersonDetailVC.xib */,
 			);
 			path = People;
 			sourceTree = "<group>";
@@ -1691,6 +1699,7 @@
 				EA559761172A2B80000CE9E3 /* GGFollowPeopleVC.xib in Resources */,
 				EA55976A172A5A1F000CE9E3 /* Icon@2x.png in Resources */,
 				EA55976E172A5AB5000CE9E3 /* Icon.png in Resources */,
+				EAF3E93E172AC0600079344D /* GGPersonDetailVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1825,6 +1834,7 @@
 				EA55975B172A24CB000CE9E3 /* GGFollowPeopleVC.m in Sources */,
 				EA55975E172A29C6000CE9E3 /* GGStyledSearchBar.m in Sources */,
 				EA559771172A6981000CE9E3 /* GGApi+People.m in Sources */,
+				EAF3E93D172AC0600079344D /* GGPersonDetailVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

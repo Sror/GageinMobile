@@ -21,4 +21,7 @@
 //MC02:UnFollow ContactBack to top
 -(void)unfollowPersonWithID:(long long)aPersonID callback:(GGApiBlock)aCallback;
 
+
+//C01:Contact OverviewBack to top
+-(void)getPersonOverviewWithID:(long long)aPersonID callback:(GGApiBlock)aCallback;
 @end

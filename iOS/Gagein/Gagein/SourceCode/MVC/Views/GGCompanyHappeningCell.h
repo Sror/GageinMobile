@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblInterval;
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
 @property (weak, nonatomic) IBOutlet UIImageView *ivCellBg;
+@property (weak, nonatomic) IBOutlet UIButton *btnLogo;
 
 +(float)HEIGHT;
 @end

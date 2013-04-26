@@ -19,6 +19,7 @@
 #import "GGCompanyHappeningCell.h"
 #import "GGCompanyHappening.h"
 #import "GGFollowPeopleVC.h"
+#import "GGPersonDetailVC.h"
 
 @interface GGPeopleVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
@@ -343,6 +344,14 @@
     return 0;
 }
 
+-(void)_enterPersonDetailAction:(UIButton *)aButton
+{
+    GGCompanyHappening *data = self.updates[aButton.tag];
+    GGPersonDetailVC *vc = [[GGPersonDetailVC alloc] init];
+    vc.personID = data.person.ID;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = indexPath.row;
@@ -353,12 +362,13 @@
         GGCompanyHappeningCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
         if (cell == nil) {
             cell = [GGCompanyHappeningCell viewFromNibWithOwner:self];
+            [cell.btnLogo addTarget:self action:@selector(_enterPersonDetailAction:) forControlEvents:UIControlEventTouchUpInside];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
         GGCompanyHappening *data = self.updates[row];
         
-        cell.tag = indexPath.row;
+        cell.tag = cell.btnLogo.tag = indexPath.row;
         cell.lblName.text = data.sourceText;
         cell.lblDescription.text = data.headLineText;
         cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
