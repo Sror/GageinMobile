@@ -14,18 +14,60 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        //
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+#pragma mark - text field delegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    // Drawing code
+    if ([_delegate respondsToSelector:@selector(searchBarShouldBeginEditing:)]) {
+        return [_delegate searchBarShouldBeginEditing:self];
+    }
+    return YES;
 }
-*/
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [_delegate searchBarTextDidBeginEditing:self];
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    if ([_delegate respondsToSelector:@selector(searchBarShouldEndEditing:)]) {
+        return [_delegate searchBarShouldEndEditing:self];
+    }
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [_delegate searchBarTextDidEndEditing:self];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if ([_delegate respondsToSelector:@selector(searchBar:shouldChangeTextInRange:replacementText:)]) {
+        return [_delegate searchBar:self shouldChangeTextInRange:range replacementText:string];
+    }
+    return YES;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField
+{
+    if ([_delegate respondsToSelector:@selector(searchBarShouldClear:)]) {
+        return [_delegate searchBarShouldClear:self];
+    }
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if ([_delegate respondsToSelector:@selector(searchBarShouldSearch:)]) {
+        return [_delegate searchBarShouldSearch:self];
+    }
+    return YES;
+}
 
 @end

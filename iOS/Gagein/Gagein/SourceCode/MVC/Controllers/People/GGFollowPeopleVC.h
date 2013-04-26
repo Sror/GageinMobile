@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GGStyledSearchBar.h"
 
 @interface GGFollowPeopleVC : GGBaseViewController
-
+<GGStyledSearchBarDelegate>
 @end

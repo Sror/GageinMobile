@@ -7,7 +7,7 @@
 //
 
 #import "GGFollowPeopleVC.h"
-#import "GGStyledSearchBar.h"
+
 
 @interface GGFollowPeopleVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *svContent;
@@ -32,6 +32,7 @@
 {
     [super viewDidLoad];
     self.svContent.backgroundColor = GGSharedColor.silver;
+    self.naviTitle = @"Follow People";
     
     _searchBar = [GGStyledSearchBar viewFromNibWithOwner:self];
     [self.svContent addSubview:_searchBar];
@@ -41,4 +42,41 @@
     [self setSvContent:nil];
     [super viewDidUnload];
 }
+
+#pragma mark - styled search bar delegate
+- (BOOL)searchBarShouldBeginEditing:(GGStyledSearchBar *)searchBar
+{
+    return YES;
+}
+
+- (void)searchBarTextDidBeginEditing:(GGStyledSearchBar *)searchBar
+{
+    
+}
+
+- (BOOL)searchBarShouldEndEditing:(GGStyledSearchBar *)searchBar
+{
+    return YES;
+}
+
+- (void)searchBarTextDidEndEditing:(GGStyledSearchBar *)searchBar
+{
+    
+}
+
+- (BOOL)searchBar:(GGStyledSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    return YES;
+}
+
+- (BOOL)searchBarShouldClear:(GGStyledSearchBar *)searchBar
+{
+    return YES;
+}
+
+- (BOOL)searchBarShouldSearch:(GGStyledSearchBar *)searchBar
+{
+    return YES;
+}
+
 @end
