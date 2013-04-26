@@ -238,7 +238,7 @@
             }
         }
     }
-    else if (tableView == self.tvPeople)
+    else if (tableView == self.tvSearchResult)
     {
         GGPerson *data = _searchedPeople[row];
         
@@ -249,40 +249,45 @@
         }
         else
         {
-//            [GGSharedAPI followCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
-//                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-//                if (parser.isOK)
-//                {
-//                    int indexInFollowedList = [self _indexInFollowedListWithCompanyID:company.ID];
-//                    if (indexInFollowedList != NSNotFound)
-//                    {
-//                        GGCompany *followedCompany = _followedCompanies[indexInFollowedList];
-//                        followedCompany.followed = YES;
-//                        
-//                        [self.tableViewCompanies reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexInFollowedList inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-//                    }
-//                    else
-//                    {
-//                        company.followed = YES;
-//                        [_followedCompanies insertObject:company atIndex:0];
-//                        
-//                        [self.tableViewCompanies insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-//                    }
-//                    
-//                    
-//                    [self searchBarCancelButtonClicked:self.searchBar];
-//                }
-//                else
-//                {
-//                    [GGAlert alert:parser.message];
-//                }
-//            }];
+            [GGSharedAPI followPersonWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                if (parser.isOK)
+                {
+                    int indexInFollowedList = [self _indexInFollowedListWithPersonID:data.ID];
+                    if (indexInFollowedList != NSNotFound)
+                    {
+                        GGPerson *followedPerson = _followedPeople[indexInFollowedList];
+                        followedPerson.followed = YES;
+                        
+                        [self.tvPeople reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexInFollowedList inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    }
+                    else
+                    {
+                        data.followed = YES;
+                        [_followedPeople insertObject:data atIndex:0];
+                        
+                        [self.tvPeople insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    }
+                    
+                    [self _cancelSearch];
+                }
+                else
+                {
+                    [GGAlert alert:parser.message];
+                }
+            }];
         }
     }
 }
 
 
 #pragma mark - styled search bar delegate
+-(void)_cancelSearch
+{
+    [_searchBar.tfSearch resignFirstResponder];
+    _viewSearchBg.hidden = YES;
+}
+
 - (BOOL)searchBarShouldBeginEditing:(GGStyledSearchBar *)searchBar
 {
     return YES;

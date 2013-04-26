@@ -9,7 +9,16 @@
 #import <Foundation/Foundation.h>
 
 @interface GGApi (People)
+
+//SC01:Search ContactsBack to top
 -(void)searchPeopleWithKeyword:(NSString *)aKeyword
                           page:(int)aPage
                       callback:(GGApiBlock)aCallback;
+
+//MC01:Follow ContactBack to top
+-(void)followPersonWithID:(long long)aPersonID callback:(GGApiBlock)aCallback;
+
+//MC02:UnFollow ContactBack to top
+-(void)unfollowPersonWithID:(long long)aPersonID callback:(GGApiBlock)aCallback;
+
 @end

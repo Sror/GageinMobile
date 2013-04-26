@@ -29,4 +29,39 @@
     [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
+//MC01:Follow ContactBack to top
+//GET
+///svc/member/me/contact/follow
+-(void)followPersonWithID:(long long)aPersonID callback:(GGApiBlock)aCallback
+{
+    //GET
+    NSString *path = @"member/me/contact/follow";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:[NSNumber numberWithLongLong:aPersonID] forKey:@"contactid"];
+    
+    [self _execGetWithPath:path params:parameters callback:aCallback];
+}
+
+//MC02:UnFollow ContactBack to top
+//GET
+///svc/member/me/contact/unfollow
+-(void)unfollowPersonWithID:(long long)aPersonID callback:(GGApiBlock)aCallback
+{
+    //GET
+    NSString *path = @"member/me/contact/unfollow";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:[NSNumber numberWithLongLong:aPersonID] forKey:@"contactid"];
+    
+    [self _execGetWithPath:path params:parameters callback:aCallback];
+}
+
+
+
+
 @end
