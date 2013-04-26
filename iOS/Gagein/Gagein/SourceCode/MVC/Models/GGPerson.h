@@ -24,4 +24,6 @@
 
 @property (strong)  GGCompany *company;
 @property (strong)  NSMutableArray  *socialProfiles;    // each element is a GGSocialProfile
+
+@property (assign) BOOL     followed;
 @end

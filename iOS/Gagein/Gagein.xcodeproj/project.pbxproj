@@ -120,6 +120,7 @@
 		EA559761172A2B80000CE9E3 /* GGFollowPeopleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA559755172A248B000CE9E3 /* GGFollowPeopleVC.xib */; };
 		EA55976A172A5A1F000CE9E3 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA559769172A5A1E000CE9E3 /* Icon@2x.png */; };
 		EA55976E172A5AB5000CE9E3 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA55976D172A5AB4000CE9E3 /* Icon.png */; };
+		EA559771172A6981000CE9E3 /* GGApi+People.m in Sources */ = {isa = PBXBuildFile; fileRef = EA559770172A6981000CE9E3 /* GGApi+People.m */; };
 		EA7180D41715008900347EA4 /* FXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D31715008900347EA4 /* FXPageControl.m */; };
 		EA7180D917150AAF00347EA4 /* GGFollowCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */; };
 		EA7180E4171511B700347EA4 /* GGSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180E3171511B700347EA4 /* GGSearchBar.m */; };
@@ -429,6 +430,8 @@
 		EA55975F172A29E9000CE9E3 /* GGStyledSearchBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGStyledSearchBar.xib; sourceTree = "<group>"; };
 		EA559769172A5A1E000CE9E3 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		EA55976D172A5AB4000CE9E3 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		EA55976F172A6980000CE9E3 /* GGApi+People.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GGApi+People.h"; sourceTree = "<group>"; };
+		EA559770172A6981000CE9E3 /* GGApi+People.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GGApi+People.m"; sourceTree = "<group>"; };
 		EA7180D21715008900347EA4 /* FXPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXPageControl.h; sourceTree = "<group>"; };
 		EA7180D31715008900347EA4 /* FXPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXPageControl.m; sourceTree = "<group>"; };
 		EA7180D617150AAF00347EA4 /* GGFollowCompanyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFollowCompanyVC.h; sourceTree = "<group>"; };
@@ -1146,6 +1149,8 @@
 				EA0908261712A94100BCD4C4 /* GGApi+Config.m */,
 				EA0A15EB1716B6B5004D0C73 /* GGApi+Tracker.h */,
 				EA0A15EC1716B6B5004D0C73 /* GGApi+Tracker.m */,
+				EA55976F172A6980000CE9E3 /* GGApi+People.h */,
+				EA559770172A6981000CE9E3 /* GGApi+People.m */,
 			);
 			path = APIEngine;
 			sourceTree = "<group>";
@@ -1819,6 +1824,7 @@
 				EA4022311728F1A000E5D179 /* GGHappeningDetailCell.m in Sources */,
 				EA55975B172A24CB000CE9E3 /* GGFollowPeopleVC.m in Sources */,
 				EA55975E172A29C6000CE9E3 /* GGStyledSearchBar.m in Sources */,
+				EA559771172A6981000CE9E3 /* GGApi+People.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

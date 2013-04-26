@@ -1,0 +1,32 @@
+//
+//  GGApi+People.m
+//  Gagein
+//
+//  Created by dong yiming on 13-4-26.
+//  Copyright (c) 2013年 gagein. All rights reserved.
+//
+
+#import "GGApi+People.h"
+
+@implementation GGApi (People)
+
+//SC01:Search ContactsBack to top
+//POST
+///svc/search/contacts
+-(void)searchPeopleWithKeyword:(NSString *)aKeyword
+                             page:(int)aPage
+                         callback:(GGApiBlock)aCallback
+{
+    //POST
+    NSString *path = @"search/contacts";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:[NSNumber numberWithInt:aPage] forKey:@"page"];
+    [parameters setObject:aKeyword forKey:@"q"];
+    
+    [self _execPostWithPath:path params:parameters callback:aCallback];
+}
+
+@end

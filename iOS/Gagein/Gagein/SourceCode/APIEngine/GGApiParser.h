@@ -52,4 +52,7 @@
 #pragma mark - config
 -(GGDataPage *)parseGetAgents;
 -(GGDataPage *)parseGetFunctionalAreas;
+
+#pragma mark - people
+-(GGDataPage *)parseSearchForPeople;
 @end

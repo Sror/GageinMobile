@@ -241,4 +241,10 @@
     return [self _parsePageforClass:[GGFunctionalArea class]];
 }
 
+#pragma mark - people
+-(GGDataPage *)parseSearchForPeople
+{
+    return [self _parsePageforClass:[GGPerson class]];
+}
+
 @end
