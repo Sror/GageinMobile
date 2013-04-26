@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGCompanySearchCell : UITableViewCell
+@interface GGSearchSuggestionCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *ivLogo;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblWebsite;

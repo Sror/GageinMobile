@@ -10,7 +10,7 @@
 #import "GGSearchBar.h"
 #import "GGDataPage.h"
 #import "GGCompany.h"
-#import "GGCompanySearchCell.h"
+#import "GGSearchSuggestionCell.h"
 
 @interface GGFollowCompanyVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *viewScroll;
@@ -66,7 +66,7 @@
     float height = self.view.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT + self.tabBarController.tabBar.frame.size.height;
     _tvSearchResultRectShort = [GGUtils setH:height rect:_tvSearchResultRect];
     
-    self.tableViewSearchResult.rowHeight = [GGCompanySearchCell HEIGHT];
+    self.tableViewSearchResult.rowHeight = [GGSearchSuggestionCell HEIGHT];
     
     [self _showTitle:YES];
     [self _showDoneBtn:YES];
@@ -182,9 +182,9 @@
 {
     if (tableView == self.tableViewSearchResult) {
         static NSString *searchResultCellId = @"GGCompanySearchCell";
-        GGCompanySearchCell *cell = [tableView dequeueReusableCellWithIdentifier:searchResultCellId];
+        GGSearchSuggestionCell *cell = [tableView dequeueReusableCellWithIdentifier:searchResultCellId];
         if (cell == nil) {
-            cell = [GGCompanySearchCell viewFromNibWithOwner:self];
+            cell = [GGSearchSuggestionCell viewFromNibWithOwner:self];
         }
         
         GGCompany *companyData = _searchedCompanies[indexPath.row];

@@ -141,8 +141,8 @@
 		EA844A33171FBE2200658015 /* DCRoundSwitchOutlineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2E171FBE2200658015 /* DCRoundSwitchOutlineLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA844A34171FBE2200658015 /* DCRoundSwitchToggleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A30171FBE2200658015 /* DCRoundSwitchToggleLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA844A36171FD29C00658015 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA844A35171FD29B00658015 /* MessageUI.framework */; };
-		EA959D72171539B5005B06F6 /* GGCompanySearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA959D71171539B5005B06F6 /* GGCompanySearchCell.xib */; };
-		EA959D75171539DD005B06F6 /* GGCompanySearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA959D74171539DD005B06F6 /* GGCompanySearchCell.m */; };
+		EA959D72171539B5005B06F6 /* GGSearchSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA959D71171539B5005B06F6 /* GGSearchSuggestionCell.xib */; };
+		EA959D75171539DD005B06F6 /* GGSearchSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA959D74171539DD005B06F6 /* GGSearchSuggestionCell.m */; };
 		EA959D7717157102005B06F6 /* topOrangeLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA959D7617157102005B06F6 /* topOrangeLine@2x.png */; };
 		EAAD14D4170AA8D600EFB23A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAD14D3170AA8D600EFB23A /* MBProgressHUD.m */; };
 		EAAD14D7170AACD900EFB23A /* GGApiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAD14D6170AACD900EFB23A /* GGApiParser.m */; };
@@ -462,9 +462,9 @@
 		EA844A2F171FBE2200658015 /* DCRoundSwitchToggleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitchToggleLayer.h; sourceTree = "<group>"; };
 		EA844A30171FBE2200658015 /* DCRoundSwitchToggleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitchToggleLayer.m; sourceTree = "<group>"; };
 		EA844A35171FD29B00658015 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		EA959D71171539B5005B06F6 /* GGCompanySearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanySearchCell.xib; sourceTree = "<group>"; };
-		EA959D73171539DD005B06F6 /* GGCompanySearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanySearchCell.h; sourceTree = "<group>"; };
-		EA959D74171539DD005B06F6 /* GGCompanySearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanySearchCell.m; sourceTree = "<group>"; };
+		EA959D71171539B5005B06F6 /* GGSearchSuggestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSearchSuggestionCell.xib; sourceTree = "<group>"; };
+		EA959D73171539DD005B06F6 /* GGSearchSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSearchSuggestionCell.h; sourceTree = "<group>"; };
+		EA959D74171539DD005B06F6 /* GGSearchSuggestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSearchSuggestionCell.m; sourceTree = "<group>"; };
 		EA959D7617157102005B06F6 /* topOrangeLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topOrangeLine@2x.png"; sourceTree = "<group>"; };
 		EAAD14D2170AA8D600EFB23A /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EAAD14D3170AA8D600EFB23A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
@@ -943,7 +943,7 @@
 				EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */,
 				EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */,
 				EA24FA2F1713B2FF003AFBA9 /* GGScrollingView.xib */,
-				EA959D71171539B5005B06F6 /* GGCompanySearchCell.xib */,
+				EA959D71171539B5005B06F6 /* GGSearchSuggestionCell.xib */,
 				EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */,
 				EA4F3A17171E7B5100530185 /* GGCompanyHappeningCell.xib */,
 				EA79B8A41724D36200141E6D /* GGCustomBriefCell.xib */,
@@ -1232,8 +1232,8 @@
 				EA24FA2C1713B269003AFBA9 /* GGScrollingView.m */,
 				EA7180E2171511B700347EA4 /* GGSearchBar.h */,
 				EA7180E3171511B700347EA4 /* GGSearchBar.m */,
-				EA959D73171539DD005B06F6 /* GGCompanySearchCell.h */,
-				EA959D74171539DD005B06F6 /* GGCompanySearchCell.m */,
+				EA959D73171539DD005B06F6 /* GGSearchSuggestionCell.h */,
+				EA959D74171539DD005B06F6 /* GGSearchSuggestionCell.m */,
 				EAAE07391716609A007C4A30 /* GGNaviBackButton.h */,
 				EAAE073A1716609A007C4A30 /* GGNaviBackButton.m */,
 				EAEFB4ED1717B1560013634F /* GGSettingHeaderView.h */,
@@ -1597,7 +1597,7 @@
 				EAD481F51710FF9100556288 /* GGCompanyUpdateCell.xib in Resources */,
 				EAD481FB1711060500556288 /* comLogo.png in Resources */,
 				EA24FA301713B2FF003AFBA9 /* GGScrollingView.xib in Resources */,
-				EA959D72171539B5005B06F6 /* GGCompanySearchCell.xib in Resources */,
+				EA959D72171539B5005B06F6 /* GGSearchSuggestionCell.xib in Resources */,
 				EA959D7717157102005B06F6 /* topOrangeLine@2x.png in Resources */,
 				EA525E881715A5E700052B17 /* gageinLogo@2x.png in Resources */,
 				EA525E8B1715A68E00052B17 /* welcome1stGraph@2x.png in Resources */,
@@ -1765,7 +1765,7 @@
 				EA7180D41715008900347EA4 /* FXPageControl.m in Sources */,
 				EA7180D917150AAF00347EA4 /* GGFollowCompanyVC.m in Sources */,
 				EA7180E4171511B700347EA4 /* GGSearchBar.m in Sources */,
-				EA959D75171539DD005B06F6 /* GGCompanySearchCell.m in Sources */,
+				EA959D75171539DD005B06F6 /* GGSearchSuggestionCell.m in Sources */,
 				EAAE073B1716609A007C4A30 /* GGNaviBackButton.m in Sources */,
 				EAAE0746171689DC007C4A30 /* GGAnimation.m in Sources */,
 				EA0A15ED1716B6B5004D0C73 /* GGApi+Tracker.m in Sources */,

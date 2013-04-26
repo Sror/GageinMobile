@@ -11,35 +11,60 @@
 
 @interface GGFollowPeopleVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *svContent;
+@property (weak, nonatomic) IBOutlet UIButton *btnLinkedIn;
+@property (weak, nonatomic) IBOutlet UITableView *tvPeople;
+@property (weak, nonatomic) IBOutlet UIView *viewSearchBg;
+@property (weak, nonatomic) IBOutlet UITableView *tvSearchResult;
 
 @end
 
 @implementation GGFollowPeopleVC
 {
     GGStyledSearchBar *_searchBar;
+    
+    CGRect              _tvSearchResultRect;
+    CGRect              _tvSearchResultRectShort;
+    
+    NSTimer             *_searchTimer;
+    
+    NSMutableArray      *_searchedPeople;
+    NSMutableArray      *_followedPeople;
+    NSMutableArray      *_suggestedPeople;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _searchedPeople = [NSMutableArray array];
+        _followedPeople = [NSMutableArray array];
+        _suggestedPeople = [NSMutableArray array];
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
+    self.navigationItem.hidesBackButton = YES;
+    
     [super viewDidLoad];
     self.svContent.backgroundColor = GGSharedColor.silver;
     self.naviTitle = @"Follow People";
     
     _searchBar = [GGStyledSearchBar viewFromNibWithOwner:self];
     [self.svContent addSubview:_searchBar];
+    
+    _tvSearchResultRect = self.tvSearchResult.frame;
+    float height = self.view.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT + self.tabBarController.tabBar.frame.size.height;
+    _tvSearchResultRectShort = [GGUtils setH:height rect:_tvSearchResultRect];
 }
 
 - (void)viewDidUnload {
     [self setSvContent:nil];
+    [self setBtnLinkedIn:nil];
+    [self setTvPeople:nil];
+    [self setViewSearchBg:nil];
+    [self setTvSearchResult:nil];
     [super viewDidUnload];
 }
 

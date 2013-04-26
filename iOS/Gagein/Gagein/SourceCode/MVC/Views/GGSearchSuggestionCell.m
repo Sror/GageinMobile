@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 gagein. All rights reserved.
 //
 
-#import "GGCompanySearchCell.h"
+#import "GGSearchSuggestionCell.h"
 
-@implementation GGCompanySearchCell
+@implementation GGSearchSuggestionCell
 
 - (id)initWithFrame:(CGRect)frame
 {
