@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GGSettingVC : GGBaseViewController
-
+<UITableViewDataSource, UITableViewDelegate>
 @end

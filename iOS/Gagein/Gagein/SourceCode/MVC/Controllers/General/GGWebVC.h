@@ -10,4 +10,5 @@
 
 @interface GGWebVC : GGBaseViewController <UIWebViewDelegate>
 @property (copy) NSString *urlStr;
+@property (copy) NSString *naviTitleString;
 @end

@@ -29,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.naviTitle = _naviTitleString;
 	
     _webview = [[UIWebView alloc] initWithFrame:[self viewportAdjsted]];
     _webview.delegate = self;
