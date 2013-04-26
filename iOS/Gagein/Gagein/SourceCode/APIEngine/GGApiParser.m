@@ -193,14 +193,14 @@
     return happening;
 }
 
--(NSArray *)parseGetMenu
+-(NSArray *)parseGetMenu:(BOOL)aIsCompanyMenu
 {
     NSAssert([self.data isKindOfClass:[NSArray class]], @"data shuld be an array");
     NSMutableArray *results = [NSMutableArray array];
     
     NSArray *data = self.data;
 #warning type data must be given by API, currently by client
-    int type = 0;
+    int type = aIsCompanyMenu ? kGGMenuTypeCompany : kGGMenuTypePerson;
     for (NSDictionary *dic in data)
     {
         NSAssert([dic isKindOfClass:[NSDictionary class]], @"data shuld be an array");

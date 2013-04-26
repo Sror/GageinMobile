@@ -459,7 +459,7 @@
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
-            _menuDatas = [parser parseGetMenu];
+            _menuDatas = [parser parseGetMenu:NO];
             
             if (_menuID == GG_ALL_RESULT_ID)
             {

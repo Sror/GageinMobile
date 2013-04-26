@@ -47,7 +47,7 @@
 -(GGDataPage *)parseFollowedCompanies;
 -(GGCompanyUpdate *)parseGetCompanyUpdateDetail;
 -(GGCompanyHappening *)parseCompanyEventDetail;
--(NSArray *)parseGetMenu;
+-(NSArray *)parseGetMenu:(BOOL)aIsCompanyMenu;
 
 #pragma mark - config
 -(GGDataPage *)parseGetAgents;
