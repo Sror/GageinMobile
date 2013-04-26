@@ -18,6 +18,7 @@
 
 #import "GGCompanyHappeningCell.h"
 #import "GGCompanyHappening.h"
+#import "GGFollowPeopleVC.h"
 
 @interface GGPeopleVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
@@ -184,7 +185,7 @@
         [_followingSectionView.btnBg addTarget:self action:@selector(_followingTapped:) forControlEvents:UIControlEventTouchUpInside];
         [_followingSectionView.btnAdd addTarget:self action:@selector(_addPersonAction:) forControlEvents:UIControlEventTouchUpInside];
         _followingSectionView.btnConfig.hidden = YES;
-        _followingSectionView.btnAdd.frame = _followingSectionView.btnConfig.frame;
+        //_followingSectionView.btnAdd.frame = _followingSectionView.btnConfig.frame;
         
     }
     
@@ -210,7 +211,9 @@
 -(IBAction)_addPersonAction:(id)sender
 {
     [_slideSettingView hideSlide];
-    //[self searchForCompanyAction:nil];
+    
+    GGFollowPeopleVC *vc = [[GGFollowPeopleVC alloc] init];
+    [self.navigationController pushViewController:vc animated:NO];
 }
 
 -(IBAction)_followingTapped:(id)sender

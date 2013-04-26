@@ -114,6 +114,10 @@
 		EA525EBC1715ADF800052B17 /* pageDotYellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA525EAA1715ADF800052B17 /* pageDotYellow@2x.png */; };
 		EA525EBD1715ADF800052B17 /* txtAlreadyMembLogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA525EAB1715ADF800052B17 /* txtAlreadyMembLogin@2x.png */; };
 		EA525EBE1715ADF800052B17 /* txtSignupToJion@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA525EAC1715ADF800052B17 /* txtSignupToJion@2x.png */; };
+		EA55975B172A24CB000CE9E3 /* GGFollowPeopleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA55975A172A24CB000CE9E3 /* GGFollowPeopleVC.m */; };
+		EA55975E172A29C6000CE9E3 /* GGStyledSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA55975D172A29C6000CE9E3 /* GGStyledSearchBar.m */; };
+		EA559760172A29E9000CE9E3 /* GGStyledSearchBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA55975F172A29E9000CE9E3 /* GGStyledSearchBar.xib */; };
+		EA559761172A2B80000CE9E3 /* GGFollowPeopleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA559755172A248B000CE9E3 /* GGFollowPeopleVC.xib */; };
 		EA7180D41715008900347EA4 /* FXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D31715008900347EA4 /* FXPageControl.m */; };
 		EA7180D917150AAF00347EA4 /* GGFollowCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */; };
 		EA7180E4171511B700347EA4 /* GGSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180E3171511B700347EA4 /* GGSearchBar.m */; };
@@ -415,6 +419,12 @@
 		EA525EAA1715ADF800052B17 /* pageDotYellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pageDotYellow@2x.png"; sourceTree = "<group>"; };
 		EA525EAB1715ADF800052B17 /* txtAlreadyMembLogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "txtAlreadyMembLogin@2x.png"; sourceTree = "<group>"; };
 		EA525EAC1715ADF800052B17 /* txtSignupToJion@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "txtSignupToJion@2x.png"; sourceTree = "<group>"; };
+		EA559755172A248B000CE9E3 /* GGFollowPeopleVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGFollowPeopleVC.xib; sourceTree = "<group>"; };
+		EA559759172A24CB000CE9E3 /* GGFollowPeopleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFollowPeopleVC.h; sourceTree = "<group>"; };
+		EA55975A172A24CB000CE9E3 /* GGFollowPeopleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFollowPeopleVC.m; sourceTree = "<group>"; };
+		EA55975C172A29C6000CE9E3 /* GGStyledSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGStyledSearchBar.h; sourceTree = "<group>"; };
+		EA55975D172A29C6000CE9E3 /* GGStyledSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGStyledSearchBar.m; sourceTree = "<group>"; };
+		EA55975F172A29E9000CE9E3 /* GGStyledSearchBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGStyledSearchBar.xib; sourceTree = "<group>"; };
 		EA7180D21715008900347EA4 /* FXPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXPageControl.h; sourceTree = "<group>"; };
 		EA7180D31715008900347EA4 /* FXPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXPageControl.m; sourceTree = "<group>"; };
 		EA7180D617150AAF00347EA4 /* GGFollowCompanyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFollowCompanyVC.h; sourceTree = "<group>"; };
@@ -689,6 +699,8 @@
 		EA09080B1712659E00BCD4C4 /* People */ = {
 			isa = PBXGroup;
 			children = (
+				EA559759172A24CB000CE9E3 /* GGFollowPeopleVC.h */,
+				EA55975A172A24CB000CE9E3 /* GGFollowPeopleVC.m */,
 			);
 			path = People;
 			sourceTree = "<group>";
@@ -774,6 +786,8 @@
 			children = (
 				EA0E62EC172687050002F113 /* GGSwitchButton.h */,
 				EA0E62ED172687050002F113 /* GGSwitchButton.m */,
+				EA55975C172A29C6000CE9E3 /* GGStyledSearchBar.h */,
+				EA55975D172A29C6000CE9E3 /* GGStyledSearchBar.m */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -782,6 +796,7 @@
 			isa = PBXGroup;
 			children = (
 				EA0E62F0172687220002F113 /* GGSwitchButton.xib */,
+				EA55975F172A29E9000CE9E3 /* GGStyledSearchBar.xib */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -1466,6 +1481,7 @@
 		EAEFB4D71717A8100013634F /* People */ = {
 			isa = PBXGroup;
 			children = (
+				EA559755172A248B000CE9E3 /* GGFollowPeopleVC.xib */,
 			);
 			path = People;
 			sourceTree = "<group>";
@@ -1660,6 +1676,8 @@
 				EAF0F0A21727CC830065C39A /* topWhiteBgBar@2x.png in Resources */,
 				EAF0F0AA1727DC260065C39A /* GGHappeningDetailVC.xib in Resources */,
 				EA4022341728F1B800E5D179 /* GGHappeningDetailCell.xib in Resources */,
+				EA559760172A29E9000CE9E3 /* GGStyledSearchBar.xib in Resources */,
+				EA559761172A2B80000CE9E3 /* GGFollowPeopleVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1791,6 +1809,8 @@
 				EAF0F0981727A8830065C39A /* GGComUpdateSearchResultVC.m in Sources */,
 				EAF0F0A61727DBCA0065C39A /* GGHappeningDetailVC.m in Sources */,
 				EA4022311728F1A000E5D179 /* GGHappeningDetailCell.m in Sources */,
+				EA55975B172A24CB000CE9E3 /* GGFollowPeopleVC.m in Sources */,
+				EA55975E172A29C6000CE9E3 /* GGStyledSearchBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
