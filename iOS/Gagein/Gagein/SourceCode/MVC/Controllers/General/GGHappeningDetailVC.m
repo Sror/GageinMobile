@@ -47,11 +47,11 @@
     [self _callApiGetHappeningDetail];
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self pushBackButtonFront];
-}
+//-(void)viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+//    [self pushBackButtonFront];
+//}
 
 - (void)viewDidUnload {
     [self setTvDetail:nil];

@@ -90,6 +90,12 @@
     }
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self pushBackButtonFront];
+}
+
 #pragma mark - UI element
 -(void)setNaviTitle:(NSString *)aNaviTitle
 {

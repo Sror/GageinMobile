@@ -65,6 +65,12 @@ typedef enum
     [self.view addSubview:_tv];
 }
 
+//-(void)viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+//    [self pushBackButtonFront];
+//}
+
 #pragma mark - actions
 -(IBAction)_seeStockAction:(id)sender
 {

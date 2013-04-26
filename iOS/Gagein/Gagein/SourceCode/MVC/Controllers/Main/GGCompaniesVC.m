@@ -171,6 +171,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:_btnSwitchUpdate];
+    _btnSwitchUpdate.hidden = (_menuType == kGGMenuTypeAgent);
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -356,6 +357,8 @@
     [self.happenings removeAllObjects];
     [self.happeningsTV reloadData];
     [self.happeningsTV triggerPullToRefresh];
+    
+    _btnSwitchUpdate.hidden = (_menuType == kGGMenuTypeAgent);
 }
 
 -(void)_unselectAllMenuItem

@@ -108,6 +108,12 @@ typedef enum
     [self _callApiGetSimilarCompanies];
 }
 
+//-(void)viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+//    [self pushBackButtonFront];
+//}
+
 - (void)viewDidUnload {
     [self setIvLogo:nil];
     [self setLblName:nil];
