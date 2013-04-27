@@ -40,7 +40,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _updates = [NSMutableArray array];
     }
     return self;
 }
@@ -203,7 +203,7 @@
     if (section == 0) {
         
         header.lblTitle.text = @"UPDATES";
-        [header.lblAction addTarget:self action:@selector(_seeAllUpdatesAction:) forControlEvents:UIControlEventTouchUpInside];
+        [header.lblAction addTarget:self action:@selector(_seeAllHappeningsAction:) forControlEvents:UIControlEventTouchUpInside];
         
     } else if (section == 1) {
         
@@ -234,6 +234,7 @@
     self.naviTitle = _personOverview.name;
     self.lblTitle.text = _personOverview.orgTitle;
     self.lblAddress.text = _personOverview.address;
+    
     [self _updateUiBtnFollow];
     
     [_tvDetail reloadData];
@@ -252,7 +253,7 @@
 }
 
 #pragma mark - actions
--(IBAction)followCompanyAction:(id)sender
+-(IBAction)followPersonAction:(id)sender
 {
     if (_personOverview.followed)
     {
@@ -308,17 +309,17 @@
 -(void)_callApiGetHappenings
 {
     GGApiBlock callback = ^(id operation, id aResultObject, NSError* anError) {
-        //DLog(@"%@", aResultObject);
-        
-        //[self hideLoadingHUD];
+
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-        GGDataPage *page = [parser parseGetCompanyHappenings];
-        //DLog(@"%@", page);
-        
-        [_updates removeAllObjects];
-        [_updates addObjectsFromArray:[GGUtils arrayWithArray:page.items maxCount:3]];
-        
-        [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        if (parser.isOK)
+        {
+            GGDataPage *page = [parser parseGetCompanyHappenings];
+            
+            [_updates removeAllObjects];
+            [_updates addObjectsFromArray:[GGUtils arrayWithArray:page.items maxCount:3]];
+            
+            [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
     };
     
     [GGSharedAPI getHappeningsWithPersonID:_personID eventID:0 pageFlag:kGGPageFlagFirstPage pageTime:0 callback:callback];
