@@ -21,6 +21,7 @@
 #import "GGFollowPeopleVC.h"
 #import "GGPersonDetailVC.h"
 #import "GGHappeningDetailVC.h"
+#import "GGSelectFuncAreasVC.h"
 
 @interface GGPeopleVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
@@ -228,8 +229,8 @@
 -(IBAction)_exploringConfigTapped:(id)sender
 {
     [_slideSettingView hideSlide];
-    //GGSelectAgentsVC *vc = [[GGSelectAgentsVC alloc] init];
-    //[self.navigationController pushViewController:vc animated:YES];
+    GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(IBAction)_exploringTapped:(id)sender
