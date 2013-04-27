@@ -11,6 +11,7 @@
 #import "GGCustomBriefCell.h"
 #import "GGHappeningDetailCell.h"
 #import "GGCompanyDetailVC.h"
+#import "GGPersonDetailVC.h"
 
 @interface GGHappeningDetailVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tvDetail;
@@ -158,7 +159,9 @@
         }
         else
         {
-            // person
+            GGPersonDetailVC *vc = [[GGPersonDetailVC alloc] init];
+            vc.personID = _currentDetail.person.ID;
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
 }
@@ -167,10 +170,7 @@
 #pragma mark - API calls
 -(void)_callApiGetHappeningDetail
 {
-    GGCompanyHappening *data = _happenings[_currentIndex];
-    
-    [self showLoadingHUD];
-    [GGSharedAPI getCompanyEventDetailWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+    GGApiBlock callback = ^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
@@ -180,7 +180,20 @@
         }
         
         [_tvDetail reloadData];
-    }];
+    };
+    
+    GGCompanyHappening *data = _happenings[_currentIndex];
+    
+    [self showLoadingHUD];
+    if (_isPeopleHappening)
+    {
+        [GGSharedAPI getPeopleEventDetailWithID:data.ID callback:callback];
+    }
+    else
+    {
+        [GGSharedAPI getCompanyEventDetailWithID:data.ID callback:callback];
+    }
+    
 }
 
 @end

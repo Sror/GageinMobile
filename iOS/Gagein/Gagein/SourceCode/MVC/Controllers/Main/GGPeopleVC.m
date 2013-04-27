@@ -20,6 +20,7 @@
 #import "GGCompanyHappening.h"
 #import "GGFollowPeopleVC.h"
 #import "GGPersonDetailVC.h"
+#import "GGHappeningDetailVC.h"
 
 @interface GGPeopleVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
@@ -433,19 +434,13 @@
     
     if (tableView == self.updatesTV)
     {
-//        GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
-//        vc.naviTitleString = self.naviTitle;
-//        vc.updates = self.updates;
-//        vc.updateIndex = row;
-//        [self.navigationController pushViewController:vc animated:YES];
+        GGHappeningDetailVC *vc = [[GGHappeningDetailVC alloc] init];
+        vc.isPeopleHappening = YES;
+        vc.happenings = _updates;
+        vc.currentIndex = row;
+        [self.navigationController pushViewController:vc animated:YES];
+
     }
-//    else if (tableView == self.happeningsTV)
-//    {
-//        GGHappeningDetailVC *vc = [[GGHappeningDetailVC alloc] init];
-//        vc.happenings = _happenings;
-//        vc.currentIndex = row;
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
     else if (tableView == _slideSettingView.viewTable)
     {
         GGDataPage *thePage = _menuDatas[indexPath.section];

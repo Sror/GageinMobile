@@ -14,4 +14,5 @@
 <UITableViewDataSource, UITableViewDelegate>
 @property (strong) NSMutableArray       *happenings;
 @property (assign)     NSUInteger          currentIndex;
+@property (assign)  BOOL                isPeopleHappening;
 @end
