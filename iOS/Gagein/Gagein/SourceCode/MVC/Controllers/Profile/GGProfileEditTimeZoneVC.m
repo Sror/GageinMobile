@@ -9,6 +9,7 @@
 #import "GGProfileEditTimeZoneVC.h"
 
 @interface GGProfileEditTimeZoneVC ()
+@property (weak, nonatomic) IBOutlet UITableView *tvTimeZone;
 
 @end
 
@@ -30,10 +31,30 @@
     self.naviTitle = @"TimeZone";
 }
 
-- (void)didReceiveMemoryWarning
+
+- (void)viewDidUnload {
+    [self setTvTimeZone:nil];
+    [super viewDidUnload];
+}
+
+#pragma mark - table view datasource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return 24;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellID = @"cellID";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
+    }
+
+    cell.textLabel.text = @"Alaska";
+    cell.detailTextLabel.text = @"UTC-9:00";
+
+    return cell;
 }
 
 @end

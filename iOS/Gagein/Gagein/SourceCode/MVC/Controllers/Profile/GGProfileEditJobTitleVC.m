@@ -9,6 +9,8 @@
 #import "GGProfileEditJobTitleVC.h"
 
 @interface GGProfileEditJobTitleVC ()
+@property (weak, nonatomic) IBOutlet UITextField *tfJobTitle;
+@property (weak, nonatomic) IBOutlet UIButton *btnSave;
 
 @end
 
@@ -36,4 +38,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload {
+    [self setTfJobTitle:nil];
+    [self setBtnSave:nil];
+    [super viewDidUnload];
+}
 @end

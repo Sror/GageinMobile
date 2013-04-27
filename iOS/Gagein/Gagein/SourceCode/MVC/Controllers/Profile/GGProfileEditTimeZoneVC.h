@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GGProfileEditTimeZoneVC : GGBaseViewController
-
+<UITableViewDataSource, UITableViewDelegate>
 @end

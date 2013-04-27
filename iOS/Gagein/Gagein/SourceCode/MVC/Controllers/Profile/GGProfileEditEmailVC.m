@@ -9,6 +9,8 @@
 #import "GGProfileEditEmailVC.h"
 
 @interface GGProfileEditEmailVC ()
+@property (weak, nonatomic) IBOutlet UITextField *tfEmail;
+@property (weak, nonatomic) IBOutlet UIButton *btnSave;
 
 @end
 
@@ -36,4 +38,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload {
+    [self setTfEmail:nil];
+    [self setBtnSave:nil];
+    [super viewDidUnload];
+}
 @end
