@@ -83,6 +83,7 @@
 		EA381C68171FBC19004535B5 /* GGSavedUpdatesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA381C67171FBC19004535B5 /* GGSavedUpdatesVC.xib */; };
 		EA4022311728F1A000E5D179 /* GGHappeningDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4022301728F1A000E5D179 /* GGHappeningDetailCell.m */; };
 		EA4022341728F1B800E5D179 /* GGHappeningDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4022331728F1B800E5D179 /* GGHappeningDetailCell.xib */; };
+		EA4CC67F172B736B0082A048 /* GGPersonDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4CC67E172B736B0082A048 /* GGPersonDetailVC.xib */; };
 		EA4F3A18171E7B5100530185 /* GGCompanyHappeningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4F3A17171E7B5100530185 /* GGCompanyHappeningCell.xib */; };
 		EA4F3A1C171E7C4C00530185 /* GGCompanyHappeningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4F3A1B171E7C4C00530185 /* GGCompanyHappeningCell.m */; };
 		EA4F3A1F171E7FC800530185 /* GGCompanyHappening.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4F3A1E171E7FC800530185 /* GGCompanyHappening.m */; };
@@ -250,7 +251,6 @@
 		EAF0F0A61727DBCA0065C39A /* GGHappeningDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF0F0A41727DBCA0065C39A /* GGHappeningDetailVC.m */; };
 		EAF0F0AA1727DC260065C39A /* GGHappeningDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F0A91727DC260065C39A /* GGHappeningDetailVC.xib */; };
 		EAF3E93D172AC0600079344D /* GGPersonDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF3E93B172AC0600079344D /* GGPersonDetailVC.m */; };
-		EAF3E93E172AC0600079344D /* GGPersonDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF3E93C172AC0600079344D /* GGPersonDetailVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -391,6 +391,7 @@
 		EA40222F1728F1A000E5D179 /* GGHappeningDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGHappeningDetailCell.h; sourceTree = "<group>"; };
 		EA4022301728F1A000E5D179 /* GGHappeningDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGHappeningDetailCell.m; sourceTree = "<group>"; };
 		EA4022331728F1B800E5D179 /* GGHappeningDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGHappeningDetailCell.xib; sourceTree = "<group>"; };
+		EA4CC67E172B736B0082A048 /* GGPersonDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGPersonDetailVC.xib; sourceTree = "<group>"; };
 		EA4F3A17171E7B5100530185 /* GGCompanyHappeningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyHappeningCell.xib; sourceTree = "<group>"; };
 		EA4F3A1A171E7C4C00530185 /* GGCompanyHappeningCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyHappeningCell.h; sourceTree = "<group>"; };
 		EA4F3A1B171E7C4C00530185 /* GGCompanyHappeningCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyHappeningCell.m; sourceTree = "<group>"; };
@@ -633,7 +634,6 @@
 		EAF0F0A91727DC260065C39A /* GGHappeningDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGHappeningDetailVC.xib; sourceTree = "<group>"; };
 		EAF3E93A172AC0600079344D /* GGPersonDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPersonDetailVC.h; sourceTree = "<group>"; };
 		EAF3E93B172AC0600079344D /* GGPersonDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPersonDetailVC.m; sourceTree = "<group>"; };
-		EAF3E93C172AC0600079344D /* GGPersonDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGPersonDetailVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -715,7 +715,6 @@
 				EA55975A172A24CB000CE9E3 /* GGFollowPeopleVC.m */,
 				EAF3E93A172AC0600079344D /* GGPersonDetailVC.h */,
 				EAF3E93B172AC0600079344D /* GGPersonDetailVC.m */,
-				EAF3E93C172AC0600079344D /* GGPersonDetailVC.xib */,
 			);
 			path = People;
 			sourceTree = "<group>";
@@ -1500,6 +1499,7 @@
 		EAEFB4D71717A8100013634F /* People */ = {
 			isa = PBXGroup;
 			children = (
+				EA4CC67E172B736B0082A048 /* GGPersonDetailVC.xib */,
 				EA559755172A248B000CE9E3 /* GGFollowPeopleVC.xib */,
 			);
 			path = People;
@@ -1699,7 +1699,7 @@
 				EA559761172A2B80000CE9E3 /* GGFollowPeopleVC.xib in Resources */,
 				EA55976A172A5A1F000CE9E3 /* Icon@2x.png in Resources */,
 				EA55976E172A5AB5000CE9E3 /* Icon.png in Resources */,
-				EAF3E93E172AC0600079344D /* GGPersonDetailVC.xib in Resources */,
+				EA4CC67F172B736B0082A048 /* GGPersonDetailVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

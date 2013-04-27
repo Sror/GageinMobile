@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface GGPersonDetailVC : GGBaseViewController
+<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 @property (assign) long long personID;
 @end

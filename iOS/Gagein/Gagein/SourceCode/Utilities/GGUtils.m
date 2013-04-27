@@ -44,4 +44,26 @@
     return [[UIDevice currentDevice] orientation];
 }
 
++(NSArray *)arrayWithArray:(NSArray *)anArray maxCount:(NSUInteger)aIndex
+{
+    NSMutableArray *returnedArray = nil;
+    
+    if (anArray.count && aIndex)
+    {
+        int count = 0;
+        returnedArray = [NSMutableArray array];
+        for (id item in anArray)
+        {
+            [returnedArray addObject:item];
+            count++;
+            if (count > aIndex - 1)
+            {
+                break;
+            }
+        }
+    }
+    
+    return returnedArray;
+}
+
 @end

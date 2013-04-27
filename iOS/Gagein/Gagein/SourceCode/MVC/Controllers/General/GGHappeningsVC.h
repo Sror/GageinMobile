@@ -12,4 +12,6 @@
 <UITableViewDelegate, UITableViewDataSource>
 @property (strong)   NSMutableArray              *happenings;
 @property (assign) long long                      companyID;
+@property (assign) long long                      personID;
+@property (assign) BOOL                          isPersonHappenings;
 @end

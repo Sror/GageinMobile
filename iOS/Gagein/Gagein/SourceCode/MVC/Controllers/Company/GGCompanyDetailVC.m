@@ -517,27 +517,6 @@ typedef enum
     }];
 }
 
--(NSArray *)_getArray:(NSArray *)anArray maxCount:(NSUInteger)aIndex
-{
-    NSMutableArray *returnedArray = nil;
-    
-    if (anArray.count && aIndex)
-    {
-        int count = 0;
-        returnedArray = [NSMutableArray array];
-        for (id item in anArray)
-        {
-            [returnedArray addObject:item];
-            count++;
-            if (count > aIndex - 1)
-            {
-                break;
-            }
-        }
-    }
-    
-    return returnedArray;
-}
 
 -(void)_callApiGetUpdates
 {
@@ -550,7 +529,7 @@ typedef enum
         //DLog(@"%@", page);
         
         [_updates removeAllObjects];
-        [_updates addObjectsFromArray:[self _getArray:page.items maxCount:3]];
+        [_updates addObjectsFromArray:[GGUtils arrayWithArray:page.items maxCount:3]];
         
         [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:kGGSectionUpdates] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
@@ -570,7 +549,7 @@ typedef enum
         //DLog(@"%@", page);
         
         [_happenings removeAllObjects];
-        [_happenings addObjectsFromArray:[self _getArray:page.items maxCount:3]];
+        [_happenings addObjectsFromArray:[GGUtils arrayWithArray:page.items maxCount:3]];
         
         [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:kGGSectionHappenings] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
@@ -587,7 +566,7 @@ typedef enum
             GGDataPage *page = [parser parseGetCompanyPeople];
             
             [_people removeAllObjects];
-            [_people addObjectsFromArray:[self _getArray:page.items maxCount:3]];
+            [_people addObjectsFromArray:[GGUtils arrayWithArray:page.items maxCount:3]];
             
             [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:kGGSectionEmployees] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
@@ -603,7 +582,7 @@ typedef enum
             GGDataPage *page = [parser parseGetSimilarCompanies];
             
             [_similarCompanies removeAllObjects];
-            [_similarCompanies addObjectsFromArray:[self _getArray:page.items maxCount:3]];
+            [_similarCompanies addObjectsFromArray:[GGUtils arrayWithArray:page.items maxCount:3]];
             
             [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:kGGSectionSimilarCompanies] withRowAnimation:UITableViewRowAnimationAutomatic];
         }

@@ -188,7 +188,15 @@
         [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:.5f];
     };
     
-    [GGSharedAPI getHappeningsWithCompanyID:_companyID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+    if (_isPersonHappenings)
+    {
+        [GGSharedAPI getHappeningsWithPersonID:_personID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+    }
+    else
+    {
+        [GGSharedAPI getHappeningsWithCompanyID:_companyID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+    }
+    
 }
 
 -(void)_delayedStopAnimating

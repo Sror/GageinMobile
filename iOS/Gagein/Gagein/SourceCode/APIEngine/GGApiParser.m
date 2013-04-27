@@ -167,6 +167,15 @@
     return company;
 }
 
+-(GGPerson *)parseGetPersonOverview
+{
+    GG_ASSERT_API_DATA_IS_DIC;
+    GGPerson *person = [GGPerson model];
+    [person parseWithData:self.data];
+    
+    return person;
+}
+
 -(GGDataPage *)parseSearchCompany
 {
     return [self _parsePageforClass:[GGCompany class]];

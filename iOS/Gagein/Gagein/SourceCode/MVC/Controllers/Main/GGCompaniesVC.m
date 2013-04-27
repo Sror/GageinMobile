@@ -175,6 +175,7 @@
     _btnSwitchUpdate.hidden = (_menuType == kGGMenuTypeAgent);
     
     [_slideSettingView changeDelegate:self];
+    _slideSettingView.viewTable.tableHeaderView = _slideSettingView.searchBar;
     [self _callApiGetMenu];
 }
 
@@ -604,13 +605,13 @@
 //    DLog(@"scrolling to index:%d", aPageIndex);
 //}
 
-//-(void)scrollViewDidScroll:(UIScrollView *)scrollView
-//{
-//    if (scrollView == _slideSettingView.viewTable)
-//    {
-//        [_slideSettingView.searchBar resignFirstResponder];
-//    }
-//}
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView == _slideSettingView.viewTable)
+    {
+        [_slideSettingView.searchBar resignFirstResponder];
+    }
+}
 
 
 #pragma mark - data handling

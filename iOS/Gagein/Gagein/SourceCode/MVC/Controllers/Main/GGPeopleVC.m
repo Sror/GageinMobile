@@ -114,6 +114,7 @@
 {
     [super viewWillAppear:animated];
     [_slideSettingView changeDelegate:self];
+    _slideSettingView.viewTable.tableHeaderView = nil;
     [self _callApiGetMenu];
 }
 

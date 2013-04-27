@@ -13,6 +13,7 @@
 @class GGCompany;
 @class GGCompanyUpdate;
 @class GGCompanyHappening;
+@class GGPerson;
 
 @interface GGApiParser : NSObject
 @property (strong)  NSDictionary    *apiData;
@@ -43,6 +44,7 @@
 -(GGDataPage *)parseGetCompanyPeople;
 -(GGDataPage *)parseGetSimilarCompanies;
 -(GGCompany *)parseGetCompanyOverview;
+-(GGPerson *)parseGetPersonOverview;
 -(GGDataPage *)parseSearchCompany;
 -(GGDataPage *)parseFollowedCompanies;
 -(GGCompanyUpdate *)parseGetCompanyUpdateDetail;
