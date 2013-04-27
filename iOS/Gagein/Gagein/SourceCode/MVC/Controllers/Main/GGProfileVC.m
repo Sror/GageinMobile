@@ -10,6 +10,12 @@
 #import "GGProfileHeaderView.h"
 #import "GGProfileFooterView.h"
 
+#import "GGProfileEditNameVC.h"
+#import "GGProfileEditEmailVC.h"
+#import "GGProfileEditCompanyVC.h"
+#import "GGProfileEditJobTitleVC.h"
+#import "GGProfileEditTimeZoneVC.h"
+
 @interface GGProfileVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tvProfile;
 
@@ -126,25 +132,31 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     int row = indexPath.row;
+    
     if (row == 0) {
         
-        //@"Name";
+        GGProfileEditNameVC *vc = [[GGProfileEditNameVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
         
     } else if (row == 1) {
         
-        //@"Email";
+        GGProfileEditEmailVC *vc = [[GGProfileEditEmailVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
         
     } else if (row == 2) {
         
-        //@"Company";
+        GGProfileEditCompanyVC *vc = [[GGProfileEditCompanyVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
         
     } else if (row == 3) {
         
-        //@"Job Title";
+        GGProfileEditJobTitleVC *vc = [[GGProfileEditJobTitleVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
         
     } else if (row == 4) {
         
-        //@"Time Zone";
+        GGProfileEditTimeZoneVC *vc = [[GGProfileEditTimeZoneVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
         
     }
 }
