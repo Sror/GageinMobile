@@ -13,6 +13,7 @@
 #import "GGSelectFuncAreasVC.h"
 #import "GGFollowCompanyVC.h"
 #import "GGWebVC.h"
+#import "GGProfileVC.h"
 
 #define FOOTER_HEIGHT   80
 
@@ -196,7 +197,8 @@
     
     if (section == 0) {
         
-        // my profile
+        GGProfileVC *vc = [[GGProfileVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
         
     } else if (section == 1) {
         

@@ -24,4 +24,6 @@
 
 //C01:Contact OverviewBack to top
 -(void)getPersonOverviewWithID:(long long)aPersonID callback:(GGApiBlock)aCallback;
+
+-(void)getMyOverview:(GGApiBlock)aCallback;
 @end

@@ -131,21 +131,6 @@
 #pragma mark - UISearchBar delegate
 -(BOOL)_searchAction:(UISearchBar *)searchBar
 {
-//    if (searchBar.text.length)
-//    {
-//        GGComUpdateSearchVC *vc = [[GGComUpdateSearchVC alloc] init];
-//        vc.keyword = searchBar.text;
-//        searchBar.text = @"";
-//        
-//        [_slideSettingView hideSlideOnCompletion:^{
-//            
-//        }];
-//        
-//        [self.navigationController pushViewController:vc animated:NO];
-//        
-//        return YES;
-//    }
-    
     return NO;
 }
 

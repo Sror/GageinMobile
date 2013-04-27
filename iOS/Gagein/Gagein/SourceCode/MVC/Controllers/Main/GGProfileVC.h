@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GGProfileVC : GGBaseViewController
-
+<UITableViewDataSource, UITableViewDelegate>
 @end
