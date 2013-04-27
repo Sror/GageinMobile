@@ -26,11 +26,26 @@
 
 -(void)awakeFromNib
 {
-    UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0, KNOB_RADIUS, 0, KNOB_RADIUS);
-    _ivBgOn.image = [[UIImage imageNamed:@"switch_bg_orange"] resizableImageWithCapInsets:edgeInsets];
-    _ivBgOff.image = [[UIImage imageNamed:@"switch_bg_gray"] resizableImageWithCapInsets:edgeInsets];
     [_btnSwitch addTarget:self action:@selector(switchAction) forControlEvents:UIControlEventTouchUpInside];
+    [self changeSkin:NO];
     _viewOff.hidden = _isOn;
+}
+
+-(void)changeSkin:(BOOL)aIsLight
+{
+    UIEdgeInsets edgeInsets = UIEdgeInsetsMake(0, KNOB_RADIUS, 0, KNOB_RADIUS);
+    if (aIsLight)
+    {
+        _ivBgOn.image = [[UIImage imageNamed:@"switch_on_light"] resizableImageWithCapInsets:edgeInsets];
+        _ivBgOff.image = [[UIImage imageNamed:@"switch_off_light"] resizableImageWithCapInsets:edgeInsets];
+        _ivKnobOff.image = _ivKnobOn.image = [UIImage imageNamed:@"switch_knob_light"];
+    }
+    else
+    {
+        _ivBgOn.image = [[UIImage imageNamed:@"switch_bg_orange"] resizableImageWithCapInsets:edgeInsets];
+        _ivBgOff.image = [[UIImage imageNamed:@"switch_bg_gray"] resizableImageWithCapInsets:edgeInsets];
+        _ivKnobOff.image = _ivKnobOn.image = [UIImage imageNamed:@"switch_knob_gray"];
+    }
 }
 
 -(void)switchAction

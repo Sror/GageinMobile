@@ -31,4 +31,5 @@
 
 
 +(float)HEIGHT;
+-(void)changeSkin:(BOOL)aIsLight;
 @end

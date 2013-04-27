@@ -30,6 +30,7 @@
 #import "GGSelectAgentsVC.h"
 #import "GGSearchBar.h"
 #import "GGSwitchButton.h"
+#import "GGRelevanceBar.h"
 
 #define SWITCH_WIDTH 90
 #define SWITCH_HEIGHT 20
@@ -44,6 +45,7 @@
     EGGCompanyUpdateRelevance   _relevance;
     //GGScrollingView             *_scrollingView;
     GGSlideSettingView          *_slideSettingView;
+    GGRelevanceBar              *_relevanceBar;
     
     GGSwitchButton             *_btnSwitchUpdate;
     BOOL                       _isShowingUpdate;
@@ -58,7 +60,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _relevance = kGGCompanyUpdateRelevanceNormal;
+        _relevance = kGGCompanyUpdateRelevanceHigh;
         _updates = [NSMutableArray array];
         _happenings = [NSMutableArray array];
         _menuType = kGGMenuTypeAgent;   // exploring...
@@ -72,18 +74,13 @@
 {
     _slideSettingView = GGSharedDelegate.slideSettingView;
     _slideSettingView.delegate = self;
-    //_slideSettingView.viewTable.dataSource = self;
-    //_slideSettingView.viewTable.delegate = self;
     _slideSettingView.viewTable.rowHeight = [GGSettingMenuCell HEIGHT];
-    //_slideSettingView.searchBar.delegate = self;
     _slideSettingView.searchBar.placeholder = @"Search for updates";
     [_slideSettingView changeDelegate:self];
 }
 
 -(void)_installMenuButton
 {
-    //UIBarButtonItem *menuBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(optionMenuAction:)];
-    
     UIImage *menuBtnImg = [UIImage imageNamed:@"menuBtn"];
     UIView *containingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, menuBtnImg.size.width, menuBtnImg.size.height)];
     UIButton *menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -128,7 +125,16 @@
 
     [self _initSlideSettingView];
     
+    _relevanceBar = [GGRelevanceBar viewFromNibWithOwner:self];
+    _relevanceBar.frame = CGRectOffset(_relevanceBar.frame, 0, 5);
+    [self.view addSubview:_relevanceBar];
+    _relevanceBar.btnSwitch.delegate = self;
+    _relevanceBar.btnSwitch.lblOn.text = @"High";
+    _relevanceBar.btnSwitch.lblOff.text = @"Medium";
+    _relevanceBar.btnSwitch.isOn = YES;
+    
      CGRect updateRc = [self viewportAdjsted];
+    
     self.happeningsTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
     self.happeningsTV.rowHeight = [GGCompanyHappeningCell HEIGHT];
     self.happeningsTV.dataSource = self;
@@ -137,6 +143,8 @@
     self.happeningsTV.backgroundColor = GGSharedColor.silver;
     [self.view addSubview:self.happeningsTV];
     
+    updateRc.origin.y = CGRectGetMaxY(_relevanceBar.frame) - 5;
+    updateRc.size.height = self.view.frame.size.height - updateRc.origin.y;
     self.updatesTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
     self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
     self.updatesTV.dataSource = self;
@@ -144,6 +152,8 @@
     //[_scrollingView addPage:self.updatesTV];
     self.updatesTV.backgroundColor = GGSharedColor.silver;
     [self.view addSubview:self.updatesTV];
+    
+    [self.view bringSubviewToFront:_relevanceBar];
     
     // setup pull-to-refresh and infinite scrolling
     __weak GGCompaniesVC *weakSelf = self;
@@ -211,7 +221,14 @@
     if (aSwitchButton == _btnSwitchUpdate)
     {
         _isShowingUpdate = aIsOn;
-        self.updatesTV.hidden = !_isShowingUpdate;
+        self.updatesTV.hidden = _relevanceBar.hidden = !_isShowingUpdate;
+    } else if (aSwitchButton == _relevanceBar.btnSwitch)
+    {
+        _relevance = (_relevanceBar.btnSwitch.isOn) ? kGGCompanyUpdateRelevanceHigh : kGGCompanyUpdateRelevanceNormal;
+        
+        [_updates removeAllObjects];
+        [self.updatesTV reloadData];
+        [self.updatesTV triggerPullToRefresh];
     }
 }
 

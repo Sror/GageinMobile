@@ -84,6 +84,8 @@
 		EA4022311728F1A000E5D179 /* GGHappeningDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4022301728F1A000E5D179 /* GGHappeningDetailCell.m */; };
 		EA4022341728F1B800E5D179 /* GGHappeningDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4022331728F1B800E5D179 /* GGHappeningDetailCell.xib */; };
 		EA4CC67F172B736B0082A048 /* GGPersonDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4CC67E172B736B0082A048 /* GGPersonDetailVC.xib */; };
+		EA4CC683172B98D10082A048 /* GGRelevanceBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4CC682172B98D10082A048 /* GGRelevanceBar.m */; };
+		EA4CC685172B98E90082A048 /* GGRelevanceBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4CC684172B98E90082A048 /* GGRelevanceBar.xib */; };
 		EA4F3A18171E7B5100530185 /* GGCompanyHappeningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4F3A17171E7B5100530185 /* GGCompanyHappeningCell.xib */; };
 		EA4F3A1C171E7C4C00530185 /* GGCompanyHappeningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4F3A1B171E7C4C00530185 /* GGCompanyHappeningCell.m */; };
 		EA4F3A1F171E7FC800530185 /* GGCompanyHappening.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4F3A1E171E7FC800530185 /* GGCompanyHappening.m */; };
@@ -245,7 +247,7 @@
 		EAF0F0981727A8830065C39A /* GGComUpdateSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF0F0971727A8830065C39A /* GGComUpdateSearchResultVC.m */; };
 		EAF0F09C1727CC700065C39A /* switch_knob_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F0991727CC700065C39A /* switch_knob_light@2x.png */; };
 		EAF0F09D1727CC700065C39A /* switch_off_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F09A1727CC700065C39A /* switch_off_light@2x.png */; };
-		EAF0F09E1727CC700065C39A /* switch_on_light@x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F09B1727CC700065C39A /* switch_on_light@x.png */; };
+		EAF0F09E1727CC700065C39A /* switch_on_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F09B1727CC700065C39A /* switch_on_light@2x.png */; };
 		EAF0F0A11727CC830065C39A /* menuBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F09F1727CC830065C39A /* menuBtn@2x.png */; };
 		EAF0F0A21727CC830065C39A /* topWhiteBgBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF0F0A01727CC830065C39A /* topWhiteBgBar@2x.png */; };
 		EAF0F0A61727DBCA0065C39A /* GGHappeningDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF0F0A41727DBCA0065C39A /* GGHappeningDetailVC.m */; };
@@ -392,6 +394,9 @@
 		EA4022301728F1A000E5D179 /* GGHappeningDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGHappeningDetailCell.m; sourceTree = "<group>"; };
 		EA4022331728F1B800E5D179 /* GGHappeningDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGHappeningDetailCell.xib; sourceTree = "<group>"; };
 		EA4CC67E172B736B0082A048 /* GGPersonDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGPersonDetailVC.xib; sourceTree = "<group>"; };
+		EA4CC681172B98D10082A048 /* GGRelevanceBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGRelevanceBar.h; sourceTree = "<group>"; };
+		EA4CC682172B98D10082A048 /* GGRelevanceBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGRelevanceBar.m; sourceTree = "<group>"; };
+		EA4CC684172B98E90082A048 /* GGRelevanceBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGRelevanceBar.xib; sourceTree = "<group>"; };
 		EA4F3A17171E7B5100530185 /* GGCompanyHappeningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyHappeningCell.xib; sourceTree = "<group>"; };
 		EA4F3A1A171E7C4C00530185 /* GGCompanyHappeningCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyHappeningCell.h; sourceTree = "<group>"; };
 		EA4F3A1B171E7C4C00530185 /* GGCompanyHappeningCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyHappeningCell.m; sourceTree = "<group>"; };
@@ -626,7 +631,7 @@
 		EAF0F0971727A8830065C39A /* GGComUpdateSearchResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComUpdateSearchResultVC.m; sourceTree = "<group>"; };
 		EAF0F0991727CC700065C39A /* switch_knob_light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_knob_light@2x.png"; sourceTree = "<group>"; };
 		EAF0F09A1727CC700065C39A /* switch_off_light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_off_light@2x.png"; sourceTree = "<group>"; };
-		EAF0F09B1727CC700065C39A /* switch_on_light@x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_on_light@x.png"; sourceTree = "<group>"; };
+		EAF0F09B1727CC700065C39A /* switch_on_light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_on_light@2x.png"; sourceTree = "<group>"; };
 		EAF0F09F1727CC830065C39A /* menuBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuBtn@2x.png"; sourceTree = "<group>"; };
 		EAF0F0A01727CC830065C39A /* topWhiteBgBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topWhiteBgBar@2x.png"; sourceTree = "<group>"; };
 		EAF0F0A31727DBCA0065C39A /* GGHappeningDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGHappeningDetailVC.h; sourceTree = "<group>"; };
@@ -820,7 +825,7 @@
 			children = (
 				EAF0F0991727CC700065C39A /* switch_knob_light@2x.png */,
 				EAF0F09A1727CC700065C39A /* switch_off_light@2x.png */,
-				EAF0F09B1727CC700065C39A /* switch_on_light@x.png */,
+				EAF0F09B1727CC700065C39A /* switch_on_light@2x.png */,
 				EA0E62F31726873E0002F113 /* switch_bg_gray@2x.png */,
 				EA0E62F41726873E0002F113 /* switch_bg_orange@2x.png */,
 				EA0E62F51726873E0002F113 /* switch_knob_gray@2x.png */,
@@ -959,6 +964,7 @@
 				EA79B8A41724D36200141E6D /* GGCustomBriefCell.xib */,
 				EAF0F0911727A37F0065C39A /* GGKeywordExampleCell.xib */,
 				EA4022331728F1B800E5D179 /* GGHappeningDetailCell.xib */,
+				EA4CC684172B98E90082A048 /* GGRelevanceBar.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1258,6 +1264,8 @@
 				EAF0F0941727A39E0065C39A /* GGKeywordExampleCell.m */,
 				EA40222F1728F1A000E5D179 /* GGHappeningDetailCell.h */,
 				EA4022301728F1A000E5D179 /* GGHappeningDetailCell.m */,
+				EA4CC681172B98D10082A048 /* GGRelevanceBar.h */,
+				EA4CC682172B98D10082A048 /* GGRelevanceBar.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1690,7 +1698,7 @@
 				EAF0F0921727A37F0065C39A /* GGKeywordExampleCell.xib in Resources */,
 				EAF0F09C1727CC700065C39A /* switch_knob_light@2x.png in Resources */,
 				EAF0F09D1727CC700065C39A /* switch_off_light@2x.png in Resources */,
-				EAF0F09E1727CC700065C39A /* switch_on_light@x.png in Resources */,
+				EAF0F09E1727CC700065C39A /* switch_on_light@2x.png in Resources */,
 				EAF0F0A11727CC830065C39A /* menuBtn@2x.png in Resources */,
 				EAF0F0A21727CC830065C39A /* topWhiteBgBar@2x.png in Resources */,
 				EAF0F0AA1727DC260065C39A /* GGHappeningDetailVC.xib in Resources */,
@@ -1700,6 +1708,7 @@
 				EA55976A172A5A1F000CE9E3 /* Icon@2x.png in Resources */,
 				EA55976E172A5AB5000CE9E3 /* Icon.png in Resources */,
 				EA4CC67F172B736B0082A048 /* GGPersonDetailVC.xib in Resources */,
+				EA4CC685172B98E90082A048 /* GGRelevanceBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1835,6 +1844,7 @@
 				EA55975E172A29C6000CE9E3 /* GGStyledSearchBar.m in Sources */,
 				EA559771172A6981000CE9E3 /* GGApi+People.m in Sources */,
 				EAF3E93D172AC0600079344D /* GGPersonDetailVC.m in Sources */,
+				EA4CC683172B98D10082A048 /* GGRelevanceBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
