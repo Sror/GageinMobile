@@ -17,6 +17,10 @@
 //
 -(void)getMenuByType:(NSString *)aType callback:(GGApiBlock)aCallback
 {
+    if (GGSharedRuntimeData.accessToken == nil) {
+        return;
+    }
+    
     //GET
     NSString *path = @"member/me/tracker/menu";
     

@@ -445,6 +445,7 @@ typedef enum
     [self _updateUiBtnFollow];
     
     [_tvDetail reloadData];
+    
     //[_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
     //[_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:5] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
