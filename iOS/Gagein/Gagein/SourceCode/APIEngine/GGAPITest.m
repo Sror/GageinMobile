@@ -23,7 +23,7 @@ DEF_SINGLETON(GGAPITest)
 
 -(void)_testGetConfigFilterOptions
 {
-    [GGSharedAPI getConfigFilterOptions:^(id operation, id aResultObject, NSError *anError) {
+    [GGSharedAPI getAgentFiltersList:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         NSMutableArray *arr = [parser parseGetConfigFilterOptions];
         for (id item in arr) {

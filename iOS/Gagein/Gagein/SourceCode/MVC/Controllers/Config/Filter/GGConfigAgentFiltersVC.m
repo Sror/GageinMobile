@@ -183,12 +183,12 @@ viewForHeaderInSection:(NSInteger)section
 -(void)_callApiGetConfigOptions
 {
     [self showLoadingHUD];
-    [GGSharedAPI getConfigFilterOptions:^(id operation, id aResultObject, NSError *anError) {
-        [self hideLoadingHUD];
-        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-        NSMutableArray *arr = [parser parseGetConfigFilterOptions];
-        _predefinedAgentFilterGroup = arr[0];
-        [self.tv reloadData];
-    }];
+//    [GGSharedAPI getConfigFilterOptions:^(id operation, id aResultObject, NSError *anError) {
+//        [self hideLoadingHUD];
+//        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//        NSMutableArray *arr = [parser parseGetConfigFilterOptions];
+//        _predefinedAgentFilterGroup = arr[0];
+//        [self.tv reloadData];
+//    }];
 }
 @end
