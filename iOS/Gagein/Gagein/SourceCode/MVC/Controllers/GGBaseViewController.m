@@ -36,9 +36,6 @@
     self.view.backgroundColor = GGSharedColor.bgGray;
 	self.view.frame = [self viewportFrame];
     
-//    [[UINavigationBar appearance] setBackgroundImage:GGSharedImagePool.bgNavibar forBarMetrics:UIBarMetricsDefault];
-//    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
-    
     [self _customizeNaviTitleView];
     self.navigationItem.hidesBackButton = YES;
 }
@@ -96,6 +93,15 @@
 {
     [super viewDidAppear:animated];
     [self pushBackButtonFront];
+}
+
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    if (ISIPADDEVICE) {
+        return YES;
+    }
+    
+    return toInterfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
 #pragma mark - UI element
