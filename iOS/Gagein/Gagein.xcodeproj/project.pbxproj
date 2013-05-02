@@ -54,6 +54,10 @@
 		EA0E62F61726873E0002F113 /* switch_bg_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0E62F31726873E0002F113 /* switch_bg_gray@2x.png */; };
 		EA0E62F71726873E0002F113 /* switch_bg_orange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0E62F41726873E0002F113 /* switch_bg_orange@2x.png */; };
 		EA0E62F81726873E0002F113 /* switch_knob_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0E62F51726873E0002F113 /* switch_knob_gray@2x.png */; };
+		EA16A9F71731FC580052B526 /* GGConfigFiltersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16A9F51731FC580052B526 /* GGConfigFiltersVC.m */; };
+		EA16A9F81731FC580052B526 /* GGConfigFiltersVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA16A9F61731FC580052B526 /* GGConfigFiltersVC.xib */; };
+		EA16A9FC173210590052B526 /* GGConfigLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16A9FB173210590052B526 /* GGConfigLabel.m */; };
+		EA16A9FE173210740052B526 /* GGConfigLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA16A9FD173210740052B526 /* GGConfigLabel.xib */; };
 		EA1995ED1717E301006D95E4 /* GGSettingMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */; };
 		EA1995F01717E312006D95E4 /* GGSettingMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */; };
 		EA1A61F7170A6478000B4EAE /* GGDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61F6170A6478000B4EAE /* GGDataModel.m */; };
@@ -350,6 +354,12 @@
 		EA0E62F41726873E0002F113 /* switch_bg_orange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_bg_orange@2x.png"; sourceTree = "<group>"; };
 		EA0E62F51726873E0002F113 /* switch_knob_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switch_knob_gray@2x.png"; sourceTree = "<group>"; };
 		EA12C608172384A7001C0289 /* GGTicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTicker.h; sourceTree = "<group>"; };
+		EA16A9F41731FC580052B526 /* GGConfigFiltersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGConfigFiltersVC.h; sourceTree = "<group>"; };
+		EA16A9F51731FC580052B526 /* GGConfigFiltersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGConfigFiltersVC.m; sourceTree = "<group>"; };
+		EA16A9F61731FC580052B526 /* GGConfigFiltersVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGConfigFiltersVC.xib; sourceTree = "<group>"; };
+		EA16A9FA173210590052B526 /* GGConfigLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGConfigLabel.h; sourceTree = "<group>"; };
+		EA16A9FB173210590052B526 /* GGConfigLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGConfigLabel.m; sourceTree = "<group>"; };
+		EA16A9FD173210740052B526 /* GGConfigLabel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGConfigLabel.xib; sourceTree = "<group>"; };
 		EA1995EB1717E301006D95E4 /* GGSettingMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingMenuCell.h; sourceTree = "<group>"; };
 		EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingMenuCell.m; sourceTree = "<group>"; };
 		EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingMenuCell.xib; sourceTree = "<group>"; };
@@ -878,6 +888,27 @@
 			path = switch;
 			sourceTree = "<group>";
 		};
+		EA16A9F21731FC240052B526 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				EA16A9F917320FAA0052B526 /* Views */,
+				EA16A9F41731FC580052B526 /* GGConfigFiltersVC.h */,
+				EA16A9F51731FC580052B526 /* GGConfigFiltersVC.m */,
+				EA16A9F61731FC580052B526 /* GGConfigFiltersVC.xib */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		EA16A9F917320FAA0052B526 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EA16A9FA173210590052B526 /* GGConfigLabel.h */,
+				EA16A9FB173210590052B526 /* GGConfigLabel.m */,
+				EA16A9FD173210740052B526 /* GGConfigLabel.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		EA24FA311713BE9D003AFBA9 /* Deprecated */ = {
 			isa = PBXGroup;
 			children = (
@@ -891,6 +922,7 @@
 		EA24FA361713D8BF003AFBA9 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				EA16A9F21731FC240052B526 /* Filter */,
 				EA24FA371713D8EA003AFBA9 /* GGSelectAgentsVC.h */,
 				EA24FA381713D8EA003AFBA9 /* GGSelectAgentsVC.m */,
 				EA24FA3C1713D919003AFBA9 /* GGCustomAgentVC.h */,
@@ -1788,6 +1820,8 @@
 				EA4CC6B3172BCC310082A048 /* GGProfileEditJobTitleVC.xib in Resources */,
 				EA4CC6B4172BCC310082A048 /* GGProfileEditNameVC.xib in Resources */,
 				EA4CC6B5172BCC310082A048 /* GGProfileEditTimeZoneVC.xib in Resources */,
+				EA16A9F81731FC580052B526 /* GGConfigFiltersVC.xib in Resources */,
+				EA16A9FE173210740052B526 /* GGConfigLabel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1931,6 +1965,8 @@
 				EA4CC69F172BBF550082A048 /* GGProfileEditCompanyVC.m in Sources */,
 				EA4CC6A4172BBF760082A048 /* GGProfileEditJobTitleVC.m in Sources */,
 				EA4CC6A9172BBF900082A048 /* GGProfileEditTimeZoneVC.m in Sources */,
+				EA16A9F71731FC580052B526 /* GGConfigFiltersVC.m in Sources */,
+				EA16A9FC173210590052B526 /* GGConfigLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

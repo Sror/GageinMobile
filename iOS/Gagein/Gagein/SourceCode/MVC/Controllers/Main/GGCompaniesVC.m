@@ -20,6 +20,7 @@
 #import "GGCompanyUpdateDetailVC.h"
 #import "GGComUpdateSearchVC.h"
 #import "GGHappeningDetailVC.h"
+#import "GGConfigFiltersVC.h"
 
 #import "GGScrollingView.h"
 #import "GGFollowCompanyVC.h"
@@ -305,7 +306,7 @@
         _followingSectionView.ivSelected.hidden = YES;
         [_followingSectionView.btnBg addTarget:self action:@selector(_followingTapped:) forControlEvents:UIControlEventTouchUpInside];
         [_followingSectionView.btnAdd addTarget:self action:@selector(_addCompanyAction:) forControlEvents:UIControlEventTouchUpInside];
-        
+        [_followingSectionView.btnConfig addTarget:self action:@selector(_configFiltersAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _followingSectionView;
@@ -326,6 +327,13 @@
     return _exploringSectionView;
 }
 
+
+-(IBAction)_configFiltersAction:(id)sender
+{
+    [_slideSettingView hideSlide];
+    GGConfigFiltersVC *vc = [[GGConfigFiltersVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 -(IBAction)_addCompanyAction:(id)sender
 {

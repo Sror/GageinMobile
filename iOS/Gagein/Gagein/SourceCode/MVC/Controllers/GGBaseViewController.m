@@ -9,7 +9,7 @@
 #import "GGBaseViewController.h"
 #import "GGNaviBackButton.h"
 
-#define MAX_NAVI_TITLE_LENGTH   15
+#define MAX_NAVI_TITLE_LENGTH   20
 
 @interface GGBaseViewController ()
 
