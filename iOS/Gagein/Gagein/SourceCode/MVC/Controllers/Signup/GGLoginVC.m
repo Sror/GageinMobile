@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *tfPassword;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogin;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrolView;
+@property (weak, nonatomic) IBOutlet UIImageView *ivLoginFieldBg;
 
 @end
 
@@ -42,6 +43,8 @@
     self.title = @"Login with Email";
     
     [self installGageinLogoTo:self.scrolView];
+    self.ivLoginFieldBg.image = [[UIImage imageNamed:@"bgLoginField"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+    [self.btnLogin setBackgroundImage:[[UIImage imageNamed:@"btnYellowBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 10, 5, 10)] forState:UIControlStateNormal];
     
     
 #warning test login data
@@ -66,6 +69,7 @@
     [self setTfPassword:nil];
     [self setBtnLogin:nil];
     [self setScrolView:nil];
+    [self setIvLoginFieldBg:nil];
     [super viewDidUnload];
 }
 

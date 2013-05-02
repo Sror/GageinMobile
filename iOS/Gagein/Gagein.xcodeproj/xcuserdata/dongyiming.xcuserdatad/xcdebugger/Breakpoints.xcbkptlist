@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/GGBaseViewController.m"
-         timestampString = "388651059.247075"
+         timestampString = "389173496.345326"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "160"
-         endingLineNumber = "160"
+         startingLineNumber = "169"
+         endingLineNumber = "169"
          landmarkName = "-naviBackAction:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Signup/GGLoginVC.m"
-         timestampString = "387364120.440429"
+         timestampString = "389172518.922198"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "149"
-         endingLineNumber = "149"
+         startingLineNumber = "153"
+         endingLineNumber = "153"
          landmarkName = "-loginAction:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Signup/GGLoginVC.m"
-         timestampString = "387364138.964883"
+         timestampString = "389172518.922198"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "146"
-         endingLineNumber = "146"
+         startingLineNumber = "150"
+         endingLineNumber = "150"
          landmarkName = "-loginAction:"
          landmarkType = "5">
       </FileBreakpoint>

@@ -44,7 +44,7 @@
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUIImageView" id="181819756">
 								<reference key="NSNextResponder" ref="406343190"/>
-								<int key="NSvFlags">256</int>
+								<int key="NSvFlags">258</int>
 								<string key="NSFrame">{{37, 99}, {247, 90}}</string>
 								<reference key="NSSuperview" ref="406343190"/>
 								<reference key="NSWindow"/>
@@ -60,8 +60,8 @@
 							</object>
 							<object class="IBUIButton" id="170312920">
 								<reference key="NSNextResponder" ref="406343190"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{37, 213}, {247, 32}}</string>
+								<int key="NSvFlags">298</int>
+								<string key="NSFrame">{{36, 214}, {247, 32}}</string>
 								<reference key="NSSuperview" ref="406343190"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="689737198"/>
@@ -70,23 +70,15 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<int key="IBUIButtonType">1</int>
-								<string key="IBUINormalTitle">Login</string>
+								<string key="IBUINormalTitle">Log In</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor" id="773215801">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-								</object>
+								<reference key="IBUINormalTitleColor" ref="773215801"/>
 								<object class="NSColor" key="IBUINormalTitleShadowColor" id="512576073">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
-								</object>
-								<object class="NSCustomResource" key="IBUINormalImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">btnLogin@2x.png</string>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="503680176">
 									<int key="type">2</int>
@@ -100,7 +92,7 @@
 							</object>
 							<object class="IBUITextField" id="810581131">
 								<reference key="NSNextResponder" ref="406343190"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">290</int>
 								<string key="NSFrame">{{55, 107}, {219, 30}}</string>
 								<reference key="NSSuperview" ref="406343190"/>
 								<reference key="NSWindow"/>
@@ -138,7 +130,7 @@
 							</object>
 							<object class="IBUITextField" id="121238956">
 								<reference key="NSNextResponder" ref="406343190"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">290</int>
 								<string key="NSFrame">{{51, 150}, {223, 30}}</string>
 								<reference key="NSSuperview" ref="406343190"/>
 								<reference key="NSWindow"/>
@@ -168,7 +160,7 @@
 							</object>
 							<object class="IBUIImageView" id="897013357">
 								<reference key="NSNextResponder" ref="406343190"/>
-								<int key="NSvFlags">256</int>
+								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{93, 269}, {130, 9}}</string>
 								<reference key="NSSuperview" ref="406343190"/>
 								<reference key="NSWindow"/>
@@ -184,7 +176,7 @@
 							</object>
 							<object class="IBUIButton" id="689737198">
 								<reference key="NSNextResponder" ref="406343190"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{89, 267}, {50, 15}}</string>
 								<reference key="NSSuperview" ref="406343190"/>
 								<reference key="NSWindow"/>
@@ -288,6 +280,14 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ivLoginFieldBg</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="181819756"/>
+					</object>
+					<int key="connectionID">26</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="406343190"/>
 						<reference key="destination" ref="372490531"/>
@@ -373,6 +373,7 @@
 						<int key="objectID">10</int>
 						<reference key="object" ref="170312920"/>
 						<reference key="parent" ref="406343190"/>
+						<string key="objectName">btnLogin</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">11</int>
@@ -388,6 +389,7 @@
 						<int key="objectID">21</int>
 						<reference key="object" ref="181819756"/>
 						<reference key="parent" ref="406343190"/>
+						<string key="objectName">ivLoginFieldBg</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">23</int>
@@ -420,7 +422,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">25</int>
+			<int key="maxID">26</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -451,6 +453,7 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="btnLogin">UIButton</string>
+						<string key="ivLoginFieldBg">UIImageView</string>
 						<string key="scrolView">UIScrollView</string>
 						<string key="tfEmail">UITextField</string>
 						<string key="tfPassword">UITextField</string>
@@ -459,6 +462,10 @@
 						<object class="IBToOneOutletInfo" key="btnLogin">
 							<string key="name">btnLogin</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="ivLoginFieldBg">
+							<string key="name">ivLoginFieldBg</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="scrolView">
 							<string key="name">scrolView</string>
@@ -486,7 +493,6 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bgLoginField@2x.png">{494, 179}</string>
-			<string key="btnLogin@2x.png">{494, 64}</string>
 			<string key="txtSignupToJion@2x.png">{260, 18}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>

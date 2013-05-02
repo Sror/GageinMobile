@@ -19,6 +19,11 @@
     return self;
 }
 
+-(void)awakeFromNib
+{
+    self.frame = [UIScreen mainScreen].applicationFrame;
+}
+
 -(void)showPageWithIndex:(NSUInteger)aIndex
 {
     self.page1.hidden =

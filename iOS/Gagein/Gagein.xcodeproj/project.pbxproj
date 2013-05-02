@@ -219,7 +219,6 @@
 		EACAE12717095C8700E7088F /* GGRuntimeData.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE12617095C8700E7088F /* GGRuntimeData.m */; };
 		EACAE13B170961FB00E7088F /* UIView+LoadFromNib.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE13A170961FB00E7088F /* UIView+LoadFromNib.m */; };
 		EACAE1401709629400E7088F /* GGWelcomePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE13F1709629400E7088F /* GGWelcomePageView.m */; };
-		EACAE14B1709755B00E7088F /* gageinLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAE14A1709755B00E7088F /* gageinLogo.png */; };
 		EAD481F51710FF9100556288 /* GGCompanyUpdateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */; };
 		EAD481F91710FFB300556288 /* GGCompanyUpdateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD481F81710FFB300556288 /* GGCompanyUpdateCell.m */; };
 		EAD481FB1711060500556288 /* comLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD481FA1711060500556288 /* comLogo.png */; };
@@ -616,7 +615,6 @@
 		EACAE13A170961FB00E7088F /* UIView+LoadFromNib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LoadFromNib.m"; sourceTree = "<group>"; };
 		EACAE13E1709629400E7088F /* GGWelcomePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGWelcomePageView.h; sourceTree = "<group>"; };
 		EACAE13F1709629400E7088F /* GGWelcomePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGWelcomePageView.m; sourceTree = "<group>"; };
-		EACAE14A1709755B00E7088F /* gageinLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gageinLogo.png; sourceTree = "<group>"; };
 		EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyUpdateCell.xib; sourceTree = "<group>"; };
 		EAD481F71710FFB300556288 /* GGCompanyUpdateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyUpdateCell.h; sourceTree = "<group>"; };
 		EAD481F81710FFB300556288 /* GGCompanyUpdateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyUpdateCell.m; sourceTree = "<group>"; };
@@ -1534,7 +1532,6 @@
 			isa = PBXGroup;
 			children = (
 				EAD481FA1711060500556288 /* comLogo.png */,
-				EACAE14A1709755B00E7088F /* gageinLogo.png */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -1754,7 +1751,6 @@
 				EACAE0F5170954E700E7088F /* Gestures@2x.png in Resources */,
 				EACAE0F6170954E700E7088F /* Players@2x.png in Resources */,
 				EACAE0F7170954E700E7088F /* second@2x.png in Resources */,
-				EACAE14B1709755B00E7088F /* gageinLogo.png in Resources */,
 				EAC96C3D170983B5003FAFAA /* GGWelcomePageView.xib in Resources */,
 				EAD481F51710FF9100556288 /* GGCompanyUpdateCell.xib in Resources */,
 				EAD481FB1711060500556288 /* comLogo.png in Resources */,

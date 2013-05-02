@@ -141,7 +141,16 @@
     {
         UIImage *image = [UIImage imageNamed:@"gageinLogo"];
         UIImageView *iv = [[UIImageView alloc] initWithImage:image];
-        iv.frame = CGRectMake(65, 15, 190, 56);
+//        UIViewAutoresizingNone                 = 0,
+//        UIViewAutoresizingFlexibleLeftMargin   = 1 << 0,
+//        UIViewAutoresizingFlexibleWidth        = 1 << 1,
+//        UIViewAutoresizingFlexibleRightMargin  = 1 << 2,
+//        UIViewAutoresizingFlexibleTopMargin    = 1 << 3,
+//        UIViewAutoresizingFlexibleHeight       = 1 << 4,
+//        UIViewAutoresizingFlexibleBottomMargin = 1 << 5
+        //iv.autoresizingMask = UIViewAutoresizingNone;
+        CGRect rcScreen = [UIScreen mainScreen].applicationFrame;
+        iv.frame = CGRectMake((rcScreen.size.width - image.size.width) / 2, 20, image.size.width, image.size.height);
         [aView addSubview:iv];
     }
 }
