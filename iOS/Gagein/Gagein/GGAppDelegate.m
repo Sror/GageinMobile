@@ -55,6 +55,10 @@
     self.naviController.navigationBarHidden = YES;
     
     self.window.rootViewController = self.naviController;
+    
+    [[UINavigationBar appearance] setBackgroundImage:GGSharedImagePool.bgNavibar forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
+    
     [self.window makeKeyAndVisible];
     
     //

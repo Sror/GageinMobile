@@ -8,6 +8,7 @@
 
 #import "GGBaseViewController.h"
 #import "GGNaviBackButton.h"
+//#import "UINavigationBar+Custom.h"
 
 #define MAX_NAVI_TITLE_LENGTH   20
 
@@ -35,8 +36,9 @@
     self.view.backgroundColor = GGSharedColor.bgGray;
 	self.view.frame = [self viewportFrame];
     
-    [[UINavigationBar appearance] setBackgroundImage:GGSharedImagePool.bgNavibar forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
+//    [[UINavigationBar appearance] setBackgroundImage:GGSharedImagePool.bgNavibar forBarMetrics:UIBarMetricsDefault];
+//    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
+    
     [self _customizeNaviTitleView];
     self.navigationItem.hidesBackButton = YES;
 }
@@ -159,7 +161,8 @@
 {
     UIImage *image = [UIImage imageNamed:@"topOrangeLine"];
     UIImageView *iv = [[UIImageView alloc] initWithImage:image];
-    iv.frame = CGRectMake(0, 0, 320, 4);
+    iv.contentMode = UIViewContentModeScaleToFill;
+    iv.frame = CGRectMake(0, 0, self.view.frame.size.width, 4);
     [self.view addSubview:iv];
 }
 

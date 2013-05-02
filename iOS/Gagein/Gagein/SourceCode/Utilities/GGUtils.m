@@ -66,4 +66,43 @@
     return returnedArray;
 }
 
+-(UIImage *)imageFor:(UIImage *)anImage size:(CGSize)aNewSize
+{
+    if (anImage == nil) {
+        return nil;
+    }
+    
+	// create a new bitmap image context
+	UIGraphicsBeginImageContext(aNewSize);
+    
+	// get context
+	CGContextRef context = UIGraphicsGetCurrentContext();
+    
+	// push context to make it current
+	// (need to do this manually because we are not drawing in a UIView)
+	UIGraphicsPushContext(context);
+    
+	// drawing code comes here- look at CGContext reference
+	// for available operations
+	//
+	// this example draws the inputImage into the context
+	//
+	[anImage drawInRect:CGRectMake(0, 0, aNewSize.width, aNewSize.height)];
+    
+    
+	// pop context
+	//
+	UIGraphicsPopContext();
+    
+	// get a UIImage from the image context- enjoy!!!
+	//
+	UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+	// clean up drawing environment
+	//
+	UIGraphicsEndImageContext();
+    
+    return outputImage;
+}
+
 @end

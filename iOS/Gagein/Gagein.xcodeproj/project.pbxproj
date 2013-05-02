@@ -67,6 +67,7 @@
 		EA16AA10173231A80052B526 /* GGConfigSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16AA0F173231A80052B526 /* GGConfigSwitchCell.m */; };
 		EA16AA12173231B90052B526 /* GGConfigSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA16AA11173231B90052B526 /* GGConfigSwitchCell.xib */; };
 		EA16AA15173238770052B526 /* GGAgentFiltersGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16AA14173238770052B526 /* GGAgentFiltersGroup.m */; };
+		EA16AA1A17325A5B0052B526 /* GGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16AA1917325A4C0052B526 /* GGBaseViewController.m */; };
 		EA1995ED1717E301006D95E4 /* GGSettingMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */; };
 		EA1995F01717E312006D95E4 /* GGSettingMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */; };
 		EA1A61F7170A6478000B4EAE /* GGDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61F6170A6478000B4EAE /* GGDataModel.m */; };
@@ -154,7 +155,6 @@
 		EA7180D41715008900347EA4 /* FXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D31715008900347EA4 /* FXPageControl.m */; };
 		EA7180D917150AAF00347EA4 /* GGFollowCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */; };
 		EA7180E4171511B700347EA4 /* GGSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180E3171511B700347EA4 /* GGSearchBar.m */; };
-		EA79B8A01724CEDF00141E6D /* GGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B89F1724CEDF00141E6D /* GGBaseViewController.m */; };
 		EA79B8A51724D36200141E6D /* GGCustomBriefCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA79B8A41724D36200141E6D /* GGCustomBriefCell.xib */; };
 		EA79B8A81724D57A00141E6D /* GGCustomBriefCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8A71724D57A00141E6D /* GGCustomBriefCell.m */; };
 		EA79B8AE1724D98F00141E6D /* GGCompanyEmployeesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8AD1724D98F00141E6D /* GGCompanyEmployeesVC.m */; };
@@ -382,6 +382,7 @@
 		EA16AA11173231B90052B526 /* GGConfigSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGConfigSwitchCell.xib; sourceTree = "<group>"; };
 		EA16AA13173238760052B526 /* GGAgentFiltersGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGAgentFiltersGroup.h; sourceTree = "<group>"; };
 		EA16AA14173238770052B526 /* GGAgentFiltersGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAgentFiltersGroup.m; sourceTree = "<group>"; };
+		EA16AA1917325A4C0052B526 /* GGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGBaseViewController.m; sourceTree = "<group>"; };
 		EA1995EB1717E301006D95E4 /* GGSettingMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingMenuCell.h; sourceTree = "<group>"; };
 		EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingMenuCell.m; sourceTree = "<group>"; };
 		EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingMenuCell.xib; sourceTree = "<group>"; };
@@ -514,7 +515,6 @@
 		EA7180E2171511B700347EA4 /* GGSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSearchBar.h; sourceTree = "<group>"; };
 		EA7180E3171511B700347EA4 /* GGSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSearchBar.m; sourceTree = "<group>"; };
 		EA79B89E1724CEDF00141E6D /* GGBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGBaseViewController.h; sourceTree = "<group>"; };
-		EA79B89F1724CEDF00141E6D /* GGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGBaseViewController.m; sourceTree = "<group>"; };
 		EA79B8A41724D36200141E6D /* GGCustomBriefCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCustomBriefCell.xib; sourceTree = "<group>"; };
 		EA79B8A61724D57A00141E6D /* GGCustomBriefCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCustomBriefCell.h; sourceTree = "<group>"; };
 		EA79B8A71724D57A00141E6D /* GGCustomBriefCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCustomBriefCell.m; sourceTree = "<group>"; };
@@ -1327,7 +1327,7 @@
 				EA0E62A2172663740002F113 /* GGTabBarController.h */,
 				EA0E62A3172663740002F113 /* GGTabBarController.m */,
 				EA79B89E1724CEDF00141E6D /* GGBaseViewController.h */,
-				EA79B89F1724CEDF00141E6D /* GGBaseViewController.m */,
+				EA16AA1917325A4C0052B526 /* GGBaseViewController.m */,
 				EAEABBF61724C89300947BE9 /* General */,
 				EA24FA361713D8BF003AFBA9 /* Config */,
 				EA09080A1712659E00BCD4C4 /* Company */,
@@ -1972,7 +1972,6 @@
 				EAEABBFE1724C89300947BE9 /* GGUpdatesVC.m in Sources */,
 				EAEABBFF1724C89300947BE9 /* GGWebVC.m in Sources */,
 				EAEABC031724C8E400947BE9 /* GGHappeningsVC.m in Sources */,
-				EA79B8A01724CEDF00141E6D /* GGBaseViewController.m in Sources */,
 				EA79B8A81724D57A00141E6D /* GGCustomBriefCell.m in Sources */,
 				EA79B8AE1724D98F00141E6D /* GGCompanyEmployeesVC.m in Sources */,
 				EA79B8B11724F69100141E6D /* GGSimilarCompaniesVC.m in Sources */,
@@ -2009,6 +2008,7 @@
 				EA16AA0C1732196C0052B526 /* GGConfigMediaFiltersVC.m in Sources */,
 				EA16AA10173231A80052B526 /* GGConfigSwitchCell.m in Sources */,
 				EA16AA15173238770052B526 /* GGAgentFiltersGroup.m in Sources */,
+				EA16AA1A17325A5B0052B526 /* GGBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
