@@ -64,6 +64,9 @@
 		EA16AA081732194F0052B526 /* GGConfigCategoryFiltersVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA16AA061732194F0052B526 /* GGConfigCategoryFiltersVC.xib */; };
 		EA16AA0C1732196C0052B526 /* GGConfigMediaFiltersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16AA0A1732196C0052B526 /* GGConfigMediaFiltersVC.m */; };
 		EA16AA0D1732196C0052B526 /* GGConfigMediaFiltersVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA16AA0B1732196C0052B526 /* GGConfigMediaFiltersVC.xib */; };
+		EA16AA10173231A80052B526 /* GGConfigSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16AA0F173231A80052B526 /* GGConfigSwitchCell.m */; };
+		EA16AA12173231B90052B526 /* GGConfigSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA16AA11173231B90052B526 /* GGConfigSwitchCell.xib */; };
+		EA16AA15173238770052B526 /* GGAgentFiltersGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16AA14173238770052B526 /* GGAgentFiltersGroup.m */; };
 		EA1995ED1717E301006D95E4 /* GGSettingMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */; };
 		EA1995F01717E312006D95E4 /* GGSettingMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */; };
 		EA1A61F7170A6478000B4EAE /* GGDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61F6170A6478000B4EAE /* GGDataModel.m */; };
@@ -375,6 +378,11 @@
 		EA16AA091732196B0052B526 /* GGConfigMediaFiltersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGConfigMediaFiltersVC.h; sourceTree = "<group>"; };
 		EA16AA0A1732196C0052B526 /* GGConfigMediaFiltersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGConfigMediaFiltersVC.m; sourceTree = "<group>"; };
 		EA16AA0B1732196C0052B526 /* GGConfigMediaFiltersVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGConfigMediaFiltersVC.xib; sourceTree = "<group>"; };
+		EA16AA0E173231A80052B526 /* GGConfigSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGConfigSwitchCell.h; sourceTree = "<group>"; };
+		EA16AA0F173231A80052B526 /* GGConfigSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGConfigSwitchCell.m; sourceTree = "<group>"; };
+		EA16AA11173231B90052B526 /* GGConfigSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGConfigSwitchCell.xib; sourceTree = "<group>"; };
+		EA16AA13173238760052B526 /* GGAgentFiltersGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGAgentFiltersGroup.h; sourceTree = "<group>"; };
+		EA16AA14173238770052B526 /* GGAgentFiltersGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAgentFiltersGroup.m; sourceTree = "<group>"; };
 		EA1995EB1717E301006D95E4 /* GGSettingMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingMenuCell.h; sourceTree = "<group>"; };
 		EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingMenuCell.m; sourceTree = "<group>"; };
 		EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingMenuCell.xib; sourceTree = "<group>"; };
@@ -929,6 +937,9 @@
 				EA16A9FA173210590052B526 /* GGConfigLabel.h */,
 				EA16A9FB173210590052B526 /* GGConfigLabel.m */,
 				EA16A9FD173210740052B526 /* GGConfigLabel.xib */,
+				EA16AA0E173231A80052B526 /* GGConfigSwitchCell.h */,
+				EA16AA0F173231A80052B526 /* GGConfigSwitchCell.m */,
+				EA16AA11173231B90052B526 /* GGConfigSwitchCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1352,6 +1363,8 @@
 				EA1A620C170A7405000B4EAE /* GGTag.m */,
 				EA1A6213170A77B3000B4EAE /* GGAgent.h */,
 				EA1A6214170A77B3000B4EAE /* GGAgent.m */,
+				EA16AA13173238760052B526 /* GGAgentFiltersGroup.h */,
+				EA16AA14173238770052B526 /* GGAgentFiltersGroup.m */,
 				EA24FA5217140CFF003AFBA9 /* GGFunctionalArea.h */,
 				EA24FA5317140CFF003AFBA9 /* GGFunctionalArea.m */,
 				EAD481FC17111BB700556288 /* GGDataPage.h */,
@@ -1849,6 +1862,7 @@
 				EA16AA03173219320052B526 /* GGConfigAgentFiltersVC.xib in Resources */,
 				EA16AA081732194F0052B526 /* GGConfigCategoryFiltersVC.xib in Resources */,
 				EA16AA0D1732196C0052B526 /* GGConfigMediaFiltersVC.xib in Resources */,
+				EA16AA12173231B90052B526 /* GGConfigSwitchCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1997,6 +2011,8 @@
 				EA16AA02173219320052B526 /* GGConfigAgentFiltersVC.m in Sources */,
 				EA16AA071732194F0052B526 /* GGConfigCategoryFiltersVC.m in Sources */,
 				EA16AA0C1732196C0052B526 /* GGConfigMediaFiltersVC.m in Sources */,
+				EA16AA10173231A80052B526 /* GGConfigSwitchCell.m in Sources */,
+				EA16AA15173238770052B526 /* GGAgentFiltersGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

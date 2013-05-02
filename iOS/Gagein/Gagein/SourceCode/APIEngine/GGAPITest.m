@@ -18,7 +18,18 @@ DEF_SINGLETON(GGAPITest)
 
 -(void)run
 {
-    [self _testGetHappeningsWithFunctionalAreaID];
+    [self _testGetConfigFilterOptions];
+}
+
+-(void)_testGetConfigFilterOptions
+{
+    [GGSharedAPI getConfigFilterOptions:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        NSMutableArray *arr = [parser parseGetConfigFilterOptions];
+        for (id item in arr) {
+            DLog(@"%@", item);
+        }
+    }];
 }
 
 -(void)_testJsonParse

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface GGDataModel : NSObject
-@property (assign) long long ID;
+@property (assign) long long        ID;
 
 +(id)model;
 

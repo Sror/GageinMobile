@@ -40,4 +40,7 @@
 //9. select/unselect functional areas (New API)
 -(void)selectFunctionalAreas:(NSArray *)aAreaIDs callback:(GGApiBlock)aCallback;
 
+//X03:Get Filter OptionsBack to top
+-(void)getConfigFilterOptions:(GGApiBlock)aCallback;
+
 @end

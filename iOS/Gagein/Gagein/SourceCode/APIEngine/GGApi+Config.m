@@ -128,4 +128,19 @@
     [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
+//X03:Get Filter OptionsBack to top
+//GET
+///svc/config/filters/options
+-(void)getConfigFilterOptions:(GGApiBlock)aCallback
+{
+    //GET
+    NSString *path = @"config/filters/options";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    
+    [self _execGetWithPath:path params:parameters callback:aCallback];
+}
+
 @end
