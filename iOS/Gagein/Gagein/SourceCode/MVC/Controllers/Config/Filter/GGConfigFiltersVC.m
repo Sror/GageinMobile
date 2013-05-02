@@ -9,6 +9,10 @@
 #import "GGConfigFiltersVC.h"
 #import "GGConfigLabel.h"
 
+#import "GGConfigAgentFiltersVC.h"
+#import "GGConfigCategoryFiltersVC.h"
+#import "GGConfigMediaFiltersVC.h"
+
 @interface GGConfigFiltersVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tv;
 
@@ -17,6 +21,7 @@
 @implementation GGConfigFiltersVC
 {
     NSMutableArray  *_dataSource;
+    GGConfigLabel   *_configHeadLabel;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -33,6 +38,9 @@
     [super viewDidLoad];
     self.naviTitle = @"Configure Filters";
     self.tv.backgroundColor = GGSharedColor.silver;
+    
+    _configHeadLabel = [GGConfigLabel viewFromNibWithOwner:self];
+    _configHeadLabel.lblText.text = @"Personalize your company update streams";
 }
 
 
@@ -61,5 +69,39 @@
     return cell;
 }
 
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return [GGConfigLabel HEIGHT];
+}
+
+- (UIView *)tableView:(UITableView *)tableView
+viewForHeaderInSection:(NSInteger)section
+{
+    return _configHeadLabel;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    int row = indexPath.row;
+    if (row == 0) {
+        
+        GGConfigAgentFiltersVC *vc = [[GGConfigAgentFiltersVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    } else if (row == 1) {
+        // category filters
+        GGConfigCategoryFiltersVC *vc = [[GGConfigCategoryFiltersVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    } else if (row == 2) {
+        // media filters
+        GGConfigMediaFiltersVC *vc = [[GGConfigMediaFiltersVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+}
 
 @end
