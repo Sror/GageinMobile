@@ -23,5 +23,4 @@ DEF_SINGLETON(GGImagePool)
 }
 
 
-
 @end

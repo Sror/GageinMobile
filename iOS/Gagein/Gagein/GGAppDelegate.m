@@ -56,7 +56,11 @@
     
     self.window.rootViewController = self.naviController;
     
-    [[UINavigationBar appearance] setBackgroundImage:GGSharedImagePool.bgNavibar forBarMetrics:UIBarMetricsDefault];
+    UIImage *naviBgImg = [UIImage imageNamed:@"bgNaviBar"];//GGSharedImagePool.stretchShadowBgWite;
+    CGSize navBgSize = naviBgImg.size;
+    CGSize neededSize = CGSizeMake([UIScreen mainScreen].applicationFrame.size.width, navBgSize.height);
+    UIImage *neededNaviBgImg = [GGUtils imageFor:naviBgImg size:neededSize];
+    [[UINavigationBar appearance] setBackgroundImage:neededNaviBgImg forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
     
     [self.window makeKeyAndVisible];

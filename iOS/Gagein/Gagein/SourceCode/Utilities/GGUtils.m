@@ -66,7 +66,7 @@
     return returnedArray;
 }
 
--(UIImage *)imageFor:(UIImage *)anImage size:(CGSize)aNewSize
++(UIImage *)imageFor:(UIImage *)anImage size:(CGSize)aNewSize
 {
     if (anImage == nil) {
         return nil;
