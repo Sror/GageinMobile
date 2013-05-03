@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface GGSettingMenuCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *ivSelected;
+//@property (weak, nonatomic) IBOutlet UIImageView *ivSelected;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblInterval;
 
 +(float)HEIGHT;
+-(void)setHightlighted:(BOOL)aHighlighted;
 @end

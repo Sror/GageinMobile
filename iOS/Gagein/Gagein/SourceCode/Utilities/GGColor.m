@@ -71,6 +71,11 @@ DEF_SINGLETON(GGColor)
     return UIColorFromRGB(0x343434);
 }
 
+-(UIColor *)graySettingBg
+{
+    return UIColorFromRGB(0x313131);
+}
+
 -(UIColor *)clear
 {
     return [UIColor clearColor];

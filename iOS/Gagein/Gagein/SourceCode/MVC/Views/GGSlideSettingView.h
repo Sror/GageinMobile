@@ -32,4 +32,4 @@
 -(void)hideLoadingHUD;
 @end
 
-#define SLIDE_SETTING_VIEW_WIDTH    240
+#define SLIDE_SETTING_VIEW_WIDTH    260

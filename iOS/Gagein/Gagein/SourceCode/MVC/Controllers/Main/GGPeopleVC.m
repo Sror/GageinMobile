@@ -386,7 +386,7 @@
         cell.lblInterval.text = menuData.timeInterval;
         cell.lblName.text = menuData.name;
         
-        cell.ivSelected.hidden = !menuData.checked;
+        [cell setHightlighted:menuData.checked];
         
         return cell;
     }

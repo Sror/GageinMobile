@@ -28,7 +28,19 @@
 
 +(float)HEIGHT
 {
-    return 25;
+    return 45.f;
+}
+
+-(void)setHightlighted:(BOOL)aHighlighted
+{
+    if (aHighlighted)
+    {
+        _lblName.textColor = GGSharedColor.orange;
+    }
+    else
+    {
+        _lblName.textColor = GGSharedColor.silver;
+    }
 }
 
 @end

@@ -23,7 +23,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = GGSharedColor.darkGray;
+        self.backgroundColor = GGSharedColor.graySettingBg;
         
         CGRect tableRc = self.bounds;
         tableRc.size.width = SLIDE_SETTING_VIEW_WIDTH;
