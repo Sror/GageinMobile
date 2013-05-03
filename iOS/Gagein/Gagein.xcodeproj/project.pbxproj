@@ -84,6 +84,8 @@
 		EA1A6228170A8C95000B4EAE /* GGColor.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A6225170A8C95000B4EAE /* GGColor.m */; };
 		EA1A6229170A8C95000B4EAE /* GGPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A6227170A8C95000B4EAE /* GGPredicate.m */; };
 		EA1A622C170A9088000B4EAE /* GGAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A622B170A907B000B4EAE /* GGAlert.m */; };
+		EA1D944917335EAB009FCC7B /* GGRootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1D944717335EAB009FCC7B /* GGRootVC.m */; };
+		EA1D944A17335EAB009FCC7B /* GGRootVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1D944817335EAB009FCC7B /* GGRootVC.xib */; };
 		EA24FA2D1713B269003AFBA9 /* GGScrollingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA2C1713B269003AFBA9 /* GGScrollingView.m */; };
 		EA24FA301713B2FF003AFBA9 /* GGScrollingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA24FA2F1713B2FF003AFBA9 /* GGScrollingView.xib */; };
 		EA24FA3A1713D8EA003AFBA9 /* GGSelectAgentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA381713D8EA003AFBA9 /* GGSelectAgentsVC.m */; };
@@ -414,6 +416,9 @@
 		EA1A6227170A8C95000B4EAE /* GGPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPredicate.m; sourceTree = "<group>"; };
 		EA1A622A170A907A000B4EAE /* GGAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGAlert.h; sourceTree = "<group>"; };
 		EA1A622B170A907B000B4EAE /* GGAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGAlert.m; sourceTree = "<group>"; };
+		EA1D944617335EAB009FCC7B /* GGRootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGRootVC.h; sourceTree = "<group>"; };
+		EA1D944717335EAB009FCC7B /* GGRootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGRootVC.m; sourceTree = "<group>"; };
+		EA1D944817335EAB009FCC7B /* GGRootVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGRootVC.xib; sourceTree = "<group>"; };
 		EA24FA2B1713B269003AFBA9 /* GGScrollingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGScrollingView.h; sourceTree = "<group>"; };
 		EA24FA2C1713B269003AFBA9 /* GGScrollingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGScrollingView.m; sourceTree = "<group>"; };
 		EA24FA2F1713B2FF003AFBA9 /* GGScrollingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGScrollingView.xib; sourceTree = "<group>"; };
@@ -1336,6 +1341,9 @@
 				EA09080D1712659E00BCD4C4 /* Setting */,
 				EA0CA558170BD54000DBCD83 /* Main */,
 				EAC96C2617098313003FAFAA /* Signup */,
+				EA1D944617335EAB009FCC7B /* GGRootVC.h */,
+				EA1D944717335EAB009FCC7B /* GGRootVC.m */,
+				EA1D944817335EAB009FCC7B /* GGRootVC.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1859,6 +1867,7 @@
 				EA16AA081732194F0052B526 /* GGConfigCategoryFiltersVC.xib in Resources */,
 				EA16AA0D1732196C0052B526 /* GGConfigMediaFiltersVC.xib in Resources */,
 				EA16AA12173231B90052B526 /* GGConfigSwitchCell.xib in Resources */,
+				EA1D944A17335EAB009FCC7B /* GGRootVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2009,6 +2018,7 @@
 				EA16AA10173231A80052B526 /* GGConfigSwitchCell.m in Sources */,
 				EA16AA15173238770052B526 /* GGAgentFiltersGroup.m in Sources */,
 				EA16AA1A17325A5B0052B526 /* GGBaseViewController.m in Sources */,
+				EA1D944917335EAB009FCC7B /* GGRootVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

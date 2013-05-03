@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "GGTabBarController.h"
+#import "GGRootVC.h"
+
 @class GGSlideSettingView;
 
 @interface GGAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
@@ -16,11 +18,14 @@
 
 @property (strong, nonatomic) GGTabBarController *tabBarController;
 @property (strong, nonatomic) UINavigationController *naviController;
-@property (strong, nonatomic) GGSlideSettingView *slideSettingView;
+@property (readonly) GGSlideSettingView *slideSettingView;
+@property (strong, nonatomic) GGRootVC *rootVC;
 
 -(void)enterLoginIfNeeded;
 -(void)popNaviToRoot;
 -(void)showTabIndex:(NSUInteger)aIndex;
+
+//-(void)installSlideSettingView;
 @end
 
 #define GGSharedDelegate  ((GGAppDelegate*)[UIApplication sharedApplication].delegate)

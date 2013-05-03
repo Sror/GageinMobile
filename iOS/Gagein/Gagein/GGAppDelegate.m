@@ -20,13 +20,13 @@
 #import "GGSlideSettingView.h"
 
 
+
+
 @implementation GGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    [self _installSlideSettingView];
     
     // Override point for customization after application launch.
     UIViewController *viewController1, *viewController2, *viewController3, *viewController4;
@@ -54,7 +54,10 @@
     self.naviController = [[UINavigationController alloc] initWithRootViewController:self.tabBarController];
     self.naviController.navigationBarHidden = YES;
     
-    self.window.rootViewController = self.naviController;
+    _rootVC = [[GGRootVC alloc] init];
+
+    self.window.rootViewController = _rootVC;
+    //self.window.rootViewController = self.naviController;
     
     UIImage *naviBgImg = [UIImage imageNamed:@"bgNaviBar"];//GGSharedImagePool.stretchShadowBgWite;
     CGSize navBgSize = naviBgImg.size;
@@ -62,6 +65,8 @@
     UIImage *neededNaviBgImg = [GGUtils imageFor:naviBgImg size:neededSize];
     [[UINavigationBar appearance] setBackgroundImage:neededNaviBgImg forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
+    
+    //[self installSlideSettingView];
     
     [self.window makeKeyAndVisible];
     
@@ -73,14 +78,22 @@
     return YES;
 }
 
--(void)_installSlideSettingView
+-(GGSlideSettingView *)slideSettingView
 {
-    _slideSettingView = [[GGSlideSettingView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
-    
-    UIView *theWindow = GGSharedDelegate.window;
-    [theWindow addSubview:_slideSettingView];
-    [theWindow sendSubviewToBack:_slideSettingView];
+    return _rootVC.viewSetting;
 }
+
+//-(void)installSlideSettingView
+//{
+//    if (_slideSettingView == nil) {
+//        _slideSettingView = [[GGSlideSettingView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
+//    }
+//    
+//    [_slideSettingView removeFromSuperview];
+//    //UIView *theWindow = GGSharedDelegate.window;
+//    [_rootVC.viewBack addSubview:_slideSettingView];
+//    //[theWindow sendSubviewToBack:_slideSettingView];
+//}
 
 -(void)_alertEnv
 {
