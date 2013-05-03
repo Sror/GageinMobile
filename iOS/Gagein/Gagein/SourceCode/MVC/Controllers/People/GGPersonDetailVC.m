@@ -55,6 +55,10 @@
     self.ivPhoto.layer.borderColor = GGSharedColor.silver.CGColor;
     self.ivPhoto.layer.cornerRadius = 3.f;
     
+    [self.btnFollow setBackgroundImage:[[UIImage imageNamed:@"btnYellowBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 10, 20, 10)] forState:UIControlStateNormal];
+    
+    [self.btnFollow setBackgroundImage:[[UIImage imageNamed:@"grayBtnBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 10, 30, 10)] forState:UIControlStateSelected];
+    
     //
     _tvDetail = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tvDetail.delegate = self;
@@ -245,10 +249,12 @@
     if (_personOverview.followed)
     {
         [self.btnFollow setTitle:@"following" forState:UIControlStateNormal];
+        self.btnFollow.selected = YES;
     }
     else
     {
         [self.btnFollow setTitle:@"follow" forState:UIControlStateNormal];
+        self.btnFollow.selected = NO;
     }
 }
 
