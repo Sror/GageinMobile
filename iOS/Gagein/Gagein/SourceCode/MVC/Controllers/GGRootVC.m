@@ -21,6 +21,8 @@
 @implementation GGRootVC
 {
     BOOL    _isRevealed;
+    UISwipeGestureRecognizer *_revealGest;
+    UISwipeGestureRecognizer *_coverGest;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -43,19 +45,30 @@
     _viewSetting = [[GGSlideSettingView alloc] initWithFrame:_viewBack.bounds];
     [_viewBack addSubview:_viewSetting];
     
-    UISwipeGestureRecognizer *revealGest = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(reveal)];
-    revealGest.direction = UISwipeGestureRecognizerDirectionRight;
-    [_viewCover addGestureRecognizer:revealGest];
+    _revealGest = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(reveal)];
+    _revealGest.direction = UISwipeGestureRecognizerDirectionRight;
     
-    UISwipeGestureRecognizer *coverGest = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cover)];
-    coverGest.direction = UISwipeGestureRecognizerDirectionLeft;
-    [_viewBack addGestureRecognizer:coverGest];
+    _coverGest = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cover)];
+    _coverGest.direction = UISwipeGestureRecognizerDirectionLeft;
+    
 }
 
 - (void)viewDidUnload {
     [self setViewBack:nil];
     [self setViewCover:nil];
     [super viewDidUnload];
+}
+
+-(void)enableGesture:(BOOL)anEnabled
+{
+    [_viewCover removeGestureRecognizer:_revealGest];
+    [_viewBack removeGestureRecognizer:_coverGest];
+    
+    if (anEnabled)
+    {
+        [_viewCover addGestureRecognizer:_revealGest];
+        [_viewBack addGestureRecognizer:_coverGest];
+    }
 }
 
 -(void)reveal

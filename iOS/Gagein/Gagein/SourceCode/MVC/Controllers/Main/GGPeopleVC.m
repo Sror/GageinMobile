@@ -117,6 +117,14 @@
     [_slideSettingView changeDelegate:self];
     _slideSettingView.viewTable.tableHeaderView = nil;
     [self _callApiGetMenu];
+    
+    [GGSharedDelegate.rootVC enableGesture:YES];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [GGSharedDelegate.rootVC enableGesture:NO];
 }
 
 - (void)viewDidUnload {

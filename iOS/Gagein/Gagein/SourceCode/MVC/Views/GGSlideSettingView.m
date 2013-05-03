@@ -137,7 +137,7 @@
 {
     //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [_hud hide:YES];
-    _hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+    _hud = [MBProgressHUD showHUDAddedTo:self.viewTable animated:YES];
     _hud.mode = MBProgressHUDModeIndeterminate;
     _hud.labelText = @"Loading";
 }
