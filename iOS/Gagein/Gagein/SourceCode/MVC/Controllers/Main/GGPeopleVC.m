@@ -186,12 +186,13 @@
     if (_followingSectionView == nil) {
         _followingSectionView = [GGSettingHeaderView viewFromNibWithOwner:self];
         _followingSectionView.lblTitle.text = @"FOLLOWING";
-        _followingSectionView.ivSelected.hidden = YES;
+        [_followingSectionView setHightlighted:NO];
+        
         [_followingSectionView.btnBg addTarget:self action:@selector(_followingTapped:) forControlEvents:UIControlEventTouchUpInside];
         [_followingSectionView.btnAdd addTarget:self action:@selector(_addPersonAction:) forControlEvents:UIControlEventTouchUpInside];
         _followingSectionView.btnConfig.hidden = YES;
         //_followingSectionView.btnAdd.frame = _followingSectionView.btnConfig.frame;
-        
+        [_followingSectionView usingFollowingStyle];
     }
     
     return _followingSectionView;
@@ -203,7 +204,8 @@
     if (_exploringSectionView == nil) {
         _exploringSectionView = [GGSettingHeaderView viewFromNibWithOwner:self];
         _exploringSectionView.lblTitle.text = @"EXPLORING";
-        _exploringSectionView.ivSelected.hidden = NO;
+        [_exploringSectionView setHightlighted:YES];
+        
         _exploringSectionView.btnAdd.hidden = YES;
         [_exploringSectionView.btnBg addTarget:self action:@selector(_exploringTapped:) forControlEvents:UIControlEventTouchUpInside];
         [_exploringSectionView.btnConfig addTarget:self action:@selector(_exploringConfigTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -225,8 +227,8 @@
 {
     self.naviTitle = @"FOLLOWING";
     
-    [self _followingSectionView].ivSelected.hidden = NO;
-    [self _exploringSectionView].ivSelected.hidden = YES;
+    [[self _followingSectionView] setHightlighted:YES];
+    [[self _exploringSectionView] setHightlighted:NO];
     
     [self _unselectAllMenuItem];
     [_slideSettingView.viewTable reloadData];
@@ -245,8 +247,8 @@
 {
     self.naviTitle = @"EXPLORING";
     
-    [self _followingSectionView].ivSelected.hidden = YES;
-    [self _exploringSectionView].ivSelected.hidden = NO;
+    [[self _followingSectionView] setHightlighted:NO];
+    [[self _exploringSectionView] setHightlighted:YES];
     
     [self _unselectAllMenuItem];
     [_slideSettingView.viewTable reloadData];
@@ -449,8 +451,9 @@
         }
         
         self.naviTitle = theData.name;
-        [self _exploringSectionView].ivSelected.hidden = YES;
-        [self _followingSectionView].ivSelected.hidden = YES;
+        
+        [[self _followingSectionView] setHightlighted:NO];
+        [[self _exploringSectionView] setHightlighted:NO];
         
         [tableView reloadData];
         
@@ -477,15 +480,17 @@
             {
                 [self _unselectAllMenuItem];
                 
-                [self _followingSectionView].ivSelected.hidden = !(_menuType == kGGMenuTypePerson);
-                [self _exploringSectionView].ivSelected.hidden = (_menuType == kGGMenuTypePerson);
+                BOOL isMenuTypePerson = (_menuType == kGGMenuTypePerson);
+                [[self _followingSectionView] setHightlighted:isMenuTypePerson];
+                [[self _exploringSectionView] setHightlighted:!isMenuTypePerson];
+                
             }
             else
             {
                 [self _selectMenuItemByID:_menuID];
                 
-                [self _followingSectionView].ivSelected.hidden = YES;
-                [self _exploringSectionView].ivSelected.hidden = YES;
+                [[self _followingSectionView] setHightlighted:NO];
+                [[self _exploringSectionView] setHightlighted:NO];
             }
             
             [_slideSettingView.viewTable reloadData];

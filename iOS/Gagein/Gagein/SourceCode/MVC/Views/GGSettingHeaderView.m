@@ -14,14 +14,41 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        
     }
     return self;
 }
 
 +(float)HEIGHT
 {
-    return 30;
+    return 35.f;
+}
+
+-(void)awakeFromNib
+{
+    self.backgroundColor = GGSharedColor.graySettingBg;
+}
+
+-(void)setHightlighted:(BOOL)aHighlighted
+{
+    if (aHighlighted)
+    {
+        _lblTitle.textColor = GGSharedColor.orange;
+    }
+    else
+    {
+        _lblTitle.textColor = GGSharedColor.silver;
+    }
+}
+
+-(void)usingFollowingStyle
+{
+    [_btnConfig setImage:[UIImage imageNamed:@"sandGlassBtn"] forState:UIControlStateNormal];
+    
+    if (_btnConfig.hidden)
+    {
+        _btnAdd.frame = _btnConfig.frame;
+    }
 }
 
 @end
