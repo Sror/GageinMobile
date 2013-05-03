@@ -51,22 +51,32 @@
     self.view.backgroundColor = GGSharedColor.silver;
     
     //
-    _btnPrevUpdate = [UIButton buttonWithType:UIButtonTypeInfoLight];
-    //prevBtn.tag = 20001;
+    UIImage *upArrowEnabledImg = [UIImage imageNamed:@"upArrowEnabled"];
+    UIImage *upArrowDisabledImg = [UIImage imageNamed:@"upArrowDisabled"];
     CGRect naviRc = self.navigationController.navigationBar.frame;
-    _btnPrevUpdate.frame = CGRectMake(naviRc.size.width - _btnPrevUpdate.frame.size.width - 50
-                                      , (naviRc.size.height - _btnPrevUpdate.frame.size.height) / 2
-                                      , _btnPrevUpdate.frame.size.width
-                                      , _btnPrevUpdate.frame.size.height);
+    CGRect prevBtnRc = CGRectMake(naviRc.size.width - upArrowEnabledImg.size.width * 2 - 10
+                                  , (naviRc.size.height - upArrowEnabledImg.size.height) / 2 + 5
+                                  , upArrowEnabledImg.size.width
+                                  , upArrowEnabledImg.size.height);
+    
+    _btnPrevUpdate = [UIButton buttonWithType:UIButtonTypeCustom];
+    _btnPrevUpdate.frame = prevBtnRc;
+    [_btnPrevUpdate setImage:upArrowEnabledImg forState:UIControlStateNormal];
+    [_btnPrevUpdate setImage:upArrowDisabledImg forState:UIControlStateDisabled];
     [_btnPrevUpdate addTarget:self action:@selector(prevUpdateAction:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    _btnNextUpdate = [UIButton buttonWithType:UIButtonTypeInfoLight];
-    //nextBtn.tag = 20002;
-    _btnNextUpdate.frame = CGRectMake(naviRc.size.width - _btnNextUpdate.frame.size.width - 10
-                                      , (naviRc.size.height - _btnNextUpdate.frame.size.height) / 2
-                                      , _btnNextUpdate.frame.size.width
-                                      , _btnNextUpdate.frame.size.height);
+    //
+    UIImage *downArrowEnabledImg = [UIImage imageNamed:@"downArrowEnabled"];
+    UIImage *downArrowDisabledImg = [UIImage imageNamed:@"downArrowDisabled"];
+    _btnNextUpdate = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect nextBtnRc = CGRectMake(naviRc.size.width - downArrowEnabledImg.size.width - 10
+                                  , (naviRc.size.height - downArrowEnabledImg.size.height) / 2 + 5
+                                  , downArrowEnabledImg.size.width
+                                  , downArrowEnabledImg.size.height);
+    _btnNextUpdate.frame = nextBtnRc;
+    [_btnNextUpdate setImage:downArrowEnabledImg forState:UIControlStateNormal];
+    [_btnNextUpdate setImage:downArrowDisabledImg forState:UIControlStateDisabled];
     [_btnNextUpdate addTarget:self action:@selector(nextUpdateAction:) forControlEvents:UIControlEventTouchUpInside];
     
     
