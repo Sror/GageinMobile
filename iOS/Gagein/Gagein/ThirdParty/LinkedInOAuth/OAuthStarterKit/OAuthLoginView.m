@@ -51,6 +51,8 @@
     [request setParameters:[NSArray arrayWithObject:scopeParameter]];
     
     OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
+    
+    [self showLoadingHUD];
     [fetcher fetchDataWithRequest:request
                          delegate:self
                 didFinishSelector:@selector(requestTokenResult:didFinish:)
@@ -67,6 +69,7 @@
 //
 - (void)requestTokenResult:(OAServiceTicket *)ticket didFinish:(NSData *)data 
 {
+    [self hideLoadingHUD];
     if (ticket.didSucceed == NO) 
         return;
         
@@ -79,6 +82,7 @@
 
 - (void)requestTokenResult:(OAServiceTicket *)ticket didFail:(NSData *)error 
 {
+    [self hideLoadingHUD];
     NSLog(@"%@",[error description]);
 }
 
@@ -130,13 +134,13 @@
 //
 //  We only need to handle case (c) to extract the oauth_verifier value
 //
-- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType 
+- (BOOL)webView:(UIWebView*)aWebView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
 {
 	NSURL *url = request.URL;
 	NSString *urlString = url.absoluteString;
     
     addressBar.text = urlString;
-    [activityIndicator startAnimating];
+    //[activityIndicator startAnimating];
     
     BOOL requestForCallbackURL = ([urlString rangeOfString:linkedInCallbackURL].location != NSNotFound);
     if ( requestForCallbackURL )
@@ -151,12 +155,7 @@
         {
             // User refused to allow our app access
             // Notify parent and close this view
-            [[NSNotificationCenter defaultCenter] 
-                    postNotificationName:OA_LOGIN_VIEW_DID_FINISH
-                                  object:self 
-                                userInfo:nil];
-
-            [self dismissModalViewControllerAnimated:YES];
+            [self _notifyAndQuit];
         }
     }
     else
@@ -166,9 +165,15 @@
 	return YES;
 }
 
+-(void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [self showLoadingHUD];
+}
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [activityIndicator stopAnimating];
+    [self hideLoadingHUD];
+    //[activityIndicator stopAnimating];
 }
 
 //
@@ -206,13 +211,18 @@
     {
         self.accessToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
     }
-    // Notify parent and close this view
-    [[NSNotificationCenter defaultCenter] 
-     postNotificationName:OA_LOGIN_VIEW_DID_FINISH
-     object:self];
     
-    [self dismissModalViewControllerAnimated:YES];
+    // Notify parent and close this view
+    [self _notifyAndQuit];
+    
     [responseBody release];
+}
+
+-(void)_notifyAndQuit
+{
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [self postNotification:OA_LOGIN_VIEW_DID_FINISH withObject:self];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //
@@ -240,13 +250,19 @@
 
 - (void)viewDidLoad
 {
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationItem.hidesBackButton = YES;
+    
     [super viewDidLoad];
+    self.naviTitle = @"LinkedIn Auth.";
     [self initLinkedInApi];
     [addressBar setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    }
+}
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    
     if ([apikey length] < API_KEY_LENGTH || [secretkey length] < SECRET_KEY_LENGTH)
     {
         UIAlertView *alert = [[UIAlertView alloc]
@@ -259,14 +275,17 @@
         [alert release];
         
         // Notify parent and close this view
-        [[NSNotificationCenter defaultCenter] 
-         postNotificationName:OA_LOGIN_VIEW_DID_FINISH
-         object:self];
-        
-        [self dismissModalViewControllerAnimated:YES];
+        [self _notifyAndQuit];
     }
 
     [self requestTokenFromProvider];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    self.navigationController.navigationBarHidden = YES;
 }
     
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -280,6 +299,8 @@
 
 - (void)dealloc
 {
+    webView.delegate = nil;
+    [webView stopLoading];
     [super dealloc];
 }
 

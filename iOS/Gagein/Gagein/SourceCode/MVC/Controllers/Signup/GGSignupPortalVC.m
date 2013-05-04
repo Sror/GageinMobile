@@ -111,7 +111,7 @@
     //[GGAlert alert:@"Connect to LinkedIn (TODO)"];
     _oAuthLoginView = [[OAuthLoginView alloc] initWithNibName:nil bundle:nil];
     [self observeNotification:OA_LOGIN_VIEW_DID_FINISH];
-    [self presentModalViewController:_oAuthLoginView animated:YES];
+    [self.navigationController pushViewController:_oAuthLoginView animated:YES];
 }
 
 -(IBAction)connectFacebookAction:(id)sender
