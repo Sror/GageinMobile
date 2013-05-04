@@ -77,7 +77,7 @@
 #pragma mark - overriding
 -(IBAction)goLoginAction:(id)sender
 {
-    GGLoginVC *vc = [[GGLoginVC alloc] init];
+    GGLoginVC *vc = [GGLoginVC createInstance];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

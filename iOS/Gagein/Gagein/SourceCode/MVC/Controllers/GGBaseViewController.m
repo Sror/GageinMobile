@@ -21,6 +21,11 @@
     __weak MBProgressHUD *hud;
 }
 
++(id)createInstance
+{
+    return [[self alloc] init];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

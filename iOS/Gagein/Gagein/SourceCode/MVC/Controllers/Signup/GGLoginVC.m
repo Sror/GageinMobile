@@ -25,6 +25,16 @@
 
 @implementation GGLoginVC
 
++(id)createInstance
+{
+    if (ISIPADDEVICE)
+    {
+        return [[self alloc] initWithNibName:@"GGLoginVC_iPad" bundle:nil];
+    }
+
+    return [[self alloc] initWithNibName:@"GGLoginVC" bundle:nil];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

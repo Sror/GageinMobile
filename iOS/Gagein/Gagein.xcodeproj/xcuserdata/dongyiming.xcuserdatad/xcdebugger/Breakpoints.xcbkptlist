@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/GGBaseViewController.m"
-         timestampString = "389179095.931692"
+         timestampString = "389325307.167638"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "180"
-         endingLineNumber = "180"
+         startingLineNumber = "185"
+         endingLineNumber = "185"
          landmarkName = "@implementation GGBaseViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Signup/GGLoginVC.m"
-         timestampString = "389172518.922198"
+         timestampString = "389325307.167638"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "153"
-         endingLineNumber = "153"
+         startingLineNumber = "163"
+         endingLineNumber = "163"
          landmarkName = "-loginAction:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Signup/GGLoginVC.m"
-         timestampString = "389172518.922198"
+         timestampString = "389325307.167638"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "150"
-         endingLineNumber = "150"
+         startingLineNumber = "160"
+         endingLineNumber = "160"
          landmarkName = "-loginAction:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -567,11 +567,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/GGBaseViewController.m"
-         timestampString = "389179095.931692"
+         timestampString = "389325307.167638"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "172"
-         endingLineNumber = "172"
+         startingLineNumber = "177"
+         endingLineNumber = "177"
          landmarkName = "-installTopLine"
          landmarkType = "5">
       </FileBreakpoint>

@@ -75,7 +75,7 @@
 
 -(IBAction)loginAction:(id)sender
 {
-    GGLoginVC *vc = [[GGLoginVC alloc] init];
+    GGLoginVC *vc = [GGLoginVC createInstance];
     
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self.view.window.layer addAnimation:[GGAnimation animationPushFromRight] forKey:nil];

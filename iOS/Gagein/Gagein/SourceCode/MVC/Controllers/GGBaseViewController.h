@@ -13,6 +13,8 @@
 @property (strong) UILabel  *customNaviTitle;
 @property (copy) NSString *naviTitle;
 
++(id)createInstance;
+
 -(void)showLoadingHUD;
 -(void)hideLoadingHUD;
 
