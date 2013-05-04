@@ -12,7 +12,7 @@
 #import "GGSignupVC.h"
 
 #import "GGRuntimeData.h"
-
+#import "OAuthLoginView.h"
 
 
 @interface GGSignupPortalVC ()
@@ -20,6 +20,9 @@
 @end
 
 @implementation GGSignupPortalVC
+{
+    OAuthLoginView *_oAuthLoginView;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,7 +60,14 @@
 #pragma mark - handle notification
 - (void)handleNotification:(NSNotification *)notification
 {
-    if ([notification.name isEqualToString:GG_NOTIFY_GET_STARTED])
+    NSString *notiName = notification.name;
+    if ([notiName isEqualToString:OA_LOGIN_VIEW_DID_FINISH])
+    {
+        [self unobserveNotification:OA_LOGIN_VIEW_DID_FINISH];
+        DLog(@"oauth {consumner:%@, accesstoken:%@}", _oAuthLoginView.consumer, _oAuthLoginView.accessToken);
+#warning GOTO register page
+    }
+    else if ([notiName isEqualToString:GG_NOTIFY_GET_STARTED])
     {
         [self.navigationController.view.layer addAnimation:[GGAnimation animationPushFromRight] forKey:nil];
         [self.navigationController popViewControllerAnimated:NO];
@@ -98,7 +108,10 @@
 
 -(IBAction)connectLinkedInAction:(id)sender
 {
-    [GGAlert alert:@"Connect to LinkedIn (TODO)"];
+    //[GGAlert alert:@"Connect to LinkedIn (TODO)"];
+    _oAuthLoginView = [[OAuthLoginView alloc] initWithNibName:nil bundle:nil];
+    [self observeNotification:OA_LOGIN_VIEW_DID_FINISH];
+    [self presentModalViewController:_oAuthLoginView animated:YES];
 }
 
 -(IBAction)connectFacebookAction:(id)sender
@@ -115,5 +128,7 @@
 {
     [GGAlert alert:@"Connect to Yammer (TODO)"];
 }
+
+
 
 @end

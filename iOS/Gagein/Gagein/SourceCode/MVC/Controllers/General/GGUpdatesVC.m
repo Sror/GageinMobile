@@ -122,7 +122,6 @@
     
     cell.ID = updateData.ID;
     cell.logoBtn.tag = indexPath.row;
-    //cell.tag = indexPath.row;
     cell.titleLbl.text = updateData.headline;
     cell.sourceLbl.text = updateData.fromSource;
     cell.descriptionLbl.text = updateData.content;
