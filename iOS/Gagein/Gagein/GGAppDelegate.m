@@ -73,7 +73,7 @@
     //
     [self enterLoginIfNeeded];
     
-    [self performSelector:@selector(_alertEnv) withObject:nil afterDelay:0.0];
+    //[self performSelector:@selector(_alertEnv) withObject:nil afterDelay:0.0];
     
     return YES;
 }
@@ -97,17 +97,7 @@
 
 -(void)_alertEnv
 {
-    NSString *envAlertStr = nil;
-    if (CURRENT_ENV == kGGServerProduction) {
-        envAlertStr = [NSString stringWithFormat:@"Current Environment: {%@} \n Server: {%@}", @"Production", CURRENT_SERVER_URL];
-    } else if (CURRENT_ENV == kGGServerDemo) {
-        envAlertStr = [NSString stringWithFormat:@"Current Environment: {%@} \n Server: {%@}", @"Demo", CURRENT_SERVER_URL];
-    } else if (CURRENT_ENV == kGGServerCN) {
-        envAlertStr = [NSString stringWithFormat:@"Current Environment: {%@} \n Server: {%@}", @"CN", CURRENT_SERVER_URL];
-    } else if (CURRENT_ENV == kGGServerStaging) {
-        envAlertStr = [NSString stringWithFormat:@"Current Environment: {%@} \n Server: {%@}", @"Staging", CURRENT_SERVER_URL];
-    }
-    [GGAlert alert:envAlertStr];
+    [GGAlert alert:[GGUtils envString]];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

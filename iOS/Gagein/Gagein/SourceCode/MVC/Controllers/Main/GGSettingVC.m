@@ -173,7 +173,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return nil;
+        return [GGUtils envString];
     } else if (section == 1) {
         return @"NOTIFICATIONS";
     } else if (section == 2) {

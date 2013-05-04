@@ -17,4 +17,5 @@
 +(NSArray *)arrayWithArray:(NSArray *)anArray maxCount:(NSUInteger)aIndex;
 
 +(UIImage *)imageFor:(UIImage *)anImage size:(CGSize)aNewSize;
++(NSString *)envString;
 @end

@@ -50,7 +50,7 @@
     
     [super viewDidLoad];
     self.view.backgroundColor = GGSharedColor.bgGray;
-    self.title = @"Login with Email";
+    self.naviTitle = @"Login with Email";
     
     [self installGageinLogoTo:self.scrolView];
     self.ivLoginFieldBg.image = [[UIImage imageNamed:@"bgLoginField"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
@@ -58,8 +58,8 @@
     
     
 #warning test login data
-    self.tfEmail.text = @"dymx101@hotmail.com";
-    self.tfPassword.text = @"heartL0";
+    //self.tfEmail.text = @"dymx101@hotmail.com";
+    //self.tfPassword.text = @"heartL0";
 }
 
 -(void)viewWillAppear:(BOOL)animated

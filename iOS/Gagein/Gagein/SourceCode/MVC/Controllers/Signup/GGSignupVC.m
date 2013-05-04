@@ -41,14 +41,14 @@
     
     [super viewDidLoad];
     self.view.backgroundColor = GGSharedColor.bgGray;
-    self.title = @"Join Gagein";
+    self.naviTitle = @"Join Gagein";
     [self installGageinLogoTo:self.scrolView];
     
 #warning TEST register data
     //self.tfEmail.text = @"dymx102@hotmail.com";
     //self.tfPassword.text = @"heartL0";
-    self.tfFirstName.text = @"Daniel";
-    self.tfLastName.text = @"Dong";
+    self.tfFirstName.text = @"Mcdonald";
+    self.tfLastName.text = @"Kentucky";
 }
 
 -(void)viewWillAppear:(BOOL)animated

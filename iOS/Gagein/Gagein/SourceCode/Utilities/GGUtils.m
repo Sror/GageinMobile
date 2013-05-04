@@ -105,4 +105,20 @@
     return outputImage;
 }
 
+#define ENV_STRING_FORMAT @"Currently using '%@' server: \n(%@)"  
++(NSString *)envString
+{
+    NSString *envAlertStr = nil;
+    if (CURRENT_ENV == kGGServerProduction) {
+        envAlertStr = [NSString stringWithFormat:ENV_STRING_FORMAT, @"Production", CURRENT_SERVER_URL];
+    } else if (CURRENT_ENV == kGGServerDemo) {
+        envAlertStr = [NSString stringWithFormat:ENV_STRING_FORMAT, @"Demo", CURRENT_SERVER_URL];
+    } else if (CURRENT_ENV == kGGServerCN) {
+        envAlertStr = [NSString stringWithFormat:ENV_STRING_FORMAT, @"CN", CURRENT_SERVER_URL];
+    } else if (CURRENT_ENV == kGGServerStaging) {
+        envAlertStr = [NSString stringWithFormat:ENV_STRING_FORMAT, @"Staging", CURRENT_SERVER_URL];
+    }
+    return envAlertStr;
+}
+
 @end
