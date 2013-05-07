@@ -254,7 +254,7 @@
     self.navigationItem.hidesBackButton = YES;
     
     [super viewDidLoad];
-    self.naviTitle = @"LinkedIn Auth.";
+    self.naviTitle = @"LinkedIn Auth";
     [self initLinkedInApi];
     [addressBar setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
 }

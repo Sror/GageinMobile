@@ -319,6 +319,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SalesforceOAuth/SalesforceOAuth-Prefix.pch";
 				INFOPLIST_FILE = "SalesforceOAuth/SalesforceOAuth-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -330,6 +331,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SalesforceOAuth/SalesforceOAuth-Prefix.pch";
 				INFOPLIST_FILE = "SalesforceOAuth/SalesforceOAuth-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -354,6 +356,7 @@
 				EA0214CB17041F5A009D4C9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

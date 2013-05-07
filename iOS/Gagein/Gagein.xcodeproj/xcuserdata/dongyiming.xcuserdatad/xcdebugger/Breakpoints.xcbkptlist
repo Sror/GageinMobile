@@ -679,6 +679,19 @@
          landmarkName = "-webViewDidStartLoad:"
          landmarkType = "5">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Controllers/General/GGSalesforceOAuthVC.m"
+         timestampString = "389644346.970177"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "120"
+         endingLineNumber = "120"
+         landmarkName = "-oauthCoordinatorDidAuthenticate:authInfo:"
+         landmarkType = "5">
+      </FileBreakpoint>
    </FileBreakpoints>
    <ExceptionBreakpoints>
       <ExceptionBreakpoint

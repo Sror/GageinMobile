@@ -29,4 +29,5 @@
     #import "GGUtils.h"
     #import "GGAnimation.h"
     #import "GGImagePool.h"
+    #import "Bee_Thread.h"
 #endif

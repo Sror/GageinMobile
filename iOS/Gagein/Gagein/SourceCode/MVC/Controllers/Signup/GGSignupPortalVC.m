@@ -13,7 +13,7 @@
 
 #import "GGRuntimeData.h"
 #import "OAuthLoginView.h"
-
+#import "GGSalesforceOAuthVC.h"
 
 @interface GGSignupPortalVC ()
 
@@ -103,7 +103,9 @@
 
 -(IBAction)connectSalesForceAction:(id)sender
 {
-    [GGAlert alert:@"Connect to Salesforce (TODO)"];
+    //[GGAlert alert:@"Connect to Salesforce (TODO)"];
+    GGSalesforceOAuthVC *vc = [[GGSalesforceOAuthVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(IBAction)connectLinkedInAction:(id)sender
