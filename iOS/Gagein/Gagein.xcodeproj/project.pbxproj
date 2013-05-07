@@ -243,6 +243,11 @@
 		EAB8D51C1739784700D033FC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB8D51B1739784700D033FC /* Security.framework */; };
 		EAB8D52417397CA100D033FC /* Bee_Thread.mm in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D52317397CA100D033FC /* Bee_Thread.mm */; };
 		EAB8D52B1739882F00D033FC /* GGUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D52A1739882F00D033FC /* GGUserProfile.m */; };
+		EAB8D5471739AF7900D033FC /* NGTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D53A1739AF7900D033FC /* NGTabBar.m */; };
+		EAB8D5481739AF7900D033FC /* NGTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D53C1739AF7900D033FC /* NGTabBarController.m */; };
+		EAB8D5491739AF7900D033FC /* NGTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D5401739AF7900D033FC /* NGTabBarItem.m */; };
+		EAB8D54A1739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D5441739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.m */; };
+		EAB8D54B1739AF7900D033FC /* UIViewController+NGTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D5461739AF7900D033FC /* UIViewController+NGTabBarItem.m */; };
 		EAC96C2B1709833C003FAFAA /* GGSignupPortalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */; };
 		EAC96C3D170983B5003FAFAA /* GGWelcomePageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */; };
 		EAC96C441709868B003FAFAA /* NSObject+BeeNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC96C431709868B003FAFAA /* NSObject+BeeNotification.m */; };
@@ -311,6 +316,7 @@
 		EAEABBFE1724C89300947BE9 /* GGUpdatesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEABBFA1724C89300947BE9 /* GGUpdatesVC.m */; };
 		EAEABBFF1724C89300947BE9 /* GGWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEABBFC1724C89300947BE9 /* GGWebVC.m */; };
 		EAEABC031724C8E400947BE9 /* GGHappeningsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEABC021724C8E400947BE9 /* GGHappeningsVC.m */; };
+		EAEC1E3A1739B6CE0058130E /* tabbarBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEC1E391739B6CE0058130E /* tabbarBg@2x.png */; };
 		EAEFB4DF1717A8100013634F /* GGCompanyDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CB1717A8100013634F /* GGCompanyDetailVC.xib */; };
 		EAEFB4E01717A8100013634F /* GGCompanyUpdateDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CC1717A8100013634F /* GGCompanyUpdateDetailVC.xib */; };
 		EAEFB4E11717A8100013634F /* GGFollowCompanyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CD1717A8100013634F /* GGFollowCompanyVC.xib */; };
@@ -713,6 +719,19 @@
 		EAB8D52317397CA100D033FC /* Bee_Thread.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Bee_Thread.mm; sourceTree = "<group>"; };
 		EAB8D5291739882F00D033FC /* GGUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGUserProfile.h; sourceTree = "<group>"; };
 		EAB8D52A1739882F00D033FC /* GGUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUserProfile.m; sourceTree = "<group>"; };
+		EAB8D5391739AF7900D033FC /* NGTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTabBar.h; sourceTree = "<group>"; };
+		EAB8D53A1739AF7900D033FC /* NGTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGTabBar.m; sourceTree = "<group>"; };
+		EAB8D53B1739AF7900D033FC /* NGTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTabBarController.h; sourceTree = "<group>"; };
+		EAB8D53C1739AF7900D033FC /* NGTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGTabBarController.m; sourceTree = "<group>"; };
+		EAB8D53D1739AF7900D033FC /* NGTabBarControllerAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTabBarControllerAnimation.h; sourceTree = "<group>"; };
+		EAB8D53E1739AF7900D033FC /* NGTabBarControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTabBarControllerDelegate.h; sourceTree = "<group>"; };
+		EAB8D53F1739AF7900D033FC /* NGTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTabBarItem.h; sourceTree = "<group>"; };
+		EAB8D5401739AF7900D033FC /* NGTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGTabBarItem.m; sourceTree = "<group>"; };
+		EAB8D5411739AF7900D033FC /* NGTabBarPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTabBarPosition.h; sourceTree = "<group>"; };
+		EAB8D5431739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+NGTabBarNavigationDelegate.h"; sourceTree = "<group>"; };
+		EAB8D5441739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+NGTabBarNavigationDelegate.m"; sourceTree = "<group>"; };
+		EAB8D5451739AF7900D033FC /* UIViewController+NGTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NGTabBarItem.h"; sourceTree = "<group>"; };
+		EAB8D5461739AF7900D033FC /* UIViewController+NGTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NGTabBarItem.m"; sourceTree = "<group>"; };
 		EAC96C281709833C003FAFAA /* GGSignupPortalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSignupPortalVC.h; sourceTree = "<group>"; };
 		EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSignupPortalVC.m; sourceTree = "<group>"; };
 		EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGWelcomePageView.xib; sourceTree = "<group>"; };
@@ -826,6 +845,7 @@
 		EAEABBFC1724C89300947BE9 /* GGWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGWebVC.m; sourceTree = "<group>"; };
 		EAEABC011724C8E400947BE9 /* GGHappeningsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGHappeningsVC.h; sourceTree = "<group>"; };
 		EAEABC021724C8E400947BE9 /* GGHappeningsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGHappeningsVC.m; sourceTree = "<group>"; };
+		EAEC1E391739B6CE0058130E /* tabbarBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbarBg@2x.png"; sourceTree = "<group>"; };
 		EAEFB4CB1717A8100013634F /* GGCompanyDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyDetailVC.xib; sourceTree = "<group>"; };
 		EAEFB4CC1717A8100013634F /* GGCompanyUpdateDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyUpdateDetailVC.xib; sourceTree = "<group>"; };
 		EAEFB4CD1717A8100013634F /* GGFollowCompanyVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGFollowCompanyVC.xib; sourceTree = "<group>"; };
@@ -1065,6 +1085,7 @@
 		EA0E628E172663550002F113 /* tabIcon */ = {
 			isa = PBXGroup;
 			children = (
+				EAEC1E391739B6CE0058130E /* tabbarBg@2x.png */,
 				EA0E628F172663550002F113 /* tab_company_normal@2x.png */,
 				EA0E6290172663550002F113 /* tab_company_selected@2x.png */,
 				EA0E6291172663550002F113 /* tab_people_normal@2x.png */,
@@ -1361,6 +1382,26 @@
 				EAB8D52317397CA100D033FC /* Bee_Thread.mm */,
 			);
 			path = BeeFramework;
+			sourceTree = "<group>";
+		};
+		EAB8D5381739AF7900D033FC /* NGTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				EAB8D5391739AF7900D033FC /* NGTabBar.h */,
+				EAB8D53A1739AF7900D033FC /* NGTabBar.m */,
+				EAB8D53B1739AF7900D033FC /* NGTabBarController.h */,
+				EAB8D53C1739AF7900D033FC /* NGTabBarController.m */,
+				EAB8D53D1739AF7900D033FC /* NGTabBarControllerAnimation.h */,
+				EAB8D53E1739AF7900D033FC /* NGTabBarControllerDelegate.h */,
+				EAB8D53F1739AF7900D033FC /* NGTabBarItem.h */,
+				EAB8D5401739AF7900D033FC /* NGTabBarItem.m */,
+				EAB8D5411739AF7900D033FC /* NGTabBarPosition.h */,
+				EAB8D5431739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.h */,
+				EAB8D5441739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.m */,
+				EAB8D5451739AF7900D033FC /* UIViewController+NGTabBarItem.h */,
+				EAB8D5461739AF7900D033FC /* UIViewController+NGTabBarItem.m */,
+			);
+			path = NGTabBarController;
 			sourceTree = "<group>";
 		};
 		EAC96C2617098313003FAFAA /* Signup */ = {
@@ -1740,6 +1781,7 @@
 		EACAE0BB17094A3100E7088F /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				EAB8D5381739AF7900D033FC /* NGTabBarController */,
 				EAB8D52117397CA100D033FC /* BeeFramework */,
 				EAB8D5001739756200D033FC /* SfOAuth */,
 				EAF675FB1734B57600CE9F7D /* LinkedInOAuth */,
@@ -2312,6 +2354,7 @@
 				EA4239FA173501D5002D718A /* welcome02@2x.png in Resources */,
 				EA4239FB173501D5002D718A /* welcome03@2x.png in Resources */,
 				EA4239FC173501D5002D718A /* welcome04@2x.png in Resources */,
+				EAEC1E3A1739B6CE0058130E /* tabbarBg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2491,6 +2534,11 @@
 				EAB8D51A1739762200D033FC /* GGSalesforceOAuthVC.m in Sources */,
 				EAB8D52417397CA100D033FC /* Bee_Thread.mm in Sources */,
 				EAB8D52B1739882F00D033FC /* GGUserProfile.m in Sources */,
+				EAB8D5471739AF7900D033FC /* NGTabBar.m in Sources */,
+				EAB8D5481739AF7900D033FC /* NGTabBarController.m in Sources */,
+				EAB8D5491739AF7900D033FC /* NGTabBarItem.m in Sources */,
+				EAB8D54A1739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.m in Sources */,
+				EAB8D54B1739AF7900D033FC /* UIViewController+NGTabBarItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

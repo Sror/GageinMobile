@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GGTabBarController.h"
 #import "GGRootVC.h"
+//#import "NGTabBarController.h"
 
 @class GGSlideSettingView;
 

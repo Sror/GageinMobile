@@ -14,6 +14,7 @@ AS_SINGLETON(GGColor)
 -(UIColor *)clear;
 -(UIColor *)darkRed;
 -(UIColor *)orange;
+-(UIColor *)orangeGagein;
 -(UIColor *)white;
 -(UIColor *)black;
 -(UIColor *)gray;

@@ -24,33 +24,36 @@
     NSMutableArray *_tabIcons;
     
     NSInteger _currentIndex;
+    NSArray *_viewControllers;
 }
 
 -(id)initWithViewControllers:(NSArray *)aViewControllers
 {
     NSAssert(aViewControllers.count, @"view controllers is empty");
     
+    _viewControllers = aViewControllers;
+    NSUInteger vcCount = aViewControllers.count;
+    
+    _normalImages = [[NSMutableArray alloc] initWithCapacity:vcCount];
+    _selectedImages = [[NSMutableArray alloc] initWithCapacity:vcCount];
+    _tabIcons = [[NSMutableArray alloc] initWithCapacity:vcCount];
+    
+    [_normalImages addObject:[UIImage imageNamed:@"tab_company_normal"]];
+    [_normalImages addObject:[UIImage imageNamed:@"tab_people_normal"]];
+    [_normalImages addObject:[UIImage imageNamed:@"tab_saved_normal"]];
+    [_normalImages addObject:[UIImage imageNamed:@"tab_settings_normal"]];
+    
+    [_selectedImages addObject:[UIImage imageNamed:@"tab_company_selected"]];
+    [_selectedImages addObject:[UIImage imageNamed:@"tab_people_selected"]];
+    [_selectedImages addObject:[UIImage imageNamed:@"tab_saved_selected"]];
+    [_selectedImages addObject:[UIImage imageNamed:@"tab_settings_selected"]];
+    
+    _currentIndex = 0;
+    
     self = [super init];
     if (self)
     {
         self.viewControllers = aViewControllers;
-        NSUInteger vcCount = aViewControllers.count;
-        
-        _normalImages = [[NSMutableArray alloc] initWithCapacity:vcCount];
-        _selectedImages = [[NSMutableArray alloc] initWithCapacity:vcCount];
-        _tabIcons = [[NSMutableArray alloc] initWithCapacity:vcCount];
-        
-        [_normalImages addObject:[UIImage imageNamed:@"tab_company_normal"]];
-        [_normalImages addObject:[UIImage imageNamed:@"tab_people_normal"]];
-        [_normalImages addObject:[UIImage imageNamed:@"tab_saved_normal"]];
-        [_normalImages addObject:[UIImage imageNamed:@"tab_settings_normal"]];
-        
-        [_selectedImages addObject:[UIImage imageNamed:@"tab_company_selected"]];
-        [_selectedImages addObject:[UIImage imageNamed:@"tab_people_selected"]];
-        [_selectedImages addObject:[UIImage imageNamed:@"tab_saved_selected"]];
-        [_selectedImages addObject:[UIImage imageNamed:@"tab_settings_selected"]];
-        
-        _currentIndex = 0;
     }
     
     return self;
@@ -87,20 +90,21 @@
 {
     static BOOL isLoaded = NO;
     NSArray *subviews = self.tabBar.subviews;
-    if (!isLoaded && subviews.count > 1)
+    if (!isLoaded && subviews.count > 4)
     {
         isLoaded = YES;
         
-        NSUInteger vcCount = self.viewControllers.count;
+        NSUInteger vcCount = _viewControllers.count;
         int startIndex = 1;
-        
         
         for (int i = startIndex; i< vcCount + startIndex; i++)
         {
             UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ICON_WIDTH, ICON_HEIGHT)];
-            imgView.image = _normalImages[i - startIndex];
+            UIImage *theImage = _normalImages[i - startIndex];
+            imgView.image = theImage;
             
             [subviews[i] addSubview:imgView];
+            
             [_tabIcons addObject:imgView];
         }
         

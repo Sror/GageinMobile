@@ -24,10 +24,8 @@
 
 @implementation GGAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+-(void)_initTabbar
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     // Override point for customization after application launch.
     UIViewController *viewController1, *viewController2, *viewController3, *viewController4;
     UINavigationController *nc1, *nc2, *nc3, *nc4;
@@ -49,7 +47,27 @@
     nc3 = [[UINavigationController alloc] initWithRootViewController:viewController3];
     nc4 = [[UINavigationController alloc] initWithRootViewController:viewController4];
     
+//    nc1.ng_tabBarItem = [NGTabBarItem itemWithTitle:@"Companies" image:[UIImage imageNamed:@"tab_company_normal"]];
+//    nc2.ng_tabBarItem = [NGTabBarItem itemWithTitle:@"People" image:[UIImage imageNamed:@"tab_people_normal"]];
+//    nc3.ng_tabBarItem = [NGTabBarItem itemWithTitle:@"Saved" image:[UIImage imageNamed:@"tab_saved_normal"]];
+//    nc4.ng_tabBarItem = [NGTabBarItem itemWithTitle:@"Settings" image:[UIImage imageNamed:@"tab_settings_normal"]];
+//    
+//    nc1.ng_tabBarItem.selectedImageTintColor =
+//    nc2.ng_tabBarItem.selectedImageTintColor =
+//    nc3.ng_tabBarItem.selectedImageTintColor =
+//    nc4.ng_tabBarItem.selectedImageTintColor = GGSharedColor.orangeGagein;
+    
+    //nc1.ng_tabBarItem.selectedTitleColor = [UIColor yellowColor];
+    
     self.tabBarController = [[GGTabBarController alloc] initWithViewControllers:@[nc1, nc2, nc3, nc4]];
+    [self.tabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbarBg"]];
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    [self _initTabbar];
     
     self.naviController = [[UINavigationController alloc] initWithRootViewController:self.tabBarController];
     self.naviController.navigationBarHidden = YES;
@@ -66,14 +84,10 @@
     [[UINavigationBar appearance] setBackgroundImage:neededNaviBgImg forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
     
-    //[self installSlideSettingView];
-    
     [self.window makeKeyAndVisible];
     
     //
     [self enterLoginIfNeeded];
-    
-    //[self performSelector:@selector(_alertEnv) withObject:nil afterDelay:0.0];
     
     return YES;
 }
@@ -165,5 +179,20 @@
 {
     self.tabBarController.selectedIndex = aIndex;
 }
+
+//////////////////////////////////////////////////////////////////////////
+//#pragma mark - NGTabBarControllerDelegate
+//////////////////////////////////////////////////////////////////////////
+//
+//- (CGSize)tabBarController:(NGTabBarController *)tabBarController
+//sizeOfItemForViewController:(UIViewController *)viewController
+//                   atIndex:(NSUInteger)index
+//                  position:(NGTabBarPosition)position {
+//    if (NGTabBarIsVertical(position)) {
+//        return CGSizeMake(150.f, 60.f);
+//    } else {
+//        return CGSizeMake(76.f, 48.f);
+//    }
+//}
 
 @end
