@@ -14,6 +14,7 @@
 @class GGCompanyUpdate;
 @class GGCompanyHappening;
 @class GGPerson;
+@class GGUserProfile;
 
 @interface GGApiParser : NSObject
 @property (strong)  NSDictionary    *apiData;
@@ -50,6 +51,7 @@
 -(GGCompanyUpdate *)parseGetCompanyUpdateDetail;
 -(GGCompanyHappening *)parseCompanyEventDetail;
 -(NSArray *)parseGetMenu:(BOOL)aIsCompanyMenu;
+-(GGUserProfile *)parseGetMyOverview;
 
 #pragma mark - config
 -(GGDataPage *)parseGetAgents;

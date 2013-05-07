@@ -242,6 +242,7 @@
 		EAB8D51A1739762200D033FC /* GGSalesforceOAuthVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D5191739762200D033FC /* GGSalesforceOAuthVC.m */; };
 		EAB8D51C1739784700D033FC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB8D51B1739784700D033FC /* Security.framework */; };
 		EAB8D52417397CA100D033FC /* Bee_Thread.mm in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D52317397CA100D033FC /* Bee_Thread.mm */; };
+		EAB8D52B1739882F00D033FC /* GGUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D52A1739882F00D033FC /* GGUserProfile.m */; };
 		EAC96C2B1709833C003FAFAA /* GGSignupPortalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */; };
 		EAC96C3D170983B5003FAFAA /* GGWelcomePageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */; };
 		EAC96C441709868B003FAFAA /* NSObject+BeeNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC96C431709868B003FAFAA /* NSObject+BeeNotification.m */; };
@@ -710,6 +711,8 @@
 		EAB8D51B1739784700D033FC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EAB8D52217397CA100D033FC /* Bee_Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bee_Thread.h; sourceTree = "<group>"; };
 		EAB8D52317397CA100D033FC /* Bee_Thread.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Bee_Thread.mm; sourceTree = "<group>"; };
+		EAB8D5291739882F00D033FC /* GGUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGUserProfile.h; sourceTree = "<group>"; };
+		EAB8D52A1739882F00D033FC /* GGUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUserProfile.m; sourceTree = "<group>"; };
 		EAC96C281709833C003FAFAA /* GGSignupPortalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSignupPortalVC.h; sourceTree = "<group>"; };
 		EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSignupPortalVC.m; sourceTree = "<group>"; };
 		EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGWelcomePageView.xib; sourceTree = "<group>"; };
@@ -1689,6 +1692,8 @@
 				EA4F3A1E171E7FC800530185 /* GGCompanyHappening.m */,
 				EA12C608172384A7001C0289 /* GGTicker.h */,
 				EA79B8B21724FD0400141E6D /* GGTicker.m */,
+				EAB8D5291739882F00D033FC /* GGUserProfile.h */,
+				EAB8D52A1739882F00D033FC /* GGUserProfile.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2485,6 +2490,7 @@
 				EAB8D5161739756200D033FC /* SFOAuthInfo.m in Sources */,
 				EAB8D51A1739762200D033FC /* GGSalesforceOAuthVC.m in Sources */,
 				EAB8D52417397CA100D033FC /* Bee_Thread.mm in Sources */,
+				EAB8D52B1739882F00D033FC /* GGUserProfile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

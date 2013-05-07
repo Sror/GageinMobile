@@ -85,7 +85,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:@"me" forKey:@"memid"];
+    //[parameters setObject:@"me" forKey:@"memid"];
     
     [self _execGetWithPath:path params:parameters callback:aCallback];
 }

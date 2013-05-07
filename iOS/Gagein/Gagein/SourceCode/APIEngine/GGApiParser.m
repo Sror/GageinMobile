@@ -17,6 +17,7 @@
 #import "GGCompanyHappening.h"
 #import "GGPerson.h"
 #import "GGAgentFiltersGroup.h"
+#import "GGUserProfile.h"
 
 #define GG_ASSERT_API_DATA_IS_DIC   NSAssert([_apiData isKindOfClass:[NSDictionary class]], @"Api Data should be a NSDictionary");
 
@@ -177,6 +178,16 @@
     return person;
 }
 
+-(GGUserProfile *)parseGetMyOverview
+{
+    GG_ASSERT_API_DATA_IS_DIC;
+    GGUserProfile *userProfile = [GGUserProfile model];
+    [userProfile parseWithData:self.data];
+    
+    return userProfile;
+}
+
+#pragma mark - parse page
 -(GGDataPage *)parseSearchCompany
 {
     return [self _parsePageforClass:[GGCompany class]];

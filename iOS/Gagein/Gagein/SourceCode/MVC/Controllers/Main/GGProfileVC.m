@@ -16,6 +16,8 @@
 #import "GGProfileEditJobTitleVC.h"
 #import "GGProfileEditTimeZoneVC.h"
 
+#import "GGUserProfile.h"
+
 @interface GGProfileVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tvProfile;
 
@@ -25,6 +27,7 @@
 {
     GGProfileHeaderView *_viewHeader;
     GGProfileFooterView *_viewFooter;
+    GGUserProfile       *_userProfile;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -78,22 +81,22 @@
     if (row == 0) {
         
         cell.textLabel.text = @"Name";
-        cell.detailTextLabel.text = @"Bill Gates";
+        cell.detailTextLabel.text = _userProfile.fullName;
         
     } else if (row == 1) {
         
         cell.textLabel.text = @"Email";
-        cell.detailTextLabel.text = @"send@bill.mail";
+        cell.detailTextLabel.text = _userProfile.email;
         
     } else if (row == 2) {
         
         cell.textLabel.text = @"Company";
-        cell.detailTextLabel.text = @"Microsoft";
+        cell.detailTextLabel.text = _userProfile.orgName;
         
     } else if (row == 3) {
         
         cell.textLabel.text = @"Job Title";
-        cell.detailTextLabel.text = @"former CEO";
+        cell.detailTextLabel.text = _userProfile.orgTitle;
         
     } else if (row == 4) {
         
@@ -164,8 +167,12 @@
 #pragma mark - api
 -(void)_callApiGetMyOverview
 {
+    [self showLoadingHUD];
     [GGSharedAPI getMyOverview:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        _userProfile = [parser parseGetMyOverview];
+        [_tvProfile reloadData];
     }];
 }
 
