@@ -52,8 +52,13 @@
     {
         self.title = @"Choose Agents";
         // add done button
-        UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(doneAction:)];
-        self.navigationItem.rightBarButtonItem = doneBtn;
+        
+//        UIButton *doneBtn = [GGUtils darkGrayButtonWithTitle:@"Done" frame:CGRectMake(0, 0, 100, 30)];
+//        [doneBtn addTarget:self action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
+//        UIBarButtonItem *doneBtnItem = [[UIBarButtonItem alloc] initWithCustomView:doneBtn];
+        
+//        UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(doneAction:)];
+        self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(doneAction:)];
         
         // hide setup tip
         self.viewSetupLower.hidden = self.viewSetupUpper.hidden = YES;

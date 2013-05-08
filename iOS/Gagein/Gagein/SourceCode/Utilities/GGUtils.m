@@ -121,4 +121,33 @@
     return envAlertStr;
 }
 
++(UIButton *)imageButtonWithTitle:(NSString*)aTitle backgroundImage:(UIImage *)aBackGroundImage frame:(CGRect)aFrame
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundImage:aBackGroundImage forState:UIControlStateNormal];
+    button.frame = aFrame;
+    [button setTitle:aTitle forState:UIControlStateNormal];
+    [button setTitleColor:GGSharedColor.white forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:18.f];
+    
+    return button;
+}
+
++(UIButton *)darkGrayButtonWithTitle:(NSString *)aTitle frame:(CGRect)aFrame
+{
+    UIImage *backgroundImage = [[UIImage imageNamed:@"darkBtnBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(8, 10, 20, 10)];
+    return [self imageButtonWithTitle:aTitle backgroundImage:backgroundImage frame:aFrame];
+}
+
++(UIBarButtonItem *)naviButtonItemWithTitle:(NSString *)aTitle target:(id)aTarget selector:(SEL)aSelector
+{
+    UIButton *doneBtn = [GGUtils darkGrayButtonWithTitle:aTitle frame:CGRectMake(0, 10, 80, 35)];
+    UIView *btnView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 50)];
+    //btnView.backgroundColor = GGSharedColor.clear;
+    [btnView addSubview:doneBtn];
+    
+    [doneBtn addTarget:aTarget action:aSelector forControlEvents:UIControlEventTouchUpInside];
+    return [[UIBarButtonItem alloc] initWithCustomView:btnView];
+}
+
 @end

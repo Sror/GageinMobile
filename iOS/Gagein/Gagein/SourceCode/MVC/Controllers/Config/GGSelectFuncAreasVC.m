@@ -44,8 +44,8 @@
     {
         self.title = @"Choose Functional Areas";
         // add done button
-        UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(doneAction:)];
-        self.navigationItem.rightBarButtonItem = doneBtn;
+//        UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(doneAction:)];
+        self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(doneAction:)];
         
         // hide setup tip
         self.viewSetupLower.hidden = self.viewSetupUpper.hidden = YES;

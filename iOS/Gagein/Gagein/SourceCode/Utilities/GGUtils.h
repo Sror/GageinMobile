@@ -18,4 +18,6 @@
 
 +(UIImage *)imageFor:(UIImage *)anImage size:(CGSize)aNewSize;
 +(NSString *)envString;
++(UIButton *)darkGrayButtonWithTitle:(NSString *)aTitle frame:(CGRect)aFrame;
++(UIBarButtonItem *)naviButtonItemWithTitle:(NSString *)aTitle target:(id)aTarget selector:(SEL)aSelector;
 @end
