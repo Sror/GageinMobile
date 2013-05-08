@@ -21,5 +21,7 @@
 
 -(float)height;
 -(void)adjustHeight;
+-(void)adjustLayout;
 -(void)adjustLayoutHasImage:(BOOL)aHasImage;
+-(float)contentWidth;
 @end

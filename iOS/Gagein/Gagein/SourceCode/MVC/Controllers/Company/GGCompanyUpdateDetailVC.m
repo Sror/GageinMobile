@@ -111,17 +111,7 @@
 
 - (void)viewDidUnload {
     [self setScrollView:nil];
-    //[self setLblTitle:nil];
-    //[self setIvPhoto:nil];
-    //[self setLblContent:nil];
     [self setWebView:nil];
-    //[self setLblSource:nil];
-    //[self setLblDate:nil];
-    //[self setViewUpdate:nil];
-    //[self setIvUpdateBg:nil];
-    //[self setTextView:nil];
-    //[self setWvTextView:nil];
-    //[self setTvContent:nil];
     [super viewDidUnload];
 }
 
@@ -284,8 +274,26 @@
                 [_comUpdateDetailCell.ivPhoto addSubview:activityIndicator];
                 
                 UIImage *placeholderImage = GGSharedImagePool.placeholder;
-                //[self.ivPhoto setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:placeholderImage];
+
                 [_comUpdateDetailCell.ivPhoto setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+
+                    CGSize imageSize = image.size;
+                    float maxImageSize = _comUpdateDetailCell.contentWidth - 10;
+                    float ratio = imageSize.width / maxImageSize;
+                    if (ratio > 1)
+                    {
+                        imageSize.width = maxImageSize;
+                        imageSize.height /= ratio;
+                    }
+                    CGRect photoRc = _comUpdateDetailCell.ivPhoto.frame;
+                    _comUpdateDetailCell.ivPhoto.frame = CGRectMake((_comUpdateDetailCell.contentWidth - imageSize.width) / 2
+                                                                    , photoRc.origin.y
+                                                                    , imageSize.width
+                                                                    , imageSize.height);
+                    [_comUpdateDetailCell adjustLayout];
+                    
+                    [self _adjustScrollviewContentSize];
+                    
                     [activityIndicator stopAnimating];
                     [activityIndicator removeFromSuperview];
                 }];

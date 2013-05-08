@@ -10,8 +10,8 @@
 
 @implementation GGComUpdateDetailView
 {
-    CGPoint     _textviewPos;
-    float       _distanceFromPhoto;
+    //CGPoint     _textviewPos;
+    //float       _distanceFromPhoto;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -26,8 +26,8 @@
 -(void)awakeFromNib
 {
     self.ivUpdateBg.image = GGSharedImagePool.stretchShadowBgWite;
-    _textviewPos = _wvTextview.frame.origin;
-    _distanceFromPhoto = _textviewPos.y - _ivPhoto.frame.origin.y;
+    //_textviewPos = _wvTextview.frame.origin;
+    //_distanceFromPhoto = _textviewPos.y - _ivPhoto.frame.origin.y;
 }
 
 -(float)height
@@ -38,7 +38,7 @@
 -(void)adjustHeight
 {
     
-    int textviewHeight = _textviewHidden.contentSize.height * 1.15;
+    int textviewHeight = _textviewHidden.contentSize.height * 1.2;
     CGRect theRect = _wvTextview.frame;
     //_wvTextview.backgroundColor = [UIColor blueColor];
     theRect.size.height = textviewHeight;
@@ -59,21 +59,36 @@
     //self.frame = [GGUtils setH:selfHeight rect:self.frame];
 }
 
+-(float)_textviewPositionY
+{
+    if (self.ivPhoto.hidden)
+    {
+        return self.ivPhoto.frame.origin.y;
+    }
+
+    return CGRectGetMaxY(_ivPhoto.frame) + 20;
+}
+
+-(void)adjustLayout
+{
+    float textviewY = [self _textviewPositionY];
+    _wvTextview.frame = CGRectMake(_wvTextview.frame.origin.x
+                                   , textviewY
+                                   , _wvTextview.frame.size.width
+                                   , _wvTextview.frame.size.height);
+    
+    [self adjustHeight];
+}
+
 -(void)adjustLayoutHasImage:(BOOL)aHasImage
 {
     self.ivPhoto.hidden = !aHasImage;
-    if (self.ivPhoto.hidden)
-    {
-        _wvTextview.frame = CGRectOffset(_wvTextview.frame, 0, _distanceFromPhoto);
-    }
-    else
-    {
-        CGRect theRect = _wvTextview.frame;
-        theRect.origin.y = _textviewPos.y;
-        _wvTextview.frame = theRect;
-    }
-    
-    [self adjustHeight];
+    [self adjustLayout];
+}
+
+-(float)contentWidth
+{
+    return _viewContent.frame.size.width;
 }
 
 
