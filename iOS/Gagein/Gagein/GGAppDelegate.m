@@ -47,19 +47,8 @@
     nc3 = [[UINavigationController alloc] initWithRootViewController:viewController3];
     nc4 = [[UINavigationController alloc] initWithRootViewController:viewController4];
     
-//    nc1.ng_tabBarItem = [NGTabBarItem itemWithTitle:@"Companies" image:[UIImage imageNamed:@"tab_company_normal"]];
-//    nc2.ng_tabBarItem = [NGTabBarItem itemWithTitle:@"People" image:[UIImage imageNamed:@"tab_people_normal"]];
-//    nc3.ng_tabBarItem = [NGTabBarItem itemWithTitle:@"Saved" image:[UIImage imageNamed:@"tab_saved_normal"]];
-//    nc4.ng_tabBarItem = [NGTabBarItem itemWithTitle:@"Settings" image:[UIImage imageNamed:@"tab_settings_normal"]];
-//    
-//    nc1.ng_tabBarItem.selectedImageTintColor =
-//    nc2.ng_tabBarItem.selectedImageTintColor =
-//    nc3.ng_tabBarItem.selectedImageTintColor =
-//    nc4.ng_tabBarItem.selectedImageTintColor = GGSharedColor.orangeGagein;
-    
-    //nc1.ng_tabBarItem.selectedTitleColor = [UIColor yellowColor];
-    
     self.tabBarController = [[GGTabBarController alloc] initWithViewControllers:@[nc1, nc2, nc3, nc4]];
+    self.tabBarController.delegate = self;
     [self.tabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbarBg"]];
 }
 
@@ -69,15 +58,20 @@
     
     [self _initTabbar];
     
-    self.naviController = [[UINavigationController alloc] initWithRootViewController:self.tabBarController];
-    self.naviController.navigationBarHidden = YES;
+    //UIViewController *viewController1 = [[GGCompaniesVC alloc] initWithNibName:@"GGCompaniesVC" bundle:nil];
+    
     
     _rootVC = [[GGRootVC alloc] init];
-
     self.window.rootViewController = _rootVC;
-    //self.window.rootViewController = self.naviController;
     
-    UIImage *naviBgImg = [UIImage imageNamed:@"bgNaviBar"];//GGSharedImagePool.stretchShadowBgWite;
+    //
+    _signPortalVC = [[GGSignupPortalVC alloc] init];
+    self.naviController = [[GGRootNaviVC alloc] initWithRootViewController:_signPortalVC];
+    self.naviController.navigationBarHidden = YES;
+    //[self.window addSubview:_naviController.view];
+    //[self.window sendSubviewToBack:_naviController.view];
+    
+    UIImage *naviBgImg = [UIImage imageNamed:@"bgNaviBar"];
     CGSize navBgSize = naviBgImg.size;
     CGSize neededSize = CGSizeMake([UIScreen mainScreen].applicationFrame.size.width, navBgSize.height);
     UIImage *neededNaviBgImg = [GGUtils imageFor:naviBgImg size:neededSize];
@@ -97,17 +91,6 @@
     return _rootVC.viewSetting;
 }
 
-//-(void)installSlideSettingView
-//{
-//    if (_slideSettingView == nil) {
-//        _slideSettingView = [[GGSlideSettingView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
-//    }
-//    
-//    [_slideSettingView removeFromSuperview];
-//    //UIView *theWindow = GGSharedDelegate.window;
-//    [_rootVC.viewBack addSubview:_slideSettingView];
-//    //[theWindow sendSubviewToBack:_slideSettingView];
-//}
 
 -(void)_alertEnv
 {
@@ -139,19 +122,21 @@
     DLog(@"applicationWillTerminate");
 }
 
-/*
+
 // Optional UITabBarControllerDelegate method.
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+{
+    //CGRect rc = tabBarController.view.frame;
+    return YES;
+}
+
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
+    //CGRect rc = tabBarController.view.frame;
+    DLog(@"");
 }
-*/
 
-/*
-// Optional UITabBarControllerDelegate method.
-- (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed
-{
-}
-*/
+
 
 #pragma mark - handle notification
 - (void)handleNotification:(NSNotification *)notification
@@ -163,16 +148,30 @@
 {
     if (![GGRuntimeData sharedInstance].isLoggedIn)
     {
-        GGSignupPortalVC *vc = [[GGSignupPortalVC alloc] init];
         [self.naviController.view.layer addAnimation:[GGAnimation animationFade] forKey:nil];
-        [self.naviController pushViewController:vc animated:NO];
+        [_rootVC presentModalViewController:_naviController animated:NO];
+        //[self.window bringSubviewToFront:_naviController.view];
     }
+    
+    //return;
+    
+//    if (![GGRuntimeData sharedInstance].isLoggedIn)
+//    {
+//        GGSignupPortalVC *vc = [[GGSignupPortalVC alloc] init];
+//        [self.naviController.view.layer addAnimation:[GGAnimation animationFade] forKey:nil];
+//        [self.naviController pushViewController:vc animated:NO];
+//    }
 }
 
 -(void)popNaviToRoot
 {
-    [self.naviController popToRootViewControllerAnimated:NO];
-    self.naviController.navigationBarHidden = YES;
+    [self.naviController.view.layer addAnimation:[GGAnimation animationFade] forKey:nil];
+    [_rootVC dismissModalViewControllerAnimated:NO];
+    //[self.window sendSubviewToBack:_naviController.view];
+    return;
+    
+//    [self.naviController popToRootViewControllerAnimated:NO];
+//    self.naviController.navigationBarHidden = YES;
 }
 
 -(void)showTabIndex:(NSUInteger)aIndex

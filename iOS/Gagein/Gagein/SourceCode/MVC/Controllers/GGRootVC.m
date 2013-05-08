@@ -38,9 +38,9 @@
 {
     [super viewDidLoad];
     
-    [_viewCover addSubview:GGSharedDelegate.naviController.view];
-    [self addChildViewController:GGSharedDelegate.naviController];
-    [GGSharedDelegate.naviController didMoveToParentViewController:self];
+    [_viewCover addSubview:GGSharedDelegate.tabBarController.view];
+    [self addChildViewController:GGSharedDelegate.tabBarController];
+    [GGSharedDelegate.tabBarController didMoveToParentViewController:self];
     
     _viewSetting = [[GGSlideSettingView alloc] initWithFrame:_viewBack.bounds];
     [_viewBack addSubview:_viewSetting];
@@ -50,7 +50,6 @@
     
     _coverGest = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cover)];
     _coverGest.direction = UISwipeGestureRecognizerDirectionLeft;
-    
 }
 
 - (void)viewDidUnload {

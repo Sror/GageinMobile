@@ -317,6 +317,7 @@
 		EAEABBFF1724C89300947BE9 /* GGWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEABBFC1724C89300947BE9 /* GGWebVC.m */; };
 		EAEABC031724C8E400947BE9 /* GGHappeningsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEABC021724C8E400947BE9 /* GGHappeningsVC.m */; };
 		EAEC1E3A1739B6CE0058130E /* tabbarBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEC1E391739B6CE0058130E /* tabbarBg@2x.png */; };
+		EAEC1E421739CCCD0058130E /* GGRootNaviVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEC1E411739CCCD0058130E /* GGRootNaviVC.m */; };
 		EAEFB4DF1717A8100013634F /* GGCompanyDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CB1717A8100013634F /* GGCompanyDetailVC.xib */; };
 		EAEFB4E01717A8100013634F /* GGCompanyUpdateDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CC1717A8100013634F /* GGCompanyUpdateDetailVC.xib */; };
 		EAEFB4E11717A8100013634F /* GGFollowCompanyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CD1717A8100013634F /* GGFollowCompanyVC.xib */; };
@@ -846,6 +847,8 @@
 		EAEABC011724C8E400947BE9 /* GGHappeningsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGHappeningsVC.h; sourceTree = "<group>"; };
 		EAEABC021724C8E400947BE9 /* GGHappeningsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGHappeningsVC.m; sourceTree = "<group>"; };
 		EAEC1E391739B6CE0058130E /* tabbarBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbarBg@2x.png"; sourceTree = "<group>"; };
+		EAEC1E401739CCCD0058130E /* GGRootNaviVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGRootNaviVC.h; sourceTree = "<group>"; };
+		EAEC1E411739CCCD0058130E /* GGRootNaviVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGRootNaviVC.m; sourceTree = "<group>"; };
 		EAEFB4CB1717A8100013634F /* GGCompanyDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyDetailVC.xib; sourceTree = "<group>"; };
 		EAEFB4CC1717A8100013634F /* GGCompanyUpdateDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyUpdateDetailVC.xib; sourceTree = "<group>"; };
 		EAEFB4CD1717A8100013634F /* GGFollowCompanyVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGFollowCompanyVC.xib; sourceTree = "<group>"; };
@@ -1696,6 +1699,8 @@
 				EA1D944617335EAB009FCC7B /* GGRootVC.h */,
 				EA1D944717335EAB009FCC7B /* GGRootVC.m */,
 				EA1D944817335EAB009FCC7B /* GGRootVC.xib */,
+				EAEC1E401739CCCD0058130E /* GGRootNaviVC.h */,
+				EAEC1E411739CCCD0058130E /* GGRootNaviVC.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2539,6 +2544,7 @@
 				EAB8D5491739AF7900D033FC /* NGTabBarItem.m in Sources */,
 				EAB8D54A1739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.m in Sources */,
 				EAB8D54B1739AF7900D033FC /* UIViewController+NGTabBarItem.m in Sources */,
+				EAEC1E421739CCCD0058130E /* GGRootNaviVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

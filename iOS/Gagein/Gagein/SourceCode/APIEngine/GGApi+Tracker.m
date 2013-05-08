@@ -167,6 +167,10 @@
                           isUnread:(BOOL)aIsUnread
                           callback:(GGApiBlock)aCallback
 {
+    if (GGSharedRuntimeData.accessToken == nil) {
+        return;
+    }
+    
     //POST
     NSString *path = @"member/me/update/get_saved";
     

@@ -9,18 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "GGTabBarController.h"
 #import "GGRootVC.h"
-//#import "NGTabBarController.h"
+#import "GGRootNaviVC.h"
 
 @class GGSlideSettingView;
+@class GGSignupPortalVC;
 
 @interface GGAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) GGTabBarController *tabBarController;
-@property (strong, nonatomic) UINavigationController *naviController;
+@property (strong, nonatomic) GGRootNaviVC *naviController;
 @property (readonly) GGSlideSettingView *slideSettingView;
 @property (strong, nonatomic) GGRootVC *rootVC;
+@property (strong, nonatomic)   GGSignupPortalVC *signPortalVC;
 
 -(void)enterLoginIfNeeded;
 -(void)popNaviToRoot;
