@@ -95,6 +95,8 @@
                              if (completion) {
                                  completion();
                              }
+                             
+                             [self postNotification:GG_NOTIFY_MENU_REVEAL];
                          }
                      }];
 }
@@ -114,6 +116,8 @@
                              if (completion) {
                                  completion();
                              }
+                             
+                             [self postNotification:GG_NOTIFY_MENU_COVER];
                          }
                      }];
 }

@@ -79,6 +79,8 @@
 {
     [self observeNotification:GG_NOTIFY_LOG_OUT];
     [self observeNotification:GG_NOTIFY_LOG_IN];
+    [self observeNotification:GG_NOTIFY_MENU_REVEAL];
+    [self observeNotification:GG_NOTIFY_MENU_COVER];
     
     [super viewDidLoad];
     
@@ -168,14 +170,23 @@
 #pragma mark - notification handling
 -(void)handleNotification:(NSNotification *)notification
 {
-    if ([notification.name isEqualToString:GG_NOTIFY_LOG_OUT])
+    NSString *noteName = notification.name;
+    if ([noteName isEqualToString:GG_NOTIFY_LOG_OUT])
     {
         [_updates removeAllObjects];
         [self.updatesTV reloadData];
     }
-    else if ([notification.name isEqualToString:GG_NOTIFY_LOG_IN])
+    else if ([noteName isEqualToString:GG_NOTIFY_LOG_IN])
     {
         [self.updatesTV triggerPullToRefresh];
+    }
+    else if ([noteName isEqualToString:GG_NOTIFY_MENU_REVEAL])
+    {
+        self.view.userInteractionEnabled = NO;
+    }
+    else if ([noteName isEqualToString:GG_NOTIFY_MENU_COVER])
+    {
+        self.view.userInteractionEnabled = YES;
     }
 }
 
