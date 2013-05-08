@@ -286,6 +286,8 @@
 		EACAE12717095C8700E7088F /* GGRuntimeData.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE12617095C8700E7088F /* GGRuntimeData.m */; };
 		EACAE13B170961FB00E7088F /* UIView+LoadFromNib.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE13A170961FB00E7088F /* UIView+LoadFromNib.m */; };
 		EACAE1401709629400E7088F /* GGWelcomePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE13F1709629400E7088F /* GGWelcomePageView.m */; };
+		EAD16176173AE2050092C11B /* GGComUpdateDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD16175173AE2050092C11B /* GGComUpdateDetailView.m */; };
+		EAD16178173AE22B0092C11B /* GGComUpdateDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD16177173AE22B0092C11B /* GGComUpdateDetailView.xib */; };
 		EAD481F51710FF9100556288 /* GGCompanyUpdateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */; };
 		EAD481F91710FFB300556288 /* GGCompanyUpdateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD481F81710FFB300556288 /* GGCompanyUpdateCell.m */; };
 		EAD481FB1711060500556288 /* comLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD481FA1711060500556288 /* comLogo.png */; };
@@ -793,6 +795,9 @@
 		EACAE13A170961FB00E7088F /* UIView+LoadFromNib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LoadFromNib.m"; sourceTree = "<group>"; };
 		EACAE13E1709629400E7088F /* GGWelcomePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGWelcomePageView.h; sourceTree = "<group>"; };
 		EACAE13F1709629400E7088F /* GGWelcomePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGWelcomePageView.m; sourceTree = "<group>"; };
+		EAD16174173AE2050092C11B /* GGComUpdateDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComUpdateDetailView.h; sourceTree = "<group>"; };
+		EAD16175173AE2050092C11B /* GGComUpdateDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComUpdateDetailView.m; sourceTree = "<group>"; };
+		EAD16177173AE22B0092C11B /* GGComUpdateDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGComUpdateDetailView.xib; sourceTree = "<group>"; };
 		EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyUpdateCell.xib; sourceTree = "<group>"; };
 		EAD481F71710FFB300556288 /* GGCompanyUpdateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyUpdateCell.h; sourceTree = "<group>"; };
 		EAD481F81710FFB300556288 /* GGCompanyUpdateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyUpdateCell.m; sourceTree = "<group>"; };
@@ -1464,6 +1469,7 @@
 				EAF0F0911727A37F0065C39A /* GGKeywordExampleCell.xib */,
 				EA4022331728F1B800E5D179 /* GGHappeningDetailCell.xib */,
 				EA4CC684172B98E90082A048 /* GGRelevanceBar.xib */,
+				EAD16177173AE22B0092C11B /* GGComUpdateDetailView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1779,6 +1785,8 @@
 				EA4022301728F1A000E5D179 /* GGHappeningDetailCell.m */,
 				EA4CC681172B98D10082A048 /* GGRelevanceBar.h */,
 				EA4CC682172B98D10082A048 /* GGRelevanceBar.m */,
+				EAD16174173AE2050092C11B /* GGComUpdateDetailView.h */,
+				EAD16175173AE2050092C11B /* GGComUpdateDetailView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2360,6 +2368,7 @@
 				EA4239FB173501D5002D718A /* welcome03@2x.png in Resources */,
 				EA4239FC173501D5002D718A /* welcome04@2x.png in Resources */,
 				EAEC1E3A1739B6CE0058130E /* tabbarBg@2x.png in Resources */,
+				EAD16178173AE22B0092C11B /* GGComUpdateDetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2545,6 +2554,7 @@
 				EAB8D54A1739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.m in Sources */,
 				EAB8D54B1739AF7900D033FC /* UIViewController+NGTabBarItem.m in Sources */,
 				EAEC1E421739CCCD0058130E /* GGRootNaviVC.m in Sources */,
+				EAD16176173AE2050092C11B /* GGComUpdateDetailView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

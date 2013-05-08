@@ -8,22 +8,24 @@
 
 #import "GGCompanyUpdateDetailVC.h"
 #import "GGCompanyUpdate.h"
-
+//#import "GGComUpdateDetailCell.h"
+#import "GGComUpdateDetailView.h"
 
 @interface GGCompanyUpdateDetailVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (weak, nonatomic) IBOutlet UIView *viewUpdate;
-@property (weak, nonatomic) IBOutlet UIImageView *ivUpdateBg;
-@property (weak, nonatomic) IBOutlet UILabel *lblSource;
-@property (weak, nonatomic) IBOutlet UILabel *lblDate;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
-@property (weak, nonatomic) IBOutlet UILabel *lblContent;
-@property (weak, nonatomic) IBOutlet UITextView *textView;
-@property (weak, nonatomic) IBOutlet UIImageView *ivPhoto;
-@property (weak, nonatomic) IBOutlet UIWebView *wvTextView;
+//@property (weak, nonatomic) IBOutlet UIView *viewUpdate;
+//@property (weak, nonatomic) IBOutlet UIImageView *ivUpdateBg;
+//@property (weak, nonatomic) IBOutlet UILabel *lblSource;
+//@property (weak, nonatomic) IBOutlet UILabel *lblDate;
+//@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+//@property (weak, nonatomic) IBOutlet UILabel *lblContent;
+//@property (weak, nonatomic) IBOutlet UITextView *textView;
+//@property (weak, nonatomic) IBOutlet UIImageView *ivPhoto;
+//@property (weak, nonatomic) IBOutlet UIWebView *wvTextView;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+//@property (weak, nonatomic) IBOutlet UITableView *tvContent;
 
 @end
 
@@ -33,6 +35,8 @@
     UIButton *_btnPrevUpdate;
     UIButton *_btnNextUpdate;
     CGRect  _originalTextViewFrame;
+    
+    GGComUpdateDetailView   *_comUpdateDetailCell;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -49,6 +53,10 @@
     [super viewDidLoad];
     self.naviTitle = _naviTitleString;
     self.view.backgroundColor = GGSharedColor.silver;
+    
+    //
+    _comUpdateDetailCell = [GGComUpdateDetailView viewFromNibWithOwner:self];
+    //_tvContent.backgroundColor = GGSharedColor.silver;
     
     //
     UIImage *upArrowEnabledImg = [UIImage imageNamed:@"upArrowEnabled"];
@@ -81,28 +89,39 @@
     
     
     //
-    _originalTextViewFrame = self.wvTextView.frame;
+    //_originalTextViewFrame = self.wvTextView.frame;
     self.scrollView.hidden = YES;
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, CGRectGetMaxY(self.viewUpdate.frame) + 10);
+    [self.scrollView addSubview:_comUpdateDetailCell];
+    [self _adjustScrollviewContentSize];
+    //self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, CGRectGetMaxY(self.viewUpdate.frame) + 10);
     
-    self.ivUpdateBg.image = GGSharedImagePool.stretchShadowBgWite;
+    
     
     [self _callApiGetCompanyUpdateDetail];
+}
+
+-(void)_adjustScrollviewContentSize
+{
+    CGSize contentSize = self.scrollView.contentSize;
+    contentSize.height = _comUpdateDetailCell.height;
+    self.scrollView.contentSize = contentSize;
+    self.scrollView.contentOffset = CGPointZero;
 }
 
 
 - (void)viewDidUnload {
     [self setScrollView:nil];
-    [self setLblTitle:nil];
-    [self setIvPhoto:nil];
-    [self setLblContent:nil];
+    //[self setLblTitle:nil];
+    //[self setIvPhoto:nil];
+    //[self setLblContent:nil];
     [self setWebView:nil];
-    [self setLblSource:nil];
-    [self setLblDate:nil];
-    [self setViewUpdate:nil];
-    [self setIvUpdateBg:nil];
-    [self setTextView:nil];
-    [self setWvTextView:nil];
+    //[self setLblSource:nil];
+    //[self setLblDate:nil];
+    //[self setViewUpdate:nil];
+    //[self setIvUpdateBg:nil];
+    //[self setTextView:nil];
+    //[self setWvTextView:nil];
+    //[self setTvContent:nil];
     [super viewDidUnload];
 }
 
@@ -235,10 +254,11 @@
     {
         [_webView loadHTMLString:@"" baseURL:nil];
         _webView.hidden = YES;
-        self.lblTitle.text = _companyUpdateDetail.headline;
+        _comUpdateDetailCell.lblTitle.text = _companyUpdateDetail.headline;
 
-        [self.wvTextView loadHTMLString:_companyUpdateDetail.textview baseURL:nil];
-        self.lblSource.text = ((GGCompanyUpdate *)(_updates[_updateIndex])).fromSource;
+        _comUpdateDetailCell.textviewHidden.text = _companyUpdateDetail.textview;
+        
+        _comUpdateDetailCell.lblSource.text = ((GGCompanyUpdate *)(_updates[_updateIndex])).fromSource;
         
         NSString *urlStr = nil;
         if (_companyUpdateDetail.pictures.count)
@@ -260,40 +280,30 @@
                 activityIndicator.hidesWhenStopped = YES;
                 activityIndicator.hidden = NO;
                 [activityIndicator startAnimating];
-                activityIndicator.center = CGPointMake(self.ivPhoto.frame.size.width / 2, self.ivPhoto.frame.size.height / 2);
-                [self.ivPhoto addSubview:activityIndicator];
+                activityIndicator.center = CGPointMake(_comUpdateDetailCell.ivPhoto.frame.size.width / 2, _comUpdateDetailCell.ivPhoto.frame.size.height / 2);
+                [_comUpdateDetailCell.ivPhoto addSubview:activityIndicator];
                 
                 UIImage *placeholderImage = GGSharedImagePool.placeholder;
                 //[self.ivPhoto setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:placeholderImage];
-                [self.ivPhoto setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                [_comUpdateDetailCell.ivPhoto setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
                     [activityIndicator stopAnimating];
                     [activityIndicator removeFromSuperview];
                 }];
             }
         }
         
-        [self _adjustLayoutHasImage:(urlStr.length)];
-        self.ivPhoto.hidden = (urlStr.length <= 0);
+        [_comUpdateDetailCell adjustLayoutHasImage:(urlStr.length)];
+        
+        [self _adjustScrollviewContentSize];
+        
+        [_comUpdateDetailCell.wvTextview loadHTMLString:_companyUpdateDetail.textview baseURL:nil];
+        
         self.scrollView.hidden = NO;
     }
 }
 
 
--(void)_adjustLayoutHasImage:(BOOL)aHasImage
-{
-    if (!aHasImage)
-    {
-        CGRect longRect = _originalTextViewFrame;
-        float offsetY = _originalTextViewFrame.origin.y - self.ivPhoto.frame.origin.y;
-        longRect.origin.y -= offsetY;
-        longRect.size.height += offsetY;
-        self.wvTextView.frame = longRect;
-    }
-    else
-    {
-        self.wvTextView.frame = _originalTextViewFrame;
-    }
-}
+
 
 
 #pragma mark - API calls
@@ -307,6 +317,7 @@
             _companyUpdateDetail = [parser parseGetCompanyUpdateDetail];
             
             [self _updateUIWithUpdateDetail];
+            //[_tvContent reloadData];
         }
         
     }];
@@ -324,5 +335,8 @@
 {
     [self hideLoadingHUD];
 }
+
+#pragma mark - tableview datasource
+
 
 @end
