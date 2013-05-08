@@ -43,6 +43,8 @@ typedef enum
 #define APP_CODE_IPHONE     @"78cfc17502a1e05a"
 #define APP_CODE_IPAD       @"c0d67d02e7c74d36"
 
+#define SAMPLE_TEXT         @"this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing"
+
 //
 #undef	__INT
 #define __INT( __x )			[NSNumber numberWithInt:(NSInteger)(__x)]

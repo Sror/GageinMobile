@@ -124,8 +124,11 @@
     cell.logoBtn.tag = indexPath.row;
     cell.titleLbl.text = updateData.headline;
     cell.sourceLbl.text = updateData.fromSource;
-    cell.descriptionLbl.text = updateData.content;
-    [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:nil];
+    
+#warning FAKE DATA
+    cell.descriptionLbl.text = SAMPLE_TEXT;//updateData.content;
+    
+    [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.placeholder];
     
     cell.intervalLbl.text = [updateData intervalStringWithDate:updateData.date];
     

@@ -288,6 +288,7 @@
 		EACAE1401709629400E7088F /* GGWelcomePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAE13F1709629400E7088F /* GGWelcomePageView.m */; };
 		EAD16176173AE2050092C11B /* GGComUpdateDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD16175173AE2050092C11B /* GGComUpdateDetailView.m */; };
 		EAD16178173AE22B0092C11B /* GGComUpdateDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD16177173AE22B0092C11B /* GGComUpdateDetailView.xib */; };
+		EAD1617A173B190C0092C11B /* updateCellSample.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD16179173B190C0092C11B /* updateCellSample.png */; };
 		EAD481F51710FF9100556288 /* GGCompanyUpdateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */; };
 		EAD481F91710FFB300556288 /* GGCompanyUpdateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD481F81710FFB300556288 /* GGCompanyUpdateCell.m */; };
 		EAD481FB1711060500556288 /* comLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD481FA1711060500556288 /* comLogo.png */; };
@@ -798,6 +799,7 @@
 		EAD16174173AE2050092C11B /* GGComUpdateDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComUpdateDetailView.h; sourceTree = "<group>"; };
 		EAD16175173AE2050092C11B /* GGComUpdateDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComUpdateDetailView.m; sourceTree = "<group>"; };
 		EAD16177173AE22B0092C11B /* GGComUpdateDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGComUpdateDetailView.xib; sourceTree = "<group>"; };
+		EAD16179173B190C0092C11B /* updateCellSample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updateCellSample.png; sourceTree = "<group>"; };
 		EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyUpdateCell.xib; sourceTree = "<group>"; };
 		EAD481F71710FFB300556288 /* GGCompanyUpdateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyUpdateCell.h; sourceTree = "<group>"; };
 		EAD481F81710FFB300556288 /* GGCompanyUpdateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyUpdateCell.m; sourceTree = "<group>"; };
@@ -1910,6 +1912,7 @@
 		EACAE1411709643D00E7088F /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				EAD16179173B190C0092C11B /* updateCellSample.png */,
 				EAD481FA1711060500556288 /* comLogo.png */,
 			);
 			path = Demo;
@@ -2369,6 +2372,7 @@
 				EA4239FC173501D5002D718A /* welcome04@2x.png in Resources */,
 				EAEC1E3A1739B6CE0058130E /* tabbarBg@2x.png in Resources */,
 				EAD16178173AE22B0092C11B /* GGComUpdateDetailView.xib in Resources */,
+				EAD1617A173B190C0092C11B /* updateCellSample.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
