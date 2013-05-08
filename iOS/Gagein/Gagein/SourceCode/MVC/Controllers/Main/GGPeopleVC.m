@@ -187,6 +187,7 @@
     else if ([noteName isEqualToString:GG_NOTIFY_MENU_COVER])
     {
         self.view.userInteractionEnabled = YES;
+        [_slideSettingView.searchBar resignFirstResponder];
     }
 }
 

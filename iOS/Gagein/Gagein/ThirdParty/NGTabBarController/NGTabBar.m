@@ -387,12 +387,12 @@
     if (self.selectedItemIndex != NSNotFound) {
         CGRect itemRect = [[self.items objectAtIndex:self.selectedItemIndex] frame]; 
         
-#warning commented by Daniel
-//        if (_itemHighlightView == nil) {
-//            self.itemHighlightView = [[UIView alloc] initWithFrame:CGRectZero];
-//            self.itemHighlightView.layer.cornerRadius = 5.f;
-//            [self addSubview:self.itemHighlightView];
-//        }
+//#warning commented by Daniel
+        if (_itemHighlightView == nil) {
+            self.itemHighlightView = [[UIView alloc] initWithFrame:CGRectZero];
+            self.itemHighlightView.layer.cornerRadius = 5.f;
+            [self addSubview:self.itemHighlightView];
+        }
         
         self.itemHighlightView.backgroundColor = self.itemHighlightColor;
         self.itemHighlightView.frame = NGTabBarIsVertical(self.position) ? CGRectInset(itemRect, 2.f, 0.f) : CGRectInset(itemRect, 0.f, 2.f);

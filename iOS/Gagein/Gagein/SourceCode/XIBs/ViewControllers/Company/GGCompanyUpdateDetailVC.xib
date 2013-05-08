@@ -51,7 +51,7 @@
 									<object class="IBUIImageView" id="728270357">
 										<reference key="NSNextResponder" ref="92206030"/>
 										<int key="NSvFlags">274</int>
-										<string key="NSFrameSize">{300, 445}</string>
+										<string key="NSFrameSize">{300, 393}</string>
 										<reference key="NSSuperview" ref="92206030"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="124630322"/>
@@ -241,7 +241,7 @@
 										<bool key="IBUIDetectsPhoneNumbers">YES</bool>
 									</object>
 								</array>
-								<string key="NSFrame">{{10, 15}, {300, 445}}</string>
+								<string key="NSFrame">{{10, 15}, {300, 393}}</string>
 								<reference key="NSSuperview" ref="980505550"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="728270357"/>
@@ -304,7 +304,6 @@
 								<string key="NSFrame">{{277, 12}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="423025731"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
