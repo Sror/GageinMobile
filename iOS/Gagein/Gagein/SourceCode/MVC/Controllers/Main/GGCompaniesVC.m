@@ -520,10 +520,10 @@
         cell.titleLbl.text = updateData.headline;
         cell.sourceLbl.text = updateData.fromSource;
         
-#warning FAKE DATA
+#warning FAKE DATA - company update description
         cell.descriptionLbl.text = SAMPLE_TEXT;//updateData.content;
 
-        [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.placeholder];
+        [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
         
         cell.intervalLbl.text = [updateData intervalStringWithDate:updateData.date];
         
@@ -548,7 +548,7 @@
         cell.lblName.text = data.sourceText;
         cell.lblDescription.text = data.headLineText;
         cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
-        [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.orgLogoPath] placeholderImage:nil];
+        [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
         
         return cell;
     }

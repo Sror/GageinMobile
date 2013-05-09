@@ -381,6 +381,9 @@
 		EAF676451734B57600CE9F7D /* OATokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF676271734B57600CE9F7D /* OATokenManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EAF676461734B57600CE9F7D /* OAuthLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF6762A1734B57600CE9F7D /* OAuthLoginView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EAF676471734B57600CE9F7D /* OAuthLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF6762B1734B57600CE9F7D /* OAuthLoginView.xib */; };
+		EAF99590173C61F7009DA08E /* unsaveIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF9958F173C61F7009DA08E /* unsaveIcon@2x.png */; };
+		EAF99592173C6240009DA08E /* logoDefaultCompany@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF99591173C6240009DA08E /* logoDefaultCompany@2x.png */; };
+		EAF99594173C6252009DA08E /* logoDefaultPerson@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF99593173C6252009DA08E /* logoDefaultPerson@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -957,6 +960,9 @@
 		EAF676291734B57600CE9F7D /* OAuthLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthLoginView.h; sourceTree = "<group>"; };
 		EAF6762A1734B57600CE9F7D /* OAuthLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthLoginView.m; sourceTree = "<group>"; };
 		EAF6762B1734B57600CE9F7D /* OAuthLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OAuthLoginView.xib; sourceTree = "<group>"; };
+		EAF9958F173C61F7009DA08E /* unsaveIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unsaveIcon@2x.png"; sourceTree = "<group>"; };
+		EAF99591173C6240009DA08E /* logoDefaultCompany@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logoDefaultCompany@2x.png"; sourceTree = "<group>"; };
+		EAF99593173C6252009DA08E /* logoDefaultPerson@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logoDefaultPerson@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1204,6 +1210,7 @@
 		EA1D945917339DB1009FCC7B /* company */ = {
 			isa = PBXGroup;
 			children = (
+				EAF99593173C6252009DA08E /* logoDefaultPerson@2x.png */,
 				EA1D945A17339DB1009FCC7B /* darkBtnBg@2x.png */,
 				EA1D945B17339DB1009FCC7B /* deleteRadioHorizontal@2x.png */,
 				EA1D945C17339DB1009FCC7B /* deleteRadioVertical@2x.png */,
@@ -1237,6 +1244,8 @@
 		EA1D948E17339F2F009FCC7B /* people */ = {
 			isa = PBXGroup;
 			children = (
+				EAF99591173C6240009DA08E /* logoDefaultCompany@2x.png */,
+				EAF9958F173C61F7009DA08E /* unsaveIcon@2x.png */,
 				EA1D948F17339F2F009FCC7B /* actionIcon@2x.png */,
 				EA1D949017339F2F009FCC7B /* blackBtnWithWhiteBorder@2x.png */,
 				EA1D949117339F2F009FCC7B /* chatterLongBtnBg@2x.png */,
@@ -2412,6 +2421,9 @@
 				EAD16178173AE22B0092C11B /* GGComUpdateDetailView.xib in Resources */,
 				EAD1617A173B190C0092C11B /* updateCellSample.png in Resources */,
 				EAD16190173B3D9D0092C11B /* GGFacebookOAuthVC.xib in Resources */,
+				EAF99590173C61F7009DA08E /* unsaveIcon@2x.png in Resources */,
+				EAF99592173C6240009DA08E /* logoDefaultCompany@2x.png in Resources */,
+				EAF99594173C6252009DA08E /* logoDefaultPerson@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

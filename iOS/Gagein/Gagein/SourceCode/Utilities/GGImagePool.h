@@ -14,6 +14,8 @@ AS_SINGLETON(GGImagePool)
 @property (strong) UIImage *placeholder;
 @property (strong) UIImage  *stretchShadowBgWite;
 @property (strong) UIImage  *bgNavibar;
+@property (strong) UIImage  *logoDefaultCompany;
+@property (strong) UIImage  *logoDefaultPerson;
 
 @end
 

@@ -18,6 +18,8 @@ DEF_SINGLETON(GGImagePool)
         _placeholder = [UIImage imageNamed:@"placeholder.png"];
         _stretchShadowBgWite = [[UIImage imageNamed:@"shadowedBgWhite"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
         _bgNavibar = [[UIImage imageNamed:@"bgNavibar"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+        _logoDefaultCompany = [UIImage imageNamed:@"logoDefaultCompany"];
+        _logoDefaultPerson = [UIImage imageNamed:@"logoDefaultPerson"];
     }
     return self;
 }
