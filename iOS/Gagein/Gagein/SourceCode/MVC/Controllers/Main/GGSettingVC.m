@@ -99,15 +99,23 @@
 #pragma mark - table view datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if (section == 0)
+    {
         return 1;
-    } else if (section == 1) {
-        return 2;
-    } else if (section == 2) {
+    }
+    
+//    else if (section == 1)
+//    {
+//        return 2;
+//    }
+    
+    else if (section == 1)
+    {
         return 3;
     }
     
-    else if (section == 3) {
+    else if (section == 2)
+    {
         return 1;
     }
     
@@ -132,16 +140,21 @@
         cell.textLabel.text = @"My Profile";
         cell.detailTextLabel.text = @"";
         
-    } else if (section == 1) {
-        
-        if (row == 0) {
-            cell.textLabel.text = @"People Updates";
-        } else {
-            cell.textLabel.text = @"Company Updates";
-        }
-        cell.detailTextLabel.text = @"";
-        
-    } else if (section == 2) {
+    }
+    
+//    else if (section == 1)
+//    {
+//        
+//        if (row == 0) {
+//            cell.textLabel.text = @"People Updates";
+//        } else {
+//            cell.textLabel.text = @"Company Updates";
+//        }
+//        cell.detailTextLabel.text = @"";
+//        
+//    }
+    
+    else if (section == 1) {
         
         if (row == 0) {
             cell.textLabel.text = @"Version";
@@ -156,7 +169,7 @@
         
     }
     
-    else if (section == 3) {
+    else if (section == 2) {
         cell.textLabel.text = @"API Test";
         cell.detailTextLabel.text = @"";
     }
@@ -167,20 +180,24 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     //return 3;
-    return 4;
+    return 3;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
         return [GGUtils envString];
-    } else if (section == 1) {
-        return @"NOTIFICATIONS";
-    } else if (section == 2) {
+    }
+    
+//    else if (section == 1) {
+//        return @"NOTIFICATIONS";
+//    }
+    
+    else if (section == 1) {
         return @"ABOUT";
     }
     
-    else if (section == 3) {
+    else if (section == 2) {
         return @"TEST";
     }
     
@@ -200,15 +217,19 @@
         GGProfileVC *vc = [[GGProfileVC alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         
-    } else if (section == 1) {
-        
-        if (row == 0) {
-            //@"People Updates";
-        } else {
-            //@"Company Updates";
-        }
-        
-    } else if (section == 2) {
+    }
+    
+//    else if (section == 1) {
+//        
+//        if (row == 0) {
+//            //@"People Updates";
+//        } else {
+//            //@"Company Updates";
+//        }
+//        
+//    }
+    
+    else if (section == 1) {
         
         if (row == 0) {
             //@"Version";
@@ -230,14 +251,14 @@
         
     }
     
-    else if (section == 3) {
+    else if (section == 2) {
         [self apiTestAction:nil];
     }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (section == 2)
+    if (section == 1)
     {
         return [self _footerView];
     }
@@ -247,7 +268,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 2)
+    if (section == 1)
     {
         return [self _footerView].frame.size.height;
     }

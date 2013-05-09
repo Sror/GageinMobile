@@ -18,7 +18,7 @@
 #import "GGWelcomeVC.h"
 #import "GGRuntimeData.h"
 #import "GGSlideSettingView.h"
-
+#import "GGFacebookOAuth.h"
 
 
 
@@ -120,6 +120,15 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     DLog(@"applicationWillTerminate");
+    [[GGFacebookOAuth sharedInstance].session close];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    // attempt to extract a token from the url
+    return [[GGFacebookOAuth sharedInstance] handleOpenURL:url sourceApplication:sourceApplication];
 }
 
 

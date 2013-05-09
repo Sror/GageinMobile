@@ -240,7 +240,7 @@
 		EAB8D5151739756200D033FC /* SFOAuthCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D50D1739756200D033FC /* SFOAuthCrypto.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EAB8D5161739756200D033FC /* SFOAuthInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D5101739756200D033FC /* SFOAuthInfo.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EAB8D51A1739762200D033FC /* GGSalesforceOAuthVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D5191739762200D033FC /* GGSalesforceOAuthVC.m */; };
-		EAB8D51C1739784700D033FC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB8D51B1739784700D033FC /* Security.framework */; };
+		EAB8D51C1739784700D033FC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB8D51B1739784700D033FC /* Security.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EAB8D52417397CA100D033FC /* Bee_Thread.mm in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D52317397CA100D033FC /* Bee_Thread.mm */; };
 		EAB8D52B1739882F00D033FC /* GGUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D52A1739882F00D033FC /* GGUserProfile.m */; };
 		EAB8D5471739AF7900D033FC /* NGTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D53A1739AF7900D033FC /* NGTabBar.m */; };
@@ -289,6 +289,14 @@
 		EAD16176173AE2050092C11B /* GGComUpdateDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD16175173AE2050092C11B /* GGComUpdateDetailView.m */; };
 		EAD16178173AE22B0092C11B /* GGComUpdateDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD16177173AE22B0092C11B /* GGComUpdateDetailView.xib */; };
 		EAD1617A173B190C0092C11B /* updateCellSample.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD16179173B190C0092C11B /* updateCellSample.png */; };
+		EAD16180173B249C0092C11B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD1617F173B249C0092C11B /* FacebookSDK.framework */; };
+		EAD16182173B28F10092C11B /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD16181173B28F10092C11B /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		EAD16184173B290A0092C11B /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD16183173B290A0092C11B /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		EAD16186173B325C0092C11B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD16185173B325C0092C11B /* libsqlite3.dylib */; };
+		EAD16188173B328B0092C11B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD16187173B328B0092C11B /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		EAD1618B173B3BB50092C11B /* GGFacebookOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD1618A173B3BB50092C11B /* GGFacebookOAuth.m */; };
+		EAD1618F173B3D9D0092C11B /* GGFacebookOAuthVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD1618D173B3D9D0092C11B /* GGFacebookOAuthVC.m */; };
+		EAD16190173B3D9D0092C11B /* GGFacebookOAuthVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD1618E173B3D9D0092C11B /* GGFacebookOAuthVC.xib */; };
 		EAD481F51710FF9100556288 /* GGCompanyUpdateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */; };
 		EAD481F91710FFB300556288 /* GGCompanyUpdateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD481F81710FFB300556288 /* GGCompanyUpdateCell.m */; };
 		EAD481FB1711060500556288 /* comLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD481FA1711060500556288 /* comLogo.png */; };
@@ -800,6 +808,16 @@
 		EAD16175173AE2050092C11B /* GGComUpdateDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComUpdateDetailView.m; sourceTree = "<group>"; };
 		EAD16177173AE22B0092C11B /* GGComUpdateDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGComUpdateDetailView.xib; sourceTree = "<group>"; };
 		EAD16179173B190C0092C11B /* updateCellSample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updateCellSample.png; sourceTree = "<group>"; };
+		EAD1617F173B249C0092C11B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		EAD16181173B28F10092C11B /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		EAD16183173B290A0092C11B /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		EAD16185173B325C0092C11B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		EAD16187173B328B0092C11B /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		EAD16189173B3BB50092C11B /* GGFacebookOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFacebookOAuth.h; sourceTree = "<group>"; };
+		EAD1618A173B3BB50092C11B /* GGFacebookOAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFacebookOAuth.m; sourceTree = "<group>"; };
+		EAD1618C173B3D9D0092C11B /* GGFacebookOAuthVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFacebookOAuthVC.h; sourceTree = "<group>"; };
+		EAD1618D173B3D9D0092C11B /* GGFacebookOAuthVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFacebookOAuthVC.m; sourceTree = "<group>"; };
+		EAD1618E173B3D9D0092C11B /* GGFacebookOAuthVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGFacebookOAuthVC.xib; sourceTree = "<group>"; };
 		EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyUpdateCell.xib; sourceTree = "<group>"; };
 		EAD481F71710FFB300556288 /* GGCompanyUpdateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyUpdateCell.h; sourceTree = "<group>"; };
 		EAD481F81710FFB300556288 /* GGCompanyUpdateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyUpdateCell.m; sourceTree = "<group>"; };
@@ -943,7 +961,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAD16188173B328B0092C11B /* Social.framework in Frameworks */,
 				EAB8D51C1739784700D033FC /* Security.framework in Frameworks */,
+				EAD16186173B325C0092C11B /* libsqlite3.dylib in Frameworks */,
+				EAD16184173B290A0092C11B /* Accounts.framework in Frameworks */,
+				EAD16182173B28F10092C11B /* AdSupport.framework in Frameworks */,
 				EA844A36171FD29C00658015 /* MessageUI.framework in Frameworks */,
 				EA0908051712596F00BCD4C4 /* MapKit.framework in Frameworks */,
 				EA0908031712595700BCD4C4 /* ImageIO.framework in Frameworks */,
@@ -953,6 +975,7 @@
 				EACAE0771709486800E7088F /* UIKit.framework in Frameworks */,
 				EACAE0791709486800E7088F /* Foundation.framework in Frameworks */,
 				EACAE07B1709486800E7088F /* CoreGraphics.framework in Frameworks */,
+				EAD16180173B249C0092C11B /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1498,6 +1521,11 @@
 		EACAE0751709486800E7088F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EAD16187173B328B0092C11B /* Social.framework */,
+				EAD16185173B325C0092C11B /* libsqlite3.dylib */,
+				EAD16183173B290A0092C11B /* Accounts.framework */,
+				EAD16181173B28F10092C11B /* AdSupport.framework */,
+				EAD1617F173B249C0092C11B /* FacebookSDK.framework */,
 				EAB8D51B1739784700D033FC /* Security.framework */,
 				EA844A35171FD29B00658015 /* MessageUI.framework */,
 				EA0908041712596F00BCD4C4 /* MapKit.framework */,
@@ -1868,6 +1896,8 @@
 				EA24FA4D17140293003AFBA9 /* GGUtils.m */,
 				EA381C5F171FA700004535B5 /* GGImagePool.h */,
 				EA381C60171FA700004535B5 /* GGImagePool.m */,
+				EAD16189173B3BB50092C11B /* GGFacebookOAuth.h */,
+				EAD1618A173B3BB50092C11B /* GGFacebookOAuth.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1997,6 +2027,9 @@
 				EAF0F0A41727DBCA0065C39A /* GGHappeningDetailVC.m */,
 				EAB8D5181739762200D033FC /* GGSalesforceOAuthVC.h */,
 				EAB8D5191739762200D033FC /* GGSalesforceOAuthVC.m */,
+				EAD1618C173B3D9D0092C11B /* GGFacebookOAuthVC.h */,
+				EAD1618D173B3D9D0092C11B /* GGFacebookOAuthVC.m */,
+				EAD1618E173B3D9D0092C11B /* GGFacebookOAuthVC.xib */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -2373,6 +2406,7 @@
 				EAEC1E3A1739B6CE0058130E /* tabbarBg@2x.png in Resources */,
 				EAD16178173AE22B0092C11B /* GGComUpdateDetailView.xib in Resources */,
 				EAD1617A173B190C0092C11B /* updateCellSample.png in Resources */,
+				EAD16190173B3D9D0092C11B /* GGFacebookOAuthVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2559,6 +2593,8 @@
 				EAB8D54B1739AF7900D033FC /* UIViewController+NGTabBarItem.m in Sources */,
 				EAEC1E421739CCCD0058130E /* GGRootNaviVC.m in Sources */,
 				EAD16176173AE2050092C11B /* GGComUpdateDetailView.m in Sources */,
+				EAD1618B173B3BB50092C11B /* GGFacebookOAuth.m in Sources */,
+				EAD1618F173B3D9D0092C11B /* GGFacebookOAuthVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2604,6 +2640,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: GageIn, Inc (2L7KL2QHQ3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: GageIn, Inc (2L7KL2QHQ3)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Gagein/Gagein-Prefix.pch";
 				INFOPLIST_FILE = "Gagein/Gagein-Info.plist";
@@ -2671,6 +2711,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Gagein/Gagein-Prefix.pch";
 				INFOPLIST_FILE = "Gagein/Gagein-Info.plist";
@@ -2686,6 +2730,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Gagein/Gagein-Prefix.pch";
 				INFOPLIST_FILE = "Gagein/Gagein-Info.plist";
