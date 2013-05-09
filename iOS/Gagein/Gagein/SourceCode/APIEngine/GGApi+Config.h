@@ -49,7 +49,7 @@
 -(void)setAgentFilterEnabled:(BOOL)anEnabled callback:(GGApiBlock)aCallback;
 
 //  doRequest("POST", "config/filters/agent/2/true","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)selectAgentFilterWithID:(NSString *)aFilterID selected:(BOOL)aSelected callback:(GGApiBlock)aCallback;
+-(void)selectAgentFilterWithID:(long long)aFilterID selected:(BOOL)aSelected callback:(GGApiBlock)aCallback;
 
 //  doRequest("GET", "config/filters/category/list","access_token=b4790223c67f68b744d6ac3bb9b830e6");
 -(void)getCategoryFiltersList:(GGApiBlock)aCallback;

@@ -71,7 +71,7 @@
     //[self.window addSubview:_naviController.view];
     //[self.window sendSubviewToBack:_naviController.view];
     
-    UIImage *naviBgImg = [UIImage imageNamed:@"bgNaviBar"];
+    UIImage *naviBgImg = [UIImage imageNamed:@"bgNavibar"];
     CGSize navBgSize = naviBgImg.size;
     CGSize neededSize = CGSizeMake([UIScreen mainScreen].applicationFrame.size.width, navBgSize.height);
     UIImage *neededNaviBgImg = [GGUtils imageFor:naviBgImg size:neededSize];

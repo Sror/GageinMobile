@@ -54,6 +54,7 @@
 -(GGUserProfile *)parseGetMyOverview;
 
 #pragma mark - config
+-(GGDataPage *)parseGetCategoryFiltersList;
 -(GGDataPage *)parseGetAgentFiltersList;
 -(GGDataPage *)parseGetAgents;
 -(GGDataPage *)parseGetFunctionalAreas;

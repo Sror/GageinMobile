@@ -318,8 +318,9 @@
 -(void)_callApiGetCompanyUpdateDetail
 {
     GGCompanyUpdate *updateData = [self.updates objectAtIndex:_updateIndex];
+    [self showLoadingHUD];
     [GGSharedAPI getCompanyUpdateDetailWithNewsID:updateData.ID callback:^(id operation, id aResultObject, NSError *anError) {
-        
+        [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK) {
             _companyUpdateDetail = [parser parseGetCompanyUpdateDetail];

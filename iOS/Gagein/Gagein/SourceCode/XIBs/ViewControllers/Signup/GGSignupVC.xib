@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1536</int>
+		<int key="IBDocument.SystemTarget">1552</int>
 		<string key="IBDocument.SystemVersion">12C60</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1930</string>
+			<string key="NS.object.0">2083</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -150,6 +150,7 @@
 										<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 										<float key="IBUIMinimumFontSize">17</float>
 										<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+											<int key="IBUIKeyboardType">7</int>
 											<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										</object>
 										<int key="IBUIClearButtonMode">1</int>
@@ -247,7 +248,6 @@
 										<string key="NSFrame">{{195, 238}, {44, 17}}</string>
 										<reference key="NSSuperview" ref="615726619"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -682,20 +682,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">GGSignupVC</string>
 					<string key="superclassName">GGBaseViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="goLoginAction:">id</string>
-						<string key="joinNowAction:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="goLoginAction:">
-							<string key="name">goLoginAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="joinNowAction:">
-							<string key="name">joinNowAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="btnJoinNow">UIButton</string>
 						<string key="linkedOkPanel">UIView</string>
@@ -754,8 +740,8 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bgSignupField@2x.png">{494, 357}</string>
 			<string key="btnJoinNow@2x.png">{494, 64}</string>
-			<string key="txtAlreadyMembLogin@2x.png">{142, 8.5}</string>
+			<string key="txtAlreadyMembLogin@2x.png">{284, 17}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1930</string>
+		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>

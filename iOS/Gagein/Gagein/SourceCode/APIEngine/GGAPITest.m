@@ -18,7 +18,35 @@ DEF_SINGLETON(GGAPITest)
 
 -(void)run
 {
-    [self _testGetConfigFilterOptions];
+    [self _testGetCategoryFiltersList];
+}
+
+-(void)_testGetCategoryFiltersList
+{
+    [GGSharedAPI getCategoryFiltersList:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        GGDataPage *page = [parser parseGetCategoryFiltersList];
+        for (id item in page.items)
+        {
+            DLog(@"%@", item);
+        }
+        
+    }];
+}
+
+-(void)_testSelectAgentFilterWithID
+{
+    [GGSharedAPI selectAgentFilterWithID:1 selected:YES callback:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+    }];
+}
+
+-(void)_testSetAgentFilterEnabled
+{
+    [GGSharedAPI setAgentFilterEnabled:YES callback:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        
+    }];
 }
 
 -(void)_testGetConfigFilterOptions

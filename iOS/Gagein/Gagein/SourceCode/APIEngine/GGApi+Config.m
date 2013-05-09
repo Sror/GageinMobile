@@ -158,10 +158,10 @@
 
 //  doRequest("POST", "config/filters/agent/2/true","access_token=b4790223c67f68b744d6ac3bb9b830e6");
 
--(void)selectAgentFilterWithID:(NSString *)aFilterID selected:(BOOL)aSelected callback:(GGApiBlock)aCallback
+-(void)selectAgentFilterWithID:(long long)aFilterID selected:(BOOL)aSelected callback:(GGApiBlock)aCallback
 {
     //GET
-    NSString *path = [NSString stringWithFormat:@"config/filters/agent/%@/%@", aFilterID, (aSelected ? @"true" : @"false")];
+    NSString *path = [NSString stringWithFormat:@"config/filters/agent/%lld/%@", aFilterID, (aSelected ? @"true" : @"false")];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];

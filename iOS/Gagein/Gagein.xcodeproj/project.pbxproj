@@ -137,6 +137,7 @@
 		EA24FA441713D939003AFBA9 /* GGSelectFuncAreasVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA421713D939003AFBA9 /* GGSelectFuncAreasVC.m */; };
 		EA24FA4E17140293003AFBA9 /* GGUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA4D17140293003AFBA9 /* GGUtils.m */; };
 		EA24FA5417140CFF003AFBA9 /* GGFunctionalArea.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA5317140CFF003AFBA9 /* GGFunctionalArea.m */; };
+		EA2AD9C5173C4D6C007428E2 /* GGCategoryFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2AD9C4173C4D6C007428E2 /* GGCategoryFilter.m */; };
 		EA381C5E171FA6C2004535B5 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = EA381C5D171FA6C2004535B5 /* placeholder.png */; };
 		EA381C61171FA700004535B5 /* GGImagePool.m in Sources */ = {isa = PBXBuildFile; fileRef = EA381C60171FA700004535B5 /* GGImagePool.m */; };
 		EA381C65171FBBEB004535B5 /* GGSavedUpdatesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA381C63171FBBEB004535B5 /* GGSavedUpdatesVC.m */; };
@@ -578,6 +579,8 @@
 		EA24FA4D17140293003AFBA9 /* GGUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUtils.m; sourceTree = "<group>"; };
 		EA24FA5217140CFF003AFBA9 /* GGFunctionalArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFunctionalArea.h; sourceTree = "<group>"; };
 		EA24FA5317140CFF003AFBA9 /* GGFunctionalArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFunctionalArea.m; sourceTree = "<group>"; };
+		EA2AD9C3173C4D6C007428E2 /* GGCategoryFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCategoryFilter.h; sourceTree = "<group>"; };
+		EA2AD9C4173C4D6C007428E2 /* GGCategoryFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCategoryFilter.m; sourceTree = "<group>"; };
 		EA381C5D171FA6C2004535B5 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		EA381C5F171FA700004535B5 /* GGImagePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGImagePool.h; sourceTree = "<group>"; };
 		EA381C60171FA700004535B5 /* GGImagePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGImagePool.m; sourceTree = "<group>"; };
@@ -1776,6 +1779,8 @@
 				EA79B8B21724FD0400141E6D /* GGTicker.m */,
 				EAB8D5291739882F00D033FC /* GGUserProfile.h */,
 				EAB8D52A1739882F00D033FC /* GGUserProfile.m */,
+				EA2AD9C3173C4D6C007428E2 /* GGCategoryFilter.h */,
+				EA2AD9C4173C4D6C007428E2 /* GGCategoryFilter.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2595,6 +2600,7 @@
 				EAD16176173AE2050092C11B /* GGComUpdateDetailView.m in Sources */,
 				EAD1618B173B3BB50092C11B /* GGFacebookOAuth.m in Sources */,
 				EAD1618F173B3D9D0092C11B /* GGFacebookOAuthVC.m in Sources */,
+				EA2AD9C5173C4D6C007428E2 /* GGCategoryFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2711,6 +2717,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2721,6 +2728,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
