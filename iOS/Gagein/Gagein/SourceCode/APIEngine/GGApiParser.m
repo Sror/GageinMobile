@@ -16,7 +16,7 @@
 #import "GGMenuData.h"
 #import "GGCompanyHappening.h"
 #import "GGPerson.h"
-#import "GGAgentFiltersGroup.h"
+#import "GGAgentFilter.h"
 #import "GGUserProfile.h"
 
 #define GG_ASSERT_API_DATA_IS_DIC   NSAssert([_apiData isKindOfClass:[NSDictionary class]], @"Api Data should be a NSDictionary");
@@ -214,18 +214,18 @@
     return happening;
 }
 
--(NSMutableArray *)parseGetConfigFilterOptions
-{
-    NSMutableArray *arr = [NSMutableArray array];
-    NSArray *infos = self.dataInfos;
-    for (id item in infos) {
-        GGAgentFiltersGroup *filterGroup = [GGAgentFiltersGroup model];
-        [filterGroup parseWithData:item];
-        [arr addObject:filterGroup];
-    }
-    
-    return arr;
-}
+//-(NSMutableArray *)parseGetConfigFilterOptions
+//{
+//    NSMutableArray *arr = [NSMutableArray array];
+//    NSArray *infos = self.dataInfos;
+//    for (id item in infos) {
+//        GGAgentFiltersGroup *filterGroup = [GGAgentFiltersGroup model];
+//        [filterGroup parseWithData:item];
+//        [arr addObject:filterGroup];
+//    }
+//    
+//    return arr;
+//}
 
 -(NSArray *)parseGetMenu:(BOOL)aIsCompanyMenu
 {
@@ -265,6 +265,11 @@
 }
 
 #pragma mark - config
+-(GGDataPage *)parseGetAgentFiltersList
+{
+    return [self _parsePageforClass:[GGAgentFilter class]];
+}
+
 -(GGDataPage *)parseGetAgents
 {
     return [self _parsePageforClass:[GGAgent class]];

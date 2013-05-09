@@ -25,8 +25,9 @@ DEF_SINGLETON(GGAPITest)
 {
     [GGSharedAPI getAgentFiltersList:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-        NSMutableArray *arr = [parser parseGetConfigFilterOptions];
-        for (id item in arr) {
+        GGDataPage *page = [parser parseGetAgentFiltersList];
+        for (id item in page.items)
+        {
             DLog(@"%@", item);
         }
     }];

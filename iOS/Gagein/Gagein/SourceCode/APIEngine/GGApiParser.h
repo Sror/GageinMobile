@@ -54,9 +54,10 @@
 -(GGUserProfile *)parseGetMyOverview;
 
 #pragma mark - config
+-(GGDataPage *)parseGetAgentFiltersList;
 -(GGDataPage *)parseGetAgents;
 -(GGDataPage *)parseGetFunctionalAreas;
--(NSMutableArray *)parseGetConfigFilterOptions;
+//-(NSMutableArray *)parseGetConfigFilterOptions;
 
 #pragma mark - people
 -(GGDataPage *)parseSearchForPeople;

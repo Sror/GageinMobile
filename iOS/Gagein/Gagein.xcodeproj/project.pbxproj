@@ -66,7 +66,7 @@
 		EA16AA0D1732196C0052B526 /* GGConfigMediaFiltersVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA16AA0B1732196C0052B526 /* GGConfigMediaFiltersVC.xib */; };
 		EA16AA10173231A80052B526 /* GGConfigSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16AA0F173231A80052B526 /* GGConfigSwitchCell.m */; };
 		EA16AA12173231B90052B526 /* GGConfigSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA16AA11173231B90052B526 /* GGConfigSwitchCell.xib */; };
-		EA16AA15173238770052B526 /* GGAgentFiltersGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16AA14173238770052B526 /* GGAgentFiltersGroup.m */; };
+		EA16AA15173238770052B526 /* GGAgentFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16AA14173238770052B526 /* GGAgentFilter.m */; };
 		EA16AA1A17325A5B0052B526 /* GGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16AA1917325A4C0052B526 /* GGBaseViewController.m */; };
 		EA1995ED1717E301006D95E4 /* GGSettingMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */; };
 		EA1995F01717E312006D95E4 /* GGSettingMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */; };
@@ -481,8 +481,7 @@
 		EA16AA0E173231A80052B526 /* GGConfigSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGConfigSwitchCell.h; sourceTree = "<group>"; };
 		EA16AA0F173231A80052B526 /* GGConfigSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGConfigSwitchCell.m; sourceTree = "<group>"; };
 		EA16AA11173231B90052B526 /* GGConfigSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGConfigSwitchCell.xib; sourceTree = "<group>"; };
-		EA16AA13173238760052B526 /* GGAgentFiltersGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGAgentFiltersGroup.h; sourceTree = "<group>"; };
-		EA16AA14173238770052B526 /* GGAgentFiltersGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAgentFiltersGroup.m; sourceTree = "<group>"; };
+		EA16AA14173238770052B526 /* GGAgentFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAgentFilter.m; sourceTree = "<group>"; };
 		EA16AA1917325A4C0052B526 /* GGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGBaseViewController.m; sourceTree = "<group>"; };
 		EA1995EB1717E301006D95E4 /* GGSettingMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingMenuCell.h; sourceTree = "<group>"; };
 		EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingMenuCell.m; sourceTree = "<group>"; };
@@ -804,6 +803,7 @@
 		EACAE13A170961FB00E7088F /* UIView+LoadFromNib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LoadFromNib.m"; sourceTree = "<group>"; };
 		EACAE13E1709629400E7088F /* GGWelcomePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGWelcomePageView.h; sourceTree = "<group>"; };
 		EACAE13F1709629400E7088F /* GGWelcomePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGWelcomePageView.m; sourceTree = "<group>"; };
+		EACF20FF173C2A1900B58E52 /* GGAgentFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGAgentFilter.h; sourceTree = "<group>"; };
 		EAD16174173AE2050092C11B /* GGComUpdateDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComUpdateDetailView.h; sourceTree = "<group>"; };
 		EAD16175173AE2050092C11B /* GGComUpdateDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComUpdateDetailView.m; sourceTree = "<group>"; };
 		EAD16177173AE22B0092C11B /* GGComUpdateDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGComUpdateDetailView.xib; sourceTree = "<group>"; };
@@ -1762,8 +1762,8 @@
 				EA1A620C170A7405000B4EAE /* GGTag.m */,
 				EA1A6213170A77B3000B4EAE /* GGAgent.h */,
 				EA1A6214170A77B3000B4EAE /* GGAgent.m */,
-				EA16AA13173238760052B526 /* GGAgentFiltersGroup.h */,
-				EA16AA14173238770052B526 /* GGAgentFiltersGroup.m */,
+				EACF20FF173C2A1900B58E52 /* GGAgentFilter.h */,
+				EA16AA14173238770052B526 /* GGAgentFilter.m */,
 				EA24FA5217140CFF003AFBA9 /* GGFunctionalArea.h */,
 				EA24FA5317140CFF003AFBA9 /* GGFunctionalArea.m */,
 				EAD481FC17111BB700556288 /* GGDataPage.h */,
@@ -2555,7 +2555,7 @@
 				EA16AA071732194F0052B526 /* GGConfigCategoryFiltersVC.m in Sources */,
 				EA16AA0C1732196C0052B526 /* GGConfigMediaFiltersVC.m in Sources */,
 				EA16AA10173231A80052B526 /* GGConfigSwitchCell.m in Sources */,
-				EA16AA15173238770052B526 /* GGAgentFiltersGroup.m in Sources */,
+				EA16AA15173238770052B526 /* GGAgentFilter.m in Sources */,
 				EA16AA1A17325A5B0052B526 /* GGBaseViewController.m in Sources */,
 				EA1D944917335EAB009FCC7B /* GGRootVC.m in Sources */,
 				EAF676331734B57600CE9F7D /* NSMutableURLRequest+Parameters.m in Sources */,

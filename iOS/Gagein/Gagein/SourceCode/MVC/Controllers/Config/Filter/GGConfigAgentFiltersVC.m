@@ -9,7 +9,7 @@
 #import "GGConfigAgentFiltersVC.h"
 #import "GGConfigSwitchCell.h"
 #import "GGConfigLabel.h"
-#import "GGAgentFiltersGroup.h"
+#import "GGAgentFilter.h"
 
 @interface GGConfigAgentFiltersVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tv;
@@ -19,7 +19,7 @@
 @implementation GGConfigAgentFiltersVC
 {
     NSMutableArray  *_customAgents;
-    GGAgentFiltersGroup  *_predefinedAgentFilterGroup;
+    //GGAgentFiltersGroup  *_predefinedAgentFilterGroup;
     GGConfigSwitchCell *_configSwitchCell;
 }
 
@@ -64,7 +64,7 @@
         } else if (section == 1) {
             return _customAgents.count;
         } else if (section == 2) {
-            return _predefinedAgentFilterGroup.options.count;
+            //return _predefinedAgentFilterGroup.options.count;
         }
     }
     
@@ -102,7 +102,7 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         
-        GGAgentFilter *data = _predefinedAgentFilterGroup.options[row];
+        GGAgentFilter *data = nil;//_predefinedAgentFilterGroup.options[row];
         cell.textLabel.text = data.name;
         
         return cell;
