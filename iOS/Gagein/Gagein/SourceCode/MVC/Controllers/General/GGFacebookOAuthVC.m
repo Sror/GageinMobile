@@ -30,18 +30,44 @@
     
     if (![self _sharedSession].isOpen)
     {
-        [GGFacebookOAuth sharedInstance].session = [[FBSession alloc] init];
+        [self _doCreateSession];
         
-//        if (appDelegate.session.state == FBSessionStateCreatedTokenLoaded) {
-//            // even though we had a cached token, we need to login to make the session usable
-//            [appDelegate.session openWithCompletionHandler:^(FBSession *session,
-//                                                             FBSessionState status,
-//                                                             NSError *error) {
-//                // we recurse here, in order to update buttons and labels
-//                [self updateView];
-//            }];
-//        }
+        if ([self _sharedSession].state == FBSessionStateCreatedTokenLoaded)
+        {
+            [self _doOpenSession];
+        }
     }
+    
+    [self switchSession];
+}
+
+-(void)switchSession
+{
+    
+    if ([self _sharedSession].isOpen) {
+        
+        [[self _sharedSession] closeAndClearTokenInformation];
+        
+    } else {
+        if ([self _sharedSession].state != FBSessionStateCreated) {
+            
+            [self _doCreateSession];
+        }
+        
+        [self _doOpenSession];
+    }
+}
+
+-(void)_doCreateSession
+{
+    [GGFacebookOAuth sharedInstance].session = [[FBSession alloc] init];
+}
+
+-(void)_doOpenSession
+{
+    [[self _sharedSession] openWithCompletionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+        [self _updateUI];
+    }];
 }
 
 -(FBSession *)_sharedSession
@@ -54,6 +80,7 @@
     if ([self _sharedSession].isOpen)
     {
         DLog(@"token:%@", [self _sharedSession].accessTokenData.accessToken);
+        [self.navigationController popViewControllerAnimated:YES];
     }
     else
     {

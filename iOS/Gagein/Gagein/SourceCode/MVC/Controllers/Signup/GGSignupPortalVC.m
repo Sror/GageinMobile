@@ -12,8 +12,10 @@
 #import "GGSignupVC.h"
 
 #import "GGRuntimeData.h"
+
 #import "OAuthLoginView.h"
 #import "GGSalesforceOAuthVC.h"
+#import "GGFacebookOAuthVC.h"
 
 @interface GGSignupPortalVC ()
 
@@ -118,7 +120,9 @@
 
 -(IBAction)connectFacebookAction:(id)sender
 {
-    [GGAlert alert:@"Connect to Facebook (TODO)"];
+    //[GGAlert alert:@"Connect to Facebook (TODO)"];
+    GGFacebookOAuthVC *vc = [[GGFacebookOAuthVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(IBAction)connectTwitterAction:(id)sender
