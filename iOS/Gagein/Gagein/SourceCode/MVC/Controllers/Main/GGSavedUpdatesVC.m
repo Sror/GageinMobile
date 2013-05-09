@@ -23,6 +23,7 @@
 #define SWITCH_HEIGHT 20
 
 @interface GGSavedUpdatesVC ()
+@property (weak, nonatomic) IBOutlet UIView *viewEmpty;
 @property (strong) UITableView     *tvUpdates;
 @end
 
@@ -83,7 +84,13 @@
     _tvUpdates.dataSource = self;
     _tvUpdates.delegate = self;
     _tvUpdates.backgroundColor = GGSharedColor.silver;
+    _tvUpdates.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tvUpdates];
+    
+    _viewEmpty.backgroundColor = GGSharedColor.silver;
+    [_tvUpdates addSubview:_viewEmpty];
+    
+    //[self.view bringSubviewToFront:_viewEmpty];
     
     // setup pull-to-refresh and infinite scrolling
     __weak GGSavedUpdatesVC *weakSelf = self;
@@ -182,6 +189,7 @@
             [_updates addObjectsFromArray:page.items];
         }
         
+        _viewEmpty.hidden = _updates.count;
         [_tvUpdates reloadData];
         
         [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:.5f];
@@ -200,7 +208,8 @@
 #pragma mark - tableView datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _updates.count;
+    int count = _updates.count;
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -244,4 +253,8 @@
 }
 
 
+- (void)viewDidUnload {
+    [self setViewEmpty:nil];
+    [super viewDidUnload];
+}
 @end
