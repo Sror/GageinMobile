@@ -16,7 +16,7 @@ AS_SINGLETON(GGImagePool)
 @property (strong) UIImage  *bgNavibar;
 @property (strong) UIImage  *logoDefaultCompany;
 @property (strong) UIImage  *logoDefaultPerson;
-
+@property (strong) UIImage  *bgBtnOrange;
 @end
 
 #define GGSharedImagePool [GGImagePool sharedInstance]

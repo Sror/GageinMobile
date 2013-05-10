@@ -45,8 +45,7 @@
     self.title = @"Start Your Gagein";
     self.navigationItem.hidesBackButton = YES;
     
-    UIImage *btnAddImg = [[UIImage imageNamed:@"orangeBtnBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
-    [self.btnAddCustomAgent setBackgroundImage:btnAddImg forState:UIControlStateNormal];
+    [self.btnAddCustomAgent setBackgroundImage:GGSharedImagePool.bgBtnOrange forState:UIControlStateNormal];
     
     if (!_isFromRegistration)
     {

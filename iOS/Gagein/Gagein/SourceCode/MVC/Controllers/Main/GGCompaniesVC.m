@@ -32,7 +32,8 @@
 #import "GGSearchBar.h"
 #import "GGSwitchButton.h"
 #import "GGRelevanceBar.h"
-#import "GGEmptyView.h"
+//#import "GGEmptyView.h"
+#import "GGEmptyActionView.h"
 
 #define SWITCH_WIDTH 90
 #define SWITCH_HEIGHT 20
@@ -50,8 +51,8 @@
     GGSlideSettingView          *_slideSettingView;
     GGRelevanceBar              *_relevanceBar;
     
-    GGEmptyView                 *_viewUpdateEmpty;
-    GGEmptyView                 *_viewHappeningEmpty;
+    GGEmptyActionView                 *_viewUpdateEmpty;
+    GGEmptyActionView                 *_viewHappeningEmpty;
     
     GGSwitchButton             *_btnSwitchUpdate;
     BOOL                       _isShowingUpdate;
@@ -147,8 +148,8 @@
     self.happeningsTV.rowHeight = [GGCompanyHappeningCell HEIGHT];
     self.happeningsTV.dataSource = self;
     self.happeningsTV.delegate = self;
-    //[_scrollingView addPage:self.happeningsTV];
     self.happeningsTV.backgroundColor = GGSharedColor.silver;
+    self.happeningsTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.happeningsTV];
     
     updateRc.origin.y = CGRectGetMaxY(_relevanceBar.frame) - 5;
@@ -157,20 +158,10 @@
     self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
-    //[_scrollingView addPage:self.updatesTV];
     self.updatesTV.backgroundColor = GGSharedColor.silver;
+    self.happeningsTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.updatesTV];
-    
-    //
-    _viewUpdateEmpty = [GGEmptyView viewFromNibWithOwner:self];
-    _viewUpdateEmpty.frame = _updatesTV.bounds;
-    _viewUpdateEmpty.lblMessage.text = @"Oh, No update data yet.";
-    [_updatesTV addSubview:_viewUpdateEmpty];
-    
-    _viewHappeningEmpty = [GGEmptyView viewFromNibWithOwner:self];
-    _viewHappeningEmpty.frame = _happeningsTV.bounds;
-    _viewHappeningEmpty.lblMessage.text = @"Oh, No happening data yet.";
-    [_happeningsTV addSubview:_viewHappeningEmpty];
+
     
     [self.view bringSubviewToFront:_relevanceBar];
     
@@ -226,8 +217,6 @@
 }
 
 - (void)viewDidUnload {
-    //[self setNaviBar:nil];
-    //[self setNaviItem:nil];
     [_updates removeAllObjects];
     [_happenings removeAllObjects];
     [super viewDidUnload];
@@ -245,6 +234,7 @@
     {
         _isShowingUpdate = aIsOn;
         self.updatesTV.hidden = _relevanceBar.hidden = !_isShowingUpdate;
+        //_isShowingUpdate ? [_updatesTV triggerPullToRefresh] : [_happeningsTV triggerPullToRefresh];
     } else if (aSwitchButton == _relevanceBar.btnSwitch)
     {
         _relevance = (_relevanceBar.btnSwitch.isOn) ? kGGCompanyUpdateRelevanceHigh : kGGCompanyUpdateRelevanceNormal;
@@ -812,7 +802,17 @@
             }
         }
         
-        _viewUpdateEmpty.hidden = _updates.count;
+        if (_updates.count)
+        {
+            [_viewUpdateEmpty removeFromSuperview];
+        }
+        else
+        {
+            [_updatesTV addSubview:_viewUpdateEmpty];
+        }
+        
+        [self _installEmptyViewToUpdateTV:YES];
+        
         [self.updatesTV reloadData];
         
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
@@ -830,6 +830,52 @@
     }
 }
 
+-(void)_installEmptyViewToUpdateTV:(BOOL)aIsUpdate
+{
+    //
+    aIsUpdate ? [_viewUpdateEmpty removeFromSuperview] : [_viewHappeningEmpty removeFromSuperview];
+    if ((aIsUpdate &&_updates.count) || (!aIsUpdate && _happenings.count))
+    {
+        return;
+    }
+    
+    GGEmptyActionView *emptyView = [GGEmptyActionView viewFromNibWithOwner:self];
+    emptyView.frame = self.view.bounds;
+    aIsUpdate ? [_updatesTV addSubview:emptyView] : [_happeningsTV addSubview:emptyView];
+    
+    emptyView.lblTitle.text = @"Have trouble seeing updates?";
+    
+    if (_menuType == kGGMenuTypeCompany)
+    {
+        if (((GGDataPage *)_menuDatas[0]).items.count <= 0)
+        {
+            emptyView.viewSimple.hidden = YES;
+            emptyView.lblMessage.text = @"Add companies to watch for important updates.";
+            [emptyView.btnAction addTarget:self action:@selector(_addCompanyAction:) forControlEvents:UIControlEventTouchUpInside];
+        }
+        else
+        {
+            emptyView.viewSimple.hidden = NO;
+            if (aIsUpdate)
+            {
+                emptyView.lblSimpleMessage.text = @"In the last 7 days, there were no triggers found for your followed companies.";
+            }
+            else
+            {
+                emptyView.lblSimpleMessage.text = @"No happenings found for your followed companies as of this new feature launch in May 2013";
+            }
+        }
+    }
+    else if (_menuType == kGGMenuTypeAgent)
+    {
+        emptyView.lblMessage.text = @"Select sales triggers to explore new opportunities.";
+        [emptyView.btnAction addTarget:self action:@selector(_exploringConfigTapped:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    aIsUpdate ? (_viewUpdateEmpty = emptyView) : (_viewHappeningEmpty = emptyView);
+}
+
+#pragma mark -
 -(void)_getFirstHappeningPage
 {
     [self _getHappeningsDataWithPageFlag:kGGPageFlagFirstPage pageTime:0 eventID:0];
@@ -887,7 +933,8 @@
             }
         }
         
-        _viewHappeningEmpty.hidden = _happenings.count;
+        [self _installEmptyViewToUpdateTV:NO];
+        
         [self.happeningsTV reloadData];
         
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
@@ -905,6 +952,8 @@
         [self performSelector:@selector(_delayedStopHappeningAnimating) withObject:nil afterDelay:.5f];
     }
 }
+
+
 
 -(void)_delayedStopAnimating
 {
