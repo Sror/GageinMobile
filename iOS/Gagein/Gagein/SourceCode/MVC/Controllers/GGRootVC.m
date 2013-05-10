@@ -23,6 +23,7 @@
     BOOL    _isRevealed;
     UISwipeGestureRecognizer *_revealGest;
     UISwipeGestureRecognizer *_coverGest;
+    UITapGestureRecognizer  *_tapGest;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -50,6 +51,9 @@
     
     _coverGest = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cover)];
     _coverGest.direction = UISwipeGestureRecognizerDirectionLeft;
+    
+    _tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cover)];
+    
 }
 
 - (void)viewDidUnload {
@@ -60,13 +64,15 @@
 
 -(void)enableGesture:(BOOL)anEnabled
 {
-    [_viewCover removeGestureRecognizer:_revealGest];
-    [_viewBack removeGestureRecognizer:_coverGest];
+    [self.view removeGestureRecognizer:_revealGest];
+    [self.view removeGestureRecognizer:_coverGest];
+    [_viewCover removeGestureRecognizer:_tapGest];
     
     if (anEnabled)
     {
-        [_viewCover addGestureRecognizer:_revealGest];
-        [_viewBack addGestureRecognizer:_coverGest];
+        [self.view addGestureRecognizer:_revealGest];
+        [self.view addGestureRecognizer:_coverGest];
+        [_viewCover addGestureRecognizer:_tapGest];
     }
 }
 

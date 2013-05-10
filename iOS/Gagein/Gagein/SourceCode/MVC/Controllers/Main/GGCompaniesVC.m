@@ -177,8 +177,7 @@
         [weakSelf _getNextHappeningPage];
     }];
     
-    [self.updatesTV triggerPullToRefresh];
-    [self. happeningsTV triggerPullToRefresh];
+    [self _getInitData];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -663,6 +662,31 @@
 
 
 #pragma mark - data handling
+-(void)_getInitData
+{
+    [GGSharedAPI getMenuByType:kGGStrMenuTypeCompanies callback:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            _menuDatas = [parser parseGetMenu:YES];
+            GGDataPage *page = _menuDatas[0];   //following
+            if (page.items.count)
+            {
+                _menuType = kGGMenuTypeCompany;
+            }
+        }
+        
+        if (_menuType == kGGMenuTypeCompany)
+        {
+            [self _followingTapped:nil];
+        }
+        else
+        {
+            [self _exploringTapped:nil];
+        }
+    }];
+}
+
 -(void)_callApiGetMenu
 {
     [_slideSettingView showLoadingHUD];

@@ -8,24 +8,13 @@
 
 #import "GGCompanyUpdateDetailVC.h"
 #import "GGCompanyUpdate.h"
-//#import "GGComUpdateDetailCell.h"
 #import "GGComUpdateDetailView.h"
 
 @interface GGCompanyUpdateDetailVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
-//@property (weak, nonatomic) IBOutlet UIView *viewUpdate;
-//@property (weak, nonatomic) IBOutlet UIImageView *ivUpdateBg;
-//@property (weak, nonatomic) IBOutlet UILabel *lblSource;
-//@property (weak, nonatomic) IBOutlet UILabel *lblDate;
-//@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
-//@property (weak, nonatomic) IBOutlet UILabel *lblContent;
-//@property (weak, nonatomic) IBOutlet UITextView *textView;
-//@property (weak, nonatomic) IBOutlet UIImageView *ivPhoto;
-//@property (weak, nonatomic) IBOutlet UIWebView *wvTextView;
-
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
-//@property (weak, nonatomic) IBOutlet UITableView *tvContent;
+@property (weak, nonatomic) IBOutlet UIButton *btnSave;
+
 
 @end
 
@@ -112,6 +101,7 @@
 - (void)viewDidUnload {
     [self setScrollView:nil];
     [self setWebView:nil];
+    [self setBtnSave:nil];
     [super viewDidUnload];
 }
 
@@ -168,6 +158,10 @@
 
 }
 
+-(void)_updateSaveBtnSaved:(BOOL)aSaved
+{
+    [_btnSave setImage:(aSaved ? [UIImage imageNamed:@"unsaveIcon"] : [UIImage imageNamed:@"saveIcon"]) forState:UIControlStateNormal];
+}
 
 -(IBAction)saveAction:(id)sender
 {
@@ -180,6 +174,7 @@
             {
                 data.saved = NO;
                 [GGAlert alert:@"unsaved!"];
+                [self _updateSaveBtnSaved:NO];
             }
             else
             {
@@ -195,6 +190,7 @@
             {
                 data.saved = YES;
                 [GGAlert alert:@"saved!"];
+                [self _updateSaveBtnSaved:YES];
             }
             else
             {
@@ -249,6 +245,7 @@
         _comUpdateDetailCell.textviewHidden.text = _companyUpdateDetail.textview;
         
         _comUpdateDetailCell.lblSource.text = ((GGCompanyUpdate *)(_updates[_updateIndex])).fromSource;
+        [self _updateSaveBtnSaved:_companyUpdateDetail.saved];
         
         NSString *urlStr = nil;
         if (_companyUpdateDetail.pictures.count)

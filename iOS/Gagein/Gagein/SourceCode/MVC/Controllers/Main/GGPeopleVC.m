@@ -110,7 +110,8 @@
         [weakSelf _getNextPage];
     }];
     
-    [self.updatesTV triggerPullToRefresh];
+    //[self.updatesTV triggerPullToRefresh];
+    [self _getInitData];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -478,6 +479,31 @@
 }
 
 #pragma mark - data handling
+-(void)_getInitData
+{
+    [GGSharedAPI getMenuByType:kGGStrMenuTypePeople callback:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            _menuDatas = [parser parseGetMenu:YES];
+            GGDataPage *page = _menuDatas[0];   //following
+            if (page.items.count)
+            {
+                _menuType = kGGMenuTypePerson;
+            }
+        }
+        
+        if (_menuType == kGGMenuTypePerson)
+        {
+            [self _followingTapped:nil];
+        }
+        else
+        {
+            [self _exploringTapped:nil];
+        }
+    }];
+}
+
 -(void)_callApiGetMenu
 {
     [_slideSettingView showLoadingHUD];
@@ -495,7 +521,6 @@
                 BOOL isMenuTypePerson = (_menuType == kGGMenuTypePerson);
                 [[self _followingSectionView] setHightlighted:isMenuTypePerson];
                 [[self _exploringSectionView] setHightlighted:!isMenuTypePerson];
-                
             }
             else
             {
