@@ -22,6 +22,7 @@
 -(void)awakeFromNib
 {
     self.backgroundColor = GGSharedColor.silver;
+    self.hidden = YES;
 }
 
 @end

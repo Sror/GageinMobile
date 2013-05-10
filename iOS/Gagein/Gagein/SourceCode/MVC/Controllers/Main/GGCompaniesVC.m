@@ -32,6 +32,7 @@
 #import "GGSearchBar.h"
 #import "GGSwitchButton.h"
 #import "GGRelevanceBar.h"
+#import "GGEmptyView.h"
 
 #define SWITCH_WIDTH 90
 #define SWITCH_HEIGHT 20
@@ -39,6 +40,7 @@
 @interface GGCompaniesVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
 @property (nonatomic, strong) UITableView *happeningsTV;
+
 @end
 
 @implementation GGCompaniesVC
@@ -47,6 +49,9 @@
     //GGScrollingView             *_scrollingView;
     GGSlideSettingView          *_slideSettingView;
     GGRelevanceBar              *_relevanceBar;
+    
+    GGEmptyView                 *_viewUpdateEmpty;
+    GGEmptyView                 *_viewHappeningEmpty;
     
     GGSwitchButton             *_btnSwitchUpdate;
     BOOL                       _isShowingUpdate;
@@ -155,6 +160,17 @@
     //[_scrollingView addPage:self.updatesTV];
     self.updatesTV.backgroundColor = GGSharedColor.silver;
     [self.view addSubview:self.updatesTV];
+    
+    //
+    _viewUpdateEmpty = [GGEmptyView viewFromNibWithOwner:self];
+    _viewUpdateEmpty.frame = _updatesTV.bounds;
+    _viewUpdateEmpty.lblMessage.text = @"Oh, No update data yet.";
+    [_updatesTV addSubview:_viewUpdateEmpty];
+    
+    _viewHappeningEmpty = [GGEmptyView viewFromNibWithOwner:self];
+    _viewHappeningEmpty.frame = _happeningsTV.bounds;
+    _viewHappeningEmpty.lblMessage.text = @"Oh, No happening data yet.";
+    [_happeningsTV addSubview:_viewHappeningEmpty];
     
     [self.view bringSubviewToFront:_relevanceBar];
     
@@ -796,6 +812,7 @@
             }
         }
         
+        _viewUpdateEmpty.hidden = _updates.count;
         [self.updatesTV reloadData];
         
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
@@ -870,6 +887,7 @@
             }
         }
         
+        _viewHappeningEmpty.hidden = _happenings.count;
         [self.happeningsTV reloadData];
         
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
