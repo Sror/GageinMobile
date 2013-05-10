@@ -47,7 +47,7 @@
 @implementation GGCompaniesVC
 {
     EGGCompanyUpdateRelevance   _relevance;
-    //GGScrollingView             *_scrollingView;
+    
     GGSlideSettingView          *_slideSettingView;
     GGRelevanceBar              *_relevanceBar;
     
@@ -852,6 +852,7 @@
             emptyView.viewSimple.hidden = YES;
             emptyView.lblMessage.text = @"Add companies to watch for important updates.";
             [emptyView.btnAction addTarget:self action:@selector(_addCompanyAction:) forControlEvents:UIControlEventTouchUpInside];
+            [emptyView.btnAction setTitle:@"Add Companies to Follow" forState:UIControlStateNormal];
         }
         else
         {
@@ -870,6 +871,7 @@
     {
         emptyView.lblMessage.text = @"Select sales triggers to explore new opportunities.";
         [emptyView.btnAction addTarget:self action:@selector(_exploringConfigTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [emptyView.btnAction setTitle:@"Select Sales Triggers" forState:UIControlStateNormal];
     }
     
     aIsUpdate ? (_viewUpdateEmpty = emptyView) : (_viewHappeningEmpty = emptyView);

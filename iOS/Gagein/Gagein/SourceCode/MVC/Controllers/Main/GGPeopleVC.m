@@ -22,6 +22,7 @@
 #import "GGPersonDetailVC.h"
 #import "GGHappeningDetailVC.h"
 #import "GGSelectFuncAreasVC.h"
+#import "GGEmptyActionView.h"
 
 @interface GGPeopleVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
@@ -30,6 +31,8 @@
 @implementation GGPeopleVC
 {
     GGSlideSettingView          *_slideSettingView;
+    GGEmptyActionView                 *_viewUpdateEmpty;
+    
     NSArray                    *_menuDatas;
     EGGMenuType                _menuType;
     long long                  _menuID;
@@ -50,10 +53,7 @@
 {
     _slideSettingView = GGSharedDelegate.slideSettingView;
     _slideSettingView.delegate = self;
-    //_slideSettingView.viewTable.dataSource = self;
-    //_slideSettingView.viewTable.delegate = self;
     _slideSettingView.viewTable.rowHeight = [GGSettingMenuCell HEIGHT];
-    //_slideSettingView.searchBar.delegate = self;
     _slideSettingView.searchBar.placeholder = @"Search for updates";
     [_slideSettingView changeDelegate:self];
 }
@@ -236,6 +236,12 @@
     [self.navigationController pushViewController:vc animated:NO];
 }
 
+-(void)_enterFollowPeople
+{
+    GGFollowPeopleVC *vc = [[GGFollowPeopleVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 -(IBAction)_followingTapped:(id)sender
 {
     self.naviTitle = @"FOLLOWING";
@@ -313,22 +319,6 @@
     }
 }
 
--(void)searchForCompanyAction:(id)sender
-{
-    //GGFollowCompanyVC *vc = [[GGFollowCompanyVC alloc] init];
-    //[self.navigationController pushViewController:vc animated:YES];
-}
-
-
--(void)companyDetailAction:(id)sender
-{
-//    int index = ((UIButton*)sender).tag;
-//    GGCompanyUpdate *update = [_updates objectAtIndex:index];
-//    
-//    GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-//    vc.companyID = update.company.ID;
-//    [self.navigationController pushViewController:vc animated:YES];
-}
 
 #pragma mark - tableView datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -595,6 +585,7 @@
             }
         }
         
+        [self _installEmptyView];
         [self.updatesTV reloadData];
         
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
@@ -616,6 +607,44 @@
     __weak GGPeopleVC *weakSelf = self;
     [weakSelf.updatesTV.pullToRefreshView stopAnimating];
     [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
+}
+
+-(void)_installEmptyView
+{
+    //
+    [_viewUpdateEmpty removeFromSuperview];
+    if (_updates.count)
+    {
+        return;
+    }
+    
+    _viewUpdateEmpty = [GGEmptyActionView viewFromNibWithOwner:self];
+    _viewUpdateEmpty.frame = self.view.bounds;
+    [_updatesTV addSubview:_viewUpdateEmpty];
+    
+    _viewUpdateEmpty.lblTitle.text = @"Have trouble seeing updates?";
+    
+    if (_menuType == kGGMenuTypePerson)
+    {
+        if (((GGDataPage *)_menuDatas[0]).items.count <= 0)
+        {
+            _viewUpdateEmpty.viewSimple.hidden = YES;
+            _viewUpdateEmpty.lblMessage.text = @"Add people to watch for job, location and other changes.";
+            [_viewUpdateEmpty.btnAction addTarget:self action:@selector(_enterFollowPeople) forControlEvents:UIControlEventTouchUpInside];
+            [_viewUpdateEmpty.btnAction setTitle:@"Add People to Follow" forState:UIControlStateNormal];
+        }
+        else
+        {
+            _viewUpdateEmpty.viewSimple.hidden = NO;
+            _viewUpdateEmpty.lblSimpleMessage.text = @"No update found for this person as of this new feature launch in May 2013.";
+        }
+    }
+    else if (_menuType == kGGMenuTypeFunctionalArea)
+    {
+        _viewUpdateEmpty.lblMessage.text = @"Select functional roles to keep up with leadership changes.";
+        [_viewUpdateEmpty.btnAction addTarget:self action:@selector(_exploringConfigTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [_viewUpdateEmpty.btnAction setTitle:@"Select Functional Roles" forState:UIControlStateNormal];
+    }
 }
 
 
