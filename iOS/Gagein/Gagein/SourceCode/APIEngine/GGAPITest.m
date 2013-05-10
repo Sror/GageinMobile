@@ -18,7 +18,45 @@ DEF_SINGLETON(GGAPITest)
 
 -(void)run
 {
-    [self testGetMediaFiltersList];
+    [self testSearchMediaWithKeyword];
+}
+
+-(void)testSearchMediaWithKeyword
+{
+    [GGSharedAPI searchMediaWithKeyword:@"Time" callback:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        GGDataPage *page = [parser parseGetMediaFiltersList];
+        for (id item in page.items)
+        {
+            DLog(@"%@", item);
+        }
+    }];
+}
+
+-(void)testGetMediaSuggestedList
+{
+    [GGSharedAPI getMediaSuggestedList:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        GGDataPage *page = [parser parseGetMediaFiltersList];
+        for (id item in page.items)
+        {
+            DLog(@"%@", item);
+        }
+    }];
+}
+
+-(void)testDeleteMediaFilterWithID
+{
+    [GGSharedAPI deleteMediaFilterWithID:1165 callback:^(id operation, id aResultObject, NSError *anError) {
+        //
+    }];
+}
+
+-(void)testAddMediaFilterWithName
+{
+    [GGSharedAPI addMediaFilterWithName:@"CHina Daily" callback:^(id operation, id aResultObject, NSError *anError) {
+        //
+    }];
 }
 
 -(void)testGetMediaFiltersList
