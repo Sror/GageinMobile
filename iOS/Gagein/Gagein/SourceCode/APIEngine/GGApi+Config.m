@@ -197,9 +197,9 @@
 }
 
 //  doRequest("POST", "config/filters/category/1/true","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)selectCategoryFilterWithID:(NSString *)aFilterID selected:(BOOL)aSelected callback:(GGApiBlock)aCallback
+-(void)selectCategoryFilterWithID:(long long)aFilterID selected:(BOOL)aSelected callback:(GGApiBlock)aCallback
 {
-    NSString *path = [NSString stringWithFormat:@"config/filters/category/%@/%@", aFilterID, (aSelected ? @"true" : @"false")];
+    NSString *path = [NSString stringWithFormat:@"config/filters/category/%lld/%@", aFilterID, (aSelected ? @"true" : @"false")];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];

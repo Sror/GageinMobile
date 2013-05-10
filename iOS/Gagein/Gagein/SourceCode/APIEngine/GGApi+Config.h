@@ -58,7 +58,7 @@
 -(void)setCategoryFilterEnabled:(BOOL)anEnabled callback:(GGApiBlock)aCallback;
 
 //  doRequest("POST", "config/filters/category/1/true","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)selectCategoryFilterWithID:(NSString *)aFilterID selected:(BOOL)aSelected callback:(GGApiBlock)aCallback;
+-(void)selectCategoryFilterWithID:(long long)aFilterID selected:(BOOL)aSelected callback:(GGApiBlock)aCallback;
 
 //  doRequest("POST", "config/filters/media/enable/true","access_token=b4790223c67f68b744d6ac3bb9b830e6");
 -(void)setMediaFilterEnabled:(BOOL)anEnabled callback:(GGApiBlock)aCallback;

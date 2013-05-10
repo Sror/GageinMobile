@@ -54,6 +54,7 @@
 -(GGUserProfile *)parseGetMyOverview;
 
 #pragma mark - config
+-(GGDataPage *)parseGetMediaFiltersList;
 -(GGDataPage *)parseGetCategoryFiltersList;
 -(GGDataPage *)parseGetAgentFiltersList;
 -(GGDataPage *)parseGetAgents;

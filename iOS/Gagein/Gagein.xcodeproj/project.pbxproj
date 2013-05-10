@@ -72,6 +72,7 @@
 		EA172733173D66750056067D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA172731173D66750056067D /* Icon@2x.png */; };
 		EA172737173D696F0056067D /* GGEmptyActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA172736173D696F0056067D /* GGEmptyActionView.m */; };
 		EA172739173D69960056067D /* GGEmptyActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA172738173D69960056067D /* GGEmptyActionView.xib */; };
+		EA17273C173D89180056067D /* GGMediaFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA17273B173D89180056067D /* GGMediaFilter.m */; };
 		EA1995ED1717E301006D95E4 /* GGSettingMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */; };
 		EA1995F01717E312006D95E4 /* GGSettingMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */; };
 		EA1A61F7170A6478000B4EAE /* GGDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61F6170A6478000B4EAE /* GGDataModel.m */; };
@@ -496,6 +497,8 @@
 		EA172735173D696F0056067D /* GGEmptyActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGEmptyActionView.h; sourceTree = "<group>"; };
 		EA172736173D696F0056067D /* GGEmptyActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGEmptyActionView.m; sourceTree = "<group>"; };
 		EA172738173D69960056067D /* GGEmptyActionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGEmptyActionView.xib; sourceTree = "<group>"; };
+		EA17273A173D89180056067D /* GGMediaFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGMediaFilter.h; sourceTree = "<group>"; };
+		EA17273B173D89180056067D /* GGMediaFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGMediaFilter.m; sourceTree = "<group>"; };
 		EA1995EB1717E301006D95E4 /* GGSettingMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingMenuCell.h; sourceTree = "<group>"; };
 		EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingMenuCell.m; sourceTree = "<group>"; };
 		EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingMenuCell.xib; sourceTree = "<group>"; };
@@ -1801,6 +1804,8 @@
 				EAB8D52A1739882F00D033FC /* GGUserProfile.m */,
 				EA2AD9C3173C4D6C007428E2 /* GGCategoryFilter.h */,
 				EA2AD9C4173C4D6C007428E2 /* GGCategoryFilter.m */,
+				EA17273A173D89180056067D /* GGMediaFilter.h */,
+				EA17273B173D89180056067D /* GGMediaFilter.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2649,6 +2654,7 @@
 				EA2AD9C5173C4D6C007428E2 /* GGCategoryFilter.m in Sources */,
 				EAF99598173C7E21009DA08E /* GGEmptyView.m in Sources */,
 				EA172737173D696F0056067D /* GGEmptyActionView.m in Sources */,
+				EA17273C173D89180056067D /* GGMediaFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

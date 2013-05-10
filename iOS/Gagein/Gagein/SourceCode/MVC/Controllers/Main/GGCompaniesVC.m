@@ -841,6 +841,7 @@
     
     GGEmptyActionView *emptyView = [GGEmptyActionView viewFromNibWithOwner:self];
     emptyView.frame = self.view.bounds;
+    emptyView.viewSimple.hidden = YES;
     aIsUpdate ? [_updatesTV addSubview:emptyView] : [_happeningsTV addSubview:emptyView];
     
     emptyView.lblTitle.text = @"Have trouble seeing updates?";
@@ -849,7 +850,6 @@
     {
         if (((GGDataPage *)_menuDatas[0]).items.count <= 0)
         {
-            emptyView.viewSimple.hidden = YES;
             emptyView.lblMessage.text = @"Add companies to watch for important updates.";
             [emptyView.btnAction addTarget:self action:@selector(_addCompanyAction:) forControlEvents:UIControlEventTouchUpInside];
             [emptyView.btnAction setTitle:@"Add Companies to Follow" forState:UIControlStateNormal];

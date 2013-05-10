@@ -19,6 +19,7 @@
 #import "GGAgentFilter.h"
 #import "GGUserProfile.h"
 #import "GGCategoryFilter.h"
+#import "GGMediaFilter.h"
 
 #define GG_ASSERT_API_DATA_IS_DIC   NSAssert([_apiData isKindOfClass:[NSDictionary class]], @"Api Data should be a NSDictionary");
 
@@ -266,6 +267,11 @@
 }
 
 #pragma mark - config
+-(GGDataPage *)parseGetMediaFiltersList
+{
+    return [self _parsePageforClass:[GGMediaFilter class]];
+}
+
 -(GGDataPage *)parseGetAgentFiltersList
 {
     return [self _parsePageforClass:[GGAgentFilter class]];
