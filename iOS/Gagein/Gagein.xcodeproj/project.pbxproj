@@ -68,6 +68,8 @@
 		EA16AA12173231B90052B526 /* GGConfigSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA16AA11173231B90052B526 /* GGConfigSwitchCell.xib */; };
 		EA16AA15173238770052B526 /* GGAgentFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16AA14173238770052B526 /* GGAgentFilter.m */; };
 		EA16AA1A17325A5B0052B526 /* GGBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA16AA1917325A4C0052B526 /* GGBaseViewController.m */; };
+		EA172732173D66750056067D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA172730173D66750056067D /* Icon.png */; };
+		EA172733173D66750056067D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA172731173D66750056067D /* Icon@2x.png */; };
 		EA1995ED1717E301006D95E4 /* GGSettingMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */; };
 		EA1995F01717E312006D95E4 /* GGSettingMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */; };
 		EA1A61F7170A6478000B4EAE /* GGDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61F6170A6478000B4EAE /* GGDataModel.m */; };
@@ -202,8 +204,6 @@
 		EA55975E172A29C6000CE9E3 /* GGStyledSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA55975D172A29C6000CE9E3 /* GGStyledSearchBar.m */; };
 		EA559760172A29E9000CE9E3 /* GGStyledSearchBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA55975F172A29E9000CE9E3 /* GGStyledSearchBar.xib */; };
 		EA559761172A2B80000CE9E3 /* GGFollowPeopleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA559755172A248B000CE9E3 /* GGFollowPeopleVC.xib */; };
-		EA55976A172A5A1F000CE9E3 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA559769172A5A1E000CE9E3 /* Icon@2x.png */; };
-		EA55976E172A5AB5000CE9E3 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA55976D172A5AB4000CE9E3 /* Icon.png */; };
 		EA559771172A6981000CE9E3 /* GGApi+People.m in Sources */ = {isa = PBXBuildFile; fileRef = EA559770172A6981000CE9E3 /* GGApi+People.m */; };
 		EA7180D41715008900347EA4 /* FXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D31715008900347EA4 /* FXPageControl.m */; };
 		EA7180D917150AAF00347EA4 /* GGFollowCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */; };
@@ -489,6 +489,8 @@
 		EA16AA11173231B90052B526 /* GGConfigSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGConfigSwitchCell.xib; sourceTree = "<group>"; };
 		EA16AA14173238770052B526 /* GGAgentFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAgentFilter.m; sourceTree = "<group>"; };
 		EA16AA1917325A4C0052B526 /* GGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGBaseViewController.m; sourceTree = "<group>"; };
+		EA172730173D66750056067D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		EA172731173D66750056067D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		EA1995EB1717E301006D95E4 /* GGSettingMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingMenuCell.h; sourceTree = "<group>"; };
 		EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingMenuCell.m; sourceTree = "<group>"; };
 		EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingMenuCell.xib; sourceTree = "<group>"; };
@@ -665,8 +667,6 @@
 		EA55975C172A29C6000CE9E3 /* GGStyledSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGStyledSearchBar.h; sourceTree = "<group>"; };
 		EA55975D172A29C6000CE9E3 /* GGStyledSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGStyledSearchBar.m; sourceTree = "<group>"; };
 		EA55975F172A29E9000CE9E3 /* GGStyledSearchBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGStyledSearchBar.xib; sourceTree = "<group>"; };
-		EA559769172A5A1E000CE9E3 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
-		EA55976D172A5AB4000CE9E3 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		EA55976F172A6980000CE9E3 /* GGApi+People.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GGApi+People.h"; sourceTree = "<group>"; };
 		EA559770172A6981000CE9E3 /* GGApi+People.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GGApi+People.m"; sourceTree = "<group>"; };
 		EA7180D21715008900347EA4 /* FXPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXPageControl.h; sourceTree = "<group>"; };
@@ -1575,8 +1575,8 @@
 		EACAE07D1709486800E7088F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EA55976D172A5AB4000CE9E3 /* Icon.png */,
-				EA559769172A5A1E000CE9E3 /* Icon@2x.png */,
+				EA172730173D66750056067D /* Icon.png */,
+				EA172731173D66750056067D /* Icon@2x.png */,
 				EACAE07E1709486800E7088F /* Gagein-Info.plist */,
 				EACAE07F1709486800E7088F /* InfoPlist.strings */,
 				EACAE0821709486800E7088F /* main.m */,
@@ -2371,8 +2371,6 @@
 				EA4022341728F1B800E5D179 /* GGHappeningDetailCell.xib in Resources */,
 				EA559760172A29E9000CE9E3 /* GGStyledSearchBar.xib in Resources */,
 				EA559761172A2B80000CE9E3 /* GGFollowPeopleVC.xib in Resources */,
-				EA55976A172A5A1F000CE9E3 /* Icon@2x.png in Resources */,
-				EA55976E172A5AB5000CE9E3 /* Icon.png in Resources */,
 				EA4CC67F172B736B0082A048 /* GGPersonDetailVC.xib in Resources */,
 				EA4CC685172B98E90082A048 /* GGRelevanceBar.xib in Resources */,
 				EA4CC68F172BB44B0082A048 /* GGProfileHeaderView.xib in Resources */,
@@ -2449,6 +2447,8 @@
 				EAF99592173C6240009DA08E /* logoDefaultCompany@2x.png in Resources */,
 				EAF99594173C6252009DA08E /* logoDefaultPerson@2x.png in Resources */,
 				EAF9959B173C7E4A009DA08E /* GGEmptyView.xib in Resources */,
+				EA172732173D66750056067D /* Icon.png in Resources */,
+				EA172733173D66750056067D /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
