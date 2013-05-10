@@ -9,7 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "GGDataModel.h"
 
-
+typedef enum {
+    kGGAgentFilterCustom = 1,
+    kGGAgentFilterPredefined = 2
+}EGGAgentFilerType;
 
 @interface GGAgentFilter : GGDataModel
 

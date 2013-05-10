@@ -623,12 +623,12 @@
     [_updatesTV addSubview:_viewUpdateEmpty];
     
     _viewUpdateEmpty.lblTitle.text = @"Have trouble seeing updates?";
+    _viewUpdateEmpty.viewSimple.hidden = YES;
     
     if (_menuType == kGGMenuTypePerson)
     {
         if (((GGDataPage *)_menuDatas[0]).items.count <= 0)
         {
-            _viewUpdateEmpty.viewSimple.hidden = YES;
             _viewUpdateEmpty.lblMessage.text = @"Add people to watch for job, location and other changes.";
             [_viewUpdateEmpty.btnAction addTarget:self action:@selector(_enterFollowPeople) forControlEvents:UIControlEventTouchUpInside];
             [_viewUpdateEmpty.btnAction setTitle:@"Add People to Follow" forState:UIControlStateNormal];

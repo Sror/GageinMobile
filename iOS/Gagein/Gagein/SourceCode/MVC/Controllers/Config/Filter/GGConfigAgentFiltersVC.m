@@ -7,9 +7,10 @@
 //
 
 #import "GGConfigAgentFiltersVC.h"
-#import "GGConfigSwitchCell.h"
+
 #import "GGConfigLabel.h"
 #import "GGAgentFilter.h"
+#import "GGDataPage.h"
 
 @interface GGConfigAgentFiltersVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tv;
@@ -18,9 +19,11 @@
 
 @implementation GGConfigAgentFiltersVC
 {
-    NSMutableArray  *_customAgents;
-    //GGAgentFiltersGroup  *_predefinedAgentFilterGroup;
+    //NSMutableArray  *_customAgents;
     GGConfigSwitchCell *_configSwitchCell;
+    
+    NSMutableArray      *_customAgentFilters;
+    NSMutableArray      *_predefinedAgentFilters;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,12 +37,16 @@
 
 - (void)viewDidLoad
 {
+    _customAgentFilters = [NSMutableArray array];
+    _predefinedAgentFilters = [NSMutableArray array];
+    
     [super viewDidLoad];
     self.naviTitle = @"Agent Filters";
     self.tv.backgroundColor = GGSharedColor.silver;
     
     _configSwitchCell = [GGConfigSwitchCell viewFromNibWithOwner:self];
     _configSwitchCell.btnSwitch.isOn = YES;
+    _configSwitchCell.btnSwitch.delegate = self;
     
     // at last
     [self _callApiGetConfigOptions];
@@ -62,9 +69,9 @@
         if (section == 0) {
             return 1;
         } else if (section == 1) {
-            return _customAgents.count;
+            return _customAgentFilters.count;
         } else if (section == 2) {
-            //return _predefinedAgentFilterGroup.options.count;
+            return _predefinedAgentFilters.count;
         }
     }
     
@@ -86,10 +93,13 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         
-        cell.textLabel.text = _customAgents[row];
+        GGAgentFilter *data = _customAgentFilters[row];
+        cell.textLabel.text = data.name;
+        
+        cell.accessoryType = (data.checked) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         
         return cell;
         
@@ -99,11 +109,13 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         
-        GGAgentFilter *data = nil;//_predefinedAgentFilterGroup.options[row];
+        GGAgentFilter *data = _predefinedAgentFilters[row];
         cell.textLabel.text = data.name;
+        
+        cell.accessoryType = (data.checked) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         
         return cell;
     }
@@ -171,7 +183,22 @@ viewForHeaderInSection:(NSInteger)section
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    int section = indexPath.section;
+    int row = indexPath.row;
     
+    if (section != 0)
+    {
+        GGAgentFilter *filter = (section == 1) ? _customAgentFilters[row] : _predefinedAgentFilters[row];
+        [GGSharedAPI selectAgentFilterWithID:filter.ID selected:!filter.checked callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                //succeeded
+                filter.checked = !filter.checked;
+                [_tv reloadData];
+            }
+        }];
+    }
 }
 
 - (void)viewDidUnload {
@@ -183,12 +210,44 @@ viewForHeaderInSection:(NSInteger)section
 -(void)_callApiGetConfigOptions
 {
     [self showLoadingHUD];
-//    [GGSharedAPI getConfigFilterOptions:^(id operation, id aResultObject, NSError *anError) {
-//        [self hideLoadingHUD];
-//        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-//        NSMutableArray *arr = [parser parseGetConfigFilterOptions];
-//        _predefinedAgentFilterGroup = arr[0];
-//        [self.tv reloadData];
-//    }];
+    
+    [GGSharedAPI getAgentFiltersList:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        GGDataPage *page = [parser parseGetAgentFiltersList];
+        
+        [_customAgentFilters removeAllObjects];
+        [_predefinedAgentFilters removeAllObjects];
+        
+        for (GGAgentFilter *agentFilter in page.items)
+        {
+            if (agentFilter.type == kGGAgentFilterCustom)
+            {
+                [_customAgentFilters addObject:agentFilter];
+            }
+            else if (agentFilter.type == kGGAgentFilterPredefined)
+            {
+                [_predefinedAgentFilters addObject:agentFilter];
+            }
+        }
+        
+        [_tv reloadData];
+    }];
 }
+
+#pragma mark - GGSwitchButtonDelegate
+-(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
+{
+    [self showLoadingHUD];
+    [GGSharedAPI setAgentFilterEnabled:aIsOn callback:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            //
+        }
+        [_tv reloadData];
+    }];
+}
+
 @end

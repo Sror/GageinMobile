@@ -11,14 +11,6 @@
 @implementation GGAgentFilter
 
 
-//{
-//    "agentid": "1042",
-//    "agent_name": "Iphone Agent",
-//    "agent_keywords": "Imac,iphone",
-//    "type": 2,
-//    "checked": false
-//}
-
 -(void)parseWithData:(NSDictionary *)aData
 {
     [super parseWithData:aData];

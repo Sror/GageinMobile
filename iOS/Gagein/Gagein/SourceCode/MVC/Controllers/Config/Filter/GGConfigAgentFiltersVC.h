@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GGConfigSwitchCell.h"
 
 @interface GGConfigAgentFiltersVC : GGBaseViewController
-<UITableViewDataSource, UITableViewDelegate>
+<UITableViewDataSource, UITableViewDelegate, GGSwitchButtonDelegate>
 @end
