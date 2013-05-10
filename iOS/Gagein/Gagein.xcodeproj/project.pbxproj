@@ -384,6 +384,8 @@
 		EAF99590173C61F7009DA08E /* unsaveIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF9958F173C61F7009DA08E /* unsaveIcon@2x.png */; };
 		EAF99592173C6240009DA08E /* logoDefaultCompany@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF99591173C6240009DA08E /* logoDefaultCompany@2x.png */; };
 		EAF99594173C6252009DA08E /* logoDefaultPerson@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF99593173C6252009DA08E /* logoDefaultPerson@2x.png */; };
+		EAF99598173C7E21009DA08E /* GGEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF99597173C7E21009DA08E /* GGEmptyView.m */; };
+		EAF9959B173C7E4A009DA08E /* GGEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF9959A173C7E4A009DA08E /* GGEmptyView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -963,6 +965,9 @@
 		EAF9958F173C61F7009DA08E /* unsaveIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unsaveIcon@2x.png"; sourceTree = "<group>"; };
 		EAF99591173C6240009DA08E /* logoDefaultCompany@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logoDefaultCompany@2x.png"; sourceTree = "<group>"; };
 		EAF99593173C6252009DA08E /* logoDefaultPerson@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logoDefaultPerson@2x.png"; sourceTree = "<group>"; };
+		EAF99596173C7E21009DA08E /* GGEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGEmptyView.h; sourceTree = "<group>"; };
+		EAF99597173C7E21009DA08E /* GGEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGEmptyView.m; sourceTree = "<group>"; };
+		EAF9959A173C7E4A009DA08E /* GGEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGEmptyView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1491,6 +1496,7 @@
 		EAC96C35170983B5003FAFAA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EAF99599173C7E3C009DA08E /* EmptyPage */,
 				EA4CC68D172BB4380082A048 /* Profile */,
 				EA0E62EF172687180002F113 /* Widgets */,
 				EA79B8B717250B4F00141E6D /* CompanyOverview */,
@@ -1797,6 +1803,7 @@
 		EACAE0BA17094A3100E7088F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EAF99595173C7DF6009DA08E /* EmptyPage */,
 				EA4CC686172BB3F80082A048 /* Profile */,
 				EA0E62EB172686F90002F113 /* Widgets */,
 				EA0E61F6172617B00002F113 /* CompanyOverview */,
@@ -2189,6 +2196,23 @@
 			path = OAuthStarterKit;
 			sourceTree = "<group>";
 		};
+		EAF99595173C7DF6009DA08E /* EmptyPage */ = {
+			isa = PBXGroup;
+			children = (
+				EAF99596173C7E21009DA08E /* GGEmptyView.h */,
+				EAF99597173C7E21009DA08E /* GGEmptyView.m */,
+			);
+			path = EmptyPage;
+			sourceTree = "<group>";
+		};
+		EAF99599173C7E3C009DA08E /* EmptyPage */ = {
+			isa = PBXGroup;
+			children = (
+				EAF9959A173C7E4A009DA08E /* GGEmptyView.xib */,
+			);
+			path = EmptyPage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2424,6 +2448,7 @@
 				EAF99590173C61F7009DA08E /* unsaveIcon@2x.png in Resources */,
 				EAF99592173C6240009DA08E /* logoDefaultCompany@2x.png in Resources */,
 				EAF99594173C6252009DA08E /* logoDefaultPerson@2x.png in Resources */,
+				EAF9959B173C7E4A009DA08E /* GGEmptyView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2613,6 +2638,7 @@
 				EAD1618B173B3BB50092C11B /* GGFacebookOAuth.m in Sources */,
 				EAD1618F173B3D9D0092C11B /* GGFacebookOAuthVC.m in Sources */,
 				EA2AD9C5173C4D6C007428E2 /* GGCategoryFilter.m in Sources */,
+				EAF99598173C7E21009DA08E /* GGEmptyView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

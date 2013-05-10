@@ -190,7 +190,7 @@
     _slideSettingView.viewTable.tableHeaderView = _slideSettingView.searchBar;
     [self _callApiGetMenu];
     
-    [GGSharedDelegate.rootVC enableGesture:YES];
+    [GGSharedDelegate.rootVC enableSwipGesture:YES];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -198,7 +198,8 @@
     [super viewWillDisappear:animated];
     [_btnSwitchUpdate removeFromSuperview];
     
-    [GGSharedDelegate.rootVC enableGesture:NO];
+    [GGSharedDelegate.rootVC enableSwipGesture:NO];
+    [GGSharedDelegate.rootVC enableTapGesture:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

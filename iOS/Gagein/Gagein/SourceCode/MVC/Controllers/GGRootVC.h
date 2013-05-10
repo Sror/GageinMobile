@@ -14,7 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIView *viewCover;
 @property (strong, nonatomic) GGSlideSettingView *viewSetting;
 
--(void)enableGesture:(BOOL)anEnabled;
+-(void)enableSwipGesture:(BOOL)anEnabled;
+-(void)enableTapGesture:(BOOL)anEnabled;
 -(void)reveal;
 - (void)cover;
 -(void)reveal:(void(^)(void))completion;

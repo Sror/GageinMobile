@@ -121,13 +121,13 @@
     _slideSettingView.viewTable.tableHeaderView = nil;
     [self _callApiGetMenu];
     
-    [GGSharedDelegate.rootVC enableGesture:YES];
+    [GGSharedDelegate.rootVC enableSwipGesture:YES];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [GGSharedDelegate.rootVC enableGesture:NO];
+    [GGSharedDelegate.rootVC enableSwipGesture:NO];
 }
 
 - (void)viewDidUnload {

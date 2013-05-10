@@ -62,16 +62,24 @@
     [super viewDidUnload];
 }
 
--(void)enableGesture:(BOOL)anEnabled
+-(void)enableSwipGesture:(BOOL)anEnabled
 {
     [self.view removeGestureRecognizer:_revealGest];
     [self.view removeGestureRecognizer:_coverGest];
-    [_viewCover removeGestureRecognizer:_tapGest];
     
     if (anEnabled)
     {
         [self.view addGestureRecognizer:_revealGest];
         [self.view addGestureRecognizer:_coverGest];
+    }
+}
+
+-(void)enableTapGesture:(BOOL)anEnabled
+{
+    [_viewCover removeGestureRecognizer:_tapGest];
+    
+    if (anEnabled)
+    {
         [_viewCover addGestureRecognizer:_tapGest];
     }
 }
@@ -102,6 +110,7 @@
                                  completion();
                              }
                              
+                             [self enableTapGesture:YES];
                              [self postNotification:GG_NOTIFY_MENU_REVEAL];
                          }
                      }];
@@ -123,6 +132,7 @@
                                  completion();
                              }
                              
+                             [self enableTapGesture:NO];
                              [self postNotification:GG_NOTIFY_MENU_COVER];
                          }
                      }];

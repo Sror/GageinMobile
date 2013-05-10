@@ -18,12 +18,13 @@
 #import "GGCompany.h"
 #import "GGCompanyDetailVC.h"
 #import "GGCompanyUpdateDetailVC.h"
+#import "GGEmptyView.h"
 
 #define SWITCH_WIDTH 80
 #define SWITCH_HEIGHT 20
 
 @interface GGSavedUpdatesVC ()
-@property (weak, nonatomic) IBOutlet UIView *viewEmpty;
+@property (strong, nonatomic) GGEmptyView *viewEmpty;
 @property (strong) UITableView     *tvUpdates;
 @end
 
@@ -87,10 +88,11 @@
     _tvUpdates.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tvUpdates];
     
-    _viewEmpty.backgroundColor = GGSharedColor.silver;
+    _viewEmpty = [GGEmptyView viewFromNibWithOwner:self];
+    _viewEmpty.lblMessage.text = @"No saved updates yet.";
+    _viewEmpty.frame = _tvUpdates.bounds;
     [_tvUpdates addSubview:_viewEmpty];
     
-    //[self.view bringSubviewToFront:_viewEmpty];
     
     // setup pull-to-refresh and infinite scrolling
     __weak GGSavedUpdatesVC *weakSelf = self;
