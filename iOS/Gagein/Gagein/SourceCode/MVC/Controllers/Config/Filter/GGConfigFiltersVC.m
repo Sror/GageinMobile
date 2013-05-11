@@ -12,6 +12,7 @@
 #import "GGConfigAgentFiltersVC.h"
 #import "GGConfigCategoryFiltersVC.h"
 #import "GGConfigMediaFiltersVC.h"
+#import "GGCustomAgentVC.h"
 
 @interface GGConfigFiltersVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tv;
@@ -41,6 +42,14 @@
     
     _configHeadLabel = [GGConfigLabel viewFromNibWithOwner:self];
     _configHeadLabel.lblText.text = @"Personalize your company update streams";
+    
+    self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Edit" target:self selector:@selector(editCustomAgentAction:)];
+}
+
+-(void)editCustomAgentAction:(id)sender
+{
+    GGCustomAgentVC *vc = [[GGCustomAgentVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
