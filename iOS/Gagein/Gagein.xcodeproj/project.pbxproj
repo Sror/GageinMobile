@@ -147,6 +147,8 @@
 		EA381C61171FA700004535B5 /* GGImagePool.m in Sources */ = {isa = PBXBuildFile; fileRef = EA381C60171FA700004535B5 /* GGImagePool.m */; };
 		EA381C65171FBBEB004535B5 /* GGSavedUpdatesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA381C63171FBBEB004535B5 /* GGSavedUpdatesVC.m */; };
 		EA381C68171FBC19004535B5 /* GGSavedUpdatesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA381C67171FBC19004535B5 /* GGSavedUpdatesVC.xib */; };
+		EA3951D5173DE55D004985E2 /* GGEditCustomAgentFilterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3951D3173DE55D004985E2 /* GGEditCustomAgentFilterVC.m */; };
+		EA3951D6173DE55D004985E2 /* GGEditCustomAgentFilterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3951D4173DE55D004985E2 /* GGEditCustomAgentFilterVC.xib */; };
 		EA4022311728F1A000E5D179 /* GGHappeningDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4022301728F1A000E5D179 /* GGHappeningDetailCell.m */; };
 		EA4022341728F1B800E5D179 /* GGHappeningDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4022331728F1B800E5D179 /* GGHappeningDetailCell.xib */; };
 		EA4239F7173501D5002D718A /* tableSelectedDot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA4239F1173501D5002D718A /* tableSelectedDot@2x.png */; };
@@ -602,6 +604,9 @@
 		EA381C62171FBBEB004535B5 /* GGSavedUpdatesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSavedUpdatesVC.h; sourceTree = "<group>"; };
 		EA381C63171FBBEB004535B5 /* GGSavedUpdatesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSavedUpdatesVC.m; sourceTree = "<group>"; };
 		EA381C67171FBC19004535B5 /* GGSavedUpdatesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSavedUpdatesVC.xib; sourceTree = "<group>"; };
+		EA3951D2173DE55D004985E2 /* GGEditCustomAgentFilterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGEditCustomAgentFilterVC.h; sourceTree = "<group>"; };
+		EA3951D3173DE55D004985E2 /* GGEditCustomAgentFilterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGEditCustomAgentFilterVC.m; sourceTree = "<group>"; };
+		EA3951D4173DE55D004985E2 /* GGEditCustomAgentFilterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGEditCustomAgentFilterVC.xib; sourceTree = "<group>"; };
 		EA40222F1728F1A000E5D179 /* GGHappeningDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGHappeningDetailCell.h; sourceTree = "<group>"; };
 		EA4022301728F1A000E5D179 /* GGHappeningDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGHappeningDetailCell.m; sourceTree = "<group>"; };
 		EA4022331728F1B800E5D179 /* GGHappeningDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGHappeningDetailCell.xib; sourceTree = "<group>"; };
@@ -1203,6 +1208,9 @@
 				EA16AA091732196B0052B526 /* GGConfigMediaFiltersVC.h */,
 				EA16AA0A1732196C0052B526 /* GGConfigMediaFiltersVC.m */,
 				EA16AA0B1732196C0052B526 /* GGConfigMediaFiltersVC.xib */,
+				EA3951D2173DE55D004985E2 /* GGEditCustomAgentFilterVC.h */,
+				EA3951D3173DE55D004985E2 /* GGEditCustomAgentFilterVC.m */,
+				EA3951D4173DE55D004985E2 /* GGEditCustomAgentFilterVC.xib */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -2463,6 +2471,7 @@
 				EA172732173D66750056067D /* Icon.png in Resources */,
 				EA172733173D66750056067D /* Icon@2x.png in Resources */,
 				EA172739173D69960056067D /* GGEmptyActionView.xib in Resources */,
+				EA3951D6173DE55D004985E2 /* GGEditCustomAgentFilterVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2655,6 +2664,7 @@
 				EAF99598173C7E21009DA08E /* GGEmptyView.m in Sources */,
 				EA172737173D696F0056067D /* GGEmptyActionView.m in Sources */,
 				EA17273C173D89180056067D /* GGMediaFilter.m in Sources */,
+				EA3951D5173DE55D004985E2 /* GGEditCustomAgentFilterVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
