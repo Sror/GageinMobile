@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GGAutosizingLabel.h"
 
 @interface GGComUpdateDetailView : UIView
 @property (weak, nonatomic) IBOutlet UIView *viewContent;
 @property (weak, nonatomic) IBOutlet UIImageView *ivUpdateBg;
 @property (weak, nonatomic) IBOutlet UILabel *lblSource;
 @property (weak, nonatomic) IBOutlet UILabel *lblDate;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet GGAutosizingLabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *ivPhoto;
 @property (weak, nonatomic) IBOutlet UITextView *textviewHidden;
 @property (weak, nonatomic) IBOutlet UIWebView *wvTextview;

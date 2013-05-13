@@ -17,6 +17,7 @@
 
 -(void)showLoadingHUD;
 -(void)hideLoadingHUD;
+- (void)showHUDWithCustomView:(UIView*)aCustomView text:(NSString *)aText;
 
 -(void)installGageinLogo;
 -(void)installGageinLogoTo:(UIView *)aView;

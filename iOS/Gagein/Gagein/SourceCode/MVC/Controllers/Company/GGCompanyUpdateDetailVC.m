@@ -32,7 +32,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.hidesBottomBarWhenPushed = YES;
     }
     return self;
 }
@@ -173,7 +173,7 @@
             if (parser.isOK)
             {
                 data.saved = NO;
-                [GGAlert alert:@"unsaved!"];
+                //[GGAlert alert:@"unsaved!"];
                 [self _updateSaveBtnSaved:NO];
             }
             else
@@ -189,7 +189,8 @@
             if (parser.isOK)
             {
                 data.saved = YES;
-                [GGAlert alert:@"saved!"];
+                //[GGAlert alert:@"saved!"];
+                [self _showSavedHUD];
                 [self _updateSaveBtnSaved:YES];
             }
             else
@@ -224,6 +225,12 @@
 {
     _btnPrevUpdate.enabled = (_updateIndex > 0);
     _btnNextUpdate.enabled = (_updateIndex < _updates.count - 1);
+}
+
+-(void)_showSavedHUD
+{
+    UIImageView *iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark"]];
+    [self showHUDWithCustomView:iv text:@"Saved"];
 }
 
 #pragma mark - UI

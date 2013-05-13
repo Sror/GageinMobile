@@ -24,6 +24,10 @@
     UISwipeGestureRecognizer *_revealGest;
     UISwipeGestureRecognizer *_coverGest;
     UITapGestureRecognizer  *_tapGest;
+    
+    UIPanGestureRecognizer  *_panGest;
+    float                    _firstX;
+    float                    _firstY;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -54,6 +58,24 @@
     
     _tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cover)];
     
+    _panGest = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+    _panGest.maximumNumberOfTouches = 1;
+    _panGest.minimumNumberOfTouches = 1;
+}
+
+-(void)pan:(UIPanGestureRecognizer *)sender
+{
+#warning NOT FINISHED PAN GESTURE
+    CGPoint translatedPoint = [_panGest translationInView:_viewCover];
+    
+    if (_panGest.state == UIGestureRecognizerStateBegan)
+    {
+        _firstX = _panGest.view.center.x;
+        _firstY = _panGest.view.center.y;
+    }
+    
+    translatedPoint = CGPointMake(_firstX + translatedPoint.x, _firstY);
+    _panGest.view.center = translatedPoint;
 }
 
 - (void)viewDidUnload {
@@ -66,11 +88,13 @@
 {
     [self.view removeGestureRecognizer:_revealGest];
     [self.view removeGestureRecognizer:_coverGest];
+    [_viewCover removeGestureRecognizer:_panGest];
     
     if (anEnabled)
     {
         [self.view addGestureRecognizer:_revealGest];
         [self.view addGestureRecognizer:_coverGest];
+        [_viewCover addGestureRecognizer:_panGest];
     }
 }
 

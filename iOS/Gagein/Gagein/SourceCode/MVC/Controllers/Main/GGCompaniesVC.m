@@ -618,6 +618,7 @@
         vc.naviTitleString = self.naviTitle;
         vc.updates = self.updates;
         vc.updateIndex = row;
+        
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (tableView == self.happeningsTV)

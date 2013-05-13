@@ -239,6 +239,9 @@
 		EAAE073B1716609A007C4A30 /* GGNaviBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAE073A1716609A007C4A30 /* GGNaviBackButton.m */; };
 		EAAE0746171689DC007C4A30 /* GGAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAE0745171689DC007C4A30 /* GGAnimation.m */; };
 		EAAE074917169B58007C4A30 /* API_evoving.txt in Resources */ = {isa = PBXBuildFile; fileRef = EAAE074817169B58007C4A30 /* API_evoving.txt */; };
+		EAB60D2817415A17008EEEAE /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB60D2717415A17008EEEAE /* 37x-Checkmark.png */; };
+		EAB60D2A17415A24008EEEAE /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB60D2917415A24008EEEAE /* 37x-Checkmark@2x.png */; };
+		EAB60D2D1741650D008EEEAE /* GGAutosizingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB60D2C1741650D008EEEAE /* GGAutosizingLabel.m */; };
 		EAB8D5111739756200D033FC /* SFOAuth_NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D5031739756200D033FC /* SFOAuth_NSString+Additions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EAB8D5121739756200D033FC /* SFOAuth_UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D5051739756200D033FC /* SFOAuth_UIDevice+Hardware.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EAB8D5131739756200D033FC /* SFOAuthCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D5081739756200D033FC /* SFOAuthCoordinator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -729,6 +732,10 @@
 		EAAE0742171689AE007C4A30 /* GGAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGAnimation.h; sourceTree = "<group>"; };
 		EAAE0745171689DC007C4A30 /* GGAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAnimation.m; sourceTree = "<group>"; };
 		EAAE074817169B58007C4A30 /* API_evoving.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = API_evoving.txt; sourceTree = "<group>"; };
+		EAB60D2717415A17008EEEAE /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
+		EAB60D2917415A24008EEEAE /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
+		EAB60D2B1741650D008EEEAE /* GGAutosizingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGAutosizingLabel.h; sourceTree = "<group>"; };
+		EAB60D2C1741650D008EEEAE /* GGAutosizingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAutosizingLabel.m; sourceTree = "<group>"; };
 		EAB8D5021739756200D033FC /* SFOAuth_NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SFOAuth_NSString+Additions.h"; sourceTree = "<group>"; };
 		EAB8D5031739756200D033FC /* SFOAuth_NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SFOAuth_NSString+Additions.m"; sourceTree = "<group>"; };
 		EAB8D5041739756200D033FC /* SFOAuth_UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SFOAuth_UIDevice+Hardware.h"; sourceTree = "<group>"; };
@@ -1635,6 +1642,7 @@
 		EACAE0B017094A3100E7088F /* 1X */ = {
 			isa = PBXGroup;
 			children = (
+				EAB60D2717415A17008EEEAE /* 37x-Checkmark.png */,
 				EA381C5D171FA6C2004535B5 /* placeholder.png */,
 				EACAE0E8170954DE00E7088F /* first.png */,
 				EACAE0E9170954DE00E7088F /* Gestures.png */,
@@ -1647,6 +1655,7 @@
 		EACAE0B117094A3100E7088F /* 2X */ = {
 			isa = PBXGroup;
 			children = (
+				EAB60D2917415A24008EEEAE /* 37x-Checkmark@2x.png */,
 				EA4239F0173501D5002D718A /* setting */,
 				EA1D948E17339F2F009FCC7B /* people */,
 				EA1D945917339DB1009FCC7B /* company */,
@@ -1856,6 +1865,8 @@
 				EA4CC682172B98D10082A048 /* GGRelevanceBar.m */,
 				EAD16174173AE2050092C11B /* GGComUpdateDetailView.h */,
 				EAD16175173AE2050092C11B /* GGComUpdateDetailView.m */,
+				EAB60D2B1741650D008EEEAE /* GGAutosizingLabel.h */,
+				EAB60D2C1741650D008EEEAE /* GGAutosizingLabel.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2472,6 +2483,8 @@
 				EA172733173D66750056067D /* Icon@2x.png in Resources */,
 				EA172739173D69960056067D /* GGEmptyActionView.xib in Resources */,
 				EA3951D6173DE55D004985E2 /* GGEditCustomAgentFilterVC.xib in Resources */,
+				EAB60D2817415A17008EEEAE /* 37x-Checkmark.png in Resources */,
+				EAB60D2A17415A24008EEEAE /* 37x-Checkmark@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2665,6 +2678,7 @@
 				EA172737173D696F0056067D /* GGEmptyActionView.m in Sources */,
 				EA17273C173D89180056067D /* GGMediaFilter.m in Sources */,
 				EA3951D5173DE55D004985E2 /* GGEditCustomAgentFilterVC.m in Sources */,
+				EAB60D2D1741650D008EEEAE /* GGAutosizingLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2780,8 +2794,8 @@
 		EACAE0AB1709486900E7088F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Luosheng Peng (75BAGEK59M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Luosheng Peng (75BAGEK59M)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2791,8 +2805,8 @@
 				INFOPLIST_FILE = "Gagein/Gagein-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "40A2D4B0-99E5-4917-A31F-F4F4CC0D4662";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "40A2D4B0-99E5-4917-A31F-F4F4CC0D4662";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2800,8 +2814,8 @@
 		EACAE0AC1709486900E7088F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: GageIn, Inc (2L7KL2QHQ3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: GageIn, Inc (2L7KL2QHQ3)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2811,8 +2825,8 @@
 				INFOPLIST_FILE = "Gagein/Gagein-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "0066DACB-AD78-44D7-B36A-917B5E110ECC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0066DACB-AD78-44D7-B36A-917B5E110ECC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

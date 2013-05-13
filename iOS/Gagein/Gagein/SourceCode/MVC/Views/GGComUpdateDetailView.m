@@ -26,8 +26,7 @@
 -(void)awakeFromNib
 {
     self.ivUpdateBg.image = GGSharedImagePool.stretchShadowBgWite;
-    //_textviewPos = _wvTextview.frame.origin;
-    //_distanceFromPhoto = _textviewPos.y - _ivPhoto.frame.origin.y;
+    _lblTitle.lineBreakMode = UILineBreakModeWordWrap;
 }
 
 -(float)height
@@ -40,23 +39,18 @@
     
     int textviewHeight = _textviewHidden.contentSize.height * 1.2;
     CGRect theRect = _wvTextview.frame;
-    //_wvTextview.backgroundColor = [UIColor blueColor];
     theRect.size.height = textviewHeight;
     _wvTextview.frame = theRect;
-    //_wvTextview.frame = [GGUtils setH:textviewHeight rect:_wvTextview.frame];
     
     float contentHeight = CGRectGetMaxY(_wvTextview.frame) + 20;
     theRect = _viewContent.frame;
     theRect.size.height = contentHeight;
     _viewContent.frame = theRect;
-    //_viewContent.backgroundColor = GGSharedColor.orangeGagein;
-    //_viewContent.frame = [GGUtils setH:contentHeight rect:_viewContent.frame];
     
     float selfHeight = CGRectGetMaxY(_viewContent.frame) + 20;
     theRect = self.frame;
     theRect.size.height = selfHeight;
     self.frame = theRect;
-    //self.frame = [GGUtils setH:selfHeight rect:self.frame];
 }
 
 -(float)_textviewPositionY
@@ -71,6 +65,12 @@
 
 -(void)adjustLayout
 {
+    //[_lblTitle sizeToFit];
+    
+    CGRect photoRc = _ivPhoto.frame;
+    photoRc.origin.y = CGRectGetMaxY(_lblTitle.frame) + 10;
+    _ivPhoto.frame = photoRc;
+    
     float textviewY = [self _textviewPositionY];
     _wvTextview.frame = CGRectMake(_wvTextview.frame.origin.x
                                    , textviewY

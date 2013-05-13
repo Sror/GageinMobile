@@ -222,4 +222,29 @@
     [hud hide:YES];
 }
 
+- (void)showHUDWithCustomView:(UIView*)aCustomView text:(NSString *)aText
+{
+	MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
+	[self.view addSubview:HUD];
+    HUD.customView = aCustomView;
+    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.labelText = aText;
+    
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1];
+	
+	// The sample image is based on the work by http://www.pixelpressicons.com, http://creativecommons.org/licenses/by/2.5/ca/
+	// Make the customViews 37 by 37 pixels for best results (those are the bounds of the build-in progress indicators)
+//	HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
+//	
+//	// Set custom view mode
+//	HUD.mode = MBProgressHUDModeCustomView;
+//	
+//	HUD.delegate = self;
+//	HUD.labelText = @"Completed";
+//	
+//	[HUD show:YES];
+//	[HUD hide:YES afterDelay:3];
+}
+
 @end
