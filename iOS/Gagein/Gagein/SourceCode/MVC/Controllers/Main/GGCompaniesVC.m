@@ -61,6 +61,12 @@
     
     EGGMenuType                _menuType;
     long long                  _menuID;
+    
+    CGPoint                     _lastContentOffset;
+    
+    CGRect                      _relevanceRectShow;
+    CGRect                      _relevanceRectHide;
+    CGRect                      _updateTvRect;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -128,6 +134,7 @@
     [super viewDidLoad];
     
     [self _installMenuButton];
+    self.view.backgroundColor = GGSharedColor.silver;
     self.naviTitle = @"EXPLORING";
     
     [self _initRoundSwitch];
@@ -135,26 +142,29 @@
     [self _initSlideSettingView];
     
     _relevanceBar = [GGRelevanceBar viewFromNibWithOwner:self];
-    _relevanceBar.frame = CGRectOffset(_relevanceBar.frame, 0, 5);
+    _relevanceRectShow = CGRectOffset(_relevanceBar.frame, 0, 5);
+    _relevanceRectHide = CGRectOffset(_relevanceRectShow, 0, -_relevanceBar.frame.size.height);
+    _relevanceBar.frame = _relevanceRectShow;
     [self.view addSubview:_relevanceBar];
     _relevanceBar.btnSwitch.delegate = self;
     _relevanceBar.btnSwitch.lblOn.text = @"High";
     _relevanceBar.btnSwitch.lblOff.text = @"Medium";
     _relevanceBar.btnSwitch.isOn = YES;
     
-     CGRect updateRc = [self viewportAdjsted];
+     _updateTvRect = [self viewportAdjsted];
     
-    self.happeningsTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
+    self.happeningsTV = [[UITableView alloc] initWithFrame:_updateTvRect style:UITableViewStylePlain];
     self.happeningsTV.rowHeight = [GGCompanyHappeningCell HEIGHT];
     self.happeningsTV.dataSource = self;
     self.happeningsTV.delegate = self;
     self.happeningsTV.backgroundColor = GGSharedColor.silver;
     self.happeningsTV.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.happeningsTV.hidden = YES;
     [self.view addSubview:self.happeningsTV];
     
-    updateRc.origin.y = CGRectGetMaxY(_relevanceBar.frame) - 5;
-    updateRc.size.height = self.view.frame.size.height - updateRc.origin.y;
-    self.updatesTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
+    _updateTvRect.origin.y = CGRectGetMaxY(_relevanceBar.frame) - 5;
+    _updateTvRect.size.height = self.view.frame.size.height - _updateTvRect.origin.y;
+    self.updatesTV = [[UITableView alloc] initWithFrame:_updateTvRect style:UITableViewStylePlain];
     self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
@@ -234,6 +244,7 @@
     {
         _isShowingUpdate = aIsOn;
         self.updatesTV.hidden = _relevanceBar.hidden = !_isShowingUpdate;
+        _happeningsTV.hidden = _isShowingUpdate;
         //_isShowingUpdate ? [_updatesTV triggerPullToRefresh] : [_happeningsTV triggerPullToRefresh];
     } else if (aSwitchButton == _relevanceBar.btnSwitch)
     {
@@ -660,11 +671,74 @@
 //    DLog(@"scrolling to index:%d", aPageIndex);
 //}
 
+#pragma mark - scrollView delegate
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if (scrollView == _slideSettingView.viewTable)
     {
         [_slideSettingView.searchBar resignFirstResponder];
+    }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    
+    if (scrollView == _updatesTV)
+    {
+        _lastContentOffset = scrollView.contentOffset;
+    }
+}
+
+
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+    
+    if (scrollView == _updatesTV)
+    {
+        if (_lastContentOffset.y < (int)scrollView.contentOffset.y) {
+            DLog(@"moved up");
+            
+            [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                _relevanceBar.frame = _relevanceRectHide;
+                
+                CGRect tvRc = _updateTvRect;
+                tvRc.origin.y = _relevanceRectShow.origin.y;
+                tvRc.size.height += _relevanceRectShow.size.height;
+                _updatesTV.frame = tvRc;
+                
+            } completion:nil];
+            
+//            [UIView animateWithDuration:.5f animations:^{
+//                _relevanceBar.frame = _relevanceRectHide;
+//                
+//                CGRect tvRc = _updateTvRect;
+//                tvRc.origin.y = _relevanceRectShow.origin.y;
+//                tvRc.size.height += _relevanceRectShow.size.height;
+//                _updatesTV.frame = tvRc;
+//                
+//            } completion:^(BOOL finished) {
+//                
+//            }];
+        }
+        else {
+            DLog(@"moved down");
+            
+            [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                _relevanceBar.frame = _relevanceRectShow;
+                
+                _updatesTV.frame = _updateTvRect;
+                
+            } completion:nil];
+            
+//            [UIView animateWithDuration:.5f animations:^{
+//                _relevanceBar.frame = _relevanceRectShow;
+//                
+//                _updatesTV.frame = _updateTvRect;
+//                
+//            } completion:^(BOOL finished) {
+//                
+//            }];
+        }
     }
 }
 
