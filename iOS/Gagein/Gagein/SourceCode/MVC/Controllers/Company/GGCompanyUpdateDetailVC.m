@@ -10,7 +10,7 @@
 #import "GGCompanyUpdate.h"
 #import "GGComUpdateDetailView.h"
 
-@interface GGCompanyUpdateDetailVC ()
+@interface GGCompanyUpdateDetailVC () <MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIButton *btnSave;
@@ -133,6 +133,12 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+#pragma mark - Helper
+-(void)_updateSaveBtnSaved:(BOOL)aSaved
+{
+    [_btnSave setImage:(aSaved ? [UIImage imageNamed:@"unsaveIcon"] : [UIImage imageNamed:@"saveIcon"]) forState:UIControlStateNormal];
+}
+
 #pragma mark - Actions
 -(IBAction)sendMailAction:(id)sender
 {
@@ -158,9 +164,9 @@
 
 }
 
--(void)_updateSaveBtnSaved:(BOOL)aSaved
+-(IBAction)sendSMSAction:(id)sender
 {
-    [_btnSave setImage:(aSaved ? [UIImage imageNamed:@"unsaveIcon"] : [UIImage imageNamed:@"saveIcon"]) forState:UIControlStateNormal];
+    [GGUtils sendSmsTo:[NSArray arrayWithObjects:@"1234567890", nil] body:_companyUpdateDetail.headline vcDelegate:self];
 }
 
 -(IBAction)saveAction:(id)sender
@@ -229,8 +235,7 @@
 
 -(void)_showSavedHUD
 {
-    UIImageView *iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark"]];
-    [self showHUDWithCustomView:iv text:@"Saved"];
+    [self showCheckMarkHUDWithText:@"Saved"];
 }
 
 #pragma mark - UI
@@ -351,5 +356,26 @@
 
 #pragma mark - tableview datasource
 
+#pragma mark - message delegate
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller
+                 didFinishWithResult:(MessageComposeResult)result
+{
+    switch (result)
+    {
+        case MessageComposeResultCancelled:
+            DLog(@"Cancelled");
+            break;
+        case MessageComposeResultFailed:
+            DLog(@"Failed");
+            break;
+        case MessageComposeResultSent:
+            [self showCheckMarkHUDWithText:@"Sent OK!"];
+            break;
+        default:
+            break;
+    }
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
 
 @end

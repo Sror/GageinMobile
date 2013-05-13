@@ -222,6 +222,12 @@
     [hud hide:YES];
 }
 
+-(void)showCheckMarkHUDWithText:(NSString *)aText
+{
+    UIImageView *iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark"]];
+    [self showHUDWithCustomView:iv text:aText];
+}
+
 - (void)showHUDWithCustomView:(UIView*)aCustomView text:(NSString *)aText
 {
 	MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];

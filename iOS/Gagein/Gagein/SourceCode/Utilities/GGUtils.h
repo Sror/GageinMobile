@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MessageUI/MessageUI.h>
 
 @interface GGUtils : NSObject
 +(CGRect)setX:(float)aX rect:(CGRect)aRect;
@@ -20,4 +21,9 @@
 +(NSString *)envString;
 +(UIButton *)darkGrayButtonWithTitle:(NSString *)aTitle frame:(CGRect)aFrame;
 +(UIBarButtonItem *)naviButtonItemWithTitle:(NSString *)aTitle target:(id)aTarget selector:(SEL)aSelector;
+
++(void)sendSmsTo:(NSArray *)aRecipients
+            body:(NSString *)aBody
+      vcDelegate:(UIViewController<MFMessageComposeViewControllerDelegate> *)aVcDelegate;
+
 @end

@@ -8,6 +8,7 @@
 
 #import "GGUtils.h"
 
+
 @implementation GGUtils
 
 +(CGRect)setX:(float)aX rect:(CGRect)aRect
@@ -148,6 +149,20 @@
     
     [doneBtn addTarget:aTarget action:aSelector forControlEvents:UIControlEventTouchUpInside];
     return [[UIBarButtonItem alloc] initWithCustomView:btnView];
+}
+
++(void)sendSmsTo:(NSArray *)aRecipients
+            body:(NSString *)aBody
+      vcDelegate:(UIViewController<MFMessageComposeViewControllerDelegate> *)aVcDelegate
+{
+    MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+    if([MFMessageComposeViewController canSendText])
+    {
+        controller.body = aBody;
+        controller.recipients = aRecipients;
+        controller.messageComposeDelegate = aVcDelegate;
+        [aVcDelegate presentModalViewController:controller animated:YES];
+    }
 }
 
 @end
