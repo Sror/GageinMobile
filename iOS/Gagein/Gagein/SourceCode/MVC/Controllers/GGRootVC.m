@@ -161,14 +161,14 @@
             DLog(@"Detected a swipe to the right");
             [self reveal];
         }
-        else if (vel.y < SWIPE_UP_THRESHOLD)
-        {
-            // TODO: Detected a swipe up
-        }
-        else if (vel.y > SWIPE_DOWN_THRESHOLD)
-        {
-            // TODO: Detected a swipe down
-        }
+//        else if (vel.y < SWIPE_UP_THRESHOLD)
+//        {
+//            // TODO: Detected a swipe up
+//        }
+//        else if (vel.y > SWIPE_DOWN_THRESHOLD)
+//        {
+//            // TODO: Detected a swipe down
+//        }
         else
         {
             DLog(@"Detected a pan end");

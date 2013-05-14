@@ -231,11 +231,11 @@ viewForHeaderInSection:(NSInteger)section
         
         for (GGAgentFilter *agentFilter in page.items)
         {
-            if (agentFilter.type == kGGAgentFilterCustom)
+            if (agentFilter.type == kGGAgentTypeCustom)
             {
                 [_customAgentFilters addObject:agentFilter];
             }
-            else if (agentFilter.type == kGGAgentFilterPredefined)
+            else if (agentFilter.type == kGGAgentTypePredefined)
             {
                 [_predefinedAgentFilters addObject:agentFilter];
             }

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface GGEditCustomAgentFilterVC : GGBaseViewController
+<UITableViewDataSource, UITableViewDelegate>
 
 @end

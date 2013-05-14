@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GGDataModel.h"
 
+
 typedef enum {
     kGGAgentTypePredefined = 1
     , kGGAgentTypeCustom = 2
