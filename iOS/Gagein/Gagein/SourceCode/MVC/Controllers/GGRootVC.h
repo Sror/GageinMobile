@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GGSlideSettingView.h"
 
-@interface GGRootVC : GGBaseViewController
+@interface GGRootVC : GGBaseViewController <UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *viewBack;
 @property (weak, nonatomic) IBOutlet UIView *viewCover;
 @property (strong, nonatomic) GGSlideSettingView *viewSetting;
