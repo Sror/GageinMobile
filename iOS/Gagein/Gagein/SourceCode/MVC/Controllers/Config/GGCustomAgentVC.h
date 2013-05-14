@@ -10,7 +10,7 @@
 
 @class GGAgent;
 
-@interface GGCustomAgentVC : GGBaseViewController
+@interface GGCustomAgentVC : GGBaseViewController <UITextFieldDelegate, UITextViewDelegate>
 //@property (assign) long long agentID;
 @property (strong) GGAgent      *agent;
 @end

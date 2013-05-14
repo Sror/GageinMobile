@@ -81,6 +81,12 @@
 }
 
 
+-(void)deleteAction:(id)sender
+{
+    
+}
+
+
 #pragma mark - table view datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -108,6 +114,25 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int row = indexPath.row;
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        GGAgentFilter * filter = _customAgentFilters[row];
+        [self showLoadingHUD];
+        [GGSharedAPI deleteCustomAgentWithID:filter.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [_customAgentFilters removeObject:filter];
+                [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+        }];
+    }
+}
 
 
 #pragma mark - table view delegate
@@ -120,6 +145,7 @@
     //GGAgentFilter * filter = _customAgentFilters[row];
     //DLog(@"Edit filter: %@", filter.name);
 }
+
 
 
 #pragma mark - API calls
@@ -146,5 +172,7 @@
         
     }];
 }
+
+
 
 @end

@@ -90,41 +90,53 @@
     else
     {
         
+        GGApiBlock block = ^(id operation, id aResultObject, NSError* anError) {
+            
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                //[GGAlert alert:@"Success!"];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else
+            {
+                [GGAlert alert:parser.message];
+            }
+            
+        };
+        
         if (_agent)
         {
             [GGSharedAPI updateCustomAgentWithID:_agent.ID name:self.fdName.text keywords:self.texvKeywords.text callback:^(id operation,
                                                                                                                          id aResultObject, NSError *anError) {
                 
-                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-                if (parser.isOK)
-                {
-                    //[GGAlert alert:@"Success!"];
-                    [self.navigationController popViewControllerAnimated:YES];
-                }
-                else
-                {
-                    [GGAlert alert:parser.message];
-                }
+                block(operation, aResultObject, anError);
+                
             }];
         }
         else
         {
             [GGSharedAPI addCustomAgentWithName:self.fdName.text keywords:self.texvKeywords.text callback:^(id operation, id aResultObject, NSError *anError) {
                 
-                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-                if (parser.isOK)
-                {
-                    //[GGAlert alert:@"Success!"];
-                    [self.navigationController popViewControllerAnimated:YES];
-                }
-                else
-                {
-                    [GGAlert alert:parser.message];
-                }
+                block(operation, aResultObject, anError);
                 
             }];
         }
     }
+}
+
+#pragma mark - text field
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    [self.viewScroll setContentOffset:CGPointMake(0, 10) animated:YES];
+    return YES;
+}
+
+#pragma mark - text view
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    [self.viewScroll setContentOffset:CGPointMake(0, 70) animated:YES];
+    return YES;
 }
 
 @end
