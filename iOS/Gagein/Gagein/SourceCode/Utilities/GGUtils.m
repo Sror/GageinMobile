@@ -129,7 +129,7 @@
     button.frame = aFrame;
     [button setTitle:aTitle forState:UIControlStateNormal];
     [button setTitleColor:GGSharedColor.white forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont boldSystemFontOfSize:18.f];
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:15.f];
     
     return button;
 }

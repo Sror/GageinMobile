@@ -11,6 +11,7 @@
 #import "GGConfigLabel.h"
 #import "GGAgentFilter.h"
 #import "GGDataPage.h"
+#import "GGEditCustomAgentFilterVC.h"
 
 @interface GGConfigAgentFiltersVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tv;
@@ -44,6 +45,8 @@
     self.naviTitle = @"Agent Filters";
     self.tv.backgroundColor = GGSharedColor.silver;
     
+    self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Edit" target:self selector:@selector(editCustomAgentAction:)];
+    
     _configSwitchCell = [GGConfigSwitchCell viewFromNibWithOwner:self];
     _configSwitchCell.btnSwitch.isOn = YES;
     _configSwitchCell.btnSwitch.delegate = self;
@@ -53,6 +56,13 @@
 }
 
 #pragma mark -
+-(void)editCustomAgentAction:(id)sender
+{
+    GGEditCustomAgentFilterVC *vc = [[GGEditCustomAgentFilterVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (_configSwitchCell.btnSwitch.isOn) {

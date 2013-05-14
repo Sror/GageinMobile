@@ -28,7 +28,10 @@
     [super viewDidLoad];
     self.naviTitle = @"Configure Filters";
     self.view.backgroundColor = GGSharedColor.silver;
+    
+    
 }
+
 
 
 
