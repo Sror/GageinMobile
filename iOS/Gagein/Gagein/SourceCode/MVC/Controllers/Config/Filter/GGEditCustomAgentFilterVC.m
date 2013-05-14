@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnAdd;
 @property (weak, nonatomic) IBOutlet UITableView *tvFilters;
 
+
 @end
 
 @implementation GGEditCustomAgentFilterVC
