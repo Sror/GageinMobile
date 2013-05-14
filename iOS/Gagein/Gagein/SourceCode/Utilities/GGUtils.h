@@ -26,4 +26,7 @@
             body:(NSString *)aBody
       vcDelegate:(UIViewController<MFMessageComposeViewControllerDelegate> *)aVcDelegate;
 
+
++(id)replaceFromNibForView:(UIView *)aView;
+
 @end

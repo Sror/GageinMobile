@@ -15,6 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.clipsToBounds = YES;
     }
     return self;
 }
@@ -28,12 +29,7 @@
 
 -(void)awakeFromNib
 {
-    CGRect rcSwitch = self.btnSwitch.frame;
-    UIView *superView = self.btnSwitch.superview;
-    [self.btnSwitch removeFromSuperview];
-    self.btnSwitch = [GGSwitchButton viewFromNibWithOwner:self];
-    self.btnSwitch.frame = rcSwitch;
-    [superView addSubview:self.btnSwitch];
+    _viewContent = [GGUtils replaceFromNibForView:_viewContent];
 }
 
 +(float)HEIGHT

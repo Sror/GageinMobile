@@ -165,4 +165,23 @@
     }
 }
 
++(id)replaceFromNibForView:(UIView *)aView
+{
+    if (aView)
+    {
+        UIView *superview = [aView superview];
+        CGRect frame = aView.frame;
+        Class cls = [aView class];
+        
+        [aView removeFromSuperview];
+        aView = [cls viewFromNibWithOwner:self];
+        aView.frame = frame;
+        [superview addSubview:aView];
+        
+        return aView;
+    }
+    
+    return nil;
+}
+
 @end

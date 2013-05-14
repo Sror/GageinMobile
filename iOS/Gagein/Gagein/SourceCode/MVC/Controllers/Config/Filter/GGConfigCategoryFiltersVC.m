@@ -7,8 +7,11 @@
 //
 
 #import "GGConfigCategoryFiltersVC.h"
+#import "GGConfigSwitchView.h"
 
 @interface GGConfigCategoryFiltersVC ()
+//@property (weak, nonatomic) IBOutlet GGConfigSwitchCell *cellConfigSwitch;
+@property (weak, nonatomic) IBOutlet GGConfigSwitchView *viewConfigSwitch;
 
 @end
 
@@ -27,8 +30,55 @@
 {
     [super viewDidLoad];
     self.naviTitle = @"Category Filters";
+    self.view.backgroundColor = GGSharedColor.silver;
+    
+//    [_viewConfigSwitch removeFromSuperview];
+//    CGRect configSwitchRC = _viewConfigSwitch.frame;
+//    _viewConfigSwitch = [GGConfigSwitchView viewFromNibWithOwner:self];
+//    _viewConfigSwitch.frame = configSwitchRC;
+//    [self.view addSubview:_viewConfigSwitch];
+    
+    _viewConfigSwitch = [GGUtils replaceFromNibForView:_viewConfigSwitch];
+    
+    _viewConfigSwitch.backgroundColor = GGSharedColor.white;
+    _viewConfigSwitch.btnSwitch.isOn = YES;
+    _viewConfigSwitch.btnSwitch.lblOn.text = @"On";
+    _viewConfigSwitch.btnSwitch.lblOff.text = @"Off";
+    _viewConfigSwitch.btnSwitch.delegate = self;
 }
 
 
+
+- (void)viewDidUnload {
+    //[self setCellConfigSwitch:nil];
+    [self setViewConfigSwitch:nil];
+    [super viewDidUnload];
+}
+
+#pragma mark - table view datasource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
+
+#pragma mark - switch button delegate
+-(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
+{
+    [self showLoadingHUD];
+    [GGSharedAPI setCategoryFilterEnabled:aIsOn callback:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            //_tv.hidden = !aIsOn;
+        }
+        
+    }];
+}
 
 @end

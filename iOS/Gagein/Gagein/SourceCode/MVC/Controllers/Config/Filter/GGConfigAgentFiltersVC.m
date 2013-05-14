@@ -48,8 +48,10 @@
     self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Edit" target:self selector:@selector(editCustomAgentAction:)];
     
     _configSwitchCell = [GGConfigSwitchCell viewFromNibWithOwner:self];
-    _configSwitchCell.btnSwitch.isOn = YES;
-    _configSwitchCell.btnSwitch.delegate = self;
+    _configSwitchCell.viewContent.btnSwitch.lblOn.text = @"On";
+    _configSwitchCell.viewContent.btnSwitch.lblOff.text = @"Off";
+    _configSwitchCell.viewContent.btnSwitch.isOn = YES;
+    _configSwitchCell.viewContent.btnSwitch.delegate = self;
     
     // at last
     [self _callApiGetConfigOptions];
@@ -65,7 +67,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (_configSwitchCell.btnSwitch.isOn) {
+    if (_configSwitchCell.viewContent.btnSwitch.isOn) {
         return 3;
     }
     
@@ -74,7 +76,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (_configSwitchCell.btnSwitch.isOn) {
+    if (_configSwitchCell.viewContent.btnSwitch.isOn) {
         
         if (section == 0) {
             return 1;
@@ -162,11 +164,11 @@
         
     } else if (section == 1) {
         
-        return 44.f;
+        return [GGConfigLabel HEIGHT];
         
     } else if (section == 2) {
         
-        return 44.f;
+        return [GGConfigLabel HEIGHT];
     }
     
     return 0.f;
@@ -189,6 +191,19 @@ viewForHeaderInSection:(NSInteger)section
     
     return head;
 }
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (!_configSwitchCell.viewContent.btnSwitch.isOn && section == 0)
+    {
+        GGConfigLabel *head = [GGConfigLabel viewFromNibWithOwner:self];
+        head.lblText.text = @"Filter your update feed by agents.";
+        return head;
+    }
+    
+    return nil;
+}
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -256,7 +271,9 @@ viewForHeaderInSection:(NSInteger)section
         {
             //
         }
+        
         [_tv reloadData];
+        
     }];
 }
 

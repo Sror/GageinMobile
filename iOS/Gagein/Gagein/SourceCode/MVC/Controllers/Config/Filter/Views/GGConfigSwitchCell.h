@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GGSwitchButton.h"
+#import "GGConfigSwitchView.h"
 
 @interface GGConfigSwitchCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet GGSwitchButton *btnSwitch;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet GGConfigSwitchView *viewContent;
+
 
 +(float)HEIGHT;
 @end

@@ -75,6 +75,8 @@
 		EA17273C173D89180056067D /* GGMediaFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA17273B173D89180056067D /* GGMediaFilter.m */; };
 		EA18C3021742B450008A2D67 /* GGEditStyleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA18C3011742B450008A2D67 /* GGEditStyleCell.m */; };
 		EA18C3051742B5DF008A2D67 /* GGEditStyleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18C3041742B5DF008A2D67 /* GGEditStyleCell.xib */; };
+		EA18C3081742EF42008A2D67 /* GGConfigSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA18C3071742EF41008A2D67 /* GGConfigSwitchView.m */; };
+		EA18C30A1742EF5B008A2D67 /* GGConfigSwitchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18C3091742EF5A008A2D67 /* GGConfigSwitchView.xib */; };
 		EA1995ED1717E301006D95E4 /* GGSettingMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */; };
 		EA1995F01717E312006D95E4 /* GGSettingMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */; };
 		EA1A61F7170A6478000B4EAE /* GGDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A61F6170A6478000B4EAE /* GGDataModel.m */; };
@@ -509,6 +511,9 @@
 		EA18C3001742B450008A2D67 /* GGEditStyleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGEditStyleCell.h; sourceTree = "<group>"; };
 		EA18C3011742B450008A2D67 /* GGEditStyleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGEditStyleCell.m; sourceTree = "<group>"; };
 		EA18C3041742B5DF008A2D67 /* GGEditStyleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGEditStyleCell.xib; sourceTree = "<group>"; };
+		EA18C3061742EF40008A2D67 /* GGConfigSwitchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGConfigSwitchView.h; sourceTree = "<group>"; };
+		EA18C3071742EF41008A2D67 /* GGConfigSwitchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGConfigSwitchView.m; sourceTree = "<group>"; };
+		EA18C3091742EF5A008A2D67 /* GGConfigSwitchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGConfigSwitchView.xib; sourceTree = "<group>"; };
 		EA1995EB1717E301006D95E4 /* GGSettingMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingMenuCell.h; sourceTree = "<group>"; };
 		EA1995EC1717E301006D95E4 /* GGSettingMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingMenuCell.m; sourceTree = "<group>"; };
 		EA1995EF1717E312006D95E4 /* GGSettingMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSettingMenuCell.xib; sourceTree = "<group>"; };
@@ -1236,6 +1241,9 @@
 				EA16AA0E173231A80052B526 /* GGConfigSwitchCell.h */,
 				EA16AA0F173231A80052B526 /* GGConfigSwitchCell.m */,
 				EA16AA11173231B90052B526 /* GGConfigSwitchCell.xib */,
+				EA18C3061742EF40008A2D67 /* GGConfigSwitchView.h */,
+				EA18C3071742EF41008A2D67 /* GGConfigSwitchView.m */,
+				EA18C3091742EF5A008A2D67 /* GGConfigSwitchView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2510,6 +2518,7 @@
 				EAB60D2817415A17008EEEAE /* 37x-Checkmark.png in Resources */,
 				EAB60D2A17415A24008EEEAE /* 37x-Checkmark@2x.png in Resources */,
 				EA18C3051742B5DF008A2D67 /* GGEditStyleCell.xib in Resources */,
+				EA18C30A1742EF5B008A2D67 /* GGConfigSwitchView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2705,6 +2714,7 @@
 				EA3951D5173DE55D004985E2 /* GGEditCustomAgentFilterVC.m in Sources */,
 				EAB60D2D1741650D008EEEAE /* GGAutosizingLabel.m in Sources */,
 				EA18C3021742B450008A2D67 /* GGEditStyleCell.m in Sources */,
+				EA18C3081742EF42008A2D67 /* GGConfigSwitchView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
