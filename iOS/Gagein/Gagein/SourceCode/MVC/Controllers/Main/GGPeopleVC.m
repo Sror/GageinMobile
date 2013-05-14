@@ -496,9 +496,9 @@
 
 -(void)_callApiGetMenu
 {
-    [_slideSettingView showLoadingHUD];
+    //[_slideSettingView showLoadingHUD];
     [GGSharedAPI getMenuByType:kGGStrMenuTypePeople callback:^(id operation, id aResultObject, NSError *anError) {
-        [_slideSettingView hideLoadingHUD];
+        //[_slideSettingView hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {

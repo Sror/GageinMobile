@@ -21,17 +21,14 @@
 @implementation GGRootVC
 {
     BOOL    _isRevealed;
-    //UISwipeGestureRecognizer *_revealGest;
-    //UISwipeGestureRecognizer *_coverGest;
+
     UITapGestureRecognizer  *_tapGest;
     
     UIPanGestureRecognizer  *_panGest;
     
     float                    _firstX;
     float                    _firstY;
-    
-    //BOOL                    _isSwipping;
-    //BOOL                    _isPanning;
+
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -54,23 +51,15 @@
     _viewSetting = [[GGSlideSettingView alloc] initWithFrame:_viewBack.bounds];
     [_viewBack addSubview:_viewSetting];
     
-//    _revealGest = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(reveal)];
-//    _revealGest.direction = UISwipeGestureRecognizerDirectionRight;
-//    
-//    _coverGest = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cover)];
-//    _coverGest.direction = UISwipeGestureRecognizerDirectionLeft;
     
     _tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cover)];
     
     _panGest = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanSwipe:)];
     _panGest.maximumNumberOfTouches = 1;
     _panGest.minimumNumberOfTouches = 1;
-    //_panGest.delaysTouchesBegan = YES;
-    //[_panGest requireGestureRecognizerToFail:_coverGest];
-    //[_coverGest requireGestureRecognizerToFail:_revealGest];
+
     _panGest.delegate = self;
-//    _coverGest.delegate = self;
-//    _revealGest.delegate = self;
+
 }
 
 
@@ -81,39 +70,11 @@
     return YES;
 }
 
-//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-//{
-//    if ([gestureRecognizer isKindOfClass:[UISwipeGestureRecognizer class]])
-//    {
-//        _isSwipping = YES;
-//        _isPanning = NO;
-//        return YES;
-//    }
-//    else if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]])
-//    {
-//        _isPanning = YES;
-//        return YES;
-//    }
-//    
-//    return NO;
-//}
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return _canBeDragged;
+}
 
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-//{
-//    if ([gestureRecognizer isKindOfClass:[UISwipeGestureRecognizer class]])
-//    {
-//        _isSwipping = YES;
-//        _isPanning = NO;
-//        return YES;
-//    }
-//    else if (!_isSwipping && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]])
-//    {
-//        _isPanning = YES;
-//        return YES;
-//    }
-//    
-//    return NO;
-//}
 
 #define SWIPE_UP_THRESHOLD -1000.0f
 #define SWIPE_DOWN_THRESHOLD 1000.0f
@@ -130,6 +91,9 @@
     {
         _firstX = _panGest.view.center.x;
         _firstY = _panGest.view.center.y;
+        
+        [self postNotification:GG_NOTIFY_PAN_BEGIN];
+        //_panGest.view.userInteractionEnabled = NO;
     }
     else if (_panGest.state == UIGestureRecognizerStateChanged)
     {
@@ -149,6 +113,8 @@
     // But also, detect the swipe gesture
     if (recognizer.state == UIGestureRecognizerStateEnded)
     {
+        [self postNotification:GG_NOTIFY_PAN_END];
+        //_panGest.view.userInteractionEnabled = YES;
         CGPoint vel = [recognizer velocityInView:recognizer.view];
         
         if (vel.x < SWIPE_LEFT_THRESHOLD)
@@ -184,48 +150,47 @@
     }
 }
 
--(void)pan:(UIPanGestureRecognizer *)sender
-{
-#warning NOT FINISHED PAN GESTURE
-//    if (!_isPanning)
+//-(void)pan:(UIPanGestureRecognizer *)sender
+//{
+////#warning NOT FINISHED PAN GESTURE
+//
+//    
+//    CGPoint translatedPoint = [_panGest translationInView:_viewCover];
+//    
+//    if (_panGest.state == UIGestureRecognizerStateBegan)
 //    {
-//        return;
+//        _firstX = _panGest.view.center.x;
+//        _firstY = _panGest.view.center.y;
+//        _panGest.view.userInteractionEnabled = NO;
 //    }
-    
-    CGPoint translatedPoint = [_panGest translationInView:_viewCover];
-    
-    if (_panGest.state == UIGestureRecognizerStateBegan)
-    {
-        _firstX = _panGest.view.center.x;
-        _firstY = _panGest.view.center.y;
-    }
-    else if (_panGest.state == UIGestureRecognizerStateChanged)
-    {
-        translatedPoint = CGPointMake(_firstX + translatedPoint.x, _firstY);
-        if (translatedPoint.x < _panGest.view.frame.size.width / 2)
-        {
-            translatedPoint.x = _panGest.view.frame.size.width / 2;
-        }
-        
-        [UIView animateWithDuration:.3f animations:^{
-            _panGest.view.center = translatedPoint;
-        }];
-    }
-    
-    else if ([(UIPanGestureRecognizer*)sender state] == UIGestureRecognizerStateEnded)
-    {
-        if (_panGest.view.center.x < (_viewCover.frame.size.width + SLIDE_SETTING_VIEW_WIDTH) / 2)
-        {
-            [self cover:nil];
-        }
-        else
-        {
-            [self reveal:nil];
-        }
-
-    }
-    
-}
+//    else if (_panGest.state == UIGestureRecognizerStateChanged)
+//    {
+//        translatedPoint = CGPointMake(_firstX + translatedPoint.x, _firstY);
+//        if (translatedPoint.x < _panGest.view.frame.size.width / 2)
+//        {
+//            translatedPoint.x = _panGest.view.frame.size.width / 2;
+//        }
+//        
+//        [UIView animateWithDuration:.3f animations:^{
+//            _panGest.view.center = translatedPoint;
+//        }];
+//    }
+//    
+//    else if ([(UIPanGestureRecognizer*)sender state] == UIGestureRecognizerStateEnded)
+//    {
+//        _panGest.view.userInteractionEnabled = NO;
+//        if (_panGest.view.center.x < (_viewCover.frame.size.width + SLIDE_SETTING_VIEW_WIDTH) / 2)
+//        {
+//            [self cover:nil];
+//        }
+//        else
+//        {
+//            [self reveal:nil];
+//        }
+//
+//    }
+//    
+//}
 
 - (void)viewDidUnload {
     [self setViewBack:nil];

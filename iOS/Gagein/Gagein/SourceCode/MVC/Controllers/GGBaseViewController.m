@@ -20,6 +20,7 @@
 {
     __weak MBProgressHUD    *hud;
     BOOL                    _isViewFirstAppear;
+    UIView                  *_transparentBlockView;
 }
 
 +(id)createInstance
@@ -43,6 +44,9 @@
     
     self.view.backgroundColor = GGSharedColor.bgGray;
 	self.view.frame = [self viewportFrame];
+    
+    _transparentBlockView = [[UIView alloc] initWithFrame:self.view.bounds];
+    _transparentBlockView.backgroundColor = GGSharedColor.clear;
     
     [self _customizeNaviTitleView];
     self.navigationItem.hidesBackButton = YES;
@@ -255,19 +259,16 @@
     
     [HUD show:YES];
     [HUD hide:YES afterDelay:1];
-	
-	// The sample image is based on the work by http://www.pixelpressicons.com, http://creativecommons.org/licenses/by/2.5/ca/
-	// Make the customViews 37 by 37 pixels for best results (those are the bounds of the build-in progress indicators)
-//	HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
-//	
-//	// Set custom view mode
-//	HUD.mode = MBProgressHUDModeCustomView;
-//	
-//	HUD.delegate = self;
-//	HUD.labelText = @"Completed";
-//	
-//	[HUD show:YES];
-//	[HUD hide:YES afterDelay:3];
+}
+
+-(void)blockUI
+{
+    [self.view addSubview:_transparentBlockView];
+}
+
+-(void)unblockUI
+{
+    [_transparentBlockView removeFromSuperview];
 }
 
 @end

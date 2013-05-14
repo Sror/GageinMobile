@@ -35,4 +35,8 @@
 -(CGRect)viewportAdjsted;
 
 -(void)viewWillAppearNotFirstTimeAction;
+
+-(void)blockUI;
+-(void)unblockUI;
+
 @end

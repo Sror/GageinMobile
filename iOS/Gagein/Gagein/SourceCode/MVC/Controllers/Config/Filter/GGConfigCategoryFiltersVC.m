@@ -32,12 +32,6 @@
     self.naviTitle = @"Category Filters";
     self.view.backgroundColor = GGSharedColor.silver;
     
-//    [_viewConfigSwitch removeFromSuperview];
-//    CGRect configSwitchRC = _viewConfigSwitch.frame;
-//    _viewConfigSwitch = [GGConfigSwitchView viewFromNibWithOwner:self];
-//    _viewConfigSwitch.frame = configSwitchRC;
-//    [self.view addSubview:_viewConfigSwitch];
-    
     _viewConfigSwitch = [GGUtils replaceFromNibForView:_viewConfigSwitch];
     
     _viewConfigSwitch.backgroundColor = GGSharedColor.white;
@@ -50,7 +44,6 @@
 
 
 - (void)viewDidUnload {
-    //[self setCellConfigSwitch:nil];
     [self setViewConfigSwitch:nil];
     [super viewDidUnload];
 }

@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIView *viewCover;
 @property (strong, nonatomic) GGSlideSettingView *viewSetting;
 
+@property (assign)  BOOL    canBeDragged;
+
 -(void)enableSwipGesture:(BOOL)anEnabled;
 -(void)enableTapGesture:(BOOL)anEnabled;
 -(void)reveal;

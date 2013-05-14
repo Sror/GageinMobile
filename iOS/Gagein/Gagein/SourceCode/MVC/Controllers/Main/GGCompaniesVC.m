@@ -130,6 +130,8 @@
     [self observeNotification:GG_NOTIFY_LOG_IN];
     [self observeNotification:GG_NOTIFY_MENU_REVEAL];
     [self observeNotification:GG_NOTIFY_MENU_COVER];
+    [self observeNotification:GG_NOTIFY_PAN_BEGIN];
+    [self observeNotification:GG_NOTIFY_PAN_END];
     
     [super viewDidLoad];
     
@@ -327,6 +329,16 @@
         self.view.userInteractionEnabled = YES;
         [_slideSettingView.searchBar resignFirstResponder];
     }
+    
+    else if ([noteName isEqualToString:GG_NOTIFY_PAN_BEGIN])
+    {
+        [self blockUI];
+    }
+    else if ([noteName isEqualToString:GG_NOTIFY_PAN_END])
+    {
+        [self unblockUI];
+    }
+    //
 }
 
 #pragma mark - internal
@@ -681,12 +693,20 @@
     }
 }
 
+
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     
     if (scrollView == _updatesTV)
     {
         _lastContentOffset = scrollView.contentOffset;
     }
+    
+    GGSharedDelegate.rootVC.canBeDragged = NO;
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    GGSharedDelegate.rootVC.canBeDragged = YES;
 }
 
 
@@ -771,9 +791,9 @@
 
 -(void)_callApiGetMenu
 {
-    [_slideSettingView showLoadingHUD];
+    //[_slideSettingView showLoadingHUD];
     [GGSharedAPI getMenuByType:kGGStrMenuTypeCompanies callback:^(id operation, id aResultObject, NSError *anError) {
-        [_slideSettingView hideLoadingHUD];
+        //[_slideSettingView hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
