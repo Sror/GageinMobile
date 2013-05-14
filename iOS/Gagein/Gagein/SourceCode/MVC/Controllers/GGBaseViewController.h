@@ -33,4 +33,6 @@
 
 //unknown reason cause view a little hide at top, adjust using this method
 -(CGRect)viewportAdjsted;
+
+-(void)viewWillAppearNotFirstTimeAction;
 @end

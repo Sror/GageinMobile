@@ -26,4 +26,9 @@
     // Configure the view for the selected state
 }
 
++(float)HEIGHT
+{
+    return 45.f;
+}
+
 @end

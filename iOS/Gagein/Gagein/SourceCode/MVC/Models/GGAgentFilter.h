@@ -21,6 +21,8 @@
 @property (copy)    NSString        *keywords;
 @property (assign)  int             type;
 @property (assign)  BOOL            checked;
+
+-(GGAgent *)agent;
 @end
 
 //@interface GGAgentFiltersGroup : GGDataModel

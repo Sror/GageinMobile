@@ -56,7 +56,7 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:aName forKey:@"name"];
-    [parameters setObject:aName forKey:@"keywords"];
+    [parameters setObject:aKeyword forKey:@"keywords"];
     
     [self _execPostWithPath:path params:parameters callback:aCallback];
 }
@@ -76,7 +76,7 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:aName forKey:@"name"];
-    [parameters setObject:aName forKey:@"keywords"];
+    [parameters setObject:aKeyword forKey:@"keywords"];
     
     [self _execPostWithPath:path params:parameters callback:aCallback];
 }

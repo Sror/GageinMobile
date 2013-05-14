@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class GGAgent;
+
 @interface GGCustomAgentVC : GGBaseViewController
-@property (assign) long long agentID;
+//@property (assign) long long agentID;
+@property (strong) GGAgent      *agent;
 @end

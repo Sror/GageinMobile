@@ -18,7 +18,8 @@
 
 @implementation GGBaseViewController
 {
-    __weak MBProgressHUD *hud;
+    __weak MBProgressHUD    *hud;
+    BOOL                    _isViewFirstAppear;
 }
 
 +(id)createInstance
@@ -38,6 +39,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _isViewFirstAppear = YES;
+    
     self.view.backgroundColor = GGSharedColor.bgGray;
 	self.view.frame = [self viewportFrame];
     
@@ -92,6 +95,20 @@
         CGRect rc = _customNaviTitle.frame;
         _customNaviTitle.frame = CGRectMake(-50, rc.origin.y, rc.size.width, rc.size.height);
     }
+    
+    if (_isViewFirstAppear)
+    {
+        _isViewFirstAppear = NO;
+    }
+    else
+    {
+        [self viewWillAppearNotFirstTimeAction];
+    }
+}
+
+-(void)viewWillAppearNotFirstTimeAction
+{
+    // sub class implementation
 }
 
 -(void)viewDidAppear:(BOOL)animated

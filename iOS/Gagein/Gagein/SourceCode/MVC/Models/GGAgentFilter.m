@@ -23,6 +23,18 @@
     
 }
 
+-(GGAgent *)agent
+{
+    GGAgent *agent = [GGAgent model];
+    agent.ID = self.ID;
+    agent.name = self.name;
+    agent.keywords = self.keywords;
+    agent.type = self.type;
+    agent.checked = self.checked;
+    
+    return agent;
+}
+
 @end
 
 //@implementation GGAgentFiltersGroup

@@ -7,15 +7,23 @@
 //
 
 #import "GGCustomAgentVC.h"
+#import "GGKeywordExampleCell.h"
+#import "GGAgent.h"
 
 @interface GGCustomAgentVC ()
 @property (weak, nonatomic) IBOutlet UITextField *fdName;
-@property (weak, nonatomic) IBOutlet UITextField *fdKeywords;
+//@property (weak, nonatomic) IBOutlet UITextField *fdKeywords;
 @property (weak, nonatomic) IBOutlet UIButton *btnAdd;
+@property (weak, nonatomic) IBOutlet GGKeywordExampleCell *keywordExampleView;
+@property (weak, nonatomic) IBOutlet UIScrollView *viewScroll;
+@property (weak, nonatomic) IBOutlet UITextView *texvKeywords;
 
 @end
 
 @implementation GGCustomAgentVC
+//{
+//    GGKeywordExampleCell        *_keywordExampleView;
+//}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,14 +37,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.view.backgroundColor = GGSharedColor.silver;
+    
+    CGRect keywordRc = _keywordExampleView.frame;
+    [_keywordExampleView removeFromSuperview];
+    _keywordExampleView = [GGKeywordExampleCell viewFromNibWithOwner:self];
+    _keywordExampleView.frame = keywordRc;
+    [self.viewScroll addSubview:_keywordExampleView];
+    float maxScrollY = CGRectGetMaxY(_keywordExampleView.frame);
+    self.viewScroll.contentSize = CGSizeMake(self.viewScroll.contentSize.width, maxScrollY);
+    self.viewScroll.showsVerticalScrollIndicator = NO;
+    
+    if (_agent) {
+        [_btnAdd setTitle:@"Edit" forState:UIControlStateNormal];
+        self.naviTitle = @"Edit Custom Agent";
+        self.fdName.text = _agent.name;
+        self.texvKeywords.text = _agent.keywords;
+    } else {
+        self.naviTitle = @"Add Custom Agent";
+    }
+    
 }
 
 
 - (void)viewDidUnload {
     [self setFdName:nil];
-    [self setFdKeywords:nil];
+    //[self setFdKeywords:nil];
     [self setBtnAdd:nil];
+    [self setKeywordExampleView:nil];
+    [self setViewScroll:nil];
+    [self setTexvKeywords:nil];
     [super viewDidUnload];
 }
 
@@ -53,26 +83,47 @@
     {
         [GGAlert alert:@"You need to enter a name for the agent."];
     }
-    else if (self.fdKeywords.text.length <= 0)
+    else if (self.texvKeywords.text.length <= 0)
     {
         [GGAlert alert:@"You need to enter a keywords for the agent."];
     }
     else
     {
-        [GGSharedAPI addCustomAgentWithName:self.fdName.text keywords:self.fdKeywords.text callback:^(id operation, id aResultObject, NSError *anError) {
-            
-            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            if (parser.isOK)
-            {
-                //[GGAlert alert:@"Success!"];
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-            else
-            {
-                [GGAlert alert:parser.message];
-            }
-            
-        }];
+        
+        if (_agent)
+        {
+            [GGSharedAPI updateCustomAgentWithID:_agent.ID name:self.fdName.text keywords:self.texvKeywords.text callback:^(id operation,
+                                                                                                                         id aResultObject, NSError *anError) {
+                
+                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                if (parser.isOK)
+                {
+                    //[GGAlert alert:@"Success!"];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+                else
+                {
+                    [GGAlert alert:parser.message];
+                }
+            }];
+        }
+        else
+        {
+            [GGSharedAPI addCustomAgentWithName:self.fdName.text keywords:self.texvKeywords.text callback:^(id operation, id aResultObject, NSError *anError) {
+                
+                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                if (parser.isOK)
+                {
+                    //[GGAlert alert:@"Success!"];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+                else
+                {
+                    [GGAlert alert:parser.message];
+                }
+                
+            }];
+        }
     }
 }
 

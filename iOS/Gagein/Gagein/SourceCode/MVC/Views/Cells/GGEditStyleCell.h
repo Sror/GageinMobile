@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface GGEditStyleCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIButton *btnEdit;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
+
++(float)HEIGHT;
 @end
