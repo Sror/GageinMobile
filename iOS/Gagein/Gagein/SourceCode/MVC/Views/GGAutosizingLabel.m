@@ -24,6 +24,7 @@
 - (id)init {
     if ([super init]) {
         _minHeight = MIN_HEIGHT;
+        [self setNumberOfLines:0];
     }
     
     return self;
@@ -35,7 +36,6 @@
     
     [self setLineBreakMode:UILineBreakModeWordWrap];
     [self setAdjustsFontSizeToFitWidth:NO];
-    [self setNumberOfLines:0];
     [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, MAX(size.height, MIN_HEIGHT))];
     
 }

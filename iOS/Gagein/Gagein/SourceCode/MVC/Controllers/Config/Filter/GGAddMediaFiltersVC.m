@@ -110,8 +110,17 @@
     
     GGMediaFilter *data = _suggestedMeidaFilters[row];
     cell.lblTitle.text = data.name;
+    //[self _setStyleForSuggestedCell:cell index:row];
+    cell.style = [GGUtils styleForArrayCount:_suggestedMeidaFilters.count atIndex:row];
     
     return cell;
 }
+
+#pragma mark - table view delegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
 
 @end

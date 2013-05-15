@@ -7,7 +7,7 @@
 //
 
 #import "GGUtils.h"
-
+#import "GGGroupedCell.h"
 
 @implementation GGUtils
 
@@ -195,6 +195,29 @@
         aLayer.shadowOpacity = .1f;
         aLayer.masksToBounds = NO;
     }
+}
+
+
++(EGGGroupedCellStyle)styleForArrayCount:(NSUInteger)aArrayCount atIndex:(NSUInteger)anIndex
+{
+    NSAssert(aArrayCount, @"suggested media filters count should be greater than 0");
+    
+    EGGGroupedCellStyle style = kGGGroupCellFirst;
+    
+    if (aArrayCount == 1)
+    {
+        style = kGGGroupCellRound;
+    }
+    else if (anIndex == aArrayCount - 1)
+    {
+        style = kGGGroupCellLast;
+    }
+    else if (anIndex > 0)
+    {
+        style = kGGGroupCellMiddle;
+    }
+    
+    return style;
 }
 
 @end

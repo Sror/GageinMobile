@@ -29,4 +29,5 @@
 @property (assign)  BOOL        hasBeenRead;
 
 -(NSString *)doubleReturnedText;
+-(NSString *)headlineMaxCharCount:(NSUInteger)aMaxCharCount;
 @end

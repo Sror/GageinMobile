@@ -553,7 +553,7 @@
         cell.ID = updateData.ID;
         cell.logoBtn.tag = row;
         
-        cell.titleLbl.text = updateData.headline;
+        cell.titleLbl.text = [updateData headlineMaxCharCount:80];
         cell.sourceLbl.text = updateData.fromSource;
         
 #warning FAKE DATA - company update description
@@ -563,11 +563,7 @@
         
         cell.intervalLbl.text = [updateData intervalStringWithDate:updateData.date];
         cell.hasBeenRead = updateData.hasBeenRead;
-        
-//        NSDateFormatter *formater = [[NSDateFormatter alloc] init];
-//        formater.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-//        NSString *dateStr = [formater stringFromDate:date];
-//        cell.titleLbl.text = [NSString stringWithFormat:@"%d", days];//dateStr;//[NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterFullStyle];
+        [cell adjustLayout];
         
         return cell;
     }

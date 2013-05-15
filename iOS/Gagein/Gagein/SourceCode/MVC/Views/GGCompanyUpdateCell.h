@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GGAutosizingLabel.h"
 
 @interface GGCompanyUpdateCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *logoIV;
 @property (weak, nonatomic) IBOutlet UILabel *sourceLbl;
 @property (weak, nonatomic) IBOutlet UILabel *intervalLbl;
-@property (weak, nonatomic) IBOutlet UILabel *titleLbl;
+@property (weak, nonatomic) IBOutlet GGAutosizingLabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLbl;
 @property (weak, nonatomic) IBOutlet UIButton *logoBtn;
 
@@ -23,5 +24,5 @@
 @property (assign, nonatomic)  BOOL         hasBeenRead;
 
 +(float)HEIGHT;
-
+-(void)adjustLayout;
 @end

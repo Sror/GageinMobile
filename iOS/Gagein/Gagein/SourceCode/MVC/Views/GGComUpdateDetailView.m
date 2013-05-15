@@ -42,16 +42,6 @@
     _tvContent.frame = theRect;
     
     [self setHeight:CGRectGetMaxY(_tvContent.frame)];
-    
-//    float contentHeight = CGRectGetMaxY(_tvContent.frame) + 5;
-//    theRect = _viewContent.frame;
-//    theRect.size.height = contentHeight;
-//    _viewContent.frame = theRect;
-//    
-//    float selfHeight = CGRectGetMaxY(_viewContent.frame) + 5;
-//    theRect = self.frame;
-//    theRect.size.height = selfHeight;
-//    self.frame = theRect;
 }
 
 -(void)setHeight:(float)aHeight

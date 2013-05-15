@@ -8,6 +8,7 @@
 
 #import "GGCompanyUpdateCell.h"
 
+
 @implementation GGCompanyUpdateCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -34,6 +35,7 @@
     _logoIV.layer.borderColor = GGSharedColor.silver.CGColor;
     _logoIV.layer.borderWidth = 1;
     
+    _titleLbl.numberOfLines = 3;
 }
 
 +(float)HEIGHT
@@ -51,6 +53,15 @@
     {
         _titleLbl.textColor = GGSharedColor.orangeGageinDark;
     }
+}
+
+-(void)adjustLayout
+{
+    float titleMaxY = CGRectGetMaxY(_titleLbl.frame);
+    CGRect descRc = _descriptionLbl.frame;
+    descRc.origin.y = titleMaxY - 5;
+    descRc.size.height = self.contentView.frame.size.height - titleMaxY;
+    _descriptionLbl.frame = descRc;
 }
 
 @end

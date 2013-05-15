@@ -31,4 +31,6 @@
 
 +(void)applyTableStyle1ToLayer:(CALayer *)aLayer;
 
++(EGGGroupedCellStyle)styleForArrayCount:(NSUInteger)aArrayCount atIndex:(NSUInteger)anIndex;
+
 @end

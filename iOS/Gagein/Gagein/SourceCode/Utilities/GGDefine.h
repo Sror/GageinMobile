@@ -16,6 +16,13 @@ typedef enum
     , kGGServerStaging
 }EGGServerEnvironment;
 
+typedef enum {
+    kGGGroupCellFirst = 0
+    , kGGGroupCellMiddle
+    , kGGGroupCellLast
+    , kGGGroupCellRound
+}EGGGroupedCellStyle;
+
 //
 #define GGN_STR_PRODUCTION_SERVER_URL               @"https://www.gagein.com"
 #define GGN_STR_DEMO_SERVER_URL                     @"http://gageindemo.dyndns.org"

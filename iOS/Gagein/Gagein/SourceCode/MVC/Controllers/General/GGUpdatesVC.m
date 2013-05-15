@@ -16,6 +16,7 @@
 #import "GGCompanyDetailVC.h"
 #import "GGCompanyUpdateDetailVC.h"
 
+
 @interface GGUpdatesVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
 @end

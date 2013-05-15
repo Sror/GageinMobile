@@ -8,12 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum {
-    kGGGroupCellFirst = 0
-    , kGGGroupCellMiddle
-    , kGGGroupCellLast
-    , kGGGroupCellRound
-}EGGGroupedCellStyle;
+
 
 @interface GGGroupedCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *viewContent;

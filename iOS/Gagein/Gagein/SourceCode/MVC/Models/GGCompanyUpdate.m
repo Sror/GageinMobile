@@ -45,4 +45,14 @@
     return [_textview stringByReplacingOccurrencesOfString:@"\n" withString:@"\n\n"];
 }
 
+-(NSString *)headlineMaxCharCount:(NSUInteger)aMaxCharCount
+{
+    if (_headline.length < aMaxCharCount)
+    {
+        return _headline;
+    }
+    
+    return [[_headline substringToIndex:aMaxCharCount] stringByAppendingString:@"..."];
+}
+
 @end
