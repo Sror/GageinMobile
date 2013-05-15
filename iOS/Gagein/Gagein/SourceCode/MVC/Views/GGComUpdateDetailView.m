@@ -36,20 +36,31 @@
 
 -(void)adjustHeight
 {
-    
-    int textviewHeight = _textviewHidden.contentSize.height * 1.2;
-    CGRect theRect = _wvTextview.frame;
+    int textviewHeight = _tvContent.contentSize.height;
+    CGRect theRect = _tvContent.frame;
     theRect.size.height = textviewHeight;
-    _wvTextview.frame = theRect;
+    _tvContent.frame = theRect;
     
-    float contentHeight = CGRectGetMaxY(_wvTextview.frame) + 20;
-    theRect = _viewContent.frame;
-    theRect.size.height = contentHeight;
+    [self setHeight:CGRectGetMaxY(_tvContent.frame)];
+    
+//    float contentHeight = CGRectGetMaxY(_tvContent.frame) + 5;
+//    theRect = _viewContent.frame;
+//    theRect.size.height = contentHeight;
+//    _viewContent.frame = theRect;
+//    
+//    float selfHeight = CGRectGetMaxY(_viewContent.frame) + 5;
+//    theRect = self.frame;
+//    theRect.size.height = selfHeight;
+//    self.frame = theRect;
+}
+
+-(void)setHeight:(float)aHeight
+{
+    CGRect theRect = _viewContent.frame;
+    theRect.size.height = aHeight;
     _viewContent.frame = theRect;
     
-    float selfHeight = CGRectGetMaxY(_viewContent.frame) + 20;
-    theRect = self.frame;
-    theRect.size.height = selfHeight;
+    theRect.size.height += 5;
     self.frame = theRect;
 }
 
@@ -65,17 +76,17 @@
 
 -(void)adjustLayout
 {
-    //[_lblTitle sizeToFit];
-    
+    // adjust photo position
     CGRect photoRc = _ivPhoto.frame;
-    photoRc.origin.y = CGRectGetMaxY(_lblTitle.frame) + 10;
+    photoRc.origin.y = CGRectGetMaxY(_lblTitle.frame) + 20;
     _ivPhoto.frame = photoRc;
     
+    // adjust textview positon
     float textviewY = [self _textviewPositionY];
-    _wvTextview.frame = CGRectMake(_wvTextview.frame.origin.x
+    _tvContent.frame = CGRectMake(_tvContent.frame.origin.x
                                    , textviewY
-                                   , _wvTextview.frame.size.width
-                                   , _wvTextview.frame.size.height);
+                                   , _tvContent.frame.size.width
+                                   , _tvContent.frame.size.height);
     
     [self adjustHeight];
 }

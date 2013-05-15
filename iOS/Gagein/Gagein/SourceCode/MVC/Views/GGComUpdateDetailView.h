@@ -16,11 +16,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDate;
 @property (weak, nonatomic) IBOutlet GGAutosizingLabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *ivPhoto;
-@property (weak, nonatomic) IBOutlet UITextView *textviewHidden;
-@property (weak, nonatomic) IBOutlet UIWebView *wvTextview;
+//@property (weak, nonatomic) IBOutlet UITextView *textviewHidden;
+//@property (weak, nonatomic) IBOutlet UIWebView *wvTextview;
+@property (weak, nonatomic) IBOutlet UITextView *tvContent;
+@property (assign, nonatomic) float height;
 
-
--(float)height;
+//-(float)height;
 -(void)adjustHeight;
 -(void)adjustLayout;
 -(void)adjustLayoutHasImage:(BOOL)aHasImage;

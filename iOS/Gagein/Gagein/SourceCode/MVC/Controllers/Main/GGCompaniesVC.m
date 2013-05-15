@@ -651,8 +651,8 @@
         vc.updates = self.updates;
         vc.updateIndex = row;
         
-        GGCompanyUpdate *data = _updates[row];
-        data.hasBeenRead = YES;
+        //GGCompanyUpdate *data = _updates[row];
+        //data.hasBeenRead = YES;
         
         [self.navigationController pushViewController:vc animated:YES];
     }
@@ -662,8 +662,8 @@
         vc.happenings = _happenings;
         vc.currentIndex = row;
         
-        GGCompanyHappening *data = _happenings[row];
-        data.hasBeenRead = YES;
+        //GGCompanyHappening *data = _happenings[row];
+        //data.hasBeenRead = YES;
         
         [self.navigationController pushViewController:vc animated:YES];
     }

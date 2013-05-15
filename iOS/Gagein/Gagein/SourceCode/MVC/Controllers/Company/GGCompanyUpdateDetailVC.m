@@ -42,12 +42,12 @@
     [super viewDidLoad];
     self.naviTitle = _naviTitleString;
     self.view.backgroundColor = GGSharedColor.silver;
+    self.scrollView.alwaysBounceVertical = YES;
     
     //
     _comUpdateDetailCell = [GGComUpdateDetailView viewFromNibWithOwner:self];
-    //_tvContent.backgroundColor = GGSharedColor.silver;
     
-    //
+    // previous update button
     UIImage *upArrowEnabledImg = [UIImage imageNamed:@"upArrowEnabled"];
     UIImage *upArrowDisabledImg = [UIImage imageNamed:@"upArrowDisabled"];
     CGRect naviRc = self.navigationController.navigationBar.frame;
@@ -63,7 +63,7 @@
     [_btnPrevUpdate addTarget:self action:@selector(prevUpdateAction:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    //
+    // next update button
     UIImage *downArrowEnabledImg = [UIImage imageNamed:@"downArrowEnabled"];
     UIImage *downArrowDisabledImg = [UIImage imageNamed:@"downArrowDisabled"];
     _btnNextUpdate = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -91,6 +91,11 @@
 
 -(void)_adjustScrollviewContentSize
 {
+    if (_scrollView.frame.size.height > _comUpdateDetailCell.height)
+    {
+        _comUpdateDetailCell.height = _scrollView.frame.size.height;
+    }
+    
     CGSize contentSize = self.scrollView.contentSize;
     contentSize.height = _comUpdateDetailCell.height;
     self.scrollView.contentSize = contentSize;
@@ -179,7 +184,6 @@
             if (parser.isOK)
             {
                 data.saved = NO;
-                //[GGAlert alert:@"unsaved!"];
                 [self _updateSaveBtnSaved:NO];
             }
             else
@@ -254,7 +258,7 @@
         _webView.hidden = YES;
         _comUpdateDetailCell.lblTitle.text = _companyUpdateDetail.headline;
 
-        _comUpdateDetailCell.textviewHidden.text = _companyUpdateDetail.textview;
+        _comUpdateDetailCell.tvContent.text = _companyUpdateDetail.textview;
         
         _comUpdateDetailCell.lblSource.text = ((GGCompanyUpdate *)(_updates[_updateIndex])).fromSource;
         [self _updateSaveBtnSaved:_companyUpdateDetail.saved];
@@ -313,7 +317,7 @@
         
         [self _adjustScrollviewContentSize];
         
-        [_comUpdateDetailCell.wvTextview loadHTMLString:_companyUpdateDetail.textview baseURL:nil];
+        //[_comUpdateDetailCell.wvTextview loadHTMLString:_companyUpdateDetail.textview baseURL:nil];
         
         self.scrollView.hidden = NO;
     }
@@ -331,7 +335,9 @@
     [GGSharedAPI getCompanyUpdateDetailWithNewsID:updateData.ID callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-        if (parser.isOK) {
+        if (parser.isOK)
+        {
+            updateData.hasBeenRead = YES;
             _companyUpdateDetail = [parser parseGetCompanyUpdateDetail];
             
             [self _updateUIWithUpdateDetail];
