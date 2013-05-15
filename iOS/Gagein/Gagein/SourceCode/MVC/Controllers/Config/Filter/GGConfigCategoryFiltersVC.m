@@ -10,6 +10,7 @@
 #import "GGConfigSwitchView.h"
 #import "GGCategoryFilter.h"
 #import "GGDataPage.h"
+#import "GGConfigLabel.h"
 
 @interface GGConfigCategoryFiltersVC ()
 //@property (weak, nonatomic) IBOutlet GGConfigSwitchCell *cellConfigSwitch;
@@ -22,6 +23,7 @@
 @implementation GGConfigCategoryFiltersVC
 {
     NSMutableArray      *_filters;
+    GGConfigLabel       *_configOffTipView;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -46,6 +48,18 @@
     _viewConfigSwitch.btnSwitch.lblOn.text = @"On";
     _viewConfigSwitch.btnSwitch.lblOff.text = @"Off";
     _viewConfigSwitch.btnSwitch.delegate = self;
+    [GGUtils applyTableStyle1ToLayer:_viewConfigSwitch.layer];
+    
+    _tv.layer.cornerRadius = 8;
+    [GGUtils applyTableStyle1ToLayer:_viewTvContainer.layer];
+    
+    _configOffTipView = [GGConfigLabel viewFromNibWithOwner:self];
+    _configOffTipView.lblText.text = @"Filter your update feed by agents.";
+    CGRect configOffRc = _configOffTipView.frame;
+    configOffRc.origin.y = _viewTvContainer.frame.origin.y;
+    _configOffTipView.frame = configOffRc;
+    [self.view addSubview:_configOffTipView];
+    _configOffTipView.hidden = _viewConfigSwitch.btnSwitch.isOn;
     
     [self _callApiGetConfigOptions];
 }
@@ -112,7 +126,8 @@
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
-            //_tv.hidden = !aIsOn;
+            _tv.hidden = !aIsOn;
+            _configOffTipView.hidden = aIsOn;
         }
         
     }];
