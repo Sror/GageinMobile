@@ -44,6 +44,7 @@
     _viewConfigSwitch = [GGUtils replaceFromNibForView:_viewConfigSwitch];
     
     _viewConfigSwitch.backgroundColor = GGSharedColor.white;
+    _viewConfigSwitch.lblTitle.text = @"Category Filters";
     _viewConfigSwitch.btnSwitch.isOn = YES;
     _viewConfigSwitch.btnSwitch.lblOn.text = @"On";
     _viewConfigSwitch.btnSwitch.lblOff.text = @"Off";
@@ -76,7 +77,11 @@
 #pragma mark - table view datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _filters.count;
+    int count = _filters.count;
+    CGRect tvRc = _viewTvContainer.frame;
+    tvRc.size.height = 44 * count;
+    _viewTvContainer.frame = tvRc;
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
