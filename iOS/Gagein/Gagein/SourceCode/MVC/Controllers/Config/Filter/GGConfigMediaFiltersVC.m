@@ -13,6 +13,8 @@
 #import "GGDataPage.h"
 #import "GGAddMediaFiltersVC.h"
 
+#define TV_HEIGHT       314
+
 @interface GGConfigMediaFiltersVC ()
 @property (weak, nonatomic) IBOutlet GGConfigSwitchView *viewConfigSwitch;
 @property (weak, nonatomic) IBOutlet GGConfigLabel *lblConfigOffTip;
@@ -26,6 +28,7 @@
 @implementation GGConfigMediaFiltersVC
 {
     NSMutableArray      *_mediaSources;
+    //CGRect              _tvOriginalRc;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -55,6 +58,8 @@
     
     _tvMediaSources.layer.cornerRadius = 8;
     [GGUtils applyTableStyle1ToLayer:_viewTvBg.layer];
+    _tvMediaSources.editing = YES;
+    //_tvOriginalRc = _viewTvBg.frame;
     
     [_lblConfigOffTip removeFromSuperview];
     _lblConfigOffTip = [GGConfigLabel viewFromNibWithOwner:self];
@@ -98,7 +103,9 @@
 {
     int count = _mediaSources.count;
     CGRect tvRc = _viewTvBg.frame;
-    tvRc.size.height = 44 * count;
+ 
+    tvRc.size.height = MIN(TV_HEIGHT, 44 * count);
+    
     _viewTvBg.frame = tvRc;
     return count;
 }
@@ -125,20 +132,25 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-//    //int section = indexPath.section;
-//    int row = indexPath.row;
-//    
-//    GGCategoryFilter *filter = _filters[row];
-//    [GGSharedAPI selectCategoryFilterWithID:filter.ID selected:!filter.checked callback:^(id operation, id aResultObject, NSError *anError) {
-//        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-//        if (parser.isOK)
-//        {
-//            //succeeded
-//            filter.checked = !filter.checked;
-//            [_tv reloadData];
-//        }
-//    }];
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int row = indexPath.row;
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        GGMediaFilter *filter = _mediaSources[row];
+        [self showLoadingHUD];
+        [GGSharedAPI deleteMediaFilterWithID:filter.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [_mediaSources removeObject:filter];
+                [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+        }];
+    }
 }
 
 #pragma mark - switch button delegate

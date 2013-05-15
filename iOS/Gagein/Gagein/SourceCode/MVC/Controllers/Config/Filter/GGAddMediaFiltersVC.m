@@ -112,6 +112,7 @@
     cell.lblTitle.text = data.name;
     //[self _setStyleForSuggestedCell:cell index:row];
     cell.style = [GGUtils styleForArrayCount:_suggestedMeidaFilters.count atIndex:row];
+    cell.checked = data.checked;
     
     return cell;
 }
@@ -119,6 +120,34 @@
 #pragma mark - table view delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    GGMediaFilter *data = _suggestedMeidaFilters[indexPath.row];
+    
+    if (data.checked)
+    {
+        [self showLoadingHUD];
+        [GGSharedAPI deleteMediaFilterWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                data.checked = NO;
+                [_tvSuggested reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+        }];
+    }
+    else
+    {
+        [self showLoadingHUD];
+        [GGSharedAPI addMediaFilterWithName:data.name callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                data.checked = YES;
+                [_tvSuggested reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+        }];
+    }
     
 }
 

@@ -11,4 +11,5 @@
 
 @interface GGMediaFilter : GGDataModel
 @property (copy)    NSString    *name;
+@property (assign)  BOOL        checked;
 @end
