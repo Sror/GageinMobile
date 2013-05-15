@@ -45,7 +45,7 @@
 							<object class="IBUIImageView" id="787939303">
 								<reference key="NSNextResponder" ref="358050888"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{300, 380}</string>
+								<string key="NSFrameSize">{320, 407}</string>
 								<reference key="NSSuperview" ref="358050888"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="242018492"/>
@@ -92,7 +92,7 @@
 							<object class="IBUILabel" id="777519827">
 								<reference key="NSNextResponder" ref="358050888"/>
 								<int key="NSvFlags">289</int>
-								<string key="NSFrame">{{159, 6}, {129, 21}}</string>
+								<string key="NSFrame">{{179, 6}, {129, 21}}</string>
 								<reference key="NSSuperview" ref="358050888"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="647288276"/>
@@ -127,7 +127,7 @@
 							<object class="IBUILabel" id="647288276">
 								<reference key="NSNextResponder" ref="358050888"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{10, 40}, {280, 42}}</string>
+								<string key="NSFrame">{{10, 35}, {300, 47}}</string>
 								<reference key="NSSuperview" ref="358050888"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="565461550"/>
@@ -146,20 +146,19 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUINumberOfLines">0</int>
-								<int key="IBUITextAlignment">1</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<string key="name">Marion-Bold</string>
 									<string key="family">Marion</string>
 									<int key="traits">2</int>
-									<double key="pointSize">18</double>
+									<double key="pointSize">21</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Marion-Bold</string>
-									<double key="NSSize">18</double>
+									<double key="NSSize">21</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-								<double key="preferredMaxLayoutWidth">280</double>
+								<double key="preferredMaxLayoutWidth">300</double>
 							</object>
 							<object class="IBUIImageView" id="565461550">
 								<reference key="NSNextResponder" ref="358050888"/>
@@ -175,7 +174,7 @@
 							<object class="IBUITextView" id="166479580">
 								<reference key="NSNextResponder" ref="358050888"/>
 								<int key="NSvFlags">-2147483374</int>
-								<string key="NSFrame">{{10, 299}, {280, 72}}</string>
+								<string key="NSFrame">{{10, 299}, {300, 72}}</string>
 								<reference key="NSSuperview" ref="358050888"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="545134641"/>
@@ -205,10 +204,9 @@
 							<object class="IBUIWebView" id="545134641">
 								<reference key="NSNextResponder" ref="358050888"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{10, 299}, {280, 72}}</string>
+								<string key="NSFrame">{{10, 299}, {300, 72}}</string>
 								<reference key="NSSuperview" ref="358050888"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="513636494">
 									<int key="NSColorSpace">3</int>
@@ -219,7 +217,7 @@
 								<bool key="IBUIDetectsPhoneNumbers">YES</bool>
 							</object>
 						</array>
-						<string key="NSFrame">{{10, 10}, {300, 380}}</string>
+						<string key="NSFrameSize">{320, 400}</string>
 						<reference key="NSSuperview" ref="66502254"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="787939303"/>
@@ -439,7 +437,7 @@
 						<string key="ivUpdateBg">UIImageView</string>
 						<string key="lblDate">UILabel</string>
 						<string key="lblSource">UILabel</string>
-						<string key="lblTitle">UILabel</string>
+						<string key="lblTitle">GGAutosizingLabel</string>
 						<string key="textviewHidden">UITextView</string>
 						<string key="viewContent">UIView</string>
 						<string key="wvTextview">UIWebView</string>
@@ -463,7 +461,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="lblTitle">
 							<string key="name">lblTitle</string>
-							<string key="candidateClassName">UILabel</string>
+							<string key="candidateClassName">GGAutosizingLabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="textviewHidden">
 							<string key="name">textviewHidden</string>
