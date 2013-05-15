@@ -259,7 +259,7 @@
         _webView.hidden = YES;
         _comUpdateDetailCell.lblTitle.text = _companyUpdateDetail.headline;
 
-        _comUpdateDetailCell.tvContent.text = _companyUpdateDetail.textview;
+        _comUpdateDetailCell.tvContent.text = [_companyUpdateDetail doubleReturnedText];
         
         _comUpdateDetailCell.lblSource.text = ((GGCompanyUpdate *)(_updates[_updateIndex])).fromSource;
         [self _updateSaveBtnSaved:_companyUpdateDetail.saved];

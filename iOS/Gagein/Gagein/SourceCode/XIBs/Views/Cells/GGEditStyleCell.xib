@@ -46,6 +46,7 @@
 								<string key="NSFrame">{{254, 11}, {22, 22}}</string>
 								<reference key="NSSuperview" ref="377785007"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -130,6 +131,7 @@
 				<reference key="IBUIBackgroundColor" ref="172049688"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="377785007"/>
+				<string key="IBUIReuseIdentifier">GGEditStyleCell</string>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">

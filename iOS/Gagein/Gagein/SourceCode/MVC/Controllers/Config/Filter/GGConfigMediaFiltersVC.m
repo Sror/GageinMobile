@@ -11,6 +11,7 @@
 #import "GGConfigLabel.h"
 #import "GGMediaFilter.h"
 #import "GGDataPage.h"
+#import "GGAddMediaFiltersVC.h"
 
 @interface GGConfigMediaFiltersVC ()
 @property (weak, nonatomic) IBOutlet GGConfigSwitchView *viewConfigSwitch;
@@ -67,7 +68,9 @@
     _lblConfigOffTip.hidden = _viewConfigSwitch.btnSwitch.isOn;
     _viewConfigOn.hidden = !_lblConfigOffTip.hidden;
     
+    // add source button
     [_btnAddSource setBackgroundImage:GGSharedImagePool.bgBtnOrange forState:UIControlStateNormal];
+    [_btnAddSource addTarget:self action:@selector(addSourcesAction:) forControlEvents:UIControlEventTouchUpInside];
     
     [self _callApiGetMediaFilterList];
 }
@@ -81,6 +84,13 @@
     [self setViewTvBg:nil];
     [self setTvMediaSources:nil];
     [super viewDidUnload];
+}
+
+#pragma mark - actions
+-(IBAction)addSourcesAction:(id)sender
+{
+    GGAddMediaFiltersVC *vc = [[GGAddMediaFiltersVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - table view datasource

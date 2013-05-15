@@ -44,7 +44,7 @@
     _configHeadLabel.lblText.text = @"Personalize your company update streams";
     
     self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(doneAction:)];
-    [self hideBackButton];
+    //[self hideBackButton];
 }
 
 

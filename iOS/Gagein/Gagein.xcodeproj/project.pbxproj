@@ -237,6 +237,10 @@
 		EA959D72171539B5005B06F6 /* GGSearchSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA959D71171539B5005B06F6 /* GGSearchSuggestionCell.xib */; };
 		EA959D75171539DD005B06F6 /* GGSearchSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA959D74171539DD005B06F6 /* GGSearchSuggestionCell.m */; };
 		EA959D7717157102005B06F6 /* topOrangeLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA959D7617157102005B06F6 /* topOrangeLine@2x.png */; };
+		EA98F8CA17440FBE00F1BEB3 /* GGAddMediaFiltersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA98F8C817440FBD00F1BEB3 /* GGAddMediaFiltersVC.m */; };
+		EA98F8CB17440FBE00F1BEB3 /* GGAddMediaFiltersVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA98F8C917440FBD00F1BEB3 /* GGAddMediaFiltersVC.xib */; };
+		EA98F8CE1744144900F1BEB3 /* GGGroupedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA98F8CD1744144900F1BEB3 /* GGGroupedCell.m */; };
+		EA98F8D01744145F00F1BEB3 /* GGGroupedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA98F8CF1744145F00F1BEB3 /* GGGroupedCell.xib */; };
 		EAAD14D4170AA8D600EFB23A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAD14D3170AA8D600EFB23A /* MBProgressHUD.m */; };
 		EAAD14D7170AACD900EFB23A /* GGApiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAD14D6170AACD900EFB23A /* GGApiParser.m */; };
 		EAAD14DA170ACBDF00EFB23A /* GGPath.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAD14D9170ACBDF00EFB23A /* GGPath.m */; };
@@ -731,6 +735,12 @@
 		EA959D73171539DD005B06F6 /* GGSearchSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSearchSuggestionCell.h; sourceTree = "<group>"; };
 		EA959D74171539DD005B06F6 /* GGSearchSuggestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSearchSuggestionCell.m; sourceTree = "<group>"; };
 		EA959D7617157102005B06F6 /* topOrangeLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topOrangeLine@2x.png"; sourceTree = "<group>"; };
+		EA98F8C717440FBC00F1BEB3 /* GGAddMediaFiltersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGAddMediaFiltersVC.h; sourceTree = "<group>"; };
+		EA98F8C817440FBD00F1BEB3 /* GGAddMediaFiltersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAddMediaFiltersVC.m; sourceTree = "<group>"; };
+		EA98F8C917440FBD00F1BEB3 /* GGAddMediaFiltersVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGAddMediaFiltersVC.xib; sourceTree = "<group>"; };
+		EA98F8CC1744144900F1BEB3 /* GGGroupedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGroupedCell.h; sourceTree = "<group>"; };
+		EA98F8CD1744144900F1BEB3 /* GGGroupedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGGroupedCell.m; sourceTree = "<group>"; };
+		EA98F8CF1744145F00F1BEB3 /* GGGroupedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGGroupedCell.xib; sourceTree = "<group>"; };
 		EAAD14D2170AA8D600EFB23A /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		EAAD14D3170AA8D600EFB23A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		EAAD14D5170AACD900EFB23A /* GGApiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGApiParser.h; sourceTree = "<group>"; };
@@ -1228,6 +1238,9 @@
 				EA3951D2173DE55D004985E2 /* GGEditCustomAgentFilterVC.h */,
 				EA3951D3173DE55D004985E2 /* GGEditCustomAgentFilterVC.m */,
 				EA3951D4173DE55D004985E2 /* GGEditCustomAgentFilterVC.xib */,
+				EA98F8C717440FBC00F1BEB3 /* GGAddMediaFiltersVC.h */,
+				EA98F8C817440FBD00F1BEB3 /* GGAddMediaFiltersVC.m */,
+				EA98F8C917440FBD00F1BEB3 /* GGAddMediaFiltersVC.xib */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -1253,6 +1266,8 @@
 			children = (
 				EA18C3001742B450008A2D67 /* GGEditStyleCell.h */,
 				EA18C3011742B450008A2D67 /* GGEditStyleCell.m */,
+				EA98F8CC1744144900F1BEB3 /* GGGroupedCell.h */,
+				EA98F8CD1744144900F1BEB3 /* GGGroupedCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1261,6 +1276,7 @@
 			isa = PBXGroup;
 			children = (
 				EA18C3041742B5DF008A2D67 /* GGEditStyleCell.xib */,
+				EA98F8CF1744145F00F1BEB3 /* GGGroupedCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2519,6 +2535,8 @@
 				EAB60D2A17415A24008EEEAE /* 37x-Checkmark@2x.png in Resources */,
 				EA18C3051742B5DF008A2D67 /* GGEditStyleCell.xib in Resources */,
 				EA18C30A1742EF5B008A2D67 /* GGConfigSwitchView.xib in Resources */,
+				EA98F8CB17440FBE00F1BEB3 /* GGAddMediaFiltersVC.xib in Resources */,
+				EA98F8D01744145F00F1BEB3 /* GGGroupedCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2715,6 +2733,8 @@
 				EAB60D2D1741650D008EEEAE /* GGAutosizingLabel.m in Sources */,
 				EA18C3021742B450008A2D67 /* GGEditStyleCell.m in Sources */,
 				EA18C3081742EF42008A2D67 /* GGConfigSwitchView.m in Sources */,
+				EA98F8CA17440FBE00F1BEB3 /* GGAddMediaFiltersVC.m in Sources */,
+				EA98F8CE1744144900F1BEB3 /* GGGroupedCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

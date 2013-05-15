@@ -40,4 +40,9 @@
     [self.company parseWithData:aData];
 }
 
+-(NSString *)doubleReturnedText
+{
+    return [_textview stringByReplacingOccurrencesOfString:@"\n" withString:@"\n\n"];
+}
+
 @end
