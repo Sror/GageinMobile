@@ -19,7 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIView *viewCellBg;
 @property (weak, nonatomic) IBOutlet UIImageView *ivCellBg;
 
-@property (assign)  long long ID;
+@property (assign)  long long               ID;
+@property (assign, nonatomic)  BOOL         hasBeenRead;
 
 +(float)HEIGHT;
 

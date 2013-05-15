@@ -62,6 +62,8 @@ typedef enum {
 @property (copy) NSString                       *orgName;
 @property (copy) NSString                       *orgLogoPath;
 
+@property (assign)  BOOL                        hasBeenRead;
+
 -(NSString *)sourceText;
 -(NSString *)headLineText;
 @end

@@ -117,11 +117,15 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    // change menu to people type
     [_slideSettingView changeDelegate:self];
     _slideSettingView.viewTable.tableHeaderView = nil;
     [self _callApiGetMenu];
     
     [GGSharedDelegate.rootVC enableSwipGesture:YES];
+    
+    [_updatesTV reloadData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -374,6 +378,7 @@
         cell.lblDescription.text = data.headLineText;
         cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
         [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+        cell.hasBeenRead = data.hasBeenRead;
         
         return cell;
     }
@@ -438,6 +443,10 @@
         vc.isPeopleHappening = YES;
         vc.happenings = _updates;
         vc.currentIndex = row;
+        
+        GGCompanyHappening *data = _updates[row];
+        data.hasBeenRead = YES;
+        
         [self.navigationController pushViewController:vc animated:YES];
 
     }

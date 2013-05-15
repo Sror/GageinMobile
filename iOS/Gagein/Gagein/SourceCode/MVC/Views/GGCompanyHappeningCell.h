@@ -16,5 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ivCellBg;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogo;
 
+@property (assign, nonatomic)  BOOL         hasBeenRead;
+
 +(float)HEIGHT;
 @end

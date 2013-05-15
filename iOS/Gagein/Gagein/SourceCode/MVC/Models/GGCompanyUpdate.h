@@ -26,4 +26,5 @@
 @property (assign)  long long date;
 @property (assign)  int         type;
 @property (strong)  NSMutableArray  *pictures;  // when parsing update detail
+@property (assign)  BOOL        hasBeenRead;
 @end

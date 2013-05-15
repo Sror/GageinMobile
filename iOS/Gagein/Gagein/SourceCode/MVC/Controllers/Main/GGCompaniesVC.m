@@ -202,14 +202,21 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    // show/hide switch button
     [self.navigationController.navigationBar addSubview:_btnSwitchUpdate];
     _btnSwitchUpdate.hidden = (_menuType == kGGMenuTypeAgent);
     
+    // change menu to company type
     [_slideSettingView changeDelegate:self];
     _slideSettingView.viewTable.tableHeaderView = _slideSettingView.searchBar;
     [self _callApiGetMenu];
     
+    // enable gesture
     [GGSharedDelegate.rootVC enableSwipGesture:YES];
+    
+    [_updatesTV reloadData];
+    [_happeningsTV reloadData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -545,7 +552,7 @@
         
         cell.ID = updateData.ID;
         cell.logoBtn.tag = row;
-        //cell.tag = indexPath.row;
+        
         cell.titleLbl.text = updateData.headline;
         cell.sourceLbl.text = updateData.fromSource;
         
@@ -555,6 +562,7 @@
         [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
         
         cell.intervalLbl.text = [updateData intervalStringWithDate:updateData.date];
+        cell.hasBeenRead = updateData.hasBeenRead;
         
 //        NSDateFormatter *formater = [[NSDateFormatter alloc] init];
 //        formater.dateFormat = @"yyyy-MM-dd HH:mm:ss";
@@ -578,6 +586,7 @@
         cell.lblDescription.text = data.headLineText;
         cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
         [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+        cell.hasBeenRead = data.hasBeenRead;
         
         return cell;
     }
@@ -642,6 +651,9 @@
         vc.updates = self.updates;
         vc.updateIndex = row;
         
+        GGCompanyUpdate *data = _updates[row];
+        data.hasBeenRead = YES;
+        
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (tableView == self.happeningsTV)
@@ -649,6 +661,10 @@
         GGHappeningDetailVC *vc = [[GGHappeningDetailVC alloc] init];
         vc.happenings = _happenings;
         vc.currentIndex = row;
+        
+        GGCompanyHappening *data = _happenings[row];
+        data.hasBeenRead = YES;
+        
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (tableView == _slideSettingView.viewTable)

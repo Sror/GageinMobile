@@ -29,11 +29,28 @@
 -(void)awakeFromNib
 {
     self.ivCellBg.image = GGSharedImagePool.stretchShadowBgWite;
+    //_titleLbl.textColor = GGSharedColor.orangeGagein;
+    
+    _logoIV.layer.borderColor = GGSharedColor.silver.CGColor;
+    _logoIV.layer.borderWidth = 1;
+    
 }
 
 +(float)HEIGHT
 {
     return 120.f;
+}
+
+-(void)setHasBeenRead:(BOOL)hasRead
+{
+    if (hasRead)
+    {
+        _titleLbl.textColor = GGSharedColor.black;
+    }
+    else
+    {
+        _titleLbl.textColor = GGSharedColor.orangeGageinDark;
+    }
 }
 
 @end

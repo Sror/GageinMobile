@@ -31,6 +31,11 @@ DEF_SINGLETON(GGColor)
     return UIColorFromRGB(0xDA9432);
 }
 
+-(UIColor *)orangeGageinDark
+{
+    return UIColorFromRGB(0xE06125);
+}
+
 -(UIColor *)white
 {
     return UIColorFromRGB(0xFFFFFF);
