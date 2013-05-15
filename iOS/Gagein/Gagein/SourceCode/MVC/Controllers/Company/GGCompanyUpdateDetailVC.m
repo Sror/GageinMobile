@@ -26,6 +26,7 @@
     CGRect  _originalTextViewFrame;
     
     GGComUpdateDetailView   *_comUpdateDetailCell;
+    UIActivityIndicatorView *_activityIndicator;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -84,7 +85,7 @@
     [self _adjustScrollviewContentSize];
     //self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, CGRectGetMaxY(self.viewUpdate.frame) + 10);
     
-    
+    _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] ;
     
     [self _callApiGetCompanyUpdateDetail];
 }
@@ -279,12 +280,12 @@
         
             if (urlStr.length)
             {
-                UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] ;
-                activityIndicator.hidesWhenStopped = YES;
-                activityIndicator.hidden = NO;
-                [activityIndicator startAnimating];
-                activityIndicator.center = CGPointMake(_comUpdateDetailCell.ivPhoto.frame.size.width / 2, _comUpdateDetailCell.ivPhoto.frame.size.height / 2);
-                [_comUpdateDetailCell.ivPhoto addSubview:activityIndicator];
+                //UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] ;
+                _activityIndicator.hidesWhenStopped = YES;
+                _activityIndicator.hidden = NO;
+                [_activityIndicator startAnimating];
+                _activityIndicator.center = CGPointMake(_comUpdateDetailCell.ivPhoto.frame.size.width / 2, _comUpdateDetailCell.ivPhoto.frame.size.height / 2);
+                [_comUpdateDetailCell.ivPhoto addSubview:_activityIndicator];
                 
                 UIImage *placeholderImage = GGSharedImagePool.placeholder;
 
@@ -307,8 +308,8 @@
                     
                     [self _adjustScrollviewContentSize];
                     
-                    [activityIndicator stopAnimating];
-                    [activityIndicator removeFromSuperview];
+                    [_activityIndicator stopAnimating];
+                    [_activityIndicator removeFromSuperview];
                 }];
             }
         }
