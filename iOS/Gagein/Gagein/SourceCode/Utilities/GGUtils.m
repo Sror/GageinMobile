@@ -184,4 +184,17 @@
     return nil;
 }
 
++(void)applyTableStyle1ToLayer:(CALayer *)aLayer
+{
+    if (aLayer)
+    {
+        aLayer.cornerRadius = 8;
+        aLayer.shadowColor = GGSharedColor.darkGray.CGColor;
+        aLayer.shadowOffset = CGSizeMake(2, 2);
+        aLayer.shadowRadius = 4;
+        aLayer.shadowOpacity = .1f;
+        aLayer.masksToBounds = NO;
+    }
+}
+
 @end

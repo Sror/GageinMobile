@@ -29,4 +29,6 @@
 
 +(id)replaceFromNibForView:(UIView *)aView;
 
++(void)applyTableStyle1ToLayer:(CALayer *)aLayer;
+
 @end

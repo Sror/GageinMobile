@@ -43,6 +43,7 @@
     
     [super viewDidLoad];
     self.naviTitle = @"Agent Filters";
+    self.view.backgroundColor = GGSharedColor.silver;
     self.tv.backgroundColor = GGSharedColor.silver;
     
     self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Edit" target:self selector:@selector(editCustomAgentAction:)];

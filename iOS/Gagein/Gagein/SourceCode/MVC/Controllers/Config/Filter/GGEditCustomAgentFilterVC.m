@@ -16,6 +16,7 @@
 @interface GGEditCustomAgentFilterVC ()
 @property (weak, nonatomic) IBOutlet UIButton *btnAdd;
 @property (weak, nonatomic) IBOutlet UITableView *tvFilters;
+@property (weak, nonatomic) IBOutlet UIView *viewTvContainer;
 
 @end
 
@@ -44,6 +45,9 @@
     
     _tvFilters.editing = YES;
     _tvFilters.layer.cornerRadius = 8;
+    //[GGUtils applyTableStyle1ToLayer:_tvFilters.layer];
+    [GGUtils applyTableStyle1ToLayer:_viewTvContainer.layer];
+    
     _tvFilters.rowHeight = [GGEditStyleCell HEIGHT];
     
     [self _callApiGetCustomAgentFilters];
@@ -58,6 +62,7 @@
 - (void)viewDidUnload {
     [self setBtnAdd:nil];
     [self setTvFilters:nil];
+    [self setViewTvContainer:nil];
     [super viewDidUnload];
 }
 
