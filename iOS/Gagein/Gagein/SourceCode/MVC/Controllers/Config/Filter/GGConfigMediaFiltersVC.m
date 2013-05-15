@@ -9,6 +9,8 @@
 #import "GGConfigMediaFiltersVC.h"
 #import "GGConfigSwitchView.h"
 #import "GGConfigLabel.h"
+#import "GGMediaFilter.h"
+#import "GGDataPage.h"
 
 @interface GGConfigMediaFiltersVC ()
 @property (weak, nonatomic) IBOutlet GGConfigSwitchView *viewConfigSwitch;
@@ -66,6 +68,8 @@
     _viewConfigOn.hidden = !_lblConfigOffTip.hidden;
     
     [_btnAddSource setBackgroundImage:GGSharedImagePool.bgBtnOrange forState:UIControlStateNormal];
+    
+    [self _callApiGetMediaFilterList];
 }
 
 
@@ -79,6 +83,53 @@
     [super viewDidUnload];
 }
 
+#pragma mark - table view datasource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    int count = _mediaSources.count;
+    CGRect tvRc = _viewTvBg.frame;
+    tvRc.size.height = 44 * count;
+    _viewTvBg.frame = tvRc;
+    return count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int row = indexPath.row;
+    // int section = indexPath.section;
+    
+    static NSString *cellID = @"cellID";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    
+    GGMediaFilter *data = _mediaSources[row];
+    cell.textLabel.text = data.name;
+    
+    //cell.accessoryType = (data.checked) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+//    //int section = indexPath.section;
+//    int row = indexPath.row;
+//    
+//    GGCategoryFilter *filter = _filters[row];
+//    [GGSharedAPI selectCategoryFilterWithID:filter.ID selected:!filter.checked callback:^(id operation, id aResultObject, NSError *anError) {
+//        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//        if (parser.isOK)
+//        {
+//            //succeeded
+//            filter.checked = !filter.checked;
+//            [_tv reloadData];
+//        }
+//    }];
+}
 
 #pragma mark - switch button delegate
 -(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
@@ -93,6 +144,27 @@
             _lblConfigOffTip.hidden = aIsOn;
         }
         
+    }];
+}
+
+#pragma mark - 
+-(void)_callApiGetMediaFilterList
+{
+    [self showLoadingHUD];
+    
+    [GGSharedAPI getMediaFiltersList:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        GGDataPage *page = [parser parseGetMediaFiltersList];
+        
+        [_mediaSources removeAllObjects];
+        
+        for (GGMediaFilter *filter in page.items)
+        {
+            [_mediaSources addObject:filter];
+        }
+        
+        [_tvMediaSources reloadData];
     }];
 }
 

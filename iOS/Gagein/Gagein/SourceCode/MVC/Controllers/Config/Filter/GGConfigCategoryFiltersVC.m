@@ -65,8 +65,6 @@
     [self _callApiGetConfigOptions];
 }
 
-
-
 - (void)viewDidUnload {
     [self setViewConfigSwitch:nil];
     [self setTv:nil];
