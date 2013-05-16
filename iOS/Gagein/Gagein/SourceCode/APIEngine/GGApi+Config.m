@@ -300,9 +300,84 @@
     [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
-#warning TODO: update profile API
+#pragma mark - update profile API
+#define PATH_CHANGE_PROFILE     @"member/me/info/update"
+
+-(void)changeProfileWithFirstName:(NSString *)aFirstName lastName:(NSString *)aLastName callback:(GGApiBlock)aCallback
+{
+    //NSString *path = @"member/me/info/update";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:aFirstName forKey:@"mem_first_name"];
+    [parameters setObject:aLastName forKey:@"mem_last_name"];
+    
+    [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
+}
+
+-(void)changeProfileWithEmail:(NSString *)aEmail callback:(GGApiBlock)aCallback
+{
+    //NSString *path = @"member/me/info/update";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:aEmail forKey:@"mem_email"];
+    
+    [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
+}
+
+-(void)changeProfileWithTitle:(NSString *)aTitle callback:(GGApiBlock)aCallback
+{
+    //NSString *path = @"member/me/info/update";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:aTitle forKey:@"mem_org_title"];
+    
+    [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
+}
+
+-(void)changeProfileWithTimezone:(NSString *)aTimezone callback:(GGApiBlock)aCallback
+{
+    //NSString *path = @"member/me/info/update";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:aTimezone forKey:@"mem_add_timezone"];
+    
+    [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
+}
+
+-(void)changeProfileWithOrgID:(long long)anOrgID callback:(GGApiBlock)aCallback
+{
+    //NSString *path = @"me/info/update";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:__LONGLONG(anOrgID) forKey:@"orgid"];
+    
+    [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
+}
+
+-(void)changeProfileWithOrgName:(NSString *)anOrgName callback:(GGApiBlock)aCallback
+{
+    //NSString *path = @"me/info/update";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObject:anOrgName forKey:@"org_name"];
+    
+    [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
+}
+
 ///me/info/update
-//@PathParam("memid") String memid,
+
 //          @FormParam("mem_first_name") String mem_first_name,
 //          @FormParam("mem_last_name") String mem_last_name,
 //          @FormParam("mem_email") String mem_email,

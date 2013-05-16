@@ -153,26 +153,31 @@
     if (row == 0) {
         
         GGProfileEditNameVC *vc = [[GGProfileEditNameVC alloc] init];
+        vc.userProfile = _userProfile;
         [self.navigationController pushViewController:vc animated:YES];
         
     } else if (row == 1) {
         
         GGProfileEditEmailVC *vc = [[GGProfileEditEmailVC alloc] init];
+        vc.userProfile = _userProfile;
         [self.navigationController pushViewController:vc animated:YES];
         
     } else if (row == 2) {
         
         GGProfileEditCompanyVC *vc = [[GGProfileEditCompanyVC alloc] init];
+        vc.userProfile = _userProfile;
         [self.navigationController pushViewController:vc animated:YES];
         
     } else if (row == 3) {
         
         GGProfileEditJobTitleVC *vc = [[GGProfileEditJobTitleVC alloc] init];
+        vc.userProfile = _userProfile;
         [self.navigationController pushViewController:vc animated:YES];
         
     } else if (row == 4) {
         
         GGProfileEditTimeZoneVC *vc = [[GGProfileEditTimeZoneVC alloc] init];
+        vc.userProfile = _userProfile;
         [self.navigationController pushViewController:vc animated:YES];
         
     }

@@ -82,4 +82,17 @@
 -(void)searchMediaWithKeyword:(NSString *)aKeyword callback:(GGApiBlock)aCallback;
 
 
+#pragma mark - update profile API
+-(void)changeProfileWithFirstName:(NSString *)aFirstName lastName:(NSString *)aLastName callback:(GGApiBlock)aCallback;
+
+-(void)changeProfileWithEmail:(NSString *)aEmail callback:(GGApiBlock)aCallback;
+
+-(void)changeProfileWithTitle:(NSString *)aTitle callback:(GGApiBlock)aCallback;
+
+-(void)changeProfileWithTimezone:(NSString *)aTimezone callback:(GGApiBlock)aCallback;
+
+-(void)changeProfileWithOrgID:(long long)anOrgID callback:(GGApiBlock)aCallback;
+
+-(void)changeProfileWithOrgName:(NSString *)anOrgName callback:(GGApiBlock)aCallback;
+
 @end
