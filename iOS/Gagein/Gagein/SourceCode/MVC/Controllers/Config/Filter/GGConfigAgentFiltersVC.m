@@ -270,7 +270,7 @@ viewForHeaderInSection:(NSInteger)section
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
-            //
+            [self _callApiGetConfigOptions];
         }
         
         [_tv reloadData];

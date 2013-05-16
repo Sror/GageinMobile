@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GGStyledSearchBar.h"
 
 @interface GGAddMediaFiltersVC : GGBaseViewController
-<UITableViewDataSource, UITableViewDelegate>
+<UITableViewDataSource, UITableViewDelegate, GGStyledSearchBarDelegate>
 @end

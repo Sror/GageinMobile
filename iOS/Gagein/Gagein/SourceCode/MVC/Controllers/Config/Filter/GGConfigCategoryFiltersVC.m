@@ -131,6 +131,7 @@
         {
             _tv.hidden = !aIsOn;
             _configOffTipView.hidden = aIsOn;
+            [self _callApiGetConfigOptions];
         }
         
     }];

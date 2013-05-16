@@ -52,12 +52,12 @@ DEF_SINGLETON(GGAPITest)
     }];
 }
 
--(void)testAddMediaFilterWithName
-{
-    [GGSharedAPI addMediaFilterWithName:@"CHina Daily" callback:^(id operation, id aResultObject, NSError *anError) {
-        //
-    }];
-}
+//-(void)testAddMediaFilterWithName
+//{
+//    [GGSharedAPI addMediaFilterWithName:@"CHina Daily" callback:^(id operation, id aResultObject, NSError *anError) {
+//        //
+//    }];
+//}
 
 -(void)testGetMediaFiltersList
 {

@@ -246,14 +246,30 @@
 }
 
 //  doRequest("POST", "config/filters/media/add","access_token=b4790223c67f68b744d6ac3bb9b830e6&media_name=Washington Blade");
--(void)addMediaFilterWithName:(NSString *)aMediaName callback:(GGApiBlock)aCallback
+-(void)addMediaFilterWithID:(long long)aMediaID callback:(GGApiBlock)aCallback
 {
     NSString *path = @"config/filters/media/add";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:aMediaName forKey:@"media_name"];
+    [parameters setObject:__LONGLONG(aMediaID) forKey:@"media_id"];
+    
+    [self _execPostWithPath:path params:parameters callback:aCallback];
+}
+
+-(void)addMediaFilterWithIDs:(NSArray *)aMediaIDs callback:(GGApiBlock)aCallback
+{
+    NSString *path = @"config/filters/media/add";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    
+    for (NSNumber *ID in aMediaIDs)
+    {
+        [parameters setObject:ID forKey:@"media_id"];
+    }
     
     [self _execPostWithPath:path params:parameters callback:aCallback];
 }

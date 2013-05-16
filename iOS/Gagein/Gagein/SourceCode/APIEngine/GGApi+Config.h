@@ -69,8 +69,11 @@
 //  doRequest("POST", "config/filters/media/131/delete","access_token=b4790223c67f68b744d6ac3bb9b830e6");
 -(void)deleteMediaFilterWithID:(long long)aFilterID callback:(GGApiBlock)aCallback;
 
-//  doRequest("POST", "config/filters/media/add","access_token=b4790223c67f68b744d6ac3bb9b830e6&media_name=Washington Blade");
--(void)addMediaFilterWithName:(NSString *)aMediaName callback:(GGApiBlock)aCallback;
+// add media filter with ID
+-(void)addMediaFilterWithID:(long long)aMediaID callback:(GGApiBlock)aCallback;
+
+// add media filters with IDs
+-(void)addMediaFilterWithIDs:(NSArray *)aMediaIDs callback:(GGApiBlock)aCallback;
 
 //  doRequest("GET", "config/filters/media/suggested/list","access_token=b4790223c67f68b744d6ac3bb9b830e6");
 -(void)getMediaSuggestedList:(GGApiBlock)aCallback;

@@ -80,6 +80,10 @@
     [self _callApiGetMediaFilterList];
 }
 
+-(void)viewWillAppearNotFirstTimeAction
+{
+    [self _callApiGetMediaFilterList];
+}
 
 - (void)viewDidUnload {
     [self setViewConfigSwitch:nil];

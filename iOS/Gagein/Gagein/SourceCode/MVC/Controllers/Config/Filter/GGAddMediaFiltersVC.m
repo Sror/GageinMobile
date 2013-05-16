@@ -15,12 +15,14 @@
 @interface GGAddMediaFiltersVC ()
 @property (weak, nonatomic) IBOutlet GGStyledSearchBar *viewSearchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tvSuggested;
+@property (weak, nonatomic) IBOutlet UITableView *tvSearchResult;
 
 @end
 
 @implementation GGAddMediaFiltersVC
 {
     NSMutableArray      *_suggestedMeidaFilters;
+    NSMutableArray      *_searchedMediaFilters;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -28,6 +30,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _suggestedMeidaFilters = [NSMutableArray array];
+        _searchedMediaFilters = [NSMutableArray array];
     }
     return self;
 }
@@ -39,13 +42,18 @@
     self.view.backgroundColor = GGSharedColor.silver;
     _tvSuggested.rowHeight = [GGGroupedCell HEIGHT];
     _tvSuggested.backgroundColor = GGSharedColor.clear;
-    //_tvSuggested.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    _tvSearchResult.hidden = YES;
+    CGRect tvSearchRc = _tvSearchResult.frame;
+    tvSearchRc.size.height = [UIScreen mainScreen].applicationFrame.size.height - self.navigationController.navigationBar.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT - _viewSearchBar.frame.size.height;
+    _tvSearchResult.frame = tvSearchRc;
     
     self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(doneAction:)];
     [self hideBackButton];
     
     //
     _viewSearchBar = [GGUtils replaceFromNibForView:_viewSearchBar];
+    _viewSearchBar.delegate = self;
     
     [self _callApiGetSuggestedMediaFilters];
 }
@@ -88,31 +96,51 @@
 - (void)viewDidUnload {
     [self setViewSearchBar:nil];
     [self setTvSuggested:nil];
+    [self setTvSearchResult:nil];
     [super viewDidUnload];
 }
 
 #pragma mark - table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _suggestedMeidaFilters.count;
+    if (tableView == _tvSuggested) {
+        return _suggestedMeidaFilters.count;
+    }
+    
+    return _searchedMediaFilters.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"GGGroupedCell";
     int row = indexPath.row;
     
-    GGGroupedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (cell == nil)
-    {
-        cell = [GGGroupedCell viewFromNibWithOwner:self];
+    if (tableView == _tvSuggested) {
+        
+        static NSString *cellID = @"GGGroupedCell";
+        
+        GGGroupedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if (cell == nil)
+        {
+            cell = [GGGroupedCell viewFromNibWithOwner:self];
+        }
+        
+        GGMediaFilter *data = _suggestedMeidaFilters[row];
+        cell.lblTitle.text = data.name;
+        cell.style = [GGUtils styleForArrayCount:_suggestedMeidaFilters.count atIndex:row];
+        cell.checked = data.checked;
+        
+        return cell;
+        
     }
     
-    GGMediaFilter *data = _suggestedMeidaFilters[row];
-    cell.lblTitle.text = data.name;
-    //[self _setStyleForSuggestedCell:cell index:row];
-    cell.style = [GGUtils styleForArrayCount:_suggestedMeidaFilters.count atIndex:row];
-    cell.checked = data.checked;
+    static NSString *cellID = @"searchCellID";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    
+    GGMediaFilter *data = _searchedMediaFilters[row];
+    cell.textLabel.text = data.name;
     
     return cell;
 }
@@ -120,35 +148,117 @@
 #pragma mark - table view delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GGMediaFilter *data = _suggestedMeidaFilters[indexPath.row];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    int row = indexPath.row;
     
-    if (data.checked)
+    if (tableView == _tvSuggested)
     {
-        [self showLoadingHUD];
-        [GGSharedAPI deleteMediaFilterWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
-            [self hideLoadingHUD];
-            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            if (parser.isOK)
-            {
-                data.checked = NO;
-                [_tvSuggested reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            }
-        }];
+        
+        GGMediaFilter *data = _suggestedMeidaFilters[row];
+        
+        if (data.checked)
+        {
+            [self showLoadingHUD];
+            [GGSharedAPI deleteMediaFilterWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                [self hideLoadingHUD];
+                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                if (parser.isOK)
+                {
+                    data.checked = NO;
+                    [_tvSuggested reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                }
+            }];
+        }
+        else
+        {
+            [self showLoadingHUD];
+            [GGSharedAPI addMediaFilterWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                [self hideLoadingHUD];
+                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                if (parser.isOK)
+                {
+                    data.checked = YES;
+                    [_tvSuggested reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                }
+            }];
+        }
+        
     }
     else
     {
+        GGMediaFilter *data = _searchedMediaFilters[row];
+        
         [self showLoadingHUD];
-        [GGSharedAPI addMediaFilterWithName:data.name callback:^(id operation, id aResultObject, NSError *anError) {
+        [GGSharedAPI addMediaFilterWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {
                 data.checked = YES;
-                [_tvSuggested reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [self naviBackAction:nil];
             }
         }];
     }
     
+}
+
+
+#pragma mark - GGStyledSearchBarDelegate
+
+- (BOOL)searchBarShouldBeginEditing:(GGStyledSearchBar *)searchBar
+{
+    return YES;
+}
+
+- (void)searchBarTextDidBeginEditing:(GGStyledSearchBar *)searchBar
+{
+    
+}
+
+- (BOOL)searchBarShouldEndEditing:(GGStyledSearchBar *)searchBar
+{
+    return YES;
+}
+
+- (void)searchBarTextDidEndEditing:(GGStyledSearchBar *)searchBar
+{
+    
+}
+
+- (BOOL)searchBar:(GGStyledSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if (range.location <= 0) {
+        _tvSearchResult.hidden = YES;
+    }
+    //DLog(@"range:%d, %d", range.location, range.length);
+    return YES;
+}
+
+- (BOOL)searchBarShouldClear:(GGStyledSearchBar *)searchBar
+{
+    _tvSearchResult.hidden = YES;
+    return YES;
+}
+
+- (BOOL)searchBarShouldSearch:(GGStyledSearchBar *)searchBar
+{
+    NSString *keyword = searchBar.tfSearch.text;
+    if (keyword.length)
+    {
+        [GGSharedAPI searchMediaWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                GGDataPage *page = [parser parseGetMediaFiltersList];
+                [_searchedMediaFilters removeAllObjects];
+                [_searchedMediaFilters addObjectsFromArray:page.items];
+                
+                _tvSearchResult.hidden = NO;
+                [_tvSearchResult reloadData];
+            }
+        }];
+    }
+    return YES;
 }
 
 
