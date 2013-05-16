@@ -30,13 +30,10 @@
     [super viewDidLoad];
     self.view.backgroundColor = GGSharedColor.silver;
     self.naviTitle = @"Job Title";
+    [_btnSave setBackgroundImage:GGSharedImagePool.bgBtnOrange forState:UIControlStateNormal];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 - (void)viewDidUnload {
     [self setTfJobTitle:nil];
