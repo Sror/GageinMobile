@@ -10,4 +10,5 @@
 
 @interface GGProfileEditTimeZoneVC : GGBaseViewController
 <UITableViewDataSource, UITableViewDelegate>
+@property (strong) GGUserProfile       *userProfile;
 @end

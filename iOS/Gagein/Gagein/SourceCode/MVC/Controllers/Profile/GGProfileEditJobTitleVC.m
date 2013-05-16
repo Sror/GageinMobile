@@ -7,6 +7,7 @@
 //
 
 #import "GGProfileEditJobTitleVC.h"
+#import "GGUserProfile.h"
 
 @interface GGProfileEditJobTitleVC ()
 @property (weak, nonatomic) IBOutlet UITextField *tfJobTitle;

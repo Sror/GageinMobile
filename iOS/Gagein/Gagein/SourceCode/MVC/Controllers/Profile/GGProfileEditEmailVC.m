@@ -7,6 +7,7 @@
 //
 
 #import "GGProfileEditEmailVC.h"
+#import "GGUserProfile.h"
 
 @interface GGProfileEditEmailVC ()
 @property (weak, nonatomic) IBOutlet UITextField *tfEmail;

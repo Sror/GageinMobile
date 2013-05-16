@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GGProfileEditJobTitleVC : GGBaseViewController
-
+@property (strong) GGUserProfile       *userProfile;
 @end

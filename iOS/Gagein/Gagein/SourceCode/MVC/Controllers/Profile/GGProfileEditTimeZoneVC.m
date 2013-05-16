@@ -7,6 +7,7 @@
 //
 
 #import "GGProfileEditTimeZoneVC.h"
+#import "GGUserProfile.h"
 
 @interface GGProfileEditTimeZoneVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tvTimeZone;

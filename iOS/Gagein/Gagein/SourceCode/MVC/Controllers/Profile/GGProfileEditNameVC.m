@@ -7,6 +7,7 @@
 //
 
 #import "GGProfileEditNameVC.h"
+#import "GGUserProfile.h"
 
 @interface GGProfileEditNameVC ()
 @property (weak, nonatomic) IBOutlet UITextField *tfFirstName;

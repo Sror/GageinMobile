@@ -184,7 +184,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.tableViewSearchResult) {
-        static NSString *searchResultCellId = @"GGCompanySearchCell";
+        static NSString *searchResultCellId = @"GGSearchSuggestionCell";
         GGSearchSuggestionCell *cell = [tableView dequeueReusableCellWithIdentifier:searchResultCellId];
         if (cell == nil) {
             cell = [GGSearchSuggestionCell viewFromNibWithOwner:self];

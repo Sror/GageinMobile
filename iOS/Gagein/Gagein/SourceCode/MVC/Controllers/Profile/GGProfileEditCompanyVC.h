@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GGStyledSearchBar.h"
 
 @interface GGProfileEditCompanyVC : GGBaseViewController
-
+<UITableViewDataSource, UITableViewDelegate, GGStyledSearchBarDelegate>
+@property (strong) GGUserProfile       *userProfile;
 @end
