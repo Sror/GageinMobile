@@ -17,13 +17,17 @@
 @property (copy) NSString *lastName;
 @property (copy) NSString *email;
 @property (copy) NSString *orgTitle;
-@property (copy) NSString *timezone;
 @property (copy) NSString *orgID;
 @property (copy) NSString *orgName;
 @property (copy) NSString *orgWebsite;
 @property (copy) NSString *orgLogoPath;
+
 @property (assign) long long planID;
 @property (copy) NSString *planName;
+
+@property (copy) NSString *timezone;
+@property (copy) NSString *timezoneGMT;
+@property (copy) NSString *timezoneName;
 
 //@property (copy) NSString *fullName;
 //@property (copy) NSString *orgAddress;

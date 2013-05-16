@@ -31,7 +31,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = GGSharedColor.silver;
     self.naviTitle = @"Job Title";
+    
     [_btnSave setBackgroundImage:GGSharedImagePool.bgBtnOrange forState:UIControlStateNormal];
+    [_btnSave addTarget:self action:@selector(saveAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _tfJobTitle.text = _userProfile.orgTitle;
 }
 
 
@@ -41,4 +45,30 @@
     [self setBtnSave:nil];
     [super viewDidUnload];
 }
+
+#pragma mark - actions
+-(void)saveAction:(id)sender
+{
+    if (_tfJobTitle.text.length <= 0)
+    {
+        [_tfJobTitle becomeFirstResponder];
+        [GGAlert alert:@"You should enter your a Job Title."];
+    }
+    
+    else
+    {
+        [GGSharedAPI changeProfileWithTitle:_tfJobTitle.text callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                _userProfile.orgTitle = _tfJobTitle.text;
+                [GGAlert alert:@"Job title changed OK!"];
+                [self naviBackAction:nil];
+            }
+        }];
+    }
+}
+
+
+
 @end

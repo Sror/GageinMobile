@@ -20,6 +20,7 @@
 //org_website
 //org_logo_path
 //plan_id":"99","plan_name":"Unlimited"
+//"timezone_gmtnum":"GMT-06:00","timezone_name":"Saskatchewan"
 
 -(void)parseWithData:(NSDictionary *)aData
 {
@@ -37,6 +38,8 @@
     self.orgLogoPath = [aData objectForKey:@"org_logo_path"];
     _planID = [[aData objectForKey:@"plan_id"] longLongValue];
     _planName = [aData objectForKey:@"plan_name"];
+    _timezoneGMT = [aData objectForKey:@"timezone_gmtnum"];
+    _timezoneName = [aData objectForKey:@"timezone_name"];
     
 //    self.orgAddress = [aData objectForKey:@"org_address"];
 //    self.photoPath = [aData objectForKey:@"mem_photo_path"];

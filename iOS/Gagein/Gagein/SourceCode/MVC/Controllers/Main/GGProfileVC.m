@@ -56,6 +56,11 @@
     [self _callApiGetMyOverview];
 }
 
+-(void)viewWillAppearNotFirstTimeAction
+{
+    [_tvProfile reloadData];
+}
+
 - (void)viewDidUnload {
     [self setTvProfile:nil];
     [super viewDidUnload];
@@ -114,7 +119,7 @@
     } else if (row == 4) {
         
         cell.lblTitle.text = @"Time Zone";
-        cell.lblSubTitle.text = @"UTC-12";
+        cell.lblSubTitle.text = _userProfile.timezoneGMT;
         cell.style = kGGGroupCellLast;
         
     }
@@ -141,6 +146,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
+    _viewFooter.lblCurrentPlan.text = [NSString stringWithFormat:@"Current Plan: %@", _userProfile.planName];
     return _viewFooter;
 }
 
