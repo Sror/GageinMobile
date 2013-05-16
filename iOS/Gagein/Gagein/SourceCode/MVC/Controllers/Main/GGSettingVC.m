@@ -65,6 +65,7 @@
     self.naviTitle = @"Settings";
     self.tvSettings.backgroundColor = GGSharedColor.silver;
     _tvSettings.rowHeight = [GGGroupedCell HEIGHT];
+    _tvSettings.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)viewDidUnload {

@@ -156,7 +156,6 @@
      _updateTvRect = [self viewportAdjsted];
     
     self.happeningsTV = [[UITableView alloc] initWithFrame:_updateTvRect style:UITableViewStylePlain];
-    //self.happeningsTV.rowHeight = [GGCompanyHappeningCell HEIGHT];
     self.happeningsTV.dataSource = self;
     self.happeningsTV.delegate = self;
     self.happeningsTV.backgroundColor = GGSharedColor.silver;
@@ -167,7 +166,6 @@
     _updateTvRect.origin.y = CGRectGetMaxY(_relevanceBar.frame) - 5;
     _updateTvRect.size.height = self.view.frame.size.height - _updateTvRect.origin.y;
     self.updatesTV = [[UITableView alloc] initWithFrame:_updateTvRect style:UITableViewStylePlain];
-    //self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
     self.updatesTV.backgroundColor = GGSharedColor.silver;

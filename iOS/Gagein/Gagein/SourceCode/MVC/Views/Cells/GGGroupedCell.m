@@ -9,6 +9,9 @@
 #import "GGGroupedCell.h"
 
 @implementation GGGroupedCell
+{
+    UIView  *_seperator;
+}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -34,7 +37,13 @@
 -(void)awakeFromNib
 {
     _lblTitle.text = @"";
+    _lblSubTitle.text = @"";
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    _seperator = [[UIView alloc] initWithFrame:CGRectMake(0, 1, 290, 1)];
+    _seperator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
+    _seperator.backgroundColor = GGSharedColor.silver;
+    [_viewContent addSubview:_seperator];
 }
 
 -(void)setChecked:(BOOL)checked
@@ -51,11 +60,14 @@
 
 -(void)setStyle:(EGGGroupedCellStyle)style
 {
+    _seperator.hidden = NO;
+    
     switch (style)
     {
         case kGGGroupCellFirst:
         {
             _ivBg.image = GGSharedImagePool.tableCellTopBg;
+            _seperator.hidden = YES;
         }
             break;
             
@@ -74,6 +86,7 @@
         case kGGGroupCellRound:
         {
             _ivBg.image = GGSharedImagePool.tableCellRoundBg;
+            _seperator.hidden = YES;
         }
             break;
             

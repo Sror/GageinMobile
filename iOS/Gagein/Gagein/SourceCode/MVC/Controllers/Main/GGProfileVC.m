@@ -17,6 +17,7 @@
 #import "GGProfileEditTimeZoneVC.h"
 
 #import "GGUserProfile.h"
+#import "GGGroupedCell.h"
 
 @interface GGProfileVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tvProfile;
@@ -46,6 +47,8 @@
     [super viewDidLoad];
     self.naviTitle = @"My Profile";
     self.tvProfile.backgroundColor = GGSharedColor.silver;
+    _tvProfile.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tvProfile.rowHeight = [GGGroupedCell HEIGHT];
     
     _viewHeader = [GGProfileHeaderView viewFromNibWithOwner:self];
     _viewFooter = [GGProfileFooterView viewFromNibWithOwner:self];
@@ -66,42 +69,49 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"cellID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    
+    static NSString *cellID = @"GGGroupedCell";
+    GGGroupedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell = [GGGroupedCell viewFromNibWithOwner:self];
+        [cell showDisclosure];
+        [cell showSubTitle:YES];
     }
-    cell.detailTextLabel.text = @"";
+
     
     int row = indexPath.row;
     //int section = indexPath.section;
     
     if (row == 0) {
         
-        cell.textLabel.text = @"Name";
-        cell.detailTextLabel.text = _userProfile.fullName;
+        cell.lblTitle.text = @"Name";
+        cell.lblSubTitle.text = _userProfile.fullName;
+        cell.style = kGGGroupCellFirst;
         
     } else if (row == 1) {
         
-        cell.textLabel.text = @"Email";
-        cell.detailTextLabel.text = _userProfile.email;
+        cell.lblTitle.text = @"Email";
+        cell.lblSubTitle.text = _userProfile.email;
+        cell.style = kGGGroupCellMiddle;
         
     } else if (row == 2) {
         
-        cell.textLabel.text = @"Company";
-        cell.detailTextLabel.text = _userProfile.orgName;
+        cell.lblTitle.text = @"Company";
+        cell.lblSubTitle.text = _userProfile.orgName;
+        cell.style = kGGGroupCellMiddle;
         
     } else if (row == 3) {
         
-        cell.textLabel.text = @"Job Title";
-        cell.detailTextLabel.text = _userProfile.orgTitle;
+        cell.lblTitle.text = @"Job Title";
+        cell.lblSubTitle.text = _userProfile.orgTitle;
+        cell.style = kGGGroupCellMiddle;
         
     } else if (row == 4) {
         
-        cell.textLabel.text = @"Time Zone";
-        cell.detailTextLabel.text = @"UTC-12";
+        cell.lblTitle.text = @"Time Zone";
+        cell.lblSubTitle.text = @"UTC-12";
+        cell.style = kGGGroupCellLast;
         
     }
     

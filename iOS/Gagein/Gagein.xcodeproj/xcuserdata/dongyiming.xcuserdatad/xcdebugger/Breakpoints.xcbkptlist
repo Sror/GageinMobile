@@ -489,11 +489,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGProfileVC.m"
-         timestampString = "389647431.738417"
+         timestampString = "390422227.471009"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "174"
-         endingLineNumber = "174"
+         startingLineNumber = "184"
+         endingLineNumber = "184"
          landmarkName = "-_callApiGetMyOverview"
          landmarkType = "5">
       </FileBreakpoint>
@@ -749,11 +749,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
-         timestampString = "390332542.492597"
+         timestampString = "390422227.471009"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "255"
-         endingLineNumber = "255"
+         startingLineNumber = "253"
+         endingLineNumber = "253"
          landmarkName = "-switchButton:isOn:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -976,6 +976,19 @@
          startingLineNumber = "115"
          endingLineNumber = "115"
          landmarkName = "-_updateCellHeightForIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Views/Cells/GGGroupedCell.m"
+         timestampString = "390422088.952683"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "63"
+         endingLineNumber = "63"
+         landmarkName = "-setStyle:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -19,6 +19,11 @@
     return self;
 }
 
+-(void)awakeFromNib
+{
+    [_btnUpgrade setBackgroundImage:GGSharedImagePool.bgBtnOrange forState:UIControlStateNormal];
+}
+
 +(float)HEIGHT
 {
     return 100.f;

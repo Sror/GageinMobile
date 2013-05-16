@@ -67,7 +67,7 @@
 										<string key="NSFrame">{{11, 12}, {212, 21}}</string>
 										<reference key="NSSuperview" ref="336047485"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="814694251"/>
+										<reference key="NSNextKeyView" ref="650099902"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -96,7 +96,7 @@
 										<string key="NSFrame">{{266, 17}, {10, 10}}</string>
 										<reference key="NSSuperview" ref="336047485"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="148854070"/>
+										<reference key="NSNextKeyView" ref="857389558"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -106,7 +106,7 @@
 											<string key="NSResourceName">tableSelectedDot@2x.png</string>
 										</object>
 									</object>
-									<object class="IBUIImageView" id="148854070">
+									<object class="IBUIImageView" id="857389558">
 										<reference key="NSNextResponder" ref="336047485"/>
 										<int key="NSvFlags">-2147483392</int>
 										<string key="NSFrame">{{270, 18}, {5, 7}}</string>
@@ -122,13 +122,13 @@
 											<string key="NSResourceName">discolsureArrowRight@2x.png</string>
 										</object>
 									</object>
-									<object class="IBUILabel" id="814694251">
+									<object class="IBUILabel" id="650099902">
 										<reference key="NSNextResponder" ref="336047485"/>
 										<int key="NSvFlags">-2147483356</int>
 										<string key="NSFrame">{{11, 24}, {233, 21}}</string>
 										<reference key="NSSuperview" ref="336047485"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="844097043"/>
+										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -229,7 +229,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">ivDisclosure</string>
 						<reference key="source" ref="1053568700"/>
-						<reference key="destination" ref="148854070"/>
+						<reference key="destination" ref="857389558"/>
 					</object>
 					<int key="connectionID">16</int>
 				</object>
@@ -237,7 +237,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">lblSubTitle</string>
 						<reference key="source" ref="1053568700"/>
-						<reference key="destination" ref="814694251"/>
+						<reference key="destination" ref="650099902"/>
 					</object>
 					<int key="connectionID">18</int>
 				</object>
@@ -276,8 +276,8 @@
 							<reference ref="285375915"/>
 							<reference ref="631502946"/>
 							<reference ref="844097043"/>
-							<reference ref="148854070"/>
-							<reference ref="814694251"/>
+							<reference ref="857389558"/>
+							<reference ref="650099902"/>
 						</array>
 						<reference key="parent" ref="1053568700"/>
 						<string key="objectName">viewContent</string>
@@ -302,13 +302,13 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">15</int>
-						<reference key="object" ref="148854070"/>
+						<reference key="object" ref="857389558"/>
 						<reference key="parent" ref="336047485"/>
 						<string key="objectName">ivDisclosure</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">17</int>
-						<reference key="object" ref="814694251"/>
+						<reference key="object" ref="650099902"/>
 						<reference key="parent" ref="336047485"/>
 						<string key="objectName">lblSubTitle</string>
 					</object>
@@ -331,7 +331,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">18</int>
+			<int key="maxID">19</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
