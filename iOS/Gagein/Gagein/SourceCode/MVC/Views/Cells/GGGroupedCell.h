@@ -15,8 +15,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *ivBg;
 @property (weak, nonatomic) IBOutlet UIImageView *ivDot;
+@property (weak, nonatomic) IBOutlet UIImageView *ivDisclosure;
+@property (weak, nonatomic) IBOutlet UILabel *lblSubTitle;
+
 @property (assign, nonatomic) EGGGroupedCellStyle  style;
 @property (assign, nonatomic) BOOL  checked;
 
 +(float)HEIGHT;
+-(void)showDisclosure;
+-(void)showSubTitle:(BOOL)aShow;
 @end

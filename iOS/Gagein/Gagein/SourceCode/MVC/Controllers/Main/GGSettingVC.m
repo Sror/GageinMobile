@@ -14,6 +14,8 @@
 #import "GGFollowCompanyVC.h"
 #import "GGWebVC.h"
 #import "GGProfileVC.h"
+#import "GGGroupedCell.h"
+#import "GGConfigLabel.h"
 
 #define FOOTER_HEIGHT   80
 
@@ -44,10 +46,12 @@
     if (_viewFooter == nil) {
         _viewFooter = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tvSettings.frame.size.width, FOOTER_HEIGHT)];
         
-        float btnW = 250.f, btnH = 45.f;
+        float btnW = 260.f, btnH = 35.f;
         UIButton *btnLogout = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         btnLogout.frame = CGRectMake((_viewFooter.frame.size.width - btnW) / 2, (_viewFooter.frame.size.height - btnH) / 2, btnW, btnH);
-        [btnLogout setTitle:@"Logout" forState:UIControlStateNormal];
+        [btnLogout setTitle:@"Log Out" forState:UIControlStateNormal];
+        [btnLogout setTitleColor:GGSharedColor.white forState:UIControlStateNormal];
+        [btnLogout setBackgroundImage:GGSharedImagePool.bgBtnOrange forState:UIControlStateNormal];
         [btnLogout addTarget:self action:@selector(logoutAction:) forControlEvents:UIControlEventTouchUpInside];
         [_viewFooter addSubview:btnLogout];
     }
@@ -60,6 +64,7 @@
     [super viewDidLoad];
     self.naviTitle = @"Settings";
     self.tvSettings.backgroundColor = GGSharedColor.silver;
+    _tvSettings.rowHeight = [GGGroupedCell HEIGHT];
 }
 
 - (void)viewDidUnload {
@@ -124,22 +129,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"cellID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    //GGGroupedCell
+    static NSString *cellID = @"GGGroupedCell";
+    GGGroupedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell = [GGGroupedCell viewFromNibWithOwner:self];
+        [cell showDisclosure];
     }
     
     int row = indexPath.row;
     int section = indexPath.section;
+    [cell showSubTitle:NO];
     
     if (section == 0) {
         
-        cell.textLabel.text = @"My Profile";
-        cell.detailTextLabel.text = @"";
-        
+        cell.lblTitle.text = @"My Profile";
+        cell.style = kGGGroupCellRound;
     }
     
 //    else if (section == 1)
@@ -157,21 +163,25 @@
     else if (section == 1) {
         
         if (row == 0) {
-            cell.textLabel.text = @"Version";
-            cell.detailTextLabel.text = @"1.0";
+            
+            [cell showSubTitle:YES];
+            cell.lblTitle.text = @"Version";
+            cell.lblSubTitle.text = @"1.0";
+            cell.style = kGGGroupCellFirst;
+            
         } else if (row == 1) {
-            cell.textLabel.text = @"Privacy";
-            cell.detailTextLabel.text = @"";
+            cell.lblTitle.text = @"Privacy";
+            cell.style = kGGGroupCellMiddle;
         } else if (row == 2) {
-            cell.textLabel.text = @"Terms";
-            cell.detailTextLabel.text = @"";
+            cell.lblTitle.text = @"Terms";
+            cell.style = kGGGroupCellLast;
         }
         
     }
     
     else if (section == 2) {
-        cell.textLabel.text = @"API Test";
-        cell.detailTextLabel.text = @"";
+        cell.lblTitle.text = @"API Test";
+        cell.style = kGGGroupCellRound;
     }
     
     return cell;
@@ -205,6 +215,34 @@
 }
 
 #pragma mark - table view delegate
+-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return [GGConfigLabel HEIGHT];
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    GGConfigLabel *configLabel = [GGConfigLabel viewFromNibWithOwner:self];
+    
+    if (section == 0) {
+        configLabel.lblText.text = [GGUtils envString];
+    }
+    
+    //    else if (section == 1) {
+    //        return @"NOTIFICATIONS";
+    //    }
+    
+    else if (section == 1) {
+        configLabel.lblText.text = @"ABOUT";
+    }
+    
+    else if (section == 2) {
+        configLabel.lblText.text = @"TEST";
+    }
+    
+    return configLabel;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

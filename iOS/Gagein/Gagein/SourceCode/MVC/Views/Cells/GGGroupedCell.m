@@ -82,4 +82,27 @@
     }
 }
 
+-(void)showDisclosure
+{
+    _ivDisclosure.hidden = NO;
+    _ivDot.hidden = YES;
+}
+
+-(void)showSubTitle:(BOOL)aShow
+{
+    _lblSubTitle.hidden = !aShow;
+    CGRect titleRc = _lblTitle.frame;
+    
+    if (aShow)
+    {
+        titleRc.origin.y = _lblSubTitle.frame.origin.y - titleRc.size.height + 5;
+    }
+    else
+    {
+        titleRc.origin.y = (self.frame.size.height - _lblTitle.frame.size.height) / 2;
+    }
+    
+    _lblTitle.frame = titleRc;
+}
+
 @end

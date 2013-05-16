@@ -106,7 +106,7 @@
     return outputImage;
 }
 
-#define ENV_STRING_FORMAT @"Currently using '%@' server: \n(%@)"  
+#define ENV_STRING_FORMAT @"'%@':(%@)"  
 +(NSString *)envString
 {
     NSString *envAlertStr = nil;
