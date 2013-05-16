@@ -39,7 +39,7 @@
         }
         else
         {
-            return @"just now";
+            return @"Just now";
         }
     }
     else if (days < 31)

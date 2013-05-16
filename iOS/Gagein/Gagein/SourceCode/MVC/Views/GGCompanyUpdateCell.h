@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *sourceLbl;
 @property (weak, nonatomic) IBOutlet UILabel *intervalLbl;
 @property (weak, nonatomic) IBOutlet GGAutosizingLabel *titleLbl;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLbl;
+@property (weak, nonatomic) IBOutlet GGAutosizingLabel *descriptionLbl;
 @property (weak, nonatomic) IBOutlet UIButton *logoBtn;
 
 @property (weak, nonatomic) IBOutlet UIView *viewCellBg;
@@ -23,6 +23,6 @@
 @property (assign)  long long               ID;
 @property (assign, nonatomic)  BOOL         hasBeenRead;
 
-+(float)HEIGHT;
--(void)adjustLayout;
+//+(float)HEIGHT;
+-(float)adjustLayout;
 @end

@@ -81,7 +81,7 @@
     
     //
     _tvUpdates = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
-    _tvUpdates.rowHeight = [GGCompanyUpdateCell HEIGHT];
+    //_tvUpdates.rowHeight = [GGCompanyUpdateCell HEIGHT];
     _tvUpdates.dataSource = self;
     _tvUpdates.delegate = self;
     _tvUpdates.backgroundColor = GGSharedColor.silver;
@@ -214,10 +214,15 @@
     return count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(float)_updateCellHeightForIndexPath:(NSIndexPath *)indexPath
+{
+    return [self _updateCellForIndexPath:indexPath].frame.size.height;
+}
+
+-(GGCompanyUpdateCell *)_updateCellForIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *updateCellId = @"GGCompanyUpdateCell";
-    GGCompanyUpdateCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
+    GGCompanyUpdateCell *cell = [_tvUpdates dequeueReusableCellWithIdentifier:updateCellId];
     if (cell == nil) {
         cell = [GGCompanyUpdateCell viewFromNibWithOwner:self];
         [cell.logoBtn addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -237,8 +242,19 @@
     [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
     
     cell.intervalLbl.text = [updateData intervalStringWithDate:updateData.date];
+    [cell adjustLayout];
     
     return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self _updateCellForIndexPath:indexPath];
+}
+
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self _updateCellHeightForIndexPath:indexPath];
 }
 
 #pragma mark - tableView delegate

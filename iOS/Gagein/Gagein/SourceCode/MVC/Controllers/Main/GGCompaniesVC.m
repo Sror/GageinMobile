@@ -156,7 +156,7 @@
      _updateTvRect = [self viewportAdjsted];
     
     self.happeningsTV = [[UITableView alloc] initWithFrame:_updateTvRect style:UITableViewStylePlain];
-    self.happeningsTV.rowHeight = [GGCompanyHappeningCell HEIGHT];
+    //self.happeningsTV.rowHeight = [GGCompanyHappeningCell HEIGHT];
     self.happeningsTV.dataSource = self;
     self.happeningsTV.delegate = self;
     self.happeningsTV.backgroundColor = GGSharedColor.silver;
@@ -167,11 +167,11 @@
     _updateTvRect.origin.y = CGRectGetMaxY(_relevanceBar.frame) - 5;
     _updateTvRect.size.height = self.view.frame.size.height - _updateTvRect.origin.y;
     self.updatesTV = [[UITableView alloc] initWithFrame:_updateTvRect style:UITableViewStylePlain];
-    self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
+    //self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
     self.updatesTV.backgroundColor = GGSharedColor.silver;
-    self.happeningsTV.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.updatesTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.updatesTV];
 
     
@@ -534,38 +534,50 @@
     return 0;
 }
 
+-(float)_updateCellHeightForIndexPath:(NSIndexPath *)indexPath
+{
+    return [self _updateCellForIndexPath:indexPath].frame.size.height;
+}
+
+-(GGCompanyUpdateCell *)_updateCellForIndexPath:(NSIndexPath *)indexPath
+{
+    int row = indexPath.row;
+    
+    static NSString *updateCellId = @"GGCompanyUpdateCell";
+    GGCompanyUpdateCell *cell = [_updatesTV dequeueReusableCellWithIdentifier:updateCellId];
+    if (cell == nil) {
+        cell = [GGCompanyUpdateCell viewFromNibWithOwner:self];
+        [cell.logoBtn addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    GGCompanyUpdate *updateData = self.updates[row];
+    
+    cell.ID = updateData.ID;
+    cell.logoBtn.tag = row;
+    
+    cell.titleLbl.text = [updateData headlineMaxCharCount:80];
+    cell.sourceLbl.text = [NSString stringWithFormat:@"%@ · %@", updateData.fromSource, [updateData intervalStringWithDate:updateData.date]];//updateData.fromSource;
+    
+#warning FAKE DATA - company update description
+    cell.descriptionLbl.text = SAMPLE_TEXT;//updateData.content;
+    
+    [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+    
+    cell.intervalLbl.text = @"";//[updateData intervalStringWithDate:updateData.date];
+    cell.hasBeenRead = updateData.hasBeenRead;
+    [cell adjustLayout];
+    
+    return cell;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = indexPath.row;
     
     if (tableView == self.updatesTV)
     {
-        static NSString *updateCellId = @"GGCompanyUpdateCell";
-        GGCompanyUpdateCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
-        if (cell == nil) {
-            cell = [GGCompanyUpdateCell viewFromNibWithOwner:self];
-            [cell.logoBtn addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-        
-        GGCompanyUpdate *updateData = self.updates[row];
-        
-        cell.ID = updateData.ID;
-        cell.logoBtn.tag = row;
-        
-        cell.titleLbl.text = [updateData headlineMaxCharCount:80];
-        cell.sourceLbl.text = updateData.fromSource;
-        
-#warning FAKE DATA - company update description
-        cell.descriptionLbl.text = SAMPLE_TEXT;//updateData.content;
-
-        [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-        
-        cell.intervalLbl.text = [updateData intervalStringWithDate:updateData.date];
-        cell.hasBeenRead = updateData.hasBeenRead;
-        [cell adjustLayout];
-        
-        return cell;
+        return [self _updateCellForIndexPath:indexPath];
     }
     else if (tableView == self.happeningsTV)
     {
@@ -633,6 +645,26 @@
     }
     
     return nil;
+}
+
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == self.updatesTV)
+    {
+        float height = [self _updateCellHeightForIndexPath:indexPath];
+        DLog(@"table view height:%f", height);
+        return height;
+    }
+    else if (tableView == self.happeningsTV)
+    {
+        return [GGCompanyHappeningCell HEIGHT];
+    }
+    else if (tableView == _slideSettingView.viewTable)
+    {
+        return [GGSettingMenuCell HEIGHT];
+    }
+    
+    return 44;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

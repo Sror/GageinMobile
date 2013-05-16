@@ -47,7 +47,7 @@
     self.naviTitle = @"Updates";
     
     self.updatesTV = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
-    self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
+    //self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
     [self.view addSubview:self.updatesTV];
@@ -103,10 +103,15 @@
     return self.updates.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(float)_updateCellHeightForIndexPath:(NSIndexPath *)indexPath
+{
+    return [self _updateCellForIndexPath:indexPath].frame.size.height;
+}
+
+-(GGCompanyUpdateCell *)_updateCellForIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *updateCellId = @"GGCompanyUpdateCell";
-    GGCompanyUpdateCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
+    GGCompanyUpdateCell *cell = [_updatesTV dequeueReusableCellWithIdentifier:updateCellId];
     if (cell == nil) {
         cell = [GGCompanyUpdateCell viewFromNibWithOwner:self];
         [cell.logoBtn addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -123,12 +128,23 @@
     
 #warning FAKE DATA - company update description
     cell.descriptionLbl.text = SAMPLE_TEXT;//updateData.content;
-
+    
     [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
     
     cell.intervalLbl.text = [updateData intervalStringWithDate:updateData.date];
+    [cell adjustLayout];
     
     return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self _updateCellForIndexPath:indexPath];
+}
+
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self _updateCellHeightForIndexPath:indexPath];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

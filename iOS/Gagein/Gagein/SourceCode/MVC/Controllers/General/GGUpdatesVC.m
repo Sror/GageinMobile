@@ -53,11 +53,12 @@
     self.naviTitle = @"Updates";
     
     self.updatesTV = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
-    self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
+    //self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
     [self.view addSubview:self.updatesTV];
     self.updatesTV.backgroundColor = GGSharedColor.silver;
+    self.updatesTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     __weak GGUpdatesVC *weakSelf = self;
     
@@ -109,10 +110,15 @@
     return self.updates.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(float)_updateCellHeightForIndexPath:(NSIndexPath *)indexPath
+{
+    return [self _updateCellForIndexPath:indexPath].frame.size.height;
+}
+
+-(GGCompanyUpdateCell *)_updateCellForIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *updateCellId = @"GGCompanyUpdateCell";
-    GGCompanyUpdateCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
+    GGCompanyUpdateCell *cell = [_updatesTV dequeueReusableCellWithIdentifier:updateCellId];
     if (cell == nil) {
         cell = [GGCompanyUpdateCell viewFromNibWithOwner:self];
         [cell.logoBtn addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -132,8 +138,14 @@
     [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
     
     cell.intervalLbl.text = [updateData intervalStringWithDate:updateData.date];
+    [cell adjustLayout];
     
     return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self _updateCellForIndexPath:indexPath];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -146,6 +158,11 @@
     vc.updates = self.updates;
     vc.updateIndex = indexPath.row;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self _updateCellHeightForIndexPath:indexPath];
 }
 
 #pragma mark - 

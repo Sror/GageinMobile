@@ -30,18 +30,28 @@
 -(void)awakeFromNib
 {
     self.ivCellBg.image = GGSharedImagePool.stretchShadowBgWite;
-    //_titleLbl.textColor = GGSharedColor.orangeGagein;
+    _titleLbl.text = @"";
+    _intervalLbl.text = @"";
     
     _logoIV.layer.borderColor = GGSharedColor.silver.CGColor;
     _logoIV.layer.borderWidth = 1;
     
+    _logoIV.layer.shadowColor = GGSharedColor.lightGray.CGColor;
+    _logoIV.layer.shadowOpacity = .2f;
+    _logoIV.layer.shadowOffset = CGSizeMake(-1, 1);
+    _logoIV.layer.shadowRadius = 2;
+    
+    _logoIV.layer.cornerRadius = 3;
+    
+    
     _titleLbl.numberOfLines = 3;
+    _descriptionLbl.numberOfLines = 2;
 }
 
-+(float)HEIGHT
-{
-    return 120.f;
-}
+//+(float)HEIGHT
+//{
+//    return 150.f;
+//}
 
 -(void)setHasBeenRead:(BOOL)hasRead
 {
@@ -55,13 +65,19 @@
     }
 }
 
--(void)adjustLayout
+-(float)adjustLayout
 {
     float titleMaxY = CGRectGetMaxY(_titleLbl.frame);
-    CGRect descRc = _descriptionLbl.frame;
-    descRc.origin.y = titleMaxY - 5;
-    descRc.size.height = self.contentView.frame.size.height - titleMaxY;
-    _descriptionLbl.frame = descRc;
+    CGRect theRect = _descriptionLbl.frame;
+    theRect.origin.y = titleMaxY - 30;
+    _descriptionLbl.frame = theRect;
+    
+    theRect = self.frame;
+    theRect.size.height = CGRectGetMaxY(_descriptionLbl.frame) - 20;
+    //DLog(@"cell height:%f", theRect.size.height);
+    self.frame = theRect;
+    
+    return theRect.size.height;
 }
 
 @end
