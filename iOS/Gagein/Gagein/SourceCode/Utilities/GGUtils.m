@@ -8,6 +8,8 @@
 
 #import "GGUtils.h"
 #import "GGGroupedCell.h"
+#import "JSONKit.h"
+#import "GGTimeZone.h"
 
 @implementation GGUtils
 
@@ -218,6 +220,40 @@
     }
     
     return style;
+}
+
++(NSData *)dataFromBundleForFileName:(NSString *)aFileName type:(NSString *)aType
+{
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:aFileName ofType:aType];
+    return [NSData dataWithContentsOfFile:filePath];
+}
+
++(NSArray *)timezones
+{
+    NSData *data = [self dataFromBundleForFileName:@"timezones" type:@"json"];
+    NSArray *rawTimezones = [[data objectFromJSONData] objectForKey:@"timezones"];
+    NSMutableArray *timezones = [NSMutableArray arrayWithCapacity:rawTimezones.count];
+    for (id timezoneDic in rawTimezones)
+    {
+        GGTimeZone *timezone = [GGTimeZone model];
+        [timezone parseWithData:timezoneDic];
+        [timezones addObject:timezone];
+    }
+    
+    return timezones;
+}
+
++(NSString*)stringByTrimmingLeadingWhitespaceOfString:(NSString *)aStr
+{
+    NSInteger i = 0;
+    
+    while ((i < [aStr length])
+           && [[NSCharacterSet whitespaceCharacterSet] characterIsMember:[aStr characterAtIndex:i]])
+    {
+        i++;
+    }
+    
+    return [aStr substringFromIndex:i];
 }
 
 @end

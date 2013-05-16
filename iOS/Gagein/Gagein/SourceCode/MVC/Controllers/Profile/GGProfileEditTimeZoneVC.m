@@ -8,6 +8,8 @@
 
 #import "GGProfileEditTimeZoneVC.h"
 #import "GGUserProfile.h"
+#import "GGGroupedCell.h"
+#import "GGTimeZone.h"
 
 @interface GGProfileEditTimeZoneVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tvTimeZone;
@@ -15,6 +17,9 @@
 @end
 
 @implementation GGProfileEditTimeZoneVC
+{
+    NSArray *_timezones;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,6 +35,12 @@
     [super viewDidLoad];
     self.view.backgroundColor = GGSharedColor.silver;
     self.naviTitle = @"TimeZone";
+    _tvTimeZone.backgroundColor = GGSharedColor.silver;
+    _tvTimeZone.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tvTimeZone.rowHeight = [GGGroupedCell HEIGHT];
+    
+    _timezones = [GGUtils timezones];
+    [_tvTimeZone reloadData];
 }
 
 
@@ -41,21 +52,39 @@
 #pragma mark - table view datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 24;
+    return _timezones.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"cellID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
+    int row = indexPath.row;
+    
+    static NSString *cellID = @"GGGroupedCell";
+    GGGroupedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell)
+    {
+        cell = [GGGroupedCell viewFromNibWithOwner:self];
+        [cell showSubTitle:YES];
+        //[cell showDisclosure];
     }
 
-    cell.textLabel.text = @"Alaska";
-    cell.detailTextLabel.text = @"UTC-9:00";
+    GGTimeZone *data = _timezones[row];
+    
+    cell.lblTitle.text = data.name;
+    cell.lblSubTitle.text = data.zone;
+    cell.tag = row;
+    
+    cell.style = [GGUtils styleForArrayCount:_timezones.count atIndex:indexPath.row];
+    
+    cell.checked = [_userProfile.timezone isEqualToString:data.idStr];
 
     return cell;
+}
+
+#pragma mark - table view delegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+#pragma TODO: all API to change the timezone
 }
 
 @end

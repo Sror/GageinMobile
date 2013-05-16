@@ -38,6 +38,7 @@
 {
     _lblTitle.text = @"";
     _lblSubTitle.text = @"";
+    _ivDot.image = GGSharedImagePool.tableUnselectedDot;
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     _seperator = [[UIView alloc] initWithFrame:CGRectMake(0, 1, 290, 1)];

@@ -300,4 +300,15 @@
     [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
+#warning TODO: update profile API
+///me/info/update
+//@PathParam("memid") String memid,
+//          @FormParam("mem_first_name") String mem_first_name,
+//          @FormParam("mem_last_name") String mem_last_name,
+//          @FormParam("mem_email") String mem_email,
+//          @FormParam("mem_org_title") String mem_org_title,
+//          @FormParam("mem_add_timezone") String mem_add_timezone,
+//          @FormParam("orgid") String orgid,
+//          @FormParam("org_name") String org_name
+
 @end

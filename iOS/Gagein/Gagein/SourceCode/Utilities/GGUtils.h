@@ -33,4 +33,9 @@
 
 +(EGGGroupedCellStyle)styleForArrayCount:(NSUInteger)aArrayCount atIndex:(NSUInteger)anIndex;
 
++(NSData *)dataFromBundleForFileName:(NSString *)aFileName type:(NSString *)aType;
+
++(NSArray *)timezones;
+
++(NSString*)stringByTrimmingLeadingWhitespaceOfString:(NSString *)aStr;
 @end

@@ -86,7 +86,11 @@
     if (row == 0) {
         
         cell.lblTitle.text = @"Name";
-        cell.lblSubTitle.text = _userProfile.fullName;
+        if (_userProfile.firstName && _userProfile.lastName)
+        {
+            cell.lblSubTitle.text = [NSString stringWithFormat:@"%@ %@", _userProfile.firstName, _userProfile.lastName];
+        }
+        
         cell.style = kGGGroupCellFirst;
         
     } else if (row == 1) {

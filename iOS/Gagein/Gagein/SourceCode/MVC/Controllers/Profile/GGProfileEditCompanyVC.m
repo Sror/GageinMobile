@@ -50,6 +50,9 @@
     _viewSearchBar = [GGUtils replaceFromNibForView:_viewSearchBar];
     _viewSearchBar.delegate = self;
     
+    UITapGestureRecognizer *tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideDimedView)];
+    [_viewDimed addGestureRecognizer:tapGest];
+    
     _tvSuggestedCompanies.rowHeight = [GGSearchSuggestionCell HEIGHT];
     CGRect tvComRc = _tvSuggestedCompanies.frame;
     tvComRc.size.height = [UIScreen mainScreen].applicationFrame.size.height - self.navigationController.navigationBar.frame.size.height - _viewSearchBar.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT;
@@ -69,6 +72,14 @@
     [self setTvSuggestedCompanies:nil];
     [self setViewSearchBar:nil];
     [super viewDidUnload];
+}
+
+#pragma mark - 
+-(void)hideDimedView
+{
+    [_viewSearchBar.tfSearch resignFirstResponder];
+    _viewSearchBar.tfSearch.text = @"";
+    _viewDimed.hidden = YES;
 }
 
 #pragma mark - table view datasource
@@ -96,7 +107,12 @@
 }
 
 #pragma mark - table view delegate
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //GGCompany *company = _suggestedCompanies[indexPath.row];
+#warning TODO: set company to user profile
+}
 
 #pragma mark - GGStyledSearchBarDelegate
 

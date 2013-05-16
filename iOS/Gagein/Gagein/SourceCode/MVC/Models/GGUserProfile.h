@@ -12,23 +12,29 @@
 
 
 @interface GGUserProfile : GGDataModel
-@property (copy) NSString *fullName;
+
+@property (copy) NSString *firstName;
+@property (copy) NSString *lastName;
+@property (copy) NSString *email;
 @property (copy) NSString *orgTitle;
+@property (copy) NSString *timezone;
 @property (copy) NSString *orgID;
 @property (copy) NSString *orgName;
 @property (copy) NSString *orgWebsite;
-@property (copy) NSString *orgAddress;
+@property (copy) NSString *orgLogoPath;
+@property (assign) long long planID;
+@property (copy) NSString *planName;
 
-@property (copy) NSString *photoPath;
-@property (copy) NSString *orgDept;
-@property (copy) NSString *division;
-@property (copy) NSString *description;
-@property (copy) NSString *specialties;
-@property (copy) NSString *email;
-@property (copy) NSString *mobilephone;
+//@property (copy) NSString *fullName;
+//@property (copy) NSString *orgAddress;
+//@property (copy) NSString *photoPath;
+//@property (copy) NSString *orgDept;
+//@property (copy) NSString *division;
+//@property (copy) NSString *description;
+//@property (copy) NSString *specialties;
+//@property (copy) NSString *mobilephone;
+//@property (copy) NSString *jobFunc;
+//@property (copy) NSString *jobLevel;
+//@property (copy) NSString *addAddress;
 
-@property (copy) NSString *jobFunc;
-@property (copy) NSString *jobLevel;
-@property (copy) NSString *addAddress;
-@property (copy) NSString *timezone;
 @end
