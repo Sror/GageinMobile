@@ -16,6 +16,7 @@
     self = [super init];
     if (self) {
         _company = [GGCompany model];
+        _mentionedCompanies = [NSMutableArray array];
     }
     return self;
 }
@@ -36,6 +37,18 @@
     self.type = [[aData objectForKey:@"news_type"] intValue];
     self.textview = [aData objectForKey:@"textview"];
     self.pictures = [((NSArray *)[aData objectForKey:@"pictures"]) mutableCopy];
+    
+    self.linkedInSignal = [aData objectForKey:@"linkedin_signal"];
+    self.twitterTweets = [aData objectForKey:@"tweet_tweets"];
+    
+    NSArray *mentionedCompanies = [aData objectForKey:@"mentioned_companies"];
+    
+    for (id companyDic in mentionedCompanies)
+    {
+        GGCompany *company = [GGCompany model];
+        [company parseWithData:companyDic];
+        [_mentionedCompanies addObject:company];
+    }
     
     [self.company parseWithData:aData];
 }

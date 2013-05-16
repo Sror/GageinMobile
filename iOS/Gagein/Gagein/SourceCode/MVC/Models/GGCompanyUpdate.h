@@ -28,6 +28,10 @@
 @property (strong)  NSMutableArray  *pictures;  // when parsing update detail
 @property (assign)  BOOL        hasBeenRead;
 
+@property (copy)    NSString    *linkedInSignal;
+@property (copy)    NSString    *twitterTweets;
+@property (strong)  NSMutableArray  *mentionedCompanies;
+
 -(NSString *)doubleReturnedText;
 -(NSString *)headlineMaxCharCount:(NSUInteger)aMaxCharCount;
 @end
