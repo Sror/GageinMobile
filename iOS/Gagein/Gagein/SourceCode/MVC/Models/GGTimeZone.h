@@ -11,6 +11,6 @@
 
 @interface GGTimeZone : GGDataModel
 @property (copy) NSString   *idStr;
-@property (copy) NSString   *zone;
+@property (copy) NSString   *gmt;
 @property (copy) NSString   *name;
 @end

@@ -71,7 +71,7 @@
     GGTimeZone *data = _timezones[row];
     
     cell.lblTitle.text = data.name;
-    cell.lblSubTitle.text = data.zone;
+    cell.lblSubTitle.text = data.gmt;
     cell.tag = row;
     
     cell.style = [GGUtils styleForArrayCount:_timezones.count atIndex:indexPath.row];
@@ -94,7 +94,7 @@
         if (parser.isOK)
         {
             _userProfile.timezone = data.idStr;
-            _userProfile.timezoneGMT = data.zone;
+            _userProfile.timezoneGMT = data.gmt;
             _userProfile.timezoneName = data.name;
             //[GGAlert alert:@"Timezone changed OK!"];
             //[self naviBackAction:nil];

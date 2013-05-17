@@ -14,8 +14,8 @@
     [super parseWithData:aData];
     
     _idStr = [aData objectForKey:@"id"];
-    _zone = [aData objectForKey:@"zone"];
+    _gmt = [aData objectForKey:@"gmtnum"];
     _name = [aData objectForKey:@"name"];
-    _name = [GGUtils stringByTrimmingLeadingWhitespaceOfString:_name];
+    //_name = [GGUtils stringByTrimmingLeadingWhitespaceOfString:_name];
 }
 @end
