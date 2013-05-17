@@ -33,15 +33,15 @@
     _titleLbl.text = @"";
     _intervalLbl.text = @"";
     
-    _logoIV.layer.borderColor = GGSharedColor.silver.CGColor;
+    _logoIV.layer.borderColor = GGSharedColor.lightGray.CGColor;
     _logoIV.layer.borderWidth = 1;
     
     _logoIV.layer.shadowColor = GGSharedColor.lightGray.CGColor;
-    _logoIV.layer.shadowOpacity = .2f;
+    _logoIV.layer.shadowOpacity = .5f;
     _logoIV.layer.shadowOffset = CGSizeMake(-1, 1);
-    _logoIV.layer.shadowRadius = 2;
+    _logoIV.layer.shadowRadius = 1;
     
-    _logoIV.layer.cornerRadius = 3;
+    //_logoIV.layer.cornerRadius = 3;
     
     
     _titleLbl.numberOfLines = 3;
@@ -67,14 +67,21 @@
 
 -(float)adjustLayout
 {
-    float titleMaxY = CGRectGetMaxY(_titleLbl.frame);
-    CGRect theRect = _descriptionLbl.frame;
-    theRect.origin.y = titleMaxY - 30;
+    //_descriptionLbl.backgroundColor = GGSharedColor.darkGray;
+    NSString * text = _descriptionLbl.text;
+    
+    CGRect theRect = _titleLbl.frame;
+    float titleMaxY = CGRectGetMaxY(theRect);
+    theRect = _descriptionLbl.frame;
+    theRect.origin.y = titleMaxY;
     _descriptionLbl.frame = theRect;
     
+    theRect = self.viewCellBg.frame;
+    theRect.size.height = CGRectGetMaxY(_descriptionLbl.frame);
+    self.viewCellBg.frame = theRect;
+    
     theRect = self.frame;
-    theRect.size.height = CGRectGetMaxY(_descriptionLbl.frame) - 20;
-    //DLog(@"cell height:%f", theRect.size.height);
+    theRect.size.height = CGRectGetMaxY(_viewCellBg.frame) + 5;
     self.frame = theRect;
     
     return theRect.size.height;

@@ -29,7 +29,7 @@
     self.date = [[aData objectForKey:@"date"] longLongValue];
     self.fromSource = [aData objectForKey:@"from_source"];
     self.content = [aData objectForKey:@"news_content"];
-    self.content = [aData objectForKey:@"content"]; // when parsing update detail
+    //self.content = [aData objectForKey:@"content"]; // when parsing update detail
     self.headline = [aData objectForKey:@"news_headline"];
     self.url = [aData objectForKey:@"news_url"];
     self.ID = [[aData objectForKey:@"newsid"] longLongValue];
@@ -51,6 +51,8 @@
     }
     
     [self.company parseWithData:aData];
+    
+    self.hasBeenRead = [[aData objectForKey:@"readed"] boolValue];
 }
 
 -(NSString *)doubleReturnedText

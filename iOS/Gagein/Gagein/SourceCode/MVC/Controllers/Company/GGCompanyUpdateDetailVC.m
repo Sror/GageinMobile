@@ -236,6 +236,12 @@
 {
     CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
     
+#warning TODO: Steps for sharing  -- Daniel Dong
+    // 1. call API to check for linked account list
+    // 2. if linked account is linked, go to step 4.
+    // 3. if linked account not linked, go authentication, if auth OK, call API to report the token.
+    // 4. Share the update.
+    
     UIImage *bgImg = [UIImage imageNamed:@"chatterLongBtnBg"];
     [actionSheet addButtonWithTitle:@"Chatter" bgImage:bgImg block:^{
         DLog(@"Shared to chatter.");

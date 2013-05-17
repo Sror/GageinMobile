@@ -555,14 +555,14 @@
     cell.logoBtn.tag = row;
     
     cell.titleLbl.text = [updateData headlineMaxCharCount:80];
-    cell.sourceLbl.text = [NSString stringWithFormat:@"%@ · %@", updateData.fromSource, [updateData intervalStringWithDate:updateData.date]];//updateData.fromSource;
+    cell.sourceLbl.text = updateData.fromSource;//[NSString stringWithFormat:@"%@ · %@", updateData.fromSource, [updateData intervalStringWithDate:updateData.date]];
     
 #warning FAKE DATA - company update description
-    cell.descriptionLbl.text = SAMPLE_TEXT;//updateData.content;
+    cell.descriptionLbl.text = updateData.content;
     
     [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
     
-    cell.intervalLbl.text = @"";//[updateData intervalStringWithDate:updateData.date];
+    cell.intervalLbl.text = [updateData intervalStringWithDate:updateData.date];
     cell.hasBeenRead = updateData.hasBeenRead;
     [cell adjustLayout];
     
@@ -650,7 +650,7 @@
     if (tableView == self.updatesTV)
     {
         float height = [self _updateCellHeightForIndexPath:indexPath];
-        DLog(@"table view height:%f", height);
+        //DLog(@"table view height:%f", height);
         return height;
     }
     else if (tableView == self.happeningsTV)

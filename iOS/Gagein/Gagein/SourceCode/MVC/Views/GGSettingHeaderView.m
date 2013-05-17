@@ -37,7 +37,7 @@
     }
     else
     {
-        _lblTitle.textColor = GGSharedColor.silver;
+        _lblTitle.textColor = GGSharedColor.white;
     }
 }
 

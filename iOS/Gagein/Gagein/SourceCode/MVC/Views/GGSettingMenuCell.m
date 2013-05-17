@@ -31,6 +31,11 @@
     return 45.f;
 }
 
+-(void)awakeFromNib
+{
+    _lblName.textColor = GGSharedColor.silver;
+}
+
 -(void)setHightlighted:(BOOL)aHighlighted
 {
     if (aHighlighted)
