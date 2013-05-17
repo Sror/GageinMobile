@@ -57,7 +57,9 @@
     
     else
     {
+        [self showLoadingHUD];
         [GGSharedAPI changeProfileWithTitle:_tfJobTitle.text callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {

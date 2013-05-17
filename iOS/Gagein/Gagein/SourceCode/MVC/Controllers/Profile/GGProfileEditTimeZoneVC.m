@@ -84,7 +84,23 @@
 #pragma mark - table view delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-#pragma TODO: all API to change the timezone
+//#pragma TODO: all API to change the timezone
+    GGTimeZone *data = _timezones[indexPath.row];
+    
+    [self showLoadingHUD];
+    [GGSharedAPI changeProfileWithTimezone:data.idStr callback:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            _userProfile.timezone = data.idStr;
+            _userProfile.timezoneGMT = data.zone;
+            _userProfile.timezoneName = data.name;
+            //[GGAlert alert:@"Timezone changed OK!"];
+            //[self naviBackAction:nil];
+            [_tvTimeZone reloadData];
+        }
+    }];
 }
 
 @end

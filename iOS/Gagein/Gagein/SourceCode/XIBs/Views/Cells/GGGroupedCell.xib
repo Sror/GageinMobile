@@ -112,6 +112,7 @@
 										<string key="NSFrame">{{270, 18}, {5, 7}}</string>
 										<reference key="NSSuperview" ref="336047485"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -124,10 +125,10 @@
 									<object class="IBUILabel" id="745211805">
 										<reference key="NSNextResponder" ref="336047485"/>
 										<int key="NSvFlags">-2147483356</int>
-										<string key="NSFrame">{{11, 24}, {233, 21}}</string>
+										<string key="NSFrame">{{12, 24}, {233, 21}}</string>
 										<reference key="NSSuperview" ref="336047485"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView"/>
+										<reference key="NSNextKeyView" ref="844097043"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -137,7 +138,7 @@
 										<string key="IBUIText">1.0</string>
 										<object class="NSColor" key="IBUITextColor">
 											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MC44MjUwODkxNjQ0IDAuODI1MDg5MTY0NCAwLjgyNTA4OTE2NDQAA</bytes>
+											<bytes key="NSRGB">MC43Njc3NjkxOTE2IDAuNzY3NzY5MTkxNiAwLjc2Nzc2OTE5MTYAA</bytes>
 										</object>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
