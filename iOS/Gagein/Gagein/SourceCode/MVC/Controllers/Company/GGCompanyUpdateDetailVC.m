@@ -10,6 +10,7 @@
 #import "GGCompanyUpdate.h"
 #import "GGComUpdateDetailView.h"
 #import "GGWebVC.h"
+#import "CMActionSheet.h"
 
 @interface GGCompanyUpdateDetailVC () <MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -233,7 +234,19 @@
 
 -(IBAction)shareAction:(id)sender
 {
+    CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
     
+    // Customize
+    [actionSheet addButtonWithTitle:@"First Button" type:CMActionSheetButtonTypeWhite block:^{
+        NSLog(@"Dismiss action sheet with \"First Button\"");
+    }];
+    [actionSheet addSeparator];
+    [actionSheet addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:^{
+        NSLog(@"Dismiss action sheet with \"Close Button\"");
+    }];
+    
+    // Present
+    [actionSheet present];
 }
 
 -(IBAction)saveAction:(id)sender

@@ -9,6 +9,8 @@
 #import "GGAnimation.h"
 #import <QuartzCore/QuartzCore.h>
 
+#define FLIP_DURATION       .5f
+
 @implementation GGAnimation
 
 +(CAAnimation*)animationWithType:(NSString*)aType 
@@ -75,22 +77,22 @@
 
 +(CAAnimation *)animationFlipFromTop
 {
-    return [self animationWithType:@"flip" subType:@"fromTop" duration:1.f];
+    return [self animationWithType:@"flip" subType:@"fromTop" duration:FLIP_DURATION];
 }
 
 +(CAAnimation *)animationFlipFromBottom
 {
-    return [self animationWithType:@"flip" subType:@"fromBottom" duration:1.f];
+    return [self animationWithType:@"flip" subType:@"fromBottom" duration:FLIP_DURATION];
 }
 
 +(CAAnimation *)animationFlipFromLeft
 {
-    return [self animationWithType:@"flip" subType:@"fromLeft" duration:1.f];
+    return [self animationWithType:@"flip" subType:@"fromLeft" duration:FLIP_DURATION];
 }
 
 +(CAAnimation *)animationFlipFromRight
 {
-    return [self animationWithType:@"flip" subType:@"fromRight" duration:1.f];
+    return [self animationWithType:@"flip" subType:@"fromRight" duration:FLIP_DURATION];
 }
 
 //+(CAAnimation *)aaa
