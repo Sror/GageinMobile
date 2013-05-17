@@ -71,12 +71,7 @@
     //[self.window addSubview:_naviController.view];
     //[self.window sendSubviewToBack:_naviController.view];
     
-    UIImage *naviBgImg = [UIImage imageNamed:@"bgNavibar"];
-    CGSize navBgSize = naviBgImg.size;
-    CGSize neededSize = CGSizeMake([UIScreen mainScreen].applicationFrame.size.width, navBgSize.height);
-    UIImage *neededNaviBgImg = [GGUtils imageFor:naviBgImg size:neededSize];
-    [[UINavigationBar appearance] setBackgroundImage:neededNaviBgImg forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
+    [self makeNaviBarCustomed:YES];
     
     [self.window makeKeyAndVisible];
     
@@ -84,6 +79,21 @@
     [self enterLoginIfNeeded];
     
     return YES;
+}
+
+-(void)makeNaviBarCustomed:(BOOL)aCustomed
+{
+    UIImage *neededNaviBgImg = nil;
+    if (aCustomed)
+    {
+        UIImage *naviBgImg = [UIImage imageNamed:@"bgNavibar"];
+        CGSize navBgSize = naviBgImg.size;
+        CGSize neededSize = CGSizeMake([UIScreen mainScreen].applicationFrame.size.width, navBgSize.height);
+        neededNaviBgImg = [GGUtils imageFor:naviBgImg size:neededSize];
+    }
+    
+    [[UINavigationBar appearance] setBackgroundImage:neededNaviBgImg forBarMetrics:UIBarMetricsDefault];
+    //[[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
 }
 
 -(GGSlideSettingView *)slideSettingView

@@ -28,6 +28,8 @@
 -(void)popNaviToRoot;
 -(void)showTabIndex:(NSUInteger)aIndex;
 
+-(void)makeNaviBarCustomed:(BOOL)aCustomed;
+
 //-(void)installSlideSettingView;
 @end
 

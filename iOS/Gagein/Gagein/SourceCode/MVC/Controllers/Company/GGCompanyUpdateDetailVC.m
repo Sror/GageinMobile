@@ -11,6 +11,7 @@
 #import "GGComUpdateDetailView.h"
 #import "GGWebVC.h"
 #import "CMActionSheet.h"
+#import "GGAppDelegate.h"
 
 @interface GGCompanyUpdateDetailVC () <MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -147,7 +148,8 @@
     if (result == MFMailComposeResultSent) {
         NSLog(@"It's away!");
     }
-    //[self dismissModalViewControllerAnimated:YES];
+    
+    [GGSharedDelegate makeNaviBarCustomed:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -178,14 +180,16 @@
         [controller setMessageBody:[NSString stringWithFormat:@"<div><a href=\"%@\"> See Detail </a></div>", _companyUpdateDetail.url] isHTML:YES];
     }
     
-    //[self presentModalViewController:controller animated:YES];
+    [GGSharedDelegate makeNaviBarCustomed:NO];
     [self presentViewController:controller animated:YES completion:nil];
 
 }
 
 -(IBAction)sendSMSAction:(id)sender
 {
-    [GGUtils sendSmsTo:[NSArray arrayWithObjects:@"1234567890", nil] body:_companyUpdateDetail.headline vcDelegate:self];
+    NSString *body = [NSString stringWithFormat:@"%@\n%@\n\nvia Gagein at www.gagein.com", _companyUpdateDetail.headline, _companyUpdateDetail.url];
+    [GGUtils sendSmsTo:nil body:body vcDelegate:self];
+    [GGSharedDelegate makeNaviBarCustomed:NO];
 }
 
 -(void)_showWebSignal:(BOOL)aShow url:(NSString *)aURL
@@ -433,10 +437,8 @@
 #pragma mark - API calls
 -(void)_callApiGetCompanyUpdateDetail
 {
-//    if (!_webviewSignal.hidden)
-//    {
-        [self _showWebSignal:NO url:nil];
-    //}
+    [self _showWebSignal:NO url:nil];
+    
     _isShowingLinkedIn = _isShowingTwitter = NO;
     
     GGCompanyUpdate *updateData = [self.updates objectAtIndex:_updateIndex];
@@ -495,8 +497,9 @@
             break;
     }
     
-    //[self dismissModalViewControllerAnimated:YES];
+    [GGSharedDelegate makeNaviBarCustomed:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 @end
