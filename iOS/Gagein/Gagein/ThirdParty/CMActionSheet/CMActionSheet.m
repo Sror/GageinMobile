@@ -79,14 +79,6 @@
         color = @"white";
     }
     
-    // modified by daniel
-    UIImage *image = aBgImage;
-    if (image == nil)
-    {
-        image = [UIImage imageNamed:[NSString stringWithFormat:@"action-%@-button.png", color]];
-        image = [image stretchableImageWithLeftCapWidth:(int)(image.size.width)>>1 topCapHeight:0];
-    }
-    
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -103,6 +95,18 @@
     button.titleLabel.shadowOffset = CGSizeMake(0, -1);
     button.backgroundColor = [UIColor clearColor];
     
+    // modified by daniel
+    UIImage *image = aBgImage;
+    if (image == nil)
+    {
+        image = [UIImage imageNamed:[NSString stringWithFormat:@"action-%@-button.png", color]];
+        image = [image stretchableImageWithLeftCapWidth:(int)(image.size.width)>>1 topCapHeight:0];
+    }
+//    else
+//    {
+//        button.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+//    }
+    
     [button setBackgroundImage:image forState:UIControlStateNormal];
     
     if (CMActionSheetButtonTypeWhite == type) {
@@ -113,7 +117,7 @@
     } else if (CMActionSheetButtonTypeGray == type) {
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
-    } else if (CMActionSheetButtonTypeBlue == type) {
+    } else if (CMActionSheetButtonTypeBlue == type || CMActionSheetButtonTypeCustomBg == type) {
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorWithRed:40 / 255.0 green:170 / 255.0 blue:255 / 255.0 alpha:1] forState:UIControlStateHighlighted];
@@ -123,6 +127,12 @@
         [button setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorWithRed:255 / 255.0 green:40 / 255.0 blue:60 / 255.0 alpha:1] forState:UIControlStateHighlighted];
         [button setTitleShadowColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+    }
+
+    if (CMActionSheetButtonTypeCustomBg == type)
+    {
+        _isBgCustomized = YES;
+        _buttonSize = image.size;
     }
     
     [button setTitle:buttonTitle forState:UIControlStateNormal];
@@ -143,7 +153,7 @@
 
 - (void)addButtonWithTitle:(NSString *)buttonTitle bgImage:(UIImage *)aBgImage block:(CallbackBlock)block
 {
-    [self addButtonWithTitle:buttonTitle bgImage:aBgImage type:CMActionSheetButtonTypeWhite block:block];
+    [self addButtonWithTitle:buttonTitle bgImage:aBgImage type:CMActionSheetButtonTypeCustomBg block:block];
 }
 
 - (void)addButtonWithTitle:(NSString *)buttonTitle type:(CMActionSheetButtonType)type block:(CallbackBlock)block
@@ -210,7 +220,16 @@
                 
                 offset += item.frame.size.height + 10;
             } else {
-                item.frame = CGRectMake(10, offset, actionSheet.frame.size.width - 10*2, 45);
+                
+                if (_isBgCustomized && [item isKindOfClass:[UIButton class]])
+                {
+                    item.frame = CGRectMake((actionSheet.frame.size.width - _buttonSize.width) / 2, offset, _buttonSize.width, _buttonSize.height);
+                }
+                else
+                {
+                    item.frame = CGRectMake(10, offset, actionSheet.frame.size.width - 10*2, 35);
+                }
+                
                 item.tag = tag++;
                 [actionSheet addSubview:item];
                 

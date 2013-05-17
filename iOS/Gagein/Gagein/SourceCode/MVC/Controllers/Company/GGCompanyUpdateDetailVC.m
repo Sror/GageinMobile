@@ -236,7 +236,11 @@
 {
     CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
     
-    // Customize
+    UIImage *chatterImg = [UIImage imageNamed:@"chatterLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"Chatter" bgImage:chatterImg block:^{
+        DLog(@"Shared to chatter.");
+    }];
+    
     [actionSheet addButtonWithTitle:@"First Button" type:CMActionSheetButtonTypeWhite block:^{
         NSLog(@"Dismiss action sheet with \"First Button\"");
     }];

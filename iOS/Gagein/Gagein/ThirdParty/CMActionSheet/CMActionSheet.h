@@ -13,12 +13,15 @@ typedef enum {
 	CMActionSheetButtonTypeWhite = 0,
 	CMActionSheetButtonTypeBlue,
 	CMActionSheetButtonTypeRed,
-	CMActionSheetButtonTypeGray
+	CMActionSheetButtonTypeGray,
+    CMActionSheetButtonTypeCustomBg
 } CMActionSheetButtonType;
 
 @interface CMActionSheet : NSObject
 
-@property (retain) NSString *title;
+@property (retain) NSString     *title;
+@property (assign)  BOOL        isBgCustomized;
+@property (assign) CGSize       buttonSize;
 
 - (void)addButtonWithTitle:(NSString *)title type:(CMActionSheetButtonType)type block:(CallbackBlock)block;
 
