@@ -236,14 +236,33 @@
 {
     CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
     
-    UIImage *chatterImg = [UIImage imageNamed:@"chatterLongBtnBg"];
-    [actionSheet addButtonWithTitle:@"Chatter" bgImage:chatterImg block:^{
+    UIImage *bgImg = [UIImage imageNamed:@"chatterLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"Chatter" bgImage:bgImg block:^{
         DLog(@"Shared to chatter.");
     }];
     
-    [actionSheet addButtonWithTitle:@"First Button" type:CMActionSheetButtonTypeWhite block:^{
-        NSLog(@"Dismiss action sheet with \"First Button\"");
+    bgImg = [UIImage imageNamed:@"facebookLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"LinkedIn" bgImage:bgImg block:^{
+        DLog(@"Shared to LinkedIn.");
     }];
+    
+    bgImg = [UIImage imageNamed:@"twitterLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"Twitter" bgImage:bgImg block:^{
+        DLog(@"Shared to Twitter.");
+    }];
+    
+    bgImg = [UIImage imageNamed:@"facebookLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"Facebook" bgImage:bgImg block:^{
+        DLog(@"Shared to facebook.");
+    }];
+    
+    bgImg = [UIImage imageNamed:@"chatterLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"Yammer" bgImage:bgImg block:^{
+        DLog(@"Shared to Yammer.");
+    }];
+    
+    
+    
     [actionSheet addSeparator];
     [actionSheet addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:^{
         NSLog(@"Dismiss action sheet with \"Close Button\"");

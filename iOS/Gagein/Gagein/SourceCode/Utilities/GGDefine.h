@@ -14,6 +14,7 @@ typedef enum
     , kGGServerDemo
     , kGGServerCN
     , kGGServerStaging
+    , kGGServerRoshen
 }EGGServerEnvironment;
 
 typedef enum {

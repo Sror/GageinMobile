@@ -225,14 +225,98 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+
+-(NSString *)_apiKey
+{
+    switch (CURRENT_ENV)
+    {
+        case kGGServerProduction:
+        {
+            
+        }
+            break;
+            
+        case kGGServerDemo:
+        {
+            
+        }
+            break;
+            
+        case kGGServerCN:
+        {
+            
+        }
+            break;
+            
+        case kGGServerStaging:
+        {
+            
+        }
+            break;
+            
+        case kGGServerRoshen:
+        {
+            return @"MdAwAcLzK2jb3ii4xpYxhVvuqgNrnPSzYje74kQudJ96youSwf8aPVNBnEGwUSBB";
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    return @"0ta2ufb55qm3";
+}
+
+-(NSString *)_secretKey
+{
+    switch (CURRENT_ENV)
+    {
+        case kGGServerProduction:
+        {
+            
+        }
+            break;
+            
+        case kGGServerDemo:
+        {
+            
+        }
+            break;
+            
+        case kGGServerCN:
+        {
+            
+        }
+            break;
+            
+        case kGGServerStaging:
+        {
+            
+        }
+            break;
+            
+        case kGGServerRoshen:
+        {
+            return @"9A_s8P1ya_sEtxyl0tgz7QZRQsKd8-yQFT--R5oImxxMa3Pg3Y_ZL8IYNBrB3VNQ";
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    return @"P6AO2WQYnMH9q39n";
+}
+
 //
 //  This api consumer data could move to a provider object
 //  to allow easy switching between LinkedIn, Twitter, etc.
 //
 - (void)initLinkedInApi
 {
-    apikey = @"0ta2ufb55qm3";
-    secretkey = @"P6AO2WQYnMH9q39n";
+    apikey = [self _apiKey];
+    secretkey = [self _secretKey];
 
     self.consumer = [[OAConsumer alloc] initWithKey:apikey
                                         secret:secretkey
