@@ -14,9 +14,24 @@
 +(CAAnimation*)animationWithType:(NSString*)aType 
                          subType:(NSString*)aSubType 
 {
-    CATransition *animation = [CATransition animation]; 
-	animation.duration = 0.3f;
-	animation.timingFunction = UIViewAnimationCurveEaseInOut;
+    return [self animationWithType:aType subType:aSubType duration:.3f timingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+}
+
++(CAAnimation*)animationWithType:(NSString*)aType
+                         subType:(NSString*)aSubType
+                        duration:(float)aDuration
+{
+    return [self animationWithType:aType subType:aSubType duration:aDuration timingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+}
+
++(CAAnimation*)animationWithType:(NSString*)aType
+                         subType:(NSString*)aSubType
+                        duration:(float)aDuration
+                  timingFunction:(CAMediaTimingFunction *)aTimingFunction
+{
+    CATransition *animation = [CATransition animation];
+	animation.duration = aDuration;
+	animation.timingFunction = aTimingFunction;
 	[animation setType:aType];
 	[animation setSubtype: aSubType];
 	
@@ -58,6 +73,39 @@
     return [self animationWithType:kCATransitionMoveIn subType:kCATransitionFromBottom];
 }
 
++(CAAnimation *)animationFlipFromTop
+{
+    return [self animationWithType:@"flip" subType:@"fromTop" duration:1.f];
+}
+
++(CAAnimation *)animationFlipFromBottom
+{
+    return [self animationWithType:@"flip" subType:@"fromBottom" duration:1.f];
+}
+
++(CAAnimation *)animationFlipFromLeft
+{
+    return [self animationWithType:@"flip" subType:@"fromLeft" duration:1.f];
+}
+
++(CAAnimation *)animationFlipFromRight
+{
+    return [self animationWithType:@"flip" subType:@"fromRight" duration:1.f];
+}
+
+//+(CAAnimation *)aaa
+//{
+//    CATransition* transition = [CATransition animation];
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+//    transition.duration = 1.0f;
+//    transition.type =  @"flip";
+//    transition.subtype = @"fromTop";
+//    [self.navigationController.view.layer removeAllAnimations];
+//    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+//    
+//    UIViewController *ctrl = [[UIViewController alloc] init];
+//    [self.navigationController pushViewController:ctrl animated:NO];
+//}
 
 //+(CATransition*)transactionFade
 //{

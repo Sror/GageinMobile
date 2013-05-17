@@ -54,17 +54,19 @@
 
 -(void)_customizeNaviTitleView
 {
-    _customNaviTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 310, 44)];
+    _customNaviTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
 	_customNaviTitle.backgroundColor = [UIColor clearColor];
 	_customNaviTitle.font = [UIFont boldSystemFontOfSize:16.0];
 	_customNaviTitle.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
 	_customNaviTitle.textAlignment = UITextAlignmentCenter;
 	_customNaviTitle.textColor = GGSharedColor.white;
+    //_customNaviTitle.backgroundColor = GGSharedColor.orange;
     
     CGRect titleRc = CGRectMake(0, 0, 320, 44);
     UIView *titleView = [[UIView alloc] initWithFrame:titleRc];
     //titleView.backgroundColor = GGSharedColor.darkRed;
     [titleView addSubview:_customNaviTitle];
+    titleView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     
     self.navigationItem.titleView = titleView;
 }
@@ -85,6 +87,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    // custom back button
     if (self.navigationController.viewControllers.count <= 1)
     {
         [self hideBackButton];
@@ -94,12 +97,18 @@
         [self showBackButton];
     }
     
-    if (self.navigationItem.leftBarButtonItem)
+    // adjust custom navi title position
+    [self _adjustCustomNaviTitlePosition];
+    
+    // custom left navi button
+    if (_naviButtonLeft)
     {
-        CGRect rc = _customNaviTitle.frame;
-        _customNaviTitle.frame = CGRectMake(-50, rc.origin.y, rc.size.width, rc.size.height);
+        [self hideBackButton];
+        [self.navigationController.navigationBar addSubview:_naviButtonLeft];
     }
     
+    
+    // first time run judgement
     if (_isViewFirstAppear)
     {
         _isViewFirstAppear = NO;
@@ -108,6 +117,7 @@
     {
         [self viewWillAppearNotFirstTimeAction];
     }
+    
 }
 
 -(void)viewWillAppearNotFirstTimeAction
@@ -119,6 +129,19 @@
 {
     [super viewDidAppear:animated];
     [self pushBackButtonFront];
+    
+    [self _adjustCustomNaviTitlePosition];
+}
+
+-(void)_adjustCustomNaviTitlePosition
+{
+    if (self.navigationItem.leftBarButtonItem)
+    {
+        CGRect titleViewRc = self.navigationItem.titleView.frame;
+        CGRect customNaviRc = _customNaviTitle.frame;
+        customNaviRc.origin.x = -titleViewRc.origin.x;
+        _customNaviTitle.frame = customNaviRc;
+    }
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -175,14 +198,7 @@
     {
         UIImage *image = [UIImage imageNamed:@"gageinLogo"];
         UIImageView *iv = [[UIImageView alloc] initWithImage:image];
-//        UIViewAutoresizingNone                 = 0,
-//        UIViewAutoresizingFlexibleLeftMargin   = 1 << 0,
-//        UIViewAutoresizingFlexibleWidth        = 1 << 1,
-//        UIViewAutoresizingFlexibleRightMargin  = 1 << 2,
-//        UIViewAutoresizingFlexibleTopMargin    = 1 << 3,
-//        UIViewAutoresizingFlexibleHeight       = 1 << 4,
-//        UIViewAutoresizingFlexibleBottomMargin = 1 << 5
-        //iv.autoresizingMask = UIViewAutoresizingNone;
+
         CGRect rcScreen = [UIScreen mainScreen].applicationFrame;
         iv.frame = CGRectMake((rcScreen.size.width - image.size.width) / 2, 20, image.size.width, image.size.height);
         [aView addSubview:iv];
@@ -202,6 +218,12 @@
 -(void)naviBackAction:(id)aSender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)dismissAction:(id)aSender
+{
+    UIViewController *vc = self.parentViewController;
+    [vc dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - layout

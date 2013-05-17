@@ -158,29 +158,16 @@
     if (![GGRuntimeData sharedInstance].isLoggedIn)
     {
         [self.naviController.view.layer addAnimation:[GGAnimation animationFade] forKey:nil];
-        [_rootVC presentModalViewController:_naviController animated:NO];
-        //[self.window bringSubviewToFront:_naviController.view];
+        //[_rootVC presentModalViewController:_naviController animated:NO];
+        [_rootVC presentViewController:_naviController animated:NO completion:nil];
     }
-    
-    //return;
-    
-//    if (![GGRuntimeData sharedInstance].isLoggedIn)
-//    {
-//        GGSignupPortalVC *vc = [[GGSignupPortalVC alloc] init];
-//        [self.naviController.view.layer addAnimation:[GGAnimation animationFade] forKey:nil];
-//        [self.naviController pushViewController:vc animated:NO];
-//    }
 }
 
 -(void)popNaviToRoot
 {
     [self.naviController.view.layer addAnimation:[GGAnimation animationFade] forKey:nil];
-    [_rootVC dismissModalViewControllerAnimated:NO];
-    //[self.window sendSubviewToBack:_naviController.view];
-    return;
-    
-//    [self.naviController popToRootViewControllerAnimated:NO];
-//    self.naviController.navigationBarHidden = YES;
+    //[_rootVC dismissModalViewControllerAnimated:NO];
+    [_rootVC dismissViewControllerAnimated:NO completion:nil];
 }
 
 -(void)showTabIndex:(NSUInteger)aIndex

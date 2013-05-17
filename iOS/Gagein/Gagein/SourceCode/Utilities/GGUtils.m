@@ -163,7 +163,8 @@
         controller.body = aBody;
         controller.recipients = aRecipients;
         controller.messageComposeDelegate = aVcDelegate;
-        [aVcDelegate presentModalViewController:controller animated:YES];
+        //[aVcDelegate presentModalViewController:controller animated:YES];
+        [aVcDelegate presentViewController:controller animated:YES completion:nil];
     }
 }
 

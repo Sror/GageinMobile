@@ -9,11 +9,14 @@
 #import "GGCompanyUpdateDetailVC.h"
 #import "GGCompanyUpdate.h"
 #import "GGComUpdateDetailView.h"
+#import "GGWebVC.h"
 
 @interface GGCompanyUpdateDetailVC () <MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIButton *btnSave;
+@property (strong, nonatomic) IBOutlet UIWebView *webviewSignal;
+@property (weak, nonatomic) IBOutlet UIView *viewContent;
 
 
 @end
@@ -27,6 +30,9 @@
     
     GGComUpdateDetailView   *_comUpdateDetailCell;
     UIActivityIndicatorView *_activityIndicator;
+    
+    BOOL                    _isShowingLinkedIn;
+    BOOL                    _isShowingTwitter;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -44,6 +50,8 @@
     self.naviTitle = _naviTitleString;
     self.view.backgroundColor = GGSharedColor.silver;
     self.scrollView.alwaysBounceVertical = YES;
+    //[_webviewSignal removeFromSuperview];
+    _webviewSignal.hidden = YES;
     
     //
     _comUpdateDetailCell = [GGComUpdateDetailView viewFromNibWithOwner:self];
@@ -108,6 +116,8 @@
     [self setScrollView:nil];
     [self setWebView:nil];
     [self setBtnSave:nil];
+    [self setWebviewSignal:nil];
+    [self setViewContent:nil];
     [super viewDidUnload];
 }
 
@@ -136,7 +146,8 @@
     if (result == MFMailComposeResultSent) {
         NSLog(@"It's away!");
     }
-    [self dismissModalViewControllerAnimated:YES];
+    //[self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Helper
@@ -166,13 +177,63 @@
         [controller setMessageBody:[NSString stringWithFormat:@"<div><a href=\"%@\"> See Detail </a></div>", _companyUpdateDetail.url] isHTML:YES];
     }
     
-    [self presentModalViewController:controller animated:YES];
+    //[self presentModalViewController:controller animated:YES];
+    [self presentViewController:controller animated:YES completion:nil];
 
 }
 
 -(IBAction)sendSMSAction:(id)sender
 {
     [GGUtils sendSmsTo:[NSArray arrayWithObjects:@"1234567890", nil] body:_companyUpdateDetail.headline vcDelegate:self];
+}
+
+-(void)_showWebSignal:(BOOL)aShow url:(NSString *)aURL
+{
+    BOOL needAnimation = (_webviewSignal.hidden == aShow);
+    _webviewSignal.hidden = !aShow;
+    if (aShow)
+    {
+        if (needAnimation)
+        {
+            [self.viewContent.layer addAnimation:[GGAnimation animationFlipFromRight] forKey:nil];
+        }
+        
+        [_webviewSignal loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:aURL]]];
+        _webviewSignal.delegate = self;
+    }
+    else
+    {
+        if (needAnimation)
+        {
+            [self.viewContent.layer addAnimation:[GGAnimation animationFlipFromLeft] forKey:nil];
+        }
+        
+        [_webviewSignal stopLoading];
+    }
+}
+
+-(IBAction)linkedInAction:(id)sender
+{
+    [self _showWebSignal:!_isShowingLinkedIn url:_companyUpdateDetail.linkedInSignal];
+    _isShowingLinkedIn = !_isShowingLinkedIn;
+    _isShowingTwitter = NO;
+    
+//    [self.viewContent.layer addAnimation:[GGAnimation animationFlipFromRight] forKey:nil];
+//    _webviewSignal.hidden = NO;
+//
+//    [_webviewSignal loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_companyUpdateDetail.linkedInSignal]]];
+}
+
+-(IBAction)twitterAction:(id)sender
+{
+    [self _showWebSignal:!_isShowingTwitter url:_companyUpdateDetail.twitterTweets];
+    _isShowingTwitter = !_isShowingTwitter;
+    _isShowingLinkedIn = NO;
+}
+
+-(IBAction)shareAction:(id)sender
+{
+    
 }
 
 -(IBAction)saveAction:(id)sender
@@ -251,7 +312,6 @@
         NSURL *url = [NSURL URLWithString:_companyUpdateDetail.url];
         [_webView loadRequest:[NSURLRequest requestWithURL:url]];
         _webView.hidden = NO;
-        [self showLoadingHUD];
     }
     else
     {
@@ -331,6 +391,12 @@
 #pragma mark - API calls
 -(void)_callApiGetCompanyUpdateDetail
 {
+//    if (!_webviewSignal.hidden)
+//    {
+        [self _showWebSignal:NO url:nil];
+    //}
+    _isShowingLinkedIn = _isShowingTwitter = NO;
+    
     GGCompanyUpdate *updateData = [self.updates objectAtIndex:_updateIndex];
     [self showLoadingHUD];
     [GGSharedAPI getCompanyUpdateDetailWithNewsID:updateData.ID callback:^(id operation, id aResultObject, NSError *anError) {
@@ -351,6 +417,11 @@
 
 
 #pragma mark - webview delegate
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [self showLoadingHUD];
+}
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [self hideLoadingHUD];
@@ -382,7 +453,8 @@
             break;
     }
     
-    [self dismissModalViewControllerAnimated:YES];
+    //[self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

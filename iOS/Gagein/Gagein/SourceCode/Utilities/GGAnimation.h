@@ -11,12 +11,20 @@
 @class CAAnimation;
 
 @interface GGAnimation : NSObject
+
 +(CAAnimation*)animationFade;
+
 +(CAAnimation*)animationPushFromLeft;
 +(CAAnimation*)animationPushFromRight;
-+(CAAnimation*)animationMoveInFromTop;
-+(CAAnimation*)animationMoveInFromBottom;
 +(CAAnimation*)animationPushFromTop;
 +(CAAnimation*)animationPushFromBottom;
+
++(CAAnimation*)animationMoveInFromTop;
++(CAAnimation*)animationMoveInFromBottom;
+
++(CAAnimation *)animationFlipFromTop;
++(CAAnimation *)animationFlipFromBottom;
++(CAAnimation *)animationFlipFromLeft;
++(CAAnimation *)animationFlipFromRight;
 
 @end

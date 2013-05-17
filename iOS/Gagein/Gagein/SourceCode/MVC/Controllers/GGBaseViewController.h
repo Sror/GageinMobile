@@ -12,6 +12,7 @@
 @interface GGBaseViewController : UIViewController
 @property (strong) UILabel  *customNaviTitle;
 @property (copy) NSString *naviTitle;
+@property (strong) UIButton *naviButtonLeft;
 
 +(id)createInstance;
 
@@ -30,6 +31,7 @@
 
 // for overriding
 -(void)naviBackAction:(id)aSender;
+-(void)dismissAction:(id)aSender;
 
 //unknown reason cause view a little hide at top, adjust using this method
 -(CGRect)viewportAdjsted;
