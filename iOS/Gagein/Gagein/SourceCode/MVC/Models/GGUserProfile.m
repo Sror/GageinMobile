@@ -32,7 +32,7 @@
     self.email = [aData objectForKey:@"mem_email"];
     self.timezone = [aData objectForKey:@"mem_add_timezone"];
     self.orgTitle = [aData objectForKey:@"mem_org_title"];
-    self.orgID = [aData objectForKey:@"orgid"];
+    self.orgID = [[aData objectForKey:@"orgid"] longLongValue];
     self.orgName = [aData objectForKey:@"org_name"];
     self.orgWebsite = [aData objectForKey:@"org_website"];
     self.orgLogoPath = [aData objectForKey:@"org_logo_path"];

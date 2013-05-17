@@ -55,11 +55,6 @@
     [self installGageinLogoTo:self.scrolView];
     self.ivLoginFieldBg.image = [[UIImage imageNamed:@"bgLoginField"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
     [self.btnLogin setBackgroundImage:[[UIImage imageNamed:@"btnYellowBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 10, 5, 10)] forState:UIControlStateNormal];
-    
-    
-#warning test login data
-    //self.tfEmail.text = @"dymx101@hotmail.com";
-    //self.tfPassword.text = @"heartL0";
 }
 
 -(void)viewWillAppear:(BOOL)animated

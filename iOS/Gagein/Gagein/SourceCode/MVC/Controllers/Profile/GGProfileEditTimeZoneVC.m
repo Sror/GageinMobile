@@ -96,8 +96,7 @@
             _userProfile.timezone = data.idStr;
             _userProfile.timezoneGMT = data.gmt;
             _userProfile.timezoneName = data.name;
-            //[GGAlert alert:@"Timezone changed OK!"];
-            //[self naviBackAction:nil];
+
             [_tvTimeZone reloadData];
         }
     }];

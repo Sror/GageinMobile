@@ -25,11 +25,17 @@
 @property (weak, nonatomic) IBOutlet UITableView *tvSuggestedCompanies;
 @property (weak, nonatomic) IBOutlet GGStyledSearchBar *viewSearchBar;
 
+@property (weak, nonatomic) IBOutlet UIView *viewComInfoDefined;
+@property (weak, nonatomic) IBOutlet UIView *viewComInfoCustom;
+@property (weak, nonatomic) IBOutlet UILabel *lblComNameCustom;
+
 @end
 
 @implementation GGProfileEditCompanyVC
 {
     NSMutableArray      *_suggestedCompanies;
+    NSTimer             *_searchTimer;
+    NSString            *_customComName;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -49,6 +55,7 @@
     _ivComInfoBg.image = GGSharedImagePool.tableCellRoundBg;
     _viewSearchBar = [GGUtils replaceFromNibForView:_viewSearchBar];
     _viewSearchBar.delegate = self;
+    _viewSearchBar.tfSearch.returnKeyType = UIReturnKeyDone;
     
     UITapGestureRecognizer *tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideDimedView)];
     [_viewDimed addGestureRecognizer:tapGest];
@@ -58,8 +65,25 @@
     tvComRc.size.height = [UIScreen mainScreen].applicationFrame.size.height - self.navigationController.navigationBar.frame.size.height - _viewSearchBar.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT;
     _tvSuggestedCompanies.frame = tvComRc;
     
-    _lblComName.text = _userProfile.orgName;
-    _lblComWebsite.text = _userProfile.orgWebsite;
+    [self _updateUiIsComanyCustomed:NO];
+}
+
+-(void)_updateUiIsComanyCustomed:(BOOL)aIsCustom
+{
+    _viewComInfoDefined.hidden = aIsCustom;
+    _viewComInfoCustom.hidden = !aIsCustom;
+    [self hideDimedView];
+    
+    if (aIsCustom)
+    {
+        _lblComNameCustom.text = _customComName;
+    }
+    else
+    {
+        _lblComName.text = _userProfile.orgName;
+        _lblComWebsite.text = _userProfile.orgWebsite;
+        [_ivComLogo setImageWithURL:[NSURL URLWithString:_userProfile.orgLogoPath] placeholderImage:GGSharedImagePool.placeholder];
+    }
 }
 
 - (void)viewDidUnload {
@@ -71,7 +95,16 @@
     [self setViewDimed:nil];
     [self setTvSuggestedCompanies:nil];
     [self setViewSearchBar:nil];
+    [self setViewComInfoDefined:nil];
+    [self setViewComInfoCustom:nil];
+    [self setLblComNameCustom:nil];
     [super viewDidUnload];
+}
+
+-(void)dealloc
+{
+    [_searchTimer invalidate];
+    _searchTimer = nil;
 }
 
 #pragma mark - 
@@ -110,8 +143,24 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //GGCompany *company = _suggestedCompanies[indexPath.row];
+    GGCompany *company = _suggestedCompanies[indexPath.row];
 #warning TODO: set company to user profile
+    
+    [self showLoadingHUD];
+    [GGSharedAPI changeProfileWithOrgID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            _userProfile.orgID = company.ID;
+            _userProfile.orgName = company.name;
+            _userProfile.orgWebsite = company.website;
+            _userProfile.orgLogoPath = company.logoPath;
+            
+            [self _updateUiIsComanyCustomed:NO];
+            [GGAlert alert:@"Company changed OK!"];
+        }
+    }];
 }
 
 #pragma mark - GGStyledSearchBarDelegate
@@ -139,9 +188,16 @@
 
 - (BOOL)searchBar:(GGStyledSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    if (range.location <= 0) {
+    if (range.location <= 0)
+    {
         _tvSuggestedCompanies.hidden = YES;
     }
+    else
+    {
+        [_searchTimer invalidate];
+        _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2.f target:self selector:@selector(_callSearchCompanySuggestion) userInfo:nil repeats:NO];
+    }
+    
     return YES;
 }
 
@@ -153,7 +209,31 @@
 
 - (BOOL)searchBarShouldSearch:(GGStyledSearchBar *)searchBar
 {
-    [self _callSearchCompanySuggestion];
+    [_searchTimer invalidate];
+    _searchTimer = nil;
+    //[self _callSearchCompanySuggestion];
+    
+    _customComName = _viewSearchBar.tfSearch.text;
+    if (_customComName.length)
+    {
+        [self showLoadingHUD];
+        [GGSharedAPI changeProfileWithOrgName:_customComName callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                _userProfile.orgID = 0;
+                _userProfile.orgName = _customComName;
+                _userProfile.orgWebsite = nil;
+                _userProfile.orgLogoPath = nil;
+                
+                [self _updateUiIsComanyCustomed:YES];
+                [GGAlert alert:@"Company changed OK!"];
+            }
+        }];
+    }
+    
+    
     return YES;
 }
 
@@ -167,12 +247,16 @@
         [GGSharedAPI getCompanySuggestionWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            GGDataPage *page = [parser parseSearchCompany];
-            [_suggestedCompanies removeAllObjects];
-            [_suggestedCompanies addObjectsFromArray:page.items];
+            if (parser.isOK)
+            {
+                GGDataPage *page = [parser parseSearchCompany];
+                [_suggestedCompanies removeAllObjects];
+                [_suggestedCompanies addObjectsFromArray:page.items];
+                
+                _tvSuggestedCompanies.hidden = NO;
+                [_tvSuggestedCompanies reloadData];
+            }
             
-            _tvSuggestedCompanies.hidden = NO;
-            [_tvSuggestedCompanies reloadData];
         }];
     }
 }

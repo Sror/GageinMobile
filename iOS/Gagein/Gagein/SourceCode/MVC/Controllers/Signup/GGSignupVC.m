@@ -45,8 +45,6 @@
     [self installGageinLogoTo:self.scrolView];
     
 #warning TEST register data
-    //self.tfEmail.text = @"dymx102@hotmail.com";
-    //self.tfPassword.text = @"heartL0";
     self.tfFirstName.text = @"Mcdonald";
     self.tfLastName.text = @"Kentucky";
 }

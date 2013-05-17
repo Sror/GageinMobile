@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Company/GGFollowCompanyVC.m"
-         timestampString = "389746831.034105"
+         timestampString = "390444958.172106"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "298"
-         endingLineNumber = "298"
+         startingLineNumber = "304"
+         endingLineNumber = "304"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Company/GGFollowCompanyVC.m"
-         timestampString = "389746831.034105"
+         timestampString = "390444958.172106"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "305"
-         endingLineNumber = "305"
+         startingLineNumber = "311"
+         endingLineNumber = "311"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>

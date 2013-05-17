@@ -17,7 +17,7 @@
 @property (copy) NSString *lastName;
 @property (copy) NSString *email;
 @property (copy) NSString *orgTitle;
-@property (copy) NSString *orgID;
+@property (assign) long long orgID;
 @property (copy) NSString *orgName;
 @property (copy) NSString *orgWebsite;
 @property (copy) NSString *orgLogoPath;

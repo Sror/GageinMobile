@@ -81,14 +81,14 @@ DEF_SINGLETON(GGAPITest)
 -(void)_testSelectCategoryFilterWithID
 {
     [GGSharedAPI selectCategoryFilterWithID:1 selected:YES callback:^(id operation, id aResultObject, NSError *anError) {
-        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+       // GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
     }];
 }
 
 -(void)_testSetCategoryFilterEnabled
 {
     [GGSharedAPI setCategoryFilterEnabled:YES callback:^(id operation, id aResultObject, NSError *anError) {
-        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+       // GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
     }];
 }
 
@@ -108,14 +108,14 @@ DEF_SINGLETON(GGAPITest)
 -(void)_testSelectAgentFilterWithID
 {
     [GGSharedAPI selectAgentFilterWithID:1 selected:YES callback:^(id operation, id aResultObject, NSError *anError) {
-        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        //GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
     }];
 }
 
 -(void)_testSetAgentFilterEnabled
 {
     [GGSharedAPI setAgentFilterEnabled:YES callback:^(id operation, id aResultObject, NSError *anError) {
-        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        //GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         
     }];
 }

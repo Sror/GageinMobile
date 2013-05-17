@@ -93,6 +93,12 @@
     [super viewDidUnload];
 }
 
+-(void)dealloc
+{
+    [_searchTimer invalidate];
+    _searchTimer = nil;
+}
+
 #pragma mark - internal
 -(void)_showDoneBtn:(BOOL)aShow
 {
