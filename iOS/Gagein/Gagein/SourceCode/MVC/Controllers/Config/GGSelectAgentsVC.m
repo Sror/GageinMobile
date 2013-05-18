@@ -46,12 +46,19 @@
     self.view.backgroundColor = GGSharedColor.silver;
     self.viewTable.backgroundColor = GGSharedColor.clear;
     
+    [_btnNextStep setBackgroundImage:GGSharedImagePool.bgBtnOrange forState:UIControlStateNormal];
+    _viewSetupLower.backgroundColor = GGSharedColor.silver;
+    _viewSetupLower.layer.shadowOffset = CGSizeMake(-2, 0);
+    _viewSetupLower.layer.shadowRadius = 4;
+    _viewSetupLower.layer.shadowOpacity = .3f;
+    
     self.naviTitle = @"Start Your Gagein";
     //self.navigationItem.hidesBackButton = YES;
     
     [self.btnAddCustomAgent setBackgroundImage:GGSharedImagePool.bgBtnOrange forState:UIControlStateNormal];
     
-    if (!_isFromRegistration)
+    if (NO)
+    //if (!_isFromRegistration)
     {
         self.naviTitle = @"Choose Agents";
         
@@ -63,7 +70,8 @@
         
         // addjust layout
         self.btnAddCustomAgent.frame = [GGUtils setY:20 rect:self.btnAddCustomAgent.frame];
-        self.viewTable.frame = [GGUtils setH:self.view.frame.size.height - 60 rect:[GGUtils setY:60 rect:self.viewTable.frame]];
+        float tvGap = 20;
+        self.viewTable.frame = [GGUtils setH:self.view.frame.size.height - tvGap * 2 rect:[GGUtils setY:tvGap rect:self.viewTable.frame]];
     }
     
     [self _getAgentsData];
