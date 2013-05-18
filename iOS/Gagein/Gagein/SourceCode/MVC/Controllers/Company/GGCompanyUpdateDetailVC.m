@@ -171,14 +171,35 @@
     MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
     controller.mailComposeDelegate = self;
     [controller setSubject:_companyUpdateDetail.headline];
-    if (_companyUpdateDetail.textview.length)
-    {
-        [controller setMessageBody:_companyUpdateDetail.textview isHTML:YES];
-    }
-    else
-    {
-        [controller setMessageBody:[NSString stringWithFormat:@"<div><a href=\"%@\"> See Detail </a></div>", _companyUpdateDetail.url] isHTML:YES];
-    }
+    
+    NSString *contentBody = [NSString stringWithFormat:@"<div>I want to share this update with you.<br\\><br\\> \
+                             %@\n\n \
+                             %@\n\n \
+                             %@\n\n \
+                             Shared from GageIn, a visual sales intelligence company.</div>", _companyUpdateDetail.url
+                             , _companyUpdateDetail.headline
+                             , _companyUpdateDetail.contentInDetail];
+    
+//    NSMutableString *contentBody = [NSMutableString string];
+//    [contentBody appendString:@""];
+//    [contentBody appendString:_companyUpdateDetail.url];
+//    [contentBody appendString:@"\n\n"];
+//    [contentBody appendString:_companyUpdateDetail.headline];
+//    [contentBody appendString:@"\n\n"];
+//    [contentBody appendString:_companyUpdateDetail.contentInDetail];
+//    [contentBody appendString:@"\n\n"];
+//    [contentBody appendString:@"Shared from GageIn, a visual sales intelligence company."];
+    
+    [controller setMessageBody:contentBody isHTML:YES];
+    
+//    if (_companyUpdateDetail.textview.length)
+//    {
+//        [controller setMessageBody:_companyUpdateDetail.textview isHTML:YES];
+//    }
+//    else
+//    {
+//        [controller setMessageBody:[NSString stringWithFormat:@"<div><a href=\"%@\"> See Detail </a></div>", _companyUpdateDetail.url] isHTML:YES];
+//    }
     
     [GGSharedDelegate makeNaviBarCustomed:NO];
     [self presentViewController:controller animated:YES completion:nil];

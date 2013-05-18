@@ -16,6 +16,7 @@
 @interface GGCompanyUpdate : GGDataModel
 @property (copy)    NSString *headline;
 @property (copy)    NSString *content;
+@property (copy)    NSString *contentInDetail;
 @property (copy)    NSString *textview;
 @property (copy)    NSString *url;
 @property (copy)    NSString *note;

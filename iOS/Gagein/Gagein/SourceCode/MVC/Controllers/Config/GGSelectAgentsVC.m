@@ -11,6 +11,8 @@
 #import "GGAgent.h"
 #import "GGSelectFuncAreasVC.h"
 #import "GGCustomAgentVC.h"
+#import "GGGroupedCell.h"
+#import "GGConfigLabel.h"
 
 @interface GGSelectAgentsVC ()
 @property (weak, nonatomic) IBOutlet UITableView *viewTable;
@@ -41,22 +43,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = GGSharedColor.veryLightGray;
-    self.title = @"Start Your Gagein";
-    self.navigationItem.hidesBackButton = YES;
+    self.view.backgroundColor = GGSharedColor.silver;
+    self.viewTable.backgroundColor = GGSharedColor.clear;
+    
+    self.naviTitle = @"Start Your Gagein";
+    //self.navigationItem.hidesBackButton = YES;
     
     [self.btnAddCustomAgent setBackgroundImage:GGSharedImagePool.bgBtnOrange forState:UIControlStateNormal];
     
     if (!_isFromRegistration)
     {
         self.title = @"Choose Agents";
+        
         // add done button
-        
-//        UIButton *doneBtn = [GGUtils darkGrayButtonWithTitle:@"Done" frame:CGRectMake(0, 0, 100, 30)];
-//        [doneBtn addTarget:self action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
-//        UIBarButtonItem *doneBtnItem = [[UIBarButtonItem alloc] initWithCustomView:doneBtn];
-        
-//        UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(doneAction:)];
         self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(doneAction:)];
         
         // hide setup tip
@@ -182,41 +181,45 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *predefinedCellId = @"predefinedCellId";
-    static NSString *customCellId = @"customCellId";
-    UITableViewCell* cell = nil;
+    int row = indexPath.row;
+    int section = indexPath.section;
     
-    BOOL isCustomCell = (_customAgents.count && indexPath.section == 0);
-    
-    if (!isCustomCell)
+    static NSString *cellID = @"GGGroupedCell";
+    GGGroupedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell)
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:predefinedCellId];
-        if (cell == nil)
-        {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:predefinedCellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
+        cell = [GGGroupedCell viewFromNibWithOwner:self];
+    }
+    
+    BOOL isCustomCell = (_customAgents.count && section == 0);
+    
+    if (isCustomCell)
+    {
+        GGAgent *data = [_customAgents objectAtIndex:row];
         
-        GGAgent *agentData = [_predefinedAgents objectAtIndex:indexPath.row];
-        cell.textLabel.text = agentData.name;
-        cell.accessoryType = agentData.checked ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.lblTitle.text = data.name;
+        cell.lblSubTitle.text = data.keywords;
+        cell.tag = row;
+        
+        cell.style = [GGUtils styleForArrayCount:_customAgents.count atIndex:row];
+        
+        cell.checked = data.checked;
+        [cell showSubTitle:YES];
         
         return cell;
     }
     
-    cell = [tableView dequeueReusableCellWithIdentifier:customCellId];
-    if (cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:customCellId];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
+    GGAgent *data = [_predefinedAgents objectAtIndex:row];
     
-    GGAgent *agentData = [_customAgents objectAtIndex:indexPath.row];
-    cell.textLabel.text = agentData.name;
-    cell.detailTextLabel.text = agentData.keywords;
-    cell.accessoryType = agentData.checked ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    cell.lblTitle.text = data.name;
+    cell.tag = row;
     
-    return cell;
+    cell.style = [GGUtils styleForArrayCount:_predefinedAgents.count atIndex:row];
+    
+    cell.checked = data.checked;
+    [cell showSubTitle:NO];
+    
+    return cell;    
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -230,6 +233,28 @@
 }
 
 #pragma mark - table view delegate
+-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return [GGConfigLabel HEIGHT];
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    GGConfigLabel *configLabel = [GGConfigLabel viewFromNibWithOwner:self];
+    configLabel.backgroundColor = GGSharedColor.silver;
+    
+    if (_customAgents.count && section == 0)
+    {
+        configLabel.lblText.text = @"CUSTOM AGENTS";
+    }
+    else
+    {
+        configLabel.lblText.text = @"PREDEFINED AGENTS";
+    }
+    
+    return configLabel;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     GGAgent *agent = nil;
