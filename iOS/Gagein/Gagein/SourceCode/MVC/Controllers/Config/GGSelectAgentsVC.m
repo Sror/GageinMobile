@@ -57,8 +57,8 @@
     
     [self.btnAddCustomAgent setBackgroundImage:GGSharedImagePool.bgBtnOrange forState:UIControlStateNormal];
     
-    if (NO)
-    //if (!_isFromRegistration)
+    //if (NO)
+    if (!_isFromRegistration)
     {
         self.naviTitle = @"Choose Agents";
         
@@ -70,8 +70,8 @@
         
         // addjust layout
         self.btnAddCustomAgent.frame = [GGUtils setY:20 rect:self.btnAddCustomAgent.frame];
-        float tvGap = 20;
-        self.viewTable.frame = [GGUtils setH:self.view.frame.size.height - tvGap * 2 rect:[GGUtils setY:tvGap rect:self.viewTable.frame]];
+        float tvGap = 60;
+        self.viewTable.frame = [GGUtils setH:self.view.frame.size.height - tvGap rect:[GGUtils setY:tvGap rect:self.viewTable.frame]];
     }
     
     [self _getAgentsData];

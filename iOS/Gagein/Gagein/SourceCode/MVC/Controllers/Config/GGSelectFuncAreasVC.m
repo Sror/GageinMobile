@@ -42,8 +42,14 @@
     self.naviTitle = @"Start Your Gagein";
     self.view.backgroundColor = GGSharedColor.silver;
     self.viewTable.backgroundColor = GGSharedColor.clear;
-    //self.navigationItem.hidesBackButton = YES;
     
+    [_btnDoneStep setBackgroundImage:GGSharedImagePool.bgBtnOrange forState:UIControlStateNormal];
+    _viewSetupLower.backgroundColor = GGSharedColor.silver;
+    _viewSetupLower.layer.shadowOffset = CGSizeMake(-2, 0);
+    _viewSetupLower.layer.shadowRadius = 4;
+    _viewSetupLower.layer.shadowOpacity = .3f;
+    
+    //if (NO)
     if (!_isFromRegistration)
     {
         self.naviTitle = @"Choose Functional Areas";
