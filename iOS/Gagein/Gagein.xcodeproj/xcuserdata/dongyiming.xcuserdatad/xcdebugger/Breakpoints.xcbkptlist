@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Config/GGSelectFuncAreasVC.m"
-         timestampString = "387425672.42302"
+         timestampString = "390532899.542333"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "169"
-         endingLineNumber = "169"
+         startingLineNumber = "178"
+         endingLineNumber = "178"
          landmarkName = "-_getAreasData"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/GGBaseViewController.m"
-         timestampString = "390506694.234606"
+         timestampString = "390532690.099836"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "228"
-         endingLineNumber = "228"
+         startingLineNumber = "229"
+         endingLineNumber = "229"
          landmarkName = "@implementation GGBaseViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -489,11 +489,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/GGBaseViewController.m"
-         timestampString = "390506694.234606"
+         timestampString = "390532690.099836"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "214"
-         endingLineNumber = "214"
+         startingLineNumber = "215"
+         endingLineNumber = "215"
          landmarkName = "-installTopLine"
          landmarkType = "5">
       </FileBreakpoint>
@@ -995,13 +995,26 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Gagein/GGAppDelegate.m"
-         timestampString = "390526815.600085"
+         filePath = "Gagein/SourceCode/MVC/Controllers/GGBaseViewController.m"
+         timestampString = "390532606.002872"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "134"
+         endingLineNumber = "134"
+         landmarkName = "-viewDidAppear:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Controllers/GGBaseViewController.m"
+         timestampString = "390532612.485876"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "95"
          endingLineNumber = "95"
-         landmarkName = "-makeNaviBarCustomed:"
+         landmarkName = "-viewWillAppear:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -11,6 +11,8 @@
 #import "GGFunctionalArea.h"
 #import "GGMember.h"
 #import "GGAppDelegate.h"
+#import "GGGroupedCell.h"
+#import "GGConfigLabel.h"
 
 @interface GGSelectFuncAreasVC ()
 @property (weak, nonatomic) IBOutlet UITableView *viewTable;
@@ -37,21 +39,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Start Your Gagein";
-    self.navigationItem.hidesBackButton = YES;
+    self.naviTitle = @"Start Your Gagein";
+    self.view.backgroundColor = GGSharedColor.silver;
+    self.viewTable.backgroundColor = GGSharedColor.clear;
+    //self.navigationItem.hidesBackButton = YES;
     
     if (!_isFromRegistration)
     {
-        self.title = @"Choose Functional Areas";
+        self.naviTitle = @"Choose Functional Areas";
+        
         // add done button
-//        UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(doneAction:)];
         self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(doneAction:)];
         
         // hide setup tip
         self.viewSetupLower.hidden = self.viewSetupUpper.hidden = YES;
         
         // addjust layout
-        self.viewTable.frame = [GGUtils setH:self.view.frame.size.height - 10 rect:[GGUtils setY:10 rect:self.viewTable.frame]];
+        float tvGap = 20;
+        self.viewTable.frame = [GGUtils setH:self.view.frame.size.height - tvGap * 2 rect:[GGUtils setY:tvGap rect:self.viewTable.frame]];
     }
     
     [self _getAreasData];
@@ -122,18 +127,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *areaCellId = @"areaCellId";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:areaCellId];
-    if (cell == nil)
+    int row = indexPath.row;
+    //int section = indexPath.section;
+    
+    static NSString *cellID = @"GGGroupedCell";
+    GGGroupedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:areaCellId];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell = [GGGroupedCell viewFromNibWithOwner:self];
+        [cell showSubTitle:NO];
     }
     
-    GGFunctionalArea *areaData = _functionalAreas[indexPath.row];
-    cell.textLabel.text = areaData.name;
-    cell.accessoryType = areaData.checked ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    GGFunctionalArea *data = _functionalAreas[row];
+    cell.lblTitle.text = data.name;
+    cell.style = [GGUtils styleForArrayCount:_functionalAreas.count atIndex:row];
     
+    cell.checked = data.checked;
     return cell;
 }
 

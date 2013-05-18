@@ -54,21 +54,25 @@
 
 -(void)_customizeNaviTitleView
 {
+    //
     _customNaviTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
 	_customNaviTitle.backgroundColor = [UIColor clearColor];
 	_customNaviTitle.font = [UIFont boldSystemFontOfSize:16.0];
 	_customNaviTitle.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
 	_customNaviTitle.textAlignment = UITextAlignmentCenter;
 	_customNaviTitle.textColor = GGSharedColor.white;
-    //_customNaviTitle.backgroundColor = GGSharedColor.orange;
     
+    //
     CGRect titleRc = CGRectMake(0, 0, 320, 44);
     UIView *titleView = [[UIView alloc] initWithFrame:titleRc];
-    //titleView.backgroundColor = GGSharedColor.darkRed;
     [titleView addSubview:_customNaviTitle];
     titleView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     
     self.navigationItem.titleView = titleView;
+    
+    // for debug...
+//    _customNaviTitle.backgroundColor = GGSharedColor.orange;
+//    titleView.backgroundColor = GGSharedColor.darkRed;
 }
 
 -(GGNaviBackButton *)__globalBackButton
@@ -135,13 +139,10 @@
 
 -(void)_adjustCustomNaviTitlePosition
 {
-    if (self.navigationItem.leftBarButtonItem)
-    {
-        CGRect titleViewRc = self.navigationItem.titleView.frame;
-        CGRect customNaviRc = _customNaviTitle.frame;
-        customNaviRc.origin.x = -titleViewRc.origin.x;
-        _customNaviTitle.frame = customNaviRc;
-    }
+    CGRect titleViewRc = self.navigationItem.titleView.frame;
+    CGRect customNaviRc = _customNaviTitle.frame;
+    customNaviRc.origin.x = -titleViewRc.origin.x;
+    _customNaviTitle.frame = customNaviRc;
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation

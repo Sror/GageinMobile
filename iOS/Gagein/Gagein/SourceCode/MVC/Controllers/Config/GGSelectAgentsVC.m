@@ -53,7 +53,7 @@
     
     if (!_isFromRegistration)
     {
-        self.title = @"Choose Agents";
+        self.naviTitle = @"Choose Agents";
         
         // add done button
         self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(doneAction:)];
