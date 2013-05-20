@@ -170,7 +170,12 @@
 //
 -(void)snSaveLinedInWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback
 {
-    return [self snSaveWithType:kGGSnTypeLinkedIn token:aToken secret:aSecret sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
+    [self snSaveWithType:kGGSnTypeLinkedIn token:aToken secret:aSecret sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
+}
+
+-(void)snSaveSalesforce:(NSString *)anAccountID callback:(GGApiBlock)aCallback
+{
+    //return [self snSaveWithType:kGGSnTypeLinkedIn token:aToken secret:aSecret sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
 }
 
 -(void)snSaveWithType:(EGGSnType)aSnType

@@ -338,6 +338,7 @@
     UIImage *bgImg = [UIImage imageNamed:@"chatterLongBtnBg"];
     [actionSheet addButtonWithTitle:@"Chatter" bgImage:bgImg block:^{
         DLog(@"Shared to chatter.");
+        [self connectSalesForce];
     }];
     
     bgImg = [UIImage imageNamed:@"facebookLongBtnBg"];
@@ -364,10 +365,10 @@
         DLog(@"Shared to facebook.");
     }];
     
-    bgImg = [UIImage imageNamed:@"chatterLongBtnBg"];
-    [actionSheet addButtonWithTitle:@"Yammer" bgImage:bgImg block:^{
-        DLog(@"Shared to Yammer.");
-    }];
+//    bgImg = [UIImage imageNamed:@"chatterLongBtnBg"];
+//    [actionSheet addButtonWithTitle:@"Yammer" bgImage:bgImg block:^{
+//        DLog(@"Shared to Yammer.");
+//    }];
     
     
     

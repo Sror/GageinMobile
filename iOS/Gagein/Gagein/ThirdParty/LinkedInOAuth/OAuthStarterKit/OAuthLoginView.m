@@ -226,32 +226,31 @@
 }
 
 
-
 -(NSString *)_apiKey
 {
     switch (CURRENT_ENV)
     {
         case kGGServerProduction:
         {
-            
+            return @"JG-8S3mdrOdAUT2tuZPadrAYX-Y7tWol-z3fashTf44aDRNLhqkmz6GD0XrKIhfx";
         }
             break;
             
         case kGGServerDemo:
         {
-            
+            return @"vkr4AkuIzlhxGSts3EKvPitIg9iOCTM-goRMfmizCT8U2x5wDCAB4MZSwOes1tW1";
         }
             break;
             
         case kGGServerCN:
         {
-            
+            return @"KrVuznl0-o-oEzgrZCuqMlVVxCIiIXidFYBOXI-fxZLRKMApOCQjL6tHbGBHSGGl";
         }
             break;
             
         case kGGServerStaging:
         {
-            
+            return @"KCFBq5BRcc5HnSfJ4e-9RAZEdbhoNyLLUx51kjRyBfwpJNk2eIDxICYQjNKjxRxV";
         }
             break;
             
@@ -274,25 +273,25 @@
     {
         case kGGServerProduction:
         {
-            
+            return @"4UUmZlEbsoMr3tk9FiDmNFmKOHWsvYgt0o0QrESsS1tVjQRRXKlvZWKnjUox9qnJ";
         }
             break;
             
         case kGGServerDemo:
         {
-            
+            return @"VYe-sLjl3Zs7vrs09QMUkSiRgK8jHusF0_ZZUVMueEsdlkjKCnZyvmZf6LqfgeYm";
         }
             break;
             
         case kGGServerCN:
         {
-            
+            return @"te2NTOMf7zoUCqV6fmqo-Z-ofCelDqJCJhFoNs47lIh6o4Xk_ZLR-ryHOtCjOjCg";
         }
             break;
             
         case kGGServerStaging:
         {
-            
+            return @"1N5XkcmzqbOlgxBGXnqTVxH6OUvwnrEXglFbByDY5w4DZav92nNSEy5Ex33zHZUB";
         }
             break;
             
