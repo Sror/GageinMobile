@@ -345,11 +345,8 @@
         DLog(@"Shared to LinkedIn.");
         if ([self _hasLinedSnType:kGGSnTypeLinkedIn])
         {
-#warning TODO: Enter a page to change message and share
+//#warning TODO: Enter a page to change message and share
             [self _shareWithType:kGGSnTypeLinkedIn];
-//            [GGSharedAPI snShareNewsWithID:_companyUpdateDetail.ID snType:kGGSnTypeLinkedIn message:@"test" headLine:_companyUpdateDetail.headline summary:_companyUpdateDetail.content pictureURL:_companyUpdateDetail.pictures[0] callback:^(id operation, id aResultObject, NSError *anError) {
-//                //
-//            }];
         }
         else
         {

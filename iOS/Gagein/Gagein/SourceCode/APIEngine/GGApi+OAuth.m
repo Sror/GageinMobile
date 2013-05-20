@@ -250,7 +250,7 @@
                summary:(NSString *)aSummary
             pictureURL:(NSString *)aPictureURL callback:(GGApiBlock)aCallback
 {
-    NSString *path = [NSString stringWithFormat:@"me/update/%lld/share", aNewsID];
+    NSString *path = [NSString stringWithFormat:@"member/me/update/%lld/share", aNewsID];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
@@ -259,7 +259,11 @@
     [parameters setObject:aMessage forKey:@"message"];
     [parameters setObject:aHeadLine forKey:@"title"];
     [parameters setObject:aSummary forKey:@"summary"];
-    [parameters setObject:aPictureURL forKey:@"picture"];
+    
+    if (aPictureURL)
+    {
+        [parameters setObject:aPictureURL forKey:@"picture"];
+    }
     
     [self _execPostWithPath:path params:parameters callback:aCallback];
 }
@@ -283,7 +287,7 @@
                   snType:(EGGSnType)aSnType
                  message:(NSString *)aMessage callback:(GGApiBlock)aCallback
 {
-    NSString *path = [NSString stringWithFormat:@"me/company/event/%lld/share", anEventID];
+    NSString *path = [NSString stringWithFormat:@"member/me/company/event/%lld/share", anEventID];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
@@ -313,7 +317,7 @@
                          snType:(EGGSnType)aSnType
                         message:(NSString *)aMessage callback:(GGApiBlock)aCallback
 {
-    NSString *path = [NSString stringWithFormat:@"me/contact/event/%lld/share", anEventID];
+    NSString *path = [NSString stringWithFormat:@"member/me/contact/event/%lld/share", anEventID];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
