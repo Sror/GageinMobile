@@ -23,7 +23,7 @@
 
 @implementation GGSignupPortalVC
 {
-    OAuthLoginView *_oAuthLoginView;
+   // OAuthLoginView *_oAuthLoginView;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -66,7 +66,7 @@
     if ([notiName isEqualToString:OA_LOGIN_VIEW_DID_FINISH])
     {
         [self unobserveNotification:OA_LOGIN_VIEW_DID_FINISH];
-        DLog(@"oauth {consumner:%@, accesstoken:%@}", _oAuthLoginView.consumer, _oAuthLoginView.accessToken);
+        //DLog(@"oauth {consumner:%@, accesstoken:%@}", _oAuthLoginView.consumer, _oAuthLoginView.accessToken);
 #warning GOTO register page
     }
     else if ([notiName isEqualToString:GG_NOTIFY_GET_STARTED])
@@ -105,24 +105,27 @@
 
 -(IBAction)connectSalesForceAction:(id)sender
 {
-    //[GGAlert alert:@"Connect to Salesforce (TODO)"];
-    GGSalesforceOAuthVC *vc = [[GGSalesforceOAuthVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self connectSalesForce];
+//    //[GGAlert alert:@"Connect to Salesforce (TODO)"];
+//    GGSalesforceOAuthVC *vc = [[GGSalesforceOAuthVC alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(IBAction)connectLinkedInAction:(id)sender
 {
+    [self connectLinkedIn];
     //[GGAlert alert:@"Connect to LinkedIn (TODO)"];
-    _oAuthLoginView = [[OAuthLoginView alloc] initWithNibName:nil bundle:nil];
-    [self observeNotification:OA_LOGIN_VIEW_DID_FINISH];
-    [self.navigationController pushViewController:_oAuthLoginView animated:YES];
+//    _oAuthLoginView = [[OAuthLoginView alloc] initWithNibName:nil bundle:nil];
+//    [self observeNotification:OA_LOGIN_VIEW_DID_FINISH];
+//    [self.navigationController pushViewController:_oAuthLoginView animated:YES];
 }
 
 -(IBAction)connectFacebookAction:(id)sender
 {
+    [self connectFacebook];
     //[GGAlert alert:@"Connect to Facebook (TODO)"];
-    GGFacebookOAuthVC *vc = [[GGFacebookOAuthVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    GGFacebookOAuthVC *vc = [[GGFacebookOAuthVC alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(IBAction)connectTwitterAction:(id)sender

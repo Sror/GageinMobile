@@ -63,4 +63,6 @@
 
 #pragma mark - people
 -(GGDataPage *)parseSearchForPeople;
+
+-(NSArray *)parseSnGetList;
 @end

@@ -236,6 +236,9 @@
 		EA559760172A29E9000CE9E3 /* GGStyledSearchBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA55975F172A29E9000CE9E3 /* GGStyledSearchBar.xib */; };
 		EA559761172A2B80000CE9E3 /* GGFollowPeopleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA559755172A248B000CE9E3 /* GGFollowPeopleVC.xib */; };
 		EA559771172A6981000CE9E3 /* GGApi+People.m in Sources */ = {isa = PBXBuildFile; fileRef = EA559770172A6981000CE9E3 /* GGApi+People.m */; };
+		EA5DFAF7174A964B00577BAC /* GGApi+OAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5DFAF6174A964B00577BAC /* GGApi+OAuth.m */; };
+		EA5DFAFC174AB62300577BAC /* GGSnShareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5DFAFA174AB62300577BAC /* GGSnShareVC.m */; };
+		EA5DFAFD174AB62300577BAC /* GGSnShareVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA5DFAFB174AB62300577BAC /* GGSnShareVC.xib */; };
 		EA7180D41715008900347EA4 /* FXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D31715008900347EA4 /* FXPageControl.m */; };
 		EA7180D917150AAF00347EA4 /* GGFollowCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */; };
 		EA7180E4171511B700347EA4 /* GGSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180E3171511B700347EA4 /* GGSearchBar.m */; };
@@ -747,6 +750,11 @@
 		EA55975F172A29E9000CE9E3 /* GGStyledSearchBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGStyledSearchBar.xib; sourceTree = "<group>"; };
 		EA55976F172A6980000CE9E3 /* GGApi+People.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GGApi+People.h"; sourceTree = "<group>"; };
 		EA559770172A6981000CE9E3 /* GGApi+People.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GGApi+People.m"; sourceTree = "<group>"; };
+		EA5DFAF5174A964B00577BAC /* GGApi+OAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GGApi+OAuth.h"; sourceTree = "<group>"; };
+		EA5DFAF6174A964B00577BAC /* GGApi+OAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GGApi+OAuth.m"; sourceTree = "<group>"; };
+		EA5DFAF9174AB62300577BAC /* GGSnShareVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSnShareVC.h; sourceTree = "<group>"; };
+		EA5DFAFA174AB62300577BAC /* GGSnShareVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSnShareVC.m; sourceTree = "<group>"; };
+		EA5DFAFB174AB62300577BAC /* GGSnShareVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSnShareVC.xib; sourceTree = "<group>"; };
 		EA7180D21715008900347EA4 /* FXPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXPageControl.h; sourceTree = "<group>"; };
 		EA7180D31715008900347EA4 /* FXPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXPageControl.m; sourceTree = "<group>"; };
 		EA7180D617150AAF00347EA4 /* GGFollowCompanyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFollowCompanyVC.h; sourceTree = "<group>"; };
@@ -1501,6 +1509,16 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		EA5DFAF8174AB5E800577BAC /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				EA5DFAF9174AB62300577BAC /* GGSnShareVC.h */,
+				EA5DFAFA174AB62300577BAC /* GGSnShareVC.m */,
+				EA5DFAFB174AB62300577BAC /* GGSnShareVC.xib */,
+			);
+			path = Social;
+			sourceTree = "<group>";
+		};
 		EA7180D11715008900347EA4 /* FXPageControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -1648,6 +1666,7 @@
 		EAC96C2E170983B5003FAFAA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				EA5DFAF8174AB5E800577BAC /* Social */,
 				EA4CC6AB172BCC310082A048 /* Profile */,
 				EAF0F0A81727DC260065C39A /* General */,
 				EAEFB4CA1717A8100013634F /* Company */,
@@ -1884,6 +1903,8 @@
 				EA0A15EC1716B6B5004D0C73 /* GGApi+Tracker.m */,
 				EA55976F172A6980000CE9E3 /* GGApi+People.h */,
 				EA559770172A6981000CE9E3 /* GGApi+People.m */,
+				EA5DFAF5174A964B00577BAC /* GGApi+OAuth.h */,
+				EA5DFAF6174A964B00577BAC /* GGApi+OAuth.m */,
 			);
 			path = APIEngine;
 			sourceTree = "<group>";
@@ -2652,6 +2673,7 @@
 				EA2F009C1746BFA700E191BD /* action-white-button-selected@2x.png in Resources */,
 				EA2F009D1746BFA700E191BD /* action-white-button.png in Resources */,
 				EA2F009E1746BFA700E191BD /* action-white-button@2x.png in Resources */,
+				EA5DFAFD174AB62300577BAC /* GGSnShareVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2853,6 +2875,8 @@
 				EA9923C7174593530043251E /* GGTimeZone.m in Sources */,
 				EA2F00891746BFA700E191BD /* CMActionSheet.m in Sources */,
 				EA2F008A1746BFA700E191BD /* CMRotatableModalViewController.m in Sources */,
+				EA5DFAF7174A964B00577BAC /* GGApi+OAuth.m in Sources */,
+				EA5DFAFC174AB62300577BAC /* GGSnShareVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

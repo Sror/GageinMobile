@@ -8,7 +8,9 @@
 
 #import "GGBaseViewController.h"
 #import "GGNaviBackButton.h"
-//#import "UINavigationBar+Custom.h"
+#import "GGSalesforceOAuthVC.h"
+#import "OAuthLoginView.h"
+#import "GGFacebookOAuthVC.h"
 
 #define MAX_NAVI_TITLE_LENGTH   20
 
@@ -21,6 +23,8 @@
     __weak MBProgressHUD    *hud;
     BOOL                    _isViewFirstAppear;
     UIView                  *_transparentBlockView;
+    
+    OAuthLoginView          *_oAuthLoginView;
 }
 
 +(id)createInstance
@@ -135,6 +139,11 @@
     [self pushBackButtonFront];
     
     [self _adjustCustomNaviTitlePosition];
+}
+
+-(void)dealloc
+{
+    [self unobserveAllNotifications];
 }
 
 -(void)_adjustCustomNaviTitlePosition
@@ -293,5 +302,34 @@
 {
     [_transparentBlockView removeFromSuperview];
 }
+
+#pragma mark - 
+-(void)connectSalesForce
+{
+    //[GGAlert alert:@"Connect to Salesforce (TODO)"];
+    GGSalesforceOAuthVC *vc = [[GGSalesforceOAuthVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)connectLinkedIn
+{
+    _oAuthLoginView = [[OAuthLoginView alloc] initWithNibName:nil bundle:nil];
+    [self observeNotification:OA_LOGIN_VIEW_DID_FINISH];
+    [self.navigationController pushViewController:_oAuthLoginView animated:YES];
+}
+
+-(void)connectFacebook
+{
+    //[GGAlert alert:@"Connect to Facebook (TODO)"];
+    GGFacebookOAuthVC *vc = [[GGFacebookOAuthVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(OAuthLoginView *)linkedInAuthView
+{
+    return _oAuthLoginView;
+}
+
+#pragma mark -
 
 @end

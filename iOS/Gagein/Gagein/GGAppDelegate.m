@@ -168,7 +168,6 @@
     if (![GGRuntimeData sharedInstance].isLoggedIn)
     {
         [self.naviController.view.layer addAnimation:[GGAnimation animationFade] forKey:nil];
-        //[_rootVC presentModalViewController:_naviController animated:NO];
         [_rootVC presentViewController:_naviController animated:NO completion:nil];
     }
 }
@@ -184,20 +183,5 @@
 {
     self.tabBarController.selectedIndex = aIndex;
 }
-
-//////////////////////////////////////////////////////////////////////////
-//#pragma mark - NGTabBarControllerDelegate
-//////////////////////////////////////////////////////////////////////////
-//
-//- (CGSize)tabBarController:(NGTabBarController *)tabBarController
-//sizeOfItemForViewController:(UIViewController *)viewController
-//                   atIndex:(NSUInteger)index
-//                  position:(NGTabBarPosition)position {
-//    if (NGTabBarIsVertical(position)) {
-//        return CGSizeMake(150.f, 60.f);
-//    } else {
-//        return CGSizeMake(76.f, 48.f);
-//    }
-//}
 
 @end

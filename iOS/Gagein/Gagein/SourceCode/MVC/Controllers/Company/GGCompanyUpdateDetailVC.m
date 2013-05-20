@@ -12,6 +12,10 @@
 #import "GGWebVC.h"
 #import "CMActionSheet.h"
 #import "GGAppDelegate.h"
+#import "GGSalesforceOAuthVC.h"
+#import "OAuthLoginView.h"
+#import "GGFacebookOAuthVC.h"
+#import "GGSnShareVC.h"
 
 @interface GGCompanyUpdateDetailVC () <MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -35,6 +39,9 @@
     
     BOOL                    _isShowingLinkedIn;
     BOOL                    _isShowingTwitter;
+    
+    NSMutableArray          *_snTypes;
+    //OAuthLoginView          *_oAuthLoginView;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -42,6 +49,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.hidesBottomBarWhenPushed = YES;
+        _snTypes = [NSMutableArray array];
     }
     return self;
 }
@@ -98,6 +106,7 @@
     _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] ;
     
     [self _callApiGetCompanyUpdateDetail];
+    [self _callApiGetSnList];
 }
 
 -(void)_adjustScrollviewContentSize
@@ -157,6 +166,29 @@
 -(void)_updateSaveBtnSaved:(BOOL)aSaved
 {
     [_btnSave setImage:(aSaved ? [UIImage imageNamed:@"unsaveIcon"] : [UIImage imageNamed:@"saveIcon"]) forState:UIControlStateNormal];
+}
+
+#pragma mark - notification
+- (void)handleNotification:(NSNotification *)notification
+{
+    NSString *notiName = notification.name;
+    if ([notiName isEqualToString:OA_LOGIN_VIEW_DID_FINISH])
+    {
+        [self unobserveNotification:OA_LOGIN_VIEW_DID_FINISH];
+        
+        [self showLoadingHUD];
+        [GGSharedAPI snSaveLinedInWithToken:self.linkedInAuthView.accessToken.key secret:self.linkedInAuthView.accessToken.secret callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [self _addSnType:kGGSnTypeLinkedIn];
+                [self _shareWithType:kGGSnTypeLinkedIn];
+                //#warning TODO: Enter a page to change message and share
+            }
+        }];
+        
+    }
 }
 
 #pragma mark - Actions
@@ -259,13 +291,49 @@
 
 -(IBAction)shareAction:(id)sender
 {
-    CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
-    
 #warning TODO: Steps for sharing  -- Daniel Dong
     // 1. call API to check for linked account list
+    
+    
     // 2. if linked account is linked, go to step 4.
     // 3. if linked account not linked, go authentication, if auth OK, call API to report the token.
     // 4. Share the update.
+    
+    [self _showActionSheet];
+}
+
+-(BOOL)_hasLinedSnType:(EGGSnType)aSnType
+{
+    for (NSString *type in _snTypes)
+    {
+        if (type.longLongValue == aSnType)
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+-(void)_addSnType:(EGGSnType)aSnType
+{
+    if (![self _hasLinedSnType:aSnType]) {
+        [_snTypes addObject:[NSString stringWithFormat:@"%d", aSnType]];
+    }
+}
+
+-(void)_shareWithType:(EGGSnType)aType
+{
+    GGSnShareVC *vc = [[GGSnShareVC alloc] init];
+    vc.comUpdateDetail = _companyUpdateDetail;
+    vc.snType = aType;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)_showActionSheet
+{
+    CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
     
     UIImage *bgImg = [UIImage imageNamed:@"chatterLongBtnBg"];
     [actionSheet addButtonWithTitle:@"Chatter" bgImage:bgImg block:^{
@@ -275,6 +343,18 @@
     bgImg = [UIImage imageNamed:@"facebookLongBtnBg"];
     [actionSheet addButtonWithTitle:@"LinkedIn" bgImage:bgImg block:^{
         DLog(@"Shared to LinkedIn.");
+        if ([self _hasLinedSnType:kGGSnTypeLinkedIn])
+        {
+#warning TODO: Enter a page to change message and share
+            [self _shareWithType:kGGSnTypeLinkedIn];
+//            [GGSharedAPI snShareNewsWithID:_companyUpdateDetail.ID snType:kGGSnTypeLinkedIn message:@"test" headLine:_companyUpdateDetail.headline summary:_companyUpdateDetail.content pictureURL:_companyUpdateDetail.pictures[0] callback:^(id operation, id aResultObject, NSError *anError) {
+//                //
+//            }];
+        }
+        else
+        {
+            [self connectLinkedIn];
+        }
     }];
     
     bgImg = [UIImage imageNamed:@"twitterLongBtnBg"];
@@ -302,6 +382,8 @@
     // Present
     [actionSheet present];
 }
+
+
 
 -(IBAction)saveAction:(id)sender
 {
@@ -476,6 +558,19 @@
             //[_tvContent reloadData];
         }
         
+    }];
+}
+
+-(void)_callApiGetSnList
+{
+    [GGSharedAPI snGetList:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            NSArray *snTypes = [parser parseSnGetList];
+            [_snTypes removeAllObjects];
+            [_snTypes addObjectsFromArray:snTypes];
+        }
     }];
 }
 

@@ -44,3 +44,4 @@ typedef enum
 #import "GGApi+Config.h"
 #import "GGApi+Tracker.h"
 #import "GGApi+People.h"
+#import "GGApi+OAuth.h"

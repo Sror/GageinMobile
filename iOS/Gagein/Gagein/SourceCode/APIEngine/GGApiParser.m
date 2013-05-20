@@ -298,4 +298,10 @@
     return [self _parsePageforClass:[GGPerson class]];
 }
 
+
+-(NSArray *)parseSnGetList
+{
+    return [self.data objectForKey:@"types"];
+}
+
 @end
