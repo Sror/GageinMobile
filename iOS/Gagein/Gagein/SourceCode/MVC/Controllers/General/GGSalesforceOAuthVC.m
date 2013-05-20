@@ -12,20 +12,99 @@
 #import "SFOAuthInfo.h"
 #import "SFOAuthInfo+Internal.h"
 
-NSString * const kIdentifier    = @"com.salesforce.ios.oauth.test";
-NSString * const kOAuthClientId = @"3MVG9Iu66FKeHhINkB1l7xt7kR8czFcCTUhgoA8Ol2Ltf1eYHOU4SqQRSEitYFDUpqRWcoQ2.dBv_a1Dyu5xa";
+#define DOMAIN_TEST     @"test.salesforce.com"
+#define DOMAIN_LOGIN    @"login.salesforce.com"
+
+@interface GGSalesForceParam : NSObject
+@property (copy)   NSString     *identifier;
+@property (copy)   NSString     *clientID;
+@property (copy)   NSString     *redirectURL;
+@property (copy)   NSString     *domain;
+@end
+
+@implementation GGSalesForceParam
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _identifier = @"com.salesforce.ios.oauth.test";
+        _clientID = @"3MVG9Iu66FKeHhINkB1l7xt7kR8czFcCTUhgoA8Ol2Ltf1eYHOU4SqQRSEitYFDUpqRWcoQ2.dBv_a1Dyu5xa";
+        _redirectURL = @"testsfdc:///mobilesdk/detect/oauth/done";
+        _domain = DOMAIN_LOGIN;
+    }
+    return self;
+}
+@end
+
+//NSString * const kIdentifier    = @"com.salesforce.ios.oauth.test";
+//NSString * const kOAuthClientId = @"3MVG9Iu66FKeHhINkB1l7xt7kR8czFcCTUhgoA8Ol2Ltf1eYHOU4SqQRSEitYFDUpqRWcoQ2.dBv_a1Dyu5xa";
+
+
+//NSString * const kIdentifier    = @"GageIn.localhost";
+//NSString * const kOAuthClientId = @"3MVG9QDx8IX8nP5Rg7yD2yhM0mZ1B5qRXXaIqmF3KCA.ycm5l7WI5cOzwLzyadnkqgfAzChHWRF6mvgDN4KCF";
+
 
 static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
-static NSString * const kOAuthLoginDomain =  @"login.salesforce.com";//@"test.salesforce.com";    // Sandbox: use login.salesforce.com if you're
+//static NSString * const kOAuthLoginDomain =  @"login.salesforce.com";//@"test.salesforce.com";    // Sandbox: use login.salesforce.com if you're
 // sure you want to test with Production
-static NSString * const kOAuthRedirectUri = @"testsfdc:///mobilesdk/detect/oauth/done";
+//static NSString * const kOAuthRedirectUri = @"testsfdc:///mobilesdk/detect/oauth/done";
+//static NSString * const kOAuthRedirectUri = @"myapp:///mobilesdk/detect/oauth/done";//@"https://localhost:8443/dragon/ConnectWithSalesforceProxy";
 
 
 @interface GGSalesforceOAuthVC ()
 
 @end
 
+
 @implementation GGSalesforceOAuthVC
+
++(GGSalesForceParam *)_param
+{
+    GGSalesForceParam * _param = [[GGSalesForceParam alloc] init];
+    
+    switch (CURRENT_ENV)
+    {
+        case kGGServerProduction:
+        {
+            
+        }
+            break;
+            
+        case kGGServerStaging:
+        {
+            
+        }
+            break;
+            
+        case kGGServerCN:
+        {
+            
+        }
+            break;
+            
+        case kGGServerDemo:
+        {
+            
+        }
+            break;
+            
+        case kGGServerRoshen:
+        {
+#if 0
+            _param.identifier = @"GageIn.localhost";
+            _param.clientID = @"3MVG9QDx8IX8nP5Rg7yD2yhM0mZ1B5qRXXaIqmF3KCA.ycm5l7WI5cOzwLzyadnkqgfAzChHWRF6mvgDN4KCF";
+            _param.redirectURL = @"https://localhost:8443/dragon/ConnectWithSalesforceProxy";
+#endif
+
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    return _param;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -62,18 +141,19 @@ static NSString * const kOAuthRedirectUri = @"testsfdc:///mobilesdk/detect/oauth
 
 #pragma mark -
 + (void)archiveCredentials:(SFOAuthCredentials *)creds {
-    BOOL result = [NSKeyedArchiver archiveRootObject:creds toFile:[self archivePath]];
-    NSLog(@"%@:archiveCredentials: credentials archived=%@", @"SalesforceOAuthTestAppDelegate", (result ? @"YES" : @"NO"));
+//    BOOL result = [NSKeyedArchiver archiveRootObject:creds toFile:[self archivePath]];
+//    NSLog(@"%@:archiveCredentials: credentials archived=%@", @"SalesforceOAuthTestAppDelegate", (result ? @"YES" : @"NO"));
 }
 
 + (SFOAuthCredentials *)unarchiveCredentials {
-    NSString *path = [self archivePath];
-    SFOAuthCredentials *creds = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    //NSString *path = [self archivePath];
+    SFOAuthCredentials *creds = nil; //[NSKeyedUnarchiver unarchiveObjectWithFile:path];
     if (nil == creds) {
         // no existing credentials, create a new one
-        creds = [[SFOAuthCredentials alloc] initWithIdentifier:kIdentifier clientId:kOAuthClientId encrypted:YES];
-        creds.redirectUri = kOAuthRedirectUri;
-        creds.domain = kOAuthLoginDomain;
+        GGSalesForceParam *param = [self _param];
+        creds = [[SFOAuthCredentials alloc] initWithIdentifier:param.identifier clientId:param.clientID encrypted:YES];
+        creds.redirectUri = param.redirectURL;
+        creds.domain = param.domain;
         // domain is set by the view from its UI field value
         
         NSLog(@"%@:unarchiveCredentials: no saved credentials, new credentials created: %@", @"SalesforceOAuthTestAppDelegate", creds);

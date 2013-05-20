@@ -337,7 +337,9 @@
     
     UIImage *bgImg = [UIImage imageNamed:@"chatterLongBtnBg"];
     [actionSheet addButtonWithTitle:@"Chatter" bgImage:bgImg block:^{
+        
         DLog(@"Shared to chatter.");
+        
         [self connectSalesForce];
     }];
     

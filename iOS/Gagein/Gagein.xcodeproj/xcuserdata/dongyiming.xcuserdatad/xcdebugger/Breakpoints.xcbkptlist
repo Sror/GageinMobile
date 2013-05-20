@@ -541,11 +541,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/General/GGSalesforceOAuthVC.m"
-         timestampString = "389644346.970177"
+         timestampString = "390784506.548463"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "120"
-         endingLineNumber = "120"
+         startingLineNumber = "200"
+         endingLineNumber = "200"
          landmarkName = "-oauthCoordinatorDidAuthenticate:authInfo:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -684,11 +684,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Company/GGCompanyUpdateDetailVC.m"
-         timestampString = "390777536.534238"
+         timestampString = "390779841.794291"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "412"
-         endingLineNumber = "412"
+         startingLineNumber = "415"
+         endingLineNumber = "415"
          landmarkName = "-saveAction:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -918,11 +918,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Company/GGCompanyUpdateDetailVC.m"
-         timestampString = "390777536.534238"
+         timestampString = "390779841.794291"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "615"
-         endingLineNumber = "615"
+         startingLineNumber = "618"
+         endingLineNumber = "618"
          landmarkName = "-messageComposeViewController:didFinishWithResult:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -931,11 +931,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Company/GGCompanyUpdateDetailVC.m"
-         timestampString = "390777536.534238"
+         timestampString = "390779841.794291"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "353"
-         endingLineNumber = "353"
+         startingLineNumber = "356"
+         endingLineNumber = "356"
          landmarkName = "-_showActionSheet"
          landmarkType = "5">
       </FileBreakpoint>
@@ -944,11 +944,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/ThirdParty/LinkedInOAuth/OAuthStarterKit/OAuthLoginView.m"
-         timestampString = "390770381.390722"
+         timestampString = "390779841.794291"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "321"
-         endingLineNumber = "321"
+         startingLineNumber = "320"
+         endingLineNumber = "320"
          landmarkName = "-initLinkedInApi"
          landmarkType = "5">
       </FileBreakpoint>
@@ -983,11 +983,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Company/GGCompanyUpdateDetailVC.m"
-         timestampString = "390772924.054169"
+         timestampString = "390779841.794291"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "349"
-         endingLineNumber = "349"
+         startingLineNumber = "352"
+         endingLineNumber = "352"
          landmarkName = "-_showActionSheet"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1015,6 +1015,32 @@
          startingLineNumber = "183"
          endingLineNumber = "183"
          landmarkName = "-handleNotification:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Controllers/General/GGSalesforceOAuthVC.m"
+         timestampString = "390784506.548463"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "133"
+         endingLineNumber = "133"
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Controllers/General/GGSalesforceOAuthVC.m"
+         timestampString = "390784506.548463"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "210"
+         endingLineNumber = "210"
+         landmarkName = "-oauthCoordinator:didFailWithError:authInfo:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
