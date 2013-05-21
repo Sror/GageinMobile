@@ -268,16 +268,7 @@
                              Shared from GageIn, a visual sales intelligence company.</div>", _companyUpdateDetail.url
                              , _companyUpdateDetail.headline
                              , _companyUpdateDetail.contentInDetail];
-    
-//    NSMutableString *contentBody = [NSMutableString string];
-//    [contentBody appendString:@""];
-//    [contentBody appendString:_companyUpdateDetail.url];
-//    [contentBody appendString:@"\n\n"];
-//    [contentBody appendString:_companyUpdateDetail.headline];
-//    [contentBody appendString:@"\n\n"];
-//    [contentBody appendString:_companyUpdateDetail.contentInDetail];
-//    [contentBody appendString:@"\n\n"];
-//    [contentBody appendString:@"Shared from GageIn, a visual sales intelligence company."];
+
     
     [controller setMessageBody:contentBody isHTML:YES];
     
@@ -332,11 +323,6 @@
     [self _showWebSignal:!_isShowingLinkedIn url:_companyUpdateDetail.linkedInSignal];
     _isShowingLinkedIn = !_isShowingLinkedIn;
     _isShowingTwitter = NO;
-    
-//    [self.viewContent.layer addAnimation:[GGAnimation animationFlipFromRight] forKey:nil];
-//    _webviewSignal.hidden = NO;
-//
-//    [_webviewSignal loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_companyUpdateDetail.linkedInSignal]]];
 }
 
 -(IBAction)twitterAction:(id)sender
@@ -348,7 +334,7 @@
 
 -(IBAction)shareAction:(id)sender
 {
-#warning TODO: Steps for sharing  -- Daniel Dong
+//#warning TODO: Steps for sharing  -- Daniel Dong
     // 1. call API to check for linked account list
     
     
@@ -392,21 +378,28 @@
 {
     CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
     
-    UIImage *bgImg = [UIImage imageNamed:@"chatterLongBtnBg"];
-    [actionSheet addButtonWithTitle:@"Chatter" bgImage:bgImg block:^{
-        
-        DLog(@"Shared to chatter.");
-        
-        if ([self _hasLinedSnType:kGGSnTypeSalesforce])
-        {
+    UIImage *bgImg = nil;
+    
+    if ([self _hasLinedSnType:kGGSnTypeSalesforce])
+    {
+        bgImg = [UIImage imageNamed:@"chatterLongBtnBg"];
+        [actionSheet addButtonWithTitle:@"Chatter" bgImage:bgImg block:^{
+            
+            DLog(@"Shared to chatter.");
             [self _shareWithType:kGGSnTypeSalesforce];
-        }
-        else
-        {
-            [self connectSalesForce];
-        }
-        
-    }];
+            
+//            if ([self _hasLinedSnType:kGGSnTypeSalesforce])
+//            {
+//                [self _shareWithType:kGGSnTypeSalesforce];
+//            }
+//            else
+//            {
+//                [self connectSalesForce];
+//            }
+            
+        }];
+    }
+    
     
     bgImg = [UIImage imageNamed:@"facebookLongBtnBg"];
     [actionSheet addButtonWithTitle:@"LinkedIn" bgImage:bgImg block:^{
@@ -434,8 +427,7 @@
         {
             [self connectTwitter];
         }
-        
-        
+    
     }];
     
     bgImg = [UIImage imageNamed:@"facebookLongBtnBg"];
@@ -451,14 +443,17 @@
             [self connectFacebook];
         }
         
-        
     }];
     
-//    bgImg = [UIImage imageNamed:@"chatterLongBtnBg"];
-//    [actionSheet addButtonWithTitle:@"Yammer" bgImage:bgImg block:^{
-//        DLog(@"Shared to Yammer.");
-//    }];
     
+    if ([self _hasLinedSnType:kGGSnTypeYammer])
+    {
+        bgImg = [UIImage imageNamed:@"chatterLongBtnBg"];
+        [actionSheet addButtonWithTitle:@"Yammer" bgImage:bgImg block:^{
+            DLog(@"Shared to Yammer.");
+            [self _shareWithType:kGGSnTypeYammer];
+        }];
+    }
     
     
     [actionSheet addSeparator];

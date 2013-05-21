@@ -88,6 +88,7 @@
     DLog(@"token:%@ secret:%@", _engine.accessToken.key, _engine.accessToken.secret);
     
     [self postNotification:OA_NOTIFY_TWITTER_OAUTH_OK withObject:_engine.accessToken];
+    [self naviBackAction:nil];
     
 //	NSUserDefaults			*defaults = [NSUserDefaults standardUserDefaults];
 //

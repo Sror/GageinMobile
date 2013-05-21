@@ -9,7 +9,8 @@
 #import "GGSnShareVC.h"
 #import "GGCompanyUpdate.h"
 
-#define MAX_MESSAGE_LEN     250
+#define MAX_MESSAGE_LENGTH              (250)
+#define MAX_MESSAGE_LENGTH_TWITTER      (140)
 
 @interface GGSnShareVC ()
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -17,6 +18,47 @@
 @end
 
 @implementation GGSnShareVC
+
+-(NSUInteger)maxLenghForMessageType:(EGGSnType)aSnType
+{
+    switch (aSnType)
+    {
+        case kGGSnTypeFacebook:
+        {
+            return MAX_MESSAGE_LENGTH;
+        }
+            break;
+            
+        case kGGSnTypeSalesforce:
+        {
+            return MAX_MESSAGE_LENGTH;
+        }
+            break;
+            
+        case kGGSnTypeTwitter:
+        {
+            return MAX_MESSAGE_LENGTH_TWITTER;
+        }
+            break;
+            
+        case kGGSnTypeLinkedIn:
+        {
+            return MAX_MESSAGE_LENGTH;
+        }
+            break;
+            
+        case kGGSnTypeYammer:
+        {
+            return MAX_MESSAGE_LENGTH;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    return MAX_MESSAGE_LENGTH;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,7 +73,7 @@
 {
     [super viewDidLoad];
     self.naviTitle = [self snNameFromType:_snType];
-    //self.view.backgroundColor = GGSharedColor.silver;
+    self.view.backgroundColor = GGSharedColor.white;
     self.textView.text = [self _messageToShare];
     [self.textView becomeFirstResponder];
     CGRect textRc = _textView.frame;
@@ -53,20 +95,30 @@
 -(void)shareAction:(id)sender
 {
     NSString *summary = _comUpdateDetail.content.length ? _comUpdateDetail.content : _comUpdateDetail.textview;
-    summary = (summary.length > MAX_MESSAGE_LEN) ? [summary substringToIndex:MAX_MESSAGE_LEN] : summary;
+    
+    int maxLength = [self maxLenghForMessageType:_snType];
+    summary = (summary.length > maxLength) ? [summary substringToIndex:maxLength] : summary;
+    
+    maxLength -= 20;
+    NSString *message = (_textView.text.length > maxLength) ? [_textView.text substringToIndex:maxLength] : _textView.text;
+    
     NSString *picURL = _comUpdateDetail.pictures.count ? _comUpdateDetail.pictures[0] : nil;
     
     [self showLoadingHUD];
-    [GGSharedAPI snShareNewsWithID:_comUpdateDetail.ID snType:_snType message:_textView.text headLine:_comUpdateDetail.headline summary:summary pictureURL:picURL callback:^(id operation, id aResultObject, NSError *anError) {
+    [GGSharedAPI snShareNewsWithID:_comUpdateDetail.ID snType:_snType message:message headLine:_comUpdateDetail.headline summary:summary pictureURL:picURL callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
+            [_textView resignFirstResponder];
             [self showCheckMarkHUDWithText:@"Shared!"];
-            [self naviBackAction:nil];
+            
+            [self performSelector:@selector(naviBackAction:) withObject:nil afterDelay:1.f];
+            //[self naviBackAction:nil];
         }
     }];
 }
+
 
 -(NSString *)_messageToShare
 {
