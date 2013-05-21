@@ -684,11 +684,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Company/GGCompanyUpdateDetailVC.m"
-         timestampString = "390851469.045301"
+         timestampString = "390852857.48366"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "473"
-         endingLineNumber = "473"
+         startingLineNumber = "482"
+         endingLineNumber = "482"
          landmarkName = "-saveAction:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -918,11 +918,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Company/GGCompanyUpdateDetailVC.m"
-         timestampString = "390851469.045301"
+         timestampString = "390852857.48366"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "676"
-         endingLineNumber = "676"
+         startingLineNumber = "685"
+         endingLineNumber = "685"
          landmarkName = "-messageComposeViewController:didFinishWithResult:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1204,11 +1204,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Company/GGCompanyUpdateDetailVC.m"
-         timestampString = "390851469.045301"
+         timestampString = "390852857.48366"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "422"
-         endingLineNumber = "422"
+         startingLineNumber = "431"
+         endingLineNumber = "431"
          landmarkName = "-_showActionSheet"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1217,11 +1217,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Gagein/SourceCode/MVC/Controllers/Company/GGCompanyUpdateDetailVC.m"
-         timestampString = "390851469.045301"
+         timestampString = "390852857.48366"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "418"
-         endingLineNumber = "418"
+         startingLineNumber = "427"
+         endingLineNumber = "427"
          landmarkName = "-_showActionSheet"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1275,6 +1275,19 @@
          startingLineNumber = "521"
          endingLineNumber = "521"
          landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/ThirdParty/SfOAuth/SFOAuthCoordinator.m"
+         timestampString = "390853401.812273"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "268"
+         endingLineNumber = "268"
+         landmarkName = "-beginUserAgentFlow"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

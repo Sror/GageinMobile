@@ -377,11 +377,11 @@
         
         DLog(@"Shared to chatter.");
         
-//        if ([self _hasLinedSnType:kGGSnTypeSalesforce])
-//        {
-//            [self _shareWithType:kGGSnTypeSalesforce];
-//        }
-//        else
+        if ([self _hasLinedSnType:kGGSnTypeSalesforce])
+        {
+            [self _shareWithType:kGGSnTypeSalesforce];
+        }
+        else
         {
             [self connectSalesForce];
         }
@@ -406,7 +406,16 @@
     [actionSheet addButtonWithTitle:@"Twitter" bgImage:bgImg block:^{
         DLog(@"Shared to Twitter.");
         
-        [self connectTwitter];
+        if ([self _hasLinedSnType:kGGSnTypeTwitter])
+        {
+            [self _shareWithType:kGGSnTypeTwitter];
+        }
+        else
+        {
+            [self connectTwitter];
+        }
+        
+        
     }];
     
     bgImg = [UIImage imageNamed:@"facebookLongBtnBg"];
