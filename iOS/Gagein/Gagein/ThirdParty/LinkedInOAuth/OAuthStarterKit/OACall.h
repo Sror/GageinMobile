@@ -18,11 +18,11 @@
 
 @end
 
-@class OAConsumer;
-@class OAToken;
-@class OADataFetcher;
-@class OAMutableURLRequest;
-@class OAServiceTicket;
+@class OALnConsumer;
+@class OALnToken;
+@class OALnDataFetcher;
+@class OALnMutableURLRequest;
+@class OALnServiceTicket;
 
 @interface OACall : NSObject {
 	NSURL *url;
@@ -31,16 +31,16 @@
 	NSDictionary *files;
 	NSObject <OACallDelegate> *delegate;
 	SEL finishedSelector;
-	OADataFetcher *fetcher;
-	OAMutableURLRequest *request;
-	OAServiceTicket *ticket;
+	OALnDataFetcher *fetcher;
+	OALnMutableURLRequest *request;
+	OALnServiceTicket *ticket;
 }
 
 @property(readonly) NSURL *url;
 @property(readonly) NSString *method;
 @property(readonly) NSArray *parameters;
 @property(readonly) NSDictionary *files;
-@property(nonatomic, retain) OAServiceTicket *ticket;
+@property(nonatomic, retain) OALnServiceTicket *ticket;
 
 - (id)init;
 - (id)initWithURL:(NSURL *)aURL;
@@ -54,8 +54,8 @@
 	   parameters:(NSArray *)theParameters
 			files:(NSDictionary*)theFiles;
 
-- (void)perform:(OAConsumer *)consumer
-		  token:(OAToken *)token
+- (void)perform:(OALnConsumer *)consumer
+		  token:(OALnToken *)token
 		  realm:(NSString *)realm
 	   delegate:(NSObject <OACallDelegate> *)aDelegate
 	  didFinish:(SEL)finished;

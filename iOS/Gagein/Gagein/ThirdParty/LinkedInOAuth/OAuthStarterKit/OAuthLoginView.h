@@ -8,9 +8,9 @@
 //
 #import <UIKit/UIKit.h>
 #import "JSONKit.h"
-#import "OAConsumer.h"
-#import "OAMutableURLRequest.h"
-#import "OADataFetcher.h"
+#import "OALnConsumer.h"
+#import "OALnMutableURLRequest.h"
+#import "OALnDataFetcher.h"
 #import "OATokenManager.h"
 
 
@@ -20,9 +20,9 @@
     IBOutlet UIActivityIndicatorView *activityIndicator;
     IBOutlet UITextField *addressBar;
     
-    OAToken *requestToken;
-    OAToken *accessToken;
-    OAConsumer *consumer;
+    OALnToken *requestToken;
+    OALnToken *accessToken;
+    OALnConsumer *consumer;
     
     NSDictionary *profile;
     
@@ -39,10 +39,10 @@
     NSString *linkedInCallbackURL;
 }
 
-@property(nonatomic, retain) OAToken *requestToken;
-@property(nonatomic, retain) OAToken *accessToken;
+@property(nonatomic, retain) OALnToken *requestToken;
+@property(nonatomic, retain) OALnToken *accessToken;
 @property(nonatomic, retain) NSDictionary *profile;
-@property(nonatomic, retain) OAConsumer *consumer;
+@property(nonatomic, retain) OALnConsumer *consumer;
 
 - (void)initLinkedInApi;
 - (void)requestTokenFromProvider;

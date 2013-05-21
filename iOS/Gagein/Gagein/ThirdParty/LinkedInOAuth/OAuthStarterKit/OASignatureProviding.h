@@ -26,7 +26,7 @@
 #import <Foundation/Foundation.h>
 
 
-@protocol OASignatureProviding
+@protocol OALnSignatureProviding
 
 - (NSString *)name;
 - (NSString *)signClearText:(NSString *)text withSecret:(NSString *)secret;

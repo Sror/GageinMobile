@@ -26,7 +26,7 @@
 #import <Foundation/Foundation.h>
 #import "OAProblem.h"
 #import "OAToken.h"
-#import "OAConsumer.h"
+#import "OALnConsumer.h"
 #import "OAMutableURLRequest.h"
 #import "NSString+URLEncoding.h"
 #import "NSMutableURLRequest+Parameters.h"

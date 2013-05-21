@@ -8,7 +8,7 @@
 //
 #import <Foundation/NSNotificationQueue.h>
 #import "OAuthLoginView.h"
-
+#import "OALnRequestParameter.h"
 
 #define API_KEY_LENGTH 12
 #define SECRET_KEY_LENGTH 16
@@ -33,8 +33,8 @@
 //
 - (void)requestTokenFromProvider
 {
-    OAMutableURLRequest *request = 
-            [[[OAMutableURLRequest alloc] initWithURL:requestTokenURL
+    OALnMutableURLRequest *request = 
+            [[[OALnMutableURLRequest alloc] initWithURL:requestTokenURL
                                              consumer:self.consumer
                                                 token:nil   
                                              callback:linkedInCallbackURL
@@ -42,15 +42,15 @@
     
     [request setHTTPMethod:@"POST"];   
     
-    OARequestParameter *nameParam = [[OARequestParameter alloc] initWithName:@"scope"
+    OALnRequestParameter *nameParam = [[OALnRequestParameter alloc] initWithName:@"scope"
                                                                        value:@"r_basicprofile+rw_nus"];
     NSArray *params = [NSArray arrayWithObjects:nameParam, nil];
     [request setParameters:params];
-    OARequestParameter * scopeParameter=[OARequestParameter requestParameter:@"scope" value:@"r_fullprofile rw_nus"];
+    OALnRequestParameter * scopeParameter=[OALnRequestParameter requestParameter:@"scope" value:@"r_fullprofile rw_nus"];
     
     [request setParameters:[NSArray arrayWithObject:scopeParameter]];
     
-    OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
+    OALnDataFetcher *fetcher = [[[OALnDataFetcher alloc] init] autorelease];
     
     [self showLoadingHUD];
     [fetcher fetchDataWithRequest:request
@@ -67,7 +67,7 @@
 // The request token is added as a parameter to the url of the login page.
 // LinkedIn reads the token on their end to know which app the user is granting access to.
 //
-- (void)requestTokenResult:(OAServiceTicket *)ticket didFinish:(NSData *)data 
+- (void)requestTokenResult:(OALnServiceTicket *)ticket didFinish:(NSData *)data 
 {
     [self hideLoadingHUD];
     if (ticket.didSucceed == NO) 
@@ -75,12 +75,12 @@
         
     NSString *responseBody = [[NSString alloc] initWithData:data
                                                    encoding:NSUTF8StringEncoding];
-    self.requestToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
+    self.requestToken = [[OALnToken alloc] initWithHTTPResponseBody:responseBody];
     [responseBody release];
     [self allowUserToLogin];
 }
 
-- (void)requestTokenResult:(OAServiceTicket *)ticket didFail:(NSData *)error 
+- (void)requestTokenResult:(OALnServiceTicket *)ticket didFail:(NSData *)error 
 {
     [self hideLoadingHUD];
     NSLog(@"%@",[error description]);
@@ -181,22 +181,22 @@
 //
 - (void)accessTokenFromProvider
 { 
-    OAMutableURLRequest *request = 
-            [[[OAMutableURLRequest alloc] initWithURL:accessTokenURL
+    OALnMutableURLRequest *request = 
+            [[[OALnMutableURLRequest alloc] initWithURL:accessTokenURL
                                              consumer:self.consumer
                                                 token:self.requestToken   
                                              callback:nil
                                     signatureProvider:nil] autorelease];
     
     [request setHTTPMethod:@"POST"];
-    OADataFetcher *fetcher = [[[OADataFetcher alloc] init] autorelease];
+    OALnDataFetcher *fetcher = [[[OALnDataFetcher alloc] init] autorelease];
     [fetcher fetchDataWithRequest:request
                          delegate:self
                 didFinishSelector:@selector(accessTokenResult:didFinish:)
                   didFailSelector:@selector(accessTokenResult:didFail:)];    
 }
 
-- (void)accessTokenResult:(OAServiceTicket *)ticket didFinish:(NSData *)data 
+- (void)accessTokenResult:(OALnServiceTicket *)ticket didFinish:(NSData *)data 
 {
     NSString *responseBody = [[NSString alloc] initWithData:data
                                                    encoding:NSUTF8StringEncoding];
@@ -209,7 +209,7 @@
     }
     else
     {
-        self.accessToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
+        self.accessToken = [[OALnToken alloc] initWithHTTPResponseBody:responseBody];
     }
     
     // Notify parent and close this view
@@ -317,7 +317,7 @@
     apikey = [self _apiKey];
     secretkey = [self _secretKey];
 
-    self.consumer = [[OAConsumer alloc] initWithKey:apikey
+    self.consumer = [[OALnConsumer alloc] initWithKey:apikey
                                         secret:secretkey
                                          realm:@"http://api.linkedin.com/"];
 

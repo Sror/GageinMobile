@@ -56,7 +56,7 @@ static NSString *Boundary = @"-----------------------------------0xCoCoaouTHeBou
             continue;
         }
         NSArray *encodedPairElements = [encodedPair componentsSeparatedByString:@"="];
-            OARequestParameter *parameter = [[OARequestParameter alloc] initWithName:[[encodedPairElements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+            OALnRequestParameter *parameter = [[OALnRequestParameter alloc] initWithName:[[encodedPairElements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
                                                                            value:[[encodedPairElements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
           [requestParameters addObject:parameter];
 		  [parameter release];
@@ -68,7 +68,7 @@ static NSString *Boundary = @"-----------------------------------0xCoCoaouTHeBou
 - (void)setParameters:(NSArray *)parameters
 {
 	NSMutableArray *pairs = [[[NSMutableArray alloc] initWithCapacity:[parameters count]] autorelease];
-	for (OARequestParameter *requestParameter in parameters) {
+	for (OALnRequestParameter *requestParameter in parameters) {
 		[pairs addObject:[requestParameter URLEncodedNameValuePair]];
 	}
 	
@@ -95,7 +95,7 @@ static NSString *Boundary = @"-----------------------------------0xCoCoaouTHeBou
 	[self setValue:[@"multipart/form-data; boundary=" stringByAppendingString:Boundary] forHTTPHeaderField:@"Content-type"];
 	
 	NSMutableData *bodyData = [NSMutableData new];
-	for (OARequestParameter *parameter in parameters) {
+	for (OALnRequestParameter *parameter in parameters) {
 		NSString *param = [NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"%@\"\r\n\r\n%@\r\n",
 						   Boundary, [parameter URLEncodedName], [parameter value]];
 

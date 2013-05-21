@@ -23,14 +23,14 @@
 
 @end
 
-@class OAConsumer;
-@class OAToken;
+@class OALnConsumer;
+@class OALnToken;
 
 @interface OATokenManager : NSObject<OACallDelegate> {
-	OAConsumer *consumer;
-	OAToken *acToken;
-	OAToken *reqToken;
-	OAToken *initialToken;
+	OALnConsumer *consumer;
+	OALnToken *acToken;
+	OALnToken *reqToken;
+	OALnToken *initialToken;
 	NSString *authorizedTokenKey;
 	NSString *oauthBase;
 	NSString *realm;
@@ -45,7 +45,7 @@
 
 - (id)init;
 
-- (id)initWithConsumer:(OAConsumer *)aConsumer token:(OAToken *)aToken oauthBase:(const NSString *)base
+- (id)initWithConsumer:(OALnConsumer *)aConsumer token:(OALnToken *)aToken oauthBase:(const NSString *)base
 				 realm:(const NSString *)aRealm callback:(const NSString *)aCallback
 			  delegate:(NSObject <OATokenManagerDelegate> *)aDelegate;
 

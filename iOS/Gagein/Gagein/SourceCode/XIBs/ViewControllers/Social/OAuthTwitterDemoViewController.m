@@ -10,11 +10,76 @@
 #import "SA_OAuthTwitterEngine.h"
 
 
-#define kOAuthConsumerKey				@"aL1IjfI8zuv0IyGX9sTlLQ"		//REPLACE ME
-#define kOAuthConsumerSecret			@"IH3ipqceMUgC6uilmPl4Qj61zkNu54pvyeL3N3FsM3s"		//REPLACE ME
+//#define kOAuthConsumerKey				@"aL1IjfI8zuv0IyGX9sTlLQ"		//REPLACE ME
+//#define kOAuthConsumerSecret			@"IH3ipqceMUgC6uilmPl4Qj61zkNu54pvyeL3N3FsM3s"		//REPLACE ME
 
+@interface GGTwitterParam : NSObject
+@property (copy) NSString *key;
+@property (copy) NSString *secret;
+@end
+
+@implementation GGTwitterParam
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _key = @"aL1IjfI8zuv0IyGX9sTlLQ";
+        _secret = @"IH3ipqceMUgC6uilmPl4Qj61zkNu54pvyeL3N3FsM3s";
+    }
+    return self;
+}
+@end
+
+////////////////////////
 @implementation OAuthTwitterDemoViewController
 
+
+-(GGTwitterParam *)_param
+{
+    GGTwitterParam *param = [[GGTwitterParam alloc] init];
+    
+    switch (CURRENT_ENV)
+    {
+        case kGGServerProduction:
+        {
+            param.key = @"uFZWraQfaDHFcQbKysJA";
+            param.secret = @"qGMycU3ezTVblxZaf7Gc7JENOM8OokEmtKx1yCaAmcI";
+        }
+            break;
+            
+        case kGGServerStaging:
+        {
+            param.key = @"eFyXq7uhH1Lj6LPZ1fFqA";
+            param.secret = @"UHgBLk7m0g8Wh0CU2ytAfRihMosx1j9lnXvL9qdsQA";
+        }
+            break;
+            
+        case kGGServerDemo:
+        {
+            param.key = @"wiibcHpMLjoKcxUCk1ou7A";
+            param.secret = @"6C66cbObQRccG92ltqU1Eikkn2yfSASB7Wx3CsBUk";
+        }
+            break;
+            
+        case kGGServerCN:
+        {
+            param.key = @"jq33SP6aQ85huQTmStWOA";
+            param.secret = @"ciSJujyyZGOeeMX7xSqyI8tnNBVc4hKdV1KejZJIiU";
+        }
+            break;
+            
+        case kGGServerRoshen:
+        {
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    return param;
+}
 
 #pragma mark SA_OAuthTwitterEngineDelegate
 - (void) storeCachedTwitterOAuthData: (NSString *) data forUsername: (NSString *) username {
@@ -70,9 +135,12 @@
     [super viewDidAppear:animated];
     
 	if (_engine) return;
+    
 	_engine = [[SA_OAuthTwitterEngine alloc] initOAuthWithDelegate: self];
-	_engine.consumerKey = kOAuthConsumerKey;
-	_engine.consumerSecret = kOAuthConsumerSecret;
+    
+    GGTwitterParam *param = [self _param];
+	_engine.consumerKey = param.key;
+	_engine.consumerSecret = param.secret;
 	
 	UIViewController			*controller = [SA_OAuthTwitterController controllerToEnterCredentialsWithTwitterEngine: _engine delegate: self];
 	
@@ -86,3 +154,8 @@
 
 
 @end
+
+
+
+//
+//                                                      

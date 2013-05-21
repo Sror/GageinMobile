@@ -6,18 +6,18 @@
 //  Copyright 2008 Alberto García Hierro. All rights reserved.
 //	bynotes.com
 
-#import "OAConsumer.h"
-#import "OAToken.h"
+#import "OALnConsumer.h"
+#import "OALnToken.h"
 #import "OAProblem.h"
-#import "OADataFetcher.h"
-#import "OAServiceTicket.h"
-#import "OAMutableURLRequest.h"
+#import "OALnDataFetcher.h"
+#import "OALnServiceTicket.h"
+#import "OALnMutableURLRequest.h"
 #import "OACall.h"
 
 @interface OACall (Private)
 
-- (void)callFinished:(OAServiceTicket *)ticket withData:(NSData *)data;
-- (void)callFailed:(OAServiceTicket *)ticket withError:(NSError *)error;
+- (void)callFinished:(OALnServiceTicket *)ticket withData:(NSData *)data;
+- (void)callFailed:(OALnServiceTicket *)ticket withError:(NSError *)error;
 
 @end
 
@@ -91,7 +91,7 @@
 	[super dealloc];
 }
 
-- (void)callFailed:(OAServiceTicket *)aTicket withError:(NSError *)error {
+- (void)callFailed:(OALnServiceTicket *)aTicket withError:(NSError *)error {
 	NSLog(@"error body: %@", aTicket.body);
 	self.ticket = aTicket;
 	[aTicket release];
@@ -103,7 +103,7 @@
 	}
 }
 
-- (void)callFinished:(OAServiceTicket *)aTicket withData:(NSData *)data {
+- (void)callFinished:(OALnServiceTicket *)aTicket withData:(NSData *)data {
 	self.ticket = aTicket;
 	[aTicket release];
 	if (ticket.didSucceed) {
@@ -115,8 +115,8 @@
 	}
 }
 
-- (void)perform:(OAConsumer *)consumer
-		  token:(OAToken *)token
+- (void)perform:(OALnConsumer *)consumer
+		  token:(OALnToken *)token
 		  realm:(NSString *)realm
 	   delegate:(NSObject <OACallDelegate> *)aDelegate
 	didFinish:(SEL)finished
@@ -125,7 +125,7 @@
 	delegate = aDelegate;
 	finishedSelector = finished;
 
-	request = [[OAMutableURLRequest alloc] initWithURL:url
+	request = [[OALnMutableURLRequest alloc] initWithURL:url
 											  consumer:consumer
 												token:token
                                               callback:nil
@@ -146,7 +146,7 @@
 */
 		}
 	}
-	fetcher = [[OADataFetcher alloc] init];
+	fetcher = [[OALnDataFetcher alloc] init];
 	[fetcher fetchDataWithRequest:request
 						 delegate:self
 				didFinishSelector:@selector(callFinished:withData:)
