@@ -42,6 +42,7 @@
     
     [self observeNotification:GG_NOTIFY_GET_STARTED];
     [self observeNotification:OA_NOTIFY_SALESFORCE_AUTH_OK];
+    [self observeNotification:OA_NOTIFY_FACEBOOK_AUTH_OK];
     
     if ([GGRuntimeData sharedInstance].isFirstRun)
     {
@@ -64,18 +65,36 @@
 - (void)handleNotification:(NSNotification *)notification
 {
     NSString *notiName = notification.name;
-    if ([notiName isEqualToString:OA_LOGIN_VIEW_DID_FINISH])
+    if ([notiName isEqualToString:OA_NOTIFY_LINKEDIN_AUTH_OK])    // linkedIn
     {
-        [self unobserveNotification:OA_LOGIN_VIEW_DID_FINISH];
+        [self unobserveNotification:OA_NOTIFY_LINKEDIN_AUTH_OK];
         //DLog(@"oauth {consumner:%@, accesstoken:%@}", _oAuthLoginView.consumer, _oAuthLoginView.accessToken);
-#warning GOTO register page
+//#warning GOTO register page
+        OAuthLoginView *linkedInVC = [self linkedInAuthView];
+        [GGSharedAPI snGetUserInfoLinedInWithToken:linkedInVC.accessToken.key secret:linkedInVC.accessToken.secret callback:^(id operation, id aResultObject, NSError *anError) {
+            
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                
+            }
+            
+        }];
     }
     else if ([notiName isEqualToString:GG_NOTIFY_GET_STARTED])
     {
         [self.navigationController.view.layer addAnimation:[GGAnimation animationPushFromRight] forKey:nil];
         [self.navigationController popViewControllerAnimated:NO];
     }
-    else if ([notiName isEqualToString:OA_NOTIFY_SALESFORCE_AUTH_OK])
+    else if ([notiName isEqualToString:OA_NOTIFY_SALESFORCE_AUTH_OK])   // salesforce ok
+    {
+        
+    }
+    else if ([notiName isEqualToString:OA_NOTIFY_FACEBOOK_AUTH_OK]) // facebook ok
+    {
+        
+    }
+    else if ([notiName isEqualToString:OA_NOTIFY_TWITTER_OAUTH_OK]) // twitter ok
     {
         
     }
@@ -116,24 +135,16 @@
 -(IBAction)connectLinkedInAction:(id)sender
 {
     [self connectLinkedIn];
-    //[GGAlert alert:@"Connect to LinkedIn (TODO)"];
-//    _oAuthLoginView = [[OAuthLoginView alloc] initWithNibName:nil bundle:nil];
-//    [self observeNotification:OA_LOGIN_VIEW_DID_FINISH];
-//    [self.navigationController pushViewController:_oAuthLoginView animated:YES];
 }
 
 -(IBAction)connectFacebookAction:(id)sender
 {
     [self connectFacebook];
-    //[GGAlert alert:@"Connect to Facebook (TODO)"];
-//    GGFacebookOAuthVC *vc = [[GGFacebookOAuthVC alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(IBAction)connectTwitterAction:(id)sender
 {
     [self connectTwitter];
-    //[GGAlert alert:@"Connect to Twitter (TODO)"];
 }
 
 -(IBAction)connectYammerAction:(id)sender

@@ -11,3 +11,5 @@
 @interface GGFacebookOAuther : NSObject
 
 @end
+
+#define OA_NOTIFY_FACEBOOK_AUTH_OK    @"OA_NOTIFY_FACEBOOK_AUTH_OK"

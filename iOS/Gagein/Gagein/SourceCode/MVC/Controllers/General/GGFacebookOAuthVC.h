@@ -12,4 +12,3 @@
 
 @end
 
-#define OA_FACEBOOK_OK    @"OA_FACEBOOK_OK" 

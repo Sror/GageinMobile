@@ -10,8 +10,9 @@
 #import "GGNaviBackButton.h"
 #import "GGSalesforceOAuthVC.h"
 #import "OAuthLoginView.h"
-#import "GGFacebookOAuthVC.h"
+//#import "GGFacebookOAuthVC.h"
 #import "OAuthTwitterDemoViewController.h"
+#import "GGFacebookOAuther.h"
 
 #define MAX_NAVI_TITLE_LENGTH   20
 
@@ -26,6 +27,7 @@
     UIView                  *_transparentBlockView;
     
     OAuthLoginView          *_oAuthLoginView;
+    GGFacebookOAuther       *_facebookOAuther;
 }
 
 +(id)createInstance
@@ -315,15 +317,13 @@
 -(void)connectLinkedIn
 {
     _oAuthLoginView = [[OAuthLoginView alloc] initWithNibName:nil bundle:nil];
-    [self observeNotification:OA_LOGIN_VIEW_DID_FINISH];
+    [self observeNotification:OA_NOTIFY_LINKEDIN_AUTH_OK];
     [self.navigationController pushViewController:_oAuthLoginView animated:YES];
 }
 
 -(void)connectFacebook
 {
-    //[GGAlert alert:@"Connect to Facebook (TODO)"];
-    GGFacebookOAuthVC *vc = [[GGFacebookOAuthVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    _facebookOAuther = [[GGFacebookOAuther alloc] init];
 }
 
 -(void)connectTwitter

@@ -221,7 +221,7 @@
 -(void)_notifyAndQuit
 {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-    [self postNotification:OA_LOGIN_VIEW_DID_FINISH withObject:self];
+    [self postNotification:OA_NOTIFY_LINKEDIN_AUTH_OK withObject:self];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

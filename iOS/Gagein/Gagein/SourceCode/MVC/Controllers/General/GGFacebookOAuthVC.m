@@ -85,7 +85,7 @@
     if ([self _sharedSession].isOpen)
     {
         DLog(@"token:%@", [self _sharedSession].accessTokenData.accessToken);
-        [self postNotification:OA_FACEBOOK_OK];
+        [self postNotification:OA_NOTIFY_FACEBOOK_AUTH_OK];
         
         [self.navigationController popViewControllerAnimated:YES];
     }

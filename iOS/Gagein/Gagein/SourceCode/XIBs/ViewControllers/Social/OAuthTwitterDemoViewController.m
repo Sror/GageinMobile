@@ -160,7 +160,8 @@
 	if (controller)
     {
         //controller.hidesBottomBarWhenPushed = YES;
-		[self.navigationController pushViewController:controller animated:NO];
+        [self presentViewController:controller animated:NO completion:nil];
+		//[self.navigationController pushViewController:controller animated:NO];
     }
 	else
     {

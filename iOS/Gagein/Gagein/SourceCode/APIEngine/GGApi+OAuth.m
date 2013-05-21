@@ -41,7 +41,28 @@
 //
 //public static final int YAMMER = 102;
 //
+-(void)snGetUserInfoLinedInWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback
+{
+    [self snGetUserInfoWithType:kGGSnTypeLinkedIn token:aToken secret:aSecret sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
+}
 
+-(void)snGetUserInfoFacebookWithToken:(NSString *)aToken callback:(GGApiBlock)aCallback
+{
+    [self snGetUserInfoWithType:kGGSnTypeFacebook token:aToken secret:nil sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
+}
+
+-(void)snGetUserInfoSalesforceWithToken:(NSString *)aToken
+                       accountID:(NSString *)anAccountID
+                    refreshToken:(NSString *)aRefreshToken
+                     instanceURL:(NSString *)anInstanceURL callback:(GGApiBlock)aCallback
+{
+    [self snGetUserInfoWithType:kGGSnTypeSalesforce token:aToken secret:nil sfAccountID:anAccountID sfRefreshToken:aRefreshToken sfInstanceURL:anInstanceURL callback:aCallback];
+}
+
+-(void)snGetUserInfoTwitterWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback
+{
+    [self snGetUserInfoWithType:kGGSnTypeTwitter token:aToken secret:aSecret sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
+}
 
 -(void)snGetUserInfoWithType:(EGGSnType)aSnType
                        token:(NSString *)aSnToken
@@ -55,16 +76,16 @@
     NSString *path = @"socialnetwork/get_userinfo";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:__INT(aSnType) forKey:@"sn_type"];
-    [parameters setObject:aSnToken forKey:@"sn_token"];
-    [parameters setObject:aSnSecret forKey:@"sn_secret"];
+    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:__INT(aSnType) forKey:@"sn_type"];
+    [parameters setObjectIfNotNil:aSnToken forKey:@"sn_token"];
+    [parameters setObjectIfNotNil:aSnSecret forKey:@"sn_secret"];
     
     if (aSnType == kGGSnTypeSalesforce) {
-        [parameters setObject:aSfAccountID forKey:@"sn_account_id"];
-        [parameters setObject:aSfRefreshToken forKey:@"sn_refresh_token"];
-        [parameters setObject:aSfInstanceUrl forKey:@"sn_instance_url"];
+        [parameters setObjectIfNotNil:aSfAccountID forKey:@"sn_account_id"];
+        [parameters setObjectIfNotNil:aSfRefreshToken forKey:@"sn_refresh_token"];
+        [parameters setObjectIfNotNil:aSfInstanceUrl forKey:@"sn_instance_url"];
     }
     
     [self _execGetWithPath:path params:parameters callback:aCallback];
@@ -129,21 +150,21 @@
     NSString *path = @"register";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:__INT(aSnType) forKey:@"sn_type"];
-    [parameters setObject:aSnToken forKey:@"sn_token"];
-    [parameters setObject:aSnSecret forKey:@"sn_secret"];
-    [parameters setObject:aSnAccountID forKey:@"sn_account_id"];
-    [parameters setObject:aSnFirstName forKey:@"sn_first_name"];
-    [parameters setObject:aSnAccountID forKey:@"sn_last_name"];
-    [parameters setObject:aSnAccountID forKey:@"sn_email"];
-    [parameters setObject:aSnAccountID forKey:@"sn_account_name"];
-    [parameters setObject:aSnAccountID forKey:@"sn_profile_url"];
+    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:__INT(aSnType) forKey:@"sn_type"];
+    [parameters setObjectIfNotNil:aSnToken forKey:@"sn_token"];
+    [parameters setObjectIfNotNil:aSnSecret forKey:@"sn_secret"];
+    [parameters setObjectIfNotNil:aSnAccountID forKey:@"sn_account_id"];
+    [parameters setObjectIfNotNil:aSnFirstName forKey:@"sn_first_name"];
+    [parameters setObjectIfNotNil:aSnAccountID forKey:@"sn_last_name"];
+    [parameters setObjectIfNotNil:aSnAccountID forKey:@"sn_email"];
+    [parameters setObjectIfNotNil:aSnAccountID forKey:@"sn_account_name"];
+    [parameters setObjectIfNotNil:aSnAccountID forKey:@"sn_profile_url"];
     
     if (aSnType == kGGSnTypeSalesforce) {
-        [parameters setObject:aSfRefreshToken forKey:@"sn_refresh_token"];
-        [parameters setObject:aSfInstanceUrl forKey:@"sn_instance_url"];
+        [parameters setObjectIfNotNil:aSfRefreshToken forKey:@"sn_refresh_token"];
+        [parameters setObjectIfNotNil:aSfInstanceUrl forKey:@"sn_instance_url"];
     }
     
     [self _execPostWithPath:path params:parameters callback:aCallback];
@@ -234,8 +255,8 @@
     NSString *path = @"socialnetwork/linked/list";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
     [self _execGetWithPath:path params:parameters callback:aCallback];
 }
@@ -272,17 +293,14 @@
     NSString *path = [NSString stringWithFormat:@"member/me/update/%lld/share", aNewsID];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:__INT(aSnType) forKey:@"sn_type"];
-    [parameters setObject:aMessage forKey:@"message"];
-    [parameters setObject:aHeadLine forKey:@"title"];
-    [parameters setObject:aSummary forKey:@"summary"];
+    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:__INT(aSnType) forKey:@"sn_type"];
+    [parameters setObjectIfNotNil:aMessage forKey:@"message"];
+    [parameters setObjectIfNotNil:aHeadLine forKey:@"title"];
+    [parameters setObjectIfNotNil:aSummary forKey:@"summary"];
     
-    if (aPictureURL)
-    {
-        [parameters setObject:aPictureURL forKey:@"picture"];
-    }
+    [parameters setObjectIfNotNil:aPictureURL forKey:@"picture"];
     
     [self _execPostWithPath:path params:parameters callback:aCallback];
 }
@@ -309,10 +327,10 @@
     NSString *path = [NSString stringWithFormat:@"member/me/company/event/%lld/share", anEventID];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:__INT(aSnType) forKey:@"sn_type"];
-    [parameters setObject:aMessage forKey:@"message"];
+    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:__INT(aSnType) forKey:@"sn_type"];
+    [parameters setObjectIfNotNil:aMessage forKey:@"message"];
     
     [self _execPostWithPath:path params:parameters callback:aCallback];
 }
@@ -339,10 +357,10 @@
     NSString *path = [NSString stringWithFormat:@"member/me/contact/event/%lld/share", anEventID];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:__INT(aSnType) forKey:@"sn_type"];
-    [parameters setObject:aMessage forKey:@"message"];
+    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:__INT(aSnType) forKey:@"sn_type"];
+    [parameters setObjectIfNotNil:aMessage forKey:@"message"];
     
     [self _execPostWithPath:path params:parameters callback:aCallback];
 }

@@ -59,7 +59,7 @@
 
 - (void)viewDidLoad
 {
-    [self observeNotification:OA_FACEBOOK_OK];
+    [self observeNotification:OA_NOTIFY_FACEBOOK_AUTH_OK];
     [self observeNotification:OA_NOTIFY_SALESFORCE_AUTH_OK];
     [self observeNotification:OA_NOTIFY_TWITTER_OAUTH_OK];
     
@@ -180,9 +180,9 @@
 - (void)handleNotification:(NSNotification *)notification
 {
     NSString *notiName = notification.name;
-    if ([notiName isEqualToString:OA_LOGIN_VIEW_DID_FINISH])
+    if ([notiName isEqualToString:OA_NOTIFY_LINKEDIN_AUTH_OK])
     {
-        [self unobserveNotification:OA_LOGIN_VIEW_DID_FINISH];
+        [self unobserveNotification:OA_NOTIFY_LINKEDIN_AUTH_OK];
         
         [self showLoadingHUD];
         [GGSharedAPI snSaveLinedInWithToken:self.linkedInAuthView.accessToken.key secret:self.linkedInAuthView.accessToken.secret callback:^(id operation, id aResultObject, NSError *anError) {
@@ -197,7 +197,7 @@
         }];
         
     }
-    else if ([notiName isEqualToString:OA_FACEBOOK_OK])
+    else if ([notiName isEqualToString:OA_NOTIFY_FACEBOOK_AUTH_OK])
     {
         NSString *accessToken = [GGFacebookOAuth sharedInstance].session.accessTokenData.accessToken;
         

@@ -20,8 +20,24 @@ typedef enum
 
 @interface GGApi (OAuth)
 
+// ------- get user info ------
+-(void)snGetUserInfoLinedInWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback;
+
+-(void)snGetUserInfoFacebookWithToken:(NSString *)aToken callback:(GGApiBlock)aCallback;
+
+-(void)snGetUserInfoSalesforceWithToken:(NSString *)aToken
+                              accountID:(NSString *)anAccountID
+                           refreshToken:(NSString *)aRefreshToken
+                            instanceURL:(NSString *)anInstanceURL callback:(GGApiBlock)aCallback;
+
+-(void)snGetUserInfoTwitterWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback;
+
+
+// ---- get list ---
 -(void)snGetList:(GGApiBlock)aCallback;
 
+
+// -------- save --------------
 -(void)snSaveLinedInWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback;
 
 -(void)snSaveFacebookWithToken:(NSString *)aToken callback:(GGApiBlock)aCallback;
@@ -33,6 +49,7 @@ typedef enum
 
 -(void)snSaveTwitterWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback;
 
+// ------- share ------
 -(void)snShareNewsWithID:(long long)aNewsID
                   snType:(EGGSnType)aSnType
                  message:(NSString *)aMessage

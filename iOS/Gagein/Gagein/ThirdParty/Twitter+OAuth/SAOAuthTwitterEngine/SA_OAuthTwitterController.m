@@ -132,10 +132,15 @@ static NSString* const kGGTwitterLoadingBackgroundImage = @"twitter_load.png";
 }
 
 - (void) cancel: (id) sender {
-	if ([_delegate respondsToSelector: @selector(OAuthTwitterControllerCanceled:)])
-    {
-        [_delegate OAuthTwitterControllerCanceled: self];
-    }
+	    
+    [self dismissViewControllerAnimated:NO completion:^{
+        if ([_delegate respondsToSelector: @selector(OAuthTwitterControllerCanceled:)])
+        {
+            [_delegate OAuthTwitterControllerCanceled: self];
+        }
+
+    }];
+    //[self dismissAction:nil];
 //	[self performSelector: @selector(dismissModalViewControllerAnimated:) withObject: (id) kCFBooleanTrue afterDelay: 0.0];
 }
 
