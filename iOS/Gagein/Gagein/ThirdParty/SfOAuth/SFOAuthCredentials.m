@@ -248,6 +248,7 @@ static NSException * kSFOAuthExceptionNilIdentifier;
 
 
 - (NSString *)refreshToken {
+    
     if (!([self.identifier length] > 0)) @throw kSFOAuthExceptionNilIdentifier;
     NSData *refreshTokenData = [self tokenForKey:kSFOAuthServiceRefresh];
     if (!refreshTokenData) {

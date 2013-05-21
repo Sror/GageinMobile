@@ -340,7 +340,15 @@
         
         DLog(@"Shared to chatter.");
         
-        [self connectSalesForce];
+//        if ([self _hasLinedSnType:kGGSnTypeSalesforce])
+//        {
+//            [self _shareWithType:kGGSnTypeSalesforce];
+//        }
+//        else
+        {
+            [self connectSalesForce];
+        }
+        
     }];
     
     bgImg = [UIImage imageNamed:@"facebookLongBtnBg"];
@@ -365,6 +373,17 @@
     bgImg = [UIImage imageNamed:@"facebookLongBtnBg"];
     [actionSheet addButtonWithTitle:@"Facebook" bgImage:bgImg block:^{
         DLog(@"Shared to facebook.");
+        
+//        if ([self _hasLinedSnType:kGGSnTypeFacebook])
+//        {
+//            [self _shareWithType:kGGSnTypeFacebook];
+//        }
+//        else
+        {
+            [self connectFacebook];
+        }
+        
+        
     }];
     
 //    bgImg = [UIImage imageNamed:@"chatterLongBtnBg"];

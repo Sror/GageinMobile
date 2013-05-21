@@ -58,6 +58,36 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
 
 @implementation GGSalesforceOAuthVC
 
+
+//public static class SALESFORCE {
+
+//    
+//    private static SITE_KEYS qacnKeys = new SITE_KEYS(
+//                                                      "GageInApp.qacn",
+//                                                      "http://gageincn.dyndns.org:3031",
+//                                                      "",
+//                                                      "3MVG9QDx8IX8nP5Rg7yD2yhM0mTep67cL1i5rgZf680Zc30kzy9j6G_vyEvH9EZaUcsp3uMGMK_58ELiarVjc",
+//                                                      "1169752873003592920"
+//                                                      );
+//    
+//    
+//    private static SITE_KEYS stagingKeys = new SITE_KEYS(
+//                                                         "GageInApp.staging",
+//                                                         "http://gageinstaging.dyndns.org",
+//                                                         "",
+//                                                         "3MVG9QDx8IX8nP5Rg7yD2yhM0mXzbRfDUkFTsEmylcNYdpLf3MpiegNCjNhLn4WoQ36aNg5a5muZtOtiBsGcs",
+//                                                         "5228913310560653116"
+//                                                         );
+//    
+//    private static SITE_KEYS demoKeys = new SITE_KEYS(
+//                                                      "GageInApp.demo",
+//                                                      "http://gageindemo.dyndns.org/",
+//                                                      "",
+//                                                      "3MVG9QDx8IX8nP5Rg7yD2yhM0mRvh1db.tHJhAvmBc4Tsze3dupGHqlChVxEiCFPLLV8qYtL.oX8Um8sZvg4p",
+//                                                      "351992569387772761"
+//                                                      );
+
+
 +(GGSalesForceParam *)_param
 {
     GGSalesForceParam * _param = [[GGSalesForceParam alloc] init];
@@ -66,7 +96,8 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
     {
         case kGGServerProduction:
         {
-            
+            _param.identifier = @"GageIn";
+            _param.clientID = @"3MVG9QDx8IX8nP5Rg7yD2yhM0mSIoG5JhtwAfaXVxWdWvLQ2c9dbC5IdPIt8bV9wAgE4sLNdWDWrvrHs7izVe";
         }
             break;
             
@@ -84,16 +115,18 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
             
         case kGGServerDemo:
         {
-            
+            _param.identifier = @"GageInApp.demo";
+            _param.clientID = @"3MVG9QDx8IX8nP5Rg7yD2yhM0mRvh1db.tHJhAvmBc4Tsze3dupGHqlChVxEiCFPLLV8qYtL.oX8Um8sZvg4p";
+            _param.redirectURL = @"https://gageindemo.dyndns.org/dragon/ConnectWithSalesforceProxy";
         }
             break;
             
         case kGGServerRoshen:
         {
-#if 0
+#if 1
             _param.identifier = @"GageIn.localhost";
             _param.clientID = @"3MVG9QDx8IX8nP5Rg7yD2yhM0mZ1B5qRXXaIqmF3KCA.ycm5l7WI5cOzwLzyadnkqgfAzChHWRF6mvgDN4KCF";
-            _param.redirectURL = @"https://localhost:8443/dragon/ConnectWithSalesforceProxy";
+            _param.redirectURL = @"http://www.gagein.com/dragon/GuestHome";//@"http://www.gagein.com/dragon/ConnectWithSalesforceProxy";//@"http://localhost:8443/dragon/ConnectWithSalesforceProxy";
 #endif
 
         }
@@ -136,7 +169,8 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
 
 -(void)dealloc
 {
-    [[self class] archiveCredentials:self.oauthCoordinator.credentials];
+    self.oauthCoordinator.delegate = nil;
+    //[[self class] archiveCredentials:self.oauthCoordinator.credentials];
 }
 
 #pragma mark -

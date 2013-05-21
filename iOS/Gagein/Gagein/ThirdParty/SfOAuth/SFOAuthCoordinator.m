@@ -164,10 +164,12 @@ static NSString * const kHttpPostContentType                    = @"application/
     
     // TODO: reachability
     
-    if (self.credentials.refreshToken) {
-        // clear any access token we may have and begin refresh flow
-        [self beginTokenRefreshFlow];
-    } else {
+//    if (self.credentials.refreshToken) {
+//        // clear any access token we may have and begin refresh flow
+//        [self beginTokenRefreshFlow];
+//    }
+//    else
+    {
         [self beginUserAgentFlow];
     }
 }
@@ -480,6 +482,7 @@ static NSString * const kHttpPostContentType                    = @"application/
     NSURL *requestUrl = [request URL];
     NSString *requestUrlString = [requestUrl absoluteString];
 
+    DLog(@"requestUrlString:%@ , redirectUri : %@", requestUrlString, self.credentials.redirectUri);
     if ([requestUrlString hasPrefix:self.credentials.redirectUri]) {
         
         result = NO; // we're finished, don't load this request
