@@ -17,6 +17,8 @@
 #import "GGFacebookOAuthVC.h"
 #import "GGSnShareVC.h"
 #import "GGFacebookOAuth.h"
+#import "OAuthTwitterDemoViewController.h"
+#import "OAToken.h"
 
 @interface GGCompanyUpdateDetailVC () <MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -59,6 +61,7 @@
 {
     [self observeNotification:OA_FACEBOOK_OK];
     [self observeNotification:OA_NOTIFY_SALESFORCE_AUTH_OK];
+    [self observeNotification:OA_NOTIFY_TWITTER_OAUTH_OK];
     
     [super viewDidLoad];
     
@@ -222,6 +225,23 @@
             {
                 [self _addSnType:kGGSnTypeSalesforce];
                 [self _shareWithType:kGGSnTypeSalesforce];
+            }
+            
+        }];
+    }
+    else if ([notiName isEqualToString:OA_NOTIFY_TWITTER_OAUTH_OK]) // twitter oauth ok
+    {
+        OAToken *token = notification.object;
+        
+        [self showLoadingHUD];
+        [GGSharedAPI snSaveTwitterWithToken:token.key secret:token.secret callback:^(id operation, id aResultObject, NSError *anError) {
+            
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [self _addSnType:kGGSnTypeTwitter];
+                [self _shareWithType:kGGSnTypeTwitter];
             }
             
         }];

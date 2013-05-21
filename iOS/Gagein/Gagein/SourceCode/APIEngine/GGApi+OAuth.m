@@ -186,6 +186,11 @@
     [self snSaveWithType:kGGSnTypeSalesforce token:aToken secret:nil sfAccountID:anAccountID sfRefreshToken:aRefreshToken sfInstanceURL:anInstanceURL callback:aCallback];
 }
 
+-(void)snSaveTwitterWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback
+{
+    [self snSaveWithType:kGGSnTypeTwitter token:aToken secret:aSecret sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
+}
+
 -(void)snSaveWithType:(EGGSnType)aSnType
                 token:(NSString *)aSnToken
                secret:(NSString *)aSnSecret

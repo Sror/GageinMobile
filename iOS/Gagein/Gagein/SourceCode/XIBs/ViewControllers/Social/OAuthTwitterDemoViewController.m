@@ -8,6 +8,7 @@
 
 #import "OAuthTwitterDemoViewController.h"
 #import "SA_OAuthTwitterEngine.h"
+#import "OAToken.h"
 
 
 //#define kOAuthConsumerKey				@"aL1IjfI8zuv0IyGX9sTlLQ"		//REPLACE ME
@@ -83,14 +84,20 @@
 
 #pragma mark SA_OAuthTwitterEngineDelegate
 - (void) storeCachedTwitterOAuthData: (NSString *) data forUsername: (NSString *) username {
-	NSUserDefaults			*defaults = [NSUserDefaults standardUserDefaults];
-
-	[defaults setObject: data forKey: @"authData"];
-	[defaults synchronize];
+    
+    DLog(@"token:%@ secret:%@", _engine.accessToken.key, _engine.accessToken.secret);
+    
+    [self postNotification:OA_NOTIFY_TWITTER_OAUTH_OK withObject:_engine.accessToken];
+    
+//	NSUserDefaults			*defaults = [NSUserDefaults standardUserDefaults];
+//
+//	[defaults setObject: data forKey: @"authData"];
+//	[defaults synchronize];
 }
 
 - (NSString *) cachedTwitterOAuthDataForUsername: (NSString *) username {
-	return [[NSUserDefaults standardUserDefaults] objectForKey: @"authData"];
+    return nil;
+	//return [[NSUserDefaults standardUserDefaults] objectForKey: @"authData"];
 }
 
 
@@ -124,6 +131,8 @@
 
 -(void)viewDidLoad
 {
+    self.navigationController.navigationBarHidden = NO;
+    
     [super viewDidLoad];
     
     self.naviTitle = @"Twitter";

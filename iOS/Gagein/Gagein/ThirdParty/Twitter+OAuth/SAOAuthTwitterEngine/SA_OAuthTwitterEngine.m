@@ -207,14 +207,14 @@
 	if (self.pin.length && [dataString rangeOfString: @"oauth_verifier"].location == NSNotFound) dataString = [dataString stringByAppendingFormat: @"&oauth_verifier=%@", self.pin];
 	
 	NSString				*username = [self extractUsernameFromHTTPBody:dataString];
+    
+    [_accessToken release];
+	_accessToken = [[OAToken alloc] initWithHTTPResponseBody:dataString];
 
 	if (username.length > 0) {
 		[self setUsername: username password: nil];
 		if ([_delegate respondsToSelector: @selector(storeCachedTwitterOAuthData:forUsername:)]) [(id) _delegate storeCachedTwitterOAuthData: dataString forUsername: username];
 	}
-	
-	[_accessToken release];
-	_accessToken = [[OAToken alloc] initWithHTTPResponseBody:dataString];
 }
 
 

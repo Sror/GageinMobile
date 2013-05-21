@@ -31,6 +31,8 @@ typedef enum
                     refreshToken:(NSString *)aRefreshToken
                      instanceURL:(NSString *)anInstanceURL callback:(GGApiBlock)aCallback;
 
+-(void)snSaveTwitterWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback;
+
 -(void)snShareNewsWithID:(long long)aNewsID
                   snType:(EGGSnType)aSnType
                  message:(NSString *)aMessage
