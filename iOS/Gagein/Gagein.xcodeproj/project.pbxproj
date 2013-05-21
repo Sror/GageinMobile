@@ -239,6 +239,8 @@
 		EA5DFAF7174A964B00577BAC /* GGApi+OAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5DFAF6174A964B00577BAC /* GGApi+OAuth.m */; };
 		EA5DFAFC174AB62300577BAC /* GGSnShareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5DFAFA174AB62300577BAC /* GGSnShareVC.m */; };
 		EA5DFAFD174AB62300577BAC /* GGSnShareVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA5DFAFB174AB62300577BAC /* GGSnShareVC.xib */; };
+		EA5DFB00174B142E00577BAC /* NSMutableDictionary+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5DFAFF174B142E00577BAC /* NSMutableDictionary+AddOn.m */; };
+		EA5DFB03174B1A6900577BAC /* GGFacebookOAuther.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5DFB02174B1A6900577BAC /* GGFacebookOAuther.m */; };
 		EA7180D41715008900347EA4 /* FXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D31715008900347EA4 /* FXPageControl.m */; };
 		EA7180D917150AAF00347EA4 /* GGFollowCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */; };
 		EA7180E4171511B700347EA4 /* GGSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180E3171511B700347EA4 /* GGSearchBar.m */; };
@@ -755,6 +757,10 @@
 		EA5DFAF9174AB62300577BAC /* GGSnShareVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSnShareVC.h; sourceTree = "<group>"; };
 		EA5DFAFA174AB62300577BAC /* GGSnShareVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSnShareVC.m; sourceTree = "<group>"; };
 		EA5DFAFB174AB62300577BAC /* GGSnShareVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSnShareVC.xib; sourceTree = "<group>"; };
+		EA5DFAFE174B142E00577BAC /* NSMutableDictionary+AddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+AddOn.h"; sourceTree = "<group>"; };
+		EA5DFAFF174B142E00577BAC /* NSMutableDictionary+AddOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+AddOn.m"; sourceTree = "<group>"; };
+		EA5DFB01174B1A6900577BAC /* GGFacebookOAuther.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFacebookOAuther.h; sourceTree = "<group>"; };
+		EA5DFB02174B1A6900577BAC /* GGFacebookOAuther.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFacebookOAuther.m; sourceTree = "<group>"; };
 		EA7180D21715008900347EA4 /* FXPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXPageControl.h; sourceTree = "<group>"; };
 		EA7180D31715008900347EA4 /* FXPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXPageControl.m; sourceTree = "<group>"; };
 		EA7180D617150AAF00347EA4 /* GGFollowCompanyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFollowCompanyVC.h; sourceTree = "<group>"; };
@@ -2148,6 +2154,8 @@
 				EAC96C431709868B003FAFAA /* NSObject+BeeNotification.m */,
 				EACAE139170961FB00E7088F /* UIView+LoadFromNib.h */,
 				EACAE13A170961FB00E7088F /* UIView+LoadFromNib.m */,
+				EA5DFAFE174B142E00577BAC /* NSMutableDictionary+AddOn.h */,
+				EA5DFAFF174B142E00577BAC /* NSMutableDictionary+AddOn.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -2243,6 +2251,8 @@
 				EAD1618C173B3D9D0092C11B /* GGFacebookOAuthVC.h */,
 				EAD1618D173B3D9D0092C11B /* GGFacebookOAuthVC.m */,
 				EAD1618E173B3D9D0092C11B /* GGFacebookOAuthVC.xib */,
+				EA5DFB01174B1A6900577BAC /* GGFacebookOAuther.h */,
+				EA5DFB02174B1A6900577BAC /* GGFacebookOAuther.m */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -2877,6 +2887,8 @@
 				EA2F008A1746BFA700E191BD /* CMRotatableModalViewController.m in Sources */,
 				EA5DFAF7174A964B00577BAC /* GGApi+OAuth.m in Sources */,
 				EA5DFAFC174AB62300577BAC /* GGSnShareVC.m in Sources */,
+				EA5DFB00174B142E00577BAC /* NSMutableDictionary+AddOn.m in Sources */,
+				EA5DFB03174B1A6900577BAC /* GGFacebookOAuther.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

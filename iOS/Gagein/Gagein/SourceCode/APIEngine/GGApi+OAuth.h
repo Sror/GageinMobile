@@ -24,7 +24,7 @@ typedef enum
 
 -(void)snSaveLinedInWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback;
 
-
+-(void)snSaveFacebookWithToken:(NSString *)aToken callback:(GGApiBlock)aCallback;
 
 -(void)snShareNewsWithID:(long long)aNewsID
                   snType:(EGGSnType)aSnType

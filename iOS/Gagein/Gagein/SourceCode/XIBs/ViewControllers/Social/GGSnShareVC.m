@@ -57,7 +57,7 @@
     NSString *picURL = _comUpdateDetail.pictures.count ? _comUpdateDetail.pictures[0] : nil;
     
     [self showLoadingHUD];
-    [GGSharedAPI snShareNewsWithID:_comUpdateDetail.ID snType:kGGSnTypeLinkedIn message:_textView.text headLine:_comUpdateDetail.headline summary:summary pictureURL:picURL callback:^(id operation, id aResultObject, NSError *anError) {
+    [GGSharedAPI snShareNewsWithID:_comUpdateDetail.ID snType:_snType message:_textView.text headLine:_comUpdateDetail.headline summary:summary pictureURL:picURL callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)

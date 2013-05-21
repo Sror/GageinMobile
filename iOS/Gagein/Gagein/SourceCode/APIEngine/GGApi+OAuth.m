@@ -173,9 +173,9 @@
     [self snSaveWithType:kGGSnTypeLinkedIn token:aToken secret:aSecret sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
 }
 
--(void)snSaveSalesforce:(NSString *)anAccountID callback:(GGApiBlock)aCallback
+-(void)snSaveFacebookWithToken:(NSString *)aToken callback:(GGApiBlock)aCallback
 {
-    //return [self snSaveWithType:kGGSnTypeLinkedIn token:aToken secret:aSecret sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
+    [self snSaveWithType:kGGSnTypeFacebook token:aToken secret:nil sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
 }
 
 -(void)snSaveWithType:(EGGSnType)aSnType
@@ -189,16 +189,17 @@
     NSString *path = @"socialnetwork/save_sn_info";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:__INT(aSnType) forKey:@"sn_type"];
-    [parameters setObject:aSnToken forKey:@"sn_token"];
-    [parameters setObject:aSnSecret forKey:@"sn_secret"];
+    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:__INT(aSnType) forKey:@"sn_type"];
+    [parameters setObjectIfNotNil:aSnToken forKey:@"sn_token"];
+    
+    [parameters setObjectIfNotNil:aSnSecret forKey:@"sn_secret"];
     
     if (aSnType == kGGSnTypeSalesforce) {
-        [parameters setObject:aSfAccountID forKey:@"sn_account_id"];
-        [parameters setObject:aSfRefreshToken forKey:@"sn_refresh_token"];
-        [parameters setObject:aSfInstanceUrl forKey:@"sn_instance_url"];
+        [parameters setObjectIfNotNil:aSfAccountID forKey:@"sn_account_id"];
+        [parameters setObjectIfNotNil:aSfRefreshToken forKey:@"sn_refresh_token"];
+        [parameters setObjectIfNotNil:aSfInstanceUrl forKey:@"sn_instance_url"];
     }
     
     [self _execPostWithPath:path params:parameters callback:aCallback];

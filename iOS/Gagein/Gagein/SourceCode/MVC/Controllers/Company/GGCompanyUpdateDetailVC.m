@@ -16,6 +16,7 @@
 #import "OAuthLoginView.h"
 #import "GGFacebookOAuthVC.h"
 #import "GGSnShareVC.h"
+#import "GGFacebookOAuth.h"
 
 @interface GGCompanyUpdateDetailVC () <MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -56,7 +57,10 @@
 
 - (void)viewDidLoad
 {
+    [self observeNotification:OA_FACEBOOK_OK];
+    
     [super viewDidLoad];
+    
     self.naviTitle = _naviTitleString;
     self.view.backgroundColor = GGSharedColor.silver;
     self.scrollView.alwaysBounceVertical = YES;
@@ -188,6 +192,21 @@
             }
         }];
         
+    }
+    else if ([notiName isEqualToString:OA_FACEBOOK_OK])
+    {
+        NSString *accessToken = [GGFacebookOAuth sharedInstance].session.accessTokenData.accessToken;
+        
+        [self showLoadingHUD];
+        [GGSharedAPI snSaveFacebookWithToken:accessToken callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [self _addSnType:kGGSnTypeFacebook];
+                [self _shareWithType:kGGSnTypeFacebook];
+            }
+        }];
     }
 }
 
@@ -374,11 +393,11 @@
     [actionSheet addButtonWithTitle:@"Facebook" bgImage:bgImg block:^{
         DLog(@"Shared to facebook.");
         
-//        if ([self _hasLinedSnType:kGGSnTypeFacebook])
-//        {
-//            [self _shareWithType:kGGSnTypeFacebook];
-//        }
-//        else
+        if ([self _hasLinedSnType:kGGSnTypeFacebook])
+        {
+            [self _shareWithType:kGGSnTypeFacebook];
+        }
+        else
         {
             [self connectFacebook];
         }

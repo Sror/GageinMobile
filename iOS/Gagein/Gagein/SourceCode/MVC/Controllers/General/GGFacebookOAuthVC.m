@@ -27,6 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = GGSharedColor.silver;
+    
     
     if (![self _sharedSession].isOpen)
     {
@@ -81,6 +83,8 @@
     if ([self _sharedSession].isOpen)
     {
         DLog(@"token:%@", [self _sharedSession].accessTokenData.accessToken);
+        [self postNotification:OA_FACEBOOK_OK];
+        
         [self.navigationController popViewControllerAnimated:YES];
     }
     else
