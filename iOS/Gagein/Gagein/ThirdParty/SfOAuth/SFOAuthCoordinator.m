@@ -481,8 +481,12 @@ static NSString * const kHttpPostContentType                    = @"application/
     BOOL result = YES;
     NSURL *requestUrl = [request URL];
     NSString *requestUrlString = [requestUrl absoluteString];
-
+    
+    // to fix the http protocol bug - salesforce
+    requestUrlString = [requestUrlString stringByReplacingOccurrencesOfString:@"https://" withString:@"http://"];
+    
     DLog(@"requestUrlString:%@ , redirectUri : %@", requestUrlString, self.credentials.redirectUri);
+    //[self.credentials.redirectUri relc]
     if ([requestUrlString hasPrefix:self.credentials.redirectUri]) {
         
         result = NO; // we're finished, don't load this request
@@ -506,7 +510,11 @@ static NSString * const kHttpPostContentType                    = @"application/
             NSDictionary *params = [[self class] parseQueryString:response];
             NSString *error = [params objectForKey:kSFOAuthError];
             if (nil == error) {
-                self.credentials.identityUrl    = [NSURL URLWithString:[params objectForKey:kSFOAuthId]];
+                
+                // bug fixed: url percentage coverted
+                NSString *identityUrlStr = [params objectForKey:kSFOAuthId];
+                identityUrlStr = [identityUrlStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                self.credentials.identityUrl    = [NSURL URLWithString:identityUrlStr];
                 self.credentials.accessToken    = [params objectForKey:kSFOAuthAccessToken];
                 self.credentials.refreshToken   = [params objectForKey:kSFOAuthRefreshToken];
                 self.credentials.instanceUrl    = [NSURL URLWithString:[params objectForKey:kSFOAuthInstanceUrl]];
