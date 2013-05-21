@@ -109,10 +109,13 @@
 
 - (void) OAuthTwitterControllerFailed: (SA_OAuthTwitterController *) controller {
 	NSLog(@"Authentication Failed!");
+    [GGAlert alert:@"Authentication Failed!"];
+    [self naviBackAction:nil];
 }
 
 - (void) OAuthTwitterControllerCanceled: (SA_OAuthTwitterController *) controller {
 	NSLog(@"Authentication Canceled.");
+    [self naviBackAction:nil];
 }
 
 //=============================================================================================================================
@@ -154,9 +157,13 @@
 	
 	UIViewController			*controller = [SA_OAuthTwitterController controllerToEnterCredentialsWithTwitterEngine: _engine delegate: self];
 	
-	if (controller) 
-		[self presentModalViewController: controller animated: YES];
-	else {
+	if (controller)
+    {
+        //controller.hidesBottomBarWhenPushed = YES;
+		[self.navigationController pushViewController:controller animated:NO];
+    }
+	else
+    {
 		[_engine sendUpdate: [NSString stringWithFormat: @"Already Updated. %@", [NSDate date]]];
 	}
 

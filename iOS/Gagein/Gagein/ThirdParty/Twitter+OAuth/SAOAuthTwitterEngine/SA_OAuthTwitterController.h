@@ -21,7 +21,7 @@
 @end
 
 
-@interface SA_OAuthTwitterController : UIViewController <UIWebViewDelegate> {
+@interface SA_OAuthTwitterController : GGBaseViewController <UIWebViewDelegate> {
 
 	SA_OAuthTwitterEngine						*_engine;
 	UIWebView									*_webView;

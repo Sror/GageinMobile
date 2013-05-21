@@ -9,8 +9,9 @@
 #import "GGSnShareVC.h"
 #import "GGCompanyUpdate.h"
 
-#define MAX_MESSAGE_LENGTH              (250)
+#define MAX_MESSAGE_LENGTH              (400)
 #define MAX_MESSAGE_LENGTH_TWITTER      (140)
+#define MAX_SUMMARY_LENGTH              (250)
 
 @interface GGSnShareVC ()
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -43,7 +44,7 @@
             
         case kGGSnTypeLinkedIn:
         {
-            return MAX_MESSAGE_LENGTH;
+            return 250;
         }
             break;
             
@@ -96,9 +97,9 @@
 {
     NSString *summary = _comUpdateDetail.content.length ? _comUpdateDetail.content : _comUpdateDetail.textview;
     
-    int maxLength = [self maxLenghForMessageType:_snType];
-    summary = (summary.length > maxLength) ? [summary substringToIndex:maxLength] : summary;
+    summary = (summary.length > MAX_SUMMARY_LENGTH) ? [summary substringToIndex:MAX_SUMMARY_LENGTH] : summary;
     
+    int maxLength = [self maxLenghForMessageType:_snType];
     maxLength -= 20;
     NSString *message = (_textView.text.length > maxLength) ? [_textView.text substringToIndex:maxLength] : _textView.text;
     

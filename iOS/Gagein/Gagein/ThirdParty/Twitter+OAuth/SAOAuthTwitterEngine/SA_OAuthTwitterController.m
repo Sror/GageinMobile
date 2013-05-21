@@ -15,6 +15,7 @@
 #import "SA_OAuthTwitterEngine.h"
 
 #import "SA_OAuthTwitterController.h"
+#import "GGAppDelegate.h"
 
 // Constants
 static NSString* const kGGTwitterLoadingBackgroundImage = @"twitter_load.png";
@@ -131,8 +132,11 @@ static NSString* const kGGTwitterLoadingBackgroundImage = @"twitter_load.png";
 }
 
 - (void) cancel: (id) sender {
-	if ([_delegate respondsToSelector: @selector(OAuthTwitterControllerCanceled:)]) [_delegate OAuthTwitterControllerCanceled: self];
-	[self performSelector: @selector(dismissModalViewControllerAnimated:) withObject: (id) kCFBooleanTrue afterDelay: 0.0];
+	if ([_delegate respondsToSelector: @selector(OAuthTwitterControllerCanceled:)])
+    {
+        [_delegate OAuthTwitterControllerCanceled: self];
+    }
+//	[self performSelector: @selector(dismissModalViewControllerAnimated:) withObject: (id) kCFBooleanTrue afterDelay: 0.0];
 }
 
 //=============================================================================================================================
@@ -183,10 +187,22 @@ static NSString* const kGGTwitterLoadingBackgroundImage = @"twitter_load.png";
 	[spinner startAnimating];
 	
 	UINavigationItem				*navItem = [[[UINavigationItem alloc] initWithTitle: NSLocalizedString(@"Twitter Info", nil)] autorelease];
-	navItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemCancel target: self action: @selector(cancel:)] autorelease];
+	navItem.leftBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Canel" target:self selector:@selector(cancel:)];//[[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemCancel target: self action: @selector(cancel:)] autorelease];
 	
 	[_navBar pushNavigationItem: navItem animated: NO];
 	[self locateAuthPinInWebView: nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    //[GGSharedDelegate makeNaviBarCustomed:NO];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    //[GGSharedDelegate makeNaviBarCustomed:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

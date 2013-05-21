@@ -132,7 +132,8 @@
 
 -(IBAction)connectTwitterAction:(id)sender
 {
-    [GGAlert alert:@"Connect to Twitter (TODO)"];
+    [self connectTwitter];
+    //[GGAlert alert:@"Connect to Twitter (TODO)"];
 }
 
 -(IBAction)connectYammerAction:(id)sender

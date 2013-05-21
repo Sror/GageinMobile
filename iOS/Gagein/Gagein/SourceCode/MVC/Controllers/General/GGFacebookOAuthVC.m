@@ -63,11 +63,13 @@
 
 -(void)_doCreateSession
 {
-    [GGFacebookOAuth sharedInstance].session = [[FBSession alloc] init];
+    NSArray *permisson = [NSArray arrayWithObjects:@"offline_access", @"read_stream", @"publish_stream", @"publish_checkins", @"manage_pages", @"email", nil];
+    [GGFacebookOAuth sharedInstance].session = [[FBSession alloc] initWithPermissions:permisson];
 }
 
 -(void)_doOpenSession
 {
+    
     [[self _sharedSession] openWithCompletionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
         [self _updateUI];
     }];
