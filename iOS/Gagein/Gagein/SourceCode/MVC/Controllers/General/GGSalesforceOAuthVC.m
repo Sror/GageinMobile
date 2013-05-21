@@ -126,7 +126,7 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
 #if 1
             _param.identifier = @"GageIn.localhost";
             _param.clientID = @"3MVG9QDx8IX8nP5Rg7yD2yhM0mZ1B5qRXXaIqmF3KCA.ycm5l7WI5cOzwLzyadnkqgfAzChHWRF6mvgDN4KCF";
-            _param.redirectURL = @"http://www.gagein.com/dragon/GuestHome";//@"http://www.gagein.com/dragon/ConnectWithSalesforceProxy";//@"http://localhost:8443/dragon/ConnectWithSalesforceProxy";
+            _param.redirectURL = @"http://localhost:8443/dragon/ConnectWithSalesforceProxy";//@"http://www.gagein.com/dragon/ConnectWithSalesforceProxy";//@"http://localhost:8443/dragon/ConnectWithSalesforceProxy";
 #endif
 
         }
