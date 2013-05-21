@@ -387,6 +387,8 @@
     bgImg = [UIImage imageNamed:@"twitterLongBtnBg"];
     [actionSheet addButtonWithTitle:@"Twitter" bgImage:bgImg block:^{
         DLog(@"Shared to Twitter.");
+        
+        [self connectTwitter];
     }];
     
     bgImg = [UIImage imageNamed:@"facebookLongBtnBg"];

@@ -52,6 +52,8 @@
 
 -(void)connectFacebook;
 
+-(void)connectTwitter;
+
 -(OAuthLoginView *)linkedInAuthView;
 
 @end
