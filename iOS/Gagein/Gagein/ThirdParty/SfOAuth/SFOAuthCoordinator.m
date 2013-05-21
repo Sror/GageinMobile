@@ -263,7 +263,8 @@ static NSString * const kHttpPostContentType                    = @"application/
         NSMutableString *scopeStr = [[NSMutableString alloc] initWithString:kSFOAuthRefreshToken];
 
         for (NSString *scope in self.scopes) {
-            if (![scope isEqualToString:kSFOAuthRefreshToken]) {
+            if (![scope isEqualToString:kSFOAuthRefreshToken])
+            {
             	[scopeStr appendFormat:@" %@", scope]; // scopes are delimited by a space character
             }
         }

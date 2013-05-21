@@ -103,7 +103,10 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
             
         case kGGServerStaging:
         {
-            
+#warning TODO: need to change to staging setting
+//            _param.identifier = @"GageIn.localhost";
+//            _param.clientID = @"3MVG9QDx8IX8nP5Rg7yD2yhM0mZ1B5qRXXaIqmF3KCA.ycm5l7WI5cOzwLzyadnkqgfAzChHWRF6mvgDN4KCF";
+//            _param.redirectURL = @"http://localhost:8443/dragon/ConnectWithSalesforceProxy";
         }
             break;
             
@@ -151,16 +154,17 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
 - (void)viewDidLoad
 {
     self.navigationController.navigationBarHidden = NO;
-    self.navigationItem.hidesBackButton = YES;
+    //self.navigationItem.hidesBackButton = YES;
     
     [super viewDidLoad];
     self.naviTitle = @"Salesforce OAuth";
+    self.view.backgroundColor = GGSharedColor.silver;
 	
     SFOAuthCredentials *credentials = [[self class] unarchiveCredentials];
     
     self.oauthCoordinator = [[SFOAuthCoordinator alloc] initWithCredentials:credentials];
     //set a default scope: API and Visualforce
-    self.oauthCoordinator.scopes = [NSSet setWithObjects:@"api", @"visualforce", nil];
+    self.oauthCoordinator.scopes = [NSSet setWithObjects:@"api", nil];
     self.oauthCoordinator.delegate = self;
     
     [self.oauthCoordinator authenticate];
@@ -232,6 +236,8 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
     [infoStr appendFormat:@"authType:%@\n", [self.authInfo authTypeDescription]];
     
     NSLog(@"%@", infoStr);
+    
+    [self postNotification:OA_NOTIFY_SALESFORCE_AUTH_OK withObject:self.oauthCoordinator.credentials];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

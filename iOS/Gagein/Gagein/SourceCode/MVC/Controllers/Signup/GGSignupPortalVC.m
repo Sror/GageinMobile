@@ -41,6 +41,7 @@
     self.view.backgroundColor = GGSharedColor.bgGray;
     
     [self observeNotification:GG_NOTIFY_GET_STARTED];
+    [self observeNotification:OA_NOTIFY_SALESFORCE_AUTH_OK];
     
     if ([GGRuntimeData sharedInstance].isFirstRun)
     {
@@ -74,6 +75,10 @@
         [self.navigationController.view.layer addAnimation:[GGAnimation animationPushFromRight] forKey:nil];
         [self.navigationController popViewControllerAnimated:NO];
     }
+    else if ([notiName isEqualToString:OA_NOTIFY_SALESFORCE_AUTH_OK])
+    {
+        
+    }
 }
 
 #pragma mark - actions
@@ -106,9 +111,6 @@
 -(IBAction)connectSalesForceAction:(id)sender
 {
     [self connectSalesForce];
-//    //[GGAlert alert:@"Connect to Salesforce (TODO)"];
-//    GGSalesforceOAuthVC *vc = [[GGSalesforceOAuthVC alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(IBAction)connectLinkedInAction:(id)sender

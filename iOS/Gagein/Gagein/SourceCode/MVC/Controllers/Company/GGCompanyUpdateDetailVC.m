@@ -58,6 +58,7 @@
 - (void)viewDidLoad
 {
     [self observeNotification:OA_FACEBOOK_OK];
+    [self observeNotification:OA_NOTIFY_SALESFORCE_AUTH_OK];
     
     [super viewDidLoad];
     
@@ -206,6 +207,23 @@
                 [self _addSnType:kGGSnTypeFacebook];
                 [self _shareWithType:kGGSnTypeFacebook];
             }
+        }];
+    }
+    else if ([notiName isEqualToString:OA_NOTIFY_SALESFORCE_AUTH_OK]) // salesforce ok
+    {
+        SFOAuthCredentials *credencial = notification.object;
+        
+        [self showLoadingHUD];
+        [GGSharedAPI snSaveSalesforceWithToken:credencial.accessToken accountID:credencial.userId refreshToken:credencial.refreshToken instanceURL:credencial.instanceUrl.absoluteString callback:^(id operation, id aResultObject, NSError *anError) {
+            
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [self _addSnType:kGGSnTypeSalesforce];
+                [self _shareWithType:kGGSnTypeSalesforce];
+            }
+            
         }];
     }
 }

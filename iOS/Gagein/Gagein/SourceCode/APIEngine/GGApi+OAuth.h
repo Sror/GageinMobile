@@ -26,6 +26,11 @@ typedef enum
 
 -(void)snSaveFacebookWithToken:(NSString *)aToken callback:(GGApiBlock)aCallback;
 
+-(void)snSaveSalesforceWithToken:(NSString *)aToken
+                       accountID:(NSString *)anAccountID
+                    refreshToken:(NSString *)aRefreshToken
+                     instanceURL:(NSString *)anInstanceURL callback:(GGApiBlock)aCallback;
+
 -(void)snShareNewsWithID:(long long)aNewsID
                   snType:(EGGSnType)aSnType
                  message:(NSString *)aMessage

@@ -13,3 +13,5 @@
 @property (nonatomic, retain) SFOAuthCoordinator *oauthCoordinator;
 @property (nonatomic, retain) SFOAuthInfo *authInfo;
 @end
+
+#define OA_NOTIFY_SALESFORCE_AUTH_OK    @"OA_NOTIFY_SALESFORCE_AUTH_OK"
