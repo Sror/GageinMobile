@@ -15,7 +15,7 @@
 
 #import "GGLinkedInOAuthVC.h"
 #import "GGSalesforceOAuthVC.h"
-#import "GGFacebookOAuthVC.h"
+
 #import "GGFacebookOAuth.h"
 #import "GGSnUserInfo.h"
 #import "OAToken.h"

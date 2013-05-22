@@ -14,7 +14,7 @@
 #import "GGAppDelegate.h"
 #import "GGSalesforceOAuthVC.h"
 #import "GGLinkedInOAuthVC.h"
-#import "GGFacebookOAuthVC.h"
+
 #import "GGSnShareVC.h"
 #import "GGFacebookOAuth.h"
 #import "GGTwitterOAuthVC.h"

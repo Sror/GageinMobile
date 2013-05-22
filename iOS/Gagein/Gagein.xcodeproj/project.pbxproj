@@ -264,6 +264,7 @@
 		EA62C6CD174BFCDA0031BF42 /* SA_OAuthTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = EA62C6B9174BFCDA0031BF42 /* SA_OAuthTwitterEngine.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA62C6CE174BFCDA0031BF42 /* twitter_load.png in Resources */ = {isa = PBXBuildFile; fileRef = EA62C6BA174BFCDA0031BF42 /* twitter_load.png */; };
 		EA62C6D1174C405B0031BF42 /* GGSnUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EA62C6D0174C405A0031BF42 /* GGSnUserInfo.m */; };
+		EA62C6D3174C5D260031BF42 /* SN_setting.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA62C6D2174C5D260031BF42 /* SN_setting.txt */; };
 		EA7180D41715008900347EA4 /* FXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D31715008900347EA4 /* FXPageControl.m */; };
 		EA7180D917150AAF00347EA4 /* GGFollowCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */; };
 		EA7180E4171511B700347EA4 /* GGSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180E3171511B700347EA4 /* GGSearchBar.m */; };
@@ -364,8 +365,6 @@
 		EAD16186173B325C0092C11B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD16185173B325C0092C11B /* libsqlite3.dylib */; };
 		EAD16188173B328B0092C11B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD16187173B328B0092C11B /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EAD1618B173B3BB50092C11B /* GGFacebookOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD1618A173B3BB50092C11B /* GGFacebookOAuth.m */; };
-		EAD1618F173B3D9D0092C11B /* GGFacebookOAuthVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD1618D173B3D9D0092C11B /* GGFacebookOAuthVC.m */; };
-		EAD16190173B3D9D0092C11B /* GGFacebookOAuthVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD1618E173B3D9D0092C11B /* GGFacebookOAuthVC.xib */; };
 		EAD481F51710FF9100556288 /* GGCompanyUpdateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */; };
 		EAD481F91710FFB300556288 /* GGCompanyUpdateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD481F81710FFB300556288 /* GGCompanyUpdateCell.m */; };
 		EAD481FB1711060500556288 /* comLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD481FA1711060500556288 /* comLogo.png */; };
@@ -844,6 +843,7 @@
 		EA62C6BA174BFCDA0031BF42 /* twitter_load.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_load.png; sourceTree = "<group>"; };
 		EA62C6CF174C405A0031BF42 /* GGSnUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSnUserInfo.h; sourceTree = "<group>"; };
 		EA62C6D0174C405A0031BF42 /* GGSnUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSnUserInfo.m; sourceTree = "<group>"; };
+		EA62C6D2174C5D260031BF42 /* SN_setting.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SN_setting.txt; sourceTree = "<group>"; };
 		EA7180D21715008900347EA4 /* FXPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXPageControl.h; sourceTree = "<group>"; };
 		EA7180D31715008900347EA4 /* FXPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXPageControl.m; sourceTree = "<group>"; };
 		EA7180D617150AAF00347EA4 /* GGFollowCompanyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFollowCompanyVC.h; sourceTree = "<group>"; };
@@ -1011,9 +1011,6 @@
 		EAD16187173B328B0092C11B /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		EAD16189173B3BB50092C11B /* GGFacebookOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFacebookOAuth.h; sourceTree = "<group>"; };
 		EAD1618A173B3BB50092C11B /* GGFacebookOAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFacebookOAuth.m; sourceTree = "<group>"; };
-		EAD1618C173B3D9D0092C11B /* GGFacebookOAuthVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFacebookOAuthVC.h; sourceTree = "<group>"; };
-		EAD1618D173B3D9D0092C11B /* GGFacebookOAuthVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFacebookOAuthVC.m; sourceTree = "<group>"; };
-		EAD1618E173B3D9D0092C11B /* GGFacebookOAuthVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGFacebookOAuthVC.xib; sourceTree = "<group>"; };
 		EAD481F41710FF9100556288 /* GGCompanyUpdateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyUpdateCell.xib; sourceTree = "<group>"; };
 		EAD481F71710FFB300556288 /* GGCompanyUpdateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyUpdateCell.h; sourceTree = "<group>"; };
 		EAD481F81710FFB300556288 /* GGCompanyUpdateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyUpdateCell.m; sourceTree = "<group>"; };
@@ -1763,6 +1760,7 @@
 			isa = PBXGroup;
 			children = (
 				EAAE074817169B58007C4A30 /* API_evoving.txt */,
+				EA62C6D2174C5D260031BF42 /* SN_setting.txt */,
 			);
 			path = Documentations;
 			sourceTree = "<group>";
@@ -2433,9 +2431,6 @@
 				EAF0F0A41727DBCA0065C39A /* GGHappeningDetailVC.m */,
 				EAB8D5181739762200D033FC /* GGSalesforceOAuthVC.h */,
 				EAB8D5191739762200D033FC /* GGSalesforceOAuthVC.m */,
-				EAD1618C173B3D9D0092C11B /* GGFacebookOAuthVC.h */,
-				EAD1618D173B3D9D0092C11B /* GGFacebookOAuthVC.m */,
-				EAD1618E173B3D9D0092C11B /* GGFacebookOAuthVC.xib */,
 				EA5DFB01174B1A6900577BAC /* GGFacebookOAuther.h */,
 				EA5DFB02174B1A6900577BAC /* GGFacebookOAuther.m */,
 			);
@@ -2832,7 +2827,6 @@
 				EAEC1E3A1739B6CE0058130E /* tabbarBg@2x.png in Resources */,
 				EAD16178173AE22B0092C11B /* GGComUpdateDetailView.xib in Resources */,
 				EAD1617A173B190C0092C11B /* updateCellSample.png in Resources */,
-				EAD16190173B3D9D0092C11B /* GGFacebookOAuthVC.xib in Resources */,
 				EAF99590173C61F7009DA08E /* unsaveIcon@2x.png in Resources */,
 				EAF99592173C6240009DA08E /* logoDefaultCompany@2x.png in Resources */,
 				EAF99594173C6252009DA08E /* logoDefaultPerson@2x.png in Resources */,
@@ -2872,6 +2866,7 @@
 				EA62C6BB174BFCDA0031BF42 /* jQueryInject.txt in Resources */,
 				EA62C6BC174BFCDA0031BF42 /* jQueryInjectLandscape.txt in Resources */,
 				EA62C6CE174BFCDA0031BF42 /* twitter_load.png in Resources */,
+				EA62C6D3174C5D260031BF42 /* SN_setting.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3059,7 +3054,6 @@
 				EAEC1E421739CCCD0058130E /* GGRootNaviVC.m in Sources */,
 				EAD16176173AE2050092C11B /* GGComUpdateDetailView.m in Sources */,
 				EAD1618B173B3BB50092C11B /* GGFacebookOAuth.m in Sources */,
-				EAD1618F173B3D9D0092C11B /* GGFacebookOAuthVC.m in Sources */,
 				EA2AD9C5173C4D6C007428E2 /* GGCategoryFilter.m in Sources */,
 				EAF99598173C7E21009DA08E /* GGEmptyView.m in Sources */,
 				EA172737173D696F0056067D /* GGEmptyActionView.m in Sources */,
