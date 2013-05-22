@@ -98,21 +98,24 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
         {
             _param.identifier = @"GageIn";
             _param.clientID = @"3MVG9QDx8IX8nP5Rg7yD2yhM0mSIoG5JhtwAfaXVxWdWvLQ2c9dbC5IdPIt8bV9wAgE4sLNdWDWrvrHs7izVe";
+            _param.redirectURL = @"http://localhost:8443/dragon/ConnectWithSalesforceProxy";
         }
             break;
             
         case kGGServerStaging:
         {
-#warning TODO: need to change to staging setting
-            _param.identifier = @"GageIn.localhost";
-            _param.clientID = @"3MVG9QDx8IX8nP5Rg7yD2yhM0mZ1B5qRXXaIqmF3KCA.ycm5l7WI5cOzwLzyadnkqgfAzChHWRF6mvgDN4KCF";
+//#warning TODO: need to change to staging setting
+            _param.identifier = @"GageInApp.staging";
+            _param.clientID = @"3MVG9QDx8IX8nP5Rg7yD2yhM0mXzbRfDUkFTsEmylcNYdpLf3MpiegNCjNhLn4WoQ36aNg5a5muZtOtiBsGcs";
             _param.redirectURL = @"http://localhost:8443/dragon/ConnectWithSalesforceProxy";
         }
             break;
             
         case kGGServerCN:
         {
-            
+            _param.identifier = @"GageInApp.qacn";
+            _param.clientID = @"3MVG9QDx8IX8nP5Rg7yD2yhM0mTep67cL1i5rgZf680Zc30kzy9j6G_vyEvH9EZaUcsp3uMGMK_58ELiarVjc";
+            _param.redirectURL = @"http://localhost:8443/dragon/ConnectWithSalesforceProxy";
         }
             break;
             
