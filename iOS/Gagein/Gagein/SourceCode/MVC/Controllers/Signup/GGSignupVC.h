@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGSignupVC : GGBaseViewController <UITextFieldDelegate, UIScrollViewDelegate>
+@class GGSnUserInfo;
 
+@interface GGSignupVC : GGBaseViewController <UITextFieldDelegate, UIScrollViewDelegate>
+@property (strong) GGSnUserInfo *userInfo;
 @end

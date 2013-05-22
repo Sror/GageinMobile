@@ -11,6 +11,7 @@
 #import "GGSelectAgentsVC.h"
 #import "GGMember.h"
 #import "GGLoginVC.h"
+#import "GGSnUserInfo.h"
 
 @interface GGSignupVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrolView;
@@ -21,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *tfEmail;
 @property (weak, nonatomic) IBOutlet UITextField *tfPassword;
 @property (weak, nonatomic) IBOutlet UIButton *btnJoinNow;
+@property (weak, nonatomic) IBOutlet UILabel *lblSuccessTip;
 
 @end
 
@@ -35,6 +37,52 @@
     return self;
 }
 
+-(NSString *)_successMessage
+{
+    if (_userInfo)
+    {
+        NSString *formatStr = @"Success!\nYou are now connected to your %@ accounts.";
+        
+        switch (_userInfo.snType)
+        {
+            case kGGSnTypeFacebook:
+            {
+                return [NSString stringWithFormat:formatStr, @"Facebook"];
+            }
+                break;
+                
+            case kGGSnTypeLinkedIn:
+            {
+                return [NSString stringWithFormat:formatStr, @"LinkedIn"];
+            }
+                break;
+                
+            case kGGSnTypeTwitter:
+            {
+                return [NSString stringWithFormat:formatStr, @"Twitter"];
+            }
+                break;
+                
+            case kGGSnTypeSalesforce:
+            {
+                return [NSString stringWithFormat:formatStr, @"Falesforce"];
+            }
+                break;
+                
+            case kGGSnTypeYammer:
+            {
+                return [NSString stringWithFormat:formatStr, @"Yammer"];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    return nil;
+}
+
 - (void)viewDidLoad
 {
     self.navigationController.navigationBarHidden = NO;
@@ -44,9 +92,26 @@
     self.naviTitle = @"Join Gagein";
     [self installGageinLogoTo:self.scrolView];
     
+    if (_userInfo)
+    {
+        _linkedOkPanel.hidden = NO;
+        _lblSuccessTip.text = [self _successMessage];
+        
+        CGRect signUpRc = _signupPanel.frame;
+        signUpRc.origin.y = CGRectGetMaxY(_linkedOkPanel.frame);
+        _signupPanel.frame = signUpRc;
+        
+        self.tfFirstName.text = _userInfo.firstName;
+        self.tfLastName.text = _userInfo.lastName;
+        self.tfEmail.text = _userInfo.email;
+    }
+    else
+    {
 #warning TEST register data
-    self.tfFirstName.text = @"Mcdonald";
-    self.tfLastName.text = @"Kentucky";
+        self.tfFirstName.text = @"Mcdonald";
+        self.tfLastName.text = @"Kentucky";
+    }
+
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -64,6 +129,7 @@
     [self setTfEmail:nil];
     [self setTfPassword:nil];
     [self setBtnJoinNow:nil];
+    [self setLblSuccessTip:nil];
     [super viewDidUnload];
 }
 

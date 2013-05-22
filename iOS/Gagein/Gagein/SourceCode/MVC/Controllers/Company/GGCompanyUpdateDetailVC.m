@@ -13,7 +13,7 @@
 #import "CMActionSheet.h"
 #import "GGAppDelegate.h"
 #import "GGSalesforceOAuthVC.h"
-#import "OAuthLoginView.h"
+#import "GGLinkedInOAuthVC.h"
 #import "GGFacebookOAuthVC.h"
 #import "GGSnShareVC.h"
 #import "GGFacebookOAuth.h"

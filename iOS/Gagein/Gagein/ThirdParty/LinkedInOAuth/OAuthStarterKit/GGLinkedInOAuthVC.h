@@ -14,7 +14,7 @@
 #import "OATokenManager.h"
 
 
-@interface OAuthLoginView : GGBaseViewController <UIWebViewDelegate>
+@interface GGLinkedInOAuthVC : GGBaseViewController <UIWebViewDelegate>
 {
     IBOutlet UIWebView *webView;
     IBOutlet UIActivityIndicatorView *activityIndicator;

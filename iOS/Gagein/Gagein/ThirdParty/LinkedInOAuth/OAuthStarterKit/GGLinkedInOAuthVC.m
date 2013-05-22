@@ -7,7 +7,7 @@
 //  http://whitneyland.com
 //
 #import <Foundation/NSNotificationQueue.h>
-#import "OAuthLoginView.h"
+#import "GGLinkedInOAuthVC.h"
 #import "OALnRequestParameter.h"
 
 #define API_KEY_LENGTH 12
@@ -21,7 +21,7 @@
 //  3. LinkedIn redirects the browser to our callback URL
 //  4  Request an "access token"
 //
-@implementation OAuthLoginView
+@implementation GGLinkedInOAuthVC
 
 @synthesize requestToken, accessToken, profile, consumer;
 

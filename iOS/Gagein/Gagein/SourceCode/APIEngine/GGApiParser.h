@@ -15,6 +15,7 @@
 @class GGCompanyHappening;
 @class GGPerson;
 @class GGUserProfile;
+@class GGSnUserInfo;
 
 @interface GGApiParser : NSObject
 @property (strong)  NSDictionary    *apiData;
@@ -64,5 +65,7 @@
 #pragma mark - people
 -(GGDataPage *)parseSearchForPeople;
 
+#pragma mark - sn
 -(NSArray *)parseSnGetList;
+-(GGSnUserInfo *)parseSnGetUserInfo;
 @end

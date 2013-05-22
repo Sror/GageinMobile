@@ -13,9 +13,11 @@
 
 #import "GGRuntimeData.h"
 
-#import "OAuthLoginView.h"
+#import "GGLinkedInOAuthVC.h"
 #import "GGSalesforceOAuthVC.h"
 #import "GGFacebookOAuthVC.h"
+#import "GGFacebookOAuth.h"
+#import "GGSnUserInfo.h"
 
 @interface GGSignupPortalVC ()
 
@@ -68,15 +70,18 @@
     if ([notiName isEqualToString:OA_NOTIFY_LINKEDIN_AUTH_OK])    // linkedIn
     {
         [self unobserveNotification:OA_NOTIFY_LINKEDIN_AUTH_OK];
-        //DLog(@"oauth {consumner:%@, accesstoken:%@}", _oAuthLoginView.consumer, _oAuthLoginView.accessToken);
-//#warning GOTO register page
-        OAuthLoginView *linkedInVC = [self linkedInAuthView];
+        
+        [self showLoadingHUD];
+        GGLinkedInOAuthVC *linkedInVC = [self linkedInAuthView];
         [GGSharedAPI snGetUserInfoLinedInWithToken:linkedInVC.accessToken.key secret:linkedInVC.accessToken.secret callback:^(id operation, id aResultObject, NSError *anError) {
-            
+            [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            
             if (parser.isOK)
             {
-                
+                GGSnUserInfo *userInfo = [parser parseSnGetUserInfo];
+                userInfo.snType = kGGSnTypeLinkedIn;
+                [self _signupWithUserInfo:userInfo];
             }
             
         }];
@@ -92,7 +97,20 @@
     }
     else if ([notiName isEqualToString:OA_NOTIFY_FACEBOOK_AUTH_OK]) // facebook ok
     {
+        NSString *accessToken = [GGFacebookOAuth sharedInstance].session.accessTokenData.accessToken;
         
+        [self showLoadingHUD];
+        [GGSharedAPI snGetUserInfoFacebookWithToken:accessToken callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            
+            if (parser.isOK)
+            {
+                GGSnUserInfo *userInfo = [parser parseSnGetUserInfo];
+                userInfo.snType = kGGSnTypeFacebook;
+                [self _signupWithUserInfo:userInfo];
+            }
+        }];
     }
     else if ([notiName isEqualToString:OA_NOTIFY_TWITTER_OAUTH_OK]) // twitter ok
     {
@@ -120,7 +138,13 @@
 
 -(IBAction)signupAction:(id)sender
 {
+    [self _signupWithUserInfo:nil];
+}
+
+-(void)_signupWithUserInfo:(GGSnUserInfo *)aUserInfo
+{
     GGSignupVC *vc = [[GGSignupVC alloc] init];
+    vc.userInfo = aUserInfo;
     
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self.view.window.layer addAnimation:[GGAnimation animationPushFromRight] forKey:nil];

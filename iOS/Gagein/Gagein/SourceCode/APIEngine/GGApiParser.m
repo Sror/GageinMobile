@@ -20,6 +20,7 @@
 #import "GGUserProfile.h"
 #import "GGCategoryFilter.h"
 #import "GGMediaFilter.h"
+#import "GGSnUserInfo.h"
 
 #define GG_ASSERT_API_DATA_IS_DIC   NSAssert([_apiData isKindOfClass:[NSDictionary class]], @"Api Data should be a NSDictionary");
 
@@ -299,9 +300,18 @@
 }
 
 
+#pragma mark - sn
 -(NSArray *)parseSnGetList
 {
     return [self.data objectForKey:@"types"];
+}
+
+-(GGSnUserInfo *)parseSnGetUserInfo
+{
+    GGSnUserInfo *userInfo = [GGSnUserInfo model];
+    [userInfo parseWithData:self.data];
+    
+    return userInfo;
 }
 
 @end

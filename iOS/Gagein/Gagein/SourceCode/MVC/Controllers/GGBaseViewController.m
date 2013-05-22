@@ -9,7 +9,7 @@
 #import "GGBaseViewController.h"
 #import "GGNaviBackButton.h"
 #import "GGSalesforceOAuthVC.h"
-#import "OAuthLoginView.h"
+#import "GGLinkedInOAuthVC.h"
 //#import "GGFacebookOAuthVC.h"
 #import "OAuthTwitterDemoViewController.h"
 #import "GGFacebookOAuther.h"
@@ -26,7 +26,7 @@
     BOOL                    _isViewFirstAppear;
     UIView                  *_transparentBlockView;
     
-    OAuthLoginView          *_oAuthLoginView;
+    GGLinkedInOAuthVC          *_oAuthLoginView;
     GGFacebookOAuther       *_facebookOAuther;
 }
 
@@ -316,7 +316,7 @@
 
 -(void)connectLinkedIn
 {
-    _oAuthLoginView = [[OAuthLoginView alloc] initWithNibName:nil bundle:nil];
+    _oAuthLoginView = [[GGLinkedInOAuthVC alloc] initWithNibName:nil bundle:nil];
     [self observeNotification:OA_NOTIFY_LINKEDIN_AUTH_OK];
     [self.navigationController pushViewController:_oAuthLoginView animated:YES];
 }
@@ -332,7 +332,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
--(OAuthLoginView *)linkedInAuthView
+-(GGLinkedInOAuthVC *)linkedInAuthView
 {
     return _oAuthLoginView;
 }

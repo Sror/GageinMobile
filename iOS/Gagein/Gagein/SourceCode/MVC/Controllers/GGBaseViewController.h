@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@class OAuthLoginView;
+@class GGLinkedInOAuthVC;
 
 @interface GGBaseViewController : UIViewController
 
@@ -54,6 +54,6 @@
 
 -(void)connectTwitter;
 
--(OAuthLoginView *)linkedInAuthView;
+-(GGLinkedInOAuthVC *)linkedInAuthView;
 
 @end
