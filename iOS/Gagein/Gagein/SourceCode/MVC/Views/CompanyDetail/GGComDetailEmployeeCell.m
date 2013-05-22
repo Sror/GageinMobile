@@ -30,6 +30,7 @@
 {
     _lblTitle.text = _lblSubTitle.text = _lblThirdLine.text = @"";
     self.viewCellBg.backgroundColor = GGSharedColor.silver;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [GGUtils applyLogoStyleToView:_ivPhoto];
 }

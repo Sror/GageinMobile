@@ -12,6 +12,8 @@
 @interface GGCompanyUpdateDetailVC : GGBaseViewController
 <UIWebViewDelegate
 , MFMailComposeViewControllerDelegate
+, UITableViewDataSource
+, UITableViewDelegate
 >
 //@property (assign) long long    newsID;
 @property (copy)    NSString    *naviTitleString;

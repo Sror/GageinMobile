@@ -19,6 +19,9 @@
 #import "GGFacebookOAuth.h"
 #import "GGTwitterOAuthVC.h"
 #import "OAToken.h"
+#import "GGComDetailEmployeeCell.h"
+#import "GGCompany.h"
+#import "GGCompanyDetailVC.h"
 
 @interface GGCompanyUpdateDetailVC () <MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -49,12 +52,8 @@
     GGComUpdateDetailView   *_comUpdateDetailCell;
     UIActivityIndicatorView *_activityIndicator;
     
-    //BOOL                    _isShowingLinkedIn;
-    //BOOL                    _isShowingTwitter;
-    
     NSMutableArray          *_snTypes;
-    
-    //UIImage                 *_switchButtonImage;
+    UITableView             *_tvMentionedCompanies;
 }
 
 
@@ -65,7 +64,6 @@
     if (self) {
         self.hidesBottomBarWhenPushed = YES;
         _snTypes = [NSMutableArray array];
-        //_switchButtonImage = [UIImage imageNamed:@"updateSwitchBackbtn"];
     }
     return self;
 }
@@ -81,7 +79,8 @@
     self.naviTitle = _naviTitleString;
     self.view.backgroundColor = GGSharedColor.silver;
     self.scrollView.alwaysBounceVertical = YES;
-    //[_webviewSignal removeFromSuperview];
+    self.scrollView.backgroundColor = GGSharedColor.silver;
+
     _webviewSignal.hidden = YES;
     
     //
@@ -116,6 +115,11 @@
     [_btnNextUpdate setImage:downArrowDisabledImg forState:UIControlStateDisabled];
     [_btnNextUpdate addTarget:self action:@selector(nextUpdateAction:) forControlEvents:UIControlEventTouchUpInside];
     
+    // mentioned companies table view
+    _tvMentionedCompanies = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    _tvMentionedCompanies.delegate = self;
+    _tvMentionedCompanies.dataSource = self;
+    _tvMentionedCompanies.rowHeight = [GGComDetailEmployeeCell HEIGHT];
     
     //
     //_originalTextViewFrame = self.wvTextView.frame;
@@ -130,15 +134,37 @@
     [self _callApiGetSnList];
 }
 
+-(void)_updateMentionedCompanyTV
+{
+    _tvMentionedCompanies.hidden = (_companyUpdateDetail.mentionedCompanies.count <= 0);
+    if (!_tvMentionedCompanies.hidden)
+    {
+        CGRect mentionedComRc = _tvMentionedCompanies.frame;
+        mentionedComRc.size.height = _companyUpdateDetail.mentionedCompanies.count * _tvMentionedCompanies.rowHeight;
+        mentionedComRc.origin.y = CGRectGetMaxY(_comUpdateDetailCell.frame) + 5;
+        _tvMentionedCompanies.frame = mentionedComRc;
+        [_scrollView addSubview:_tvMentionedCompanies];
+    }
+    else
+    {
+        [_tvMentionedCompanies removeFromSuperview];
+    }
+}
+
 -(void)_adjustScrollviewContentSize
 {
-    if (_scrollView.frame.size.height > _comUpdateDetailCell.height)
+    [self _updateMentionedCompanyTV];
+    
+    float tvMentionedComHeight = _tvMentionedCompanies.hidden ? 0 : _tvMentionedCompanies.frame.size.height;
+    if (_scrollView.frame.size.height - tvMentionedComHeight > _comUpdateDetailCell.height)
     {
-        _comUpdateDetailCell.height = _scrollView.frame.size.height;
+        _comUpdateDetailCell.height = _scrollView.frame.size.height - tvMentionedComHeight;
     }
     
+    float realContentHeight = _comUpdateDetailCell.height + tvMentionedComHeight;
+    
     CGSize contentSize = self.scrollView.contentSize;
-    contentSize.height = _comUpdateDetailCell.height;
+    contentSize.height = realContentHeight + 10;
     self.scrollView.contentSize = contentSize;
     self.scrollView.contentOffset = CGPointZero;
 }
@@ -718,6 +744,51 @@
 }
 
 #pragma mark - tableview datasource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _companyUpdateDetail.mentionedCompanies.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int row = indexPath.row;
+    
+    static NSString *cellID = @"GGComDetailEmployeeCell";
+    GGComDetailEmployeeCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (cell == nil)
+    {
+        cell = [GGComDetailEmployeeCell viewFromNibWithOwner:self];
+    }
+    
+    GGCompany *data = _companyUpdateDetail.mentionedCompanies[row];
+    cell.lblTitle.text = data.name;
+    cell.lblSubTitle.text = data.website;
+    cell.lblThirdLine.text = data.address;
+    [cell.ivPhoto setImageWithURL:[NSURL URLWithString:data.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+    
+    cell.tag = row;
+    
+    return cell;
+}
+
+#pragma mark - tableview delegate
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [GGComDetailEmployeeCell HEIGHT];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    GGCompany *data = _companyUpdateDetail.mentionedCompanies[indexPath.row];
+    if (data.ID)
+    {
+        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+        vc.companyID = data.ID;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
 
 #pragma mark - message delegate
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller
