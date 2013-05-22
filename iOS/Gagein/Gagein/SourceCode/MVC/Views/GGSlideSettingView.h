@@ -18,7 +18,7 @@
 @end
 
 @interface GGSlideSettingView : UIView
-@property (nonatomic, assign) BOOL              isShowing;
+//@property (nonatomic, assign) BOOL              isShowing;
 @property (nonatomic, strong) UITableView       *viewTable;
 @property (nonatomic, strong) GGSearchBar       *searchBar;
 @property (weak) id<GGSlideSettingViewDelegate>     delegate;

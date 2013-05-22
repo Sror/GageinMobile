@@ -443,6 +443,7 @@
     [self.happeningsTV triggerPullToRefresh];
     
     _btnSwitchUpdate.hidden = (_menuType == kGGMenuTypeAgent);
+    [self _showRelevanceBar:YES];
 }
 
 -(void)_unselectAllMenuItem
@@ -468,7 +469,7 @@
 -(void)optionMenuAction:(id)sender
 {
     DLog(@"option menu clicked");
-    if (!_slideSettingView.isShowing)
+    if (!GGSharedDelegate.rootVC.isRevealed)
     {
         [_slideSettingView showSlide];
         [self _callApiGetMenu];
@@ -760,47 +761,41 @@
         if (_lastContentOffset.y < (int)scrollView.contentOffset.y) {
             DLog(@"moved up");
             
-            [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                _relevanceBar.frame = _relevanceRectHide;
-                
-                CGRect tvRc = _updateTvRect;
-                tvRc.origin.y = _relevanceRectShow.origin.y;
-                tvRc.size.height += _relevanceRectShow.size.height;
-                _updatesTV.frame = tvRc;
-                
-            } completion:nil];
+            [self _showRelevanceBar:NO];
             
-//            [UIView animateWithDuration:.5f animations:^{
-//                _relevanceBar.frame = _relevanceRectHide;
-//                
-//                CGRect tvRc = _updateTvRect;
-//                tvRc.origin.y = _relevanceRectShow.origin.y;
-//                tvRc.size.height += _relevanceRectShow.size.height;
-//                _updatesTV.frame = tvRc;
-//                
-//            } completion:^(BOOL finished) {
-//                
-//            }];
         }
-        else {
+        else
+        {
             DLog(@"moved down");
             
-            [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                _relevanceBar.frame = _relevanceRectShow;
-                
-                _updatesTV.frame = _updateTvRect;
-                
-            } completion:nil];
-            
-//            [UIView animateWithDuration:.5f animations:^{
-//                _relevanceBar.frame = _relevanceRectShow;
-//                
-//                _updatesTV.frame = _updateTvRect;
-//                
-//            } completion:^(BOOL finished) {
-//                
-//            }];
+            [self _showRelevanceBar:YES];
+
         }
+    }
+}
+
+-(void)_showRelevanceBar:(BOOL)aShow
+{
+    if (aShow)
+    {
+        [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            _relevanceBar.frame = _relevanceRectShow;
+            
+            _updatesTV.frame = _updateTvRect;
+            
+        } completion:nil];
+    }
+    else
+    {
+        [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            _relevanceBar.frame = _relevanceRectHide;
+            
+            CGRect tvRc = _updateTvRect;
+            tvRc.origin.y = _relevanceRectShow.origin.y;
+            tvRc.size.height += _relevanceRectShow.size.height;
+            _updatesTV.frame = tvRc;
+            
+        } completion:nil];
     }
 }
 

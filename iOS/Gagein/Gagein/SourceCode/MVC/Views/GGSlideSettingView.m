@@ -65,10 +65,8 @@
 #pragma mark - actions
 -(void)showSlide
 {
-    if (!_isShowing)
+    if (!GGSharedDelegate.rootVC.isRevealed)
     {
-        _isShowing = YES;
-        
         [GGSharedDelegate.rootVC reveal:^{
             [_delegate slideview:self isShowed:YES];
         }];
@@ -93,10 +91,8 @@
 
 -(void)hideSlideOnCompletion:(void(^)(void))completion
 {
-    if (_isShowing)
+    if (GGSharedDelegate.rootVC.isRevealed)
     {
-        _isShowing = NO;
-        
         [_searchBar resignFirstResponder];
         
         [GGSharedDelegate.rootVC cover:^{

@@ -1524,6 +1524,97 @@
          landmarkName = "-snRegisterWithEmail:password:firstName:lastName:snType:token:secret:snAccountID:snFirstName:snLastName:snEmail:snAccountName:snProfileURL:sfRefreshToken:sfInstanceURL:callback:"
          landmarkType = "5">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
+         timestampString = "390882230.925343"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "671"
+         endingLineNumber = "671"
+         landmarkName = "-tableView:didSelectRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
+         timestampString = "390882256.180057"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "710"
+         endingLineNumber = "710"
+         landmarkName = "-tableView:didSelectRowAtIndexPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
+         timestampString = "390882296.943512"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "400"
+         endingLineNumber = "400"
+         landmarkName = "-_followingTapped:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
+         timestampString = "390882327.030587"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "413"
+         endingLineNumber = "413"
+         landmarkName = "-_exploringConfigTapped:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
+         timestampString = "390882354.141867"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "420"
+         endingLineNumber = "420"
+         landmarkName = "-_exploringTapped:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Controllers/Main/GGCompaniesVC.m"
+         timestampString = "390882374.939797"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "433"
+         endingLineNumber = "433"
+         landmarkName = "-_refreshWithMenuId:type:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Gagein/SourceCode/MVC/Views/GGSlideSettingView.m"
+         timestampString = "390882612.140735"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "94"
+         endingLineNumber = "94"
+         landmarkName = "-hideSlideOnCompletion:"
+         landmarkType = "5">
+      </FileBreakpoint>
    </FileBreakpoints>
    <ExceptionBreakpoints>
       <ExceptionBreakpoint

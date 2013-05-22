@@ -15,6 +15,7 @@
 @property (strong, nonatomic) GGSlideSettingView *viewSetting;
 
 @property (assign)  BOOL    canBeDragged;
+@property (readonly) BOOL    isRevealed;
 
 -(void)enableSwipGesture:(BOOL)anEnabled;
 -(void)enableTapGesture:(BOOL)anEnabled;

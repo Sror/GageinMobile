@@ -264,6 +264,7 @@
 
 -(void)reveal:(void(^)(void))completion
 {
+    _isRevealed = YES;
     [UIView animateWithDuration:SLIDE_TIMING delay:0 options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          _viewCover.frame = CGRectMake(SLIDE_SETTING_VIEW_WIDTH, 0, self.view.frame.size.width, self.view.frame.size.height);
@@ -271,8 +272,8 @@
                      completion:^(BOOL finished) {
                          if (finished) {
                              
-                             _isRevealed = YES;
-                             _viewSetting.isShowing = YES;
+                             
+                             //_viewSetting.isShowing = YES;
                              
                              if (completion) {
                                  completion();
@@ -286,6 +287,7 @@
 
 - (void)cover:(void(^)(void))completion
 {
+    _isRevealed = NO;
     [UIView animateWithDuration:SLIDE_TIMING delay:0 options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          _viewCover.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
@@ -293,8 +295,8 @@
                      completion:^(BOOL finished) {
                          if (finished) {
                              
-                             _isRevealed = NO;
-                             _viewSetting.isShowing = NO;
+                             
+                             //_viewSetting.isShowing = NO;
                              
                              if (completion) {
                                  completion();

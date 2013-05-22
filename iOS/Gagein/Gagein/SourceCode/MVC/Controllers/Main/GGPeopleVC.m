@@ -312,7 +312,7 @@
 -(void)optionMenuAction:(id)sender
 {
     DLog(@"option menu clicked");
-    if (!_slideSettingView.isShowing)
+    if (!GGSharedDelegate.rootVC.isRevealed)
     {
         [_slideSettingView showSlide];
         [self _callApiGetMenu];
