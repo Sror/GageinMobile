@@ -8,16 +8,9 @@
 
 #import "GGStyledSearchBar.h"
 
-@implementation GGStyledSearchBar
+#define CANCEL_SPACE_LEN        70
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        //
-    }
-    return self;
-}
+@implementation GGBaseSearchBar
 
 #pragma mark - text field delegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
@@ -70,4 +63,74 @@
     return YES;
 }
 
+
 @end
+
+
+//
+@implementation GGStyledSearchBar
+
+@end
+
+
+
+
+///////////////////////////////////////////
+@implementation GGBlackSearchBar
+
+-(void)awakeFromNib
+{
+    self.backgroundColor = GGSharedColor.graySettingBg;
+    _ivSearchBg.image = [[UIImage imageNamed:@"searchBgDarkRound"] resizableImageWithCapInsets:UIEdgeInsetsMake(16, 20, 16, 20)];
+    _tfSearch.text = @"";
+    
+    //self.backgroundColor = GGSharedColor.darkRed;
+}
+
+
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+//{
+//    [self showCancelButton:YES animated:YES];
+//    
+//    return [super textFieldShouldBeginEditing:textField];
+//}
+//
+//- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+//{
+//    [self showCancelButton:NO animated:YES];
+//    
+//    return [super textFieldShouldEndEditing:textField];
+//}
+
+-(void)showCancelButton:(BOOL)aShow animated:(BOOL)animated
+{
+    if (animated)
+    {
+        [UIView animateWithDuration:.3f animations:^{
+            [self _showCancelButton:aShow];
+        }];
+    }
+    else
+    {
+        [self _showCancelButton:aShow];
+    }
+}
+
+-(void)_showCancelButton:(BOOL)aShow
+{
+    float width = (aShow) ? self.frame.size.width - CANCEL_SPACE_LEN : self.frame.size.width;
+    
+    CGRect searchRc = _viewSearchField.frame;
+    searchRc.size.width = width;
+    _viewSearchField.frame = searchRc;
+    
+    CGRect cancelRc = _btnCancel.frame;
+    cancelRc.origin.x = searchRc.size.width;
+    _btnCancel.frame = cancelRc;
+    
+    _btnCancel.hidden = !aShow;
+}
+
+@end
+
+

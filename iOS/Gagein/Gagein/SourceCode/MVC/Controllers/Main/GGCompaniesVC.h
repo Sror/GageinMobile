@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "GGSwitchButton.h"
 #import "GGSlideSettingView.h"
+#import "GGStyledSearchBar.h"
 
 @interface GGCompaniesVC : GGBaseViewController
 <UITableViewDelegate
 , UITableViewDataSource
-, UISearchBarDelegate
+, GGStyledSearchBarDelegate
 , GGSwitchButtonDelegate
 , GGSlideSettingViewDelegate>
 

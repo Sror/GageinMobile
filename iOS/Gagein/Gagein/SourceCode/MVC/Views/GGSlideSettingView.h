@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GGStyledSearchBar.h"
 
 @class GGSlideSettingView;
-@class GGSearchBar;
+//@class GGSearchBar;
 
 @protocol GGSlideSettingViewDelegate
 
@@ -19,17 +20,21 @@
 
 @interface GGSlideSettingView : UIView
 //@property (nonatomic, assign) BOOL              isShowing;
-@property (nonatomic, strong) UITableView       *viewTable;
-@property (nonatomic, strong) GGSearchBar       *searchBar;
+@property (nonatomic, strong) UITableView           *viewTable;
+@property (nonatomic, strong) GGBlackSearchBar      *searchBar;
+@property (nonatomic, strong) UIView                *viewDimmed;
+
 @property (weak) id<GGSlideSettingViewDelegate>     delegate;
 -(void)showSlide;
 -(void)hideSlide;
 -(void)hideSlideOnCompletion:(void(^)(void))completion;
 
--(void)changeDelegate:(id<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>)aNewDelegate;
+-(void)changeDelegate:(id<UITableViewDelegate, UITableViewDataSource, GGStyledSearchBarDelegate>)aNewDelegate;
 
 -(void)showLoadingHUD;
 -(void)hideLoadingHUD;
+
+-(void)switchSearchMode:(BOOL)aUsingSearchMode;
 @end
 
 #define SLIDE_SETTING_VIEW_WIDTH    260

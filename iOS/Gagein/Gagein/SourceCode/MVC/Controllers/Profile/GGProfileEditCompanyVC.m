@@ -165,28 +165,28 @@
 
 #pragma mark - GGStyledSearchBarDelegate
 
-- (BOOL)searchBarShouldBeginEditing:(GGStyledSearchBar *)searchBar
+- (BOOL)searchBarShouldBeginEditing:(GGBaseSearchBar *)searchBar
 {
     _viewDimed.hidden = NO;
     return YES;
 }
 
-- (void)searchBarTextDidBeginEditing:(GGStyledSearchBar *)searchBar
+- (void)searchBarTextDidBeginEditing:(GGBaseSearchBar *)searchBar
 {
     
 }
 
-- (BOOL)searchBarShouldEndEditing:(GGStyledSearchBar *)searchBar
+- (BOOL)searchBarShouldEndEditing:(GGBaseSearchBar *)searchBar
 {
     return YES;
 }
 
-- (void)searchBarTextDidEndEditing:(GGStyledSearchBar *)searchBar
+- (void)searchBarTextDidEndEditing:(GGBaseSearchBar *)searchBar
 {
     
 }
 
-- (BOOL)searchBar:(GGStyledSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+- (BOOL)searchBar:(GGBaseSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if (range.location <= 0)
     {
@@ -201,13 +201,13 @@
     return YES;
 }
 
-- (BOOL)searchBarShouldClear:(GGStyledSearchBar *)searchBar
+- (BOOL)searchBarShouldClear:(GGBaseSearchBar *)searchBar
 {
     _tvSuggestedCompanies.hidden = YES;
     return YES;
 }
 
-- (BOOL)searchBarShouldSearch:(GGStyledSearchBar *)searchBar
+- (BOOL)searchBarShouldSearch:(GGBaseSearchBar *)searchBar
 {
     [_searchTimer invalidate];
     _searchTimer = nil;

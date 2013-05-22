@@ -19,8 +19,12 @@
 
 -(void)enableSwipGesture:(BOOL)anEnabled;
 -(void)enableTapGesture:(BOOL)anEnabled;
+
 -(void)reveal;
-- (void)cover;
+-(void)cover;
+-(void)bare;
+
 -(void)reveal:(void(^)(void))completion;
 - (void)cover:(void(^)(void))completion;
+- (void)bare:(void(^)(void))completion;
 @end

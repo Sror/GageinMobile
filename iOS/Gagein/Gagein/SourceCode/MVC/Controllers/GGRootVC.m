@@ -225,42 +225,17 @@
 -(void)reveal
 {
     [self reveal:nil];
-    
-//    if (_isSwipping)
-//    {
-//        [self performSelector:@selector(_revalOrCover:) withObject:__BOOL(YES) afterDelay:0];
-//        //[self reveal:nil];
-//    }
 }
 
 - (void)cover
 {
     [self cover:nil];
-//    if (_isSwipping)
-//    {
-//        [self performSelector:@selector(_revalOrCover:) withObject:__BOOL(NO) afterDelay:0];
-//    }
 }
 
-//-(void)_revalOrCover:(id)aBoolObj
-//{
-//    if (_isPanning)
-//    {
-//        return;
-//    }
-//    
-//    DLog(@"swipped");
-//    
-//    BOOL reval = [aBoolObj boolValue];
-//    if (reval)
-//    {
-//        [self reveal:nil];
-//    }
-//    else
-//    {
-//        [self cover:nil];
-//    }
-//}
+-(void)bare
+{
+    [self bare:nil];
+}
 
 -(void)reveal:(void(^)(void))completion
 {
@@ -304,6 +279,22 @@
                              
                              [self enableTapGesture:NO];
                              [self postNotification:GG_NOTIFY_MENU_COVER];
+                         }
+                     }];
+}
+
+- (void)bare:(void(^)(void))completion
+{
+    [UIView animateWithDuration:SLIDE_TIMING delay:0 options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         _viewCover.frame = CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height);
+                     }
+                     completion:^(BOOL finished) {
+                         if (finished) {
+                             
+                             if (completion) {
+                                 completion();
+                             }
                          }
                      }];
 }

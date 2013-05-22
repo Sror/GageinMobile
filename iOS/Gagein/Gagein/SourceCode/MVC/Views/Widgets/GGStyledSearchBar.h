@@ -8,23 +8,45 @@
 
 #import <UIKit/UIKit.h>
 
-@class GGStyledSearchBar;
+@class GGBaseSearchBar;
 
 @protocol GGStyledSearchBarDelegate
 
-- (BOOL)searchBarShouldBeginEditing:(GGStyledSearchBar *)searchBar;
-- (void)searchBarTextDidBeginEditing:(GGStyledSearchBar *)searchBar;
-- (BOOL)searchBarShouldEndEditing:(GGStyledSearchBar *)searchBar;
-- (void)searchBarTextDidEndEditing:(GGStyledSearchBar *)searchBar;
-- (BOOL)searchBar:(GGStyledSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
+- (BOOL)searchBarShouldBeginEditing:(GGBaseSearchBar *)searchBar;
+- (void)searchBarTextDidBeginEditing:(GGBaseSearchBar *)searchBar;
+- (BOOL)searchBarShouldEndEditing:(GGBaseSearchBar *)searchBar;
+- (void)searchBarTextDidEndEditing:(GGBaseSearchBar *)searchBar;
+- (BOOL)searchBar:(GGBaseSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
 
-- (BOOL)searchBarShouldClear:(GGStyledSearchBar *)searchBar;
-- (BOOL)searchBarShouldSearch:(GGStyledSearchBar *)searchBar;
+- (BOOL)searchBarShouldClear:(GGBaseSearchBar *)searchBar;
+- (BOOL)searchBarShouldSearch:(GGBaseSearchBar *)searchBar;
 @end
 
-@interface GGStyledSearchBar : UIView <UITextFieldDelegate>
+
+//
+@interface GGBaseSearchBar : UIView <UITextFieldDelegate>
+@property (weak) NSObject<GGStyledSearchBarDelegate>       *delegate;
+@end
+
+
+//
+@interface GGStyledSearchBar : GGBaseSearchBar
 @property (weak, nonatomic) IBOutlet UIImageView    *ivBg;
 @property (weak, nonatomic) IBOutlet UIImageView    *ivSearchIcon;
 @property (weak, nonatomic) IBOutlet UITextField    *tfSearch;
-@property NSObject<GGStyledSearchBarDelegate>       *delegate;
+
+@end
+
+
+//
+@interface GGBlackSearchBar : GGBaseSearchBar 
+@property (weak, nonatomic) IBOutlet UIView *viewSearchField;
+@property (weak, nonatomic) IBOutlet UIImageView *ivSearchBg;
+@property (weak, nonatomic) IBOutlet UIImageView *ivSearchGlass;
+@property (weak, nonatomic) IBOutlet UITextField *tfSearch;
+@property (weak, nonatomic) IBOutlet UIButton *btnCancel;
+
+
+-(void)showCancelButton:(BOOL)aShow animated:(BOOL)animated;
+
 @end

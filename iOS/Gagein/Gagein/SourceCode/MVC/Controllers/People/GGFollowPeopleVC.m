@@ -288,28 +288,28 @@
     _viewSearchBg.hidden = YES;
 }
 
-- (BOOL)searchBarShouldBeginEditing:(GGStyledSearchBar *)searchBar
+- (BOOL)searchBarShouldBeginEditing:(GGBaseSearchBar *)searchBar
 {
     return YES;
 }
 
-- (void)searchBarTextDidBeginEditing:(GGStyledSearchBar *)searchBar
+- (void)searchBarTextDidBeginEditing:(GGBaseSearchBar *)searchBar
 {
     self.viewSearchBg.hidden = NO;
     self.tvSearchResult.frame = _tvSearchResultRectShort;
 }
 
-- (BOOL)searchBarShouldEndEditing:(GGStyledSearchBar *)searchBar
+- (BOOL)searchBarShouldEndEditing:(GGBaseSearchBar *)searchBar
 {
     return YES;
 }
 
-- (void)searchBarTextDidEndEditing:(GGStyledSearchBar *)searchBar
+- (void)searchBarTextDidEndEditing:(GGBaseSearchBar *)searchBar
 {
     self.tvSearchResult.frame = _tvSearchResultRect;
 }
 
-- (BOOL)searchBar:(GGStyledSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+- (BOOL)searchBar:(GGBaseSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     [_searchTimer invalidate];
     _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2.f target:self selector:@selector(_callSearchPeopleSuggestion) userInfo:nil repeats:NO];
@@ -317,17 +317,17 @@
     return YES;
 }
 
-- (BOOL)searchBarShouldClear:(GGStyledSearchBar *)searchBar
+- (BOOL)searchBarShouldClear:(GGBaseSearchBar *)searchBar
 {
     return YES;
 }
 
-- (BOOL)searchBarShouldSearch:(GGStyledSearchBar *)searchBar
+- (BOOL)searchBarShouldSearch:(GGBaseSearchBar *)searchBar
 {
     [_searchTimer invalidate];
     _searchTimer = nil;
     [self _callSearchPeople];
-    [searchBar.tfSearch resignFirstResponder];
+    [((GGStyledSearchBar *)searchBar).tfSearch resignFirstResponder];
     
     return YES;
 }

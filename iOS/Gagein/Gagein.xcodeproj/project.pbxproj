@@ -295,6 +295,7 @@
 		EA975758174D3419007D64CD /* sendSmsbtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA975757174D3419007D64CD /* sendSmsbtn@2x.png */; };
 		EA97575A174D3424007D64CD /* updateSwitchBackbtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA975759174D3424007D64CD /* updateSwitchBackbtn@2x.png */; };
 		EA97575D174D45A4007D64CD /* NSMutableArray+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA97575C174D45A4007D64CD /* NSMutableArray+AddOn.m */; };
+		EA97575F174D7059007D64CD /* GGBlackSearchBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97575E174D7059007D64CD /* GGBlackSearchBar.xib */; };
 		EA98F8CA17440FBE00F1BEB3 /* GGAddMediaFiltersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA98F8C817440FBD00F1BEB3 /* GGAddMediaFiltersVC.m */; };
 		EA98F8CB17440FBE00F1BEB3 /* GGAddMediaFiltersVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA98F8C917440FBD00F1BEB3 /* GGAddMediaFiltersVC.xib */; };
 		EA98F8CE1744144900F1BEB3 /* GGGroupedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA98F8CD1744144900F1BEB3 /* GGGroupedCell.m */; };
@@ -895,6 +896,7 @@
 		EA975759174D3424007D64CD /* updateSwitchBackbtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "updateSwitchBackbtn@2x.png"; sourceTree = "<group>"; };
 		EA97575B174D45A4007D64CD /* NSMutableArray+AddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+AddOn.h"; sourceTree = "<group>"; };
 		EA97575C174D45A4007D64CD /* NSMutableArray+AddOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+AddOn.m"; sourceTree = "<group>"; };
+		EA97575E174D7059007D64CD /* GGBlackSearchBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGBlackSearchBar.xib; sourceTree = "<group>"; };
 		EA98F8C717440FBC00F1BEB3 /* GGAddMediaFiltersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGAddMediaFiltersVC.h; sourceTree = "<group>"; };
 		EA98F8C817440FBD00F1BEB3 /* GGAddMediaFiltersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAddMediaFiltersVC.m; sourceTree = "<group>"; };
 		EA98F8C917440FBD00F1BEB3 /* GGAddMediaFiltersVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGAddMediaFiltersVC.xib; sourceTree = "<group>"; };
@@ -1364,6 +1366,7 @@
 			children = (
 				EA0E62F0172687220002F113 /* GGSwitchButton.xib */,
 				EA55975F172A29E9000CE9E3 /* GGStyledSearchBar.xib */,
+				EA97575E174D7059007D64CD /* GGBlackSearchBar.xib */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -2896,6 +2899,7 @@
 				EA62C6DD174C5DD80031BF42 /* SN_setting_Yammer.txt in Resources */,
 				EA975758174D3419007D64CD /* sendSmsbtn@2x.png in Resources */,
 				EA97575A174D3424007D64CD /* updateSwitchBackbtn@2x.png in Resources */,
+				EA97575F174D7059007D64CD /* GGBlackSearchBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

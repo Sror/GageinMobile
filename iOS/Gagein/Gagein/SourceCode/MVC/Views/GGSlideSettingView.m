@@ -16,7 +16,8 @@
 
 @implementation GGSlideSettingView
 {
-    MBProgressHUD *_hud;
+    MBProgressHUD               *_hud;
+    UITapGestureRecognizer      *_gestDimmedViewTapped;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -25,42 +26,81 @@
     if (self) {
         self.backgroundColor = GGSharedColor.graySettingBg;
         
-        CGRect tableRc = self.bounds;
-        tableRc.size.width = SLIDE_SETTING_VIEW_WIDTH;
+        //CGRect tableRc = self.bounds;
+        //tableRc.size.width = SLIDE_SETTING_VIEW_WIDTH;
         
-        _viewTable = [[UITableView alloc] initWithFrame:tableRc style:UITableViewStylePlain];
+        _viewTable = [[UITableView alloc] initWithFrame:[self _tvMenuBarRect:NO] style:UITableViewStylePlain];
         _viewTable.showsVerticalScrollIndicator = NO;
         _viewTable.backgroundColor = GGSharedColor.clear;
         _viewTable.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self addSubview:_viewTable];
         
-        _searchBar = [[GGSearchBar alloc] initWithFrame:CGRectMake(0, 0, SLIDE_SETTING_VIEW_WIDTH, 40)];
+        _searchBar = [GGBlackSearchBar viewFromNibWithOwner:self];
+        //_searchBar.frame = [self _searchBarRect:NO];
+        //[[GGSearchBar alloc] initWithFrame:CGRectMake(0, 0, SLIDE_SETTING_VIEW_WIDTH, 40)];
         _viewTable.tableHeaderView = _searchBar;
 
-//        UISwipeGestureRecognizer *leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideSlide)];
-//        leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
-//        [self addGestureRecognizer:leftSwipe];
+        _viewDimmed = [[UIView alloc] initWithFrame:CGRectZero];
+        _viewDimmed.backgroundColor = GGSharedColor.black;
+        _viewDimmed.alpha = .7f;
+        
+        _gestDimmedViewTapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_dimmedViewTapped:)];
+        [_viewDimmed addGestureRecognizer:_gestDimmedViewTapped];
+        
+        [self _switchSearhBarMode:NO];
     }
     return self;
 }
 
+-(void)_dimmedViewTapped:(id)sender
+{
+    [self switchSearchMode:NO];
+}
+
+-(CGRect)_tvMenuBarRect:(BOOL)isLong
+{
+    return isLong ? CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) : CGRectMake(0, 0, SLIDE_SETTING_VIEW_WIDTH, self.frame.size.height);
+}
+
+-(CGRect)_searchBarRect:(BOOL)isLong
+{
+    return isLong ? CGRectMake(0, 0, self.frame.size.width, 40) : CGRectMake(0, 0, SLIDE_SETTING_VIEW_WIDTH, 40);
+}
+
+-(CGRect)_dimmedRect
+{
+    return CGRectMake(0, (CGRectGetMaxY(_searchBar.frame)), self.frame.size.width, self.frame.size.height);
+}
+
+-(void)switchSearchMode:(BOOL)aUsingSearchMode
+{
+    if (aUsingSearchMode)
+    {
+        [GGSharedDelegate.rootVC bare];
+        _viewDimmed.frame = [self _dimmedRect];
+        [self addSubview:_viewDimmed];
+    }
+    else
+    {
+        [GGSharedDelegate.rootVC reveal];
+        [_viewDimmed removeFromSuperview];
+        [_searchBar.tfSearch resignFirstResponder];
+    }
+    
+    self.viewTable.frame = [self _tvMenuBarRect:aUsingSearchMode];
+    [self _switchSearhBarMode:aUsingSearchMode];
+}
+
+-(void)_switchSearhBarMode:(BOOL)aUsingSearchMode
+{
+    CGRect searchRc = [self _searchBarRect:aUsingSearchMode];
+    _searchBar.frame = searchRc;
+    [_searchBar showCancelButton:aUsingSearchMode animated:YES];
+}
+
 
 #pragma mark - rect
-//-(CGRect)_slideHideRect
-//{
-//    return CGRectMake(-SELF_WIDTH
-//                      , self.frame.origin.y
-//                      , SELF_WIDTH
-//                      , self.frame.size.height);
-//}
-//
-//-(CGRect)_slideShowRect
-//{
-//    return CGRectMake(0
-//                      , self.frame.origin.y
-//                      , SELF_WIDTH
-//                      , self.frame.size.height);
-//}
+
 
 #pragma mark - actions
 -(void)showSlide
@@ -70,17 +110,6 @@
         [GGSharedDelegate.rootVC reveal:^{
             [_delegate slideview:self isShowed:YES];
         }];
-        
-//        [UIView animateWithDuration:.3f animations:^{
-//            
-//            self.frame = [GGUtils setX:0 rect:self.frame];
-//            GGSharedDelegate.naviController.view.frame = [GGUtils setX:SELF_WIDTH rect:GGSharedDelegate.naviController.view.frame];
-//            
-//        } completion:^(BOOL finished) {
-//            
-//            [self.superview bringSubviewToFront:self];
-//            [_delegate slideview:self isShowed:YES];
-//        }];
     }
 }
 
@@ -93,7 +122,7 @@
 {
     if (GGSharedDelegate.rootVC.isRevealed)
     {
-        [_searchBar resignFirstResponder];
+        [_searchBar.tfSearch resignFirstResponder];
         
         [GGSharedDelegate.rootVC cover:^{
             [_delegate slideview:self isShowed:NO];
@@ -103,26 +132,10 @@
                 completion();
             }
         }];
-        
-//        [UIView animateWithDuration:.3f animations:^{
-//            
-//            self.frame = [GGUtils setX:-SELF_WIDTH rect:self.frame];
-//            GGSharedDelegate.naviController.view.frame = [GGUtils setX:0 rect:GGSharedDelegate.naviController.view.frame];
-//            
-//        } completion:^(BOOL finished) {
-//            
-//            [self.superview sendSubviewToBack:self];
-//            [_delegate slideview:self isShowed:NO];
-//            
-//            if (completion)
-//            {
-//                completion();
-//            }
-//        }];
     }
 }
 
--(void)changeDelegate:(id<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>)aNewDelegate
+-(void)changeDelegate:(id<UITableViewDelegate, UITableViewDataSource, GGStyledSearchBarDelegate>)aNewDelegate
 {
     self.viewTable.dataSource = aNewDelegate;
     self.viewTable.delegate = aNewDelegate;

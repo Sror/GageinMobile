@@ -205,27 +205,27 @@
 
 #pragma mark - GGStyledSearchBarDelegate
 
-- (BOOL)searchBarShouldBeginEditing:(GGStyledSearchBar *)searchBar
+- (BOOL)searchBarShouldBeginEditing:(GGBaseSearchBar *)searchBar
 {
     return YES;
 }
 
-- (void)searchBarTextDidBeginEditing:(GGStyledSearchBar *)searchBar
+- (void)searchBarTextDidBeginEditing:(GGBaseSearchBar *)searchBar
 {
     
 }
 
-- (BOOL)searchBarShouldEndEditing:(GGStyledSearchBar *)searchBar
+- (BOOL)searchBarShouldEndEditing:(GGBaseSearchBar *)searchBar
 {
     return YES;
 }
 
-- (void)searchBarTextDidEndEditing:(GGStyledSearchBar *)searchBar
+- (void)searchBarTextDidEndEditing:(GGBaseSearchBar *)searchBar
 {
     
 }
 
-- (BOOL)searchBar:(GGStyledSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+- (BOOL)searchBar:(GGBaseSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if (range.location <= 0) {
         _tvSearchResult.hidden = YES;
@@ -234,15 +234,15 @@
     return YES;
 }
 
-- (BOOL)searchBarShouldClear:(GGStyledSearchBar *)searchBar
+- (BOOL)searchBarShouldClear:(GGBaseSearchBar *)searchBar
 {
     _tvSearchResult.hidden = YES;
     return YES;
 }
 
-- (BOOL)searchBarShouldSearch:(GGStyledSearchBar *)searchBar
+- (BOOL)searchBarShouldSearch:(GGBaseSearchBar *)searchBar
 {
-    NSString *keyword = searchBar.tfSearch.text;
+    NSString *keyword = ((GGStyledSearchBar *)searchBar).tfSearch.text;
     if (keyword.length)
     {
         [GGSharedAPI searchMediaWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {

@@ -88,7 +88,7 @@
     _slideSettingView = GGSharedDelegate.slideSettingView;
     _slideSettingView.delegate = self;
     _slideSettingView.viewTable.rowHeight = [GGSettingMenuCell HEIGHT];
-    _slideSettingView.searchBar.placeholder = @"Search for updates";
+    _slideSettingView.searchBar.tfSearch.placeholder = @"Search for updates";
     [_slideSettingView changeDelegate:self];
 }
 
@@ -263,14 +263,54 @@
     }
 }
 
-#pragma mark - UISearchBar delegate
--(BOOL)_searchAction:(UISearchBar *)searchBar
+#pragma mark - search bar delegate
+- (BOOL)searchBarShouldBeginEditing:(GGBaseSearchBar *)searchBar
 {
-    if (searchBar.text.length)
+    [_slideSettingView switchSearchMode:YES];
+    return YES;
+}
+
+- (void)searchBarTextDidBeginEditing:(GGBaseSearchBar *)searchBar
+{
+    
+}
+
+- (BOOL)searchBarShouldEndEditing:(GGBaseSearchBar *)searchBar
+{
+    [self _searchAction:searchBar];
+    //[_slideSettingView switchSearchMode:NO];
+    return YES;
+}
+
+- (void)searchBarTextDidEndEditing:(GGBaseSearchBar *)searchBar
+{
+    
+}
+
+- (BOOL)searchBar:(GGBaseSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    return YES;
+}
+
+- (BOOL)searchBarShouldClear:(GGBaseSearchBar *)searchBar
+{
+    return YES;
+}
+
+- (BOOL)searchBarShouldSearch:(GGBaseSearchBar *)searchBar
+{
+    [self _searchAction:searchBar];
+    return YES;
+}
+
+-(BOOL)_searchAction:(GGBaseSearchBar *)searchBar
+{
+    GGBlackSearchBar *blackBar = (GGBlackSearchBar *)searchBar;
+    if (blackBar.tfSearch.text.length)
     {
         GGComUpdateSearchVC *vc = [[GGComUpdateSearchVC alloc] init];
-        vc.keyword = searchBar.text;
-        searchBar.text = @"";
+        vc.keyword = blackBar.tfSearch.text;
+        blackBar.tfSearch.text = @"";
         
         [_slideSettingView hideSlideOnCompletion:^{
             
@@ -286,21 +326,20 @@
     return NO;
 }
 
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
-{
-    [self _searchAction:searchBar];
-    return YES;
-}
+//- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+//{
+//    
+//}
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    [self _searchAction:searchBar];
-}
+//- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+//{
+//    
+//}
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-{
-    
-}
+//- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+//{
+//    //searchBar.showsCancelButton = YES;
+//}
 
 #pragma mark - slide setting view delegate
 -(void)slideview:(GGSlideSettingView *)aSlideView isShowed:(BOOL)aIsShowed

@@ -54,7 +54,7 @@
     _slideSettingView = GGSharedDelegate.slideSettingView;
     _slideSettingView.delegate = self;
     _slideSettingView.viewTable.rowHeight = [GGSettingMenuCell HEIGHT];
-    _slideSettingView.searchBar.placeholder = @"Search for updates";
+    _slideSettingView.searchBar.tfSearch.placeholder = @"Search for updates";
     [_slideSettingView changeDelegate:self];
 }
 
