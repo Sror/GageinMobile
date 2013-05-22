@@ -230,19 +230,20 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    GGCompanyUpdate *updateData = [_updates objectAtIndex:indexPath.row];
+    GGCompanyUpdate *updateData = [_updates objectAtIndexSafe:indexPath.row];
     
     cell.ID = updateData.ID;
     cell.logoBtn.tag = indexPath.row;
     cell.titleLbl.text = updateData.headline;
     cell.sourceLbl.text = updateData.fromSource;
     
-#warning FAKE DATA - company update description
-    cell.descriptionLbl.text = SAMPLE_TEXT;//updateData.content;
+//#warning FAKE DATA - company update description
+    cell.descriptionLbl.text = updateData.content;
     
     [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
     
     cell.intervalLbl.text = [updateData intervalStringWithDate:updateData.date];
+    cell.hasBeenRead = updateData.hasBeenRead;
     [cell adjustLayout];
     
     return cell;

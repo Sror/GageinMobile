@@ -16,7 +16,7 @@
     {
         [self alertWithMessage:@"Ops, No data retrieved, may due to network problem."];
     }
-    if ([aMessage isEqualToString:@"error"])
+    else if ([aMessage isEqualToString:@"error"])
     {
         
     }

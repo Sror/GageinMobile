@@ -31,4 +31,5 @@
     #import "GGImagePool.h"
     #import "Bee_Thread.h"
     #import "NSMutableDictionary+AddOn.h"
+    #import "NSMutableArray+AddOn.h"
 #endif
