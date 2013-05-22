@@ -117,7 +117,7 @@
 								<string key="NSFrameSize">{320, 50}</string>
 								<reference key="NSSuperview" ref="423025731"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="999628333"/>
+								<reference key="NSNextKeyView" ref="159342026"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -239,13 +239,13 @@
 								<reference key="IBUIFontDescription" ref="535210819"/>
 								<reference key="IBUIFont" ref="254393584"/>
 							</object>
-							<object class="IBUIButton" id="805505400">
+							<object class="IBUIButton" id="159342026">
 								<reference key="NSNextResponder" ref="423025731"/>
-								<int key="NSvFlags">297</int>
-								<string key="NSFrame">{{277, 12}, {32, 32}}</string>
+								<int key="NSvFlags">-2147483351</int>
+								<string key="NSFrame">{{9, 12}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="423025731"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="999628333"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -257,9 +257,33 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="934240033"/>
-								<object class="NSCustomResource" key="IBUINormalImage" id="227640854">
+								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">linkedInIcon@2x.png</string>
+									<string key="NSResourceName">updateSwitchBackbtn@2x.png</string>
+								</object>
+								<reference key="IBUIFontDescription" ref="535210819"/>
+								<reference key="IBUIFont" ref="254393584"/>
+							</object>
+							<object class="IBUIButton" id="805505400">
+								<reference key="NSNextResponder" ref="423025731"/>
+								<int key="NSvFlags">297</int>
+								<string key="NSFrame">{{277, 12}, {32, 32}}</string>
+								<reference key="NSSuperview" ref="423025731"/>
+								<reference key="NSWindow"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<reference key="IBUIHighlightedTitleColor" ref="621445062"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="934240033"/>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">sendSmsbtn@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="535210819"/>
 								<reference key="IBUIFont" ref="254393584"/>
@@ -282,7 +306,10 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="934240033"/>
-								<reference key="IBUINormalImage" ref="227640854"/>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">linkedInIcon@2x.png</string>
+								</object>
 								<reference key="IBUIFontDescription" ref="535210819"/>
 								<reference key="IBUIFont" ref="254393584"/>
 							</object>
@@ -382,6 +409,54 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnSwitchBack</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="159342026"/>
+					</object>
+					<int key="connectionID">70</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnEmail</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="805931064"/>
+					</object>
+					<int key="connectionID">71</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnShare</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="476565058"/>
+					</object>
+					<int key="connectionID">72</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnTwitter</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="199234099"/>
+					</object>
+					<int key="connectionID">73</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnSms</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="805505400"/>
+					</object>
+					<int key="connectionID">74</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnLinkedIn</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="999628333"/>
+					</object>
+					<int key="connectionID">75</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="465921725"/>
 						<reference key="destination" ref="372490531"/>
@@ -442,6 +517,15 @@
 					</object>
 					<int key="connectionID">58</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">switchBackAction:</string>
+						<reference key="source" ref="159342026"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">76</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -482,6 +566,7 @@
 							<reference ref="199234099"/>
 							<reference ref="950607372"/>
 							<reference ref="805505400"/>
+							<reference ref="159342026"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">viewBottomBar</string>
@@ -554,6 +639,12 @@
 						<reference key="parent" ref="274005015"/>
 						<string key="objectName">webviewSignal</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">68</int>
+						<reference key="object" ref="159342026"/>
+						<reference key="parent" ref="423025731"/>
+						<string key="objectName">btnSwitchBack</string>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -574,12 +665,13 @@
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="64.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="66.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="68.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">67</int>
+			<int key="maxID">76</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -594,16 +686,85 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">GGCompanyUpdateDetailVC</string>
 					<string key="superclassName">GGBaseViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="linkedInAction:">id</string>
+						<string key="saveAction:">id</string>
+						<string key="sendMailAction:">id</string>
+						<string key="sendSMSAction:">id</string>
+						<string key="shareAction:">id</string>
+						<string key="switchBackAction:">id</string>
+						<string key="twitterAction:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="linkedInAction:">
+							<string key="name">linkedInAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="saveAction:">
+							<string key="name">saveAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="sendMailAction:">
+							<string key="name">sendMailAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="sendSMSAction:">
+							<string key="name">sendSMSAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="shareAction:">
+							<string key="name">shareAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="switchBackAction:">
+							<string key="name">switchBackAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="twitterAction:">
+							<string key="name">twitterAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="btnEmail">UIButton</string>
+						<string key="btnLinkedIn">UIButton</string>
 						<string key="btnSave">UIButton</string>
+						<string key="btnShare">UIButton</string>
+						<string key="btnSms">UIButton</string>
+						<string key="btnSwitchBack">UIButton</string>
+						<string key="btnTwitter">UIButton</string>
 						<string key="scrollView">UIScrollView</string>
 						<string key="viewContent">UIView</string>
 						<string key="webView">UIWebView</string>
 						<string key="webviewSignal">UIWebView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="btnEmail">
+							<string key="name">btnEmail</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnLinkedIn">
+							<string key="name">btnLinkedIn</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="btnSave">
 							<string key="name">btnSave</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnShare">
+							<string key="name">btnShare</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnSms">
+							<string key="name">btnSms</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnSwitchBack">
+							<string key="name">btnSwitchBack</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnTwitter">
+							<string key="name">btnTwitter</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="scrollView">
@@ -640,7 +801,9 @@
 			<string key="happeningBottomBarBg@2x.png">{1, 100}</string>
 			<string key="linkedInIcon@2x.png">{62, 64}</string>
 			<string key="saveIcon@2x.png">{62, 64}</string>
+			<string key="sendSmsbtn@2x.png">{62, 64}</string>
 			<string key="twitterIcon@2x.png">{62, 64}</string>
+			<string key="updateSwitchBackbtn@2x.png">{62, 64}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

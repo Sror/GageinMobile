@@ -46,7 +46,7 @@
         //self.tabBarItem.image = [UIImage imageNamed:@"Players"];
         _updates = [NSMutableArray array];
         _currentPageIndex = GG_PAGE_START_INDEX;
-        _isUnread = YES;
+        _isUnread = NO;
     }
     return self;
 }
@@ -59,6 +59,7 @@
     _roundSwitch.delegate = self;
     _roundSwitch.lblOn.text = @"Unread";
     _roundSwitch.lblOff.text = @"All";
+    _roundSwitch.isOn = _isUnread;
     
     CGRect switchRc = CGRectMake(naviRc.size.width - SWITCH_WIDTH - 5
                                  , (naviRc.size.height - [GGSwitchButton HEIGHT]) / 2 + 5

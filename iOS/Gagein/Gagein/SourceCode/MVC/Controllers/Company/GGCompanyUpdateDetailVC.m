@@ -23,12 +23,21 @@
 @interface GGCompanyUpdateDetailVC () <MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
-@property (weak, nonatomic) IBOutlet UIButton *btnSave;
+
 @property (strong, nonatomic) IBOutlet UIWebView *webviewSignal;
 @property (weak, nonatomic) IBOutlet UIView *viewContent;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnSwitchBack;
+@property (weak, nonatomic) IBOutlet UIButton *btnSave;
+@property (weak, nonatomic) IBOutlet UIButton *btnEmail;
+@property (weak, nonatomic) IBOutlet UIButton *btnShare;
+@property (weak, nonatomic) IBOutlet UIButton *btnTwitter;
+@property (weak, nonatomic) IBOutlet UIButton *btnSms;
+@property (weak, nonatomic) IBOutlet UIButton *btnLinkedIn;
 
 @end
+
+
 
 @implementation GGCompanyUpdateDetailVC
 {
@@ -40,12 +49,15 @@
     GGComUpdateDetailView   *_comUpdateDetailCell;
     UIActivityIndicatorView *_activityIndicator;
     
-    BOOL                    _isShowingLinkedIn;
-    BOOL                    _isShowingTwitter;
+    //BOOL                    _isShowingLinkedIn;
+    //BOOL                    _isShowingTwitter;
     
     NSMutableArray          *_snTypes;
-    //OAuthLoginView          *_oAuthLoginView;
+    
+    //UIImage                 *_switchButtonImage;
 }
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,6 +65,7 @@
     if (self) {
         self.hidesBottomBarWhenPushed = YES;
         _snTypes = [NSMutableArray array];
+        //_switchButtonImage = [UIImage imageNamed:@"updateSwitchBackbtn"];
     }
     return self;
 }
@@ -137,6 +150,12 @@
     [self setBtnSave:nil];
     [self setWebviewSignal:nil];
     [self setViewContent:nil];
+    [self setBtnSwitchBack:nil];
+    [self setBtnEmail:nil];
+    [self setBtnShare:nil];
+    [self setBtnTwitter:nil];
+    [self setBtnSms:nil];
+    [self setBtnLinkedIn:nil];
     [super viewDidUnload];
 }
 
@@ -144,6 +163,7 @@
 {
     [super viewWillAppear:animated];
     
+    self.navigationController.navigationBarHidden = NO;
     [self.navigationController.navigationBar addSubview:_btnPrevUpdate];
     [self.navigationController.navigationBar addSubview:_btnNextUpdate];
     [self _updateNaviBtnState];
@@ -297,6 +317,9 @@
 {
     BOOL needAnimation = (_webviewSignal.hidden == aShow);
     _webviewSignal.hidden = !aShow;
+    
+    [self _showSwitchButton:aShow];
+    
     if (aShow)
     {
         if (needAnimation)
@@ -318,18 +341,38 @@
     }
 }
 
+-(void)_showSwitchButton:(BOOL)aShow
+{
+    _btnSwitchBack.hidden = !aShow;
+    
+    _btnSave.hidden =
+    _btnShare.hidden =
+    _btnSms.hidden =
+    _btnTwitter.hidden =
+    _btnLinkedIn.hidden =
+    _btnEmail.hidden = aShow;
+}
+
+-(IBAction)switchBackAction:(id)sender
+{
+    [self _showWebSignal:NO url:nil];
+    //_isShowingLinkedIn = _isShowingTwitter = NO;
+}
+
 -(IBAction)linkedInAction:(id)sender
 {
-    [self _showWebSignal:!_isShowingLinkedIn url:_companyUpdateDetail.linkedInSignal];
-    _isShowingLinkedIn = !_isShowingLinkedIn;
-    _isShowingTwitter = NO;
+    [self _showWebSignal:YES url:_companyUpdateDetail.linkedInSignal];
+//    [self _showWebSignal:!_isShowingLinkedIn url:_companyUpdateDetail.linkedInSignal];
+//    _isShowingLinkedIn = !_isShowingLinkedIn;
+//    _isShowingTwitter = NO;
 }
 
 -(IBAction)twitterAction:(id)sender
 {
-    [self _showWebSignal:!_isShowingTwitter url:_companyUpdateDetail.twitterTweets];
-    _isShowingTwitter = !_isShowingTwitter;
-    _isShowingLinkedIn = NO;
+    [self _showWebSignal:YES url:_companyUpdateDetail.twitterTweets];
+//    [self _showWebSignal:!_isShowingTwitter url:_companyUpdateDetail.twitterTweets];
+//    _isShowingTwitter = !_isShowingTwitter;
+//    _isShowingLinkedIn = NO;
 }
 
 -(IBAction)shareAction:(id)sender
@@ -624,7 +667,7 @@
 {
     [self _showWebSignal:NO url:nil];
     
-    _isShowingLinkedIn = _isShowingTwitter = NO;
+    //_isShowingLinkedIn = _isShowingTwitter = NO;
     
     GGCompanyUpdate *updateData = [self.updates objectAtIndex:_updateIndex];
     [self showLoadingHUD];
