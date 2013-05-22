@@ -23,6 +23,9 @@
 #define SWITCH_WIDTH 80
 #define SWITCH_HEIGHT 20
 
+#define EMPTY_TEXT_ALL      @"No saved updates yet."
+#define EMPTY_TEXT_UNREAD   @"No unread updates yet."
+
 @interface GGSavedUpdatesVC ()
 @property (strong, nonatomic) GGEmptyView *viewEmpty;
 @property (strong) UITableView     *tvUpdates;
@@ -90,7 +93,7 @@
     [self.view addSubview:_tvUpdates];
     
     _viewEmpty = [GGEmptyView viewFromNibWithOwner:self];
-    _viewEmpty.lblMessage.text = @"No saved updates yet.";
+    _viewEmpty.lblMessage.text = EMPTY_TEXT_ALL;
     _viewEmpty.frame = _tvUpdates.bounds;
     [_tvUpdates addSubview:_viewEmpty];
     
@@ -193,6 +196,7 @@
         }
         
         _viewEmpty.hidden = _updates.count;
+        _viewEmpty.lblMessage.text = _isUnread ? EMPTY_TEXT_UNREAD : EMPTY_TEXT_ALL;
         [_tvUpdates reloadData];
         
         [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:.5f];

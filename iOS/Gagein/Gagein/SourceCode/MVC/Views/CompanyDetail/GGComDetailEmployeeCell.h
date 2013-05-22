@@ -12,8 +12,10 @@
 @property (weak, nonatomic) IBOutlet UIView *viewCellBg;
 @property (weak, nonatomic) IBOutlet UIView *viewContent;
 @property (weak, nonatomic) IBOutlet UIImageView *ivPhoto;
+
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblSubTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblThirdLine;
 
 +(float)HEIGHT;
 @end

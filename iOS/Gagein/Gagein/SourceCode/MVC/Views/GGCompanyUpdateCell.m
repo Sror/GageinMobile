@@ -33,16 +33,7 @@
     _titleLbl.text = @"";
     _intervalLbl.text = @"";
     
-    _logoIV.layer.borderColor = GGSharedColor.lightGray.CGColor;
-    _logoIV.layer.borderWidth = 1;
-    
-    _logoIV.layer.shadowColor = GGSharedColor.lightGray.CGColor;
-    _logoIV.layer.shadowOpacity = .5f;
-    _logoIV.layer.shadowOffset = CGSizeMake(-1, 1);
-    _logoIV.layer.shadowRadius = 1;
-    
-    //_logoIV.layer.cornerRadius = 3;
-    
+    [GGUtils applyLogoStyleToView:_logoIV];
     
     _titleLbl.numberOfLines = 3;
     _descriptionLbl.numberOfLines = 2;

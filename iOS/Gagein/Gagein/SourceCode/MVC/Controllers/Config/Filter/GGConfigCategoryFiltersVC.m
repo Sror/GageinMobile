@@ -49,10 +49,10 @@
     _viewConfigSwitch.btnSwitch.lblOn.text = @"On";
     _viewConfigSwitch.btnSwitch.lblOff.text = @"Off";
     _viewConfigSwitch.btnSwitch.delegate = self;
-    [GGUtils applyTableStyle1ToLayer:_viewConfigSwitch.layer];
+    [GGUtils applyTableStyle1ToView:_viewConfigSwitch];
     
     _tv.layer.cornerRadius = 8;
-    [GGUtils applyTableStyle1ToLayer:_viewTvContainer.layer];
+    [GGUtils applyTableStyle1ToView:_viewTvContainer];
     
     _configOffTipView = [GGConfigLabel viewFromNibWithOwner:self];
     _configOffTipView.lblText.text = @"Filter your update feed by agents.";

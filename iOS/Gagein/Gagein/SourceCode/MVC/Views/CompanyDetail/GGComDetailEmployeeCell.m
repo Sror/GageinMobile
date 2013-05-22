@@ -28,7 +28,10 @@
 
 -(void)awakeFromNib
 {
+    _lblTitle.text = _lblSubTitle.text = _lblThirdLine.text = @"";
     self.viewCellBg.backgroundColor = GGSharedColor.silver;
+    
+    [GGUtils applyLogoStyleToView:_ivPhoto];
 }
 
 +(float)HEIGHT

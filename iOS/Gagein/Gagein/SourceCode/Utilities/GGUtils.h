@@ -29,7 +29,8 @@
 
 +(id)replaceFromNibForView:(UIView *)aView;
 
-+(void)applyTableStyle1ToLayer:(CALayer *)aLayer;
++(void)applyTableStyle1ToView:(UIView *)aView;
++(void)applyLogoStyleToView:(UIView *)aView;
 
 +(EGGGroupedCellStyle)styleForArrayCount:(NSUInteger)aArrayCount atIndex:(NSUInteger)anIndex;
 

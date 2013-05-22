@@ -187,16 +187,32 @@
     return nil;
 }
 
-+(void)applyTableStyle1ToLayer:(CALayer *)aLayer
++(void)applyTableStyle1ToView:(UIView *)aView
 {
-    if (aLayer)
+    CALayer *layer = aView.layer;
+    if (layer)
     {
-        aLayer.cornerRadius = 8;
-        aLayer.shadowColor = GGSharedColor.darkGray.CGColor;
-        aLayer.shadowOffset = CGSizeMake(2, 2);
-        aLayer.shadowRadius = 4;
-        aLayer.shadowOpacity = .1f;
-        aLayer.masksToBounds = NO;
+        layer.cornerRadius = 8;
+        layer.shadowColor = GGSharedColor.darkGray.CGColor;
+        layer.shadowOffset = CGSizeMake(2, 2);
+        layer.shadowRadius = 4;
+        layer.shadowOpacity = .1f;
+        layer.masksToBounds = NO;
+    }
+}
+
++(void)applyLogoStyleToView:(UIView *)aView
+{
+    CALayer *layer = aView.layer;
+    if (layer)
+    {
+        layer.borderColor = GGSharedColor.lightGray.CGColor;
+        layer.borderWidth = 1;
+        
+        layer.shadowColor = GGSharedColor.lightGray.CGColor;
+        layer.shadowOpacity = .5f;
+        layer.shadowOffset = CGSizeMake(-1, 1);
+        layer.shadowRadius = 1;
     }
 }
 
