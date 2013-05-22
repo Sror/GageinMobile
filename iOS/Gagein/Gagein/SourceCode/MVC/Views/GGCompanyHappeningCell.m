@@ -36,7 +36,7 @@
 
 +(float)HEIGHT
 {
-    return 65;
+    return 85;
 }
 
 -(void)setHasBeenRead:(BOOL)hasRead
