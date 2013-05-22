@@ -245,7 +245,7 @@
         
         if ([self _isPersonFollowed:data.ID])
         {
-            [GGAlert alert:@"Ops, You have already followed this company."];
+            [GGAlert alertWithMessage:@"Ops, You have already followed this company."];
         }
         else
         {
@@ -273,7 +273,7 @@
                 }
                 else
                 {
-                    [GGAlert alert:parser.message];
+                    [GGAlert alertWithApiMessage:parser.message];
                 }
             }];
         }
@@ -362,7 +362,7 @@
             GGDataPage *page = [parser parseSearchForPeople];
             _searchedPeople = page.items;
             if (_searchedPeople.count <= 0) {
-                [GGAlert alert:@"Sorry, No person matched."];
+                [GGAlert alertWithMessage:@"Sorry, No person matched."];
             }
             
             [self.tvSearchResult reloadData];

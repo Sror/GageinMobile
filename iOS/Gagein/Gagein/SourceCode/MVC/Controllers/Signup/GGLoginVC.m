@@ -89,11 +89,11 @@
 -(BOOL)_checkEmail
 {
     if (self.tfEmail.text.length <= 0) {
-        [GGAlert alert:@"You must enter your Email."];
+        [GGAlert alertWithMessage:@"You must enter your Email."];
         [self.tfEmail becomeFirstResponder];
         return NO;
     }else if (![GGPredicate checkEmail:self.tfEmail.text]){
-        [GGAlert alert:@"Not a valid Email format."];
+        [GGAlert alertWithMessage:@"Not a valid Email format."];
         [self.tfEmail becomeFirstResponder];
         return NO;
     }
@@ -104,11 +104,11 @@
 -(BOOL)_checkPassword
 {
     if (self.tfPassword.text.length <= 0) {
-        [GGAlert alert:@"You must enter your Password."];
+        [GGAlert alertWithMessage:@"You must enter your Password."];
         [self.tfPassword becomeFirstResponder];
         return NO;
     }else if (![GGPredicate checkPassword:self.tfPassword.text]){
-        [GGAlert alert:@"Password must be 6-12 characters."];
+        [GGAlert alertWithMessage:@"Password must be 6-12 characters."];
         [self.tfPassword becomeFirstResponder];
         return NO;
     }
@@ -179,7 +179,7 @@
             else
             {
                 DLog(@"Login Failed");
-                [GGAlert alert:parser.message];
+                [GGAlert alertWithApiMessage:parser.message];
             }
         }];
     }

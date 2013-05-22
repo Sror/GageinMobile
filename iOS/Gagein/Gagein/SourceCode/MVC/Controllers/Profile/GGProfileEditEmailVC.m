@@ -51,7 +51,7 @@
     if (_tfEmail.text.length <= 0)
     {
         [_tfEmail becomeFirstResponder];
-        [GGAlert alert:@"You should enter your an Email address."];
+        [GGAlert alertWithMessage:@"You should enter your an Email address."];
     }
    
     else
@@ -61,7 +61,7 @@
             if (parser.isOK)
             {
                 _userProfile.email = _tfEmail.text;
-                [GGAlert alert:@"Email changed OK!"];
+                [GGAlert alertWithMessage:@"Email changed OK!"];
                 [self naviBackAction:nil];
             }
         }];

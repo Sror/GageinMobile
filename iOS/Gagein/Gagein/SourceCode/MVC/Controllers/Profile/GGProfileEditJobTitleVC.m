@@ -52,7 +52,7 @@
     if (_tfJobTitle.text.length <= 0)
     {
         [_tfJobTitle becomeFirstResponder];
-        [GGAlert alert:@"You should enter your a Job Title."];
+        [GGAlert alertWithMessage:@"You should enter your a Job Title."];
     }
     
     else
@@ -64,7 +64,7 @@
             if (parser.isOK)
             {
                 _userProfile.orgTitle = _tfJobTitle.text;
-                [GGAlert alert:@"Job title changed OK!"];
+                [GGAlert alertWithMessage:@"Job title changed OK!"];
                 [self naviBackAction:nil];
             }
         }];

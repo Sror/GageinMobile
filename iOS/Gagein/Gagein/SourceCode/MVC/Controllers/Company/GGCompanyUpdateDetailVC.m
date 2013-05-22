@@ -273,7 +273,7 @@
 {
     if (![MFMailComposeViewController canSendMail])
     {
-        [GGAlert alert:@"Sorry, You can't send email on this device."];
+        [GGAlert alertWithMessage:@"Sorry, You can't send email on this device."];
         return;
     }
     
@@ -524,7 +524,7 @@
             }
             else
             {
-                [GGAlert alert:parser.message];
+                [GGAlert alertWithApiMessage:parser.message];
             }
         }];
     }
@@ -541,7 +541,7 @@
             }
             else
             {
-                [GGAlert alert:parser.message];
+                [GGAlert alertWithApiMessage:parser.message];
             }
         }];
     }

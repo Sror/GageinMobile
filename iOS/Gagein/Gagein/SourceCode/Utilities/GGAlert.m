@@ -10,14 +10,30 @@
 
 @implementation GGAlert
 
-+(void)alert:(NSString *)aMessage
++(void)alertWithApiMessage:(NSString *)aMessage
+{
+    if (aMessage.length <= 0)
+    {
+        [self alertWithMessage:@"Ops, No data retrieved, may due to network problem."];
+    }
+    if ([aMessage isEqualToString:@"error"])
+    {
+        
+    }
+    else
+    {
+        [self alertWithMessage:aMessage];
+    }
+}
+
++(void)alertWithMessage:(NSString *)aMessage
 {
     [self alert:aMessage delegate:nil];
 }
 
 +(void)alertNetError
 {
-    [self alert:@"Sorry, the network is not available currently."];
+    [self alertWithApiMessage:@"Sorry, the network is not available currently."];
 }
 
 +(void)alertErrorForParser:(GGApiParser *)aParser
@@ -25,7 +41,7 @@
     if (aParser && !aParser.isOK)
     {
         NSString *message = [NSString stringWithFormat:@"Ops, Server status problem.\n status: %d\n message: %@", aParser.status, aParser.message];
-        [self alert:message];
+        [self alertWithApiMessage:message];
     }
 }
 

@@ -534,7 +534,7 @@
         else
         {
             _menuDatas = nil;
-            [GGAlert alert:parser.message];
+            [GGAlert alertWithApiMessage:parser.message];
         }
     }];
 }

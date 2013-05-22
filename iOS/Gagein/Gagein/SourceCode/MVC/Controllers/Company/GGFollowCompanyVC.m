@@ -258,7 +258,7 @@
                     }
                     else
                     {
-                        [GGAlert alert:parser.message];
+                        [GGAlert alertWithApiMessage:parser.message];
                     }
                 }];
             }
@@ -273,7 +273,7 @@
                     }
                     else
                     {
-                        [GGAlert alert:parser.message];
+                        [GGAlert alertWithApiMessage:parser.message];
                     }
                 }];
             }
@@ -286,11 +286,11 @@
         
         if ([self _isCompanyFollowed:company.ID])
         {
-            [GGAlert alert:@"Ops, You have already followed this company."];
+            [GGAlert alertWithMessage:@"Ops, You have already followed this company."];
         }
         else if (company.getType == kGGCompanyTypePrivate)
         {
-            [GGAlert alert:@"Sorry, You can't follow this company, please upgrade your plan."];
+            [GGAlert alertWithMessage:@"Sorry, You can't follow this company, please upgrade your plan."];
         }
         else
         {
@@ -319,7 +319,7 @@
                 }
                 else
                 {
-                    [GGAlert alert:parser.message];
+                    [GGAlert alertWithApiMessage:parser.message];
                 }
             }];
         }
@@ -414,7 +414,7 @@
             GGDataPage *page = [parser parseSearchCompany];
             _searchedCompanies = page.items;
             if (_searchedCompanies.count <= 0) {
-                [GGAlert alert:@"Sorry, No company matched."];
+                [GGAlert alertWithMessage:@"Sorry, No company matched."];
             }
             
             [self.tableViewSearchResult reloadData];

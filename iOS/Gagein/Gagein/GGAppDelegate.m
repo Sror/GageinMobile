@@ -104,7 +104,7 @@
 
 -(void)_alertEnv
 {
-    [GGAlert alert:[GGUtils envString]];
+    [GGAlert alertWithMessage:[GGUtils envString]];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

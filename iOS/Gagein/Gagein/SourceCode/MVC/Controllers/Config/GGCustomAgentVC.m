@@ -81,11 +81,11 @@
 {
     if (self.fdName.text.length <= 0)
     {
-        [GGAlert alert:@"You need to enter a name for the agent."];
+        [GGAlert alertWithMessage:@"You need to enter a name for the agent."];
     }
     else if (self.texvKeywords.text.length <= 0)
     {
-        [GGAlert alert:@"You need to enter a keywords for the agent."];
+        [GGAlert alertWithMessage:@"You need to enter a keywords for the agent."];
     }
     else
     {
@@ -100,7 +100,7 @@
             }
             else
             {
-                [GGAlert alert:parser.message];
+                [GGAlert alertWithApiMessage:parser.message];
             }
             
         };

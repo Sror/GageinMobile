@@ -158,7 +158,7 @@
             _userProfile.orgLogoPath = company.logoPath;
             
             [self _updateUiIsComanyCustomed:NO];
-            [GGAlert alert:@"Company changed OK!"];
+            [GGAlert alertWithMessage:@"Company changed OK!"];
         }
     }];
 }
@@ -228,7 +228,7 @@
                 _userProfile.orgLogoPath = nil;
                 
                 [self _updateUiIsComanyCustomed:YES];
-                [GGAlert alert:@"Company changed OK!"];
+                [GGAlert alertWithMessage:@"Company changed OK!"];
             }
         }];
     }

@@ -54,12 +54,12 @@
     if (_tfFirstName.text.length <= 0)
     {
         [_tfFirstName becomeFirstResponder];
-        [GGAlert alert:@"You should enter your first name."];
+        [GGAlert alertWithMessage:@"You should enter your first name."];
     }
     else if (_tfLastName.text.length <= 0)
     {
         [_tfLastName becomeFirstResponder];
-        [GGAlert alert:@"You should enter your last name."];
+        [GGAlert alertWithMessage:@"You should enter your last name."];
     }
     else
     {
@@ -69,7 +69,7 @@
             {
                 _userProfile.firstName = _tfFirstName.text;
                 _userProfile.lastName = _tfLastName.text;
-                [GGAlert alert:@"Name changed OK!"];
+                [GGAlert alertWithMessage:@"Name changed OK!"];
                 [self naviBackAction:nil];
             }
         }];

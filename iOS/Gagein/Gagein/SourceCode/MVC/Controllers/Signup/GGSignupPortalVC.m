@@ -192,7 +192,7 @@
 
 -(IBAction)connectYammerAction:(id)sender
 {
-    [GGAlert alert:@"Connect to Yammer (TODO)"];
+    [GGAlert alertWithMessage:@"Connect to Yammer (TODO)"];
 }
 
 

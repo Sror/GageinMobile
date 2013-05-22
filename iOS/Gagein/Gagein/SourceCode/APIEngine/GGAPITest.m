@@ -146,7 +146,7 @@ DEF_SINGLETON(GGAPITest)
     
     //id obj = [str objectFromJSONString];
     DLog(@"%@", obj);
-    [GGAlert alert:[obj objectForKey:@"key1"]];
+    [GGAlert alertWithMessage:[obj objectForKey:@"key1"]];
 }
 
 -(void)_testGetUpdateSuggestionWithKeyword

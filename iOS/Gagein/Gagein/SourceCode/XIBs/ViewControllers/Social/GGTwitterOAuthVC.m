@@ -107,7 +107,7 @@
 
 - (void) OAuthTwitterControllerFailed: (SA_OAuthTwitterController *) controller {
 	NSLog(@"Authentication Failed!");
-    [GGAlert alert:@"Authentication Failed!"];
+    [GGAlert alertWithMessage:@"Authentication Failed!"];
     [self naviBackAction:nil];
     //[self.navigationController popToViewController:self.parentViewController animated:YES];
 }
