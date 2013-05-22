@@ -18,6 +18,8 @@
 #import "GGFacebookOAuthVC.h"
 #import "GGFacebookOAuth.h"
 #import "GGSnUserInfo.h"
+#import "OAToken.h"
+#import "GGAppDelegate.h"
 
 @interface GGSignupPortalVC ()
 
@@ -45,6 +47,8 @@
     [self observeNotification:GG_NOTIFY_GET_STARTED];
     [self observeNotification:OA_NOTIFY_SALESFORCE_AUTH_OK];
     [self observeNotification:OA_NOTIFY_FACEBOOK_AUTH_OK];
+    [self observeNotification:OA_NOTIFY_TWITTER_OAUTH_OK];
+    [self observeNotification:OA_NOTIFY_SALESFORCE_AUTH_OK];
     
     if ([GGRuntimeData sharedInstance].isFirstRun)
     {
@@ -114,7 +118,22 @@
     }
     else if ([notiName isEqualToString:OA_NOTIFY_TWITTER_OAUTH_OK]) // twitter ok
     {
+        OAToken *token = notification.object;
         
+        [self showLoadingHUD];
+        [GGSharedAPI snGetUserInfoTwitterWithToken:token.key secret:token.secret callback:^(id operation, id aResultObject, NSError *anError) {
+            
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            
+            if (parser.isOK)
+            {
+                GGSnUserInfo *userInfo = [parser parseSnGetUserInfo];
+                userInfo.snType = kGGSnTypeTwitter;
+                [self _signupWithUserInfo:userInfo];
+            }
+            
+        }];
     }
 }
 

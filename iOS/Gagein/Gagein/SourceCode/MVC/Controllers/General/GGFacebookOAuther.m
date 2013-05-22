@@ -37,14 +37,17 @@
         
         [[self _sharedSession] closeAndClearTokenInformation];
         
-    } else {
+    }
+    
+//    else
+//    {
         if ([self _sharedSession].state != FBSessionStateCreated) {
             
             [self _doCreateSession];
         }
         
         [self _doOpenSession];
-    }
+    //}
 }
 
 -(void)_doCreateSession

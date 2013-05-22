@@ -230,7 +230,22 @@
 #pragma mark - actions
 -(void)naviBackAction:(id)aSender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    NSArray *controllers = self.navigationController.viewControllers;
+    NSUInteger thisIndex = controllers.count - 1;
+    for (int i = thisIndex; i >= 0; i --)
+    {
+        if (controllers[i] == self)
+        {
+            thisIndex = i;
+            break;
+        }
+    }
+    
+    if (thisIndex > 0)
+    {
+        UIViewController *vc = controllers[thisIndex - 1];
+        [self.navigationController popToViewController:vc animated:YES];
+    }
 }
 
 -(void)dismissAction:(id)aSender

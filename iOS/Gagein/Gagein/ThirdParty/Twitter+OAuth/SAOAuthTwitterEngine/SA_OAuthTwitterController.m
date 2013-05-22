@@ -55,7 +55,8 @@ static NSString* const kGGTwitterLoadingBackgroundImage = @"twitter_load.png";
 
 
 @implementation SA_OAuthTwitterController
-@synthesize engine = _engine, delegate = _delegate, navigationBar = _navBar, orientation = _orientation;
+@synthesize engine = _engine, delegate = _delegate, orientation = _orientation;
+//@synthesize navigationBar = _navBar;
 
 
 - (void) dealloc {
@@ -127,47 +128,118 @@ static NSString* const kGGTwitterLoadingBackgroundImage = @"twitter_load.png";
 	_engine.pin = pin;
 	[_engine requestAccessToken];
 	
-	if ([_delegate respondsToSelector: @selector(OAuthTwitterController:authenticatedWithUsername:)]) [_delegate OAuthTwitterController: self authenticatedWithUsername: _engine.username];
-	[self performSelector: @selector(dismissModalViewControllerAnimated:) withObject: (id) kCFBooleanTrue afterDelay: 1.0];
+	if ([_delegate respondsToSelector: @selector(OAuthTwitterController:authenticatedWithUsername:)])
+    {
+        [_delegate OAuthTwitterController: self authenticatedWithUsername: _engine.username];
+    }
+    
+	//[self performSelector: @selector(naviBackAction:) withObject: (id) kCFBooleanTrue afterDelay:0.f];
 }
 
 - (void) cancel: (id) sender {
 	    
-    [self dismissViewControllerAnimated:NO completion:^{
-        if ([_delegate respondsToSelector: @selector(OAuthTwitterControllerCanceled:)])
-        {
-            [_delegate OAuthTwitterControllerCanceled: self];
-        }
-
-    }];
+    [self.navigationController popViewControllerAnimated:NO];
+    if ([_delegate respondsToSelector: @selector(OAuthTwitterControllerCanceled:)])
+    {
+        [_delegate OAuthTwitterControllerCanceled: self];
+    }
+    
     //[self dismissAction:nil];
 //	[self performSelector: @selector(dismissModalViewControllerAnimated:) withObject: (id) kCFBooleanTrue afterDelay: 0.0];
 }
 
 //=============================================================================================================================
 #pragma mark View Controller Stuff
-- (void) loadView {
-	[super loadView];
+//- (void) loadView {
+//    
+//    self.navigationController.navigationBarHidden = YES;
+//    
+//	[super loadView];
+//
+//	_backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kGGTwitterLoadingBackgroundImage]];
+//	if ( UIInterfaceOrientationIsLandscape( self.orientation ) ) {
+//		self.view = [[[UIView alloc] initWithFrame: CGRectMake(0, 0, 480, 288)] autorelease];	
+//		_backgroundView.frame =  CGRectMake(0, 44, 480, 288);
+//		
+//		//_navBar = [[[UINavigationBar alloc] initWithFrame: CGRectMake(0, 0, 480, 32)] autorelease];
+//	} else {
+//		self.view = [[[UIView alloc] initWithFrame: CGRectMake(0, 0, 320, 460)] autorelease];	
+//		_backgroundView.frame =  CGRectMake(0, 44, 320, 416);
+//		//_navBar = [[[UINavigationBar alloc] initWithFrame: CGRectMake(0, 0, 320, 44)] autorelease];
+//	}
+//	//_navBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+//	_backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//
+//	if (!UIInterfaceOrientationIsLandscape( self.orientation))
+//    {
+//        [self.view addSubview:_backgroundView];
+//    }
+//	
+//	[self.view addSubview: _webView];
+//	//[self.view addSubview: _navBar];
+//	
+//	_blockerView = [[[UIView alloc] initWithFrame: CGRectMake(0, 0, 200, 60)] autorelease];
+//	_blockerView.backgroundColor = [UIColor colorWithWhite: 0.0 alpha: 0.8];
+//	_blockerView.center = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height / 2);
+//	_blockerView.alpha = 0.0;
+//	_blockerView.clipsToBounds = YES;
+//	if ([_blockerView.layer respondsToSelector: @selector(setCornerRadius:)]) [(id) _blockerView.layer setCornerRadius: 10];
+//	
+//	UILabel								*label = [[[UILabel alloc] initWithFrame: CGRectMake(0, 5, _blockerView.bounds.size.width, 15)] autorelease];
+//	label.text = NSLocalizedString(@"Please Wait…", nil);
+//	label.backgroundColor = [UIColor clearColor];
+//	label.textColor = [UIColor whiteColor];
+//	label.textAlignment = NSTextAlignmentCenter;
+//	label.font = [UIFont boldSystemFontOfSize: 15];
+//	[_blockerView addSubview: label];
+//	
+//	UIActivityIndicatorView				*spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleWhite] autorelease];
+//	
+//	spinner.center = CGPointMake(_blockerView.bounds.size.width / 2, _blockerView.bounds.size.height / 2 + 10);
+//	[_blockerView addSubview: spinner];
+//	[self.view addSubview: _blockerView];
+//	[spinner startAnimating];
+//	
+//	UINavigationItem				*navItem = [[[UINavigationItem alloc] initWithTitle: NSLocalizedString(@"Twitter Info", nil)] autorelease];
+//	navItem.leftBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Canel" target:self selector:@selector(cancel:)];
+//	
+//	//[_navBar pushNavigationItem: navItem animated: NO];
+//	[self locateAuthPinInWebView: nil];
+//}
 
+-(void)viewDidLoad
+{
+
+    [super viewDidLoad];
+    self.naviTitle = @"Twitter";
+    
 	_backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kGGTwitterLoadingBackgroundImage]];
-	if ( UIInterfaceOrientationIsLandscape( self.orientation ) ) {
-		self.view = [[[UIView alloc] initWithFrame: CGRectMake(0, 0, 480, 288)] autorelease];	
-		_backgroundView.frame =  CGRectMake(0, 44, 480, 288);
-		
-		_navBar = [[[UINavigationBar alloc] initWithFrame: CGRectMake(0, 0, 480, 32)] autorelease];
-	} else {
-		self.view = [[[UIView alloc] initWithFrame: CGRectMake(0, 0, 320, 460)] autorelease];	
-		_backgroundView.frame =  CGRectMake(0, 44, 320, 416);
-		_navBar = [[[UINavigationBar alloc] initWithFrame: CGRectMake(0, 0, 320, 44)] autorelease];
-	}
-	_navBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+//	if ( UIInterfaceOrientationIsLandscape( self.orientation ) ) {
+//		self.view = [[[UIView alloc] initWithFrame: CGRectMake(0, 0, 480, 288)] autorelease];
+//		_backgroundView.frame =  CGRectMake(0, 44, 480, 288);
+//		
+//		//_navBar = [[[UINavigationBar alloc] initWithFrame: CGRectMake(0, 0, 480, 32)] autorelease];
+//	} else {
+//		self.view = [[[UIView alloc] initWithFrame: CGRectMake(0, 0, 320, 460)] autorelease];
+//		_backgroundView.frame =  CGRectMake(0, 44, 320, 416);
+//		//_navBar = [[[UINavigationBar alloc] initWithFrame: CGRectMake(0, 0, 320, 44)] autorelease];
+//	}
+    
+    _backgroundView.frame = self.view.bounds;
+    
+	//_navBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 	_backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
-	if (!UIInterfaceOrientationIsLandscape( self.orientation)) [self.view addSubview:_backgroundView];
+    
+	if (!UIInterfaceOrientationIsLandscape( self.orientation))
+    {
+        [self.view addSubview:_backgroundView];
+    }
 	
+    _webView.frame = self.view.bounds;
 	[self.view addSubview: _webView];
-	[self.view addSubview: _navBar];
+	//[self.view addSubview: _navBar];
 	
 	_blockerView = [[[UIView alloc] initWithFrame: CGRectMake(0, 0, 200, 60)] autorelease];
 	_blockerView.backgroundColor = [UIColor colorWithWhite: 0.0 alpha: 0.8];
@@ -191,17 +263,18 @@ static NSString* const kGGTwitterLoadingBackgroundImage = @"twitter_load.png";
 	[self.view addSubview: _blockerView];
 	[spinner startAnimating];
 	
-	UINavigationItem				*navItem = [[[UINavigationItem alloc] initWithTitle: NSLocalizedString(@"Twitter Info", nil)] autorelease];
-	navItem.leftBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Canel" target:self selector:@selector(cancel:)];//[[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemCancel target: self action: @selector(cancel:)] autorelease];
+//	UINavigationItem				*navItem = [[[UINavigationItem alloc] initWithTitle: NSLocalizedString(@"Twitter Info", nil)] autorelease];
+	self.navigationItem.leftBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Canel" target:self selector:@selector(cancel:)];
 	
-	[_navBar pushNavigationItem: navItem animated: NO];
+	//[_navBar pushNavigationItem: navItem animated: NO];
 	[self locateAuthPinInWebView: nil];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    //[GGSharedDelegate makeNaviBarCustomed:NO];
+    [self hideBackButton];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -273,11 +346,12 @@ static NSString* const kGGTwitterLoadingBackgroundImage = @"twitter_load.png";
 - (void) showPinCopyPrompt {
 	if (self.pinCopyPromptBar.superview) return;		//already shown
 	self.pinCopyPromptBar.center = CGPointMake(self.pinCopyPromptBar.bounds.size.width / 2, self.pinCopyPromptBar.bounds.size.height / 2);
-	[self.view insertSubview: self.pinCopyPromptBar belowSubview: self.navigationBar];
+    [self.view addSubview:self.pinCopyPromptBar];
+	//[self.view insertSubview: self.pinCopyPromptBar belowSubview: self.navigationBar];
 	
-	[UIView beginAnimations: nil context: nil];
-	self.pinCopyPromptBar.center = CGPointMake(self.pinCopyPromptBar.bounds.size.width / 2, self.navigationBar.bounds.size.height + self.pinCopyPromptBar.bounds.size.height / 2);
-	[UIView commitAnimations];
+//	[UIView beginAnimations: nil context: nil];
+//	self.pinCopyPromptBar.center = CGPointMake(self.pinCopyPromptBar.bounds.size.width / 2, self.navigationBar.bounds.size.height + self.pinCopyPromptBar.bounds.size.height / 2);
+//	[UIView commitAnimations];
 }
 
 /*********************************************************************************************************

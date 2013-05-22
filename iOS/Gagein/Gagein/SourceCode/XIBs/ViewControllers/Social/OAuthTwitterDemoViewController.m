@@ -33,7 +33,9 @@
 
 ////////////////////////
 @implementation OAuthTwitterDemoViewController
-
+{
+    SA_OAuthTwitterController *_twitterOAuthVC;
+}
 
 -(GGTwitterParam *)_param
 {
@@ -89,11 +91,7 @@
     
     [self postNotification:OA_NOTIFY_TWITTER_OAUTH_OK withObject:_engine.accessToken];
     [self naviBackAction:nil];
-    
-//	NSUserDefaults			*defaults = [NSUserDefaults standardUserDefaults];
-//
-//	[defaults setObject: data forKey: @"authData"];
-//	[defaults synchronize];
+    //[self.navigationController popToViewController:self.parentViewController animated:YES];
 }
 
 - (NSString *) cachedTwitterOAuthDataForUsername: (NSString *) username {
@@ -111,11 +109,13 @@
 	NSLog(@"Authentication Failed!");
     [GGAlert alert:@"Authentication Failed!"];
     [self naviBackAction:nil];
+    //[self.navigationController popToViewController:self.parentViewController animated:YES];
 }
 
 - (void) OAuthTwitterControllerCanceled: (SA_OAuthTwitterController *) controller {
 	NSLog(@"Authentication Canceled.");
     [self naviBackAction:nil];
+    //[self.navigationController popToViewController:self.parentViewController animated:YES];
 }
 
 //=============================================================================================================================
@@ -143,6 +143,13 @@
     self.view.backgroundColor = GGSharedColor.silver;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self showBackButton];
+}
+
 - (void) viewDidAppear: (BOOL)animated {
     
     [super viewDidAppear:animated];
@@ -155,13 +162,14 @@
 	_engine.consumerKey = param.key;
 	_engine.consumerSecret = param.secret;
 	
-	UIViewController			*controller = [SA_OAuthTwitterController controllerToEnterCredentialsWithTwitterEngine: _engine delegate: self];
+	_twitterOAuthVC = [SA_OAuthTwitterController controllerToEnterCredentialsWithTwitterEngine: _engine delegate: self];
 	
-	if (controller)
+	if (_twitterOAuthVC)
     {
+        //[self.view addSubview:_twitterOAuthVC.view];
         //controller.hidesBottomBarWhenPushed = YES;
-        [self presentViewController:controller animated:NO completion:nil];
-		//[self.navigationController pushViewController:controller animated:NO];
+        //[self presentViewController:controller animated:NO completion:nil];
+		[self.navigationController pushViewController:_twitterOAuthVC animated:NO];
     }
 	else
     {
