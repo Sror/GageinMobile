@@ -20,6 +20,23 @@ typedef enum
 
 @interface GGApi (OAuth)
 
+-(void)snRegisterWithEmail:(NSString *)aEmail
+                  password:(NSString *)aPassword
+                 firstName:(NSString *)aFirstName
+                  lastName:(NSString *)aLastName
+                    snType:(EGGSnType)aSnType
+                     token:(NSString *)aSnToken
+                    secret:(NSString *)aSnSecret
+               snAccountID:(NSString *)aSnAccountID
+               snFirstName:(NSString *)aSnFirstName
+                snLastName:(NSString *)aSnLastName
+                   snEmail:(NSString *)aSnEmail
+             snAccountName:(NSString *)aSnAccountName
+              snProfileURL:(NSString *)aSNProfileURL
+            sfRefreshToken:(NSString *)aSfRefreshToken
+             sfInstanceURL:(NSString *)aSfInstanceUrl
+                  callback:(GGApiBlock)aCallback;
+
 // ------- get user info ------
 -(void)snGetUserInfoLinedInWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback;
 

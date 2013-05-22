@@ -58,7 +58,6 @@
 
 -(void)_doOpenSession
 {
-    
     [[self _sharedSession] openWithCompletionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
         [self _handleSuccess];
     }];

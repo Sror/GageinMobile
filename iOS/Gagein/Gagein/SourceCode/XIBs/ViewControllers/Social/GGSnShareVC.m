@@ -104,7 +104,7 @@
     NSString *message = (_textView.text.length > maxLength) ? [_textView.text substringToIndex:maxLength] : _textView.text;
     
     NSString *picURL = _comUpdateDetail.pictures.count ? _comUpdateDetail.pictures[0] : nil;
-    picURL = @"http://image.gsfc.nasa.gov/image/image_launch_a5.jpg";
+    //picURL = @"http://image.gsfc.nasa.gov/image/image_launch_a5.jpg";
     [self showLoadingHUD];
     [GGSharedAPI snShareNewsWithID:_comUpdateDetail.ID snType:_snType message:message headLine:_comUpdateDetail.headline summary:summary pictureURL:picURL callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];

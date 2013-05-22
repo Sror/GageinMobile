@@ -129,7 +129,8 @@
 //
 //@FormParam("sn_profile_url") String sn_profile_url
 //
-//
+
+
 -(void)snRegisterWithEmail:(NSString *)aEmail
                   password:(NSString *)aPassword
                  firstName:(NSString *)aFirstName
@@ -152,15 +153,21 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    
+    [parameters setObjectIfNotNil:aEmail forKey:@"mem_email"];
+    [parameters setObjectIfNotNil:aPassword forKey:@"mem_password"];
+    [parameters setObjectIfNotNil:aFirstName forKey:@"mem_first_name"];
+    [parameters setObjectIfNotNil:aLastName forKey:@"mem_last_name"];
+    
     [parameters setObjectIfNotNil:__INT(aSnType) forKey:@"sn_type"];
     [parameters setObjectIfNotNil:aSnToken forKey:@"sn_token"];
     [parameters setObjectIfNotNil:aSnSecret forKey:@"sn_secret"];
     [parameters setObjectIfNotNil:aSnAccountID forKey:@"sn_account_id"];
     [parameters setObjectIfNotNil:aSnFirstName forKey:@"sn_first_name"];
-    [parameters setObjectIfNotNil:aSnAccountID forKey:@"sn_last_name"];
-    [parameters setObjectIfNotNil:aSnAccountID forKey:@"sn_email"];
-    [parameters setObjectIfNotNil:aSnAccountID forKey:@"sn_account_name"];
-    [parameters setObjectIfNotNil:aSnAccountID forKey:@"sn_profile_url"];
+    [parameters setObjectIfNotNil:aSnLastName forKey:@"sn_last_name"];
+    [parameters setObjectIfNotNil:aSnEmail forKey:@"sn_email"];
+    [parameters setObjectIfNotNil:aSnAccountName forKey:@"sn_account_name"];
+    [parameters setObjectIfNotNil:aSNProfileURL forKey:@"sn_profile_url"];
     
     if (aSnType == kGGSnTypeSalesforce) {
         [parameters setObjectIfNotNil:aSfRefreshToken forKey:@"sn_refresh_token"];

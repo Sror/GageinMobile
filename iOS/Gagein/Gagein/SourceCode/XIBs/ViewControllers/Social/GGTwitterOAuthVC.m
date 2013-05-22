@@ -6,7 +6,7 @@
 //  Copyright Stand Alone, Inc. 2009. All rights reserved.
 //
 
-#import "OAuthTwitterDemoViewController.h"
+#import "GGTwitterOAuthVC.h"
 #import "SA_OAuthTwitterEngine.h"
 #import "OAToken.h"
 
@@ -32,7 +32,7 @@
 @end
 
 ////////////////////////
-@implementation OAuthTwitterDemoViewController
+@implementation GGTwitterOAuthVC
 {
     SA_OAuthTwitterController *_twitterOAuthVC;
 }

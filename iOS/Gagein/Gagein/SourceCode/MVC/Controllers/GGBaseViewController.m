@@ -11,7 +11,7 @@
 #import "GGSalesforceOAuthVC.h"
 #import "GGLinkedInOAuthVC.h"
 //#import "GGFacebookOAuthVC.h"
-#import "OAuthTwitterDemoViewController.h"
+#import "GGTwitterOAuthVC.h"
 #import "GGFacebookOAuther.h"
 
 #define MAX_NAVI_TITLE_LENGTH   20
@@ -343,7 +343,7 @@
 
 -(void)connectTwitter
 {
-    OAuthTwitterDemoViewController *vc = [[OAuthTwitterDemoViewController alloc] init];
+    GGTwitterOAuthVC *vc = [[GGTwitterOAuthVC alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

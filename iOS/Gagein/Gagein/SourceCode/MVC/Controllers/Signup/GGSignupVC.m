@@ -214,9 +214,8 @@
         [self.tfPassword resignFirstResponder];
         [self.scrolView setContentOffset:CGPointMake(0, 0) animated:YES];
         
-        DLog(@"check OK, call signup API.")
-        [self showLoadingHUD];
-        [GGSharedAPI retisterWithEmail:self.tfEmail.text password:self.tfPassword.text firstName:self.tfFirstName.text lastName:self.tfLastName.text callback:^(id operation, id aResultObject, NSError *anError) {
+        
+        GGApiBlock callback = ^(id operation, id aResultObject, NSError* anError) {
             
             DLog(@"%@", aResultObject);
             [self hideLoadingHUD];
@@ -253,7 +252,18 @@
                 [GGAlert alert:parser.message];
             }
             
-        }];
+        };
+        
+        DLog(@"check OK, call signup API.")
+        [self showLoadingHUD];
+        if (_userInfo)
+        {
+            [GGSharedAPI snRegisterWithEmail:self.tfEmail.text password:self.tfPassword.text firstName:self.tfFirstName.text lastName:self.tfLastName.text snType:_userInfo.snType token:_userInfo.token secret:_userInfo.secret snAccountID:_userInfo.accountID snFirstName:_userInfo.firstName snLastName:_userInfo.lastName snEmail:_userInfo.email snAccountName:_userInfo.accountName snProfileURL:_userInfo.profileURL sfRefreshToken:_userInfo.refreshToken sfInstanceURL:_userInfo.instanceUrl callback:callback];
+        }
+        else
+        {
+            [GGSharedAPI retisterWithEmail:self.tfEmail.text password:self.tfPassword.text firstName:self.tfFirstName.text lastName:self.tfLastName.text callback:callback];
+        }
     }
 }
 

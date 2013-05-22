@@ -17,7 +17,7 @@
 #import "GGFacebookOAuthVC.h"
 #import "GGSnShareVC.h"
 #import "GGFacebookOAuth.h"
-#import "OAuthTwitterDemoViewController.h"
+#import "GGTwitterOAuthVC.h"
 #import "OAToken.h"
 
 @interface GGCompanyUpdateDetailVC () <MFMessageComposeViewControllerDelegate>

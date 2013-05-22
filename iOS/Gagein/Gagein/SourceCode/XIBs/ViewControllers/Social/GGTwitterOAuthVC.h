@@ -12,7 +12,7 @@
 @class SA_OAuthTwitterEngine;
 
 
-@interface OAuthTwitterDemoViewController : GGBaseViewController <SA_OAuthTwitterControllerDelegate> {
+@interface GGTwitterOAuthVC : GGBaseViewController <SA_OAuthTwitterControllerDelegate> {
 	SA_OAuthTwitterEngine				*_engine;
 
 }

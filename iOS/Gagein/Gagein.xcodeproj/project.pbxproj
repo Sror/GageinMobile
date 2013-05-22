@@ -242,7 +242,7 @@
 		EA5DFB00174B142E00577BAC /* NSMutableDictionary+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5DFAFF174B142E00577BAC /* NSMutableDictionary+AddOn.m */; };
 		EA5DFB03174B1A6900577BAC /* GGFacebookOAuther.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5DFB02174B1A6900577BAC /* GGFacebookOAuther.m */; };
 		EA62C62B174B3A750031BF42 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EA62C62A174B3A750031BF42 /* libxml2.dylib */; };
-		EA62C62E174B3D700031BF42 /* OAuthTwitterDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA62C62D174B3D700031BF42 /* OAuthTwitterDemoViewController.m */; };
+		EA62C62E174B3D700031BF42 /* GGTwitterOAuthVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA62C62D174B3D700031BF42 /* GGTwitterOAuthVC.m */; };
 		EA62C6BB174BFCDA0031BF42 /* jQueryInject.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA62C681174BFCDA0031BF42 /* jQueryInject.txt */; };
 		EA62C6BC174BFCDA0031BF42 /* jQueryInjectLandscape.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA62C682174BFCDA0031BF42 /* jQueryInjectLandscape.txt */; };
 		EA62C6BD174BFCDA0031BF42 /* libOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA62C683174BFCDA0031BF42 /* libOAuth.a */; };
@@ -785,8 +785,8 @@
 		EA5DFB01174B1A6900577BAC /* GGFacebookOAuther.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFacebookOAuther.h; sourceTree = "<group>"; };
 		EA5DFB02174B1A6900577BAC /* GGFacebookOAuther.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFacebookOAuther.m; sourceTree = "<group>"; };
 		EA62C62A174B3A750031BF42 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		EA62C62C174B3D700031BF42 /* OAuthTwitterDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthTwitterDemoViewController.h; sourceTree = "<group>"; };
-		EA62C62D174B3D700031BF42 /* OAuthTwitterDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthTwitterDemoViewController.m; sourceTree = "<group>"; };
+		EA62C62C174B3D700031BF42 /* GGTwitterOAuthVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTwitterOAuthVC.h; sourceTree = "<group>"; };
+		EA62C62D174B3D700031BF42 /* GGTwitterOAuthVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGTwitterOAuthVC.m; sourceTree = "<group>"; };
 		EA62C681174BFCDA0031BF42 /* jQueryInject.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = jQueryInject.txt; sourceTree = "<group>"; };
 		EA62C682174BFCDA0031BF42 /* jQueryInjectLandscape.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = jQueryInjectLandscape.txt; sourceTree = "<group>"; };
 		EA62C683174BFCDA0031BF42 /* libOAuth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOAuth.a; sourceTree = "<group>"; };
@@ -1603,8 +1603,8 @@
 		EA5DFAF8174AB5E800577BAC /* Social */ = {
 			isa = PBXGroup;
 			children = (
-				EA62C62C174B3D700031BF42 /* OAuthTwitterDemoViewController.h */,
-				EA62C62D174B3D700031BF42 /* OAuthTwitterDemoViewController.m */,
+				EA62C62C174B3D700031BF42 /* GGTwitterOAuthVC.h */,
+				EA62C62D174B3D700031BF42 /* GGTwitterOAuthVC.m */,
 				EA5DFAF9174AB62300577BAC /* GGSnShareVC.h */,
 				EA5DFAFA174AB62300577BAC /* GGSnShareVC.m */,
 				EA5DFAFB174AB62300577BAC /* GGSnShareVC.xib */,
@@ -3077,7 +3077,7 @@
 				EA5DFAFC174AB62300577BAC /* GGSnShareVC.m in Sources */,
 				EA5DFB00174B142E00577BAC /* NSMutableDictionary+AddOn.m in Sources */,
 				EA5DFB03174B1A6900577BAC /* GGFacebookOAuther.m in Sources */,
-				EA62C62E174B3D700031BF42 /* OAuthTwitterDemoViewController.m in Sources */,
+				EA62C62E174B3D700031BF42 /* GGTwitterOAuthVC.m in Sources */,
 				EA62C6BE174BFCDA0031BF42 /* MGTwitterEngine.m in Sources */,
 				EA62C6BF174BFCDA0031BF42 /* MGTwitterHTTPURLConnection.m in Sources */,
 				EA62C6C0174BFCDA0031BF42 /* MGTwitterLibXMLParser.m in Sources */,
