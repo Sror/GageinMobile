@@ -12,7 +12,7 @@
 #import "GGDataPage.h"
 #import "GGCompany.h"
 #import "GGCompanyUpdate.h"
-#import "GGCompanyHappening.h"
+#import "GGHappening.h"
 #import "GGMenuData.h"
 
 
@@ -687,7 +687,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        GGCompanyHappening *data = _happenings[row];
+        GGHappening *data = _happenings[row];
         cell.tag = row;
         cell.lblName.text = data.sourceText;
         cell.lblDescription.text = data.headLineText;
@@ -1167,7 +1167,7 @@
 -(void)_getNextHappeningPage
 {
     long long happeningID = 0, pageTime = 0;
-    GGCompanyHappening *lastHappening = [_happenings lastObject];
+    GGHappening *lastHappening = [_happenings lastObject];
     if (lastHappening)
     {
         happeningID = lastHappening.ID;

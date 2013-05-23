@@ -14,7 +14,7 @@
 #import "GGCompanyDetailVC.h"
 
 #import "GGCompanyHappeningCell.h"
-#import "GGCompanyHappening.h"
+#import "GGHappening.h"
 
 @interface GGHappeningsVC ()
 @property (nonatomic, strong) UITableView *tvHappenings;
@@ -102,7 +102,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    GGCompanyHappening *data = [self.happenings objectAtIndex:indexPath.row];
+    GGHappening *data = [self.happenings objectAtIndex:indexPath.row];
     
     cell.lblName.text = data.sourceText;
     cell.lblDescription.text = data.headLineText;
@@ -133,7 +133,7 @@
 -(void)_getNextPage
 {
     long long newsID = 0, pageTime = 0;
-    GGCompanyHappening *last = [_happenings lastObject];
+    GGHappening *last = [_happenings lastObject];
     if (last)
     {
         newsID = last.ID;

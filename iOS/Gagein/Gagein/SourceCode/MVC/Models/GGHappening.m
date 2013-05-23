@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 gagein. All rights reserved.
 //
 
-#import "GGCompanyHappening.h"
+#import "GGHappening.h"
 
 #define SOURCE_TEXT_LINKEDIN  @"Linkedin"
 #define SOURCE_TEXT_CRUNCHBASE  @"CrunchBase"
@@ -74,7 +74,7 @@
 }
 @end
 
-@implementation GGCompanyHappening
+@implementation GGHappening
 - (id)init
 {
     self = [super init];

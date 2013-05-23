@@ -17,7 +17,7 @@
 #import "GGAppDelegate.h"
 
 #import "GGCompanyHappeningCell.h"
-#import "GGCompanyHappening.h"
+#import "GGHappening.h"
 #import "GGFollowPeopleVC.h"
 #import "GGPersonDetailVC.h"
 #import "GGHappeningDetailVC.h"
@@ -351,7 +351,7 @@
 
 -(void)_enterPersonDetailAction:(UIButton *)aButton
 {
-    GGCompanyHappening *data = self.updates[aButton.tag];
+    GGHappening *data = self.updates[aButton.tag];
     GGPersonDetailVC *vc = [[GGPersonDetailVC alloc] init];
     vc.personID = data.person.ID;
     [self.navigationController pushViewController:vc animated:YES];
@@ -371,7 +371,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        GGCompanyHappening *data = self.updates[row];
+        GGHappening *data = self.updates[row];
         
         cell.tag = cell.btnLogo.tag = indexPath.row;
         cell.lblName.text = data.sourceText;
@@ -444,7 +444,7 @@
         vc.happenings = _updates;
         vc.currentIndex = row;
         
-        GGCompanyHappening *data = _updates[row];
+        GGHappening *data = _updates[row];
         data.hasBeenRead = YES;
         
         [self.navigationController pushViewController:vc animated:YES];
@@ -547,7 +547,7 @@
 -(void)_getNextPage
 {
     long long happeningID = 0, pageTime = 0;
-    GGCompanyHappening *lastOne = [_updates lastObject];
+    GGHappening *lastOne = [_updates lastObject];
     if (lastOne)
     {
         happeningID = lastOne.ID;

@@ -11,7 +11,7 @@
 #import "GGCompany.h"
 #import "GGDataPage.h"
 #import "GGCompanyUpdate.h"
-#import "GGCompanyHappening.h"
+#import "GGHappening.h"
 #import "GGPerson.h"
 #import "GGSocialProfile.h"
 
@@ -196,7 +196,7 @@ typedef enum
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        GGCompanyHappening *data = _happenings[row];
+        GGHappening *data = _happenings[row];
         
         cell.lblSource.text = data.sourceText;
         cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];

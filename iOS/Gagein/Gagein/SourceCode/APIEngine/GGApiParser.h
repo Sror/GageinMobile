@@ -12,7 +12,7 @@
 @class GGDataPage;
 @class GGCompany;
 @class GGCompanyUpdate;
-@class GGCompanyHappening;
+@class GGHappening;
 @class GGPerson;
 @class GGUserProfile;
 @class GGSnUserInfo;
@@ -50,7 +50,7 @@
 -(GGDataPage *)parseSearchCompany;
 -(GGDataPage *)parseFollowedCompanies;
 -(GGCompanyUpdate *)parseGetCompanyUpdateDetail;
--(GGCompanyHappening *)parseCompanyEventDetail;
+-(GGHappening *)parseCompanyEventDetail;
 -(NSArray *)parseGetMenu:(BOOL)aIsCompanyMenu;
 -(GGUserProfile *)parseGetMyOverview;
 

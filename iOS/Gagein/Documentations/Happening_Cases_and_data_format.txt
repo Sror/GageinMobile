@@ -1,0 +1,100 @@
+
+People events
+ 
+a) Picture Changes (<Contact Name>, <Title> at <Company Name>, has an updated profile picture on <Source>)
+)
+1001:   {"person": {"name": "Inman Breaux","id": "255597","profile": "http://www.crunchbase.com/person/inman-breaux"},"profilepic": "newpic","timestamp": {"timestamp": 1368690884911},"oldProfilepic": "oldpic","company": {"name": "Custom Tack","id": 1320173,"profile": ""},"jobtitle": {"title": "CEO"}}
+              
+
+ 
+b)  Job Changes (<Contact Name>, <Old Title> at <Old Company Name>, has joined <Company Name> as <Title>)
+MsgType: 1002
+Format:  {"person": {"name": "Inman Breaux","id": "255597","profile": "http://www.crunchbase.com/person/inman-breaux"},"company": {"name": "Custom Tack1","id": 1320171,"profile": ""},"timestamp": {"timestamp": 1368436625175},"oldCompany": {"name": "Custom Tack","id": 1320173,"profile": ""},"jobtitle": {"title": "CEO"}, "oldJobtitle": {"title": "CEOO"}}
+ 
+c) Location Changes (<Contact Name>, <Title> at <Company Name>, has moved from <Old Address> to <Address>.)
+ 
+MsgType: 1003
+Format:  :  {"person": {"name": "Inman Breaux","id": "255597","profile": "http://www.crunchbase.com/person/inman-breaux"},"address": {"address": "2077 Gold St., Suite 208,San Jose"},"timestamp": {"timestamp": 1368690884609},"oldAddress": {"address": "077 Gold St., Suite 208,"},"company": {"name": "GageIn Inc","id": 1231037,"profile": ""}," jobtitle ": {"title": "COO"}}
+ 
+d)  Job Title Changes (<Contact Name>, <Old Title>, is now <Title> at <Company Name>.)
+MsgType: 1004
+Format:  {"person": {"name": "Inman Breaux","id": "255597","profile": "http://www.crunchbase.com/person/inman-breaux"},"jobtitle": {"title": "CEO"},"timestamp": {"timestamp": 1368436625908},"oldJobtitle": {"title": "CEOO"},"company": {"name": "GageIn Inc","id": 1231037,"profile": ""}}
+ 
+Company events
+
+a)      Revenue Increases/Decreases (<Company Name>'s <Period> revenue has increased/descreases <percentage>)
+
+MsgType: 2003
+
+Format : {"company": {"name": "University of Wisconsin Hospital & Clinics Authority","id": 1003,"profile": ""},"period": "ANNUAL","percentage": 0.0,"timestamp": {"timestamp": 1368683032954},"newRevenue": 1001000.0,"oldRevenue": 1001000.0,"newTimestamp": {"timestamp": 319527822480},"oldTimestamp": {"timestamp": 322033422480}}
+
+ 
+
+{"company": {"name": "University of Wisconsin Hospital & Clinics Authority","id": 1003,"profile": ""},"period":"QUARTERLY","percentage": 0.0,"timestamp": {"timestamp": 1368683032954},"newRevenue": 1001000.0,"oldRevenue": 1001000.0,"newTimestamp": {"timestamp": 319527822480},"oldTimestamp": {"timestamp": 322033422480}}
+
+ 
+
+b)      New Headquarter Address (<Company Name> has a new address: <address>)
+
+MsgType: 2005
+
+Format :  {"company": {"name": "GageIn Inc","id": 1231037,"profile": ""},"address": {"address": "2077 Gold St., Suite 208,San Jose"},"timestamp": {"timestamp": 1368437336548},"oldAddress": {"address": "077 Gold St., Suite 208,"}}
+
+ 
+
+ 
+
+ 
+
+c)       Employees Increase/Decrease (The employee size at <Company Name> has increase/decrease to <Employ Num >)
+
+MsgType: 2006
+
+Format :   {"company": {"name": "University of Wisconsin Hospital & Clinics Authority","id": 1003,"profile": ""},"direction": "INCREASE","employNum": 4000,"timestamp": {"timestamp": 1368682448803},"oldEmployNum": 3000,"oldTimestamp": {"timestamp": 1368595754000}}
+
+ 
+
+MsgType: 2007
+
+Format : {"company": {"name": "University of Wisconsin Hospital & Clinics Authority","id": 1003,"profile": ""},"direction": "DECREASE","employNum": 3000,"timestamp": {"timestamp": 1368682875447},"oldEmployNum": 4000}
+
+ 
+
+d)      Employees Join Another Company (<Contact Name> <Old title> at <Old Company> has joined <Company> as <Title>)
+
+MsgType: 2001
+
+Format :   {"person": {"name": "Inman Breaux","id": "255597","profile": "http://www.crunchbase.com/person/inman-breaux"},"jobtitle": {"title": "CEO"},"company": {"name": "Custom Tack","id": 1320173,"profile": ""},"change": "JOIN","timestamp": {"timestamp": 1368684944382},"oldCompany": {"name": "Legacy Fellowship","id": 1320172,"profile": ""},"oldJobtitle": {"title": "CEOO"}}
+
+ 
+
+e)      Employees Left Company (<Contact Name> <Old title>, has left <Old Company> and is now  <Title> at <Company> /  <Contact Name> <Old title>, has left <Old Company>)
+
+MsgType: 2001
+
+Format :   {"person": {"name": "Inman Breaux","id": "255597","profile": "http://www.crunchbase.com/person/inman-breaux"},"jobtitle": {"title": "CEO"},"company": {"name": "Custom Tack","id": 1320173,"profile": ""},"change": "LEAVE","timestamp": {"timestamp": 1368684944614},"oldCompany": {"name": "Legacy Fellowship","id": 1320172,"profile": ""},"oldJobtitle": {"title": "CEOO"}}
+
+ 
+
+f)       Employees Change Job Title(<Contact Name>, <Old title>, is now <Title> at <Company>)
+
+MsgType: 2002
+
+Format :  {"person": {"name": "Inman Breaux","id": "255597","profile": "http://www.crunchbase.com/person/inman-breaux"},"oldjobtitle": {"title": "CEOO"},"newjobtitle": {"title": "CEO"},"company": {"name": "Custom Tack","id": 1320173,"profile": ""},"timestamp": {"timestamp": 1368682014353}}
+
+ 
+
+g)      Close Funding (<Company name> closed <funding amount> in <round> funding)
+
+MsgType: 2004
+
+Format :{"company": {"name": "University of Wisconsin Hospital & Clinics Authority","id": 1003,"profile": ""},"funding": "2032","round": "22122","timestamp": {"timestamp": 1368685588540},"fundingTimestamp": {"timestamp": 222101212121}}
+
+ 
+
+注：对应的Social graph 数据：company 会加上，logo，address，website 三个字段，person 会加上title，company name两个字段
+
+其中  Revenue Increases/Decreases event会加上picture字段，表示revenue graph的url
+  New Headquarter Address会加上picture字段，表示address的map url。
+
+注意：修改代码时要兼容老的数据，老的数据还是按老的格式来显示

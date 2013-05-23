@@ -14,7 +14,7 @@
 #import "GGAgent.h"
 #import "GGFunctionalArea.h"
 #import "GGMenuData.h"
-#import "GGCompanyHappening.h"
+#import "GGHappening.h"
 #import "GGPerson.h"
 #import "GGAgentFilter.h"
 #import "GGUserProfile.h"
@@ -150,7 +150,7 @@
 
 -(GGDataPage *)parseGetCompanyHappenings
 {
-    return [self _parsePageforClass:[GGCompanyHappening class]];
+    return [self _parsePageforClass:[GGHappening class]];
 }
 
 -(GGDataPage *)parseGetCompanyPeople
@@ -209,9 +209,9 @@
     return update;
 }
 
--(GGCompanyHappening *)parseCompanyEventDetail
+-(GGHappening *)parseCompanyEventDetail
 {
-    GGCompanyHappening *happening = [GGCompanyHappening model];
+    GGHappening *happening = [GGHappening model];
     [happening parseWithData:self.data];
     
     return happening;

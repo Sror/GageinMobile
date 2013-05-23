@@ -9,7 +9,7 @@
 #import "GGPersonDetailVC.h"
 #import "GGPerson.h"
 #import "GGCompanyDetailUpdateCell.h"
-#import "GGCompanyHappening.h"
+#import "GGHappening.h"
 #import "GGComDetailProfileCell.h"
 #import "GGSocialProfile.h"
 #import "GGWebVC.h"
@@ -120,7 +120,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        GGCompanyHappening *data = _updates[row];
+        GGHappening *data = _updates[row];
         
         cell.lblSource.text = data.sourceText;
         cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];

@@ -7,7 +7,7 @@
 //
 
 #import "GGHappeningDetailVC.h"
-#import "GGCompanyHappening.h"
+#import "GGHappening.h"
 #import "GGCustomBriefCell.h"
 #import "GGHappeningDetailCell.h"
 #import "GGCompanyDetailVC.h"
@@ -22,7 +22,7 @@
 
 @implementation GGHappeningDetailVC
 {
-    GGCompanyHappening          *_currentDetail;
+    GGHappening          *_currentDetail;
     GGHappeningDetailCell       *_happeningDetailCell;
 }
 
@@ -182,7 +182,7 @@
         [_tvDetail reloadData];
     };
     
-    GGCompanyHappening *data = _happenings[_currentIndex];
+    GGHappening *data = _happenings[_currentIndex];
     
     [self showLoadingHUD];
     if (_isPeopleHappening)

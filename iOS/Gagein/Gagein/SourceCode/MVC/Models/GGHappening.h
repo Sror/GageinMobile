@@ -44,7 +44,7 @@ typedef enum {
 @property (copy) NSString       *profile;
 @end
 
-@interface GGCompanyHappening : GGDataModel
+@interface GGHappening : GGDataModel
 @property (assign) long long                    timestamp;
 @property (copy) NSString                       *jobTitle;
 @property (copy) NSString                       *oldJobTitle;
