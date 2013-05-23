@@ -208,6 +208,7 @@
             
             if (data.followed)
             {
+#warning TODO: No follow/unfollow person API
 //                [GGSharedAPI unfollowCompanyWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
 //                    GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
 //                    if (parser.isOK)

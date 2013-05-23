@@ -40,14 +40,17 @@
 #define EMPLOYEE_SIZE_DECREASED @"The employee size at %@ has decreased to %@ "
 
 /***************** contact html template  *********************/
-//<contact name> has an updated profile picture on Linkedin
-#define EVENT_MSG_CON_HAS_UPDATED_PROFILE_PICTURE @"%@ has an updated profile picture on LinkedIn"
-//<contact name>,has joined another company:<company name>
-#define EVENT_MSG_CON_JOIN_ANOTHER_COMPANY @"%@ has joined another company: %@"
-//<contact name> has a new location:<location name>
-#define EVENT_MSG_CON_NEW_LOCATION @"%@ has a new location: %@"
-//<contact name> has a new job title:<job title>
-#define EVENT_MSG_CON_NEW_JOB_TITLE @"%@ has a new job title: %@"
+//<Contact Name>, <Title> at <Company Name>, has an updated profile picture on <Source>
+#define EVENT_MSG_CON_HAS_UPDATED_PROFILE_PICTURE @"%@, %@ at %@ has an updated profile picture on %@"
+
+// (<Contact Name>, <Old Title> at <Old Company Name>, has joined <Company Name> as <Title>)
+#define EVENT_MSG_CON_JOIN_ANOTHER_COMPANY @"%@, %@ at %@, has joined %@ as %@"
+
+// Location Changes (<Contact Name>, <Title> at <Company Name>, has moved from <Old Address> to <Address>.)
+#define EVENT_MSG_CON_NEW_LOCATION @"%@, %@ at %@, has moved from %@ to %@"
+
+//d)  Job Title Changes (<Contact Name>, <Old Title>, is now <Title> at <Company Name>.)
+#define EVENT_MSG_CON_NEW_JOB_TITLE @"%@, %@, is now %@ at %@"
 
 
 @implementation GGCompanyHappeningPerson
@@ -81,6 +84,7 @@
     if (self) {
         _person = [GGCompanyHappeningPerson model];
         _company = [GGCompanyHappeningCompany model];
+        _oldCompany = [GGCompanyHappeningCompany model];
     }
     return self;
 }
@@ -91,14 +95,14 @@
     
     self.change = [aData objectForKey:@"change"];
     self.timestamp = [[[aData objectForKey:@"timestamp"] objectForKey:@"timestamp"] longLongValue];
-    self.jobTitle = [[aData objectForKey:@"jobtitle"] objectForKey:@"title"];
-    self.oldJobTitle = [[aData objectForKey:@"oldjobtitle"] objectForKey:@"title"];
-    self.freshJobTitle = [[aData objectForKey:@"newjobtitle"] objectForKey:@"title"];
-    self.address = [[aData objectForKey:@"address"] objectForKey:@"address"];
+    
+    self.contactID = [[aData objectForKey:@"contactid"] longLongValue];
+    self.name = [aData objectForKey:@"name"];
     self.photoPath = [aData objectForKey:@"photo_path"];
     
     [self.person parseWithData:[aData objectForKey:@"person"]];
     [self.company parseWithData:[aData objectForKey:@"company"]];
+    [self.oldCompany parseWithData:[aData objectForKey:@"company"]];
     
     self.ID = [[aData objectForKey:@"eventid"] longLongValue];
     self.type = [[aData objectForKey:@"type"] intValue];
@@ -107,6 +111,17 @@
     self.orgID = [aData objectForKey:@"orgid"];
     self.orgName = [aData objectForKey:@"org_name"];
     self.orgLogoPath = [aData objectForKey:@"org_logo_path"];
+    
+    self.profilePic = [aData objectForKey:@"profilepic"];
+    self.oldProfilePic = [aData objectForKey:@"oldProfilepic"];
+    
+    self.title = [[aData objectForKey:@"title"] objectForKey:@"title"];
+    self.jobTitle = [[aData objectForKey:@"jobtitle"] objectForKey:@"title"];
+    self.oldJobTitle = [[aData objectForKey:@"oldjobtitle"] objectForKey:@"title"];
+    self.freshJobTitle = [[aData objectForKey:@"newjobtitle"] objectForKey:@"title"];
+
+    self.address = [[aData objectForKey:@"address"] objectForKey:@"address"];
+    self.oldAddress = [[aData objectForKey:@"oldAddress"] objectForKey:@"address"];
 }
 
 -(NSString *)sourceText
@@ -208,33 +223,47 @@
             
         case kGGHappeningPersonUpdateProfilePic:
         {
-//            //<contact name> has an updated profile picture on Linkedin
-//#define EVENT_MSG_CON_HAS_UPDATED_PROFILE_PICTURE @"%@ has an updated profile picture on LinkedIn"
-            return [NSString stringWithFormat:EVENT_MSG_CON_HAS_UPDATED_PROFILE_PICTURE, self.person.name];
+//          //<Contact Name>, <Title> at <Company Name>, has an updated profile picture on <Source>
+            return [NSString stringWithFormat:EVENT_MSG_CON_HAS_UPDATED_PROFILE_PICTURE
+                    , self.person.name
+                    , self.title
+                    , self.company.name
+                    , [self sourceText]];
         }
             break;
             
         case kGGHappeningPersonJoinOtherCompany:
         {
-            //            //<contact name>,has joined another company:<company name>
-            //#define EVENT_MSG_CON_JOIN_ANOTHER_COMPANY @"%@ has joined another company: %@"
-            return [NSString stringWithFormat:EVENT_MSG_CON_JOIN_ANOTHER_COMPANY, self.person.name, self.company.name];
+            // (<Contact Name>, <Old Title> at <Old Company Name>, has joined <Company Name> as <Title>)
+            return [NSString stringWithFormat:EVENT_MSG_CON_JOIN_ANOTHER_COMPANY
+                    , self.person.name
+                    , self.oldJobTitle
+                    , self.oldCompany.name
+                    , self.company.name
+                    , self.jobTitle];
         }
             break;
             
         case kGGHappeningPersonNewLocation:
         {
-            //            //<contact name> has a new location:<location name>
-            //#define EVENT_MSG_CON_NEW_LOCATION @"%@ has a new location: %@"
-            return [NSString stringWithFormat:EVENT_MSG_CON_NEW_LOCATION, self.person.name, self.address];
+            // Location Changes (<Contact Name>, <Title> at <Company Name>, has moved from <Old Address> to <Address>.)
+            return [NSString stringWithFormat:EVENT_MSG_CON_NEW_LOCATION
+                    , self.person.name
+                    , self.title
+                    , self.company.name
+                    , self.oldAddress
+                    , self.address];
         }
             break;
             
         case kGGHappeningPersonNewJobTitle:
         {
-            //            //<contact name> has a new job title:<job title>
-            //#define EVENT_MSG_CON_NEW_JOB_TITLE @"%@ has a new job title: %@"
-            return [NSString stringWithFormat:EVENT_MSG_CON_NEW_JOB_TITLE, self.person.name, self.jobTitle];
+//d)  Job Title Changes (<Contact Name>, <Old Title>, is now <Title> at <Company Name>.)
+            return [NSString stringWithFormat:EVENT_MSG_CON_NEW_JOB_TITLE
+                    , self.person.name
+                    , self.oldJobTitle
+                    , self.jobTitle
+                    , self.company.name];
         }
             break;
             

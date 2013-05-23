@@ -46,14 +46,25 @@ typedef enum {
 
 @interface GGHappening : GGDataModel
 @property (assign) long long                    timestamp;
+
+@property (assign) long long                    contactID;
+@property (copy) NSString                       *name;
+
+@property (copy) NSString                       *title;
 @property (copy) NSString                       *jobTitle;
 @property (copy) NSString                       *oldJobTitle;
-@property (copy) NSString                       *freshJobTitle;
+@property (copy) NSString                       *freshJobTitle;     // newJobTile, but cocoa used 'new-x' prefix
+
 @property (copy) NSString                       *address;
+@property (copy) NSString                       *oldAddress;
+
 @property (copy) NSString                       *photoPath;
+@property (copy) NSString                       *profilePic;
+@property (copy) NSString                       *oldProfilePic;
 
 @property (strong) GGCompanyHappeningPerson      *person;
 @property (strong) GGCompanyHappeningPerson      *company;
+@property (strong) GGCompanyHappeningPerson      *oldCompany;
 @property (copy) NSString                       *change;        // e.g. LEAVE
 @property (assign) EGGHappeningType             type;
 @property (assign) EGGHappeningSource           source;
