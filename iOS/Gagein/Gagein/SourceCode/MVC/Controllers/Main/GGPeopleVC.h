@@ -12,7 +12,7 @@
 @interface GGPeopleVC : GGBaseViewController
 <UITableViewDelegate
 , UITableViewDataSource
-, UISearchBarDelegate
+, GGStyledSearchBarDelegate
 , GGSlideSettingViewDelegate>
 
 @property (strong)   NSMutableArray              *updates;

@@ -59,7 +59,7 @@
 -(float)adjustLayout
 {
     //_descriptionLbl.backgroundColor = GGSharedColor.darkGray;
-    NSString * text = _descriptionLbl.text;
+    //NSString * text = _descriptionLbl.text;
     
     CGRect theRect = _titleLbl.frame;
     float titleMaxY = CGRectGetMaxY(theRect);

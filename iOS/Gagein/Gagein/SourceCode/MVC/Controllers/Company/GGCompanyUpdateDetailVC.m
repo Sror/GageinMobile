@@ -343,6 +343,7 @@
 {
     BOOL needAnimation = (_webviewSignal.hidden == aShow);
     _webviewSignal.hidden = !aShow;
+    self.navigationController.navigationBarHidden = aShow;
     
     [self _showSwitchButton:aShow];
     

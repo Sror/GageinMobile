@@ -11,7 +11,7 @@
 @class GGBaseSearchBar;
 
 @protocol GGStyledSearchBarDelegate
-
+ @optional
 - (BOOL)searchBarShouldBeginEditing:(GGBaseSearchBar *)searchBar;
 - (void)searchBarTextDidBeginEditing:(GGBaseSearchBar *)searchBar;
 - (BOOL)searchBarShouldEndEditing:(GGBaseSearchBar *)searchBar;
