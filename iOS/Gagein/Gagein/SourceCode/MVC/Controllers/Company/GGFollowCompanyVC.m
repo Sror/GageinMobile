@@ -249,7 +249,7 @@
             
             if (company.followed)
             {
-                [GGSharedAPI unfollowCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                id op = [GGSharedAPI unfollowCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
                     GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
                     if (parser.isOK)
                     {
@@ -261,10 +261,12 @@
                         [GGAlert alertWithApiMessage:parser.message];
                     }
                 }];
+                
+                [self registerOperation:op];
             }
             else
             {
-                [GGSharedAPI followCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                id op = [GGSharedAPI followCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
                     GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
                     if (parser.isOK)
                     {
@@ -276,6 +278,8 @@
                         [GGAlert alertWithApiMessage:parser.message];
                     }
                 }];
+                
+                [self registerOperation:op];
             }
         }
     }
@@ -294,7 +298,7 @@
         }
         else
         {
-            [GGSharedAPI followCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            id op = [GGSharedAPI followCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
                 GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
                 if (parser.isOK)
                 {
@@ -322,6 +326,8 @@
                     [GGAlert alertWithApiMessage:parser.message];
                 }
             }];
+            
+            [self registerOperation:op];
         }
     }
 }
@@ -390,7 +396,7 @@
 {
     if (self.searchBar.text.length)
     {
-        [GGSharedAPI getCompanySuggestionWithKeyword:self.searchBar.text callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI getCompanySuggestionWithKeyword:self.searchBar.text callback:^(id operation, id aResultObject, NSError *anError) {
             
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             GGDataPage *page = [parser parseSearchCompany];
@@ -398,6 +404,8 @@
             
             [self.tableViewSearchResult reloadData];
         }];
+        
+        [self registerOperation:op];
     }
 }
 
@@ -407,7 +415,7 @@
     if (self.searchBar.text.length)
     {
         [self showLoadingHUD];
-        [GGSharedAPI searchCompaniesWithKeyword:self.searchBar.text page:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI searchCompaniesWithKeyword:self.searchBar.text page:0 callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
@@ -419,12 +427,14 @@
             
             [self.tableViewSearchResult reloadData];
         }];
+        
+        [self registerOperation:op];
     }
 }
 
 -(void)_callGetFollowedCompanies
 {
-    [GGSharedAPI getFollowedCompaniesWithPage:0 callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getFollowedCompaniesWithPage:0 callback:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         GGDataPage *page = [parser parseFollowedCompanies];
         _followedCompanies = page.items;
@@ -435,6 +445,8 @@
         
         [self.tableViewCompanies reloadData];
     }];
+    
+    [self registerOperation:op];
 }
 
 @end

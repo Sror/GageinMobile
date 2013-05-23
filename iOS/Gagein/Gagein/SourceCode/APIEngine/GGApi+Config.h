@@ -13,86 +13,86 @@
 
 #pragma mark - Agent
 //3. get agent list (New API)
--(void)getAgents:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)getAgents:(GGApiBlock)aCallback;
 
 //4.Select/unselect agents     (New API)
--(void)selectAgents:(NSArray *)aAgentIDs callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)selectAgents:(NSArray *)aAgentIDs callback:(GGApiBlock)aCallback;
 
 //5. add custom agent (New API)
--(void)addCustomAgentWithName:(NSString *)aName
+-(AFHTTPRequestOperation *)addCustomAgentWithName:(NSString *)aName
                      keywords:(NSString *)aKeyword
                      callback:(GGApiBlock)aCallback;
 
 //6.update custom agent (New API)
--(void)updateCustomAgentWithID:(long long)aAgentID
+-(AFHTTPRequestOperation *)updateCustomAgentWithID:(long long)aAgentID
                           name:(NSString *)aName
                       keywords:(NSString *)aKeyword
                       callback:(GGApiBlock)aCallback;
 
 //7.delete custom agent (New API)
--(void)deleteCustomAgentWithID:(long long)aAgentID
+-(AFHTTPRequestOperation *)deleteCustomAgentWithID:(long long)aAgentID
                       callback:(GGApiBlock)aCallback;
 
 #pragma mark - Functional Area
 //8.get functional areas list     (New API)
--(void)getFunctionalAreas:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)getFunctionalAreas:(GGApiBlock)aCallback;
 
 //9. select/unselect functional areas (New API)
--(void)selectFunctionalAreas:(NSArray *)aAreaIDs callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)selectFunctionalAreas:(NSArray *)aAreaIDs callback:(GGApiBlock)aCallback;
 
 
 #pragma mark -
 //  doRequest("GET", "config/filters/agent/list","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)getAgentFiltersList:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)getAgentFiltersList:(GGApiBlock)aCallback;
 
 //  doRequest("POST", "config/filters/agent/enable/true","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)setAgentFilterEnabled:(BOOL)anEnabled callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)setAgentFilterEnabled:(BOOL)anEnabled callback:(GGApiBlock)aCallback;
 
 //  doRequest("POST", "config/filters/agent/2/true","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)selectAgentFilterWithID:(long long)aFilterID selected:(BOOL)aSelected callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)selectAgentFilterWithID:(long long)aFilterID selected:(BOOL)aSelected callback:(GGApiBlock)aCallback;
 
 //  doRequest("GET", "config/filters/category/list","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)getCategoryFiltersList:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)getCategoryFiltersList:(GGApiBlock)aCallback;
 
 //  doRequest("POST", "config/filters/category/enable/true","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)setCategoryFilterEnabled:(BOOL)anEnabled callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)setCategoryFilterEnabled:(BOOL)anEnabled callback:(GGApiBlock)aCallback;
 
 //  doRequest("POST", "config/filters/category/1/true","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)selectCategoryFilterWithID:(long long)aFilterID selected:(BOOL)aSelected callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)selectCategoryFilterWithID:(long long)aFilterID selected:(BOOL)aSelected callback:(GGApiBlock)aCallback;
 
 //  doRequest("POST", "config/filters/media/enable/true","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)setMediaFilterEnabled:(BOOL)anEnabled callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)setMediaFilterEnabled:(BOOL)anEnabled callback:(GGApiBlock)aCallback;
 
 //  doRequest("GET", "config/filters/media/list","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)getMediaFiltersList:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)getMediaFiltersList:(GGApiBlock)aCallback;
 
 //  doRequest("POST", "config/filters/media/131/delete","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)deleteMediaFilterWithID:(long long)aFilterID callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)deleteMediaFilterWithID:(long long)aFilterID callback:(GGApiBlock)aCallback;
 
 // add media filter with ID
--(void)addMediaFilterWithID:(long long)aMediaID callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)addMediaFilterWithID:(long long)aMediaID callback:(GGApiBlock)aCallback;
 
 // add media filters with IDs
--(void)addMediaFilterWithIDs:(NSArray *)aMediaIDs callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)addMediaFilterWithIDs:(NSArray *)aMediaIDs callback:(GGApiBlock)aCallback;
 
 //  doRequest("GET", "config/filters/media/suggested/list","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)getMediaSuggestedList:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)getMediaSuggestedList:(GGApiBlock)aCallback;
 
 //  doRequest("POST", "config/filters/media/search","access_token=b4790223c67f68b744d6ac3bb9b830e6&q=ga");
--(void)searchMediaWithKeyword:(NSString *)aKeyword callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)searchMediaWithKeyword:(NSString *)aKeyword callback:(GGApiBlock)aCallback;
 
 
 #pragma mark - update profile API
--(void)changeProfileWithFirstName:(NSString *)aFirstName lastName:(NSString *)aLastName callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)changeProfileWithFirstName:(NSString *)aFirstName lastName:(NSString *)aLastName callback:(GGApiBlock)aCallback;
 
--(void)changeProfileWithEmail:(NSString *)aEmail callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)changeProfileWithEmail:(NSString *)aEmail callback:(GGApiBlock)aCallback;
 
--(void)changeProfileWithTitle:(NSString *)aTitle callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)changeProfileWithTitle:(NSString *)aTitle callback:(GGApiBlock)aCallback;
 
--(void)changeProfileWithTimezone:(NSString *)aTimezone callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)changeProfileWithTimezone:(NSString *)aTimezone callback:(GGApiBlock)aCallback;
 
--(void)changeProfileWithOrgID:(long long)anOrgID callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)changeProfileWithOrgID:(long long)anOrgID callback:(GGApiBlock)aCallback;
 
--(void)changeProfileWithOrgName:(NSString *)anOrgName callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)changeProfileWithOrgName:(NSString *)anOrgName callback:(GGApiBlock)aCallback;
 
 @end

@@ -187,11 +187,13 @@
     [self showLoadingHUD];
     if (_isPeopleHappening)
     {
-        [GGSharedAPI getPeopleEventDetailWithID:data.ID callback:callback];
+        id op = [GGSharedAPI getPeopleEventDetailWithID:data.ID callback:callback];
+        [self registerOperation:op];
     }
     else
     {
-        [GGSharedAPI getCompanyEventDetailWithID:data.ID callback:callback];
+        id op = [GGSharedAPI getCompanyEventDetailWithID:data.ID callback:callback];
+        [self registerOperation:op];
     }
     
 }

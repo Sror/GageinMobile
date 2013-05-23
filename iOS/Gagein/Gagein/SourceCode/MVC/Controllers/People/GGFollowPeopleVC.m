@@ -209,33 +209,11 @@
             if (data.followed)
             {
 #warning TODO: No follow/unfollow person API
-//                [GGSharedAPI unfollowCompanyWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
-//                    GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-//                    if (parser.isOK)
-//                    {
-//                        company.followed = NO;
-//                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-//                    }
-//                    else
-//                    {
-//                        [GGAlert alert:parser.message];
-//                    }
-//                }];
+
             }
             else
             {
-//                [GGSharedAPI followCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
-//                    GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-//                    if (parser.isOK)
-//                    {
-//                        company.followed = YES;
-//                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-//                    }
-//                    else
-//                    {
-//                        [GGAlert alert:parser.message];
-//                    }
-//                }];
+
             }
         }
     }
@@ -250,7 +228,7 @@
         }
         else
         {
-            [GGSharedAPI followPersonWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            id op = [GGSharedAPI followPersonWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
                 GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
                 if (parser.isOK)
                 {
@@ -277,6 +255,8 @@
                     [GGAlert alertWithApiMessage:parser.message];
                 }
             }];
+            
+            [self registerOperation:op];
         }
     }
 }
@@ -339,14 +319,7 @@
     if (_searchBar.tfSearch.text.length)
     {
 #warning Currently no API for people suggestion
-//        [GGSharedAPI getCompanySuggestionWithKeyword:_searchBar.tfSearch.text callback:^(id operation, id aResultObject, NSError *anError) {
-//            
-//            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-//            GGDataPage *page = [parser parseSearchCompany];
-//            _searchedCompanies = page.items;
-//            
-//            [self.tableViewSearchResult reloadData];
-//        }];
+
     }
 }
 
@@ -356,7 +329,7 @@
     if (_searchBar.tfSearch.text.length)
     {
         [self showLoadingHUD];
-        [GGSharedAPI searchPeopleWithKeyword:_searchBar.tfSearch.text page:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI searchPeopleWithKeyword:_searchBar.tfSearch.text page:0 callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
@@ -368,23 +341,14 @@
             
             [self.tvSearchResult reloadData];
         }];
+        
+        [self registerOperation:op];
     }
 }
 
 -(void)_callGetFollowedPeople
 {
 #warning Currently no API for followed people list
-//    [GGSharedAPI getFollowedCompaniesWithPage:0 callback:^(id operation, id aResultObject, NSError *anError) {
-//        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-//        GGDataPage *page = [parser parseFollowedCompanies];
-//        _followedCompanies = page.items;
-//        
-//        for (GGCompany *company in _followedCompanies) {
-//            company.followed = 1;
-//        }
-//        
-//        [self.tableViewCompanies reloadData];
-//    }];
 }
 
 @end

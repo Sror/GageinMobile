@@ -12,10 +12,10 @@
 
 #pragma mark - signup APIs
 //login
--(void)loginWithEmail:(NSString *)anEmail password:(NSString *)aPassword callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)loginWithEmail:(NSString *)anEmail password:(NSString *)aPassword callback:(GGApiBlock)aCallback;
 
 // register
--(void)retisterWithEmail:(NSString *)anEmail
+-(AFHTTPRequestOperation *)retisterWithEmail:(NSString *)anEmail
                 password:(NSString *)aPassword
                firstName:(NSString *)aFirstName
                 lastName:(NSString *)aLastName

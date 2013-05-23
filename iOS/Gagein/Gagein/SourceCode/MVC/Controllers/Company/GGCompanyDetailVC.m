@@ -479,7 +479,7 @@ typedef enum
     }
     else
     {
-        [GGSharedAPI followCompanyWithID:_companyOverview.ID callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI followCompanyWithID:_companyOverview.ID callback:^(id operation, id aResultObject, NSError *anError) {
             
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.status == 1) {
@@ -492,6 +492,8 @@ typedef enum
             }
             
         }];
+        
+        [self registerOperation:op];
     }
 }
 
@@ -501,7 +503,7 @@ typedef enum
     DLog(@"action sheet index:%d", buttonIndex);
     if (buttonIndex == 0)
     {
-        [GGSharedAPI unfollowCompanyWithID:_companyOverview.ID callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI unfollowCompanyWithID:_companyOverview.ID callback:^(id operation, id aResultObject, NSError *anError) {
             
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.status == 1) {
@@ -509,6 +511,8 @@ typedef enum
                 [self _updateUiBtnFollow];
             }
         }];
+        
+        [self registerOperation:op];
     }
 }
 
@@ -516,12 +520,14 @@ typedef enum
 -(void)_callApiGetOverView
 {
     [self showLoadingHUD];
-    [GGSharedAPI getCompanyOverviewWithID:_companyID needSocialProfile:YES callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getCompanyOverviewWithID:_companyID needSocialProfile:YES callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         _companyOverview = [parser parseGetCompanyOverview];
         [self _updateUiOverview];
     }];
+    
+    [self registerOperation:op];
 }
 
 
@@ -541,7 +547,8 @@ typedef enum
         [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:kGGSectionUpdates] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
     
-    [GGSharedAPI getCompanyUpdatesWithCompanyID:_companyID newsID:0 pageFlag:kGGPageFlagFirstPage pageTime:0 relevance:kGGCompanyUpdateRelevanceNormal callback:callback];
+    id op = [GGSharedAPI getCompanyUpdatesWithCompanyID:_companyID newsID:0 pageFlag:kGGPageFlagFirstPage pageTime:0 relevance:kGGCompanyUpdateRelevanceNormal callback:callback];
+    [self registerOperation:op];
 
 }
 
@@ -561,12 +568,13 @@ typedef enum
         [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:kGGSectionHappenings] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
     
-    [GGSharedAPI getHappeningsWithCompanyID:_companyID eventID:0 pageFlag:kGGPageFlagFirstPage pageTime:0 callback:callback];
+    id op = [GGSharedAPI getHappeningsWithCompanyID:_companyID eventID:0 pageFlag:kGGPageFlagFirstPage pageTime:0 callback:callback];
+    [self registerOperation:op];
 }
 
 -(void)_callApiGetPeople
 {
-    [GGSharedAPI getCompanyPeopleWithOrgID:_companyID pageNumber:0 callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getCompanyPeopleWithOrgID:_companyID pageNumber:0 callback:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
@@ -578,11 +586,13 @@ typedef enum
             [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:kGGSectionEmployees] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
     }];
+    
+    [self registerOperation:op];
 }
 
 -(void)_callApiGetSimilarCompanies
 {
-    [GGSharedAPI getSimilarCompaniesWithOrgID:_companyID pageNumber:0 callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getSimilarCompaniesWithOrgID:_companyID pageNumber:0 callback:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
@@ -594,6 +604,8 @@ typedef enum
             [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:kGGSectionSimilarCompanies] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
     }];
+    
+    [self registerOperation:op];
 }
 
 @end

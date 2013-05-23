@@ -13,9 +13,9 @@
 
 @interface GGBaseViewController : UIViewController
 
-@property (strong) UILabel  *customNaviTitle;
-@property (copy) NSString *naviTitle;
-@property (strong) UIButton *naviButtonLeft;
+@property (strong) UILabel          *customNaviTitle;
+@property (copy) NSString           *naviTitle;
+@property (strong) UIButton         *naviButtonLeft;
 
 +(id)createInstance;
 
@@ -55,5 +55,10 @@
 -(void)connectTwitter;
 
 -(GGLinkedInOAuthVC *)linkedInAuthView;
+
+// operation management
+-(void)registerOperation:(id)anOperation;
+
+-(void)unregisterOperation:(id)anOperation;
 
 @end

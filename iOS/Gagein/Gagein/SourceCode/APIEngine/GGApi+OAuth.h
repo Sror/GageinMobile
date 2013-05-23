@@ -20,7 +20,7 @@ typedef enum
 
 @interface GGApi (OAuth)
 
--(void)snRegisterWithEmail:(NSString *)aEmail
+-(AFHTTPRequestOperation *)snRegisterWithEmail:(NSString *)aEmail
                   password:(NSString *)aPassword
                  firstName:(NSString *)aFirstName
                   lastName:(NSString *)aLastName
@@ -38,47 +38,47 @@ typedef enum
                   callback:(GGApiBlock)aCallback;
 
 // ------- get user info ------
--(void)snGetUserInfoLinedInWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)snGetUserInfoLinedInWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback;
 
--(void)snGetUserInfoFacebookWithToken:(NSString *)aToken callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)snGetUserInfoFacebookWithToken:(NSString *)aToken callback:(GGApiBlock)aCallback;
 
--(void)snGetUserInfoSalesforceWithToken:(NSString *)aToken
+-(AFHTTPRequestOperation *)snGetUserInfoSalesforceWithToken:(NSString *)aToken
                               accountID:(NSString *)anAccountID
                            refreshToken:(NSString *)aRefreshToken
                             instanceURL:(NSString *)anInstanceURL callback:(GGApiBlock)aCallback;
 
--(void)snGetUserInfoTwitterWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)snGetUserInfoTwitterWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback;
 
 
 // ---- get list ---
--(void)snGetList:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)snGetList:(GGApiBlock)aCallback;
 
 
 // -------- save --------------
--(void)snSaveLinedInWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)snSaveLinedInWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback;
 
--(void)snSaveFacebookWithToken:(NSString *)aToken callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)snSaveFacebookWithToken:(NSString *)aToken callback:(GGApiBlock)aCallback;
 
--(void)snSaveSalesforceWithToken:(NSString *)aToken
+-(AFHTTPRequestOperation *)snSaveSalesforceWithToken:(NSString *)aToken
                        accountID:(NSString *)anAccountID
                     refreshToken:(NSString *)aRefreshToken
                      instanceURL:(NSString *)anInstanceURL callback:(GGApiBlock)aCallback;
 
--(void)snSaveTwitterWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)snSaveTwitterWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback;
 
 // ------- share ------
--(void)snShareNewsWithID:(long long)aNewsID
+-(AFHTTPRequestOperation *)snShareNewsWithID:(long long)aNewsID
                   snType:(EGGSnType)aSnType
                  message:(NSString *)aMessage
                 headLine:(NSString *)aHeadLine
                  summary:(NSString *)aSummary
               pictureURL:(NSString *)aPictureURL callback:(GGApiBlock)aCallback;
 
--(void)snShareComanyEventWithID:(long long)anEventID
+-(AFHTTPRequestOperation *)snShareComanyEventWithID:(long long)anEventID
                          snType:(EGGSnType)aSnType
                         message:(NSString *)aMessage callback:(GGApiBlock)aCallback;
 
--(void)snSharePersonEventWithID:(long long)anEventID
+-(AFHTTPRequestOperation *)snSharePersonEventWithID:(long long)anEventID
                          snType:(EGGSnType)aSnType
                         message:(NSString *)aMessage callback:(GGApiBlock)aCallback;
 

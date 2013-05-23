@@ -91,7 +91,7 @@
 #pragma mark - actions
 -(IBAction)doneStepAction:(id)sender
 {
-    [GGSharedAPI selectFunctionalAreas:[self _selectedAreaIDs] callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI selectFunctionalAreas:[self _selectedAreaIDs] callback:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
@@ -106,11 +106,13 @@
             [GGAlert alertWithApiMessage:parser.message];
         }
     }];
+    
+    [self registerOperation:op];
 }
 
 -(IBAction)doneAction:(id)sender
 {
-    [GGSharedAPI selectFunctionalAreas:[self _selectedAreaIDs] callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI selectFunctionalAreas:[self _selectedAreaIDs] callback:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
@@ -123,6 +125,8 @@
         
         [self.navigationController popViewControllerAnimated:YES];
     }];
+    
+    [self registerOperation:op];
 }
 
 #pragma mark - table view datasource
@@ -174,7 +178,7 @@
 #pragma mark - API calls
 -(void)_getAreasData
 {
-    [GGSharedAPI getFunctionalAreas:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getFunctionalAreas:^(id operation, id aResultObject, NSError *anError) {
         
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.status == 1)
@@ -185,5 +189,7 @@
         }
         
     }];
+    
+    [self registerOperation:op];
 }
 @end

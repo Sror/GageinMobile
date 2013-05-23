@@ -12,7 +12,7 @@
 
 #pragma mark - Agent
 //3. get agent list (New API)
--(void)getAgents:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)getAgents:(GGApiBlock)aCallback
 {
     //GET
     NSString *path = @"config/sales_trigger/list";
@@ -21,14 +21,14 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 //4.Select/unselect agents     (New API)
 //POST:config/sales_trigger/save
 //Parameter: agentid=1&agentid=2&agentid=3
 //agentid:all of the checked id
--(void)selectAgents:(NSArray *)aAgentIDs callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)selectAgents:(NSArray *)aAgentIDs callback:(GGApiBlock)aCallback
 {
     NSAssert(aAgentIDs.count, @"u must provide at lest 1 agent id");
     //POST
@@ -39,13 +39,13 @@
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:aAgentIDs forKey:@"agentid"];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 //5. add custom agent (New API)
 //POST: config/filters/custom_agent/add
 //Parameter: name=Agent name&keywords=Agent keywords
--(void)addCustomAgentWithName:(NSString *)aName
+-(AFHTTPRequestOperation *)addCustomAgentWithName:(NSString *)aName
                      keywords:(NSString *)aKeyword
                      callback:(GGApiBlock)aCallback
 {
@@ -58,13 +58,13 @@
     [parameters setObject:aName forKey:@"name"];
     [parameters setObject:aKeyword forKey:@"keywords"];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 //6.update custom agent (New API)
 //POST: config/filters/custom_agent/<id>/update
 //Parameter: name=Agent name&keywords=Agent keywords.
--(void)updateCustomAgentWithID:(long long)aAgentID
+-(AFHTTPRequestOperation *)updateCustomAgentWithID:(long long)aAgentID
                           name:(NSString *)aName
                       keywords:(NSString *)aKeyword
                       callback:(GGApiBlock)aCallback
@@ -78,12 +78,12 @@
     [parameters setObject:aName forKey:@"name"];
     [parameters setObject:aKeyword forKey:@"keywords"];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 //7.delete custom agent (New API)
 //GET: config/filters/custom_agent/<id>/delete
--(void)deleteCustomAgentWithID:(long long)aAgentID
+-(AFHTTPRequestOperation *)deleteCustomAgentWithID:(long long)aAgentID
                       callback:(GGApiBlock)aCallback
 {
     //GET
@@ -93,14 +93,14 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 #pragma mark - Functional Area
 //8.get functional areas list     (New API)
 //GET:config/functional_area/list
 //Parameter:functional_areaid=1010&functional_areaid=1020
--(void)getFunctionalAreas:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)getFunctionalAreas:(GGApiBlock)aCallback
 {
     //GET
     NSString *path = @"config/functional_area/list";
@@ -109,12 +109,12 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 //9. select/unselect functional areas (New API)
 //POST:config/functional_area/save
--(void)selectFunctionalAreas:(NSArray *)aAreaIDs callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)selectFunctionalAreas:(NSArray *)aAreaIDs callback:(GGApiBlock)aCallback
 {
     NSAssert(aAreaIDs.count, @"u must provide at lest 1 area id");
     //POST
@@ -125,13 +125,13 @@
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:aAreaIDs forKey:@"functional_areaid"];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 
 #pragma mark - 
 //  doRequest("GET", "config/filters/agent/list","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)getAgentFiltersList:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)getAgentFiltersList:(GGApiBlock)aCallback
 {
     //GET
     NSString *path = @"config/filters/agent/list";
@@ -140,11 +140,11 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 //  doRequest("POST", "config/filters/agent/enable/true","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)setAgentFilterEnabled:(BOOL)anEnabled callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)setAgentFilterEnabled:(BOOL)anEnabled callback:(GGApiBlock)aCallback
 {
     //GET
     NSString *path = [NSString stringWithFormat:@"config/filters/agent/enable/%@", (anEnabled ? @"true" : @"false")];
@@ -153,12 +153,12 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 //  doRequest("POST", "config/filters/agent/2/true","access_token=b4790223c67f68b744d6ac3bb9b830e6");
 
--(void)selectAgentFilterWithID:(long long)aFilterID selected:(BOOL)aSelected callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)selectAgentFilterWithID:(long long)aFilterID selected:(BOOL)aSelected callback:(GGApiBlock)aCallback
 {
     //GET
     NSString *path = [NSString stringWithFormat:@"config/filters/agent/%lld/%@", aFilterID, (aSelected ? @"true" : @"false")];
@@ -167,12 +167,12 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 //
 //  doRequest("GET", "config/filters/category/list","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)getCategoryFiltersList:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)getCategoryFiltersList:(GGApiBlock)aCallback
 {
     //GET
     NSString *path = @"config/filters/category/list";
@@ -181,11 +181,11 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 //  doRequest("POST", "config/filters/category/enable/true","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)setCategoryFilterEnabled:(BOOL)anEnabled callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)setCategoryFilterEnabled:(BOOL)anEnabled callback:(GGApiBlock)aCallback
 {
     NSString *path = [NSString stringWithFormat:@"config/filters/category/enable/%@", (anEnabled ? @"true" : @"false")];
     
@@ -193,11 +193,11 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 //  doRequest("POST", "config/filters/category/1/true","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)selectCategoryFilterWithID:(long long)aFilterID selected:(BOOL)aSelected callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)selectCategoryFilterWithID:(long long)aFilterID selected:(BOOL)aSelected callback:(GGApiBlock)aCallback
 {
     NSString *path = [NSString stringWithFormat:@"config/filters/category/%lld/%@", aFilterID, (aSelected ? @"true" : @"false")];
     
@@ -205,11 +205,11 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 //  doRequest("POST", "config/filters/media/enable/true","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)setMediaFilterEnabled:(BOOL)anEnabled callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)setMediaFilterEnabled:(BOOL)anEnabled callback:(GGApiBlock)aCallback
 {
     NSString *path = [NSString stringWithFormat:@"config/filters/media/enable/%@", (anEnabled ? @"true" : @"false")];
     
@@ -217,11 +217,11 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 //  doRequest("GET", "config/filters/media/list","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)getMediaFiltersList:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)getMediaFiltersList:(GGApiBlock)aCallback
 {
     //GET
     NSString *path = @"config/filters/media/list";
@@ -230,11 +230,11 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 //  doRequest("POST", "config/filters/media/131/delete","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)deleteMediaFilterWithID:(long long)aFilterID callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)deleteMediaFilterWithID:(long long)aFilterID callback:(GGApiBlock)aCallback
 {
     NSString *path = [NSString stringWithFormat:@"config/filters/media/%lld/delete", aFilterID];
     
@@ -242,11 +242,11 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 //  doRequest("POST", "config/filters/media/add","access_token=b4790223c67f68b744d6ac3bb9b830e6&media_name=Washington Blade");
--(void)addMediaFilterWithID:(long long)aMediaID callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)addMediaFilterWithID:(long long)aMediaID callback:(GGApiBlock)aCallback
 {
     NSString *path = @"config/filters/media/add";
     
@@ -255,10 +255,10 @@
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:__LONGLONG(aMediaID) forKey:@"media_id"];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
--(void)addMediaFilterWithIDs:(NSArray *)aMediaIDs callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)addMediaFilterWithIDs:(NSArray *)aMediaIDs callback:(GGApiBlock)aCallback
 {
     NSString *path = @"config/filters/media/add";
     
@@ -271,11 +271,11 @@
         [parameters setObject:ID forKey:@"media_id"];
     }
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 //  doRequest("GET", "config/filters/media/suggested/list","access_token=b4790223c67f68b744d6ac3bb9b830e6");
--(void)getMediaSuggestedList:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)getMediaSuggestedList:(GGApiBlock)aCallback
 {
     //GET
     NSString *path = @"config/filters/media/suggested/list";
@@ -284,11 +284,11 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 //  doRequest("POST", "config/filters/media/search","access_token=b4790223c67f68b744d6ac3bb9b830e6&q=ga");
--(void)searchMediaWithKeyword:(NSString *)aKeyword callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)searchMediaWithKeyword:(NSString *)aKeyword callback:(GGApiBlock)aCallback
 {
     NSString *path = @"config/filters/media/search";
     
@@ -297,13 +297,13 @@
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:aKeyword forKey:@"q"];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 #pragma mark - update profile API
 #define PATH_CHANGE_PROFILE     @"member/me/info/update"
 
--(void)changeProfileWithFirstName:(NSString *)aFirstName lastName:(NSString *)aLastName callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)changeProfileWithFirstName:(NSString *)aFirstName lastName:(NSString *)aLastName callback:(GGApiBlock)aCallback
 {
     //NSString *path = @"member/me/info/update";
     
@@ -313,10 +313,10 @@
     [parameters setObject:aFirstName forKey:@"mem_first_name"];
     [parameters setObject:aLastName forKey:@"mem_last_name"];
     
-    [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
+    return [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
 }
 
--(void)changeProfileWithEmail:(NSString *)aEmail callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)changeProfileWithEmail:(NSString *)aEmail callback:(GGApiBlock)aCallback
 {
     //NSString *path = @"member/me/info/update";
     
@@ -325,10 +325,10 @@
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:aEmail forKey:@"mem_email"];
     
-    [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
+    return [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
 }
 
--(void)changeProfileWithTitle:(NSString *)aTitle callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)changeProfileWithTitle:(NSString *)aTitle callback:(GGApiBlock)aCallback
 {
     //NSString *path = @"member/me/info/update";
     
@@ -337,10 +337,10 @@
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:aTitle forKey:@"mem_org_title"];
     
-    [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
+    return [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
 }
 
--(void)changeProfileWithTimezone:(NSString *)aTimezone callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)changeProfileWithTimezone:(NSString *)aTimezone callback:(GGApiBlock)aCallback
 {
     //NSString *path = @"member/me/info/update";
     
@@ -349,10 +349,10 @@
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:aTimezone forKey:@"mem_add_timezone"];
     
-    [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
+    return [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
 }
 
--(void)changeProfileWithOrgID:(long long)anOrgID callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)changeProfileWithOrgID:(long long)anOrgID callback:(GGApiBlock)aCallback
 {
     //NSString *path = @"me/info/update";
     
@@ -361,10 +361,10 @@
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:__LONGLONG(anOrgID) forKey:@"orgid"];
     
-    [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
+    return [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
 }
 
--(void)changeProfileWithOrgName:(NSString *)anOrgName callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)changeProfileWithOrgName:(NSString *)anOrgName callback:(GGApiBlock)aCallback
 {
     //NSString *path = @"me/info/update";
     
@@ -373,7 +373,7 @@
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:anOrgName forKey:@"org_name"];
     
-    [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
+    return [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
 }
 
 ///me/info/update

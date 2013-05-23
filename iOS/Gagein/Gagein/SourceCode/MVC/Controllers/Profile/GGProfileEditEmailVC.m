@@ -56,7 +56,7 @@
    
     else
     {
-        [GGSharedAPI changeProfileWithEmail:_tfEmail.text callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI changeProfileWithEmail:_tfEmail.text callback:^(id operation, id aResultObject, NSError *anError) {
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {
@@ -65,6 +65,8 @@
                 [self naviBackAction:nil];
             }
         }];
+        
+        [self registerOperation:op];
     }
 }
 

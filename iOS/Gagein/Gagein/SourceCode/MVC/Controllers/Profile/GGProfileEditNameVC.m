@@ -63,7 +63,7 @@
     }
     else
     {
-        [GGSharedAPI changeProfileWithFirstName:_tfFirstName.text lastName:_tfLastName.text callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI changeProfileWithFirstName:_tfFirstName.text lastName:_tfLastName.text callback:^(id operation, id aResultObject, NSError *anError) {
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {
@@ -73,6 +73,8 @@
                 [self naviBackAction:nil];
             }
         }];
+        
+        [self registerOperation:op];
     }
 }
 

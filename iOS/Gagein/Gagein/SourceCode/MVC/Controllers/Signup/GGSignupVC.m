@@ -191,7 +191,7 @@
             {
                 DLog(@"Register OK, auto login..");
                 
-                [GGSharedAPI loginWithEmail:self.tfEmail.text password:self.tfPassword.text callback:^(id operation, id aResultObject, NSError *anError) {
+                id op = [GGSharedAPI loginWithEmail:self.tfEmail.text password:self.tfPassword.text callback:^(id operation, id aResultObject, NSError *anError) {
                     GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
                     if (parser.isOK)
                     {
@@ -211,6 +211,8 @@
                         [GGAlert alertWithApiMessage:parser.message];
                     }
                 }];
+                
+                [self registerOperation:op];
             }
             else
             {
@@ -224,11 +226,15 @@
         [self showLoadingHUD];
         if (_userInfo)
         {
-            [GGSharedAPI snRegisterWithEmail:self.tfEmail.text password:self.tfPassword.text firstName:self.tfFirstName.text lastName:self.tfLastName.text snType:_userInfo.snType token:_userInfo.token secret:_userInfo.secret snAccountID:_userInfo.accountID snFirstName:_userInfo.firstName snLastName:_userInfo.lastName snEmail:_userInfo.email snAccountName:_userInfo.accountName snProfileURL:_userInfo.profileURL sfRefreshToken:_userInfo.refreshToken sfInstanceURL:_userInfo.instanceUrl callback:callback];
+            id op = [GGSharedAPI snRegisterWithEmail:self.tfEmail.text password:self.tfPassword.text firstName:self.tfFirstName.text lastName:self.tfLastName.text snType:_userInfo.snType token:_userInfo.token secret:_userInfo.secret snAccountID:_userInfo.accountID snFirstName:_userInfo.firstName snLastName:_userInfo.lastName snEmail:_userInfo.email snAccountName:_userInfo.accountName snProfileURL:_userInfo.profileURL sfRefreshToken:_userInfo.refreshToken sfInstanceURL:_userInfo.instanceUrl callback:callback];
+            
+            [self registerOperation:op];
         }
         else
         {
-            [GGSharedAPI retisterWithEmail:self.tfEmail.text password:self.tfPassword.text firstName:self.tfFirstName.text lastName:self.tfLastName.text callback:callback];
+            id op = [GGSharedAPI retisterWithEmail:self.tfEmail.text password:self.tfPassword.text firstName:self.tfFirstName.text lastName:self.tfLastName.text callback:callback];
+            
+            [self registerOperation:op];
         }
     }
 }

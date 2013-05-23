@@ -15,28 +15,28 @@
 
 //1.Get Menu
 //Parameters:type=companies or type=people
--(void)getMenuByType:(NSString *)aType callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)getMenuByType:(NSString *)aType callback:(GGApiBlock)aCallback;
 
 //4.Get a company event detail
--(void)getCompanyEventDetailWithID:(long long)anEventID callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)getCompanyEventDetailWithID:(long long)anEventID callback:(GGApiBlock)aCallback;
 
 //5.get a people event detail
--(void)getPeopleEventDetailWithID:(long long)anEventID callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)getPeopleEventDetailWithID:(long long)anEventID callback:(GGApiBlock)aCallback;
 
 //2.tracker company event
--(void)getHappeningsWithCompanyID:(long long)aCompanyID  eventID:(long long)anEventID
+-(AFHTTPRequestOperation *)getHappeningsWithCompanyID:(long long)aCompanyID  eventID:(long long)anEventID
                          pageFlag:(EGGPageFlag)aPageFlag
                          pageTime:(long long)aPageTime
                          callback:(GGApiBlock)aCallback;
 
 //2.tracker people event
--(void)getHappeningsWithPersonID:(long long)aPersonID  eventID:(long long)anEventID
+-(AFHTTPRequestOperation *)getHappeningsWithPersonID:(long long)aPersonID  eventID:(long long)anEventID
                         pageFlag:(EGGPageFlag)aPageFlag
                         pageTime:(long long)aPageTime
                         callback:(GGApiBlock)aCallback;
 
 //2.tracker function area event
--(void)getHappeningsWithFunctionalAreaID:(long long)anAreaID  eventID:(long long)anEventID
+-(AFHTTPRequestOperation *)getHappeningsWithFunctionalAreaID:(long long)anAreaID  eventID:(long long)anEventID
                                 pageFlag:(EGGPageFlag)aPageFlag
                                 pageTime:(long long)aPageTime
                                 callback:(GGApiBlock)aCallback;
@@ -44,18 +44,18 @@
 //MU01:Save an UpdateBack to top
 //POST
 ///svc/member/me/update/save
--(void)saveUpdateWithID:(long long)anUpdateID callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)saveUpdateWithID:(long long)anUpdateID callback:(GGApiBlock)aCallback;
 
 //MU02:Unsave an UpdateBack to top
 //POST
 ///svc/member/me/update/unsave
--(void)unsaveUpdateWithID:(long long)anUpdateID callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)unsaveUpdateWithID:(long long)anUpdateID callback:(GGApiBlock)aCallback;
 
 //MU03:Get Saved UpdatesBack to top
 //POST
 //
 ///svc/member/me/update/get_saved
--(void)getSaveUpdatesWithPageIndex:(int)aPageIndex
+-(AFHTTPRequestOperation *)getSaveUpdatesWithPageIndex:(int)aPageIndex
                           isUnread:(BOOL)aIsUnread
                           callback:(GGApiBlock)aCallback;
 
@@ -63,14 +63,14 @@
 //POST
 //
 ///svc/search/updates
--(void)searchForCompanyUpdatesWithKeyword:(NSString *)aKeyword
+-(AFHTTPRequestOperation *)searchForCompanyUpdatesWithKeyword:(NSString *)aKeyword
                                 pageIndex:(NSUInteger)aPageIndex
                                  callback:(GGApiBlock)aCallback;
 
 //SU04:Get Keywords Suggestion for UpdatesBack to top
 //POST
 ///svc/search/updates/get_suggestions
--(void)getUpdateSuggestionWithKeyword:(NSString *)aKeyword
+-(AFHTTPRequestOperation *)getUpdateSuggestionWithKeyword:(NSString *)aKeyword
                              callback:(GGApiBlock)aCallback;
 
 @end

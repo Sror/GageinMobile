@@ -215,7 +215,7 @@ viewForHeaderInSection:(NSInteger)section
     if (section != 0)
     {
         GGAgentFilter *filter = (section == 1) ? _customAgentFilters[row] : _predefinedAgentFilters[row];
-        [GGSharedAPI selectAgentFilterWithID:filter.ID selected:!filter.checked callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI selectAgentFilterWithID:filter.ID selected:!filter.checked callback:^(id operation, id aResultObject, NSError *anError) {
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {
@@ -224,6 +224,8 @@ viewForHeaderInSection:(NSInteger)section
                 [_tv reloadData];
             }
         }];
+        
+        [self registerOperation:op];
     }
 }
 
@@ -237,7 +239,7 @@ viewForHeaderInSection:(NSInteger)section
 {
     [self showLoadingHUD];
     
-    [GGSharedAPI getAgentFiltersList:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getAgentFiltersList:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         GGDataPage *page = [parser parseGetAgentFiltersList];
@@ -259,13 +261,15 @@ viewForHeaderInSection:(NSInteger)section
         
         [_tv reloadData];
     }];
+    
+    [self registerOperation:op];
 }
 
 #pragma mark - GGSwitchButtonDelegate
 -(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
 {
     [self showLoadingHUD];
-    [GGSharedAPI setAgentFilterEnabled:aIsOn callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI setAgentFilterEnabled:aIsOn callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
@@ -276,6 +280,8 @@ viewForHeaderInSection:(NSInteger)section
         [_tv reloadData];
         
     }];
+    
+    [self registerOperation:op];
 }
 
 @end

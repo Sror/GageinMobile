@@ -22,12 +22,46 @@
 
 @implementation GGBaseViewController
 {
-    __weak MBProgressHUD    *hud;
-    BOOL                    _isViewFirstAppear;
-    UIView                  *_transparentBlockView;
+    __weak MBProgressHUD        *hud;
+    BOOL                        _isViewFirstAppear;
+    UIView                      *_transparentBlockView;
     
     GGLinkedInOAuthVC          *_oAuthLoginView;
-    GGFacebookOAuther       *_facebookOAuther;
+    GGFacebookOAuther          *_facebookOAuther;
+    
+    NSMutableSet              *_apiOperations;
+}
+
+-(void)registerOperation:(id)anOperation
+{
+    NSAssert([anOperation isKindOfClass:[AFHTTPRequestOperation class]], @"an operation should be a AFHTTPRequestOperation");
+    
+    [_apiOperations addObject:anOperation];
+    
+    DLog(@"\n\n api operation registered\n path:%@", ((AFHTTPRequestOperation *)anOperation).request.URL.relativeString);
+}
+
+-(void)unregisterOperation:(id)anOperation
+{
+    NSAssert([anOperation isKindOfClass:[AFHTTPRequestOperation class]], @"an operation should be a AFHTTPRequestOperation");
+    
+    [_apiOperations removeObject:anOperation];
+    
+    DLog(@"\n\n api operation unregistered\n path:%@", ((AFHTTPRequestOperation *)anOperation).request.URL.relativeString);
+}
+
+-(void)handleNotification:(NSNotification *)notification
+{
+    NSString *notiName = notification.name;
+    DLog(@"recieved nitification: %@", notiName);
+    
+    id notiObj = notification.object;
+    
+    if ([notiName isEqualToString:GG_NOTIFY_API_OPERATION_SUCCESS]
+        || [notiName isEqualToString:GG_NOTIFY_API_OPERATION_FAILED])
+    {
+        [self unregisterOperation:notiObj];
+    }
 }
 
 +(id)createInstance
@@ -39,13 +73,16 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _apiOperations = [NSMutableSet set];
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
+    [self observeNotification:GG_NOTIFY_API_OPERATION_SUCCESS];
+    [self observeNotification:GG_NOTIFY_API_OPERATION_FAILED];
+    
     [super viewDidLoad];
     _isViewFirstAppear = YES;
     
@@ -147,6 +184,12 @@
 -(void)dealloc
 {
     [self unobserveAllNotifications];
+    
+    for (AFHTTPRequestOperation *operation in _apiOperations)
+    {
+        [operation cancel];
+        DLog(@"\n\n api operation cancelled\n path:%@", operation.request.URL.relativeString);
+    }
 }
 
 -(void)_adjustCustomNaviTitlePosition

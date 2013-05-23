@@ -147,7 +147,7 @@
 #warning TODO: set company to user profile
     
     [self showLoadingHUD];
-    [GGSharedAPI changeProfileWithOrgID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI changeProfileWithOrgID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
@@ -161,6 +161,8 @@
             [GGAlert alertWithMessage:@"Company changed OK!"];
         }
     }];
+    
+    [self registerOperation:op];
 }
 
 #pragma mark - GGStyledSearchBarDelegate
@@ -217,7 +219,7 @@
     if (_customComName.length)
     {
         [self showLoadingHUD];
-        [GGSharedAPI changeProfileWithOrgName:_customComName callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI changeProfileWithOrgName:_customComName callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
@@ -231,6 +233,8 @@
                 [GGAlert alertWithMessage:@"Company changed OK!"];
             }
         }];
+        
+        [self registerOperation:op];
     }
     
     
@@ -244,7 +248,7 @@
     if (keyword.length)
     {
         [self showLoadingHUD];
-        [GGSharedAPI getCompanySuggestionWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI getCompanySuggestionWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
@@ -258,6 +262,8 @@
             }
             
         }];
+        
+        [self registerOperation:op];
     }
 }
 

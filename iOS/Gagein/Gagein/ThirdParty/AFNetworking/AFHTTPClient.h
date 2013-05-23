@@ -369,7 +369,7 @@ typedef enum {
 
  @see -HTTPRequestOperationWithRequest:success:failure:
  */
-- (void)getPath:(NSString *)path
+- (AFHTTPRequestOperation *)getPath:(NSString *)path
      parameters:(NSDictionary *)parameters
         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
@@ -384,7 +384,7 @@ typedef enum {
 
  @see -HTTPRequestOperationWithRequest:success:failure:
  */
-- (void)postPath:(NSString *)path
+- (AFHTTPRequestOperation *)postPath:(NSString *)path
       parameters:(NSDictionary *)parameters
          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;

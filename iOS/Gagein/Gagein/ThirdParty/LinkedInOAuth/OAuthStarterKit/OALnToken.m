@@ -24,7 +24,7 @@
 //  THE SOFTWARE.
 
 
-#import "NSString+URLEncoding.h"
+#import "NSString+URLEncodingPlus.h"
 #import "OALnToken.h"
 
 @interface OALnToken (Private)

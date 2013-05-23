@@ -15,10 +15,10 @@
 //GET:/member/me/tracker/menu
 //Parameters:type=companies or type=people
 //
--(void)getMenuByType:(NSString *)aType callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)getMenuByType:(NSString *)aType callback:(GGApiBlock)aCallback
 {
     if (GGSharedRuntimeData.accessToken == nil) {
-        return;
+        return nil;
     }
     
     //GET
@@ -29,7 +29,7 @@
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:aType forKey:@"type"];
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 //2.tracker event
@@ -37,7 +37,7 @@
 //Parameters:
 //Get company events:orgid=xxx&pageflag=0&pagetime=0&eventid=0
 //xxx is the id value, if the value is -10,return the all result.
--(void)getHappeningsWithCompanyID:(long long)aCompanyID  eventID:(long long)anEventID
+-(AFHTTPRequestOperation *)getHappeningsWithCompanyID:(long long)aCompanyID  eventID:(long long)anEventID
                          pageFlag:(EGGPageFlag)aPageFlag
                          pageTime:(long long)aPageTime
                          callback:(GGApiBlock)aCallback
@@ -54,11 +54,11 @@
     
     [parameters setObject:[NSNumber numberWithLongLong:aCompanyID] forKey:@"orgid"];
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 //Get people events:  contactid=xxx&pageflag=0&pagetime=0&eventid=0
--(void)getHappeningsWithPersonID:(long long)aPersonID eventID:(long long)anEventID
+-(AFHTTPRequestOperation *)getHappeningsWithPersonID:(long long)aPersonID eventID:(long long)anEventID
                          pageFlag:(EGGPageFlag)aPageFlag
                          pageTime:(long long)aPageTime
                          callback:(GGApiBlock)aCallback
@@ -75,11 +75,11 @@
     
     [parameters setObject:[NSNumber numberWithLongLong:aPersonID] forKey:@"contactid"];
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 //Get funcational area events: functional_areaid=xxx&pageflag=0&pagetime=0&eventid=0
--(void)getHappeningsWithFunctionalAreaID:(long long)anAreaID eventID:(long long)anEventID
+-(AFHTTPRequestOperation *)getHappeningsWithFunctionalAreaID:(long long)anAreaID eventID:(long long)anEventID
                         pageFlag:(EGGPageFlag)aPageFlag
                         pageTime:(long long)aPageTime
                         callback:(GGApiBlock)aCallback
@@ -96,12 +96,12 @@
     
     [parameters setObject:[NSNumber numberWithLongLong:anAreaID] forKey:@"functional_areaid"];
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 //4.Get a company event detail
 //GET:company/event/{eventid}/detail
--(void)getCompanyEventDetailWithID:(long long)anEventID callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)getCompanyEventDetailWithID:(long long)anEventID callback:(GGApiBlock)aCallback
 {
     //GET
     NSString *path = [NSString stringWithFormat:@"company/event/%lld/detail", anEventID];
@@ -110,12 +110,12 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 //5.get a people event detail
 //GET:contact/event/{eventid}/detail
--(void)getPeopleEventDetailWithID:(long long)anEventID callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)getPeopleEventDetailWithID:(long long)anEventID callback:(GGApiBlock)aCallback
 {
     //GET
     NSString *path = [NSString stringWithFormat:@"contact/event/%lld/detail", anEventID];
@@ -124,13 +124,13 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 //MU01:Save an UpdateBack to top
 //POST
 ///svc/member/me/update/save
--(void)saveUpdateWithID:(long long)anUpdateID callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)saveUpdateWithID:(long long)anUpdateID callback:(GGApiBlock)aCallback
 {
     //POST
     NSString *path = @"member/me/update/save";
@@ -140,13 +140,13 @@
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:__LONGLONG(anUpdateID) forKey:@"newsid"];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 //MU02:Unsave an UpdateBack to top
 //POST
 ///svc/member/me/update/unsave
--(void)unsaveUpdateWithID:(long long)anUpdateID callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)unsaveUpdateWithID:(long long)anUpdateID callback:(GGApiBlock)aCallback
 {
     //POST
     NSString *path = @"member/me/update/unsave";
@@ -156,19 +156,19 @@
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:__LONGLONG(anUpdateID) forKey:@"newsid"];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 //MU03:Get Saved UpdatesBack to top
 //POST
 //
 ///svc/member/me/update/get_saved
--(void)getSaveUpdatesWithPageIndex:(int)aPageIndex
+-(AFHTTPRequestOperation *)getSaveUpdatesWithPageIndex:(int)aPageIndex
                           isUnread:(BOOL)aIsUnread
                           callback:(GGApiBlock)aCallback
 {
     if (GGSharedRuntimeData.accessToken == nil) {
-        return;
+        return nil;
     }
     
     //POST
@@ -180,14 +180,14 @@
     [parameters setObject:__INT(aPageIndex) forKey:@"page"];
     [parameters setObject:(aIsUnread ? @"unread" : @"all") forKey:@"type"];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 //SU01:Search UpdatesBack to top
 //POST
 //
 ///svc/search/updates
--(void)searchForCompanyUpdatesWithKeyword:(NSString *)aKeyword
+-(AFHTTPRequestOperation *)searchForCompanyUpdatesWithKeyword:(NSString *)aKeyword
                                 pageIndex:(NSUInteger)aPageIndex
                                  callback:(GGApiBlock)aCallback
 {
@@ -200,13 +200,13 @@
     [parameters setObject:__INT(aPageIndex) forKey:@"page"];
     [parameters setObject:aKeyword forKey:@"q"];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 //SU04:Get Keywords Suggestion for UpdatesBack to top
 //POST
 ///svc/search/updates/get_suggestions
--(void)getUpdateSuggestionWithKeyword:(NSString *)aKeyword
+-(AFHTTPRequestOperation *)getUpdateSuggestionWithKeyword:(NSString *)aKeyword
                                  callback:(GGApiBlock)aCallback
 {
     //POST
@@ -217,7 +217,7 @@
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:aKeyword forKey:@"q"];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 @end

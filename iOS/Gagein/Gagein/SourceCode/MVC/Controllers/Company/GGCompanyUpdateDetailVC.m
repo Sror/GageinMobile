@@ -231,7 +231,7 @@
         [self unobserveNotification:OA_NOTIFY_LINKEDIN_AUTH_OK];
         
         [self showLoadingHUD];
-        [GGSharedAPI snSaveLinedInWithToken:self.linkedInAuthView.accessToken.key secret:self.linkedInAuthView.accessToken.secret callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI snSaveLinedInWithToken:self.linkedInAuthView.accessToken.key secret:self.linkedInAuthView.accessToken.secret callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
@@ -242,13 +242,15 @@
             }
         }];
         
+        [self registerOperation:op];
+        
     }
     else if ([notiName isEqualToString:OA_NOTIFY_FACEBOOK_AUTH_OK])
     {
         NSString *accessToken = [GGFacebookOAuth sharedInstance].session.accessTokenData.accessToken;
         
         [self showLoadingHUD];
-        [GGSharedAPI snSaveFacebookWithToken:accessToken callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI snSaveFacebookWithToken:accessToken callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
@@ -257,13 +259,15 @@
                 [self _shareWithType:kGGSnTypeFacebook];
             }
         }];
+        
+        [self registerOperation:op];
     }
     else if ([notiName isEqualToString:OA_NOTIFY_SALESFORCE_AUTH_OK]) // salesforce ok
     {
         SFOAuthCredentials *credencial = notification.object;
         
         [self showLoadingHUD];
-        [GGSharedAPI snSaveSalesforceWithToken:credencial.accessToken accountID:credencial.userId refreshToken:credencial.refreshToken instanceURL:credencial.instanceUrl.absoluteString callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI snSaveSalesforceWithToken:credencial.accessToken accountID:credencial.userId refreshToken:credencial.refreshToken instanceURL:credencial.instanceUrl.absoluteString callback:^(id operation, id aResultObject, NSError *anError) {
             
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
@@ -274,13 +278,15 @@
             }
             
         }];
+        
+        [self registerOperation:op];
     }
     else if ([notiName isEqualToString:OA_NOTIFY_TWITTER_OAUTH_OK]) // twitter oauth ok
     {
         OAToken *token = notification.object;
         
         [self showLoadingHUD];
-        [GGSharedAPI snSaveTwitterWithToken:token.key secret:token.secret callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI snSaveTwitterWithToken:token.key secret:token.secret callback:^(id operation, id aResultObject, NSError *anError) {
             
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
@@ -291,6 +297,8 @@
             }
             
         }];
+        
+        [self registerOperation:op];
     }
 }
 
@@ -544,7 +552,7 @@
     GGCompanyUpdate *data = _updates[_updateIndex];
     if (data.saved)
     {
-        [GGSharedAPI unsaveUpdateWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI unsaveUpdateWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {
@@ -556,10 +564,12 @@
                 [GGAlert alertWithApiMessage:parser.message];
             }
         }];
+        
+        [self registerOperation:op];
     }
     else
     {
-        [GGSharedAPI saveUpdateWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI saveUpdateWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {
@@ -573,6 +583,8 @@
                 [GGAlert alertWithApiMessage:parser.message];
             }
         }];
+        
+        [self registerOperation:op];
     }
 }
 
@@ -700,7 +712,7 @@
     
     GGCompanyUpdate *updateData = [self.updates objectAtIndex:_updateIndex];
     [self showLoadingHUD];
-    [GGSharedAPI getCompanyUpdateDetailWithNewsID:updateData.ID callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getCompanyUpdateDetailWithNewsID:updateData.ID callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
@@ -713,11 +725,13 @@
         }
         
     }];
+    
+    [self registerOperation:op];
 }
 
 -(void)_callApiGetSnList
 {
-    [GGSharedAPI snGetList:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI snGetList:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
@@ -726,6 +740,8 @@
             [_snTypes addObjectsFromArray:snTypes];
         }
     }];
+    
+    [self registerOperation:op];
 }
 
 

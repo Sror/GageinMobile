@@ -230,7 +230,7 @@
     if (_searchBar.text.length)
     {
         [self showLoadingHUD];
-        [GGSharedAPI getUpdateSuggestionWithKeyword:_searchBar.text callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI getUpdateSuggestionWithKeyword:_searchBar.text callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
@@ -245,6 +245,8 @@
             
             [_tv reloadData];
         }];
+        
+        [self registerOperation:op];
     }
 }
 

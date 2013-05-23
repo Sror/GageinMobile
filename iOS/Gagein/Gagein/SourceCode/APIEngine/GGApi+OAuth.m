@@ -41,30 +41,30 @@
 //
 //public static final int YAMMER = 102;
 //
--(void)snGetUserInfoLinedInWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)snGetUserInfoLinedInWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback
 {
-    [self snGetUserInfoWithType:kGGSnTypeLinkedIn token:aToken secret:aSecret sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
+    return [self snGetUserInfoWithType:kGGSnTypeLinkedIn token:aToken secret:aSecret sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
 }
 
--(void)snGetUserInfoFacebookWithToken:(NSString *)aToken callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)snGetUserInfoFacebookWithToken:(NSString *)aToken callback:(GGApiBlock)aCallback
 {
-    [self snGetUserInfoWithType:kGGSnTypeFacebook token:aToken secret:nil sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
+    return [self snGetUserInfoWithType:kGGSnTypeFacebook token:aToken secret:nil sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
 }
 
--(void)snGetUserInfoSalesforceWithToken:(NSString *)aToken
+-(AFHTTPRequestOperation *)snGetUserInfoSalesforceWithToken:(NSString *)aToken
                        accountID:(NSString *)anAccountID
                     refreshToken:(NSString *)aRefreshToken
                      instanceURL:(NSString *)anInstanceURL callback:(GGApiBlock)aCallback
 {
-    [self snGetUserInfoWithType:kGGSnTypeSalesforce token:aToken secret:nil sfAccountID:anAccountID sfRefreshToken:aRefreshToken sfInstanceURL:anInstanceURL callback:aCallback];
+    return [self snGetUserInfoWithType:kGGSnTypeSalesforce token:aToken secret:nil sfAccountID:anAccountID sfRefreshToken:aRefreshToken sfInstanceURL:anInstanceURL callback:aCallback];
 }
 
--(void)snGetUserInfoTwitterWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)snGetUserInfoTwitterWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback
 {
-    [self snGetUserInfoWithType:kGGSnTypeTwitter token:aToken secret:aSecret sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
+    return [self snGetUserInfoWithType:kGGSnTypeTwitter token:aToken secret:aSecret sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
 }
 
--(void)snGetUserInfoWithType:(EGGSnType)aSnType
+-(AFHTTPRequestOperation *)snGetUserInfoWithType:(EGGSnType)aSnType
                        token:(NSString *)aSnToken
                       secret:(NSString *)aSnSecret
                  sfAccountID:(NSString *)aSfAccountID
@@ -88,7 +88,7 @@
         [parameters setObjectIfNotNil:aSfInstanceUrl forKey:@"sn_instance_url"];
     }
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 //
@@ -131,7 +131,7 @@
 //
 
 
--(void)snRegisterWithEmail:(NSString *)aEmail
+-(AFHTTPRequestOperation *)snRegisterWithEmail:(NSString *)aEmail
                   password:(NSString *)aPassword
                  firstName:(NSString *)aFirstName
                   lastName:(NSString *)aLastName
@@ -174,7 +174,7 @@
         [parameters setObjectIfNotNil:aSfInstanceUrl forKey:@"sn_instance_url"];
     }
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 //
@@ -196,30 +196,30 @@
 //
 //@FormParam("sn_instance_url") String sn_instance_url //only for salesforce
 //
--(void)snSaveLinedInWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)snSaveLinedInWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback
 {
-    [self snSaveWithType:kGGSnTypeLinkedIn token:aToken secret:aSecret sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
+    return [self snSaveWithType:kGGSnTypeLinkedIn token:aToken secret:aSecret sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
 }
 
--(void)snSaveFacebookWithToken:(NSString *)aToken callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)snSaveFacebookWithToken:(NSString *)aToken callback:(GGApiBlock)aCallback
 {
-    [self snSaveWithType:kGGSnTypeFacebook token:aToken secret:nil sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
+    return [self snSaveWithType:kGGSnTypeFacebook token:aToken secret:nil sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
 }
 
--(void)snSaveSalesforceWithToken:(NSString *)aToken
+-(AFHTTPRequestOperation *)snSaveSalesforceWithToken:(NSString *)aToken
                        accountID:(NSString *)anAccountID
                     refreshToken:(NSString *)aRefreshToken
                      instanceURL:(NSString *)anInstanceURL callback:(GGApiBlock)aCallback
 {
-    [self snSaveWithType:kGGSnTypeSalesforce token:aToken secret:nil sfAccountID:anAccountID sfRefreshToken:aRefreshToken sfInstanceURL:anInstanceURL callback:aCallback];
+    return [self snSaveWithType:kGGSnTypeSalesforce token:aToken secret:nil sfAccountID:anAccountID sfRefreshToken:aRefreshToken sfInstanceURL:anInstanceURL callback:aCallback];
 }
 
--(void)snSaveTwitterWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)snSaveTwitterWithToken:(NSString *)aToken secret:(NSString *)aSecret callback:(GGApiBlock)aCallback
 {
-    [self snSaveWithType:kGGSnTypeTwitter token:aToken secret:aSecret sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
+    return [self snSaveWithType:kGGSnTypeTwitter token:aToken secret:aSecret sfAccountID:nil sfRefreshToken:nil sfInstanceURL:nil callback:aCallback];
 }
 
--(void)snSaveWithType:(EGGSnType)aSnType
+-(AFHTTPRequestOperation *)snSaveWithType:(EGGSnType)aSnType
                 token:(NSString *)aSnToken
                secret:(NSString *)aSnSecret
           sfAccountID:(NSString *)aSfAccountID
@@ -243,7 +243,7 @@
         [parameters setObjectIfNotNil:aSfInstanceUrl forKey:@"sn_instance_url"];
     }
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 
@@ -256,7 +256,7 @@
 //Parameters: @QueryParam("access_token") String access_token
 //
 //
--(void)snGetList:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)snGetList:(GGApiBlock)aCallback
 {
     // GET
     NSString *path = @"socialnetwork/linked/list";
@@ -265,7 +265,7 @@
     [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 
@@ -290,7 +290,7 @@
 //
 //@FormParam("picture") String picture //picture url
 //
--(void)snShareNewsWithID:(long long)aNewsID
+-(AFHTTPRequestOperation *)snShareNewsWithID:(long long)aNewsID
                   snType:(EGGSnType)aSnType
                message:(NSString *)aMessage
               headLine:(NSString *)aHeadLine
@@ -309,7 +309,7 @@
     
     [parameters setObjectIfNotNil:aPictureURL forKey:@"picture"];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 //
@@ -327,7 +327,7 @@
 //@FormParam("sn_type") Set<String> sn_types
 //
 //
--(void)snShareComanyEventWithID:(long long)anEventID
+-(AFHTTPRequestOperation *)snShareComanyEventWithID:(long long)anEventID
                   snType:(EGGSnType)aSnType
                  message:(NSString *)aMessage callback:(GGApiBlock)aCallback
 {
@@ -339,7 +339,7 @@
     [parameters setObjectIfNotNil:__INT(aSnType) forKey:@"sn_type"];
     [parameters setObjectIfNotNil:aMessage forKey:@"message"];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 
@@ -357,7 +357,7 @@
 //@FormParam("message") String message, //input by user
 //
 //@FormParam("sn_type") Set<String> sn_types
--(void)snSharePersonEventWithID:(long long)anEventID
+-(AFHTTPRequestOperation *)snSharePersonEventWithID:(long long)anEventID
                          snType:(EGGSnType)aSnType
                         message:(NSString *)aMessage callback:(GGApiBlock)aCallback
 {
@@ -369,7 +369,7 @@
     [parameters setObjectIfNotNil:__INT(aSnType) forKey:@"sn_type"];
     [parameters setObjectIfNotNil:aMessage forKey:@"message"];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 

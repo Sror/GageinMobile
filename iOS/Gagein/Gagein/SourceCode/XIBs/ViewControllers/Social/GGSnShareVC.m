@@ -106,7 +106,7 @@
     NSString *picURL = _comUpdateDetail.pictures.count ? _comUpdateDetail.pictures[0] : nil;
     //picURL = @"http://image.gsfc.nasa.gov/image/image_launch_a5.jpg";
     [self showLoadingHUD];
-    [GGSharedAPI snShareNewsWithID:_comUpdateDetail.ID snType:_snType message:message headLine:_comUpdateDetail.headline summary:summary pictureURL:picURL callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI snShareNewsWithID:_comUpdateDetail.ID snType:_snType message:message headLine:_comUpdateDetail.headline summary:summary pictureURL:picURL callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
@@ -127,6 +127,8 @@
             [self naviBackAction:nil];
         }
     }];
+    
+    [self registerOperation:op];
 }
 
 -(void)_removeSnType:(EGGSnType)aSnType

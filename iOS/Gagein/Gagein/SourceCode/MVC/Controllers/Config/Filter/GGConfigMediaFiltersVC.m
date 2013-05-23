@@ -145,7 +145,7 @@
     {
         GGMediaFilter *filter = _mediaSources[row];
         [self showLoadingHUD];
-        [GGSharedAPI deleteMediaFilterWithID:filter.ID callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI deleteMediaFilterWithID:filter.ID callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
@@ -154,6 +154,8 @@
                 [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             }
         }];
+        
+        [self registerOperation:op];
     }
 }
 
@@ -161,7 +163,7 @@
 -(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
 {
     [self showLoadingHUD];
-    [GGSharedAPI setMediaFilterEnabled:aIsOn callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI setMediaFilterEnabled:aIsOn callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
@@ -171,6 +173,8 @@
         }
         
     }];
+    
+    [self registerOperation:op];
 }
 
 #pragma mark - 
@@ -178,7 +182,7 @@
 {
     [self showLoadingHUD];
     
-    [GGSharedAPI getMediaFiltersList:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getMediaFiltersList:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         GGDataPage *page = [parser parseGetMediaFiltersList];
@@ -192,6 +196,8 @@
         
         [_tvMediaSources reloadData];
     }];
+    
+    [self registerOperation:op];
 }
 
 @end

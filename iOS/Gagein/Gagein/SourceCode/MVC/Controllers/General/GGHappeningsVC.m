@@ -75,6 +75,8 @@
 #pragma mark - notification handling
 -(void)handleNotification:(NSNotification *)notification
 {
+    [super handleNotification:notification];
+    
     if ([notification.name isEqualToString:GG_NOTIFY_LOG_OUT])
     {
         [_happenings removeAllObjects];
@@ -190,11 +192,13 @@
     
     if (_isPersonHappenings)
     {
-        [GGSharedAPI getHappeningsWithPersonID:_personID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+        id op = [GGSharedAPI getHappeningsWithPersonID:_personID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+        [self registerOperation:op];
     }
     else
     {
-        [GGSharedAPI getHappeningsWithCompanyID:_companyID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+        id op = [GGSharedAPI getHappeningsWithCompanyID:_companyID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+        [self registerOperation:op];
     }
     
 }

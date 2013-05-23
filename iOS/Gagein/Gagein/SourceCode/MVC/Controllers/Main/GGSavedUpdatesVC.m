@@ -132,6 +132,8 @@
 #pragma mark - notification handling
 -(void)handleNotification:(NSNotification *)notification
 {
+    [super handleNotification:notification];
+    
     if ([notification.name isEqualToString:GG_NOTIFY_LOG_OUT])
     {
         [_updates removeAllObjects];
@@ -185,7 +187,7 @@
 -(void)_callGetSavedUpdates
 {
     _roundSwitch.btnSwitch.enabled = NO;
-    [GGSharedAPI getSaveUpdatesWithPageIndex:_currentPageIndex isUnread:_isUnread callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getSaveUpdatesWithPageIndex:_currentPageIndex isUnread:_isUnread callback:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
@@ -201,6 +203,8 @@
         
         [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:.5f];
     }];
+    
+    [self registerOperation:op];
 }
 
 -(void)_delayedStopAnimating

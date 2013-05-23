@@ -377,7 +377,7 @@
     if (keyword.length)
     {
         [_slideSettingView showLoadingHUD];
-        [GGSharedAPI getUpdateSuggestionWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI getUpdateSuggestionWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
             [_slideSettingView hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
@@ -392,6 +392,8 @@
             
             [_slideSettingView.tvSuggestedUpdates reloadData];
         }];
+        
+        [self registerOperation:op];
     }
 }
 
@@ -405,6 +407,8 @@
 #pragma mark - notification handling
 -(void)handleNotification:(NSNotification *)notification
 {
+    [super handleNotification:notification];
+    
     NSString *noteName = notification.name;
     if ([noteName isEqualToString:GG_NOTIFY_LOG_OUT])
     {
@@ -952,7 +956,7 @@
 #pragma mark - data handling
 -(void)_getInitData
 {
-    [GGSharedAPI getMenuByType:kGGStrMenuTypeCompanies callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getMenuByType:kGGStrMenuTypeCompanies callback:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
@@ -973,12 +977,14 @@
             [self _exploringTapped:nil];
         }
     }];
+    
+    [self registerOperation:op];
 }
 
 -(void)_callApiGetMenu
 {
     //[_slideSettingView showLoadingHUD];
-    [GGSharedAPI getMenuByType:kGGStrMenuTypeCompanies callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getMenuByType:kGGStrMenuTypeCompanies callback:^(id operation, id aResultObject, NSError *anError) {
         //[_slideSettingView hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
@@ -1011,6 +1017,8 @@
             [GGAlert alertWithApiMessage:parser.message];
         }
     }];
+    
+    [self registerOperation:op];
 }
 
 -(void)_getFirstPage
@@ -1103,11 +1111,13 @@
     //[self showLoadingHUD];
     if (_menuType == kGGMenuTypeCompany)
     {
-        [GGSharedAPI getCompanyUpdatesWithCompanyID:_menuID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:callback];
+        id op = [GGSharedAPI getCompanyUpdatesWithCompanyID:_menuID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:callback];
+        [self registerOperation:op];
     }
     else if (_menuType == kGGMenuTypeAgent)
     {
-        [GGSharedAPI getCompanyUpdatesWithAgentID:_menuID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:callback];
+        id op = [GGSharedAPI getCompanyUpdatesWithAgentID:_menuID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:callback];
+        [self registerOperation:op];
     }
 }
 
@@ -1227,7 +1237,8 @@
     //[self showLoadingHUD];
     if (_menuType == kGGMenuTypeCompany)
     {
-        [GGSharedAPI getHappeningsWithCompanyID:_menuID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+        id op = [GGSharedAPI getHappeningsWithCompanyID:_menuID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+        [self registerOperation:op];
     }
     else if (_menuType == kGGMenuTypeAgent)
     {

@@ -109,7 +109,7 @@
     int row = indexPath.row;
     
     GGCategoryFilter *filter = _filters[row];
-    [GGSharedAPI selectCategoryFilterWithID:filter.ID selected:!filter.checked callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI selectCategoryFilterWithID:filter.ID selected:!filter.checked callback:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
@@ -118,13 +118,15 @@
             [_tv reloadData];
         }
     }];
+    
+    [self registerOperation:op];
 }
 
 #pragma mark - switch button delegate
 -(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
 {
     [self showLoadingHUD];
-    [GGSharedAPI setCategoryFilterEnabled:aIsOn callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI setCategoryFilterEnabled:aIsOn callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
@@ -135,6 +137,8 @@
         }
         
     }];
+    
+    [self registerOperation:op];
 }
 
 
@@ -143,7 +147,7 @@
 {
     [self showLoadingHUD];
     
-    [GGSharedAPI getCategoryFiltersList:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getCategoryFiltersList:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         GGDataPage *page = [parser parseGetCategoryFiltersList];
@@ -157,6 +161,8 @@
         
         [_tv reloadData];
     }];
+    
+    [self registerOperation:op];
 }
 
 @end

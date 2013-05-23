@@ -23,10 +23,10 @@
 //  THE SOFTWARE.
 
 
-#import "NSString+URLEncoding.h"
+#import "NSString+URLEncodingPlus.h"
 
 
-@implementation NSString (OAURLEncodingAdditions)
+@implementation NSString (OAURLEncodingAdditionsPlus)
 
 - (NSString *)encodedURLString {
 	NSString *result = (NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,

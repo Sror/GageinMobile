@@ -65,50 +65,41 @@
     }
 }
 
--(void)_execGetWithPath:(NSString *)aPath params:(NSDictionary *)aParams callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)_execGetWithPath:(NSString *)aPath params:(NSDictionary *)aParams callback:(GGApiBlock)aCallback
 {
-    [self getPath:aPath
+    AFHTTPRequestOperation *operation = [self getPath:aPath
        parameters:aParams
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               
               [self _handleResult:responseObject operation:operation error:nil callback:aCallback];
-              
+              [self postNotification:GG_NOTIFY_API_OPERATION_SUCCESS withObject:operation];
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               
               [self _handleResult:nil operation:operation error:error callback:aCallback];
-    
+              [self postNotification:GG_NOTIFY_API_OPERATION_FAILED withObject:operation];
           }];
+    
+    return operation;
 }
 
--(void)_execPostWithPath:(NSString *)aPath params:(NSDictionary *)aParams callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)_execPostWithPath:(NSString *)aPath params:(NSDictionary *)aParams callback:(GGApiBlock)aCallback
 {
-    [self postPath:aPath
+    AFHTTPRequestOperation *operation = [self postPath:aPath
         parameters:aParams
            success:^(AFHTTPRequestOperation *operation, id responseObject) {
                
                [self _handleResult:responseObject operation:operation error:nil callback:aCallback];
+               [self postNotification:GG_NOTIFY_API_OPERATION_SUCCESS withObject:operation];
                
            }
            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                
                [self _handleResult:nil operation:operation error:error callback:aCallback];
-               
+               [self postNotification:GG_NOTIFY_API_OPERATION_FAILED withObject:operation];
            }];
-}
-
-
-//www.gagein.com/svc/company/1399794/info?appcode=09ad5d624c0294d1&access_token=4d861dfe219170e3c58c7031578028a5&include_sp=true
--(void)getCompanyInfoWithID:(long)aCompanyID includeSp:(BOOL)aIsIncludeSp callback:(GGApiBlock)aCallback
-{
-    NSString *path = [NSString stringWithFormat:@"company/%ld/info", aCompanyID];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:(aIsIncludeSp ? @"true" : @"false") forKey:@"include_sp"];
-    
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return operation;
 }
 
 @end

@@ -77,7 +77,7 @@
         
         [self showLoadingHUD];
         GGLinkedInOAuthVC *linkedInVC = [self linkedInAuthView];
-        [GGSharedAPI snGetUserInfoLinedInWithToken:linkedInVC.accessToken.key secret:linkedInVC.accessToken.secret callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI snGetUserInfoLinedInWithToken:linkedInVC.accessToken.key secret:linkedInVC.accessToken.secret callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             
@@ -89,6 +89,8 @@
             }
             
         }];
+        
+        [self registerOperation:op];
     }
     else if ([notiName isEqualToString:GG_NOTIFY_GET_STARTED])
     {
@@ -104,7 +106,7 @@
         NSString *accessToken = [GGFacebookOAuth sharedInstance].session.accessTokenData.accessToken;
         
         [self showLoadingHUD];
-        [GGSharedAPI snGetUserInfoFacebookWithToken:accessToken callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI snGetUserInfoFacebookWithToken:accessToken callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             
@@ -115,13 +117,15 @@
                 [self _signupWithUserInfo:userInfo];
             }
         }];
+        
+        [self registerOperation:op];
     }
     else if ([notiName isEqualToString:OA_NOTIFY_TWITTER_OAUTH_OK]) // twitter ok
     {
         OAToken *token = notification.object;
         
         [self showLoadingHUD];
-        [GGSharedAPI snGetUserInfoTwitterWithToken:token.key secret:token.secret callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI snGetUserInfoTwitterWithToken:token.key secret:token.secret callback:^(id operation, id aResultObject, NSError *anError) {
             
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
@@ -134,6 +138,8 @@
             }
             
         }];
+        
+        [self registerOperation:op];
     }
 }
 

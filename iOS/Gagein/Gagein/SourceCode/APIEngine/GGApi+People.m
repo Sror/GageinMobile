@@ -13,7 +13,7 @@
 //SC01:Search ContactsBack to top
 //POST
 ///svc/search/contacts
--(void)searchPeopleWithKeyword:(NSString *)aKeyword
+-(AFHTTPRequestOperation *)searchPeopleWithKeyword:(NSString *)aKeyword
                              page:(int)aPage
                          callback:(GGApiBlock)aCallback
 {
@@ -26,13 +26,13 @@
     [parameters setObject:[NSNumber numberWithInt:aPage] forKey:@"page"];
     [parameters setObject:aKeyword forKey:@"q"];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 //MC01:Follow ContactBack to top
 //GET
 ///svc/member/me/contact/follow
--(void)followPersonWithID:(long long)aPersonID callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)followPersonWithID:(long long)aPersonID callback:(GGApiBlock)aCallback
 {
     //GET
     NSString *path = @"member/me/contact/follow";
@@ -42,13 +42,13 @@
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:[NSNumber numberWithLongLong:aPersonID] forKey:@"contactid"];
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 //MC02:UnFollow ContactBack to top
 //GET
 ///svc/member/me/contact/unfollow
--(void)unfollowPersonWithID:(long long)aPersonID callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)unfollowPersonWithID:(long long)aPersonID callback:(GGApiBlock)aCallback
 {
     //GET
     NSString *path = @"member/me/contact/unfollow";
@@ -58,14 +58,14 @@
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObject:[NSNumber numberWithLongLong:aPersonID] forKey:@"contactid"];
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 
 //C01:Contact OverviewBack to top
 //GET
 ///svc/contact/<contactid>/overview, e,g, /svc/contact/150704/overview
--(void)getPersonOverviewWithID:(long long)aPersonID callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)getPersonOverviewWithID:(long long)aPersonID callback:(GGApiBlock)aCallback
 {
     // GET
     NSString *path = [NSString stringWithFormat:@"contact/%lld/overview", aPersonID];
@@ -74,10 +74,10 @@
     [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
--(void)getMyOverview:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)getMyOverview:(GGApiBlock)aCallback
 {
     // GET
     NSString *path = @"member/me/overview";
@@ -87,7 +87,7 @@
     [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     //[parameters setObject:@"me" forKey:@"memid"];
     
-    [self _execGetWithPath:path params:parameters callback:aCallback];
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
 @end

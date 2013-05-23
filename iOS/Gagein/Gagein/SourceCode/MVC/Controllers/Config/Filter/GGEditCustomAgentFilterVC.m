@@ -127,7 +127,7 @@
     {
         GGAgentFilter * filter = _customAgentFilters[row];
         [self showLoadingHUD];
-        [GGSharedAPI deleteCustomAgentWithID:filter.ID callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI deleteCustomAgentWithID:filter.ID callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
@@ -136,6 +136,8 @@
                 [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             }
         }];
+        
+        [self registerOperation:op];
     }
 }
 
@@ -157,7 +159,7 @@
 -(void)_callApiGetCustomAgentFilters
 {
     [self showLoadingHUD];
-    [GGSharedAPI getAgentFiltersList:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getAgentFiltersList:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
@@ -176,6 +178,8 @@
         }
         
     }];
+    
+    [self registerOperation:op];
 }
 
 

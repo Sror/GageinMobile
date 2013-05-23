@@ -75,7 +75,7 @@
 -(void)_callApiGetSuggestedMediaFilters
 {
     [self showLoadingHUD];
-    [GGSharedAPI getMediaSuggestedList:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getMediaSuggestedList:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
@@ -91,6 +91,8 @@
         
         [_tvSuggested reloadData];
     }];
+    
+    [self registerOperation:op];
 }
 
 - (void)viewDidUnload {
@@ -159,7 +161,7 @@
         if (data.checked)
         {
             [self showLoadingHUD];
-            [GGSharedAPI deleteMediaFilterWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            id op = [GGSharedAPI deleteMediaFilterWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
                 [self hideLoadingHUD];
                 GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
                 if (parser.isOK)
@@ -168,11 +170,13 @@
                     [_tvSuggested reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                 }
             }];
+            
+            [self registerOperation:op];
         }
         else
         {
             [self showLoadingHUD];
-            [GGSharedAPI addMediaFilterWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            id op = [GGSharedAPI addMediaFilterWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
                 [self hideLoadingHUD];
                 GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
                 if (parser.isOK)
@@ -181,6 +185,8 @@
                     [_tvSuggested reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                 }
             }];
+            
+            [self registerOperation:op];
         }
         
     }
@@ -189,7 +195,7 @@
         GGMediaFilter *data = _searchedMediaFilters[row];
         
         [self showLoadingHUD];
-        [GGSharedAPI addMediaFilterWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI addMediaFilterWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
@@ -198,6 +204,8 @@
                 [self naviBackAction:nil];
             }
         }];
+        
+        [self registerOperation:op];
     }
     
 }
@@ -245,7 +253,7 @@
     NSString *keyword = ((GGStyledSearchBar *)searchBar).tfSearch.text;
     if (keyword.length)
     {
-        [GGSharedAPI searchMediaWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI searchMediaWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {
@@ -257,6 +265,8 @@
                 [_tvSearchResult reloadData];
             }
         }];
+        
+        [self registerOperation:op];
     }
     return YES;
 }

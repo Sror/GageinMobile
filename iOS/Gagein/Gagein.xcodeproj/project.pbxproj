@@ -439,7 +439,7 @@
 		EAF3E93D172AC0600079344D /* GGPersonDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF3E93B172AC0600079344D /* GGPersonDetailVC.m */; };
 		EAF675F517349E1C00CE9F7D /* GGLoginVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF675F417349E1C00CE9F7D /* GGLoginVC_iPad.xib */; };
 		EAF676331734B57600CE9F7D /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF675FF1734B57600CE9F7D /* NSMutableURLRequest+Parameters.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EAF676341734B57600CE9F7D /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF676011734B57600CE9F7D /* NSString+URLEncoding.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EAF676341734B57600CE9F7D /* NSString+URLEncodingPlus.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF676011734B57600CE9F7D /* NSString+URLEncodingPlus.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EAF676351734B57600CE9F7D /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF676031734B57600CE9F7D /* NSURL+Base.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EAF676361734B57600CE9F7D /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = EAF676051734B57600CE9F7D /* Base64Transcoder.c */; };
 		EAF676371734B57600CE9F7D /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = EAF676071734B57600CE9F7D /* hmac.c */; };
@@ -1129,8 +1129,8 @@
 		EAF675F417349E1C00CE9F7D /* GGLoginVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGLoginVC_iPad.xib; sourceTree = "<group>"; };
 		EAF675FE1734B57600CE9F7D /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
 		EAF675FF1734B57600CE9F7D /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Parameters.m"; sourceTree = "<group>"; };
-		EAF676001734B57600CE9F7D /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
-		EAF676011734B57600CE9F7D /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
+		EAF676001734B57600CE9F7D /* NSString+URLEncodingPlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncodingPlus.h"; sourceTree = "<group>"; };
+		EAF676011734B57600CE9F7D /* NSString+URLEncodingPlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncodingPlus.m"; sourceTree = "<group>"; };
 		EAF676021734B57600CE9F7D /* NSURL+Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Base.h"; sourceTree = "<group>"; };
 		EAF676031734B57600CE9F7D /* NSURL+Base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Base.m"; sourceTree = "<group>"; };
 		EAF676051734B57600CE9F7D /* Base64Transcoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64Transcoder.c; sourceTree = "<group>"; };
@@ -2554,8 +2554,8 @@
 			children = (
 				EAF675FE1734B57600CE9F7D /* NSMutableURLRequest+Parameters.h */,
 				EAF675FF1734B57600CE9F7D /* NSMutableURLRequest+Parameters.m */,
-				EAF676001734B57600CE9F7D /* NSString+URLEncoding.h */,
-				EAF676011734B57600CE9F7D /* NSString+URLEncoding.m */,
+				EAF676001734B57600CE9F7D /* NSString+URLEncodingPlus.h */,
+				EAF676011734B57600CE9F7D /* NSString+URLEncodingPlus.m */,
 				EAF676021734B57600CE9F7D /* NSURL+Base.h */,
 				EAF676031734B57600CE9F7D /* NSURL+Base.m */,
 			);
@@ -3061,7 +3061,7 @@
 				EA16AA1A17325A5B0052B526 /* GGBaseViewController.m in Sources */,
 				EA1D944917335EAB009FCC7B /* GGRootVC.m in Sources */,
 				EAF676331734B57600CE9F7D /* NSMutableURLRequest+Parameters.m in Sources */,
-				EAF676341734B57600CE9F7D /* NSString+URLEncoding.m in Sources */,
+				EAF676341734B57600CE9F7D /* NSString+URLEncodingPlus.m in Sources */,
 				EAF676351734B57600CE9F7D /* NSURL+Base.m in Sources */,
 				EAF676361734B57600CE9F7D /* Base64Transcoder.c in Sources */,
 				EAF676371734B57600CE9F7D /* hmac.c in Sources */,

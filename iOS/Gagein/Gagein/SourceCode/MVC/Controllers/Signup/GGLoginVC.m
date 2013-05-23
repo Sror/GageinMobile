@@ -136,7 +136,7 @@
         DLog(@"email and pwd OK, call login API.")
         
         [self showLoadingHUD];
-        [GGSharedAPI loginWithEmail:self.tfEmail.text password:self.tfPassword.text callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI loginWithEmail:self.tfEmail.text password:self.tfPassword.text callback:^(id operation, id aResultObject, NSError *anError) {
             //DLog(@"%@", aResultObject);
             [self hideLoadingHUD];
             
@@ -182,6 +182,8 @@
                 [GGAlert alertWithApiMessage:parser.message];
             }
         }];
+        
+        [self registerOperation:op];
     }
 }
 

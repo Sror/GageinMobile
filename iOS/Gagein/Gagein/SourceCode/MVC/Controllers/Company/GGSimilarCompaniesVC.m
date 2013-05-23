@@ -78,6 +78,8 @@
 #pragma mark - notification handling
 -(void)handleNotification:(NSNotification *)notification
 {
+    [super handleNotification:notification];
+    
     if ([notification.name isEqualToString:GG_NOTIFY_LOG_OUT])
     {
         [_similarCompanies removeAllObjects];
@@ -173,7 +175,8 @@
         [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:.5f];
     };
     
-    [GGSharedAPI getSimilarCompaniesWithOrgID:_companyID pageNumber:_currentPageIndex callback:callback];
+    id op = [GGSharedAPI getSimilarCompaniesWithOrgID:_companyID pageNumber:_currentPageIndex callback:callback];
+    [self registerOperation:op];
 }
 
 -(void)_delayedStopAnimating

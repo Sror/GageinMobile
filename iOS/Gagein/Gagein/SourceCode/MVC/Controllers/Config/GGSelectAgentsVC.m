@@ -117,7 +117,7 @@
 #pragma mark - actions
 -(IBAction)nextStepAction:(id)sender
 {
-    [GGSharedAPI selectAgents:[self _selectedAgentIDs] callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI selectAgents:[self _selectedAgentIDs] callback:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
@@ -127,6 +127,8 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
     }];
+    
+    [self registerOperation:op];
 }
 
 -(IBAction)doneAction:(id)sender
@@ -137,7 +139,7 @@
         return;
     }
     
-    [GGSharedAPI selectAgents:[self _selectedAgentIDs] callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI selectAgents:[self _selectedAgentIDs] callback:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
@@ -151,6 +153,8 @@
         [self.navigationController popViewControllerAnimated:YES];
     }];
     
+    [self registerOperation:op];
+    
 }
 
 -(IBAction)addCustomAgentAction:(id)sender
@@ -161,8 +165,9 @@
     // save the agents silently...
     NSArray *selectedAgentIDs = [self _selectedAgentIDs];
     if (selectedAgentIDs.count) {
-        [GGSharedAPI selectAgents:selectedAgentIDs callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI selectAgents:selectedAgentIDs callback:^(id operation, id aResultObject, NSError *anError) {
         }];
+        [self registerOperation:op];
     }
 }
 
@@ -285,7 +290,7 @@
 #pragma mark - API calls
 -(void)_getAgentsData
 {
-    [GGSharedAPI getAgents:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getAgents:^(id operation, id aResultObject, NSError *anError) {
         
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.status == 1)
@@ -308,6 +313,8 @@
         }
         
     }];
+    
+    [self registerOperation:op];
 }
 
 @end

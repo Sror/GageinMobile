@@ -107,20 +107,24 @@
         
         if (_agent)
         {
-            [GGSharedAPI updateCustomAgentWithID:_agent.ID name:self.fdName.text keywords:self.texvKeywords.text callback:^(id operation,
+            id op = [GGSharedAPI updateCustomAgentWithID:_agent.ID name:self.fdName.text keywords:self.texvKeywords.text callback:^(id operation,
                                                                                                                          id aResultObject, NSError *anError) {
                 
                 block(operation, aResultObject, anError);
                 
             }];
+            
+            [self registerOperation:op];
         }
         else
         {
-            [GGSharedAPI addCustomAgentWithName:self.fdName.text keywords:self.texvKeywords.text callback:^(id operation, id aResultObject, NSError *anError) {
+            id op = [GGSharedAPI addCustomAgentWithName:self.fdName.text keywords:self.texvKeywords.text callback:^(id operation, id aResultObject, NSError *anError) {
                 
                 block(operation, aResultObject, anError);
                 
             }];
+            
+            [self registerOperation:op];
         }
     }
 }

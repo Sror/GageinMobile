@@ -175,6 +175,8 @@
 #pragma mark - notification handling
 -(void)handleNotification:(NSNotification *)notification
 {
+    [super handleNotification:notification];
+    
     NSString *noteName = notification.name;
     if ([noteName isEqualToString:GG_NOTIFY_LOG_OUT])
     {
@@ -480,7 +482,7 @@
 #pragma mark - data handling
 -(void)_getInitData
 {
-    [GGSharedAPI getMenuByType:kGGStrMenuTypePeople callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getMenuByType:kGGStrMenuTypePeople callback:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
@@ -501,12 +503,14 @@
             [self _exploringTapped:nil];
         }
     }];
+    
+    [self registerOperation:op];
 }
 
 -(void)_callApiGetMenu
 {
     //[_slideSettingView showLoadingHUD];
-    [GGSharedAPI getMenuByType:kGGStrMenuTypePeople callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getMenuByType:kGGStrMenuTypePeople callback:^(id operation, id aResultObject, NSError *anError) {
         //[_slideSettingView hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
@@ -537,6 +541,8 @@
             [GGAlert alertWithApiMessage:parser.message];
         }
     }];
+    
+    [self registerOperation:op];
 }
 
 -(void)_getFirstPage
@@ -603,11 +609,13 @@
     
     if (_menuType == kGGMenuTypePerson)
     {
-        [GGSharedAPI getHappeningsWithPersonID:_menuID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+        id op = [GGSharedAPI getHappeningsWithPersonID:_menuID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+        [self registerOperation:op];
     }
     else if (_menuType == kGGMenuTypeFunctionalArea)
     {
-        [GGSharedAPI getHappeningsWithFunctionalAreaID:_menuID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+        id op = [GGSharedAPI getHappeningsWithFunctionalAreaID:_menuID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+        [self registerOperation:op];
     }
 }
 

@@ -26,6 +26,7 @@
 
 #import "OALnMutableURLRequest.h"
 #import "OALnRequestParameter.h"
+#import "NSString+URLEncodingPlus.h"
 
 @interface OALnMutableURLRequest (Private)
 - (void)_generateTimestamp;
@@ -109,7 +110,8 @@ signatureProvider:(id<OALnSignatureProviding, NSObject>)aProvider
    
     // set OAuth headers
 	NSMutableArray *chunks = [[NSMutableArray alloc] init];
-	[chunks addObject:[NSString stringWithFormat:@"realm=\"%@\"", [[consumer realm] encodedURLParameterString]]];
+    NSString *realmStr = [[consumer realm] encodedURLParameterString];
+	[chunks addObject:[NSString stringWithFormat:@"realm=\"%@\"", realmStr]];
     
     if ([callback length] > 0)
     {
@@ -138,7 +140,7 @@ signatureProvider:(id<OALnSignatureProviding, NSObject>)aProvider
 - (void)_generateTimestamp 
 {
 	[timestamp release];
-    timestamp = [[NSString alloc]initWithFormat:@"%d", time(NULL)];
+    timestamp = [[NSString alloc]initWithFormat:@"%ld", time(NULL)];
 }
 
 - (void)_generateNonce 

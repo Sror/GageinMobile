@@ -88,7 +88,7 @@
     GGTimeZone *data = _timezones[indexPath.row];
     
     [self showLoadingHUD];
-    [GGSharedAPI changeProfileWithTimezone:data.idStr callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI changeProfileWithTimezone:data.idStr callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
@@ -100,6 +100,8 @@
             [_tvTimeZone reloadData];
         }
     }];
+    
+    [self registerOperation:op];
 }
 
 @end

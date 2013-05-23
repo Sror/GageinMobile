@@ -269,7 +269,7 @@
     }
     else
     {
-        [GGSharedAPI followPersonWithID:_personID callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI followPersonWithID:_personID callback:^(id operation, id aResultObject, NSError *anError) {
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.status == 1) {
                 _personOverview.followed = YES;
@@ -281,6 +281,7 @@
             }
         }];
         
+        [self registerOperation:op];
     }
 }
 
@@ -290,13 +291,15 @@
     DLog(@"action sheet index:%d", buttonIndex);
     if (buttonIndex == 0)
     {
-        [GGSharedAPI unfollowPersonWithID:_personID callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI unfollowPersonWithID:_personID callback:^(id operation, id aResultObject, NSError *anError) {
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.status == 1) {
                 _personOverview.followed = NO;
                 [self _updateUiBtnFollow];
             }
         }];
+        
+        [self registerOperation:op];
     }
 }
 
@@ -304,12 +307,14 @@
 -(void)_callApiGetPersonOverview
 {
     [self showLoadingHUD];
-    [GGSharedAPI getPersonOverviewWithID:_personID callback:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getPersonOverviewWithID:_personID callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         _personOverview = [parser parseGetPersonOverview];
         [self _updateUiOverview];
     }];
+    
+    [self registerOperation:op];
 }
 
 -(void)_callApiGetHappenings
@@ -328,7 +333,8 @@
         }
     };
     
-    [GGSharedAPI getHappeningsWithPersonID:_personID eventID:0 pageFlag:kGGPageFlagFirstPage pageTime:0 callback:callback];
+    id op = [GGSharedAPI getHappeningsWithPersonID:_personID eventID:0 pageFlag:kGGPageFlagFirstPage pageTime:0 callback:callback];
+    [self registerOperation:op];
 }
 
 @end

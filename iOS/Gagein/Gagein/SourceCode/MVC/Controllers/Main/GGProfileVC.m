@@ -193,12 +193,14 @@
 -(void)_callApiGetMyOverview
 {
     [self showLoadingHUD];
-    [GGSharedAPI getMyOverview:^(id operation, id aResultObject, NSError *anError) {
+    id op = [GGSharedAPI getMyOverview:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         _userProfile = [parser parseGetMyOverview];
         [_tvProfile reloadData];
     }];
+    
+    [self registerOperation:op];
 }
 
 @end

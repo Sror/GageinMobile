@@ -11,7 +11,7 @@
 @implementation GGApi (Signup)
 
 #pragma mark - signup APIs
--(void)loginWithEmail:(NSString *)anEmail password:(NSString *)aPassword callback:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)loginWithEmail:(NSString *)anEmail password:(NSString *)aPassword callback:(GGApiBlock)aCallback
 {
     NSString *path = @"login";
     
@@ -20,10 +20,10 @@
     [parameters setObject:anEmail forKey:@"mem_email"];
     [parameters setObject:aPassword forKey:@"mem_password"];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
--(void)retisterWithEmail:(NSString *)anEmail
+-(AFHTTPRequestOperation *)retisterWithEmail:(NSString *)anEmail
                 password:(NSString *)aPassword
                firstName:(NSString *)aFirstName
                 lastName:(NSString *)aLastName
@@ -38,7 +38,7 @@
     [parameters setObject:aFirstName forKey:@"mem_first_name"];
     [parameters setObject:aLastName forKey:@"mem_last_name"];
     
-    [self _execPostWithPath:path params:parameters callback:aCallback];
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 @end
