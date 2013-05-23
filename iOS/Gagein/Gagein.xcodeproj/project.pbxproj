@@ -296,6 +296,7 @@
 		EA97575A174D3424007D64CD /* updateSwitchBackbtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA975759174D3424007D64CD /* updateSwitchBackbtn@2x.png */; };
 		EA97575D174D45A4007D64CD /* NSMutableArray+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA97575C174D45A4007D64CD /* NSMutableArray+AddOn.m */; };
 		EA97575F174D7059007D64CD /* GGBlackSearchBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97575E174D7059007D64CD /* GGBlackSearchBar.xib */; };
+		EA975762174DB0B7007D64CD /* UIView+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA975761174DB0B7007D64CD /* UIView+AddOn.m */; };
 		EA98F8CA17440FBE00F1BEB3 /* GGAddMediaFiltersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA98F8C817440FBD00F1BEB3 /* GGAddMediaFiltersVC.m */; };
 		EA98F8CB17440FBE00F1BEB3 /* GGAddMediaFiltersVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA98F8C917440FBD00F1BEB3 /* GGAddMediaFiltersVC.xib */; };
 		EA98F8CE1744144900F1BEB3 /* GGGroupedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA98F8CD1744144900F1BEB3 /* GGGroupedCell.m */; };
@@ -897,6 +898,8 @@
 		EA97575B174D45A4007D64CD /* NSMutableArray+AddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+AddOn.h"; sourceTree = "<group>"; };
 		EA97575C174D45A4007D64CD /* NSMutableArray+AddOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+AddOn.m"; sourceTree = "<group>"; };
 		EA97575E174D7059007D64CD /* GGBlackSearchBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGBlackSearchBar.xib; sourceTree = "<group>"; };
+		EA975760174DB0B6007D64CD /* UIView+AddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AddOn.h"; sourceTree = "<group>"; };
+		EA975761174DB0B7007D64CD /* UIView+AddOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AddOn.m"; sourceTree = "<group>"; };
 		EA98F8C717440FBC00F1BEB3 /* GGAddMediaFiltersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGAddMediaFiltersVC.h; sourceTree = "<group>"; };
 		EA98F8C817440FBD00F1BEB3 /* GGAddMediaFiltersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAddMediaFiltersVC.m; sourceTree = "<group>"; };
 		EA98F8C917440FBD00F1BEB3 /* GGAddMediaFiltersVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGAddMediaFiltersVC.xib; sourceTree = "<group>"; };
@@ -2365,6 +2368,8 @@
 				EA5DFAFF174B142E00577BAC /* NSMutableDictionary+AddOn.m */,
 				EA97575B174D45A4007D64CD /* NSMutableArray+AddOn.h */,
 				EA97575C174D45A4007D64CD /* NSMutableArray+AddOn.m */,
+				EA975760174DB0B6007D64CD /* UIView+AddOn.h */,
+				EA975761174DB0B7007D64CD /* UIView+AddOn.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -3123,6 +3128,7 @@
 				EA62C6CD174BFCDA0031BF42 /* SA_OAuthTwitterEngine.m in Sources */,
 				EA62C6D1174C405B0031BF42 /* GGSnUserInfo.m in Sources */,
 				EA97575D174D45A4007D64CD /* NSMutableArray+AddOn.m in Sources */,
+				EA975762174DB0B7007D64CD /* UIView+AddOn.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,4 +32,5 @@
     #import "Bee_Thread.h"
     #import "NSMutableDictionary+AddOn.h"
     #import "NSMutableArray+AddOn.h"
+    #import "UIView+AddOn.h"
 #endif

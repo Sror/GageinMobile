@@ -32,8 +32,8 @@
 
 -(void)changeDelegate:(id<UITableViewDelegate, UITableViewDataSource, GGStyledSearchBarDelegate>)aNewDelegate;
 
--(void)showLoadingHUD;
--(void)hideLoadingHUD;
+//-(void)showLoadingHUD;
+//-(void)hideLoadingHUD;
 
 -(void)switchSearchMode:(BOOL)aUsingSearchMode;
 @end

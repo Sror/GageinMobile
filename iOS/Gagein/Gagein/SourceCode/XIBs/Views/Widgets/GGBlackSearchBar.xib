@@ -33,21 +33,21 @@
 				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
-			<object class="IBUIView" id="31545213">
+			<object class="IBUIView" id="463053303">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIView" id="440395385">
-						<reference key="NSNextResponder" ref="31545213"/>
+					<object class="IBUIView" id="513291406">
+						<reference key="NSNextResponder" ref="463053303"/>
 						<int key="NSvFlags">276</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIImageView" id="59558852">
-								<reference key="NSNextResponder" ref="440395385"/>
+							<object class="IBUIImageView" id="142824361">
+								<reference key="NSNextResponder" ref="513291406"/>
 								<int key="NSvFlags">274</int>
 								<string key="NSFrame">{{7, 7}, {234, 32}}</string>
-								<reference key="NSSuperview" ref="440395385"/>
+								<reference key="NSSuperview" ref="513291406"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="879417623"/>
+								<reference key="NSNextKeyView" ref="814732057"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -57,13 +57,13 @@
 									<string key="NSResourceName">searchBgDarkRound@2x.png</string>
 								</object>
 							</object>
-							<object class="IBUIImageView" id="879417623">
-								<reference key="NSNextResponder" ref="440395385"/>
+							<object class="IBUIImageView" id="814732057">
+								<reference key="NSNextResponder" ref="513291406"/>
 								<int key="NSvFlags">300</int>
 								<string key="NSFrame">{{18, 12}, {21, 21}}</string>
-								<reference key="NSSuperview" ref="440395385"/>
+								<reference key="NSSuperview" ref="513291406"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="184608620"/>
+								<reference key="NSNextKeyView" ref="799058881"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -73,13 +73,13 @@
 									<string key="NSResourceName">searchGlass@2x.png</string>
 								</object>
 							</object>
-							<object class="IBUITextField" id="184608620">
-								<reference key="NSNextResponder" ref="440395385"/>
+							<object class="IBUITextField" id="799058881">
+								<reference key="NSNextResponder" ref="513291406"/>
 								<int key="NSvFlags">274</int>
 								<string key="NSFrame">{{47, 8}, {183, 30}}</string>
-								<reference key="NSSuperview" ref="440395385"/>
+								<reference key="NSSuperview" ref="513291406"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="1044636698"/>
+								<reference key="NSNextKeyView" ref="386770471"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -93,6 +93,7 @@
 								<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 								<float key="IBUIMinimumFontSize">17</float>
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+									<int key="IBUIAutocorrectionType">1</int>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
 								<int key="IBUIClearButtonMode">3</int>
@@ -110,21 +111,21 @@
 							</object>
 						</array>
 						<string key="NSFrameSize">{250, 44}</string>
-						<reference key="NSSuperview" ref="31545213"/>
+						<reference key="NSSuperview" ref="463053303"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="59558852"/>
+						<reference key="NSNextKeyView" ref="142824361"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor" id="901641029">
+						<object class="NSColor" key="IBUIBackgroundColor" id="9255331">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="IBUIButton" id="1044636698">
-						<reference key="NSNextResponder" ref="31545213"/>
+					<object class="IBUIButton" id="386770471">
+						<reference key="NSNextResponder" ref="463053303"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{250, 8}, {65, 29}}</string>
-						<reference key="NSSuperview" ref="31545213"/>
+						<reference key="NSSuperview" ref="463053303"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -166,9 +167,9 @@
 				<string key="NSFrameSize">{320, 44}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="440395385"/>
+				<reference key="NSNextKeyView" ref="513291406"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
-				<reference key="IBUIBackgroundColor" ref="901641029"/>
+				<reference key="IBUIBackgroundColor" ref="9255331"/>
 				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
 					<string key="IBUISimulatedSizeMetricsClass">IBUISimulatedFreeformSizeMetricsSentinel</string>
 					<string key="IBUIDisplayName">Freeform</string>
@@ -181,48 +182,48 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">viewSearchField</string>
-						<reference key="source" ref="31545213"/>
-						<reference key="destination" ref="440395385"/>
+						<reference key="source" ref="463053303"/>
+						<reference key="destination" ref="513291406"/>
 					</object>
 					<int key="connectionID">11</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">ivSearchBg</string>
-						<reference key="source" ref="31545213"/>
-						<reference key="destination" ref="59558852"/>
+						<reference key="source" ref="463053303"/>
+						<reference key="destination" ref="142824361"/>
 					</object>
 					<int key="connectionID">12</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">ivSearchGlass</string>
-						<reference key="source" ref="31545213"/>
-						<reference key="destination" ref="879417623"/>
+						<reference key="source" ref="463053303"/>
+						<reference key="destination" ref="814732057"/>
 					</object>
 					<int key="connectionID">13</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">tfSearch</string>
-						<reference key="source" ref="31545213"/>
-						<reference key="destination" ref="184608620"/>
+						<reference key="source" ref="463053303"/>
+						<reference key="destination" ref="799058881"/>
 					</object>
 					<int key="connectionID">14</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">btnCancel</string>
-						<reference key="source" ref="31545213"/>
-						<reference key="destination" ref="1044636698"/>
+						<reference key="source" ref="463053303"/>
+						<reference key="destination" ref="386770471"/>
 					</object>
 					<int key="connectionID">15</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
-						<reference key="source" ref="184608620"/>
-						<reference key="destination" ref="31545213"/>
+						<reference key="source" ref="799058881"/>
+						<reference key="destination" ref="463053303"/>
 					</object>
 					<int key="connectionID">16</int>
 				</object>
@@ -248,46 +249,46 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">2</int>
-						<reference key="object" ref="31545213"/>
+						<reference key="object" ref="463053303"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="440395385"/>
-							<reference ref="1044636698"/>
+							<reference ref="513291406"/>
+							<reference ref="386770471"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">7</int>
-						<reference key="object" ref="440395385"/>
+						<reference key="object" ref="513291406"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="59558852"/>
-							<reference ref="879417623"/>
-							<reference ref="184608620"/>
+							<reference ref="142824361"/>
+							<reference ref="814732057"/>
+							<reference ref="799058881"/>
 						</array>
-						<reference key="parent" ref="31545213"/>
+						<reference key="parent" ref="463053303"/>
 						<string key="objectName">viewSearchField</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3</int>
-						<reference key="object" ref="59558852"/>
-						<reference key="parent" ref="440395385"/>
+						<reference key="object" ref="142824361"/>
+						<reference key="parent" ref="513291406"/>
 						<string key="objectName">ivSearchBg</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">8</int>
-						<reference key="object" ref="879417623"/>
-						<reference key="parent" ref="440395385"/>
+						<reference key="object" ref="814732057"/>
+						<reference key="parent" ref="513291406"/>
 						<string key="objectName">ivSearchGlass</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">9</int>
-						<reference key="object" ref="184608620"/>
-						<reference key="parent" ref="440395385"/>
+						<reference key="object" ref="799058881"/>
+						<reference key="parent" ref="513291406"/>
 						<string key="objectName">tfSearch</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">10</int>
-						<reference key="object" ref="1044636698"/>
-						<reference key="parent" ref="31545213"/>
+						<reference key="object" ref="386770471"/>
+						<reference key="parent" ref="463053303"/>
 						<string key="objectName">btnCancel</string>
 					</object>
 				</array>

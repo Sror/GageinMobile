@@ -307,7 +307,7 @@
 - (BOOL)searchBar:(GGBaseSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     
-    if (range.length <= 1 && text.length <= 0)
+    if (range.location <= 0 && text.length <= 0)
     {
         [_searchTimer invalidate];
         _searchTimer = nil;
@@ -376,9 +376,9 @@
     NSString *keyword = _slideSettingView.searchBar.tfSearch.text;
     if (keyword.length)
     {
-        [self showLoadingHUD];
+        [_slideSettingView showLoadingHUD];
         [GGSharedAPI getUpdateSuggestionWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
-            [self hideLoadingHUD];
+            [_slideSettingView hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {
