@@ -766,7 +766,7 @@
     GGCompany *data = _companyUpdateDetail.mentionedCompanies[row];
     cell.lblTitle.text = data.name;
     cell.lblSubTitle.text = data.website;
-    cell.lblThirdLine.text = data.address;
+    cell.lblThirdLine.text = [NSString stringWithFormat:@"%@,%@,%@", data.city, data.state, data.country];
     [cell.ivPhoto setImageWithURL:[NSURL URLWithString:data.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
     
     cell.tag = row;
