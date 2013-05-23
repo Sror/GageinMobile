@@ -117,6 +117,11 @@
             [self performSelector:@selector(naviBackAction:) withObject:nil afterDelay:1.f];
             //[self naviBackAction:nil];
         }
+        else
+        {
+            NSString *message = [NSString stringWithFormat:@"Ops, Nothing shared, Maybe your %@ account has been disconnected.", [GGUtils stringForSnType:_snType]];
+            [GGAlert alertWithMessage:message];
+        }
     }];
 }
 

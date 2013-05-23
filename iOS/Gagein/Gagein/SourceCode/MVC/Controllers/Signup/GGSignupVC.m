@@ -43,41 +43,7 @@
     {
         NSString *formatStr = @"Success!\nYou are now connected to your %@ accounts.";
         
-        switch (_userInfo.snType)
-        {
-            case kGGSnTypeFacebook:
-            {
-                return [NSString stringWithFormat:formatStr, @"Facebook"];
-            }
-                break;
-                
-            case kGGSnTypeLinkedIn:
-            {
-                return [NSString stringWithFormat:formatStr, @"LinkedIn"];
-            }
-                break;
-                
-            case kGGSnTypeTwitter:
-            {
-                return [NSString stringWithFormat:formatStr, @"Twitter"];
-            }
-                break;
-                
-            case kGGSnTypeSalesforce:
-            {
-                return [NSString stringWithFormat:formatStr, @"Falesforce"];
-            }
-                break;
-                
-            case kGGSnTypeYammer:
-            {
-                return [NSString stringWithFormat:formatStr, @"Yammer"];
-            }
-                break;
-                
-            default:
-                break;
-        }
+        return [NSString stringWithFormat:formatStr, [GGUtils stringForSnType:_userInfo.snType]];
     }
     
     return nil;

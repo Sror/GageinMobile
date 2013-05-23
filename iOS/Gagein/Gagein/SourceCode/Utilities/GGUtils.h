@@ -39,4 +39,6 @@
 +(NSArray *)timezones;
 
 +(NSString*)stringByTrimmingLeadingWhitespaceOfString:(NSString *)aStr;
+
++(NSString *)stringForSnType:(EGGSnType)aSnType;
 @end

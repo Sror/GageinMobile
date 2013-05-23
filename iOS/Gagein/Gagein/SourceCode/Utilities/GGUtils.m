@@ -273,4 +273,45 @@
     return [aStr substringFromIndex:i];
 }
 
++(NSString *)stringForSnType:(EGGSnType)aSnType
+{
+    switch (aSnType)
+    {
+        case kGGSnTypeFacebook:
+        {
+            return @"Facebook";
+        }
+            break;
+            
+        case kGGSnTypeLinkedIn:
+        {
+            return @"LinkedIn";
+        }
+            break;
+            
+        case kGGSnTypeTwitter:
+        {
+            return @"Twitter";
+        }
+            break;
+            
+        case kGGSnTypeSalesforce:
+        {
+            return @"Salesforce";
+        }
+            break;
+            
+        case kGGSnTypeYammer:
+        {
+            return @"Yammer";
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    return nil;
+}
+
 @end
