@@ -83,24 +83,17 @@
     self.backgroundColor = GGSharedColor.graySettingBg;
     _ivSearchBg.image = [[UIImage imageNamed:@"searchBgDarkRound"] resizableImageWithCapInsets:UIEdgeInsetsMake(16, 20, 16, 20)];
     _tfSearch.text = @"";
+    [_btnCancel addTarget:self action:@selector(_cancelAction:) forControlEvents:UIControlEventTouchUpInside];
     
     //self.backgroundColor = GGSharedColor.darkRed;
 }
 
-
-//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-//{
-//    [self showCancelButton:YES animated:YES];
-//    
-//    return [super textFieldShouldBeginEditing:textField];
-//}
-//
-//- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-//{
-//    [self showCancelButton:NO animated:YES];
-//    
-//    return [super textFieldShouldEndEditing:textField];
-//}
+-(void)_cancelAction:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(searchBarCanceled:)]) {
+        [self.delegate searchBarCanceled:self];
+    }
+}
 
 -(void)showCancelButton:(BOOL)aShow animated:(BOOL)animated
 {

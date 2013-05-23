@@ -20,6 +20,7 @@
 
 - (BOOL)searchBarShouldClear:(GGBaseSearchBar *)searchBar;
 - (BOOL)searchBarShouldSearch:(GGBaseSearchBar *)searchBar;
+- (void)searchBarCanceled:(GGBaseSearchBar *)searchBar;
 @end
 
 

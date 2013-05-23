@@ -332,6 +332,11 @@
     return YES;
 }
 
+- (void)searchBarCanceled:(GGBaseSearchBar *)searchBar
+{
+    [_slideSettingView switchSearchMode:NO];
+}
+
 -(BOOL)_searchAction:(GGBaseSearchBar *)searchBar
 {
     GGBlackSearchBar *blackBar = (GGBlackSearchBar *)searchBar;
