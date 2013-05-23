@@ -11,7 +11,9 @@
 @interface GGAlert : NSObject
 
 +(void)alertWithApiMessage:(NSString *)aMessage;
+
 +(void)alertWithMessage:(NSString *)aMessage;
++(void)alertWithMessage:(NSString *)aMessage title:(NSString *)aTitle;
 
 +(void)alertNetError;
 +(void)alertCancelOK:(NSString *)aMessage delegate:(id)aDelegate;

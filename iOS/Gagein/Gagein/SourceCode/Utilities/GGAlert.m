@@ -31,6 +31,16 @@
     [self alert:aMessage delegate:nil];
 }
 
++(void)alertWithMessage:(NSString *)aMessage title:(NSString *)aTitle
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:aTitle
+                                                    message:aMessage
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Okay"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
 +(void)alertNetError
 {
     [self alertWithApiMessage:@"Sorry, the network is not available currently."];
