@@ -34,6 +34,8 @@
 #import "GGRelevanceBar.h"
 //#import "GGEmptyView.h"
 #import "GGEmptyActionView.h"
+#import "GGComUpdateSearchResultVC.h"
+#import "GGKeywordExampleCell.h"
 
 #define SWITCH_WIDTH 90
 #define SWITCH_HEIGHT 20
@@ -67,6 +69,10 @@
     CGRect                      _relevanceRectShow;
     CGRect                      _relevanceRectHide;
     CGRect                      _updateTvRect;
+    
+    NSTimer                     *_searchTimer;
+    NSMutableArray              *_suggestedUpdates;
+    GGKeywordExampleCell        *_keywordExampleView;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -76,9 +82,13 @@
         _relevance = kGGCompanyUpdateRelevanceHigh;
         _updates = [NSMutableArray array];
         _happenings = [NSMutableArray array];
+        _suggestedUpdates = [NSMutableArray array];
+        
         _menuType = kGGMenuTypeAgent;   // exploring...
         _menuID = GG_ALL_RESULT_ID;
         _isShowingUpdate = YES;
+        
+        _keywordExampleView = [GGKeywordExampleCell viewFromNibWithOwner:self];
     }
     return self;
 }
@@ -263,6 +273,13 @@
     }
 }
 
+#pragma mark -
+-(void)_refreshTimer
+{
+    [_searchTimer invalidate];
+    _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2.f target:self selector:@selector(_callApiGetSuggestions) userInfo:nil repeats:NO];
+}
+
 #pragma mark - search bar delegate
 - (BOOL)searchBarShouldBeginEditing:(GGBaseSearchBar *)searchBar
 {
@@ -277,7 +294,7 @@
 
 - (BOOL)searchBarShouldEndEditing:(GGBaseSearchBar *)searchBar
 {
-    [self _searchAction:searchBar];
+    //[self _searchAction:searchBar];
     //[_slideSettingView switchSearchMode:NO];
     return YES;
 }
@@ -289,6 +306,18 @@
 
 - (BOOL)searchBar:(GGBaseSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
+    
+    if (range.length <= 1 && text.length <= 0)
+    {
+        [_searchTimer invalidate];
+        _searchTimer = nil;
+        _slideSettingView.tvSuggestedUpdates.hidden = YES;
+    }
+    else
+    {
+        [self _refreshTimer];
+    }
+
     return YES;
 }
 
@@ -308,17 +337,8 @@
     GGBlackSearchBar *blackBar = (GGBlackSearchBar *)searchBar;
     if (blackBar.tfSearch.text.length)
     {
-        GGComUpdateSearchVC *vc = [[GGComUpdateSearchVC alloc] init];
-        vc.keyword = blackBar.tfSearch.text;
-        blackBar.tfSearch.text = @"";
-        
-        [_slideSettingView hideSlideOnCompletion:^{
-            
-            //[self.navigationController pushViewController:vc animated:YES];
-            
-        }];
-        
-        [self.navigationController pushViewController:vc animated:NO];
+        [self _doSearchWithKeyword:blackBar.tfSearch.text];
+        //blackBar.tfSearch.text = @"";
         
         return YES;
     }
@@ -326,20 +346,50 @@
     return NO;
 }
 
-//- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
-//{
-//    
-//}
+-(void)_doSearchWithKeyword:(NSString *)aKeyword
+{
+    if (aKeyword.length)
+    {
+        [_searchTimer invalidate];
+        _searchTimer = nil;
+        
+        GGComUpdateSearchResultVC *vc = [[GGComUpdateSearchResultVC alloc] init];
+        vc.keyword = aKeyword;
+        
+        
+        [_slideSettingView switchSearchMode:NO];
+        [_slideSettingView hideSlideOnCompletion:^{
+            
+        }];
+        
+        [self.navigationController pushViewController:vc animated:NO];
+    }
+}
 
-//- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-//{
-//    
-//}
+-(void)_callApiGetSuggestions
+{
+    NSString *keyword = _slideSettingView.searchBar.tfSearch.text;
+    if (keyword.length)
+    {
+        [self showLoadingHUD];
+        [GGSharedAPI getUpdateSuggestionWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [_suggestedUpdates removeAllObjects];
+                NSArray *keywords = parser.dataInfos;
+                for (NSDictionary *dic in keywords)
+                {
+                    [_suggestedUpdates addObject:[dic objectForKey:@"keywords"]];
+                }
+            }
+            
+            [_slideSettingView.tvSuggestedUpdates reloadData];
+        }];
+    }
+}
 
-//- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-//{
-//    //searchBar.showsCancelButton = YES;
-//}
 
 #pragma mark - slide setting view delegate
 -(void)slideview:(GGSlideSettingView *)aSlideView isShowed:(BOOL)aIsShowed
@@ -568,6 +618,12 @@
         GGDataPage *page = _menuDatas[section];
         return page.items.count;
     }
+    else if (tableView == _slideSettingView.tvSuggestedUpdates)
+    {
+        int count = _suggestedUpdates.count;
+        _slideSettingView.tvSuggestedUpdates.hidden = (count <= 0);
+        return count + 1;   // add one extra cell
+    }
     
     return 0;
 }
@@ -653,12 +709,55 @@
         
         return cell;
     }
-    
+    else if (tableView == _slideSettingView.tvSuggestedUpdates)
+    {
+        if (row == _suggestedUpdates.count) // extra one
+        {
+            return _keywordExampleView;
+        }
+        else
+        {
+            static NSString *cellID = @"suggestedUpdateCell";
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+            if (cell == nil)
+            {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+            
+            NSString *keyword = _suggestedUpdates[row];
+            cell.textLabel.text = keyword;
+            
+            return cell;
+        }
+        
+    }
+
     return nil;
 }
 
 
 #pragma mark - tableView delegate
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+//    if (tableView == _slideSettingView.tvSuggestedUpdates)
+//    {
+//        return _keywordExampleView.frame.size.height;
+//    }
+    
+    return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+//    if (tableView == _slideSettingView.tvSuggestedUpdates)
+//    {
+//        return _keywordExampleView;
+//    }
+    
+    return nil;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (tableView == _slideSettingView.viewTable)
@@ -701,6 +800,10 @@
     {
         return [GGSettingMenuCell HEIGHT];
     }
+    else if (tableView == _slideSettingView.tvSuggestedUpdates && indexPath.row == _suggestedUpdates.count) // extra one
+    {
+        return _keywordExampleView.frame.size.height;
+    }
     
     return 44;
 }
@@ -717,9 +820,6 @@
         vc.updates = self.updates;
         vc.updateIndex = row;
         
-        //GGCompanyUpdate *data = _updates[row];
-        //data.hasBeenRead = YES;
-        
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (tableView == self.happeningsTV)
@@ -727,9 +827,6 @@
         GGHappeningDetailVC *vc = [[GGHappeningDetailVC alloc] init];
         vc.happenings = _happenings;
         vc.currentIndex = row;
-        
-        //GGCompanyHappening *data = _happenings[row];
-        //data.hasBeenRead = YES;
         
         [self.navigationController pushViewController:vc animated:YES];
     }
@@ -756,6 +853,14 @@
         _menuID = theData.ID;
         
         [self _refreshWithMenuId:theData.ID type:theData.type];
+    }
+    else if (tableView == _slideSettingView.tvSuggestedUpdates)
+    {
+        if (row < _suggestedUpdates.count)
+        {
+            NSString *keyword = _suggestedUpdates[row];
+            [self _doSearchWithKeyword:keyword];
+        }
     }
 }
 

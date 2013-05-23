@@ -23,7 +23,9 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
+    
+    if (self)
+    {
         self.backgroundColor = GGSharedColor.graySettingBg;
         
         //CGRect tableRc = self.bounds;
@@ -36,10 +38,9 @@
         [self addSubview:_viewTable];
         
         _searchBar = [GGBlackSearchBar viewFromNibWithOwner:self];
-        //_searchBar.frame = [self _searchBarRect:NO];
-        //[[GGSearchBar alloc] initWithFrame:CGRectMake(0, 0, SLIDE_SETTING_VIEW_WIDTH, 40)];
         _viewTable.tableHeaderView = _searchBar;
 
+        //
         _viewDimmed = [[UIView alloc] initWithFrame:CGRectZero];
         _viewDimmed.backgroundColor = GGSharedColor.black;
         _viewDimmed.alpha = .7f;
@@ -47,6 +48,10 @@
         _gestDimmedViewTapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_dimmedViewTapped:)];
         [_viewDimmed addGestureRecognizer:_gestDimmedViewTapped];
         
+        //
+        _tvSuggestedUpdates = [[UITableView alloc] initWithFrame:[self _tvSuggestedRect] style:UITableViewStylePlain];
+        
+        //
         [self _switchSearhBarMode:NO];
     }
     return self;
@@ -67,6 +72,13 @@
     return isLong ? CGRectMake(0, 0, self.frame.size.width, 40) : CGRectMake(0, 0, SLIDE_SETTING_VIEW_WIDTH, 40);
 }
 
+-(CGRect)_tvSuggestedRect
+{
+    CGRect rc = [self _dimmedRect];
+    rc.size.height = [UIScreen mainScreen].applicationFrame.size.height - _searchBar.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT;
+    return rc;
+}
+
 -(CGRect)_dimmedRect
 {
     return CGRectMake(0, (CGRectGetMaxY(_searchBar.frame)), self.frame.size.width, self.frame.size.height);
@@ -79,11 +91,16 @@
         [GGSharedDelegate.rootVC bare];
         _viewDimmed.frame = [self _dimmedRect];
         [self addSubview:_viewDimmed];
+        
+        _tvSuggestedUpdates.frame = [self _tvSuggestedRect];
+        [self addSubview:_tvSuggestedUpdates];
     }
     else
     {
         [GGSharedDelegate.rootVC reveal];
         [_viewDimmed removeFromSuperview];
+        [_tvSuggestedUpdates removeFromSuperview];
+        
         [_searchBar.tfSearch resignFirstResponder];
     }
     
@@ -140,6 +157,8 @@
     self.viewTable.dataSource = aNewDelegate;
     self.viewTable.delegate = aNewDelegate;
     self.searchBar.delegate = aNewDelegate;
+    self.tvSuggestedUpdates.dataSource = aNewDelegate;
+    self.tvSuggestedUpdates.delegate = aNewDelegate;
 }
 
 -(void)showLoadingHUD
