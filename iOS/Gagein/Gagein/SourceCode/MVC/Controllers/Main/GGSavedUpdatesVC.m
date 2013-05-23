@@ -23,8 +23,8 @@
 #define SWITCH_WIDTH 80
 #define SWITCH_HEIGHT 20
 
-#define EMPTY_TEXT_ALL      @"No saved updates yet."
-#define EMPTY_TEXT_UNREAD   @"No unread updates yet."
+#define EMPTY_TEXT_ALL      @"There are no updates to show in this view."//@"No saved updates yet."
+#define EMPTY_TEXT_UNREAD   @"There are no updates to show in this view."//@"No unread updates yet."
 
 @interface GGSavedUpdatesVC ()
 @property (strong, nonatomic) GGEmptyView *viewEmpty;
