@@ -13,4 +13,5 @@
 @interface GGSnShareVC : GGBaseViewController
 @property (strong)  GGCompanyUpdate *comUpdateDetail;
 @property (assign)  EGGSnType       snType;
+@property (strong)  NSMutableArray  *snTypesRef;    // for modification when sn sharing failed
 @end

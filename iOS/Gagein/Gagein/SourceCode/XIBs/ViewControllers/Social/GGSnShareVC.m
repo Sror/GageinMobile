@@ -121,8 +121,22 @@
         {
             NSString *message = [NSString stringWithFormat:@"Ops, Nothing shared, Maybe your %@ account has been disconnected.", [GGUtils stringForSnType:_snType]];
             [GGAlert alertWithMessage:message];
+            [self _removeSnType:_snType];
+            [self naviBackAction:nil];
         }
     }];
+}
+
+-(void)_removeSnType:(EGGSnType)aSnType
+{
+    for (NSString *type in _snTypesRef)
+    {
+        if (type.longLongValue == aSnType)
+        {
+            [_snTypesRef removeObject:type];
+            break;
+        }
+    }
 }
 
 

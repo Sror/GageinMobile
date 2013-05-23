@@ -435,11 +435,13 @@
     }
 }
 
+
 -(void)_shareWithType:(EGGSnType)aType
 {
     GGSnShareVC *vc = [[GGSnShareVC alloc] init];
     vc.comUpdateDetail = _companyUpdateDetail;
     vc.snType = aType;
+    vc.snTypesRef = _snTypes;
     
     [self.navigationController pushViewController:vc animated:YES];
 }
