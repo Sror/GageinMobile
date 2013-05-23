@@ -46,6 +46,8 @@ typedef enum {
 
 @interface GGHappening : GGDataModel
 @property (assign) long long                    timestamp;
+@property (assign) long long                    protocol;
+@property (copy)    NSString                    *dateStr;
 
 @property (assign) long long                    contactID;
 @property (copy) NSString                       *name;
