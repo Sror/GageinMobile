@@ -14,6 +14,22 @@
 #import "GGPersonDetailVC.h"
 #import "GGAppDelegate.h"
 
+
+
+@interface GGCellData : NSObject
+@property (assign) long long    ID;
+@property (copy) NSString       *name;
+@property (copy) NSString       *title;
+@property (copy) NSString       *address;
+@property (copy) NSString       *picUrl;
+@property (assign) EGGCustomBriefCellType   type;
+@end
+
+@implementation GGCellData
+@end
+
+
+//
 @interface GGHappeningDetailVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tvDetail;
 @property (weak, nonatomic) IBOutlet UIView *viewBottomBar;
@@ -28,13 +44,15 @@
     
     UIButton *_btnPrevUpdate;
     UIButton *_btnNextUpdate;
+    
+    NSMutableArray              *_cellDatas;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _cellDatas = [NSMutableArray array];
     }
     return self;
 }
@@ -81,14 +99,22 @@
     [self _callApiGetHappeningDetail];
 }
 
--(void)viewWillAppear:(BOOL)animated
+-(void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     
     self.navigationController.navigationBarHidden = NO;
     [self.navigationController.navigationBar addSubview:_btnPrevUpdate];
     [self.navigationController.navigationBar addSubview:_btnNextUpdate];
     [self _updateNaviBtnState];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [_btnPrevUpdate removeFromSuperview];
+    [_btnNextUpdate removeFromSuperview];
 }
 
 - (void)viewDidUnload {
@@ -199,13 +225,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSUInteger count = 1;
-    if (_currentDetail.person.ID) {
-        count++;
-    }
-    if (_currentDetail.company.ID) {
-        count++;
-    }
+    NSUInteger count = 1 + _cellDatas.count;
     
     return count;
 }
@@ -287,22 +307,14 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        if (row == 1 && _currentDetail.person) { // if person exists, show person
-            
-            cell.lblName.text = _currentDetail.person.name;
-            cell.lblTitle.text = _currentDetail.freshJobTitle;
-            cell.lblAddress.text = _currentDetail.person.address;
-            cell.type = kGGCustomBriefCellPerson;
-            [cell.ivPhoto setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
-            
-        }  else { // this index represent comany
-            
-            cell.lblName.text = _currentDetail.company.name;
-            cell.lblTitle.text = _currentDetail.company.orgWebSite;
-            cell.lblAddress.text = [_currentDetail.company addressCityStateCountry];
-            cell.type = kGGCustomBriefCellCompany;
-            [cell.ivPhoto setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-        }
+        GGCellData *data = _cellDatas[row - 1];
+        
+        cell.lblName.text = data.name;
+        cell.lblTitle.text = data.title;
+        cell.lblAddress.text = data.address;
+        cell.type = data.type;
+        [cell.ivPhoto setImageWithURL:[NSURL URLWithString:data.picUrl] placeholderImage:
+         (data.type == kGGCustomBriefCellCompany ? GGSharedImagePool.logoDefaultCompany : GGSharedImagePool.logoDefaultPerson)];
         
         return cell;
         
@@ -328,17 +340,19 @@
     int row = indexPath.row;
     if (row > 0)
     {
-        GGCustomBriefCell *cell = (GGCustomBriefCell *)[tableView cellForRowAtIndexPath:indexPath];
-        if (cell.type == kGGCustomBriefCellCompany)
+        //GGCustomBriefCell *cell = (GGCustomBriefCell *)[tableView cellForRowAtIndexPath:indexPath];
+        
+        GGCellData *data = _cellDatas[row - 1];
+        if (data.type == kGGCustomBriefCellCompany)
         {
             GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-            vc.companyID = _currentDetail.company.ID;
+            vc.companyID = data.ID;
             [self.navigationController pushViewController:vc animated:YES];
         }
         else
         {
             GGPersonDetailVC *vc = [[GGPersonDetailVC alloc] init];
-            vc.personID = _currentDetail.person.ID;
+            vc.personID = data.ID;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
@@ -355,6 +369,48 @@
         if (parser.isOK)
         {
             _currentDetail = [parser parseCompanyEventDetail];
+            
+            // cell datas
+            [_cellDatas removeAllObjects];
+            
+            if (_currentDetail.person.ID)
+            {
+                GGCellData *data = [[GGCellData alloc] init];
+                data.ID = _currentDetail.person.ID;
+                data.name = _currentDetail.person.name;
+                data.title = _currentDetail.person.orgTitle;
+                data.address = _currentDetail.person.address;
+                data.picUrl = _currentDetail.person.photoPath;
+                data.type = kGGCustomBriefCellPerson;
+                
+                [_cellDatas addObject:data];
+            }
+            
+            if (_currentDetail.company.ID)
+            {
+                GGCellData *data = [[GGCellData alloc] init];
+                data.ID = _currentDetail.company.ID;
+                data.name = _currentDetail.company.name;
+                data.title = _currentDetail.company.orgWebSite;
+                data.address = [_currentDetail.company addressCityStateCountry];
+                data.picUrl = _currentDetail.company.orgLogoPath;
+                data.type = kGGCustomBriefCellCompany;
+                
+                [_cellDatas addObject:data];
+            }
+            
+            if (_currentDetail.oldCompany.ID)
+            {
+                GGCellData *data = [[GGCellData alloc] init];
+                data.ID = _currentDetail.oldCompany.ID;
+                data.name = _currentDetail.oldCompany.name;
+                data.title = _currentDetail.oldCompany.orgWebSite;
+                data.address = [_currentDetail.oldCompany addressCityStateCountry];
+                data.picUrl = _currentDetail.oldCompany.orgLogoPath;
+                data.type = kGGCustomBriefCellCompany;
+                
+                [_cellDatas addObject:data];
+            }
         }
         
         [_tvDetail reloadData];

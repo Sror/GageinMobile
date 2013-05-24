@@ -174,7 +174,7 @@
     
     [self.person parseWithData:[aData objectForKey:@"person"]];
     [self.company parseWithData:[aData objectForKey:@"company"]];
-    [self.oldCompany parseWithData:[aData objectForKey:@"company"]];
+    [self.oldCompany parseWithData:[aData objectForKey:@"oldCompany"]];
     
     self.ID = [[aData objectForKey:@"eventid"] longLongValue];
     self.type = [[aData objectForKey:@"type"] intValue];
