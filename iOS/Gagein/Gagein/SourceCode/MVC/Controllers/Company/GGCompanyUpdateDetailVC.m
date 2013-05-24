@@ -315,11 +315,17 @@
     controller.mailComposeDelegate = self;
     [controller setSubject:_companyUpdateDetail.headline];
     
-    NSString *contentBody = [NSString stringWithFormat:@"<div>I want to share this update with you.<br\\><br\\> \
-                             %@\n\n \
-                             %@\n\n \
-                             %@\n\n \
-                             Shared from GageIn, a visual sales intelligence company.</div>", _companyUpdateDetail.url
+//    <div>
+//    
+//    <p><strong>%@</strong></p>
+//    Shared from <a href="http://www.gagein.com/">GageIn</a>, a visual sales intelligence company </div>
+    
+    NSString *contentBody = [NSString stringWithFormat:@"<div><p>I want to share this update with you.</p> \
+                             <p><a href=\"%@\">%@</a></p> \
+                             <p><strong>%@</strong></p> \
+                             <p><em>%@</em></p> \
+                             Shared from <a href=\"www.gagein.com\">GageIn</a>, a visual sales intelligence company </div>"
+                             , _companyUpdateDetail.url, _companyUpdateDetail.url
                              , _companyUpdateDetail.headline
                              , _companyUpdateDetail.contentInDetail];
 
