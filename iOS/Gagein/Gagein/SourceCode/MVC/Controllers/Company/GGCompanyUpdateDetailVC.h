@@ -12,6 +12,7 @@
 @interface GGCompanyUpdateDetailVC : GGBaseViewController
 <UIWebViewDelegate
 , MFMailComposeViewControllerDelegate
+, MFMessageComposeViewControllerDelegate
 , UITableViewDataSource
 , UITableViewDelegate
 >

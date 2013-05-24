@@ -18,10 +18,10 @@ typedef enum {
     , kGGHappeningCompanyEmloyeeSizeIncrease = 2006
     , kGGHappeningCompanyEmloyeeSizeDecrease = 2007
     
-    , kGGHappeningPersonUpdateProfilePic = 1001
-    , kGGHappeningPersonJoinOtherCompany = 1002
-    , kGGHappeningPersonNewLocation = 1003
-    , kGGHappeningPersonNewJobTitle = 1004
+    , kGGHappeningPersonUpdateProfilePic = 1001         // person change picture
+    , kGGHappeningPersonJoinOtherCompany = 1002         // person change job
+    , kGGHappeningPersonNewLocation = 1003              // person change location
+    , kGGHappeningPersonNewJobTitle = 1004              // person change job title
     
 }EGGHappeningType;
 
@@ -34,16 +34,55 @@ typedef enum {
 }EGGHappeningSource;
 
 
+//
 @interface GGCompanyHappeningPerson : GGDataModel
 @property (copy) NSString       *name;
 @property (copy) NSString       *profile;
+@property (assign) long long    contactID;
+@property (copy) NSString       *contactName;
+
+@property (assign) long long    orgID;
+@property (copy) NSString       *orgName;
+@property (copy) NSString       *orgTitle;
+@property (assign) long long    jobLevel;
+
+@property (copy) NSString       *address;
+@property (copy) NSString       *linkedInID;
+@property (copy) NSString       *photoPath;
+@property (strong) NSMutableArray   *socialProfiles;
+@property (copy) NSString           *actionType;
+
 @end
 
+
+
+//
 @interface GGCompanyHappeningCompany : GGDataModel
 @property (copy) NSString       *name;
 @property (copy) NSString       *profile;
+
+@property (assign) long long    orgID;
+@property (copy) NSString       *orgName;
+@property (copy) NSString       *orgWebSite;
+@property (copy) NSString       *orgLogoPath;
+
+@property (copy) NSString       *type;
+@property (copy) NSString       *ownership;
+@property (copy) NSString       *fortuneRank;
+@property (copy) NSString       *revenueSize;
+@property (copy) NSString       *employeeSize;
+
+@property (copy) NSString       *country;
+@property (copy) NSString       *state;
+@property (copy) NSString       *city;
+@property (copy) NSString       *zipcode;
+@property (copy) NSString       *address;
+
 @end
 
+
+
+//
 @interface GGHappening : GGDataModel
 @property (assign) long long                    timestamp;
 @property (assign) long long                    protocol;

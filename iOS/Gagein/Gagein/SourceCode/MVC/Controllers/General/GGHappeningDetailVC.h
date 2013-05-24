@@ -11,7 +11,11 @@
 
 
 @interface GGHappeningDetailVC : GGBaseViewController
-<UITableViewDataSource, UITableViewDelegate>
+<UITableViewDataSource
+, UITableViewDelegate
+, MFMailComposeViewControllerDelegate
+, MFMessageComposeViewControllerDelegate>
+
 @property (strong) NSMutableArray       *happenings;
 //@property (assign)     NSUInteger          currentIndex;
 @property (assign)  BOOL                isPeopleHappening;

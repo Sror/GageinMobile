@@ -7,6 +7,7 @@
 //
 
 #import "GGHappening.h"
+#import "GGSocialProfile.h"
 
 #define SOURCE_TEXT_LINKEDIN  @"Linkedin"
 #define SOURCE_TEXT_CRUNCHBASE  @"CrunchBase"
@@ -69,6 +70,7 @@
 
 @implementation GGCompanyHappeningPerson
 
+//
 -(void)parseWithData:(NSDictionary *)aData
 {
     [super parseWithData:aData];
@@ -76,10 +78,37 @@
     self.ID = [[aData objectForKey:@"id"] longLongValue];
     self.name = [aData objectForKey:@"name"];
     self.profile = [aData objectForKey:@"profile"];
+    
+    self.contactID = [[aData objectForKey:@"contactid"] longLongValue];
+    self.orgID = [[aData objectForKey:@"orgid"] longLongValue];
+    self.orgName = [aData objectForKey:@"org_name"];
+    self.orgTitle = [aData objectForKey:@"org_title"];
+    self.jobLevel = [[aData objectForKey:@"job_level"] longLongValue];
+    self.address = [aData objectForKey:@"address"];
+    self.linkedInID = [aData objectForKey:@"linkedin_id"];
+    self.photoPath = [aData objectForKey:@"photo_path"];
+    
+    NSArray *socialProfiles = [aData objectForKey:@"social_profiles"];
+    if (socialProfiles.count)
+    {
+        self.socialProfiles = [NSMutableArray array];
+        for (id profile in socialProfiles)
+        {
+            GGSocialProfile * sp = [GGSocialProfile model];
+            [sp parseWithData:profile];
+            
+            [self.socialProfiles addObject:sp];
+        }
+    }
+    
+    self.actionType = [aData objectForKey:@"action_type"];
+    self.contactName = [aData objectForKey:@"contact_name"];
 }
 
 @end
 
+
+//
 @implementation GGCompanyHappeningCompany
 -(void)parseWithData:(NSDictionary *)aData
 {
@@ -88,9 +117,30 @@
     self.ID = [[aData objectForKey:@"id"] longLongValue];
     self.name = [aData objectForKey:@"name"];
     self.profile = [aData objectForKey:@"profile"];
+    
+    self.orgID = [[aData objectForKey:@"orgid"] longLongValue];
+    self.orgName = [aData objectForKey:@"org_name"];
+    
+    self.orgWebSite = [aData objectForKey:@"org_website"];
+    self.orgLogoPath = [aData objectForKey:@"org_logo_path"];
+    self.type = [aData objectForKey:@"type"];
+    self.ownership = [aData objectForKey:@"ownership"];
+    self.fortuneRank = [aData objectForKey:@"fortune_rank"];
+    self.revenueSize = [aData objectForKey:@"revenue_size"];
+    self.employeeSize = [aData objectForKey:@"employee_size"];
+    self.country = [aData objectForKey:@"country"];
+    self.state = [aData objectForKey:@"state"];
+    self.city = [aData objectForKey:@"city"];
+    self.zipcode = [aData objectForKey:@"zipcode"];
+    self.address = [aData objectForKey:@"address"];
+    
 }
+
 @end
 
+
+
+//
 @implementation GGHappening
 - (id)init
 {

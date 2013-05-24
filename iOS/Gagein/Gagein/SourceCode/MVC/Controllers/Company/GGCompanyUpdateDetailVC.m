@@ -315,11 +315,6 @@
     controller.mailComposeDelegate = self;
     [controller setSubject:_companyUpdateDetail.headline];
     
-//    <div>
-//    
-//    <p><strong>%@</strong></p>
-//    Shared from <a href="http://www.gagein.com/">GageIn</a>, a visual sales intelligence company </div>
-    
     NSString *contentBody = [NSString stringWithFormat:@"<div><p>I want to share this update with you.</p> \
                              <p><a href=\"%@\">%@</a></p> \
                              <p><strong>%@</strong></p> \
@@ -332,15 +327,6 @@
     
     [controller setMessageBody:contentBody isHTML:YES];
     
-//    if (_companyUpdateDetail.textview.length)
-//    {
-//        [controller setMessageBody:_companyUpdateDetail.textview isHTML:YES];
-//    }
-//    else
-//    {
-//        [controller setMessageBody:[NSString stringWithFormat:@"<div><a href=\"%@\"> See Detail </a></div>", _companyUpdateDetail.url] isHTML:YES];
-//    }
-    
     [GGSharedDelegate makeNaviBarCustomed:NO];
     [self presentViewController:controller animated:YES completion:nil];
 
@@ -348,7 +334,7 @@
 
 -(IBAction)sendSMSAction:(id)sender
 {
-    NSString *body = [NSString stringWithFormat:@"%@\n%@\n\nvia Gagein at www.gagein.com", _companyUpdateDetail.headline, _companyUpdateDetail.url];
+    NSString *body = [NSString stringWithFormat:@"%@\n\n%@\n\nvia Gagein at www.gagein.com", _companyUpdateDetail.headline, _companyUpdateDetail.url];
     [GGUtils sendSmsTo:nil body:body vcDelegate:self];
     [GGSharedDelegate makeNaviBarCustomed:NO];
 }

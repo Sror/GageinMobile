@@ -12,6 +12,7 @@
 #import "GGHappeningDetailCell.h"
 #import "GGCompanyDetailVC.h"
 #import "GGPersonDetailVC.h"
+#import "GGAppDelegate.h"
 
 @interface GGHappeningDetailVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tvDetail;
@@ -22,7 +23,7 @@
 
 @implementation GGHappeningDetailVC
 {
-    GGHappening          *_currentDetail;
+    GGHappening                 *_currentDetail;
     GGHappeningDetailCell       *_happeningDetailCell;
     
     UIButton *_btnPrevUpdate;
@@ -122,6 +123,76 @@
 {
     _btnPrevUpdate.enabled = (_happeningIndex > 0);
     _btnNextUpdate.enabled = (_happeningIndex < _happenings.count - 1);
+}
+
+#pragma mark - Actions
+-(IBAction)sendMailAction:(id)sender
+{
+    if (![MFMailComposeViewController canSendMail])
+    {
+        [GGAlert alertWithMessage:@"Sorry, You can't send email on this device."];
+        return;
+    }
+    
+    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    [controller setSubject:[_currentDetail headLineText]];
+    
+    NSString *contentBody = [NSString stringWithFormat:@"<div><p>I want to share this update with you.</p> \
+                             <p><strong>%@</strong></p> \
+                             Shared from <a href=\"www.gagein.com\">GageIn</a>, a visual sales intelligence company </div>"
+                             , [_currentDetail headLineText]];
+    
+    
+    [controller setMessageBody:contentBody isHTML:YES];
+    
+    [GGSharedDelegate makeNaviBarCustomed:NO];
+    [self presentViewController:controller animated:YES completion:nil];
+    
+}
+
+-(IBAction)sendSMSAction:(id)sender
+{
+    NSString *body = [NSString stringWithFormat:@"%@\n\nvia Gagein at www.gagein.com", [_currentDetail headLineText]];
+    [GGUtils sendSmsTo:nil body:body vcDelegate:self];
+    [GGSharedDelegate makeNaviBarCustomed:NO];
+}
+
+#pragma mark - MFMailComposeViewControllerDelegate
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError*)error;
+{
+    if (result == MFMailComposeResultSent) {
+        NSLog(@"It's away!");
+    }
+    
+    [GGSharedDelegate makeNaviBarCustomed:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - message delegate
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller
+                 didFinishWithResult:(MessageComposeResult)result
+{
+    switch (result)
+    {
+        case MessageComposeResultCancelled:
+            DLog(@"Cancelled");
+            break;
+        case MessageComposeResultFailed:
+            DLog(@"Failed");
+            break;
+        case MessageComposeResultSent:
+            [self showCheckMarkHUDWithText:@"Sent OK!"];
+            break;
+        default:
+            break;
+    }
+    
+    [GGSharedDelegate makeNaviBarCustomed:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 #pragma mark - UITableViewDataSource
