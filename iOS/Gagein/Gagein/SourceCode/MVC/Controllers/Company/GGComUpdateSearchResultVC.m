@@ -128,8 +128,8 @@
     cell.titleLbl.text = updateData.headline;
     cell.sourceLbl.text = updateData.fromSource;
     
-#warning FAKE DATA - company update description
-    cell.descriptionLbl.text = SAMPLE_TEXT;//updateData.content;
+//#warning FAKE DATA - company update description
+    cell.descriptionLbl.text = updateData.content;
     
     [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
     

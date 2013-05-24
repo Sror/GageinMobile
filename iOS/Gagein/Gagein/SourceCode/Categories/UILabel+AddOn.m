@@ -18,7 +18,7 @@
     CGSize size = [self.text sizeWithFont:self.font constrainedToSize:constraint lineBreakMode:self.lineBreakMode];
     
     
-    float realHeight = size.height * size.width / constraint.width;
+    //float realHeight = size.height * size.width / constraint.width;
     
     
     CGRect newRc = self.frame;

@@ -224,6 +224,11 @@
 	[attributes setObject: aAttribute forKey: aKey];
 }
 
+- (NSMutableDictionary *)attributes
+{
+    return attributes;
+}
+
 - (void)setAttributes:(NSMutableDictionary *)theAttributes {
 	[attributes release];
 	if (theAttributes) {

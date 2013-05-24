@@ -105,7 +105,7 @@ enum {
  
  @see SFOAuthCoordinator
  */
-- (void)oauthCoordinatorDidAuthenticate:(SFOAuthCoordinator *)coordinator __attribute__((deprecated));
+- (void)oauthCoordinatorDidAuthenticate:(SFOAuthCoordinator *)coordinator;// __attribute__((deprecated));
 
 /**
  Sent when authentication successfully completes.
@@ -126,7 +126,7 @@ enum {
  
  @see SFOAuthCoordinator
  */
-- (void)oauthCoordinator:(SFOAuthCoordinator *)coordinator didFailWithError:(NSError *)error __attribute__((deprecated));
+- (void)oauthCoordinator:(SFOAuthCoordinator *)coordinator didFailWithError:(NSError *)error;// __attribute__((deprecated));
 
 /**
  Sent if authentication fails due to an error.
