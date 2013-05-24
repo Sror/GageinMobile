@@ -659,7 +659,7 @@
     cell.ID = updateData.ID;
     cell.logoBtn.tag = row;
     
-    cell.titleLbl.text = [updateData headlineMaxCharCount:80];
+    cell.titleLbl.text = updateData.headline;//[updateData headlineMaxCharCount:90];
     cell.sourceLbl.text = updateData.fromSource;//[NSString stringWithFormat:@"%@ · %@", updateData.fromSource, [updateData intervalStringWithDate:updateData.date]];
     
 //#warning FAKE DATA - company update description

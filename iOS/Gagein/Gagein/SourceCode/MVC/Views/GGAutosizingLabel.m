@@ -36,8 +36,9 @@
     
     [self setLineBreakMode:UILineBreakModeWordWrap];
     [self setAdjustsFontSizeToFitWidth:NO];
-    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, MAX(size.height, MIN_HEIGHT))];
     
+    CGRect newRc = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, MAX(size.height, MIN_HEIGHT));
+    self.frame = newRc;
 }
 
 - (void)setText:(NSString *)text {

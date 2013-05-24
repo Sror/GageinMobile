@@ -27,7 +27,7 @@
       vcDelegate:(UIViewController<MFMessageComposeViewControllerDelegate> *)aVcDelegate;
 
 
-+(id)replaceFromNibForView:(UIView *)aView;
+
 
 +(void)applyTableStyle1ToView:(UIView *)aView;
 +(void)applyLogoStyleToView:(UIView *)aView;
@@ -41,4 +41,10 @@
 +(NSString*)stringByTrimmingLeadingWhitespaceOfString:(NSString *)aStr;
 
 +(NSString *)stringForSnType:(EGGSnType)aSnType;
+
+
++(id)replaceFromNibForView:(UIView *)aView;
++(id)replaceView:(UIView *)aView inPlaceWithNewView:(UIView *)aNewView;
+
+
 @end

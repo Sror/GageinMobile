@@ -38,7 +38,7 @@
     
     [_apiOperations addObject:anOperation];
     
-    DLog(@"\n\n api operation registered\n path:%@", ((AFHTTPRequestOperation *)anOperation).request.URL.relativeString);
+    //DLog(@"\n\n api operation registered\n path:%@", ((AFHTTPRequestOperation *)anOperation).request.URL.relativeString);
 }
 
 -(void)unregisterOperation:(id)anOperation
@@ -47,7 +47,7 @@
     
     [_apiOperations removeObject:anOperation];
     
-    DLog(@"\n\n api operation unregistered\n path:%@", ((AFHTTPRequestOperation *)anOperation).request.URL.relativeString);
+    //DLog(@"\n\n api operation unregistered\n path:%@", ((AFHTTPRequestOperation *)anOperation).request.URL.relativeString);
 }
 
 -(void)handleNotification:(NSNotification *)notification
@@ -188,7 +188,7 @@
     for (AFHTTPRequestOperation *operation in _apiOperations)
     {
         [operation cancel];
-        DLog(@"\n\n api operation cancelled\n path:%@", operation.request.URL.relativeString);
+        //DLog(@"\n\n api operation cancelled\n path:%@", operation.request.URL.relativeString);
     }
 }
 

@@ -31,6 +31,10 @@
 {
     self.ivCellBg.image = GGSharedImagePool.stretchShadowBgWite;
     _titleLbl.text = @"";
+    CGRect titleRc = _titleLbl.frame;
+    UILabel * newTitleLbl = [GGCompanyUpdateCell labelForUpdateCellWithFrame:titleRc];
+    _titleLbl = [GGUtils replaceView:_titleLbl inPlaceWithNewView:newTitleLbl];
+    
     _intervalLbl.text = @"";
     
     [GGUtils applyLogoStyleToView:_logoIV];
@@ -39,10 +43,15 @@
     _descriptionLbl.numberOfLines = 2;
 }
 
-//+(float)HEIGHT
-//{
-//    return 150.f;
-//}
++(UILabel*)labelForUpdateCellWithFrame:(CGRect)aRect
+{
+    UILabel *label = [[UILabel alloc] initWithFrame:aRect];
+    label.backgroundColor = GGSharedColor.clear;
+    label.font = [UIFont fontWithName:@"Optima-Bold" size:15.f];
+    label.textColor = GGSharedColor.black;
+    
+    return label;
+}
 
 -(void)setHasBeenRead:(BOOL)hasRead
 {
@@ -60,6 +69,10 @@
 {
     //_descriptionLbl.backgroundColor = GGSharedColor.darkGray;
     //NSString * text = _descriptionLbl.text;
+    
+    _titleLbl.text = [_titleLbl.text stringLimitedToLength:90];
+    [_titleLbl calculateSize];
+    //[_titleLbl sizeToFit];
     
     CGRect theRect = _titleLbl.frame;
     float titleMaxY = CGRectGetMaxY(theRect);

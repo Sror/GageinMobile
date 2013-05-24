@@ -187,6 +187,22 @@
     return nil;
 }
 
++(id)replaceView:(UIView *)aView inPlaceWithNewView:(UIView *)aNewView
+{
+    if (aView && aNewView)
+    {
+        UIView *superview = [aView superview];
+        CGRect frame = aView.frame;
+        
+        aNewView.frame = frame;
+        [superview addSubview:aNewView];
+        
+        return aNewView;
+    }
+    
+    return nil;
+}
+
 +(void)applyTableStyle1ToView:(UIView *)aView
 {
     CALayer *layer = aView.layer;
@@ -313,5 +329,7 @@
     
     return nil;
 }
+
+
 
 @end

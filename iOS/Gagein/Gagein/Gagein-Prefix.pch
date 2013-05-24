@@ -33,4 +33,6 @@
     #import "NSMutableDictionary+AddOn.h"
     #import "NSMutableArray+AddOn.h"
     #import "UIView+AddOn.h"
+    #import "UILabel+AddOn.h"
+    #import "NSString+GGAddOn.h"
 #endif

@@ -62,12 +62,7 @@
 
 -(NSString *)headlineMaxCharCount:(NSUInteger)aMaxCharCount
 {
-    if (_headline.length < aMaxCharCount)
-    {
-        return _headline;
-    }
-    
-    return [[_headline substringToIndex:aMaxCharCount] stringByAppendingString:@"..."];
+    return [_headline stringLimitedToLength:aMaxCharCount];
 }
 
 @end
