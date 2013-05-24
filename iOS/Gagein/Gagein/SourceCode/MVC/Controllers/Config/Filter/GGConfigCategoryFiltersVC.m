@@ -14,7 +14,7 @@
 
 @interface GGConfigCategoryFiltersVC ()
 //@property (weak, nonatomic) IBOutlet GGConfigSwitchCell *cellConfigSwitch;
-@property (weak, nonatomic) IBOutlet GGConfigSwitchView *viewConfigSwitch;
+//@property (weak, nonatomic) IBOutlet GGConfigSwitchView *viewConfigSwitch;
 @property (weak, nonatomic) IBOutlet UITableView *tv;
 @property (weak, nonatomic) IBOutlet UIView *viewTvContainer;
 
@@ -23,7 +23,7 @@
 @implementation GGConfigCategoryFiltersVC
 {
     NSMutableArray      *_filters;
-    GGConfigLabel       *_configOffTipView;
+    //GGConfigLabel       *_configOffTipView;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -41,32 +41,32 @@
     self.naviTitle = @"Category Filters";
     self.view.backgroundColor = GGSharedColor.silver;
     
-    _viewConfigSwitch = [GGUtils replaceFromNibForView:_viewConfigSwitch];
-    
-    _viewConfigSwitch.backgroundColor = GGSharedColor.white;
-    _viewConfigSwitch.lblTitle.text = @"Category Filters";
-    _viewConfigSwitch.btnSwitch.isOn = YES;
-    _viewConfigSwitch.btnSwitch.lblOn.text = @"On";
-    _viewConfigSwitch.btnSwitch.lblOff.text = @"Off";
-    _viewConfigSwitch.btnSwitch.delegate = self;
-    [GGUtils applyTableStyle1ToView:_viewConfigSwitch];
+//    _viewConfigSwitch = [GGUtils replaceFromNibForView:_viewConfigSwitch];
+//    
+//    _viewConfigSwitch.backgroundColor = GGSharedColor.white;
+//    _viewConfigSwitch.lblTitle.text = @"Category Filters";
+//    _viewConfigSwitch.btnSwitch.isOn = YES;
+//    _viewConfigSwitch.btnSwitch.lblOn.text = @"On";
+//    _viewConfigSwitch.btnSwitch.lblOff.text = @"Off";
+//    _viewConfigSwitch.btnSwitch.delegate = self;
+//    [GGUtils applyTableStyle1ToView:_viewConfigSwitch];
     
     _tv.layer.cornerRadius = 8;
     [GGUtils applyTableStyle1ToView:_viewTvContainer];
     
-    _configOffTipView = [GGConfigLabel viewFromNibWithOwner:self];
-    _configOffTipView.lblText.text = @"Filter your update feed by agents.";
-    CGRect configOffRc = _configOffTipView.frame;
-    configOffRc.origin.y = _viewTvContainer.frame.origin.y;
-    _configOffTipView.frame = configOffRc;
-    [self.view addSubview:_configOffTipView];
-    _configOffTipView.hidden = _viewConfigSwitch.btnSwitch.isOn;
+//    _configOffTipView = [GGConfigLabel viewFromNibWithOwner:self];
+//    _configOffTipView.lblText.text = @"Filter your update feed by agents.";
+//    CGRect configOffRc = _configOffTipView.frame;
+//    configOffRc.origin.y = _viewTvContainer.frame.origin.y;
+//    _configOffTipView.frame = configOffRc;
+//    [self.view addSubview:_configOffTipView];
+//    _configOffTipView.hidden = _viewConfigSwitch.btnSwitch.isOn;
     
     [self _callApiGetConfigOptions];
 }
 
 - (void)viewDidUnload {
-    [self setViewConfigSwitch:nil];
+    //[self setViewConfigSwitch:nil];
     [self setTv:nil];
     [self setViewTvContainer:nil];
     [super viewDidUnload];
@@ -125,20 +125,20 @@
 #pragma mark - switch button delegate
 -(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
 {
-    [self showLoadingHUD];
-    id op = [GGSharedAPI setCategoryFilterEnabled:aIsOn callback:^(id operation, id aResultObject, NSError *anError) {
-        [self hideLoadingHUD];
-        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-        if (parser.isOK)
-        {
-            _tv.hidden = !aIsOn;
-            _configOffTipView.hidden = aIsOn;
-            [self _callApiGetConfigOptions];
-        }
-        
-    }];
-    
-    [self registerOperation:op];
+//    [self showLoadingHUD];
+//    id op = [GGSharedAPI setCategoryFilterEnabled:aIsOn callback:^(id operation, id aResultObject, NSError *anError) {
+//        [self hideLoadingHUD];
+//        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//        if (parser.isOK)
+//        {
+//            _tv.hidden = !aIsOn;
+//            //_configOffTipView.hidden = aIsOn;
+//            [self _callApiGetConfigOptions];
+//        }
+//        
+//    }];
+//    
+//    [self registerOperation:op];
 }
 
 

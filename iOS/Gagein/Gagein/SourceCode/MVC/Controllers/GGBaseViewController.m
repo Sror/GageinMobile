@@ -53,7 +53,7 @@
 -(void)handleNotification:(NSNotification *)notification
 {
     NSString *notiName = notification.name;
-    DLog(@"recieved nitification: %@", notiName);
+    //DLog(@"recieved nitification: %@", notiName);
     
     id notiObj = notification.object;
     

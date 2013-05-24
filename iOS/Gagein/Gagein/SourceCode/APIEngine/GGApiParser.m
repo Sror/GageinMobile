@@ -236,7 +236,7 @@
     NSMutableArray *results = [NSMutableArray array];
     
     NSArray *data = self.data;
-#warning type data must be given by API, currently by client
+#warning XXX: type data must be given by API, currently by client
     int type = aIsCompanyMenu ? kGGMenuTypeCompany : kGGMenuTypePerson;
     for (NSDictionary *dic in data)
     {

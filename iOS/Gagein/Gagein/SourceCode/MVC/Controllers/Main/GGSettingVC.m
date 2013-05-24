@@ -272,6 +272,7 @@
         
         if (row == 0) {
             //@"Version";
+#warning TODO: Need a way to get app version
         } else if (row == 1) {
 
             GGWebVC *vc = [[GGWebVC alloc] init];

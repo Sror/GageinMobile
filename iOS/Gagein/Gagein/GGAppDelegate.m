@@ -73,12 +73,19 @@
     
     [self makeNaviBarCustomed:YES];
     
+    [self _checkForUpgrade];
+    
     [self.window makeKeyAndVisible];
     
     //
     [self enterLoginIfNeeded];
     
     return YES;
+}
+
+-(void)_checkForUpgrade
+{
+#warning TODO: Need to check upgrade
 }
 
 -(void)makeNaviBarCustomed:(BOOL)aCustomed

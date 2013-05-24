@@ -318,7 +318,7 @@
 {
     if (_searchBar.tfSearch.text.length)
     {
-#warning Currently no API for people suggestion
+#warning TODO: Currently no API for people suggestion
 
     }
 }
@@ -348,7 +348,7 @@
 
 -(void)_callGetFollowedPeople
 {
-#warning Currently no API for followed people list
+#warning TODO: Currently no API for followed people list
 }
 
 @end

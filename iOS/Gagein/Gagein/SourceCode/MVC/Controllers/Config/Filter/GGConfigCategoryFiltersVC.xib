@@ -37,7 +37,7 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="521971725">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">290</int>
+						<int key="NSvFlags">-2147483358</int>
 						<string key="NSFrame">{{15, 20}, {290, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -59,7 +59,7 @@
 							<object class="IBUITableView" id="951627979">
 								<reference key="NSNextResponder" ref="332514393"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{290, 366}</string>
+								<string key="NSFrameSize">{290, 426}</string>
 								<reference key="NSSuperview" ref="332514393"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -78,7 +78,7 @@
 								<float key="IBUISectionFooterHeight">22</float>
 							</object>
 						</array>
-						<string key="NSFrame">{{15, 80}, {290, 366}}</string>
+						<string key="NSFrame">{{15, 20}, {290, 426}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="951627979"/>
@@ -132,14 +132,6 @@
 						<reference key="destination" ref="191373211"/>
 					</object>
 					<int key="connectionID">3</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">viewConfigSwitch</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="521971725"/>
-					</object>
-					<int key="connectionID">7</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -256,17 +248,12 @@
 					<string key="superclassName">GGBaseViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="tv">UITableView</string>
-						<string key="viewConfigSwitch">GGConfigSwitchView</string>
 						<string key="viewTvContainer">UIView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="tv">
 							<string key="name">tv</string>
 							<string key="candidateClassName">UITableView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewConfigSwitch">
-							<string key="name">viewConfigSwitch</string>
-							<string key="candidateClassName">GGConfigSwitchView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="viewTvContainer">
 							<string key="name">viewTvContainer</string>
