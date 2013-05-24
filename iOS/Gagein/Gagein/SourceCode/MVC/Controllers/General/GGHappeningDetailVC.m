@@ -229,6 +229,49 @@
             }
                 break;
                 
+// ------------ person cases ------------------
+            case kGGHappeningPersonUpdateProfilePic:
+            {
+                [_happeningDetailCell showChangeView:YES];
+                [_happeningDetailCell showChangeLeftImage:YES];
+                [_happeningDetailCell showChangeRightImage:YES];
+                
+#warning TODO: need real photo url
+#if 0
+                [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.oldProfilePic] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.profilePic] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+#else
+                [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+#endif
+                
+            }
+                break;
+                
+            case kGGHappeningPersonJoinOtherCompany:
+            {
+                [_happeningDetailCell showChangeView:YES];
+                [_happeningDetailCell showChangeLeftImage:YES];
+                [_happeningDetailCell showChangeRightImage:YES];
+            }
+                break;
+                
+            case kGGHappeningPersonNewLocation:
+            {
+                [_happeningDetailCell showChangeView:YES];
+                [_happeningDetailCell showChangeLeftImage:YES];
+                [_happeningDetailCell showChangeRightImage:YES];
+            }
+                break;
+                
+            case kGGHappeningPersonNewJobTitle:
+            {
+                [_happeningDetailCell showChangeView:YES];
+                [_happeningDetailCell showChangeLeftImage:YES];
+                [_happeningDetailCell showChangeRightImage:YES];
+            }
+                break;
+                
             default:
                 break;
         }
@@ -248,16 +291,17 @@
             
             cell.lblName.text = _currentDetail.person.name;
             cell.lblTitle.text = _currentDetail.freshJobTitle;
-            cell.lblAddress.text = @"address";
+            cell.lblAddress.text = _currentDetail.person.address;
             cell.type = kGGCustomBriefCellPerson;
+            [cell.ivPhoto setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
             
         }  else { // this index represent comany
             
             cell.lblName.text = _currentDetail.company.name;
-            cell.lblTitle.text = @"website";
-            cell.lblAddress.text = @"address";
+            cell.lblTitle.text = _currentDetail.company.orgWebSite;
+            cell.lblAddress.text = [_currentDetail.company addressCityStateCountry];
             cell.type = kGGCustomBriefCellCompany;
-            
+            [cell.ivPhoto setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
         }
         
         return cell;

@@ -68,7 +68,7 @@
 #define EVENT_MSG_CON_NEW_JOB_TITLE @"%@, %@, is now %@ at %@"
 
 
-@implementation GGCompanyHappeningPerson
+@implementation GGHappeningPerson
 
 //
 -(void)parseWithData:(NSDictionary *)aData
@@ -109,7 +109,7 @@
 
 
 //
-@implementation GGCompanyHappeningCompany
+@implementation GGHappeningCompany
 -(void)parseWithData:(NSDictionary *)aData
 {
     [super parseWithData:aData];
@@ -136,6 +136,11 @@
     
 }
 
+-(NSString *)addressCityStateCountry
+{
+    return [NSString stringWithFormat:@"%@,%@,%@", _city, _state, _country];
+}
+
 @end
 
 
@@ -146,9 +151,9 @@
 {
     self = [super init];
     if (self) {
-        _person = [GGCompanyHappeningPerson model];
-        _company = [GGCompanyHappeningCompany model];
-        _oldCompany = [GGCompanyHappeningCompany model];
+        _person = [GGHappeningPerson model];
+        _company = [GGHappeningCompany model];
+        _oldCompany = [GGHappeningCompany model];
     }
     return self;
 }

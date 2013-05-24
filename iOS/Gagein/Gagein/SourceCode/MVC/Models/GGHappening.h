@@ -35,7 +35,7 @@ typedef enum {
 
 
 //
-@interface GGCompanyHappeningPerson : GGDataModel
+@interface GGHappeningPerson : GGDataModel
 @property (copy) NSString       *name;
 @property (copy) NSString       *profile;
 @property (assign) long long    contactID;
@@ -57,7 +57,7 @@ typedef enum {
 
 
 //
-@interface GGCompanyHappeningCompany : GGDataModel
+@interface GGHappeningCompany : GGDataModel
 @property (copy) NSString       *name;
 @property (copy) NSString       *profile;
 
@@ -78,6 +78,7 @@ typedef enum {
 @property (copy) NSString       *zipcode;
 @property (copy) NSString       *address;
 
+-(NSString *)addressCityStateCountry;
 @end
 
 
@@ -103,9 +104,9 @@ typedef enum {
 @property (copy) NSString                       *profilePic;
 @property (copy) NSString                       *oldProfilePic;
 
-@property (strong) GGCompanyHappeningPerson      *person;
-@property (strong) GGCompanyHappeningPerson      *company;
-@property (strong) GGCompanyHappeningPerson      *oldCompany;
+@property (strong) GGHappeningPerson      *person;
+@property (strong) GGHappeningCompany      *company;
+@property (strong) GGHappeningCompany      *oldCompany;
 @property (copy) NSString                       *change;        // e.g. LEAVE
 @property (assign) EGGHappeningType             type;
 @property (assign) EGGHappeningSource           source;
