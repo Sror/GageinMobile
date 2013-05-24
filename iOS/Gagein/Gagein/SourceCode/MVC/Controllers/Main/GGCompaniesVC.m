@@ -835,7 +835,7 @@
     {
         GGHappeningDetailVC *vc = [[GGHappeningDetailVC alloc] init];
         vc.happenings = _happenings;
-        vc.currentIndex = row;
+        vc.happeningIndex = row;
         
         [self.navigationController pushViewController:vc animated:YES];
     }

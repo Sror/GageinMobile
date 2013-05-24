@@ -444,7 +444,7 @@
         GGHappeningDetailVC *vc = [[GGHappeningDetailVC alloc] init];
         vc.isPeopleHappening = YES;
         vc.happenings = _updates;
-        vc.currentIndex = row;
+        vc.happeningIndex = row;
         
         GGHappening *data = _updates[row];
         data.hasBeenRead = YES;

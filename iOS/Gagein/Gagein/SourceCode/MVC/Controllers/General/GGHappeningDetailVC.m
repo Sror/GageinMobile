@@ -24,6 +24,9 @@
 {
     GGHappening          *_currentDetail;
     GGHappeningDetailCell       *_happeningDetailCell;
+    
+    UIButton *_btnPrevUpdate;
+    UIButton *_btnNextUpdate;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -42,23 +45,83 @@
     self.svContent.frame = [self viewportAdjsted];
     self.tvDetail.backgroundColor = GGSharedColor.silver;
     
+    // previous update button
+    UIImage *upArrowEnabledImg = [UIImage imageNamed:@"upArrowEnabled"];
+    UIImage *upArrowDisabledImg = [UIImage imageNamed:@"upArrowDisabled"];
+    CGRect naviRc = self.navigationController.navigationBar.frame;
+    CGRect prevBtnRc = CGRectMake(naviRc.size.width - upArrowEnabledImg.size.width * 2 - 10
+                                  , (naviRc.size.height - upArrowEnabledImg.size.height) / 2 + 5
+                                  , upArrowEnabledImg.size.width
+                                  , upArrowEnabledImg.size.height);
+    
+    _btnPrevUpdate = [UIButton buttonWithType:UIButtonTypeCustom];
+    _btnPrevUpdate.frame = prevBtnRc;
+    [_btnPrevUpdate setImage:upArrowEnabledImg forState:UIControlStateNormal];
+    [_btnPrevUpdate setImage:upArrowDisabledImg forState:UIControlStateDisabled];
+    [_btnPrevUpdate addTarget:self action:@selector(prevUpdateAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    // next update button
+    UIImage *downArrowEnabledImg = [UIImage imageNamed:@"downArrowEnabled"];
+    UIImage *downArrowDisabledImg = [UIImage imageNamed:@"downArrowDisabled"];
+    _btnNextUpdate = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect nextBtnRc = CGRectMake(naviRc.size.width - downArrowEnabledImg.size.width - 10
+                                  , (naviRc.size.height - downArrowEnabledImg.size.height) / 2 + 5
+                                  , downArrowEnabledImg.size.width
+                                  , downArrowEnabledImg.size.height);
+    _btnNextUpdate.frame = nextBtnRc;
+    [_btnNextUpdate setImage:downArrowEnabledImg forState:UIControlStateNormal];
+    [_btnNextUpdate setImage:downArrowDisabledImg forState:UIControlStateDisabled];
+    [_btnNextUpdate addTarget:self action:@selector(nextUpdateAction:) forControlEvents:UIControlEventTouchUpInside];
+    
     //
     _happeningDetailCell = [GGHappeningDetailCell viewFromNibWithOwner:self];
     
     [self _callApiGetHappeningDetail];
 }
 
-//-(void)viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-//    [self pushBackButtonFront];
-//}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBarHidden = NO;
+    [self.navigationController.navigationBar addSubview:_btnPrevUpdate];
+    [self.navigationController.navigationBar addSubview:_btnNextUpdate];
+    [self _updateNaviBtnState];
+}
 
 - (void)viewDidUnload {
     [self setTvDetail:nil];
     [self setViewBottomBar:nil];
     [self setSvContent:nil];
     [super viewDidUnload];
+}
+
+#pragma mark -navi buttons
+-(void)prevUpdateAction:(id)sender
+{
+    if (_happeningIndex > 0) {
+        _happeningIndex--;
+        [self _callApiGetHappeningDetail];
+        
+        [self _updateNaviBtnState];
+    }
+}
+
+-(void)nextUpdateAction:(id)sender
+{
+    if (_happeningIndex < _happenings.count - 1) {
+        _happeningIndex++;
+        [self _callApiGetHappeningDetail];
+        
+        [self _updateNaviBtnState];
+    }
+}
+
+-(void)_updateNaviBtnState
+{
+    _btnPrevUpdate.enabled = (_happeningIndex > 0);
+    _btnNextUpdate.enabled = (_happeningIndex < _happenings.count - 1);
 }
 
 #pragma mark - UITableViewDataSource
@@ -182,7 +245,7 @@
         [_tvDetail reloadData];
     };
     
-    GGHappening *data = _happenings[_currentIndex];
+    GGHappening *data = _happenings[_happeningIndex];
     
     [self showLoadingHUD];
     if (_isPeopleHappening)

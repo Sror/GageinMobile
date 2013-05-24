@@ -13,6 +13,8 @@
 @interface GGHappeningDetailVC : GGBaseViewController
 <UITableViewDataSource, UITableViewDelegate>
 @property (strong) NSMutableArray       *happenings;
-@property (assign)     NSUInteger          currentIndex;
+//@property (assign)     NSUInteger          currentIndex;
 @property (assign)  BOOL                isPeopleHappening;
+
+@property (assign) NSUInteger   happeningIndex;
 @end
