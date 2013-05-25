@@ -34,10 +34,12 @@
     self.ivChangeLeft.layer.cornerRadius = 5;
     self.ivChangeLeft.layer.borderColor = GGSharedColor.silver.CGColor;
     self.ivChangeLeft.layer.borderWidth = 2;
+    self.ivChangeLeft.layer.masksToBounds = YES;
     
     self.ivChangeRight.layer.cornerRadius = 5;
     self.ivChangeRight.layer.borderColor = GGSharedColor.silver.CGColor;
     self.ivChangeRight.layer.borderWidth = 2;
+    self.ivChangeRight.layer.masksToBounds = YES;
 }
 
 -(float)height

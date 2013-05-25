@@ -256,14 +256,8 @@
                 [_happeningDetailCell showChangeLeftImage:YES];
                 [_happeningDetailCell showChangeRightImage:YES];
                 
-#warning TODO: need real photo url
-#if 0
                 [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.oldProfilePic] placeholderImage:GGSharedImagePool.logoDefaultPerson];
                 [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.profilePic] placeholderImage:GGSharedImagePool.logoDefaultPerson];
-#else
-                [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
-                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
-#endif
                 
             }
                 break;
@@ -273,6 +267,10 @@
                 [_happeningDetailCell showChangeView:YES];
                 [_happeningDetailCell showChangeLeftImage:YES];
                 [_happeningDetailCell showChangeRightImage:YES];
+
+                [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+                
             }
                 break;
                 
@@ -281,6 +279,13 @@
                 [_happeningDetailCell showChangeView:YES];
                 [_happeningDetailCell showChangeLeftImage:YES];
                 [_happeningDetailCell showChangeRightImage:YES];
+                
+                [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+                
+                NSString *mapUrl = [GGUtils stringWithMapUrl:_currentDetail.addressMap width:70 height:70];
+                
+                
+                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:mapUrl] placeholderImage:GGSharedImagePool.placeholder];
             }
                 break;
                 
@@ -289,6 +294,9 @@
                 [_happeningDetailCell showChangeView:YES];
                 [_happeningDetailCell showChangeLeftImage:YES];
                 [_happeningDetailCell showChangeRightImage:YES];
+                
+                [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
             }
                 break;
                 

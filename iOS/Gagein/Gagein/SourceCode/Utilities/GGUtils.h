@@ -46,5 +46,6 @@
 +(id)replaceFromNibForView:(UIView *)aView;
 +(id)replaceView:(UIView *)aView inPlaceWithNewView:(UIView *)aNewView;
 
++(NSString *)stringWithMapUrl:(NSString *)aMapUrl width:(int)aWidth height:(int)aHeight;
 
 @end

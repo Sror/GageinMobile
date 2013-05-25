@@ -193,6 +193,7 @@
     self.freshJobTitle = [[aData objectForKey:@"newjobtitle"] objectForKey:@"title"];
 
     self.address = [[aData objectForKey:@"address"] objectForKey:@"address"];
+    self.addressMap = [aData objectForKey:@"address_map"];
     self.oldAddress = [[aData objectForKey:@"oldAddress"] objectForKey:@"address"];
 }
 

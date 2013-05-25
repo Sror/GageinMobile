@@ -98,6 +98,7 @@ typedef enum {
 @property (copy) NSString                       *freshJobTitle;     // newJobTile, but cocoa used 'new-x' prefix
 
 @property (copy) NSString                       *address;
+@property (copy) NSString                       *addressMap;
 @property (copy) NSString                       *oldAddress;
 
 @property (copy) NSString                       *photoPath;

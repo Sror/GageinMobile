@@ -330,6 +330,22 @@
     return nil;
 }
 
-
++(NSString *)stringWithMapUrl:(NSString *)aMapUrl width:(int)aWidth height:(int)aHeight
+{
+    if (aMapUrl)
+    {
+        NSString *finalUrlStr = [[aMapUrl stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        NSRange range = [finalUrlStr rangeOfString:@"&size="];
+        NSString *frontPart = [finalUrlStr substringToIndex:range.location];
+        NSString *endPart = [finalUrlStr substringFromIndex:range.location + 1];
+        range = [endPart rangeOfString:@"&"];
+        endPart = [endPart substringFromIndex:range.location];
+        
+        return [NSString stringWithFormat:@"%@&size=%dx%d%@", frontPart, aWidth, aHeight, endPart];
+    }
+    
+    return nil;
+}
 
 @end
