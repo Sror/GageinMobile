@@ -61,6 +61,7 @@
         || [notiName isEqualToString:GG_NOTIFY_API_OPERATION_FAILED])
     {
         [self unregisterOperation:notiObj];
+        DLog(@"\n\n api operation Success\n path:%@", ((AFHTTPRequestOperation *)notiObj).request.URL.relativeString);
     }
 }
 

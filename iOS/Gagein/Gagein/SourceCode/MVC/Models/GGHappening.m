@@ -199,7 +199,7 @@
 
 -(BOOL)_isOldData
 {
-    return _protocol == 1;
+    return _protocol != 2;
 }
 
 -(NSString *)sourceText

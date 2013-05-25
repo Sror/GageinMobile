@@ -211,20 +211,7 @@
 {
     [super viewWillAppear:animated];
     
-    // show/hide switch button
-    [self.navigationController.navigationBar addSubview:_btnSwitchUpdate];
-    _btnSwitchUpdate.hidden = (_menuType == kGGMenuTypeAgent);
     
-    // change menu to company type
-    [_slideSettingView changeDelegate:self];
-    _slideSettingView.viewTable.tableHeaderView = _slideSettingView.searchBar;
-    [self _callApiGetMenu];
-    
-    // enable gesture
-    [GGSharedDelegate.rootVC enableSwipGesture:YES];
-    
-    [_updatesTV reloadData];
-    [_happeningsTV reloadData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -236,11 +223,28 @@
     [GGSharedDelegate.rootVC enableTapGesture:NO];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
     
+    // show/hide switch button
+    [self.navigationController.navigationBar addSubview:_btnSwitchUpdate];
+    _btnSwitchUpdate.hidden = (_menuType == kGGMenuTypeAgent);
+    
+    // change menu to company type
+    [_slideSettingView changeDelegate:self];
+    _slideSettingView.viewTable.tableHeaderView = _slideSettingView.searchBar;
+    
+    // enable gesture
+    [GGSharedDelegate.rootVC enableSwipGesture:YES];
+    
+    [_updatesTV reloadData];
+    [_happeningsTV reloadData];
+    
     // this line to solve that when view appear again, update switch doesnt get touch event
-    [_btnSwitchUpdate.superview bringSubviewToFront:_btnSwitchUpdate];
+    //[_btnSwitchUpdate.superview bringSubviewToFront:_btnSwitchUpdate];
+    
+    [self _callApiGetMenu];
 }
 
 - (void)viewDidUnload {
