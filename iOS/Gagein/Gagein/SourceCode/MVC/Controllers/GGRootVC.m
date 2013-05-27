@@ -23,8 +23,10 @@
     BOOL    _isRevealed;
 
     UITapGestureRecognizer  *_tapGest;
-    
     UIPanGestureRecognizer  *_panGest;
+    
+//    UISwipeGestureRecognizer *_swipeToLeft;
+//    UISwipeGestureRecognizer *_swipeToRight;
     
     float                    _firstX;
     float                    _firstY;
@@ -51,15 +53,29 @@
     _viewSetting = [[GGSlideSettingView alloc] initWithFrame:_viewBack.bounds];
     [_viewBack addSubview:_viewSetting];
     
-    
+    //
     _tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cover)];
     
+    //
     _panGest = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanSwipe:)];
     _panGest.maximumNumberOfTouches = 1;
     _panGest.minimumNumberOfTouches = 1;
+    
+    //
+//    _swipeToLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeToLeft:)];
+//    _swipeToLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+//    
+//    _swipeToRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeToRight:)];
+//    _swipeToRight.direction = UISwipeGestureRecognizerDirectionRight;
 
+   // _panGest.delegate = _swipeToLeft.delegate = _swipeToRight.delegate = self;
     _panGest.delegate = self;
-
+    
+//    [_panGest requireGestureRecognizerToFail:_swipeToRight];
+//    [_panGest requireGestureRecognizerToFail:_swipeToLeft];
+    
+//    [_swipeToRight requireGestureRecognizerToFail:_panGest];
+//    [_swipeToLeft requireGestureRecognizerToFail:_panGest];
 }
 
 
@@ -67,7 +83,7 @@
 #pragma mark - 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-    return YES;
+    return NO;
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -80,6 +96,17 @@
 #define SWIPE_DOWN_THRESHOLD 1000.0f
 #define SWIPE_LEFT_THRESHOLD -1000.0f
 #define SWIPE_RIGHT_THRESHOLD 1000.0f
+
+-(void)swipeToLeft:(UISwipeGestureRecognizer *)aSwipeGestureRecognizer
+{
+    [self cover];
+}
+
+-(void)swipeToRight:(UISwipeGestureRecognizer *)aSwipeGestureRecognizer
+{
+    [self reveal];
+}
+
 
 - (void)handlePanSwipe:(UIPanGestureRecognizer*)recognizer
 {
@@ -200,14 +227,15 @@
 
 -(void)enableSwipGesture:(BOOL)anEnabled
 {
-    //[self.view removeGestureRecognizer:_revealGest];
-    //[self.view removeGestureRecognizer:_coverGest];
+    //[UIView ]
+    //[self.view removeGestureRecognizer:_swipeToRight];
+    //[self.view removeGestureRecognizer:_swipeToLeft];
     [_viewCover removeGestureRecognizer:_panGest];
     
     if (anEnabled)
     {
-        //[self.view addGestureRecognizer:_revealGest];
-        //[self.view addGestureRecognizer:_coverGest];
+//        [self.view addGestureRecognizer:_swipeToLeft];
+//        [self.view addGestureRecognizer:_swipeToRight];
         [_viewCover addGestureRecognizer:_panGest];
     }
 }
