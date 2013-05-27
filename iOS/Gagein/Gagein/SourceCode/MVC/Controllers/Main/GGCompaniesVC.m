@@ -313,9 +313,7 @@
     
     if (range.location <= 0 && text.length <= 0)
     {
-        [_searchTimer invalidate];
-        _searchTimer = nil;
-        _slideSettingView.tvSuggestedUpdates.hidden = YES;
+        [self searchBarShouldClear:searchBar];
     }
     else
     {
@@ -327,6 +325,10 @@
 
 - (BOOL)searchBarShouldClear:(GGBaseSearchBar *)searchBar
 {
+    [_searchTimer invalidate];
+    _searchTimer = nil;
+    _slideSettingView.tvSuggestedUpdates.hidden = YES;
+    
     return YES;
 }
 

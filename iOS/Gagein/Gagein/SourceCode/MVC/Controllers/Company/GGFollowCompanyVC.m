@@ -11,23 +11,25 @@
 #import "GGDataPage.h"
 #import "GGCompany.h"
 #import "GGSearchSuggestionCell.h"
+#import "GGStyledSearchBar.h"
 
 @interface GGFollowCompanyVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *viewScroll;
-@property (weak, nonatomic) IBOutlet GGSearchBar *searchBar;
+//@property (weak, nonatomic) IBOutlet GGSearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UILabel *lblTip;
 @property (weak, nonatomic) IBOutlet UIButton *btnSalesForce;
 @property (weak, nonatomic) IBOutlet UIButton *btnLinkedIn;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewCompanies;
 @property (weak, nonatomic) IBOutlet UIView *viewSearchBg;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewSearchResult;
+@property (weak, nonatomic) IBOutlet GGStyledSearchBar *viewSearchBar;
 
 @end
 
 @implementation GGFollowCompanyVC
 {
-    CGRect              _searchBarRect;
-    CGRect              _searchBarRectOnNavi;
+    //CGRect              _searchBarRect;
+    //CGRect              _searchBarRectOnNavi;
     CGRect              _tvSearchResultRect;
     CGRect              _tvSearchResultRectShort;
     
@@ -57,11 +59,11 @@
     self.view.backgroundColor = GGSharedColor.veryLightGray;
     
     
-    _searchBarRect = self.searchBar.frame;
-    _searchBarRectOnNavi = CGRectMake((self.navigationController.navigationBar.frame.size.width - _searchBarRect.size.width) / 2
-                                      , (self.navigationController.navigationBar.frame.size.height - _searchBarRect.size.height) / 2
-                                      , _searchBarRect.size.width
-                                      , _searchBarRect.size.height);
+//    _searchBarRect = self.searchBar.frame;
+//    _searchBarRectOnNavi = CGRectMake((self.navigationController.navigationBar.frame.size.width - _searchBarRect.size.width) / 2
+//                                      , (self.navigationController.navigationBar.frame.size.height - _searchBarRect.size.height) / 2
+//                                      , _searchBarRect.size.width
+//                                      , _searchBarRect.size.height);
     _tvSearchResultRect = self.tableViewSearchResult.frame;
     float height = self.view.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT + self.tabBarController.tabBar.frame.size.height;
     _tvSearchResultRectShort = [GGUtils setH:height rect:_tvSearchResultRect];
@@ -70,6 +72,8 @@
     
     [self _showTitle:YES];
     [self _showDoneBtn:YES];
+    
+    _viewSearchBar = [GGUtils replaceFromNibForView:_viewSearchBar];
     
     [self _callGetFollowedCompanies];
 }
@@ -83,13 +87,14 @@
 
 - (void)viewDidUnload {
     [self setViewScroll:nil];
-    [self setSearchBar:nil];
+    //[self setSearchBar:nil];
     [self setLblTip:nil];
     [self setBtnSalesForce:nil];
     [self setBtnLinkedIn:nil];
     [self setTableViewCompanies:nil];
     [self setViewSearchBg:nil];
     [self setTableViewSearchResult:nil];
+    [self setViewSearchBar:nil];
     [super viewDidUnload];
 }
 
@@ -319,7 +324,7 @@
                     }
                     
                     
-                    [self searchBarCancelButtonClicked:self.searchBar];
+                    //[self searchBarCancelButtonClicked:self.searchBar];
                 }
                 else
                 {
@@ -332,33 +337,54 @@
     }
 }
 
-#pragma mark - search bar delegate
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+#pragma mark - GGStyledSearchBarDelegate
+
+- (BOOL)searchBarShouldBeginEditing:(GGBaseSearchBar *)searchBar
 {
-    searchBar.showsCancelButton = YES;
-    searchBar.frame = _searchBarRectOnNavi;
     
     [self.navigationController.navigationBar addSubview:searchBar];
-    [self _showDoneBtn:NO];
-    [self _showTitle:NO];
+    //[self _showDoneBtn:NO];
+    //[self _showTitle:NO];
     //[self hideBackButton];
     
     self.viewSearchBg.hidden = NO;
     self.tableViewSearchResult.frame = _tvSearchResultRectShort;
+    
+    return YES;
 }
 
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+- (void)searchBarTextDidBeginEditing:(GGBaseSearchBar *)searchBar
+{
+    
+}
+
+- (BOOL)searchBarShouldEndEditing:(GGBaseSearchBar *)searchBar
 {
     self.tableViewSearchResult.frame = _tvSearchResultRect;
+    
+    return YES;
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+- (void)searchBarTextDidEndEditing:(GGBaseSearchBar *)searchBar
+{
+    
+}
+
+- (BOOL)searchBar:(GGBaseSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     [_searchTimer invalidate];
     _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2.f target:self selector:@selector(_callSearchCompanySuggestion) userInfo:nil repeats:NO];
+    
+    return YES;
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+- (BOOL)searchBarShouldClear:(GGBaseSearchBar *)searchBar
+{
+    //_tvSearchResult.hidden = YES;
+    return YES;
+}
+
+- (BOOL)searchBarShouldSearch:(GGBaseSearchBar *)searchBar
 {
     DLog(@"seach button clicked");
     // search and show result
@@ -369,34 +395,43 @@
     
     UIButton *cancelBtn = ((GGSearchBar *)searchBar).cancelButton;
     cancelBtn.enabled = YES;
+    
+    return YES;
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
+-(NSString *)_searchText
 {
-    DLog(@"cancel button clicked");
-    
-    [_searchedCompanies removeAllObjects];
-    [self.tableViewSearchResult reloadData];
-    
-    searchBar.text = @"";
-    [searchBar resignFirstResponder];
-    searchBar.showsCancelButton = NO;
-    searchBar.frame = _searchBarRect;
-    [self.viewScroll addSubview:searchBar];
-    
-    [self _showTitle:YES];
-    [self _showDoneBtn:YES];
-    //[self hideBackButton];
-    
-    self.viewSearchBg.hidden = YES;
+    return self.viewSearchBar.tfSearch.text;
 }
+
+
+//- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
+//{
+//    DLog(@"cancel button clicked");
+//    
+//    [_searchedCompanies removeAllObjects];
+//    [self.tableViewSearchResult reloadData];
+//    
+//    searchBar.text = @"";
+//    [searchBar resignFirstResponder];
+//    searchBar.showsCancelButton = NO;
+//    searchBar.frame = _searchBarRect;
+//    [self.viewScroll addSubview:searchBar];
+//    
+//    [self _showTitle:YES];
+//    [self _showDoneBtn:YES];
+//    //[self hideBackButton];
+//    
+//    self.viewSearchBg.hidden = YES;
+//}
 
 #pragma mark - API calls
 -(void)_callSearchCompanySuggestion
 {
-    if (self.searchBar.text.length)
+    NSString *keyword = [self _searchText];
+    if (keyword.length)
     {
-        id op = [GGSharedAPI getCompanySuggestionWithKeyword:self.searchBar.text callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI getCompanySuggestionWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
             
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             GGDataPage *page = [parser parseSearchCompany];
@@ -412,10 +447,11 @@
 
 -(void)_callSearchCompany
 {
-    if (self.searchBar.text.length)
+    NSString *keyword = [self _searchText];
+    if (keyword.length)
     {
         [self showLoadingHUD];
-        id op = [GGSharedAPI searchCompaniesWithKeyword:self.searchBar.text page:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI searchCompaniesWithKeyword:keyword page:0 callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
