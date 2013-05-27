@@ -11,7 +11,7 @@
 #import "GGDataPage.h"
 #import "GGCompany.h"
 #import "GGSearchSuggestionCell.h"
-#import "GGStyledSearchBar.h"
+
 
 @interface GGFollowCompanyVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *viewScroll;
@@ -23,14 +23,15 @@
 @property (weak, nonatomic) IBOutlet UIView *viewSearchBg;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewSearchResult;
 @property (weak, nonatomic) IBOutlet GGStyledSearchBar *viewSearchBar;
+@property (weak, nonatomic) IBOutlet UIView *viewSearchTransparent;
 
 @end
 
 @implementation GGFollowCompanyVC
 {
-    //CGRect              _searchBarRect;
-    //CGRect              _searchBarRectOnNavi;
-    CGRect              _tvSearchResultRect;
+    CGRect              _searchBarRect;
+    CGRect              _searchBarRectOnNavi;
+    //CGRect              _tvSearchResultRect;
     CGRect              _tvSearchResultRectShort;
     
     NSTimer             *_searchTimer;
@@ -38,6 +39,8 @@
     NSMutableArray      *_searchedCompanies;
     NSMutableArray      *_followedCompanies;
     NSMutableArray      *_suggestedCompanies;
+    
+    UITapGestureRecognizer          *_tapGestToHideSearch;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -48,6 +51,7 @@
         _followedCompanies = [NSMutableArray array];
         _suggestedCompanies = [NSMutableArray array];
     }
+    
     return self;
 }
 
@@ -56,26 +60,41 @@
     self.navigationItem.hidesBackButton = YES;
     
     [super viewDidLoad];
+    self.naviTitle = @"Follow Companies";
     self.view.backgroundColor = GGSharedColor.veryLightGray;
     
+    // replace the search bar placeholder view with the real search bar
+    _viewSearchBar = [GGUtils replaceFromNibForView:_viewSearchBar];
+    _viewSearchBar.delegate = self;
     
-//    _searchBarRect = self.searchBar.frame;
-//    _searchBarRectOnNavi = CGRectMake((self.navigationController.navigationBar.frame.size.width - _searchBarRect.size.width) / 2
-//                                      , (self.navigationController.navigationBar.frame.size.height - _searchBarRect.size.height) / 2
-//                                      , _searchBarRect.size.width
-//                                      , _searchBarRect.size.height);
-    _tvSearchResultRect = self.tableViewSearchResult.frame;
+    // record the rect of the search bar, and calculate the rect of the search bar when it becomes the first responder.
+    _searchBarRect = self.viewSearchBar.frame;
+    _searchBarRectOnNavi = CGRectMake((self.navigationController.navigationBar.frame.size.width - _searchBarRect.size.width) / 2
+                                      , (self.navigationController.navigationBar.frame.size.height - _searchBarRect.size.height) / 2
+                                      , _searchBarRect.size.width
+                                      , _searchBarRect.size.height);
+    
+    //_tvSearchResultRect = self.tableViewSearchResult.frame;
     float height = self.view.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT + self.tabBarController.tabBar.frame.size.height;
-    _tvSearchResultRectShort = [GGUtils setH:height rect:_tvSearchResultRect];
+    _tvSearchResultRectShort = [GGUtils setH:height rect:self.tableViewSearchResult.frame];
+    self.tableViewSearchResult.frame = _tvSearchResultRectShort;
     
     self.tableViewSearchResult.rowHeight = [GGSearchSuggestionCell HEIGHT];
+    
+    //
+    _tapGestToHideSearch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToHideSearch:)];
+    [_viewSearchTransparent addGestureRecognizer:_tapGestToHideSearch];
     
     [self _showTitle:YES];
     [self _showDoneBtn:YES];
     
-    _viewSearchBar = [GGUtils replaceFromNibForView:_viewSearchBar];
     
     [self _callGetFollowedCompanies];
+}
+
+-(void)tapToHideSearch:(UITapGestureRecognizer *)aTapGest
+{
+    [self searchBarCanceled:_viewSearchBar];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -95,6 +114,7 @@
     [self setViewSearchBg:nil];
     [self setTableViewSearchResult:nil];
     [self setViewSearchBar:nil];
+    [self setViewSearchTransparent:nil];
     [super viewDidUnload];
 }
 
@@ -341,14 +361,16 @@
 
 - (BOOL)searchBarShouldBeginEditing:(GGBaseSearchBar *)searchBar
 {
-    
+    // install the search bar to the navigation bar
+    searchBar.frame = _searchBarRectOnNavi;
     [self.navigationController.navigationBar addSubview:searchBar];
-    //[self _showDoneBtn:NO];
-    //[self _showTitle:NO];
+    
+    [self _showDoneBtn:NO];
+    [self _showTitle:NO];
     //[self hideBackButton];
     
     self.viewSearchBg.hidden = NO;
-    self.tableViewSearchResult.frame = _tvSearchResultRectShort;
+    //self.tableViewSearchResult.frame = _tvSearchResultRectShort;
     
     return YES;
 }
@@ -360,7 +382,9 @@
 
 - (BOOL)searchBarShouldEndEditing:(GGBaseSearchBar *)searchBar
 {
-    self.tableViewSearchResult.frame = _tvSearchResultRect;
+    
+    //self.tableViewSearchResult.frame = _tvSearchResultRect;
+    
     
     return YES;
 }
@@ -372,16 +396,43 @@
 
 - (BOOL)searchBar:(GGBaseSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    [_searchTimer invalidate];
-    _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2.f target:self selector:@selector(_callSearchCompanySuggestion) userInfo:nil repeats:NO];
+    
+    if (range.location <= 0 && text.length <= 0)
+    {
+        [self searchBarShouldClear:searchBar];
+    }
+    else
+    {
+        [self _refreshTimer];
+    }
     
     return YES;
 }
 
+-(void)_refreshTimer
+{
+    [_searchTimer invalidate];
+    _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2.f target:self selector:@selector(_callSearchCompanySuggestion) userInfo:nil repeats:NO];
+}
+
 - (BOOL)searchBarShouldClear:(GGBaseSearchBar *)searchBar
 {
-    //_tvSearchResult.hidden = YES;
+    [_searchTimer invalidate];
+    _searchTimer = nil;
+    _tableViewSearchResult.hidden = YES;
+    
     return YES;
+}
+
+- (void)searchBarCanceled:(GGBaseSearchBar *)searchBar
+{
+    [_viewSearchBar resignFirstResponder];
+    _viewSearchBar.frame = _searchBarRect;
+    [_viewScroll addSubview:_viewSearchBar];
+    self.viewSearchBg.hidden = YES;
+    
+    [self _showDoneBtn:YES];
+    [self _showTitle:YES];
 }
 
 - (BOOL)searchBarShouldSearch:(GGBaseSearchBar *)searchBar
@@ -391,10 +442,10 @@
     [_searchTimer invalidate];
     _searchTimer = nil;
     [self _callSearchCompany];
-    [searchBar resignFirstResponder];
+    //[searchBar resignFirstResponder];
     
-    UIButton *cancelBtn = ((GGSearchBar *)searchBar).cancelButton;
-    cancelBtn.enabled = YES;
+//    UIButton *cancelBtn = ((GGSearchBar *)searchBar).cancelButton;
+//    cancelBtn.enabled = YES;
     
     return YES;
 }

@@ -48,7 +48,7 @@
 								<string key="NSFrame">{{34, 70}, {252, 21}}</string>
 								<reference key="NSSuperview" ref="66448548"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="511214358"/>
+								<reference key="NSNextKeyView" ref="321091654"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -137,7 +137,7 @@
 							<object class="IBUITableView" id="321091654">
 								<reference key="NSNextResponder" ref="66448548"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{0, 100}, {320, 448}}</string>
+								<string key="NSFrame">{{0, 100}, {320, 355}}</string>
 								<reference key="NSSuperview" ref="66448548"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="89642462"/>
@@ -161,7 +161,7 @@
 										<reference key="NSNextResponder" ref="511214358"/>
 										<int key="NSvFlags">274</int>
 										<array class="NSMutableArray" key="NSSubviews"/>
-										<string key="NSFrame">{{0, -99}, {320, 548}}</string>
+										<string key="NSFrameSize">{320, 455}</string>
 										<reference key="NSSuperview" ref="511214358"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="164724282"/>
@@ -179,10 +179,10 @@
 									<object class="IBUITableView" id="164724282">
 										<reference key="NSNextResponder" ref="511214358"/>
 										<int key="NSvFlags">-2147483374</int>
-										<string key="NSFrame">{{0, -99}, {320, 548}}</string>
+										<string key="NSFrameSize">{320, 455}</string>
 										<reference key="NSSuperview" ref="511214358"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="321091654"/>
+										<reference key="NSNextKeyView" ref="818917447"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<reference key="IBUIBackgroundColor" ref="32586187"/>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -196,7 +196,7 @@
 										<float key="IBUISectionFooterHeight">22</float>
 									</object>
 								</array>
-								<string key="NSFrame">{{0, 99}, {320, 449}}</string>
+								<string key="NSFrameSize">{320, 455}</string>
 								<reference key="NSSuperview" ref="66448548"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="395438184"/>
@@ -207,7 +207,7 @@
 								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
-							<object class="IBUIView" id="858399822">
+							<object class="IBUIView" id="818917447">
 								<reference key="NSNextResponder" ref="66448548"/>
 								<int key="NSvFlags">290</int>
 								<string key="NSFrameSize">{320, 44}</string>
@@ -223,17 +223,17 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</array>
-						<string key="NSFrameSize">{320, 548}</string>
+						<string key="NSFrameSize">{320, 455}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="858399822"/>
+						<reference key="NSNextKeyView" ref="511214358"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrame">{{0, 20}, {320, 548}}</string>
+				<string key="NSFrame">{{0, 64}, {320, 455}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="66448548"/>
@@ -243,6 +243,10 @@
 					<reference key="NSCustomColorSpace" ref="160824213"/>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
+					<bool key="IBUIPrompted">NO</bool>
+				</object>
+				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 				<object class="IBUIScreenMetrics" key="IBUISimulatedDestinationMetrics">
 					<string key="IBUISimulatedSizeMetricsClass">IBUIScreenMetrics</string>
 					<object class="NSMutableDictionary" key="IBUINormalizedOrientationToSizeMap">
@@ -333,9 +337,17 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">viewSearchBar</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="858399822"/>
+						<reference key="destination" ref="818917447"/>
 					</object>
 					<int key="connectionID">30</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">viewSearchTransparent</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="395438184"/>
+					</object>
+					<int key="connectionID">31</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -406,7 +418,7 @@
 							<reference ref="819307655"/>
 							<reference ref="321091654"/>
 							<reference ref="511214358"/>
-							<reference ref="858399822"/>
+							<reference ref="818917447"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -446,7 +458,7 @@
 						<reference key="object" ref="395438184"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="511214358"/>
-						<string key="objectName">bgView</string>
+						<string key="objectName">viewSearchTransparent</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">19</int>
@@ -456,7 +468,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">29</int>
-						<reference key="object" ref="858399822"/>
+						<reference key="object" ref="818917447"/>
 						<reference key="parent" ref="66448548"/>
 						<string key="objectName">viewSearchBar</string>
 					</object>
@@ -483,7 +495,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">30</int>
+			<int key="maxID">31</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -513,8 +525,9 @@
 						<string key="tableViewCompanies">UITableView</string>
 						<string key="tableViewSearchResult">UITableView</string>
 						<string key="viewScroll">UIScrollView</string>
-						<string key="viewSearchBar">UIView</string>
+						<string key="viewSearchBar">GGStyledSearchBar</string>
 						<string key="viewSearchBg">UIView</string>
+						<string key="viewSearchTransparent">UIView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="btnLinkedIn">
@@ -543,10 +556,14 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="viewSearchBar">
 							<string key="name">viewSearchBar</string>
-							<string key="candidateClassName">UIView</string>
+							<string key="candidateClassName">GGStyledSearchBar</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="viewSearchBg">
 							<string key="name">viewSearchBg</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewSearchTransparent">
+							<string key="name">viewSearchTransparent</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
 					</dictionary>

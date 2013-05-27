@@ -69,7 +69,12 @@
 
 //
 @implementation GGStyledSearchBar
-
+-(BOOL)resignFirstResponder
+{
+    [_tfSearch resignFirstResponder];
+    
+    return [super resignFirstResponder];
+}
 @end
 
 
@@ -122,6 +127,13 @@
     _btnCancel.frame = cancelRc;
     
     _btnCancel.hidden = !aShow;
+}
+
+-(BOOL)resignFirstResponder
+{
+    [_tfSearch resignFirstResponder];
+    
+    return [super resignFirstResponder];
 }
 
 @end
