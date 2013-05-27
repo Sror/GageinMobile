@@ -33,21 +33,27 @@
 }
 
 -(void)registerOperation:(id)anOperation
-{
-    NSAssert([anOperation isKindOfClass:[AFHTTPRequestOperation class]], @"an operation should be a AFHTTPRequestOperation");
-    
-    [_apiOperations addObject:anOperation];
-    
-    //DLog(@"\n\n api operation registered\n path:%@", ((AFHTTPRequestOperation *)anOperation).request.URL.relativeString);
+{    
+    if (anOperation)
+    {
+        NSAssert([anOperation isKindOfClass:[AFHTTPRequestOperation class]], @"an operation should be a AFHTTPRequestOperation");
+        
+        [_apiOperations addObject:anOperation];
+        
+        //DLog(@"\n\n api operation registered\n path:%@", ((AFHTTPRequestOperation *)anOperation).request.URL.relativeString);
+    }
 }
 
 -(void)unregisterOperation:(id)anOperation
 {
-    NSAssert([anOperation isKindOfClass:[AFHTTPRequestOperation class]], @"an operation should be a AFHTTPRequestOperation");
-    
-    [_apiOperations removeObject:anOperation];
-    
-    //DLog(@"\n\n api operation unregistered\n path:%@", ((AFHTTPRequestOperation *)anOperation).request.URL.relativeString);
+    if (anOperation)
+    {
+        NSAssert([anOperation isKindOfClass:[AFHTTPRequestOperation class]], @"an operation should be a AFHTTPRequestOperation");
+        
+        [_apiOperations removeObject:anOperation];
+        
+        //DLog(@"\n\n api operation unregistered\n path:%@", ((AFHTTPRequestOperation *)anOperation).request.URL.relativeString);
+    }
 }
 
 -(void)handleNotification:(NSNotification *)notification
