@@ -11,12 +11,19 @@
 #import "GGPerson.h"
 #import "GGDataPage.h"
 
+#import "GGGroupedCell.h"
+#import "GGConfigLabel.h"
+
 @interface GGFollowPeopleVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *svContent;
-@property (weak, nonatomic) IBOutlet UIButton *btnLinkedIn;
 @property (weak, nonatomic) IBOutlet UITableView *tvPeople;
 @property (weak, nonatomic) IBOutlet UIView *viewSearchBg;
+@property (weak, nonatomic) IBOutlet UIView *viewSearchTransparent;
+
 @property (weak, nonatomic) IBOutlet UITableView *tvSearchResult;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnLinkedIn;
+@property (strong, nonatomic) IBOutlet UIView *viewTvPeopleHeader;
 
 @end
 
@@ -24,7 +31,10 @@
 {
     GGStyledSearchBar *_searchBar;
     
-    CGRect              _tvSearchResultRect;
+    CGRect              _searchBarRect;
+    CGRect              _searchBarRectOnNavi;
+    
+    //CGRect              _tvSearchResultRect;
     CGRect              _tvSearchResultRectShort;
     
     NSTimer             *_searchTimer;
@@ -32,6 +42,8 @@
     NSMutableArray      *_searchedPeople;
     NSMutableArray      *_followedPeople;
     NSMutableArray      *_suggestedPeople;
+    
+    UITapGestureRecognizer        *_tapGestToHideSearch;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -54,19 +66,43 @@
     self.naviTitle = @"Follow People";
     
     _searchBar = [GGStyledSearchBar viewFromNibWithOwner:self];
+    _searchBar.tfSearch.placeholder = @"Search for people";
     _searchBar.delegate = self;
     [self.svContent addSubview:_searchBar];
     
-    _tvSearchResultRect = self.tvSearchResult.frame;
-    float height = self.view.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT - _searchBar.frame.size.height + self.tabBarController.tabBar.frame.size.height;
-    _tvSearchResultRectShort = [GGUtils setH:height rect:_tvSearchResultRect];
+    _searchBarRect = _searchBar.frame;
+    _searchBarRectOnNavi = CGRectMake((self.navigationController.navigationBar.frame.size.width - _searchBarRect.size.width) / 2
+                                      , (self.navigationController.navigationBar.frame.size.height - _searchBarRect.size.height) / 2
+                                      , _searchBarRect.size.width
+                                      , _searchBarRect.size.height);
+    
+    //_tvSearchResultRect = self.tvSearchResult.frame;
+    float height = self.view.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT + self.tabBarController.tabBar.frame.size.height;
+    _tvSearchResultRectShort = [GGUtils setH:height rect:self.tvSearchResult.frame];
+    self.tvSearchResult.frame = _tvSearchResultRectShort;
     
     self.tvSearchResult.rowHeight = [GGSearchSuggestionCell HEIGHT];
     
 //    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(doneAction:)];
-    self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(doneAction:)];
+//    self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(doneAction:)];
+    
+    _tapGestToHideSearch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToHideSearch:)];
+    [_viewSearchTransparent addGestureRecognizer:_tapGestToHideSearch];
+    
+    //
+    _tvPeople.tableHeaderView = _viewTvPeopleHeader;
+    _tvPeople.backgroundColor = GGSharedColor.silver;
+    _tvPeople.rowHeight = [GGGroupedCell HEIGHT];
+    
+    [self _showTitle:YES];
+    [self _showDoneBtn:YES];
     
     [self _callGetFollowedPeople];
+}
+
+-(void)tapToHideSearch:(UITapGestureRecognizer *)aTapGest
+{
+    [self searchBarCanceled:_searchBar];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -81,7 +117,34 @@
     [self setTvPeople:nil];
     [self setViewSearchBg:nil];
     [self setTvSearchResult:nil];
+    [self setViewTvPeopleHeader:nil];
+    [self setViewSearchTransparent:nil];
     [super viewDidUnload];
+}
+
+#pragma mark - internal
+-(void)_showDoneBtn:(BOOL)aShow
+{
+    if (aShow)
+    {
+        self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(doneAction:)];;
+    }
+    else
+    {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+}
+
+-(void)_showTitle:(BOOL)aShow
+{
+    if (aShow)
+    {
+        self.title = @"Follow People";
+    }
+    else
+    {
+        self.title = @"";
+    }
 }
 
 #pragma mark - helper
@@ -146,6 +209,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    int row = indexPath.row;
+    
     if (tableView == self.tvSearchResult) {
         static NSString *searchResultCellId = @"GGSearchSuggestionCell";
         GGSearchSuggestionCell *cell = [tableView dequeueReusableCellWithIdentifier:searchResultCellId];
@@ -163,34 +228,83 @@
     }
     
     /////
-    static NSString *companyCellId = @"companyCellId";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:companyCellId];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:companyCellId];
+//    static NSString *companyCellId = @"companyCellId";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:companyCellId];
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:companyCellId];
+//    }
+//    
+//    GGPerson *data = _followedPeople[indexPath.row];
+//    cell.textLabel.text = data.name;
+//    cell.accessoryType = data.followed ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+//    
+//    return cell;
+    
+    static NSString *cellID = @"GGGroupedCell";
+    GGGroupedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell)
+    {
+        cell = [GGGroupedCell viewFromNibWithOwner:self];
     }
     
-    GGPerson *data = _followedPeople[indexPath.row];
-    cell.textLabel.text = data.name;
-    cell.accessoryType = data.followed ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    GGPerson *data = _followedPeople[row];
+    
+    cell.lblTitle.text = data.name;
+    cell.tag = row;
+    
+    cell.style = [GGUtils styleForArrayCount:_followedPeople.count atIndex:row];
+    
+    cell.checked = data.followed;
+    [cell showSubTitle:NO];
     
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    if (tableView == self.tvPeople)
+//    {
+//        if (section == 0)
+//        {
+//            return @"Followed Companies";
+//        }
+//        else if (section == 1)
+//        {
+//            return @"Suggested Companies";
+//        }
+//    }
+//    
+//    return nil;
+//}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (tableView == self.tvPeople)
+    if (tableView == _tvPeople)
     {
+        GGConfigLabel *configLabel = [GGConfigLabel viewFromNibWithOwner:self];
         if (section == 0)
         {
-            return @"Followed Companies";
+            configLabel.lblText.text = @"FOLLOWED PEOPLE";
         }
         else if (section == 1)
         {
-            return @"Suggested Companies";
+            configLabel.lblText.text = @"SUGGESTED PEOPLE";
         }
+        
+        return configLabel;
     }
     
     return nil;
+}
+
+-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (tableView == _tvPeople)
+    {
+        return [GGConfigLabel HEIGHT];
+    }
+    
+    return 0.f;
 }
 
 #pragma mark - table view delegate
@@ -248,7 +362,8 @@
                         [self.tvPeople insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
                     }
                     
-                    [self _cancelSearch];
+                    //[self _cancelSearch];
+                    [self searchBarCanceled:_searchBar];
                 }
                 else
                 {
@@ -262,56 +377,155 @@
 }
 
 
-#pragma mark - styled search bar delegate
--(void)_cancelSearch
-{
-    [_searchBar.tfSearch resignFirstResponder];
-    _viewSearchBg.hidden = YES;
-}
+#pragma mark - GGStyledSearchBarDelegate
 
 - (BOOL)searchBarShouldBeginEditing:(GGBaseSearchBar *)searchBar
 {
+    // install the search bar to the navigation bar
+    searchBar.frame = _searchBarRectOnNavi;
+    [self.navigationController.navigationBar addSubview:searchBar];
+    
+    [self _showDoneBtn:NO];
+    [self _showTitle:NO];
+    //[self hideBackButton];
+    
+    self.viewSearchBg.hidden = NO;
+    //self.tableViewSearchResult.frame = _tvSearchResultRectShort;
+    
     return YES;
 }
 
 - (void)searchBarTextDidBeginEditing:(GGBaseSearchBar *)searchBar
 {
-    self.viewSearchBg.hidden = NO;
-    self.tvSearchResult.frame = _tvSearchResultRectShort;
+    
 }
 
 - (BOOL)searchBarShouldEndEditing:(GGBaseSearchBar *)searchBar
 {
+    
+    //self.tableViewSearchResult.frame = _tvSearchResultRect;
+    
+    
     return YES;
 }
 
 - (void)searchBarTextDidEndEditing:(GGBaseSearchBar *)searchBar
 {
-    self.tvSearchResult.frame = _tvSearchResultRect;
+    
 }
 
 - (BOOL)searchBar:(GGBaseSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    [_searchTimer invalidate];
-    _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2.f target:self selector:@selector(_callSearchPeopleSuggestion) userInfo:nil repeats:NO];
+    
+    if (range.location <= 0 && text.length <= 0)
+    {
+        [self searchBarShouldClear:searchBar];
+    }
+    else
+    {
+        [self _refreshTimer];
+    }
     
     return YES;
+}
+
+-(void)_refreshTimer
+{
+    [_searchTimer invalidate];
+    _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2.f target:self selector:@selector(_callSearchPeopleSuggestion) userInfo:nil repeats:NO];
 }
 
 - (BOOL)searchBarShouldClear:(GGBaseSearchBar *)searchBar
 {
+    [_searchTimer invalidate];
+    _searchTimer = nil;
+    _tvSearchResult.hidden = YES;
+    
     return YES;
+}
+
+- (void)searchBarCanceled:(GGBaseSearchBar *)searchBar
+{
+    [_searchBar resignFirstResponder];
+    _searchBar.frame = _searchBarRect;
+    [_svContent addSubview:_searchBar];
+    self.viewSearchBg.hidden = YES;
+    
+    [self _showDoneBtn:YES];
+    [self _showTitle:YES];
 }
 
 - (BOOL)searchBarShouldSearch:(GGBaseSearchBar *)searchBar
 {
+    DLog(@"seach button clicked");
+    // search and show result
     [_searchTimer invalidate];
     _searchTimer = nil;
     [self _callSearchPeople];
-    [((GGStyledSearchBar *)searchBar).tfSearch resignFirstResponder];
+    //[searchBar resignFirstResponder];
+    
+    //    UIButton *cancelBtn = ((GGSearchBar *)searchBar).cancelButton;
+    //    cancelBtn.enabled = YES;
     
     return YES;
 }
+
+-(NSString *)_searchText
+{
+    return _searchBar.tfSearch.text;
+}
+
+
+#pragma mark - styled search bar delegate
+//-(void)_cancelSearch
+//{
+//    [_searchBar resignFirstResponder];
+//    _viewSearchBg.hidden = YES;
+//}
+
+//- (BOOL)searchBarShouldBeginEditing:(GGBaseSearchBar *)searchBar
+//{
+//    return YES;
+//}
+//
+//- (void)searchBarTextDidBeginEditing:(GGBaseSearchBar *)searchBar
+//{
+//    self.viewSearchBg.hidden = NO;
+//    self.tvSearchResult.frame = _tvSearchResultRectShort;
+//}
+//
+//- (BOOL)searchBarShouldEndEditing:(GGBaseSearchBar *)searchBar
+//{
+//    return YES;
+//}
+//
+//- (void)searchBarTextDidEndEditing:(GGBaseSearchBar *)searchBar
+//{
+//    self.tvSearchResult.frame = _tvSearchResultRect;
+//}
+
+//- (BOOL)searchBar:(GGBaseSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+//{
+//    [_searchTimer invalidate];
+//    _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2.f target:self selector:@selector(_callSearchPeopleSuggestion) userInfo:nil repeats:NO];
+//    
+//    return YES;
+//}
+
+//- (BOOL)searchBarShouldClear:(GGBaseSearchBar *)searchBar
+//{
+//    return YES;
+//}
+//
+//- (BOOL)searchBarShouldSearch:(GGBaseSearchBar *)searchBar
+//{
+//    [_searchTimer invalidate];
+//    _searchTimer = nil;
+//    [self _callSearchPeople];
+//    [((GGStyledSearchBar *)searchBar).tfSearch resignFirstResponder];
+//    
+//    return YES;
+//}
 
 #pragma mark - API calls
 -(void)_callSearchPeopleSuggestion

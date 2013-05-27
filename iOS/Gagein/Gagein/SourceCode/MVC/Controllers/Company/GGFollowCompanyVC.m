@@ -67,6 +67,7 @@
     
     // replace the search bar placeholder view with the real search bar
     _viewSearchBar = [GGUtils replaceFromNibForView:_viewSearchBar];
+    _viewSearchBar.tfSearch.placeholder = @"Search for companies";
     _viewSearchBar.delegate = self;
     
     // record the rect of the search bar, and calculate the rect of the search bar when it becomes the first responder.
@@ -224,7 +225,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = indexPath.row;
-    int section = indexPath.section;
+    //int section = indexPath.section;
     
     if (tableView == self.tableViewSearchResult) {
         static NSString *searchResultCellId = @"GGSearchSuggestionCell";
