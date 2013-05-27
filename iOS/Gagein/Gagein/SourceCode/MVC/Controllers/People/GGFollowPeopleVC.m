@@ -320,14 +320,40 @@
         {
             GGPerson *data = _followedPeople[row];
             
-            if (data.followed)
+            if (data.followed)  // unfollow him
             {
 #warning TODO: No follow/unfollow person API
-
+                id op = [GGSharedAPI unfollowPersonWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                    GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                    if (parser.isOK)
+                    {
+                        data.followed = NO;
+                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    }
+                    else
+                    {
+                        [GGAlert alertWithApiMessage:parser.message];
+                    }
+                }];
+                
+                [self registerOperation:op];
             }
-            else
+            else    // follow him
             {
-
+                id op = [GGSharedAPI followPersonWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                    GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                    if (parser.isOK)
+                    {
+                        data.followed = YES;
+                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    }
+                    else
+                    {
+                        [GGAlert alertWithApiMessage:parser.message];
+                    }
+                }];
+                
+                [self registerOperation:op];
             }
         }
     }

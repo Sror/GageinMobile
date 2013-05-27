@@ -407,6 +407,7 @@
                     
                     
                     //[self searchBarCancelButtonClicked:self.searchBar];
+                    [self searchBarCanceled:_viewSearchBar];
                 }
                 else
                 {
