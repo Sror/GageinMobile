@@ -18,14 +18,16 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *viewScroll;
 //@property (weak, nonatomic) IBOutlet GGSearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UILabel *lblTip;
-@property (weak, nonatomic) IBOutlet UIButton *btnSalesForce;
-@property (weak, nonatomic) IBOutlet UIButton *btnLinkedIn;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableViewCompanies;
 @property (weak, nonatomic) IBOutlet UIView *viewSearchBg;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewSearchResult;
 @property (weak, nonatomic) IBOutlet GGStyledSearchBar *viewSearchBar;
 @property (weak, nonatomic) IBOutlet UIView *viewSearchTransparent;
+
 @property (weak, nonatomic) IBOutlet UIView *viewTvCompaniesHeader;
+@property (weak, nonatomic) IBOutlet UIButton *btnSalesForce;
+@property (weak, nonatomic) IBOutlet UIButton *btnLinkedIn;
 
 @end
 
@@ -43,6 +45,67 @@
     NSMutableArray      *_suggestedCompanies;
     
     UITapGestureRecognizer          *_tapGestToHideSearch;
+    
+#warning XXX: this two boolean value should be replaced by real judgement for salesforce and linkedIn account.
+    BOOL                _needImportFromSalesforce;
+    BOOL                _needImportFromLinkedIn;
+}
+
+
+#define BUTTON_WIDTH_LONG       247.f
+#define BUTTON_WIDTH_SHORT      116.f
+#define BUTTON_HEIGHT           31.f
+-(void)_adjustStyleForSuggestedHeaderView
+{
+    _tableViewCompanies.tableHeaderView = (!_needImportFromLinkedIn && !_needImportFromSalesforce) ? nil : _viewTvCompaniesHeader;
+    
+    CGRect headerRc = _viewTvCompaniesHeader.frame;
+    _btnSalesForce.hidden = _btnLinkedIn.hidden = YES;
+    
+    if (_needImportFromLinkedIn && _needImportFromSalesforce)
+    {
+        // case 1
+        float horiGap = (headerRc.size.width - BUTTON_WIDTH_SHORT * 2) / 3;
+        CGRect salesBtnRc = _btnSalesForce.frame;
+        salesBtnRc.size.width = BUTTON_WIDTH_SHORT;
+        salesBtnRc.origin.x = horiGap;
+        _btnSalesForce.frame = salesBtnRc;
+        [_btnSalesForce setImage:[UIImage imageNamed:@"salesForceBtnBg"] forState:UIControlStateNormal];
+        
+        CGRect linkedInRc = _btnLinkedIn.frame;
+        linkedInRc.size.width = BUTTON_WIDTH_SHORT;
+        linkedInRc.origin.x = headerRc.size.width - horiGap - BUTTON_WIDTH_SHORT;
+        _btnLinkedIn.frame = linkedInRc;
+        [_btnLinkedIn setImage:[UIImage imageNamed:@"linkedInBtnBg"] forState:UIControlStateNormal];
+        
+        _btnSalesForce.hidden = _btnLinkedIn.hidden = NO;
+    }
+    else if (_needImportFromSalesforce)
+    {
+        // case 2
+        // salesForceLongBtnBg
+        
+        CGRect salesBtnRc = _btnLinkedIn.frame;
+        salesBtnRc.size.width = BUTTON_WIDTH_LONG;
+        salesBtnRc.origin.x = (headerRc.size.width - BUTTON_WIDTH_LONG) / 2;
+        _btnSalesForce.frame = salesBtnRc;
+        [_btnSalesForce setImage:[UIImage imageNamed:@"salesForceLongBtnBg"] forState:UIControlStateNormal];
+        
+        _btnSalesForce.hidden = NO;
+    }
+    else if (_needImportFromLinkedIn)
+    {
+        // case 3
+        // linkedInLongBtnBg
+        
+        CGRect linkedInRc = _btnLinkedIn.frame;
+        linkedInRc.size.width = BUTTON_WIDTH_LONG;
+        linkedInRc.origin.x = (headerRc.size.width - BUTTON_WIDTH_LONG) / 2;
+        _btnLinkedIn.frame = linkedInRc;
+        [_btnLinkedIn setImage:[UIImage imageNamed:@"linkedInLongBtnBg"] forState:UIControlStateNormal];
+        
+        _btnLinkedIn.hidden = NO;
+    }
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -90,12 +153,17 @@
     
     //
     //[_viewTvCompaniesHeader removeFromSuperview];
-    _tableViewCompanies.tableHeaderView = _viewTvCompaniesHeader;
+    
     _tableViewCompanies.backgroundColor = GGSharedColor.silver;
     _tableViewCompanies.rowHeight = [GGGroupedCell HEIGHT];
     
     [self _showTitle:YES];
     [self _showDoneBtn:YES];
+    
+    //
+    _needImportFromLinkedIn = YES;
+    _needImportFromSalesforce = YES;
+    [self _adjustStyleForSuggestedHeaderView];
     
     
     [self _callGetFollowedCompanies];
@@ -590,7 +658,8 @@
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         GGDataPage *page = [parser parseFollowedCompanies];
-        _followedCompanies = page.items;
+        [_followedCompanies removeAllObjects];
+        [_followedCompanies addObjectsFromArray:page.items];
         
         for (GGCompany *company in _followedCompanies) {
             company.followed = 1;
