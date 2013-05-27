@@ -11,7 +11,8 @@
 #import "GGDataPage.h"
 #import "GGCompany.h"
 #import "GGSearchSuggestionCell.h"
-
+#import "GGConfigLabel.h"
+#import "GGGroupedCell.h"
 
 @interface GGFollowCompanyVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *viewScroll;
@@ -24,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableViewSearchResult;
 @property (weak, nonatomic) IBOutlet GGStyledSearchBar *viewSearchBar;
 @property (weak, nonatomic) IBOutlet UIView *viewSearchTransparent;
+@property (weak, nonatomic) IBOutlet UIView *viewTvCompaniesHeader;
 
 @end
 
@@ -85,6 +87,12 @@
     _tapGestToHideSearch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToHideSearch:)];
     [_viewSearchTransparent addGestureRecognizer:_tapGestToHideSearch];
     
+    //
+    //[_viewTvCompaniesHeader removeFromSuperview];
+    _tableViewCompanies.tableHeaderView = _viewTvCompaniesHeader;
+    _tableViewCompanies.backgroundColor = GGSharedColor.silver;
+    _tableViewCompanies.rowHeight = [GGGroupedCell HEIGHT];
+    
     [self _showTitle:YES];
     [self _showDoneBtn:YES];
     
@@ -115,6 +123,7 @@
     [self setTableViewSearchResult:nil];
     [self setViewSearchBar:nil];
     [self setViewSearchTransparent:nil];
+    [self setViewTvCompaniesHeader:nil];
     [super viewDidUnload];
 }
 
@@ -214,6 +223,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    int row = indexPath.row;
+    int section = indexPath.section;
+    
     if (tableView == self.tableViewSearchResult) {
         static NSString *searchResultCellId = @"GGSearchSuggestionCell";
         GGSearchSuggestionCell *cell = [tableView dequeueReusableCellWithIdentifier:searchResultCellId];
@@ -221,7 +233,7 @@
             cell = [GGSearchSuggestionCell viewFromNibWithOwner:self];
         }
         
-        GGCompany *companyData = _searchedCompanies[indexPath.row];
+        GGCompany *companyData = _searchedCompanies[row];
         [cell.ivLogo setImageWithURL:[NSURL URLWithString:companyData.logoPath] placeholderImage:nil];
         cell.lblName.text = companyData.name;
         cell.lblName.textColor = (companyData.getType == kGGCompanyTypePrivate) ? GGSharedColor.gray : GGSharedColor.black;
@@ -232,34 +244,83 @@
     }
     
     /////
-    static NSString *companyCellId = @"companyCellId";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:companyCellId];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:companyCellId];
+//    static NSString *companyCellId = @"companyCellId";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:companyCellId];
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:companyCellId];
+//    }
+//    
+//    GGCompany *companyData = _followedCompanies[indexPath.row];
+//    cell.textLabel.text = companyData.name;
+//    cell.accessoryType = companyData.followed ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+//    
+//    return cell;
+    
+    static NSString *cellID = @"GGGroupedCell";
+    GGGroupedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell)
+    {
+        cell = [GGGroupedCell viewFromNibWithOwner:self];
     }
     
-    GGCompany *companyData = _followedCompanies[indexPath.row];
-    cell.textLabel.text = companyData.name;
-    cell.accessoryType = companyData.followed ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    GGCompany *data = _followedCompanies[indexPath.row];
+    
+    cell.lblTitle.text = data.name;
+    cell.tag = row;
+    
+    cell.style = [GGUtils styleForArrayCount:_followedCompanies.count atIndex:row];
+    
+    cell.checked = data.followed;
+    [cell showSubTitle:NO];
     
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    if (tableView == self.tableViewCompanies)
+//    {
+//        if (section == 0)
+//        {
+//            return @"Followed Companies";
+//        }
+//        else if (section == 1)
+//        {
+//            return @"Suggested Companies";
+//        }
+//    }
+//    
+//    return nil;
+//}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (tableView == self.tableViewCompanies)
+    if (tableView == _tableViewCompanies)
     {
+        GGConfigLabel *configLabel = [GGConfigLabel viewFromNibWithOwner:self];
         if (section == 0)
         {
-            return @"Followed Companies";
+            configLabel.lblText.text = @"FOLLOWED COMPANIES";
         }
         else if (section == 1)
         {
-            return @"Suggested Companies";
+            configLabel.lblText.text = @"SUGGESTED COMPANIES";
         }
+        
+        return configLabel;
     }
     
     return nil;
+}
+
+-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (tableView == _tableViewCompanies)
+    {
+        return [GGConfigLabel HEIGHT];
+    }
+    
+    return 0.f;
 }
 
 #pragma mark - table view delegate

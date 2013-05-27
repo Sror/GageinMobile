@@ -19,6 +19,12 @@
     return self;
 }
 
+-(void)awakeFromNib
+{
+    self.backgroundColor = GGSharedColor.silver;
+    _lblText.text = @"";
+}
+
 +(float)HEIGHT
 {
     return 40.f;

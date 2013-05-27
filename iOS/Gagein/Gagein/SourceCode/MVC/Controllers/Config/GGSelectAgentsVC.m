@@ -254,7 +254,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     GGConfigLabel *configLabel = [GGConfigLabel viewFromNibWithOwner:self];
-    configLabel.backgroundColor = GGSharedColor.silver;
+    //configLabel.backgroundColor = GGSharedColor.silver;
     
     if (_customAgents.count && section == 0)
     {
