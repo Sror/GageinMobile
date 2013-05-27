@@ -545,8 +545,9 @@
     NSString *keyword = [self _searchText];
     if (keyword.length)
     {
+        [self showLoadingHUD];
         id op = [GGSharedAPI getCompanySuggestionWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
-            
+            [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             GGDataPage *page = [parser parseSearchCompany];
             _searchedCompanies = page.items;
@@ -584,7 +585,9 @@
 
 -(void)_callGetFollowedCompanies
 {
+    [self showLoadingHUD];
     id op = [GGSharedAPI getFollowedCompaniesWithPage:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         GGDataPage *page = [parser parseFollowedCompanies];
         _followedCompanies = page.items;
