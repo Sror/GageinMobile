@@ -152,18 +152,17 @@
     [_viewSearchTransparent addGestureRecognizer:_tapGestToHideSearch];
     
     //
-    //[_viewTvCompaniesHeader removeFromSuperview];
-    
     _tableViewCompanies.backgroundColor = GGSharedColor.silver;
     _tableViewCompanies.rowHeight = [GGGroupedCell HEIGHT];
     
-    [self _showTitle:YES];
-    [self _showDoneBtn:YES];
-    
     //
     _needImportFromLinkedIn = YES;
-    _needImportFromSalesforce = YES;
+    _needImportFromSalesforce = NO;
     [self _adjustStyleForSuggestedHeaderView];
+    
+    //
+    [self _showTitle:YES];
+    [self _showDoneBtn:YES];
     
     
     [self _callGetFollowedCompanies];
