@@ -11,6 +11,7 @@
 #import "GGCategoryFilter.h"
 #import "GGDataPage.h"
 #import "GGConfigLabel.h"
+#import "GGGroupedCell.h"
 
 @interface GGConfigCategoryFiltersVC ()
 //@property (weak, nonatomic) IBOutlet GGConfigSwitchCell *cellConfigSwitch;
@@ -40,6 +41,9 @@
     [super viewDidLoad];
     self.naviTitle = @"Category Filters";
     self.view.backgroundColor = GGSharedColor.silver;
+    _tv.backgroundColor = GGSharedColor.clear;
+    _tv.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tv.rowHeight = [GGGroupedCell HEIGHT];
     
 //    _viewConfigSwitch = [GGUtils replaceFromNibForView:_viewConfigSwitch];
 //    
@@ -51,8 +55,8 @@
 //    _viewConfigSwitch.btnSwitch.delegate = self;
 //    [GGUtils applyTableStyle1ToView:_viewConfigSwitch];
     
-    _tv.layer.cornerRadius = 8;
-    [GGUtils applyTableStyle1ToView:_viewTvContainer];
+//    _tv.layer.cornerRadius = 8;
+//    [GGUtils applyTableStyle1ToView:_viewTvContainer];
     
 //    _configOffTipView = [GGConfigLabel viewFromNibWithOwner:self];
 //    _configOffTipView.lblText.text = @"Filter your update feed by agents.";
@@ -76,27 +80,39 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     int count = _filters.count;
-    CGRect tvRc = _viewTvContainer.frame;
-    tvRc.size.height = 44 * count;
-    _viewTvContainer.frame = tvRc;
+//    CGRect tvRc = _viewTvContainer.frame;
+//    tvRc.size.height = 44 * count;
+//    _viewTvContainer.frame = tvRc;
     return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int row = indexPath.row;
-   // int section = indexPath.section;
+//    int row = indexPath.row;
+//   // int section = indexPath.section;
+//    
+//    static NSString *cellID = @"cellID";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+//    if (!cell) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+//    }
     
-    static NSString *cellID = @"cellID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    int row = indexPath.row;
+    //int section = indexPath.section;
+    
+    static NSString *cellID = @"GGGroupedCell";
+    GGGroupedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell)
+    {
+        cell = [GGGroupedCell viewFromNibWithOwner:self];
     }
     
     GGCategoryFilter *data = _filters[row];
-    cell.textLabel.text = data.name;
+    cell.lblTitle.text = data.name;
+    cell.checked = data.checked;
     
-    cell.accessoryType = (data.checked) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    cell.style = [GGUtils styleForArrayCount:_filters.count atIndex:row];
+    //cell.accessoryType = (data.checked) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     
     return cell;
 }

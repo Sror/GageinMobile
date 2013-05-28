@@ -45,6 +45,8 @@
     self.naviTitle = @"Agent Filters";
     self.view.backgroundColor = GGSharedColor.silver;
     self.tv.backgroundColor = GGSharedColor.silver;
+    _tv.rowHeight = [GGGroupedCell HEIGHT];
+    _tv.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Edit" target:self selector:@selector(editCustomAgentAction:)];
     
@@ -171,28 +173,28 @@
 //    return nil;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //int row = indexPath.row;
-    int section = indexPath.section;
-    
-//    if (section == 0) {
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    //int row = indexPath.row;
+//    int section = indexPath.section;
+//    
+////    if (section == 0) {
+////        
+////        return [GGConfigSwitchCell HEIGHT];
+////        
+////    } else
+//    
+//        if (section == 0) {
 //        
-//        return [GGConfigSwitchCell HEIGHT];
+//        return 44.f;
 //        
-//    } else
-    
-        if (section == 0) {
-        
-        return 44.f;
-        
-    } else if (section == 1) {
-        
-        return 44.f;
-    }
-    
-    return 0.f;
-}
+//    } else if (section == 1) {
+//        
+//        return 44.f;
+//    }
+//    
+//    return 0.f;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {

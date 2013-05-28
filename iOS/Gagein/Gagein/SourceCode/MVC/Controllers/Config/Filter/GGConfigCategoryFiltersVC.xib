@@ -59,9 +59,10 @@
 							<object class="IBUITableView" id="951627979">
 								<reference key="NSNextResponder" ref="332514393"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{290, 426}</string>
+								<string key="NSFrameSize">{320, 426}</string>
 								<reference key="NSSuperview" ref="332514393"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -78,7 +79,7 @@
 								<float key="IBUISectionFooterHeight">22</float>
 							</object>
 						</array>
-						<string key="NSFrame">{{15, 20}, {290, 426}}</string>
+						<string key="NSFrame">{{0, 20}, {320, 426}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="951627979"/>

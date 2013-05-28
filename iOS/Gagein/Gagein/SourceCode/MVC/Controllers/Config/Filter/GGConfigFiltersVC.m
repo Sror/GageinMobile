@@ -39,6 +39,8 @@
     [super viewDidLoad];
     self.naviTitle = @"Configure Filters";
     self.tv.backgroundColor = GGSharedColor.silver;
+    _tv.rowHeight = [GGGroupedCell HEIGHT];
+    _tv.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     _configHeadLabel = [GGConfigLabel viewFromNibWithOwner:self];
     _configHeadLabel.lblText.text = @"Personalize your company update streams";
