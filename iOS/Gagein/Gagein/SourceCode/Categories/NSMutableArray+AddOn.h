@@ -10,4 +10,5 @@
 
 @interface NSMutableArray (AddOn) 
 -(id)objectAtIndexSafe:(NSUInteger)index;
+-(void)addObjectIfNotNil:(id)anObject;
 @end

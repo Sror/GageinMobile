@@ -7,20 +7,14 @@
 //
 
 #import "GGUserProfile.h"
+#import "GGCompany.h"
 
 @implementation GGUserProfile
 
-//mem_first_name
-//mem_last_name
-//mem_email
-//mem_org_title
-//mem_add_timezone
-//orgid
-//org_name
-//org_website
-//org_logo_path
-//plan_id":"99","plan_name":"Unlimited"
-//"timezone_gmtnum":"GMT-06:00","timezone_name":"Saskatchewan"
+//3.contact/overview api
+//add columns : school，prev companies
+//schools:[{"name":"xxxxx"},{"name","yyyyy"}]
+//prev_companies:[{"orgid":"1111","org_name":"gagein","enabled":1},{"orgid":"222","org_name":"gagein222","enabled":1},{"orgid":"xxxx","org_name":"gagein333","enabled":0}]
 
 -(void)parseWithData:(NSDictionary *)aData
 {
@@ -40,6 +34,38 @@
     _planName = [aData objectForKey:@"plan_name"];
     _timezoneGMT = [aData objectForKey:@"timezone_gmtnum"];
     _timezoneName = [aData objectForKey:@"timezone_name"];
+    
+    // education - schools
+    NSMutableArray *schools = [aData objectForKey:@"schools"];
+    if (schools.count)
+    {
+        _schools = [NSMutableArray array];
+        for (NSDictionary *schoolDic in schools)
+        {
+            [_schools addObjectIfNotNil:[schoolDic objectForKey:@"name"]];
+        }
+    }
+    else
+    {
+        _schools = nil;
+    }
+    
+    // previous companies
+    NSMutableArray *prevCompanies = [aData objectForKey:@"prev_companies"];
+    if (prevCompanies.count)
+    {
+        _prevCompanies = [NSMutableArray array];
+        for (NSDictionary *comDic in prevCompanies)
+        {
+            GGCompanyBrief *company = [GGCompanyBrief model];
+            [company parseWithData:comDic];
+            [_prevCompanies addObjectIfNotNil:company];
+        }
+    }
+    else
+    {
+        _prevCompanies = nil;
+    }
     
 //    self.orgAddress = [aData objectForKey:@"org_address"];
 //    self.photoPath = [aData objectForKey:@"mem_photo_path"];

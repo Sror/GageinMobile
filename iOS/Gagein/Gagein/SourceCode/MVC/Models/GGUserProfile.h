@@ -10,7 +10,6 @@
 #import "GGDataModel.h"
 
 
-
 @interface GGUserProfile : GGDataModel
 
 @property (copy) NSString *firstName;
@@ -28,6 +27,9 @@
 @property (copy) NSString *timezone;
 @property (copy) NSString *timezoneGMT;
 @property (copy) NSString *timezoneName;
+
+@property (strong) NSMutableArray   *schools;
+@property (strong) NSMutableArray   *prevCompanies;
 
 //@property (copy) NSString *fullName;
 //@property (copy) NSString *orgAddress;

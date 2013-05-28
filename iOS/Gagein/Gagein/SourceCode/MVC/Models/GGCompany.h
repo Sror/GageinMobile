@@ -20,6 +20,7 @@ typedef enum {
 
 @interface GGCompanyBrief : GGDataModel
 @property (copy)    NSString *name;
+@property (assign)  BOOL    enabled;
 @end
 
 @interface GGCompany : GGDataModel

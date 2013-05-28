@@ -19,4 +19,12 @@
     return nil;
 }
 
+-(void)addObjectIfNotNil:(id)anObject
+{
+    if (anObject)
+    {
+        [self addObject:anObject];
+    }
+}
+
 @end

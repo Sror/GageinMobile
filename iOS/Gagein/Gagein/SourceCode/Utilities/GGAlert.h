@@ -46,7 +46,8 @@ typedef enum {
     , kGGMsgCodeCompanyWebConnectFailed                 // N/A FOR IOS
     
     // people
-    , kGGMsgCodePeopleProfileLoadError = 31001          // person's profile cant be found in database
+    , kGGMsgCodeMemberProfileLoadError = 31001          // member's profile cant be found in database
+    , kGGMsgCodePeopleNotFound                          // people not found in database
     
     // updates
     , kGGMsgCodeNoUpdateForLessFollowedCompanies = 32001   // Empty Page Message No.2
@@ -82,6 +83,6 @@ typedef enum {
     , kGGMsgCodeSnCantGetUserInfo                           // failed to get user info using social account
     
     // crm
-    , , kGGMsgCodeCrmAlreadyConnected = 80001               // N/A FOR IOS
+    , kGGMsgCodeCrmAlreadyConnected = 80001               // N/A FOR IOS
     
 }EGGMessageCode;

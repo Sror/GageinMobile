@@ -29,6 +29,24 @@
     return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
+//4. get suggested contacts when search contacts.
+//POST: /svc/search/contact/get_suggestions
+//Parameters: access_token=b4790223c67f68b744d6ac3bb9b830e6&q=c
+-(AFHTTPRequestOperation *)getSuggestedPeopleWithKeyword:(NSString *)aKeyword
+                                                    page:(int)aPage
+                                                callback:(GGApiBlock)aCallback
+{
+    //POST
+    NSString *path = @"search/contact/get_suggestions";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:aKeyword forKey:@"q"];
+    
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
+}
+
 //MC01:Follow ContactBack to top
 //GET
 ///svc/member/me/contact/follow
@@ -62,6 +80,8 @@
 }
 
 
+
+
 //C01:Contact OverviewBack to top
 //GET
 ///svc/contact/<contactid>/overview, e,g, /svc/contact/150704/overview
@@ -88,6 +108,21 @@
     //[parameters setObjectIfNotNil:@"me" forKey:@"memid"];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
+}
+
+//2.send upgrade link
+//POST:/svc/config/plan/send_link
+-(AFHTTPRequestOperation *)sendUpgradeLink:(GGApiBlock)aCallback
+{
+    // GET
+    NSString *path = @"config/plan/send_link";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    //[parameters setObjectIfNotNil:@"me" forKey:@"memid"];
+    
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
 @end

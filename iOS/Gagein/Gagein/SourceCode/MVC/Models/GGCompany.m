@@ -18,6 +18,7 @@
     
     self.ID = [[aData objectForKey:@"orgid"] longLongValue];
     self.name = [aData objectForKey:@"org_name"];
+    self.enabled = [[aData objectForKey:@"enabled"] boolValue];
 }
 
 @end

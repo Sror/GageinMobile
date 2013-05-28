@@ -26,4 +26,15 @@
 -(AFHTTPRequestOperation *)getPersonOverviewWithID:(long long)aPersonID callback:(GGApiBlock)aCallback;
 
 -(AFHTTPRequestOperation *)getMyOverview:(GGApiBlock)aCallback;
+
+//2.send upgrade link
+#warning TODO: use the API - sendUpgradeLink
+-(AFHTTPRequestOperation *)sendUpgradeLink:(GGApiBlock)aCallback;
+
+//4. get suggested contacts when search contacts.
+#warning TODO: use the API - getSuggestedPeopleWithKeyword
+-(AFHTTPRequestOperation *)getSuggestedPeopleWithKeyword:(NSString *)aKeyword
+                                                    page:(int)aPage
+                                                callback:(GGApiBlock)aCallback;
+
 @end
