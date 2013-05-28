@@ -23,5 +23,6 @@
 
 +(float)HEIGHT;
 -(void)showDisclosure;
+-(void)hideAllAccessory;
 -(void)showSubTitle:(BOOL)aShow;
 @end

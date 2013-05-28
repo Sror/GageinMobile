@@ -102,6 +102,12 @@
     _ivDot.hidden = YES;
 }
 
+-(void)hideAllAccessory
+{
+    _ivDisclosure.hidden = YES;
+    _ivDot.hidden = YES;
+}
+
 -(void)showSubTitle:(BOOL)aShow
 {
     _lblSubTitle.hidden = !aShow;

@@ -34,6 +34,11 @@ typedef enum
 -(AFHTTPRequestOperation *)_execPostWithPath:(NSString *)aPath params:(NSDictionary *)aParams callback:(GGApiBlock)aCallback;
 -(AFHTTPRequestOperation *)_execGetWithPath:(NSString *)aPath params:(NSDictionary *)aParams callback:(GGApiBlock)aCallback;
 
+#pragma mark - basic APIs
+//1. get client latest version info
+#warning TODO: need use the API - getVersion
+-(AFHTTPRequestOperation *)getVersion:(GGApiBlock)aCallback;
+
 @end
 
 #define GGSharedAPI [GGApi sharedApi]

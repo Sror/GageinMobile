@@ -136,12 +136,13 @@
     if (!cell)
     {
         cell = [GGGroupedCell viewFromNibWithOwner:self];
-        [cell showDisclosure];
     }
     
     int row = indexPath.row;
     int section = indexPath.section;
+    
     [cell showSubTitle:NO];
+    [cell showDisclosure];
     
     if (section == 0) {
         
@@ -169,6 +170,7 @@
             cell.lblTitle.text = @"Version";
             cell.lblSubTitle.text = @"1.0";
             cell.style = kGGGroupCellFirst;
+            [cell hideAllAccessory];
             
         } else if (row == 1) {
             cell.lblTitle.text = @"Privacy";

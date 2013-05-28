@@ -102,4 +102,27 @@
     return operation;
 }
 
+
+#pragma mark - basic APIs
+//1. get client latest version info
+//GET: /svc/system/get_version
+//Parameters: appcode=78cfc17502a1e05a
+//Appcode:
+//public static final String APPCODE_SF = "a7dca5b5cc6b94e5";  // sf - Salesforce CRM
+//public static final String APPCODE_FU = "413501848376a54d";  // fu - Oracle Fusion CRM
+//public static final String APPCODE_SU = "eb4ed7832822d870";  // su - sugerCRM
+//public static final String APPCODE_IPHONE = "78cfc17502a1e05a";  // iphone
+//public static final String APPCODE_IPAD = "c0d67d02e7c74d36";  // ipad
+-(AFHTTPRequestOperation *)getVersion:(GGApiBlock)aCallback
+{
+    //GET
+    NSString *path = @"system/get_version";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
+}
+
 @end
