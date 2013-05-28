@@ -12,7 +12,7 @@
 #import "GGConfigAgentFiltersVC.h"
 #import "GGConfigCategoryFiltersVC.h"
 #import "GGConfigMediaFiltersVC.h"
-//#import "GGCustomAgentVC.h"
+#import "GGGroupedCell.h"
 
 @interface GGConfigFiltersVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tv;
@@ -75,14 +75,27 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"cellID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//    static NSString *cellID = @"cellID";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+//    if (!cell) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//    }
+    
+    static NSString *cellID = @"GGGroupedCell";
+    GGGroupedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell)
+    {
+        cell = [GGGroupedCell viewFromNibWithOwner:self];
+        [cell showDisclosure];
     }
     
-    cell.textLabel.text = _dataSource[indexPath.row];
+    int row = indexPath.row;
+    //int section = indexPath.section;
+    [cell showSubTitle:NO];
+    
+    cell.lblTitle.text = _dataSource[row];
+    cell.style = [GGUtils styleForArrayCount:_dataSource.count atIndex:row];
     
     return cell;
 }

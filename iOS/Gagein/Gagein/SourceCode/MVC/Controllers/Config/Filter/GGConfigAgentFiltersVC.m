@@ -12,6 +12,7 @@
 #import "GGAgentFilter.h"
 #import "GGDataPage.h"
 #import "GGEditCustomAgentFilterVC.h"
+#import "GGGroupedCell.h"
 
 @interface GGConfigAgentFiltersVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tv;
@@ -105,46 +106,69 @@
     int row = indexPath.row;
     int section = indexPath.section;
     
-//    if (section == 0) {
-//        
-//        return _configSwitchCell;
-//        
-//    } else
-    
-        if (section == 0) {
-        
-        static NSString *cellID = @"customAgentCellID";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-            //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        }
-        
-        GGAgentFilter *data = _customAgentFilters[row];
-        cell.textLabel.text = data.name;
-        
-        cell.accessoryType = (data.checked) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-        
-        return cell;
-        
-    } else if (section == 1) {
-        
-        static NSString *cellID = @"predefinedAgentCellID";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-            //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        }
-        
-        GGAgentFilter *data = _predefinedAgentFilters[row];
-        cell.textLabel.text = data.name;
-        
-        cell.accessoryType = (data.checked) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-        
-        return cell;
+    static NSString *cellID = @"GGGroupedCell";
+    GGGroupedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell)
+    {
+        cell = [GGGroupedCell viewFromNibWithOwner:self];
     }
     
-    return nil;
+    if (section == 0)
+    {
+        GGAgentFilter *data = _customAgentFilters[row];
+        cell.lblTitle.text = data.name;
+        cell.checked = data.checked;
+        
+        cell.style = [GGUtils styleForArrayCount:_customAgentFilters.count atIndex:row];
+    }
+    else if (section == 1)
+    {
+        GGAgentFilter *data = _predefinedAgentFilters[row];
+        cell.lblTitle.text = data.name;
+        cell.checked = data.checked;
+        
+        cell.style = [GGUtils styleForArrayCount:_predefinedAgentFilters.count atIndex:row];
+    }
+    
+    cell.tag = row;
+    
+    return cell;
+
+//    /////////
+//        if (section == 0) {
+//        
+//        static NSString *cellID = @"customAgentCellID";
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+//        if (!cell) {
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+//            //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//        }
+//        
+//        GGAgentFilter *data = _customAgentFilters[row];
+//        cell.textLabel.text = data.name;
+//        
+//        cell.accessoryType = (data.checked) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+//        
+//        return cell;
+//        
+//    } else if (section == 1) {
+//        
+//        static NSString *cellID = @"predefinedAgentCellID";
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+//        if (!cell) {
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+//            //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//        }
+//        
+//        GGAgentFilter *data = _predefinedAgentFilters[row];
+//        cell.textLabel.text = data.name;
+//        
+//        cell.accessoryType = (data.checked) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+//        
+//        return cell;
+//    }
+//    
+//    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

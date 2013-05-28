@@ -126,7 +126,7 @@
     
     [super viewDidLoad];
     self.naviTitle = @"Follow Companies";
-    self.view.backgroundColor = GGSharedColor.veryLightGray;
+    self.view.backgroundColor = GGSharedColor.silver;
     
     // replace the search bar placeholder view with the real search bar
     _viewSearchBar = [GGUtils replaceFromNibForView:_viewSearchBar];

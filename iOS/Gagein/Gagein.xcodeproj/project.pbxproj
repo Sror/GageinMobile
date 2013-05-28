@@ -146,6 +146,7 @@
 		EA24FA441713D939003AFBA9 /* GGSelectFuncAreasVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA421713D939003AFBA9 /* GGSelectFuncAreasVC.m */; };
 		EA24FA4E17140293003AFBA9 /* GGUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA4D17140293003AFBA9 /* GGUtils.m */; };
 		EA24FA5417140CFF003AFBA9 /* GGFunctionalArea.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA5317140CFF003AFBA9 /* GGFunctionalArea.m */; };
+		EA2A1D4D17543C5800A0911F /* searchBarWhiteBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2A1D4C17543C5800A0911F /* searchBarWhiteBg@2x.png */; };
 		EA2AD9C5173C4D6C007428E2 /* GGCategoryFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2AD9C4173C4D6C007428E2 /* GGCategoryFilter.m */; };
 		EA2F00891746BFA700E191BD /* CMActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2F00711746BFA700E191BD /* CMActionSheet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA2F008A1746BFA700E191BD /* CMRotatableModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2F00731746BFA700E191BD /* CMRotatableModalViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -676,6 +677,7 @@
 		EA24FA4D17140293003AFBA9 /* GGUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUtils.m; sourceTree = "<group>"; };
 		EA24FA5217140CFF003AFBA9 /* GGFunctionalArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFunctionalArea.h; sourceTree = "<group>"; };
 		EA24FA5317140CFF003AFBA9 /* GGFunctionalArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFunctionalArea.m; sourceTree = "<group>"; };
+		EA2A1D4C17543C5800A0911F /* searchBarWhiteBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchBarWhiteBg@2x.png"; sourceTree = "<group>"; };
 		EA2AD9C3173C4D6C007428E2 /* GGCategoryFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCategoryFilter.h; sourceTree = "<group>"; };
 		EA2AD9C4173C4D6C007428E2 /* GGCategoryFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCategoryFilter.m; sourceTree = "<group>"; };
 		EA2F00701746BFA700E191BD /* CMActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMActionSheet.h; sourceTree = "<group>"; };
@@ -2039,6 +2041,7 @@
 		EACAE0B117094A3100E7088F /* 2X */ = {
 			isa = PBXGroup;
 			children = (
+				EA2A1D4C17543C5800A0911F /* searchBarWhiteBg@2x.png */,
 				EA975759174D3424007D64CD /* updateSwitchBackbtn@2x.png */,
 				EA975757174D3419007D64CD /* sendSmsbtn@2x.png */,
 				EAB60D2917415A24008EEEAE /* 37x-Checkmark@2x.png */,
@@ -2919,6 +2922,7 @@
 				EA97575A174D3424007D64CD /* updateSwitchBackbtn@2x.png in Resources */,
 				EA97575F174D7059007D64CD /* GGBlackSearchBar.xib in Resources */,
 				EA997426174E8D5100A125D5 /* Happening_Cases_and_data_format.txt in Resources */,
+				EA2A1D4D17543C5800A0911F /* searchBarWhiteBg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
