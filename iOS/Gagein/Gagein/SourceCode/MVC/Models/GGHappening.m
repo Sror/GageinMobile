@@ -163,7 +163,11 @@
     [super parseWithData:aData];
     
     self.change = [aData objectForKey:@"change"];
+    
     self.timestamp = [[[aData objectForKey:@"timestamp"] objectForKey:@"timestamp"] longLongValue];
+    self.newTimestamp = [[[aData objectForKey:@"newTimestamp"] objectForKey:@"timestamp"] longLongValue];
+    self.oldTimestamp = [[[aData objectForKey:@"oldTimestamp"] objectForKey:@"timestamp"] longLongValue];
+    self.fundingTimestamp = [[[aData objectForKey:@"oldTimestamp"] objectForKey:@"timestamp"] longLongValue];
     
     self.protocol = [[aData objectForKey:@"protocol"] longLongValue];
     self.dateStr = [aData objectForKey:@"date_str"];
@@ -190,11 +194,23 @@
     self.title = [[aData objectForKey:@"title"] objectForKey:@"title"];
     self.jobTitle = [[aData objectForKey:@"jobtitle"] objectForKey:@"title"];
     self.oldJobTitle = [[aData objectForKey:@"oldjobtitle"] objectForKey:@"title"];
-    self.freshJobTitle = [[aData objectForKey:@"newjobtitle"] objectForKey:@"title"];
+    self.theNewJobTitle = [[aData objectForKey:@"newjobtitle"] objectForKey:@"title"];
 
     self.address = [[aData objectForKey:@"address"] objectForKey:@"address"];
     self.addressMap = [aData objectForKey:@"address_map"];
     self.oldAddress = [[aData objectForKey:@"oldAddress"] objectForKey:@"address"];
+    
+    _oldRevenue = [aData objectForKey:@"oldRevenue"];
+    _newRevenue = [aData objectForKey:@"newRevenue"];
+    _percentage = [aData objectForKey:@"percentage"];
+    _period = [aData objectForKey:@"period"];
+
+    _funding = [aData objectForKey:@"funding"];
+    _round = [aData objectForKey:@"round"];
+
+    _oldEmployNum = [aData objectForKey:@"oldEmployNum"];
+    _employNum = [aData objectForKey:@"employNum"];
+    _direction = [aData objectForKey:@"direction"];
 }
 
 -(BOOL)_isOldData
@@ -263,7 +279,7 @@
             
             //<contact name>, <old job title>, is now <new job title> at <company name>
             //#define EVENT_MSG_COM_PERSON_TITLE_CHANGED @"%@, %@, is now %@ at %@"
-            return [NSString stringWithFormat:EVENT_MSG_COM_PERSON_TITLE_CHANGED, self.person.name, self.oldJobTitle, self.freshJobTitle, self.company.name];
+            return [NSString stringWithFormat:EVENT_MSG_COM_PERSON_TITLE_CHANGED, self.person.name, self.oldJobTitle, self.theNewJobTitle, self.company.name];
         }
             break;
             

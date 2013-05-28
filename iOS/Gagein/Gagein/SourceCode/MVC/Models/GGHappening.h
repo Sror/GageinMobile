@@ -86,6 +86,10 @@ typedef enum {
 //
 @interface GGHappening : GGDataModel
 @property (assign) long long                    timestamp;
+@property (assign) long long                    newTimestamp;
+@property (assign) long long                    oldTimestamp;
+@property (assign) long long                    fundingTimestamp;
+
 @property (assign) long long                    protocol;
 @property (copy)    NSString                    *dateStr;
 
@@ -95,7 +99,19 @@ typedef enum {
 @property (copy) NSString                       *title;
 @property (copy) NSString                       *jobTitle;
 @property (copy) NSString                       *oldJobTitle;
-@property (copy) NSString                       *freshJobTitle;     // newJobTile, but cocoa used 'new-x' prefix
+@property (copy) NSString                       *theNewJobTitle;     // newJobTile, but cocoa used 'new-x' prefix
+
+@property (copy) NSString                       *oldRevenue;
+@property (copy) NSString                       *newRevenue;
+@property (copy) NSString                       *percentage;
+@property (copy) NSString                       *period;
+
+@property (copy) NSString                       *funding;
+@property (copy) NSString                       *round;
+
+@property (copy) NSString                       *oldEmployNum;
+@property (copy) NSString                       *employNum;
+@property (copy) NSString                       *direction;
 
 @property (copy) NSString                       *address;
 @property (copy) NSString                       *addressMap;
@@ -106,8 +122,10 @@ typedef enum {
 @property (copy) NSString                       *oldProfilePic;
 
 @property (strong) GGHappeningPerson      *person;
+
 @property (strong) GGHappeningCompany      *company;
 @property (strong) GGHappeningCompany      *oldCompany;
+
 @property (copy) NSString                       *change;        // e.g. LEAVE
 @property (assign) EGGHappeningType             type;
 @property (assign) EGGHappeningSource           source;
