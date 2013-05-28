@@ -18,8 +18,8 @@
     NSString *path = @"config/sales_trigger/list";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
@@ -35,9 +35,9 @@
     NSString *path = @"config/sales_trigger/save";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:aAgentIDs forKey:@"agentid"];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:aAgentIDs forKey:@"agentid"];
     
     return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
@@ -53,10 +53,10 @@
     NSString *path = @"config/filters/custom_agent/add";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:aName forKey:@"name"];
-    [parameters setObject:aKeyword forKey:@"keywords"];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:aName forKey:@"name"];
+    [parameters setObjectIfNotNil:aKeyword forKey:@"keywords"];
     
     return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
@@ -73,10 +73,10 @@
     NSString *path = [NSString stringWithFormat:@"config/filters/custom_agent/%lld/update", aAgentID];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:aName forKey:@"name"];
-    [parameters setObject:aKeyword forKey:@"keywords"];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:aName forKey:@"name"];
+    [parameters setObjectIfNotNil:aKeyword forKey:@"keywords"];
     
     return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
@@ -90,8 +90,8 @@
     NSString *path = [NSString stringWithFormat:@"config/filters/custom_agent/%lld/delete", aAgentID];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
@@ -106,8 +106,8 @@
     NSString *path = @"config/functional_area/list";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
@@ -121,9 +121,9 @@
     NSString *path = @"config/functional_area/save";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:aAreaIDs forKey:@"functional_areaid"];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:aAreaIDs forKey:@"functional_areaid"];
     
     return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
@@ -137,8 +137,8 @@
     NSString *path = @"config/filters/agent/list";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
@@ -150,8 +150,8 @@
     NSString *path = [NSString stringWithFormat:@"config/filters/agent/enable/%@", (anEnabled ? @"true" : @"false")];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
     return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
@@ -164,8 +164,8 @@
     NSString *path = [NSString stringWithFormat:@"config/filters/agent/%lld/%@", aFilterID, (aSelected ? @"true" : @"false")];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
     return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
@@ -178,8 +178,8 @@
     NSString *path = @"config/filters/category/list";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
@@ -190,8 +190,8 @@
     NSString *path = [NSString stringWithFormat:@"config/filters/category/enable/%@", (anEnabled ? @"true" : @"false")];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
     return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
@@ -202,8 +202,8 @@
     NSString *path = [NSString stringWithFormat:@"config/filters/category/%lld/%@", aFilterID, (aSelected ? @"true" : @"false")];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
     return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
@@ -214,8 +214,8 @@
     NSString *path = [NSString stringWithFormat:@"config/filters/media/enable/%@", (anEnabled ? @"true" : @"false")];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
     return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
@@ -227,8 +227,8 @@
     NSString *path = @"config/filters/media/list";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
@@ -239,8 +239,8 @@
     NSString *path = [NSString stringWithFormat:@"config/filters/media/%lld/delete", aFilterID];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
     return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
@@ -251,9 +251,9 @@
     NSString *path = @"config/filters/media/add";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:__LONGLONG(aMediaID) forKey:@"media_id"];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:__LONGLONG(aMediaID) forKey:@"media_id"];
     
     return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
@@ -263,12 +263,12 @@
     NSString *path = @"config/filters/media/add";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
     for (NSNumber *ID in aMediaIDs)
     {
-        [parameters setObject:ID forKey:@"media_id"];
+        [parameters setObjectIfNotNil:ID forKey:@"media_id"];
     }
     
     return [self _execPostWithPath:path params:parameters callback:aCallback];
@@ -281,8 +281,8 @@
     NSString *path = @"config/filters/media/suggested/list";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
@@ -293,9 +293,9 @@
     NSString *path = @"config/filters/media/search";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:aKeyword forKey:@"q"];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:aKeyword forKey:@"q"];
     
     return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
@@ -308,10 +308,10 @@
     //NSString *path = @"member/me/info/update";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:aFirstName forKey:@"mem_first_name"];
-    [parameters setObject:aLastName forKey:@"mem_last_name"];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:aFirstName forKey:@"mem_first_name"];
+    [parameters setObjectIfNotNil:aLastName forKey:@"mem_last_name"];
     
     return [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
 }
@@ -321,9 +321,9 @@
     //NSString *path = @"member/me/info/update";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:aEmail forKey:@"mem_email"];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:aEmail forKey:@"mem_email"];
     
     return [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
 }
@@ -333,9 +333,9 @@
     //NSString *path = @"member/me/info/update";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:aTitle forKey:@"mem_org_title"];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:aTitle forKey:@"mem_org_title"];
     
     return [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
 }
@@ -345,9 +345,9 @@
     //NSString *path = @"member/me/info/update";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:aTimezone forKey:@"mem_add_timezone"];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:aTimezone forKey:@"mem_add_timezone"];
     
     return [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
 }
@@ -357,9 +357,9 @@
     //NSString *path = @"me/info/update";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:__LONGLONG(anOrgID) forKey:@"orgid"];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:__LONGLONG(anOrgID) forKey:@"orgid"];
     
     return [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
 }
@@ -369,9 +369,9 @@
     //NSString *path = @"me/info/update";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:anOrgName forKey:@"org_name"];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:anOrgName forKey:@"org_name"];
     
     return [self _execPostWithPath:PATH_CHANGE_PROFILE params:parameters callback:aCallback];
 }

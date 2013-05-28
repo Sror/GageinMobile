@@ -348,4 +348,14 @@
     return nil;
 }
 
++(NSString *)appcodeString
+{
+    if (ISIPADDEVICE)
+    {
+        return APP_CODE_IPAD;
+    }
+    
+    return APP_CODE_IPHONE;
+}
+
 @end

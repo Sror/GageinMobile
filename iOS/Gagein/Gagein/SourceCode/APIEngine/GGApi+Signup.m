@@ -16,9 +16,9 @@
     NSString *path = @"login";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:anEmail forKey:@"mem_email"];
-    [parameters setObject:aPassword forKey:@"mem_password"];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:anEmail forKey:@"mem_email"];
+    [parameters setObjectIfNotNil:aPassword forKey:@"mem_password"];
     
     return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
@@ -32,11 +32,11 @@
     NSString *path = @"register";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:anEmail forKey:@"mem_email"];
-    [parameters setObject:aPassword forKey:@"mem_password"];
-    [parameters setObject:aFirstName forKey:@"mem_first_name"];
-    [parameters setObject:aLastName forKey:@"mem_last_name"];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:anEmail forKey:@"mem_email"];
+    [parameters setObjectIfNotNil:aPassword forKey:@"mem_password"];
+    [parameters setObjectIfNotNil:aFirstName forKey:@"mem_first_name"];
+    [parameters setObjectIfNotNil:aLastName forKey:@"mem_last_name"];
     
     return [self _execPostWithPath:path params:parameters callback:aCallback];
 }

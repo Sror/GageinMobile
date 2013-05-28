@@ -21,10 +21,10 @@
     NSString *path = @"search/contacts";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:[NSNumber numberWithInt:aPage] forKey:@"page"];
-    [parameters setObject:aKeyword forKey:@"q"];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[NSNumber numberWithInt:aPage] forKey:@"page"];
+    [parameters setObjectIfNotNil:aKeyword forKey:@"q"];
     
     return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
@@ -38,9 +38,9 @@
     NSString *path = @"member/me/contact/follow";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:[NSNumber numberWithLongLong:aPersonID] forKey:@"contactid"];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aPersonID] forKey:@"contactid"];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
@@ -54,9 +54,9 @@
     NSString *path = @"member/me/contact/unfollow";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    [parameters setObject:[NSNumber numberWithLongLong:aPersonID] forKey:@"contactid"];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aPersonID] forKey:@"contactid"];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
@@ -71,8 +71,8 @@
     NSString *path = [NSString stringWithFormat:@"contact/%lld/overview", aPersonID];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
@@ -83,9 +83,9 @@
     NSString *path = @"member/me/overview";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:APP_CODE_VALUE forKey:APP_CODE_KEY];
-    [parameters setObject:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-    //[parameters setObject:@"me" forKey:@"memid"];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    //[parameters setObjectIfNotNil:@"me" forKey:@"memid"];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }

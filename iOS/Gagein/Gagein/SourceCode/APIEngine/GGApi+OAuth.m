@@ -76,7 +76,7 @@
     NSString *path = @"socialnetwork/get_userinfo";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObjectIfNotNil:__INT(aSnType) forKey:@"sn_type"];
     [parameters setObjectIfNotNil:aSnToken forKey:@"sn_token"];
@@ -151,7 +151,7 @@
     NSString *path = @"register";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
     [parameters setObjectIfNotNil:aEmail forKey:@"mem_email"];
@@ -230,7 +230,7 @@
     NSString *path = @"socialnetwork/save_sn_info";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObjectIfNotNil:__INT(aSnType) forKey:@"sn_type"];
     [parameters setObjectIfNotNil:aSnToken forKey:@"sn_token"];
@@ -262,7 +262,7 @@
     NSString *path = @"socialnetwork/linked/list";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
@@ -300,7 +300,7 @@
     NSString *path = [NSString stringWithFormat:@"member/me/update/%lld/share", aNewsID];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObjectIfNotNil:__INT(aSnType) forKey:@"sn_type"];
     [parameters setObjectIfNotNil:aMessage forKey:@"message"];
@@ -334,7 +334,7 @@
     NSString *path = [NSString stringWithFormat:@"member/me/company/event/%lld/share", anEventID];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObjectIfNotNil:__INT(aSnType) forKey:@"sn_type"];
     [parameters setObjectIfNotNil:aMessage forKey:@"message"];
@@ -364,7 +364,7 @@
     NSString *path = [NSString stringWithFormat:@"member/me/contact/event/%lld/share", anEventID];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObjectIfNotNil:__INT(aSnType) forKey:@"sn_type"];
     [parameters setObjectIfNotNil:aMessage forKey:@"message"];

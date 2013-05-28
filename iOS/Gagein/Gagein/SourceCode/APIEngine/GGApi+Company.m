@@ -35,7 +35,7 @@
     NSString *path = @"member/me/update/tracker";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aNewsID] forKey:@"newsid"];
     [parameters setObjectIfNotNil:[NSNumber numberWithInt:aPageFlag] forKey:@"pageflag"];
@@ -62,7 +62,7 @@
     NSString *path = @"member/me/update/tracker";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aNewsID] forKey:@"newsid"];
     [parameters setObjectIfNotNil:[NSNumber numberWithInt:aPageFlag] forKey:@"pageflag"];
@@ -85,7 +85,7 @@
     NSString *path = [NSString stringWithFormat:@"company/%lld/overview", anOrgID];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObjectIfNotNil:(aNeedSP ? @"true" : @"false") forKey:@"include_sp"];
     
@@ -102,7 +102,7 @@
     NSString *path = @"search/companies/get_suggestions";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObjectIfNotNil:aKeyword forKey:@"q"];
     
@@ -121,7 +121,7 @@
     NSString *path = @"search/companies";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObjectIfNotNil:[NSNumber numberWithInt:aPage] forKey:@"page"];
     [parameters setObjectIfNotNil:aKeyword forKey:@"q"];
@@ -136,7 +136,7 @@
     NSString *path = @"member/me/company/follow";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aCompanyID] forKey:@"orgid"];
     
@@ -150,7 +150,7 @@
     NSString *path = @"member/me/company/unfollow";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aCompanyID] forKey:@"orgid"];
     
@@ -167,7 +167,7 @@
     NSString *path = @"member/me/company/get_followed";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObjectIfNotNil:[NSNumber numberWithInt:aPage] forKey:@"page"];
     
@@ -182,7 +182,7 @@
     NSString *path = [NSString stringWithFormat:@"update/%lld/detail", aNewsID];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     //[parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aNewsID] forKey:@"newsid"];
     
@@ -200,7 +200,7 @@
     NSString *path = [NSString stringWithFormat:@"company/%lld/contacts", anOrgID];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aPageNumber] forKey:@"page"];
     
@@ -218,7 +218,7 @@
     NSString *path = [NSString stringWithFormat:@"company/%lld/competitors", anOrgID];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObjectIfNotNil:APP_CODE_VALUE forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aPageNumber] forKey:@"page"];
     

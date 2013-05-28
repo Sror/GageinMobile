@@ -48,4 +48,6 @@
 
 +(NSString *)stringWithMapUrl:(NSString *)aMapUrl width:(int)aWidth height:(int)aHeight;
 
++(NSString *)appcodeString;
+
 @end
