@@ -78,7 +78,7 @@
 								<string key="NSFrame">{{53, 14}, {214, 39}}</string>
 								<reference key="NSSuperview" ref="1050712666"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="721299349"/>
+								<reference key="NSNextKeyView" ref="267178744"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -130,6 +130,7 @@
 								<string key="NSFrame">{{15, 65}, {290, 314}}</string>
 								<reference key="NSSuperview" ref="1050712666"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="721299349"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -403,6 +404,7 @@
 						<string key="tvMediaSources">UITableView</string>
 						<string key="viewConfigOn">UIView</string>
 						<string key="viewConfigSwitch">GGConfigSwitchView</string>
+						<string key="viewTvBg">UIView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="btnAddSource">
@@ -424,6 +426,10 @@
 						<object class="IBToOneOutletInfo" key="viewConfigSwitch">
 							<string key="name">viewConfigSwitch</string>
 							<string key="candidateClassName">GGConfigSwitchView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewTvBg">
+							<string key="name">viewTvBg</string>
+							<string key="candidateClassName">UIView</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

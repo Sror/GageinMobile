@@ -12,6 +12,7 @@
 #import "GGMediaFilter.h"
 #import "GGDataPage.h"
 #import "GGAddMediaFiltersVC.h"
+#import "GGGroupedCell.h"
 
 #define TV_HEIGHT       314
 

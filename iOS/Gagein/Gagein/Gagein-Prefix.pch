@@ -35,4 +35,5 @@
     #import "UIView+AddOn.h"
     #import "UILabel+AddOn.h"
     #import "NSString+GGAddOn.h"
+    #import "GGFont.h"
 #endif

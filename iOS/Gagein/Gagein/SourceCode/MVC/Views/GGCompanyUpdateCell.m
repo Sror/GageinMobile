@@ -47,7 +47,7 @@
 {
     UILabel *label = [[UILabel alloc] initWithFrame:aRect];
     label.backgroundColor = GGSharedColor.clear;
-    label.font = [UIFont fontWithName:@"Optima-Bold" size:15.f];
+    label.font = [UIFont fontWithName:GG_FONT_NAME_OPTIMA_BOLD size:15.f];
     label.textColor = GGSharedColor.black;
     
     return label;

@@ -147,6 +147,7 @@
 		EA24FA4E17140293003AFBA9 /* GGUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA4D17140293003AFBA9 /* GGUtils.m */; };
 		EA24FA5417140CFF003AFBA9 /* GGFunctionalArea.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA5317140CFF003AFBA9 /* GGFunctionalArea.m */; };
 		EA2A1D4D17543C5800A0911F /* searchBarWhiteBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2A1D4C17543C5800A0911F /* searchBarWhiteBg@2x.png */; };
+		EA2A1D501754457200A0911F /* GGFont.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A1D4F1754457200A0911F /* GGFont.m */; };
 		EA2AD9C5173C4D6C007428E2 /* GGCategoryFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2AD9C4173C4D6C007428E2 /* GGCategoryFilter.m */; };
 		EA2F00891746BFA700E191BD /* CMActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2F00711746BFA700E191BD /* CMActionSheet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA2F008A1746BFA700E191BD /* CMRotatableModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2F00731746BFA700E191BD /* CMRotatableModalViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -678,6 +679,8 @@
 		EA24FA5217140CFF003AFBA9 /* GGFunctionalArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFunctionalArea.h; sourceTree = "<group>"; };
 		EA24FA5317140CFF003AFBA9 /* GGFunctionalArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFunctionalArea.m; sourceTree = "<group>"; };
 		EA2A1D4C17543C5800A0911F /* searchBarWhiteBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchBarWhiteBg@2x.png"; sourceTree = "<group>"; };
+		EA2A1D4E1754457200A0911F /* GGFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFont.h; sourceTree = "<group>"; };
+		EA2A1D4F1754457200A0911F /* GGFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFont.m; sourceTree = "<group>"; };
 		EA2AD9C3173C4D6C007428E2 /* GGCategoryFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCategoryFilter.h; sourceTree = "<group>"; };
 		EA2AD9C4173C4D6C007428E2 /* GGCategoryFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCategoryFilter.m; sourceTree = "<group>"; };
 		EA2F00701746BFA700E191BD /* CMActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMActionSheet.h; sourceTree = "<group>"; };
@@ -2339,6 +2342,8 @@
 				EA381C60171FA700004535B5 /* GGImagePool.m */,
 				EAD16189173B3BB50092C11B /* GGFacebookOAuth.h */,
 				EAD1618A173B3BB50092C11B /* GGFacebookOAuth.m */,
+				EA2A1D4E1754457200A0911F /* GGFont.h */,
+				EA2A1D4F1754457200A0911F /* GGFont.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -3149,6 +3154,7 @@
 				EA975762174DB0B7007D64CD /* UIView+AddOn.m in Sources */,
 				EA99742C174EEB1600A125D5 /* UILabel+AddOn.m in Sources */,
 				EA57DAE3174FD83900BA742A /* NSString+GGAddOn.m in Sources */,
+				EA2A1D501754457200A0911F /* GGFont.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
