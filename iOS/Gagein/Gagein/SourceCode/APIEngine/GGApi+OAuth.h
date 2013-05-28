@@ -82,4 +82,14 @@ typedef enum
                          snType:(EGGSnType)aSnType
                         message:(NSString *)aMessage callback:(GGApiBlock)aCallback;
 
+
+//7.get the status of importing companies from salesforce or linkedin.
+#warning TODO: need use the API - getCompanyImportStatusWithType
+-(AFHTTPRequestOperation *)getCompanyImportStatusWithType:(EGGSnType)aSnType callback:(GGApiBlock)aCallback;
+
+
+//1.import companies from linkedin/salesforce
+#warning TODO: need use the API - importCompaniesWithType
+-(AFHTTPRequestOperation *)importCompaniesWithType:(EGGSnType)aSnType callback:(GGApiBlock)aCallback;
+
 @end

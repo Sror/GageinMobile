@@ -373,4 +373,42 @@
 }
 
 
+//7.get the status of importing companies from salesforce or linkedin.
+//GET:/svc/socialnetwork/company/import_status
+//Parameters: access_token=b4790223c67f68b744d6ac3bb9b830e6&sn_type=2
+//Result: {"status":"1","msg":"ok","data":{"proc_status":2}}
+//proc_status 的值： public final static int NOT_EXIST = 0;  //不存在这个任务
+//public final static int PROCESSING = 1; //正在处理
+//public final static int SUCCESS = 2;   //处理完了，并且成功了
+//public final static int ERROR = 3;  //处理完了，但是失败了。
+-(AFHTTPRequestOperation *)getCompanyImportStatusWithType:(EGGSnType)aSnType callback:(GGApiBlock)aCallback
+{
+    //GET
+    NSString *path = @"socialnetwork/company/import_status";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:__LONGLONG(aSnType) forKey:@"sn_type"];
+    
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
+}
+
+
+//1.import companies from linkedin/salesforce
+//GET: svc/socialnetwork/import_companies
+//Parameters: access_token=b4790223c67f68b744d6ac3bb9b830e6&sn_type=2
+-(AFHTTPRequestOperation *)importCompaniesWithType:(EGGSnType)aSnType callback:(GGApiBlock)aCallback
+{
+    //GET
+    NSString *path = @"socialnetwork/import_companies";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:__LONGLONG(aSnType) forKey:@"sn_type"];
+    
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
+}
+
 @end

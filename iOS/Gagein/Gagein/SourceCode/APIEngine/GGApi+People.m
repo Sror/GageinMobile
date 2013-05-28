@@ -80,7 +80,36 @@
 }
 
 
+//5.get followed
+//GET: /svc/member/me/contact/get_followed
+//Parameters: access_token=b4790223c67f68b744d6ac3bb9b830e6&page=1
+//
+-(AFHTTPRequestOperation *)getFollowedPeople:(GGApiBlock)aCallback
+{
+    //GET
+    NSString *path = @"member/me/contact/get_followed";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
+}
 
+//6.get recommended contacts for follow
+//GET: /svc/member/me/contact/get_recommended
+//Parameters: access_token=b4790223c67f68b744d6ac3bb9b830e6&page=1
+-(AFHTTPRequestOperation *)getRecommendedPeople:(GGApiBlock)aCallback
+{
+    //GET
+    NSString *path = @"member/me/contact/get_recommended";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
+}
 
 //C01:Contact OverviewBack to top
 //GET
