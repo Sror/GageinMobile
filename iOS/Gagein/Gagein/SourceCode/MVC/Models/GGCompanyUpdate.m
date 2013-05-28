@@ -57,7 +57,8 @@
 
 -(NSString *)doubleReturnedText
 {
-    return [_textview stringByReplacingOccurrencesOfString:@"\n" withString:@"\n\n"];
+    NSString *str = [_textview stringByReplacingOccurrencesOfString:@"\n" withString:@"\n\n"];
+    return [str stringByReplacingOccurrencesOfString:@"\n\n\n\n" withString:@"\n\n"];
 }
 
 -(NSString *)headlineMaxCharCount:(NSUInteger)aMaxCharCount
