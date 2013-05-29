@@ -241,7 +241,55 @@
         
         switch (_currentDetail.type)
         {
+            case kGGHappeningCompanyPersonJion:
+            {
+                [_happeningDetailCell showChangeView:YES];
+                [_happeningDetailCell showChangeLeftImage:YES];
+                [_happeningDetailCell showChangeRightImage:YES];
+            }
+                break;
+                
             case kGGHappeningCompanyPersonJionDetail:
+            {
+                [_happeningDetailCell showChangeView:YES];
+                [_happeningDetailCell showChangeLeftImage:YES];
+                [_happeningDetailCell showChangeRightImage:YES];
+            }
+                break;
+                
+            case kGGHappeningCompanyRevenueChange:
+            {
+                [_happeningDetailCell showChangeView:YES];
+                [_happeningDetailCell showChangeLeftImage:YES];
+                [_happeningDetailCell showChangeRightImage:YES];
+            }
+                break;
+                
+            case kGGHappeningCompanyNewFunding:
+            {
+                [_happeningDetailCell showChangeView:YES];
+                [_happeningDetailCell showChangeLeftImage:YES];
+                [_happeningDetailCell showChangeRightImage:YES];
+            }
+                break;
+                
+            case kGGHappeningCompanyNewLocation:
+            {
+                [_happeningDetailCell showChangeView:YES];
+                [_happeningDetailCell showChangeLeftImage:YES];
+                [_happeningDetailCell showChangeRightImage:YES];
+            }
+                break;
+                
+            case kGGHappeningCompanyEmloyeeSizeIncrease:
+            {
+                [_happeningDetailCell showChangeView:YES];
+                [_happeningDetailCell showChangeLeftImage:YES];
+                [_happeningDetailCell showChangeRightImage:YES];
+            }
+                break;
+                
+            case kGGHappeningCompanyEmloyeeSizeDecrease:
             {
                 [_happeningDetailCell showChangeView:YES];
                 [_happeningDetailCell showChangeLeftImage:YES];
