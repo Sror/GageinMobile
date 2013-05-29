@@ -209,11 +209,27 @@
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    if (ISIPADDEVICE) {
+    if (ISIPADDEVICE)
+    {
         return YES;
     }
     
-    return toInterfaceOrientation == UIInterfaceOrientationPortrait;
+    return toInterfaceOrientation == UIInterfaceOrientationPortrait; // etc
+}
+
+- (BOOL)shouldAutorotate {
+    
+    return YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    
+    if (ISIPADDEVICE)
+    {
+        return UIInterfaceOrientationMaskAll;
+    }
+    
+    return UIInterfaceOrientationMaskPortrait; // etc
 }
 
 #pragma mark - UI element

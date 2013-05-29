@@ -13,7 +13,7 @@
 #import "GGCompanyDetailVC.h"
 #import "GGPersonDetailVC.h"
 #import "GGAppDelegate.h"
-
+#import "GGImageVC.h"
 
 
 @interface GGCellData : NSObject
@@ -217,12 +217,23 @@
 
 -(void)openChartAction:(id)sender
 {
-    DLog(@"Open the chart");
+    //DLog(@"Open the chart");
+    CGSize chartSize = [UIScreen mainScreen].applicationFrame.size;
+    float width = MAX(chartSize.width, chartSize.height);
+    float height = MIN(chartSize.width, chartSize.height);
+    NSString *chartUrl = [GGUtils stringWithChartUrl:_currentDetail.revenueChart width:width height:height];
+    
+    GGImageVC *vc = [[GGImageVC alloc] init];
+    vc.imageUrl = chartUrl;
+   // vc.modalPresentationStyle = UIModalPresentationFullScreen;
+    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    //vc.modalInPopover = YES;
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 -(void)openMapAction:(id)sender
 {
-    DLog(@"Open the map");
+    //DLog(@"Open the map");
 }
 
 -(void)enterCompanyDetailAction:(id)sender

@@ -171,6 +171,7 @@
 		EA2F009C1746BFA700E191BD /* action-white-button-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2F00861746BFA700E191BD /* action-white-button-selected@2x.png */; };
 		EA2F009D1746BFA700E191BD /* action-white-button.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2F00871746BFA700E191BD /* action-white-button.png */; };
 		EA2F009E1746BFA700E191BD /* action-white-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2F00881746BFA700E191BD /* action-white-button@2x.png */; };
+		EA30D78017568EED000F8D73 /* GGWindowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA30D77F17568EED000F8D73 /* GGWindowVC.m */; };
 		EA381C5E171FA6C2004535B5 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = EA381C5D171FA6C2004535B5 /* placeholder.png */; };
 		EA381C61171FA700004535B5 /* GGImagePool.m in Sources */ = {isa = PBXBuildFile; fileRef = EA381C60171FA700004535B5 /* GGImagePool.m */; };
 		EA381C65171FBBEB004535B5 /* GGSavedUpdatesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA381C63171FBBEB004535B5 /* GGSavedUpdatesVC.m */; };
@@ -335,6 +336,8 @@
 		EAC96C2B1709833C003FAFAA /* GGSignupPortalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */; };
 		EAC96C3D170983B5003FAFAA /* GGWelcomePageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */; };
 		EAC96C441709868B003FAFAA /* NSObject+BeeNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC96C431709868B003FAFAA /* NSObject+BeeNotification.m */; };
+		EAC9F90D17568124006FA45F /* GGImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F90B17568124006FA45F /* GGImageVC.m */; };
+		EAC9F90E17568124006FA45F /* GGImageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC9F90C17568124006FA45F /* GGImageVC.xib */; };
 		EACAE0771709486800E7088F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAE0761709486800E7088F /* UIKit.framework */; };
 		EACAE0791709486800E7088F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAE0781709486800E7088F /* Foundation.framework */; };
 		EACAE07B1709486800E7088F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAE07A1709486800E7088F /* CoreGraphics.framework */; };
@@ -707,6 +710,8 @@
 		EA2F00861746BFA700E191BD /* action-white-button-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-white-button-selected@2x.png"; sourceTree = "<group>"; };
 		EA2F00871746BFA700E191BD /* action-white-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-white-button.png"; sourceTree = "<group>"; };
 		EA2F00881746BFA700E191BD /* action-white-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-white-button@2x.png"; sourceTree = "<group>"; };
+		EA30D77E17568EED000F8D73 /* GGWindowVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGWindowVC.h; sourceTree = "<group>"; };
+		EA30D77F17568EED000F8D73 /* GGWindowVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGWindowVC.m; sourceTree = "<group>"; };
 		EA381C5D171FA6C2004535B5 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		EA381C5F171FA700004535B5 /* GGImagePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGImagePool.h; sourceTree = "<group>"; };
 		EA381C60171FA700004535B5 /* GGImagePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGImagePool.m; sourceTree = "<group>"; };
@@ -977,6 +982,9 @@
 		EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGWelcomePageView.xib; sourceTree = "<group>"; };
 		EAC96C421709868B003FAFAA /* NSObject+BeeNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BeeNotification.h"; sourceTree = "<group>"; };
 		EAC96C431709868B003FAFAA /* NSObject+BeeNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BeeNotification.m"; sourceTree = "<group>"; };
+		EAC9F90A17568124006FA45F /* GGImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGImageVC.h; sourceTree = "<group>"; };
+		EAC9F90B17568124006FA45F /* GGImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGImageVC.m; sourceTree = "<group>"; };
+		EAC9F90C17568124006FA45F /* GGImageVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGImageVC.xib; sourceTree = "<group>"; };
 		EACAE0721709486800E7088F /* Gagein.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gagein.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EACAE0761709486800E7088F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EACAE0781709486800E7088F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -2485,6 +2493,11 @@
 				EAB8D5191739762200D033FC /* GGSalesforceOAuthVC.m */,
 				EA5DFB01174B1A6900577BAC /* GGFacebookOAuther.h */,
 				EA5DFB02174B1A6900577BAC /* GGFacebookOAuther.m */,
+				EAC9F90A17568124006FA45F /* GGImageVC.h */,
+				EAC9F90B17568124006FA45F /* GGImageVC.m */,
+				EAC9F90C17568124006FA45F /* GGImageVC.xib */,
+				EA30D77E17568EED000F8D73 /* GGWindowVC.h */,
+				EA30D77F17568EED000F8D73 /* GGWindowVC.m */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -2928,6 +2941,7 @@
 				EA97575F174D7059007D64CD /* GGBlackSearchBar.xib in Resources */,
 				EA997426174E8D5100A125D5 /* Happening_Cases_and_data_format.txt in Resources */,
 				EA2A1D4D17543C5800A0911F /* searchBarWhiteBg@2x.png in Resources */,
+				EAC9F90E17568124006FA45F /* GGImageVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3155,6 +3169,8 @@
 				EA99742C174EEB1600A125D5 /* UILabel+AddOn.m in Sources */,
 				EA57DAE3174FD83900BA742A /* NSString+GGAddOn.m in Sources */,
 				EA2A1D501754457200A0911F /* GGFont.m in Sources */,
+				EAC9F90D17568124006FA45F /* GGImageVC.m in Sources */,
+				EA30D78017568EED000F8D73 /* GGWindowVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
