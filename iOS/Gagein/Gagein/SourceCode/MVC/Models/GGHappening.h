@@ -102,7 +102,7 @@ typedef enum {
 @property (copy) NSString                       *theNewJobTitle;     // newJobTile, but cocoa used 'new-x' prefix
 
 @property (copy) NSString                       *oldRevenue;
-@property (copy) NSString                       *newRevenue;
+@property (copy) NSString                       *theNewRevenue;
 @property (copy) NSString                       *percentage;
 @property (copy) NSString                       *period;
 

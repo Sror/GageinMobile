@@ -18,27 +18,36 @@
 #define CHANGE_TYPE_LEFT  @"LEAVE"
 
 /***************** company html template  *********************/
+
+// d)      Employees Join Another Company (<Contact Name> <Old title> at <Old Company> has joined <Company> as <Title>)
+#define EVENT_MSG_COM_PERSON_JONIED     @"%@ %@ at %@ has joined %@ as %@"
 //<contact name> has joined <company name> as <job title>
-#define EVENT_MSG_COM_PERSON_JONIED  @"%@ has joined %@ as %@"
+#define EVENT_MSG_COM_PERSON_JONIED_OLD  @"%@ has joined %@ as %@"
+
+//e)      Employees Left Company (<Contact Name> <Old title>, has left <Old Company> and is now  <Title> at <Company>)
+#define EVENT_MSG_COM_PERSON_LEFT       @"%@ %@, has left %@ and is now %@ at %@"
 //<contact name>, <job title>, has left <company name>
-#define EVENT_MSG_COM_PERSON_LEFT @"%@, as %@, has left %@"
+#define EVENT_MSG_COM_PERSON_LEFT_OLD   @"%@, as %@, has left %@"
+
 
 //<company name>'s [annual / quarterly] revenue has increased xx.xx%
-#define EVENT_MSG_COM_REVENUE_INCREASED @"%@%@ %@ revenue has increased %@"
+#define EVENT_MSG_COM_REVENUE_INCREASED_OLD @"%@'s %@ revenue has increased %.2f%%"
 //<company name>'s [annual / quarterly] revenue has decreased xx.xx%
-#define EVENT_MSG_COM_REVENUE_DECREASED @"%@%@ %@ revenue has decreased %@"
+#define EVENT_MSG_COM_REVENUE_DECREASED_OLD @"%@'s %@ revenue has decreased %.2f%%"
 
 //<company name> closed <funding amount> in <round> funding
-#define EVENT_MSG_COM_FUNDING_CLOSED @"%@ closed %@ in %@ funding"
+#define EVENT_MSG_COM_FUNDING_CLOSED_OLD @"%@ closed %@ in %@ funding"
+
 //<company name> has a new address: <address>
-#define EVENT_MSG_COM_ADDRESS_CHANGED @"%@ has a new address: %@"
+#define EVENT_MSG_COM_ADDRESS_CHANGED_OLD @"%@ has a new address: %@"
+
 //<contact name>, <old job title>, is now <new job title> at <company name>
-#define EVENT_MSG_COM_PERSON_TITLE_CHANGED @"%@, %@, is now %@ at %@"
+#define EVENT_MSG_COM_PERSON_TITLE_CHANGED_OLD @"%@, %@, is now %@ at %@"
 
 //The employee size at <company name> has increased to <number>
-#define EMPLOYEE_SIZE_INCREASED @"The employee size at %@ has increased to %@ "
+#define EMPLOYEE_SIZE_INCREASED_OLD @"The employee size at %@ has increased to %@ "
 //The employee size at <company name> has decreased  to <number>
-#define EMPLOYEE_SIZE_DECREASED @"The employee size at %@ has decreased to %@ "
+#define EMPLOYEE_SIZE_DECREASED_OLD @"The employee size at %@ has decreased to %@ "
 
 
 //////////////////// OLD: contact html template /////////////////////////
@@ -193,7 +202,13 @@
     
     self.title = [[aData objectForKey:@"title"] objectForKey:@"title"];
     self.jobTitle = [[aData objectForKey:@"jobtitle"] objectForKey:@"title"];
+    
     self.oldJobTitle = [[aData objectForKey:@"oldjobtitle"] objectForKey:@"title"];
+    if (_oldJobTitle.length <= 0)   // stupid!!! use different key for the same variable, the only diff is Capitalize or not
+    {
+        _oldJobTitle = [[aData objectForKey:@"oldJobtitle"] objectForKey:@"title"];
+    }
+    
     self.theNewJobTitle = [[aData objectForKey:@"newjobtitle"] objectForKey:@"title"];
 
     self.address = [[aData objectForKey:@"address"] objectForKey:@"address"];
@@ -201,7 +216,7 @@
     self.oldAddress = [[aData objectForKey:@"oldAddress"] objectForKey:@"address"];
     
     _oldRevenue = [aData objectForKey:@"oldRevenue"];
-    _newRevenue = [aData objectForKey:@"newRevenue"];
+    _theNewRevenue = [aData objectForKey:@"newRevenue"];
     _percentage = [aData objectForKey:@"percentage"];
     _period = [aData objectForKey:@"period"];
 
@@ -260,15 +275,33 @@
         {
             if ([self.change isEqualToString:CHANGE_TYPE_JOIN])
             {
-                
-                
-                //<contact name> has joined <company name> as <job title>
-                return [NSString stringWithFormat:EVENT_MSG_COM_PERSON_JONIED, self.person.name, self.company.name, self.jobTitle];
+                return [self _isOldData] ? [NSString stringWithFormat:EVENT_MSG_COM_PERSON_JONIED_OLD, self.person.name, self.company.name, self.jobTitle]
+                : [NSString stringWithFormat:EVENT_MSG_COM_PERSON_JONIED, self.person.name
+                   , self.oldJobTitle, self.oldCompany.name
+                   , self.company.name, self.jobTitle];
+
             }
             else
             {
                 //<contact name>, <job title>, has left <company name>
-                return [NSString stringWithFormat:EVENT_MSG_COM_PERSON_LEFT, self.person.name, self.jobTitle, self.company.name];
+                if ([self _isOldData])
+                {
+                    return  [NSString stringWithFormat:EVENT_MSG_COM_PERSON_LEFT_OLD, self.person.name, self.jobTitle, self.company.name];
+                }
+                else
+                {
+                    if (_company.name)
+                    {
+                        return [NSString stringWithFormat:EVENT_MSG_COM_PERSON_LEFT, self.person.name
+                         , self.oldJobTitle, self.oldCompany.name
+                         , self.jobTitle, self.company.name];
+                    }
+                    else
+                    {
+                        return [NSString stringWithFormat:EVENT_MSG_COM_PERSON_LEFT_OLD, self.person.name, self.oldJobTitle, self.oldCompany.name];
+                    }
+                }
+                
             }
         }
             break;
@@ -279,14 +312,23 @@
             
             //<contact name>, <old job title>, is now <new job title> at <company name>
             //#define EVENT_MSG_COM_PERSON_TITLE_CHANGED @"%@, %@, is now %@ at %@"
-            return [NSString stringWithFormat:EVENT_MSG_COM_PERSON_TITLE_CHANGED, self.person.name, self.oldJobTitle, self.theNewJobTitle, self.company.name];
+            return [NSString stringWithFormat:EVENT_MSG_COM_PERSON_TITLE_CHANGED_OLD, self.person.name, self.oldJobTitle, self.theNewJobTitle, self.company.name];
         }
             break;
             
         case kGGHappeningCompanyRevenueChange:
         {
-            //<company name>'s [annual / quarterly] revenue has increased xx.xx%
-            //#define EVENT_MSG_COM_REVENUE_INCREASED @"%@%@ %@ revenue has increased %@"
+            //NSString *percentageStr = [_percentage stringByReplacingOccurrencesOfString:@"-" withString:@""];
+            float percent = [_percentage floatValue] * 100.f;
+            if (percent >= 0) // increased
+            {
+                return [NSString stringWithFormat:EVENT_MSG_COM_REVENUE_INCREASED_OLD, self.company.name, self.period, percent];
+            }
+            
+            else
+            {
+                return [NSString stringWithFormat:EVENT_MSG_COM_REVENUE_DECREASED_OLD, self.company.name, self.period, - percent];
+            }
         }
             break;
             
@@ -294,6 +336,7 @@
         {
             //<company name> closed <funding amount> in <round> funding
             //#define EVENT_MSG_COM_FUNDING_CLOSED @"%@ closed %@ in %@ funding"
+            return [NSString stringWithFormat:EVENT_MSG_COM_FUNDING_CLOSED_OLD, self.company.name, self.funding, self.round];
         }
             break;
             
@@ -301,6 +344,7 @@
         {
             //<company name> has a new address: <address>
 //#define EVENT_MSG_COM_ADDRESS_CHANGED @"%@ has a new address: %@"
+            return [NSString stringWithFormat:EVENT_MSG_COM_ADDRESS_CHANGED_OLD, self.company.name, self.address];
         }
             break;
             
@@ -308,7 +352,7 @@
         {
             //The employee size at <company name> has increased to <number>
 //#define EMPLOYEE_SIZE_INCREASED @"The employee size at %@ has increased to %@ "
-           
+           return [NSString stringWithFormat:EMPLOYEE_SIZE_INCREASED_OLD, self.company.name, self.employNum];
         }
             break;
             
@@ -316,6 +360,7 @@
         {
             //The employee size at <company name> has decreased  to <number>
 //#define EMPLOYEE_SIZE_DECREASED @"The employee size at %@ has decreased to %@ "
+            return [NSString stringWithFormat:EMPLOYEE_SIZE_DECREASED_OLD, self.company.name, self.employNum];
         }
             break;
             
