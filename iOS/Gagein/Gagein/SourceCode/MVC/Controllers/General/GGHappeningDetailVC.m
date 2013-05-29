@@ -262,14 +262,20 @@
                 [_happeningDetailCell showChangeView:YES];
                 [_happeningDetailCell showChangeLeftImage:YES];
                 [_happeningDetailCell showChangeRightImage:YES];
+#warning TODO: show chart image
             }
                 break;
                 
             case kGGHappeningCompanyNewFunding:
             {
                 [_happeningDetailCell showChangeView:YES];
-                [_happeningDetailCell showChangeLeftImage:YES];
+                [_happeningDetailCell showChangeLeftText:YES];
                 [_happeningDetailCell showChangeRightImage:YES];
+                
+                _happeningDetailCell.lblChangeLeftTitle.text = [NSString stringWithFormat:@"$ %@ Million", _currentDetail.funding];
+                _happeningDetailCell.lblChangeLeftSubTitle.text = [NSString stringWithFormat:@"%@-round", _currentDetail.round];
+                
+                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
             }
                 break;
                 
