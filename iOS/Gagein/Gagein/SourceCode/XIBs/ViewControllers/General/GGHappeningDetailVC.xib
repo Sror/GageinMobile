@@ -48,6 +48,7 @@
 								<array class="NSMutableArray" key="NSSubviews"/>
 								<string key="NSFrameSize">{320, 413}</string>
 								<reference key="NSSuperview" ref="944725336"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="812019759"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="1043853105">
@@ -72,6 +73,7 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrameSize">{320, 50}</string>
 										<reference key="NSSuperview" ref="812019759"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="1048970800"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -86,6 +88,8 @@
 										<int key="NSvFlags">297</int>
 										<string key="NSFrame">{{275, 12}, {32, 32}}</string>
 										<reference key="NSSuperview" ref="812019759"/>
+										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -119,6 +123,7 @@
 										<int key="NSvFlags">297</int>
 										<string key="NSFrame">{{235, 12}, {32, 32}}</string>
 										<reference key="NSSuperview" ref="812019759"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="273486756"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
@@ -140,9 +145,10 @@
 									</object>
 									<object class="IBUIButton" id="1048970800">
 										<reference key="NSNextResponder" ref="812019759"/>
-										<int key="NSvFlags">297</int>
+										<int key="NSvFlags">-2147483351</int>
 										<string key="NSFrame">{{195, 12}, {32, 32}}</string>
 										<reference key="NSSuperview" ref="812019759"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="428853660"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
@@ -165,6 +171,7 @@
 								</array>
 								<string key="NSFrame">{{0, 405}, {320, 50}}</string>
 								<reference key="NSSuperview" ref="944725336"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="750050814"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -176,6 +183,7 @@
 						</array>
 						<string key="NSFrameSize">{320, 455}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="387253951"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -185,6 +193,7 @@
 				</array>
 				<string key="NSFrame">{{0, 64}, {320, 455}}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="944725336"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -379,7 +388,56 @@
 			<nil key="sourceID"/>
 			<int key="maxID">27</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">GGBaseViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/GGBaseViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">GGHappeningDetailVC</string>
+					<string key="superclassName">GGBaseViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">sendMailAction:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">sendMailAction:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">sendMailAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="svContent">UIScrollView</string>
+						<string key="tvDetail">UITableView</string>
+						<string key="viewBottomBar">UIView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="svContent">
+							<string key="name">svContent</string>
+							<string key="candidateClassName">UIScrollView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="tvDetail">
+							<string key="name">tvDetail</string>
+							<string key="candidateClassName">UITableView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewBottomBar">
+							<string key="name">viewBottomBar</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/GGHappeningDetailVC.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

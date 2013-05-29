@@ -8,13 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class GGAutosizingLabel;
+
 @interface GGHappeningDetailCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *viewCellBg;
 @property (weak, nonatomic) IBOutlet UIImageView *ivCellBg;
 @property (weak, nonatomic) IBOutlet UILabel *lblSource;
 @property (weak, nonatomic) IBOutlet UILabel *lblInterval;
-@property (weak, nonatomic) IBOutlet UILabel *lblHeadline;
+@property (weak, nonatomic) IBOutlet GGAutosizingLabel *lblHeadline;
+
 @property (weak, nonatomic) IBOutlet UIImageView *ivChart;
+@property (weak, nonatomic) IBOutlet UIView *viewChart;
 
 @property (weak, nonatomic) IBOutlet UIView *viewChange;
 
@@ -43,5 +47,7 @@
 -(void)showChangeView:(BOOL)aShow;
 
 -(void)reset;
+
+-(void)adjustLayout;
 
 @end

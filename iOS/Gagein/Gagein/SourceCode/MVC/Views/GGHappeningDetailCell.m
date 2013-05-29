@@ -7,6 +7,7 @@
 //
 
 #import "GGHappeningDetailCell.h"
+#import "GGAutosizingLabel.h"
 
 @implementation GGHappeningDetailCell
 
@@ -42,10 +43,7 @@
     self.ivChangeRight.layer.masksToBounds = YES;
 }
 
--(float)height
-{
-    return self.frame.size.height;
-}
+
 
 -(void)showChangeLeftImage:(BOOL)aShow
 {
@@ -94,6 +92,70 @@
     
     _lblChangeLeftTitle.text = _lblChangeLeftSubTitle.text
     = _lblChangeRightTitle.text = _lblChangeRightSubTitle.text = @"";
+}
+
+
+
+-(void)adjustLayout
+{
+    CGRect headLineRc = _lblHeadline.frame;
+    
+    // chart
+    CGRect chartRc = _viewChart.frame;
+    chartRc.origin.y = CGRectGetMaxY(headLineRc) + 10;
+    _viewChart.frame = chartRc;
+    
+    // change graph view
+    CGRect changeRc = _viewChange.frame;
+    changeRc.origin.y = chartRc.origin.y;
+    _viewChange.frame = changeRc;
+    
+    // adjust bg height
+    CGRect bgRc = _viewCellBg.frame;
+    bgRc.origin.y = 5;
+    if (!_viewChange.hidden)
+    {
+        bgRc.size.height = CGRectGetMaxY(changeRc) + 5;
+    }
+    else
+    {
+        bgRc.size.height = CGRectGetMaxY(chartRc) + 5;
+    }
+    _viewCellBg.frame = bgRc;
+    
+//    // bg image
+//    CGRect bgImgRc = self.ivCellBg.frame;
+//    bgImgRc.size.height = bgRc.size.height;
+//    bgImgRc.size.width = bgRc.size.width;
+//    _ivCellBg.frame = bgImgRc;
+    
+    //
+    CGRect thisRc = self.frame;
+    thisRc.size.height = CGRectGetMaxY(bgRc) + 5;
+    self.frame = thisRc;
+    
+}
+
+//-(float)height
+//{
+//    return self.frame.size.height;
+//}
+
+-(float)height
+{
+    CGRect headLineRc = _lblHeadline.frame;
+    float height = CGRectGetMaxY(headLineRc) + 10;
+    
+    if (!_viewChange.hidden)
+    {
+        height += _viewChange.frame.size.height + 5;
+    }
+    else
+    {
+        height += _viewChart.frame.size.height + 5;
+    }
+    
+    return height + 10;
 }
 
 @end

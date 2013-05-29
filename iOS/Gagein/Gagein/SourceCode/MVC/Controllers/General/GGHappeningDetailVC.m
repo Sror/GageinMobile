@@ -14,7 +14,7 @@
 #import "GGPersonDetailVC.h"
 #import "GGAppDelegate.h"
 #import "GGImageVC.h"
-
+#import "GGAutosizingLabel.h"
 
 @interface GGCellData : NSObject
 @property (assign) long long    ID;
@@ -103,7 +103,6 @@
     [_btnNextUpdate addTarget:self action:@selector(nextUpdateAction:) forControlEvents:UIControlEventTouchUpInside];
     
     //
-    _happeningDetailCell = [GGHappeningDetailCell viewFromNibWithOwner:self];
     
     [self _callApiGetHappeningDetail];
 }
@@ -176,6 +175,7 @@
     NSString *contentBody = [NSString stringWithFormat:@"<div><p>I want to share this update with you.</p> \
                              <p><strong>%@</strong></p> \
                              Shared from <a href=\"www.gagein.com\">GageIn</a>, a visual sales intelligence company </div>"
+                             
                              , [_currentDetail headLineText]];
     
     
@@ -294,6 +294,202 @@
 
 #pragma mark - UITableViewDataSource
 
+-(GGHappeningDetailCell *)detailCell
+{
+    if (_happeningDetailCell == nil)
+    {
+        _happeningDetailCell = [GGHappeningDetailCell viewFromNibWithOwner:self];
+    }
+    
+    [_happeningDetailCell reset];
+    
+    _happeningDetailCell.lblSource.text = _currentDetail.sourceText;
+    _happeningDetailCell.lblHeadline.text = _currentDetail.headLineText;
+    _happeningDetailCell.lblInterval.text = [_currentDetail intervalStringWithDate:_currentDetail.timestamp];
+    
+    switch (_currentDetail.type)
+    {
+        case kGGHappeningCompanyPersonJion:
+        {
+            [_happeningDetailCell showChangeView:YES];
+            [_happeningDetailCell showChangeLeftImage:YES];
+            [_happeningDetailCell showChangeRightImage:YES];
+            
+            NSString *leftPhotoPath = [_currentDetail isJoin] ? _currentDetail.person.photoPath : _currentDetail.company.orgLogoPath;
+            NSString *rightPhotoPath = [_currentDetail isJoin] ? _currentDetail.company.orgLogoPath : _currentDetail.person.photoPath;
+            
+            [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:leftPhotoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+            [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
+            
+            [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:rightPhotoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+            [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterCompanyDetail];
+            
+        }
+            break;
+            
+        case kGGHappeningCompanyPersonJionDetail:
+        {
+            [_happeningDetailCell showChangeView:YES];
+            [_happeningDetailCell showChangeLeftImage:YES];
+            [_happeningDetailCell showChangeRightImage:YES];
+            
+            [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+            [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
+            
+            [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+            [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterCompanyDetail];
+        }
+            break;
+            
+        case kGGHappeningCompanyRevenueChange:
+        {
+            [_happeningDetailCell showChart:YES];
+            [_happeningDetailCell showChangeLeftImage:YES];
+            [_happeningDetailCell showChangeRightImage:YES];
+            //#warning TODO: show chart image
+            CGSize chartSize = _happeningDetailCell.ivChart.frame.size;
+            NSString *chartUrl = [GGUtils stringWithChartUrl:_currentDetail.revenueChart width:chartSize.width height:chartSize.height];
+            [_happeningDetailCell.ivChart setImageWithURL:[NSURL URLWithString:chartUrl] placeholderImage:GGSharedImagePool.placeholder];
+            [_happeningDetailCell.ivChart addGestureRecognizer:_tapGestOpenChart];
+        }
+            break;
+            
+        case kGGHappeningCompanyNewFunding:
+        {
+            [_happeningDetailCell showChangeView:YES];
+            [_happeningDetailCell showChangeLeftText:YES];
+            [_happeningDetailCell showChangeRightImage:YES];
+            
+            _happeningDetailCell.lblChangeLeftTitle.text = [NSString stringWithFormat:@"$ %@ Million", _currentDetail.funding];
+            _happeningDetailCell.lblChangeLeftSubTitle.text = [NSString stringWithFormat:@"%@-round", _currentDetail.round];
+            
+            [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+            [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterCompanyDetail];
+        }
+            break;
+            
+        case kGGHappeningCompanyNewLocation:
+        {
+            [_happeningDetailCell showChangeView:YES];
+            [_happeningDetailCell showChangeLeftImage:YES];
+            [_happeningDetailCell showChangeRightImage:YES];
+            
+            [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+            [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterCompanyDetail];
+            
+            NSString *mapUrl = [GGUtils stringWithMapUrl:_currentDetail.addressMap width:70 height:70];
+            [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:mapUrl] placeholderImage:GGSharedImagePool.placeholder];
+            [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestOpenMap];
+        }
+            break;
+            
+        case kGGHappeningCompanyEmloyeeSizeIncrease:
+        case kGGHappeningCompanyEmloyeeSizeDecrease:
+        {
+            [_happeningDetailCell showChangeView:YES];
+            [_happeningDetailCell showChangeLeftText:YES];
+            [_happeningDetailCell showChangeRightText:YES];
+            
+            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+            [formatter setGroupingSeparator:[[NSLocale currentLocale] objectForKey:NSLocaleGroupingSeparator]];
+            formatter.groupingSize = 3;
+            formatter.numberStyle = NSNumberFormatterDecimalStyle;
+            
+            NSString *oldEmployeeSizeStr = [formatter stringFromNumber:__LONGLONG(_currentDetail.oldEmployNum.longLongValue)];
+            NSString *newEmployeeSizeStr = [formatter stringFromNumber:__LONGLONG(_currentDetail.employNum.longLongValue)];
+            
+            _happeningDetailCell.lblChangeLeftTitle.text = oldEmployeeSizeStr;
+            _happeningDetailCell.lblChangeRightTitle.text = newEmployeeSizeStr;
+            
+            //
+            NSDate *oldDate = [NSDate dateWithTimeIntervalSince1970: (_currentDetail.oldTimestamp / 1000)];
+            NSDate *newDate = [NSDate dateWithTimeIntervalSince1970: (_currentDetail.timestamp / 1000)];
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            //dd MMM yyyy
+            //[dateFormatter setDateFormat:@"emplorees on\nMM/dd/yyyy"];
+            dateFormatter.dateFormat = @"MMM d, yyyy";
+            NSString *oldDateStr = [dateFormatter stringFromDate:oldDate];
+            NSString *newDateStr = [dateFormatter stringFromDate:newDate];
+            
+            _happeningDetailCell.lblChangeLeftSubTitle.text = [NSString stringWithFormat:@"employees on\n%@", oldDateStr];
+            _happeningDetailCell.lblChangeRightSubTitle.text = [NSString stringWithFormat:@"employees on\n%@", newDateStr];
+        }
+            break;
+            
+            
+            // ------------ person cases ------------------
+        case kGGHappeningPersonUpdateProfilePic:
+        {
+            [_happeningDetailCell showChangeView:YES];
+            [_happeningDetailCell showChangeLeftImage:YES];
+            [_happeningDetailCell showChangeRightImage:YES];
+            
+            [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.oldProfilePic] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+            [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
+            
+            [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.profilePic] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+            [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterPersonDetail];
+        }
+            break;
+            
+        case kGGHappeningPersonJoinOtherCompany:
+        {
+            [_happeningDetailCell showChangeView:YES];
+            [_happeningDetailCell showChangeLeftImage:YES];
+            [_happeningDetailCell showChangeRightImage:YES];
+            
+            [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+            [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
+            
+            [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+            [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterCompanyDetail];
+            
+        }
+            break;
+            
+        case kGGHappeningPersonNewLocation:
+        {
+            [_happeningDetailCell showChangeView:YES];
+            [_happeningDetailCell showChangeLeftImage:YES];
+            [_happeningDetailCell showChangeRightImage:YES];
+            
+            [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+            [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
+            
+            NSString *mapUrl = [GGUtils stringWithMapUrl:_currentDetail.addressMap width:70 height:70];
+            
+            
+            [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:mapUrl] placeholderImage:GGSharedImagePool.placeholder];
+            [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestOpenMap];
+        }
+            break;
+            
+        case kGGHappeningPersonNewJobTitle:
+        {
+            [_happeningDetailCell showChangeView:YES];
+            [_happeningDetailCell showChangeLeftImage:YES];
+            [_happeningDetailCell showChangeRightImage:YES];
+            
+            //
+            [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+            [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
+            
+            //
+            [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+            [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterCompanyDetail];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    [_happeningDetailCell adjustLayout];
+    
+    return _happeningDetailCell;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSUInteger count = 1 + _cellDatas.count;
@@ -306,191 +502,7 @@
     int row = indexPath.row;
     if (row == 0)
     {
-        _happeningDetailCell.lblSource.text = _currentDetail.sourceText;
-        _happeningDetailCell.lblHeadline.text = _currentDetail.headLineText;
-        _happeningDetailCell.lblInterval.text = [_currentDetail intervalStringWithDate:_currentDetail.timestamp];
-        
-        [_happeningDetailCell reset];
-        
-        switch (_currentDetail.type)
-        {
-            case kGGHappeningCompanyPersonJion:
-            {
-                [_happeningDetailCell showChangeView:YES];
-                [_happeningDetailCell showChangeLeftImage:YES];
-                [_happeningDetailCell showChangeRightImage:YES];
-                
-                NSString *leftPhotoPath = [_currentDetail isJoin] ? _currentDetail.person.photoPath : _currentDetail.company.orgLogoPath;
-                NSString *rightPhotoPath = [_currentDetail isJoin] ? _currentDetail.company.orgLogoPath : _currentDetail.person.photoPath;
-                
-                [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:leftPhotoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
-                [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
-                
-                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:rightPhotoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-                [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterCompanyDetail];
-                
-            }
-                break;
-                
-            case kGGHappeningCompanyPersonJionDetail:
-            {
-                [_happeningDetailCell showChangeView:YES];
-                [_happeningDetailCell showChangeLeftImage:YES];
-                [_happeningDetailCell showChangeRightImage:YES];
-                
-                [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
-                [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
-                
-                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-                [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterCompanyDetail];
-            }
-                break;
-                
-            case kGGHappeningCompanyRevenueChange:
-            {
-                [_happeningDetailCell showChart:YES];
-                [_happeningDetailCell showChangeLeftImage:YES];
-                [_happeningDetailCell showChangeRightImage:YES];
-//#warning TODO: show chart image
-                CGSize chartSize = _happeningDetailCell.ivChart.frame.size;
-                NSString *chartUrl = [GGUtils stringWithChartUrl:_currentDetail.revenueChart width:chartSize.width height:chartSize.height];
-                [_happeningDetailCell.ivChart setImageWithURL:[NSURL URLWithString:chartUrl] placeholderImage:GGSharedImagePool.placeholder];
-                [_happeningDetailCell.ivChart addGestureRecognizer:_tapGestOpenChart];
-            }
-                break;
-                
-            case kGGHappeningCompanyNewFunding:
-            {
-                [_happeningDetailCell showChangeView:YES];
-                [_happeningDetailCell showChangeLeftText:YES];
-                [_happeningDetailCell showChangeRightImage:YES];
-                
-                _happeningDetailCell.lblChangeLeftTitle.text = [NSString stringWithFormat:@"$ %@ Million", _currentDetail.funding];
-                _happeningDetailCell.lblChangeLeftSubTitle.text = [NSString stringWithFormat:@"%@-round", _currentDetail.round];
-                
-                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-                [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterCompanyDetail];
-            }
-                break;
-                
-            case kGGHappeningCompanyNewLocation:
-            {
-                [_happeningDetailCell showChangeView:YES];
-                [_happeningDetailCell showChangeLeftImage:YES];
-                [_happeningDetailCell showChangeRightImage:YES];
-                
-                [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-                [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterCompanyDetail];
-                
-                NSString *mapUrl = [GGUtils stringWithMapUrl:_currentDetail.addressMap width:70 height:70];
-                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:mapUrl] placeholderImage:GGSharedImagePool.placeholder];
-                [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestOpenMap];
-            }
-                break;
-                
-            case kGGHappeningCompanyEmloyeeSizeIncrease:
-            case kGGHappeningCompanyEmloyeeSizeDecrease:
-            {
-                [_happeningDetailCell showChangeView:YES];
-                [_happeningDetailCell showChangeLeftText:YES];
-                [_happeningDetailCell showChangeRightText:YES];
-                
-                NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-                [formatter setGroupingSeparator:[[NSLocale currentLocale] objectForKey:NSLocaleGroupingSeparator]];
-                formatter.groupingSize = 3;
-                formatter.numberStyle = NSNumberFormatterDecimalStyle;
-                
-                NSString *oldEmployeeSizeStr = [formatter stringFromNumber:__LONGLONG(_currentDetail.oldEmployNum.longLongValue)];
-                NSString *newEmployeeSizeStr = [formatter stringFromNumber:__LONGLONG(_currentDetail.employNum.longLongValue)];
-                
-                _happeningDetailCell.lblChangeLeftTitle.text = oldEmployeeSizeStr;
-                _happeningDetailCell.lblChangeRightTitle.text = newEmployeeSizeStr;
-                
-                //
-                NSDate *oldDate = [NSDate dateWithTimeIntervalSince1970: (_currentDetail.oldTimestamp / 1000)];
-                NSDate *newDate = [NSDate dateWithTimeIntervalSince1970: (_currentDetail.timestamp / 1000)];
-                
-                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                //dd MMM yyyy
-                //[dateFormatter setDateFormat:@"emplorees on\nMM/dd/yyyy"];
-                dateFormatter.dateFormat = @"MMM d, yyyy";
-                NSString *oldDateStr = [dateFormatter stringFromDate:oldDate];
-                NSString *newDateStr = [dateFormatter stringFromDate:newDate];
-                
-                _happeningDetailCell.lblChangeLeftSubTitle.text = [NSString stringWithFormat:@"employees on\n%@", oldDateStr];
-                _happeningDetailCell.lblChangeRightSubTitle.text = [NSString stringWithFormat:@"employees on\n%@", newDateStr];
-            }
-                break;
-
-                
-// ------------ person cases ------------------
-            case kGGHappeningPersonUpdateProfilePic:
-            {
-                [_happeningDetailCell showChangeView:YES];
-                [_happeningDetailCell showChangeLeftImage:YES];
-                [_happeningDetailCell showChangeRightImage:YES];
-                
-                [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.oldProfilePic] placeholderImage:GGSharedImagePool.logoDefaultPerson];
-                [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
-                
-                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.profilePic] placeholderImage:GGSharedImagePool.logoDefaultPerson];
-                [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterPersonDetail];
-            }
-                break;
-                
-            case kGGHappeningPersonJoinOtherCompany:
-            {
-                [_happeningDetailCell showChangeView:YES];
-                [_happeningDetailCell showChangeLeftImage:YES];
-                [_happeningDetailCell showChangeRightImage:YES];
-
-                [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
-                [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
-                
-                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-                [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterCompanyDetail];
-                
-            }
-                break;
-                
-            case kGGHappeningPersonNewLocation:
-            {
-                [_happeningDetailCell showChangeView:YES];
-                [_happeningDetailCell showChangeLeftImage:YES];
-                [_happeningDetailCell showChangeRightImage:YES];
-                
-                [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
-                [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
-                
-                NSString *mapUrl = [GGUtils stringWithMapUrl:_currentDetail.addressMap width:70 height:70];
-                
-                
-                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:mapUrl] placeholderImage:GGSharedImagePool.placeholder];
-                [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestOpenMap];
-            }
-                break;
-                
-            case kGGHappeningPersonNewJobTitle:
-            {
-                [_happeningDetailCell showChangeView:YES];
-                [_happeningDetailCell showChangeLeftImage:YES];
-                [_happeningDetailCell showChangeRightImage:YES];
-                
-                //
-                [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
-                [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
-                
-                //
-                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-                [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterCompanyDetail];
-            }
-                break;
-                
-            default:
-                break;
-        }
-        
-        return _happeningDetailCell;
+        return [self detailCell];
         
     } else {
         
@@ -523,7 +535,7 @@
     int row = indexPath.row;
     if (row == 0)
     {
-        return _happeningDetailCell.height;
+        return [self detailCell].height;
     }
     
     return [GGCustomBriefCell HEIGHT];
