@@ -175,16 +175,16 @@
     if (![GGRuntimeData sharedInstance].isLoggedIn)
     {
         [self.naviController.view.layer addAnimation:[GGAnimation animationFade] forKey:nil];
-        //[_rootVC presentViewController:_naviController animated:NO completion:nil];
-        [self.window addSubview:self.naviController.view];
+        [_rootVC presentViewController:_naviController animated:NO completion:nil];
+        //[self.window addSubview:self.naviController.view];
     }
 }
 
 -(void)popNaviToRoot
 {
     [self.naviController.view.layer addAnimation:[GGAnimation animationFade] forKey:nil];
-    [self.naviController.view removeFromSuperview];
-    //[_rootVC dismissViewControllerAnimated:NO completion:nil];
+    //[self.naviController.view removeFromSuperview];
+    [_rootVC dismissViewControllerAnimated:NO completion:nil];
 }
 
 -(void)showTabIndex:(NSUInteger)aIndex
