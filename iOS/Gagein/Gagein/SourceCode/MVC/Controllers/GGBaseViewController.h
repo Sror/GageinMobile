@@ -61,4 +61,6 @@
 
 -(void)unregisterOperation:(id)anOperation;
 
+-(void)presentImageWithURL:(NSString *)anImageURL;
+
 @end

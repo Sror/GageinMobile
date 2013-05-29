@@ -223,32 +223,48 @@
     float height = MIN(chartSize.width, chartSize.height);
     NSString *chartUrl = [GGUtils stringWithChartUrl:_currentDetail.revenueChart width:width height:height];
     
-    GGImageVC *vc = [[GGImageVC alloc] init];
-    vc.imageUrl = chartUrl;
-   // vc.modalPresentationStyle = UIModalPresentationFullScreen;
-    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    //vc.modalInPopover = YES;
-    [self presentViewController:vc animated:YES completion:nil];
+    [self presentImageWithURL:chartUrl];
 }
 
 -(void)openMapAction:(id)sender
 {
     //DLog(@"Open the map");
+    CGSize chartSize = [UIScreen mainScreen].applicationFrame.size;
+    float width = MAX(chartSize.width, chartSize.height);
+    float height = MIN(chartSize.width, chartSize.height);
+    NSString *chartUrl = [GGUtils stringWithMapUrl:_currentDetail.addressMap width:width height:height];
+    
+    [self presentImageWithURL:chartUrl];
 }
 
 -(void)enterCompanyDetailAction:(id)sender
 {
-    DLog(@"enter company detail");
+   // DLog(@"enter company detail");
+    
+    GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+    vc.companyID = _currentDetail.company.ID;
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)enterOldCompanyDetailAction:(id)sender
 {
-    DLog(@"enter old company's detail");
+   // DLog(@"enter old company's detail");
+    
+    GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+    vc.companyID = _currentDetail.oldCompany.ID;
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)enterPersonDetailAction:(id)sender
 {
-    DLog(@"enter person's detail");
+    //DLog(@"enter person's detail");
+    
+    GGPersonDetailVC *vc = [[GGPersonDetailVC alloc] init];
+    vc.personID = _currentDetail.person.ID;
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

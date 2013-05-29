@@ -13,6 +13,7 @@
 
 #import "GGTwitterOAuthVC.h"
 #import "GGFacebookOAuther.h"
+#import "GGImageVC.h"
 
 #define MAX_NAVI_TITLE_LENGTH   20
 
@@ -207,6 +208,8 @@
     _customNaviTitle.frame = customNaviRc;
 }
 
+#pragma mark - orientation
+
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     if (ISIPADDEVICE)
@@ -318,6 +321,20 @@
 {
     UIViewController *vc = self.parentViewController;
     [vc dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)presentImageWithURL:(NSString *)anImageURL
+{
+    if (anImageURL)
+    {
+        GGImageVC *vc = [[GGImageVC alloc] init];
+        vc.imageUrl = anImageURL;
+        // vc.modalPresentationStyle = UIModalPresentationFullScreen;
+        vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        //vc.modalInPopover = YES;
+        
+        [self presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 #pragma mark - layout
