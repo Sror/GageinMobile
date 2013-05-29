@@ -267,13 +267,18 @@
     return nil;
 }
 
+-(BOOL)isJoin
+{
+    return [self.change isEqualToString:CHANGE_TYPE_JOIN];
+}
+
 -(NSString *)headLineText
 {
     switch (self.type)
     {
         case kGGHappeningCompanyPersonJion:
         {
-            if ([self.change isEqualToString:CHANGE_TYPE_JOIN])
+            if ([self isJoin])
             {
                 return [self _isOldData] ? [NSString stringWithFormat:EVENT_MSG_COM_PERSON_JONIED_OLD, self.person.name, self.company.name, self.jobTitle]
                 : [NSString stringWithFormat:EVENT_MSG_COM_PERSON_JONIED, self.person.name

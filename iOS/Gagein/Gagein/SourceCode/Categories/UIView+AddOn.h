@@ -14,4 +14,6 @@
 
 -(void)hideLoadingHUD;
 
+-(void)removeAllGestureRecognizers;
+
 @end

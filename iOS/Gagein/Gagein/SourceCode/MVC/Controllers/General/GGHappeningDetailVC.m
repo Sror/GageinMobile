@@ -239,6 +239,9 @@
         _happeningDetailCell.lblHeadline.text = _currentDetail.headLineText;
         _happeningDetailCell.lblInterval.text = [_currentDetail intervalStringWithDate:_currentDetail.timestamp];
         
+        [_happeningDetailCell.viewChangeLeft removeAllGestureRecognizers];
+        [_happeningDetailCell.viewChangeRight removeAllGestureRecognizers];
+        
         switch (_currentDetail.type)
         {
             case kGGHappeningCompanyPersonJion:
@@ -246,6 +249,13 @@
                 [_happeningDetailCell showChangeView:YES];
                 [_happeningDetailCell showChangeLeftImage:YES];
                 [_happeningDetailCell showChangeRightImage:YES];
+                
+                NSString *leftPhotoPath = [_currentDetail isJoin] ? _currentDetail.person.photoPath : _currentDetail.company.orgLogoPath;
+                NSString *rightPhotoPath = [_currentDetail isJoin] ? _currentDetail.company.orgLogoPath : _currentDetail.person.photoPath;
+                
+                [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:leftPhotoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:rightPhotoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+                
             }
                 break;
                 
@@ -254,12 +264,15 @@
                 [_happeningDetailCell showChangeView:YES];
                 [_happeningDetailCell showChangeLeftImage:YES];
                 [_happeningDetailCell showChangeRightImage:YES];
+                
+                [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
             }
                 break;
                 
             case kGGHappeningCompanyRevenueChange:
             {
-                [_happeningDetailCell showChangeView:YES];
+                [_happeningDetailCell showChart:YES];
                 [_happeningDetailCell showChangeLeftImage:YES];
                 [_happeningDetailCell showChangeRightImage:YES];
 #warning TODO: show chart image

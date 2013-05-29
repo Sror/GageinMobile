@@ -138,4 +138,6 @@ typedef enum {
 
 -(NSString *)sourceText;
 -(NSString *)headLineText;
+
+-(BOOL)isJoin;
 @end
