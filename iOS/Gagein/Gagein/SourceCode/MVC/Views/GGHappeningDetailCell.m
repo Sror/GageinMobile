@@ -83,4 +83,16 @@
     _ivChart.hidden = YES;
 }
 
+-(void)reset
+{
+    [_viewChangeLeft removeAllGestureRecognizers];
+    [_viewChangeRight removeAllGestureRecognizers];
+    
+    _ivChangeLeft.image = nil;
+    _ivChangeRight.image = nil;
+    
+    _lblChangeLeftTitle.text = _lblChangeLeftSubTitle.text
+    = _lblChangeRightTitle.text = _lblChangeRightSubTitle.text = @"";
+}
+
 @end

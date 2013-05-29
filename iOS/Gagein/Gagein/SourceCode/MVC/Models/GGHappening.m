@@ -219,6 +219,7 @@
     _theNewRevenue = [aData objectForKey:@"newRevenue"];
     _percentage = [aData objectForKey:@"percentage"];
     _period = [aData objectForKey:@"period"];
+    _revenueChart = [aData objectForKey:@"revenue_chart"];
 
     _funding = [aData objectForKey:@"funding"];
     _round = [aData objectForKey:@"round"];

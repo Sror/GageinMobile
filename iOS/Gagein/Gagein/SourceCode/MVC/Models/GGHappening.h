@@ -105,6 +105,7 @@ typedef enum {
 @property (copy) NSString                       *theNewRevenue;
 @property (copy) NSString                       *percentage;
 @property (copy) NSString                       *period;
+@property (copy) NSString                       *revenueChart;
 
 @property (copy) NSString                       *funding;
 @property (copy) NSString                       *round;

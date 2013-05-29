@@ -239,8 +239,7 @@
         _happeningDetailCell.lblHeadline.text = _currentDetail.headLineText;
         _happeningDetailCell.lblInterval.text = [_currentDetail intervalStringWithDate:_currentDetail.timestamp];
         
-        [_happeningDetailCell.viewChangeLeft removeAllGestureRecognizers];
-        [_happeningDetailCell.viewChangeRight removeAllGestureRecognizers];
+        [_happeningDetailCell reset];
         
         switch (_currentDetail.type)
         {
@@ -275,7 +274,10 @@
                 [_happeningDetailCell showChart:YES];
                 [_happeningDetailCell showChangeLeftImage:YES];
                 [_happeningDetailCell showChangeRightImage:YES];
-#warning TODO: show chart image
+//#warning TODO: show chart image
+                CGSize chartSize = _happeningDetailCell.ivChart.frame.size;
+                NSString *chartUrl = [GGUtils stringWithChartUrl:_currentDetail.revenueChart width:chartSize.width height:chartSize.height];
+                [_happeningDetailCell.ivChart setImageWithURL:[NSURL URLWithString:chartUrl] placeholderImage:GGSharedImagePool.placeholder];
             }
                 break;
                 
@@ -297,24 +299,48 @@
                 [_happeningDetailCell showChangeView:YES];
                 [_happeningDetailCell showChangeLeftImage:YES];
                 [_happeningDetailCell showChangeRightImage:YES];
+                
+                [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+                
+                NSString *mapUrl = [GGUtils stringWithMapUrl:_currentDetail.addressMap width:70 height:70];
+                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:mapUrl] placeholderImage:GGSharedImagePool.placeholder];
             }
                 break;
                 
             case kGGHappeningCompanyEmloyeeSizeIncrease:
-            {
-                [_happeningDetailCell showChangeView:YES];
-                [_happeningDetailCell showChangeLeftImage:YES];
-                [_happeningDetailCell showChangeRightImage:YES];
-            }
-                break;
-                
             case kGGHappeningCompanyEmloyeeSizeDecrease:
             {
                 [_happeningDetailCell showChangeView:YES];
-                [_happeningDetailCell showChangeLeftImage:YES];
-                [_happeningDetailCell showChangeRightImage:YES];
+                [_happeningDetailCell showChangeLeftText:YES];
+                [_happeningDetailCell showChangeRightText:YES];
+                
+                NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+                [formatter setGroupingSeparator:[[NSLocale currentLocale] objectForKey:NSLocaleGroupingSeparator]];
+                formatter.groupingSize = 3;
+                formatter.numberStyle = NSNumberFormatterDecimalStyle;
+                
+                NSString *oldEmployeeSizeStr = [formatter stringFromNumber:__LONGLONG(_currentDetail.oldEmployNum.longLongValue)];
+                NSString *newEmployeeSizeStr = [formatter stringFromNumber:__LONGLONG(_currentDetail.employNum.longLongValue)];
+                
+                _happeningDetailCell.lblChangeLeftTitle.text = oldEmployeeSizeStr;
+                _happeningDetailCell.lblChangeRightTitle.text = newEmployeeSizeStr;
+                
+                //
+                NSDate *oldDate = [NSDate dateWithTimeIntervalSince1970: (_currentDetail.oldTimestamp / 1000)];
+                NSDate *newDate = [NSDate dateWithTimeIntervalSince1970: (_currentDetail.timestamp / 1000)];
+                
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                //dd MMM yyyy
+                //[dateFormatter setDateFormat:@"emplorees on\nMM/dd/yyyy"];
+                dateFormatter.dateFormat = @"MMM d, yyyy";
+                NSString *oldDateStr = [dateFormatter stringFromDate:oldDate];
+                NSString *newDateStr = [dateFormatter stringFromDate:newDate];
+                
+                _happeningDetailCell.lblChangeLeftSubTitle.text = [NSString stringWithFormat:@"employees on\n%@", oldDateStr];
+                _happeningDetailCell.lblChangeRightSubTitle.text = [NSString stringWithFormat:@"employees on\n%@", newDateStr];
             }
                 break;
+
                 
 // ------------ person cases ------------------
             case kGGHappeningPersonUpdateProfilePic:

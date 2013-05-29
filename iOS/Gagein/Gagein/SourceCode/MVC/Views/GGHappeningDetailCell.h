@@ -42,4 +42,6 @@
 
 -(void)showChangeView:(BOOL)aShow;
 
+-(void)reset;
+
 @end

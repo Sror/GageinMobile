@@ -46,6 +46,7 @@
 +(id)replaceFromNibForView:(UIView *)aView;
 +(id)replaceView:(UIView *)aView inPlaceWithNewView:(UIView *)aNewView;
 
++(NSString *)stringWithChartUrl:(NSString *)aChartUrl width:(int)aWidth height:(int)aHeight;
 +(NSString *)stringWithMapUrl:(NSString *)aMapUrl width:(int)aWidth height:(int)aHeight;
 
 +(NSString *)appcodeString;
