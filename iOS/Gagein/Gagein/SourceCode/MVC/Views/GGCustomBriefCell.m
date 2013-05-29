@@ -33,7 +33,7 @@
 
 +(float)HEIGHT
 {
-    return 65;
+    return 70;
 }
 
 @end

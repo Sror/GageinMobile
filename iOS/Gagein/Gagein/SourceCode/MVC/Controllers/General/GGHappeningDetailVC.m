@@ -362,7 +362,7 @@
         
     } else {
         
-        static NSString *updateCellId = @"GGPersonCell";
+        static NSString *updateCellId = @"GGCustomBriefCell";
         GGCustomBriefCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
         if (cell == nil) {
             cell = [GGCustomBriefCell viewFromNibWithOwner:self];
