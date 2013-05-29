@@ -85,8 +85,9 @@
 
 -(void)reset
 {
-    [_viewChangeLeft removeAllGestureRecognizers];
-    [_viewChangeRight removeAllGestureRecognizers];
+    [_ivChangeLeft removeAllGestureRecognizers];
+    [_ivChangeRight removeAllGestureRecognizers];
+    [_ivChart removeAllGestureRecognizers];
     
     _ivChangeLeft.image = nil;
     _ivChangeRight.image = nil;

@@ -46,6 +46,12 @@
     UIButton *_btnNextUpdate;
     
     NSMutableArray              *_cellDatas;
+    
+    UITapGestureRecognizer *_tapGestOpenChart;
+    UITapGestureRecognizer *_tapGestOpenMap;
+    UITapGestureRecognizer *_tapGestEnterCompanyDetail;
+    UITapGestureRecognizer *_tapGestEnterOldCompanyDetail;
+    UITapGestureRecognizer *_tapGestEnterPersonDetail;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -63,6 +69,9 @@
     self.naviTitle = @"Happening";
     self.svContent.frame = [self viewportAdjsted];
     self.tvDetail.backgroundColor = GGSharedColor.silver;
+    
+    // init gesture recgnizers
+    [self _initGestures];
     
     // previous update button
     UIImage *upArrowEnabledImg = [UIImage imageNamed:@"upArrowEnabled"];
@@ -197,6 +206,41 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void)_initGestures
+{
+    _tapGestOpenChart = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openChartAction:)];
+    _tapGestOpenMap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openMapAction:)];
+    _tapGestEnterCompanyDetail = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enterCompanyDetailAction:)];
+    _tapGestEnterOldCompanyDetail = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enterOldCompanyDetailAction:)];
+    _tapGestEnterPersonDetail = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enterPersonDetailAction:)];
+}
+
+-(void)openChartAction:(id)sender
+{
+    DLog(@"Open the chart");
+}
+
+-(void)openMapAction:(id)sender
+{
+    DLog(@"Open the map");
+}
+
+-(void)enterCompanyDetailAction:(id)sender
+{
+    DLog(@"enter company detail");
+}
+
+-(void)enterOldCompanyDetailAction:(id)sender
+{
+    DLog(@"enter old company's detail");
+}
+
+-(void)enterPersonDetailAction:(id)sender
+{
+    DLog(@"enter person's detail");
+}
+
+
 #pragma mark - message delegate
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller
                  didFinishWithResult:(MessageComposeResult)result
@@ -253,7 +297,10 @@
                 NSString *rightPhotoPath = [_currentDetail isJoin] ? _currentDetail.company.orgLogoPath : _currentDetail.person.photoPath;
                 
                 [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:leftPhotoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+                [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
+                
                 [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:rightPhotoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+                [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterCompanyDetail];
                 
             }
                 break;
@@ -265,7 +312,10 @@
                 [_happeningDetailCell showChangeRightImage:YES];
                 
                 [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+                [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
+                
                 [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+                [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterCompanyDetail];
             }
                 break;
                 
@@ -278,6 +328,7 @@
                 CGSize chartSize = _happeningDetailCell.ivChart.frame.size;
                 NSString *chartUrl = [GGUtils stringWithChartUrl:_currentDetail.revenueChart width:chartSize.width height:chartSize.height];
                 [_happeningDetailCell.ivChart setImageWithURL:[NSURL URLWithString:chartUrl] placeholderImage:GGSharedImagePool.placeholder];
+                [_happeningDetailCell.ivChart addGestureRecognizer:_tapGestOpenChart];
             }
                 break;
                 
@@ -291,6 +342,7 @@
                 _happeningDetailCell.lblChangeLeftSubTitle.text = [NSString stringWithFormat:@"%@-round", _currentDetail.round];
                 
                 [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+                [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterCompanyDetail];
             }
                 break;
                 
@@ -301,9 +353,11 @@
                 [_happeningDetailCell showChangeRightImage:YES];
                 
                 [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+                [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterCompanyDetail];
                 
                 NSString *mapUrl = [GGUtils stringWithMapUrl:_currentDetail.addressMap width:70 height:70];
                 [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:mapUrl] placeholderImage:GGSharedImagePool.placeholder];
+                [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestOpenMap];
             }
                 break;
                 
@@ -350,8 +404,10 @@
                 [_happeningDetailCell showChangeRightImage:YES];
                 
                 [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.oldProfilePic] placeholderImage:GGSharedImagePool.logoDefaultPerson];
-                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.profilePic] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+                [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
                 
+                [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.profilePic] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+                [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterPersonDetail];
             }
                 break;
                 
@@ -362,7 +418,10 @@
                 [_happeningDetailCell showChangeRightImage:YES];
 
                 [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+                [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
+                
                 [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+                [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterCompanyDetail];
                 
             }
                 break;
@@ -374,11 +433,13 @@
                 [_happeningDetailCell showChangeRightImage:YES];
                 
                 [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+                [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
                 
                 NSString *mapUrl = [GGUtils stringWithMapUrl:_currentDetail.addressMap width:70 height:70];
                 
                 
                 [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:mapUrl] placeholderImage:GGSharedImagePool.placeholder];
+                [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestOpenMap];
             }
                 break;
                 
@@ -388,8 +449,13 @@
                 [_happeningDetailCell showChangeLeftImage:YES];
                 [_happeningDetailCell showChangeRightImage:YES];
                 
+                //
                 [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+                [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
+                
+                //
                 [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+                [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterCompanyDetail];
             }
                 break;
                 
