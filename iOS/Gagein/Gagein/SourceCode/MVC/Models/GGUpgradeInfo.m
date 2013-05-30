@@ -24,7 +24,7 @@
 
 -(NSString *)upgradeTitle
 {
-    return [NSString stringWithFormat:@"There is a new version available, %@, would you like to upgrade?", [GGUtils appVersionBuild]];
+    return [NSString stringWithFormat:@"There is a new version available, %@, would you like to upgrade?", _version];
 }
 
 -(NSString *)upgradeMessage
@@ -33,7 +33,7 @@
     [str appendFormat:@"What's new in version %@:", _version];
     for (int i = 0; i < _features.count; i++)
     {
-        [str appendFormat:@"\n%d. %@", i + 1, _features[i]];
+        [str appendFormat:@"%@", _features[i]];
     }
     
     return str;

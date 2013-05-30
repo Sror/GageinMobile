@@ -14,7 +14,7 @@
 @class GGSlideSettingView;
 @class GGSignupPortalVC;
 
-@interface GGAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
+@interface GGAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

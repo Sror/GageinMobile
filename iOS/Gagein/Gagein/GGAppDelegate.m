@@ -22,7 +22,13 @@
 #import "GGUpgradeInfo.h"
 
 
+#define TAG_UPGRADE_ALERT   1000
+
+
 @implementation GGAppDelegate
+{
+    GGUpgradeInfo *_upgradeInfo;
+}
 
 -(void)_initTabbar
 {
@@ -89,10 +95,18 @@
     [GGSharedAPI getVersion:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         
-        GGUpgradeInfo *info = [parser parseGetVersion];
-        if ([info needUpgrade])
+        _upgradeInfo = [parser parseGetVersion];
+        if ([_upgradeInfo needUpgrade])
         {
-            [GGAlert alertWithMessage:info.upgradeMessage title:info.upgradeTitle];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_upgradeInfo.upgradeTitle
+                                                            message:_upgradeInfo.upgradeMessage
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Later"
+                                                  otherButtonTitles:@"Okay", nil];
+            
+            alert.tag = TAG_UPGRADE_ALERT;
+            alert.delegate = self;
+            [alert show];
         }
     }];
 }
@@ -170,7 +184,18 @@
     DLog(@"");
 }
 
-
+#pragma mark - alert view delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == TAG_UPGRADE_ALERT)
+    {
+        if (buttonIndex == 1) // affirmative
+        {
+            NSURL * iTunesUrl = [NSURL URLWithString:_upgradeInfo.url]; // @"http://itunes.apple.com/cn/app/id427457043?mt=8&ls=1"
+            [[UIApplication	sharedApplication] openURL:iTunesUrl];
+        }
+    }
+}
 
 #pragma mark - handle notification
 - (void)handleNotification:(NSNotification *)notification
