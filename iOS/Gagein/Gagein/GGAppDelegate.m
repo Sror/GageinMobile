@@ -91,24 +91,23 @@
 
 -(void)checkForUpgrade
 {
-//#warning TODO: Need to check upgrade
-    [GGSharedAPI getVersion:^(id operation, id aResultObject, NSError *anError) {
-        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-        
-        _upgradeInfo = [parser parseGetVersion];
-        if ([_upgradeInfo needUpgrade])
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_upgradeInfo.upgradeTitle
-                                                            message:_upgradeInfo.upgradeMessage
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Later"
-                                                  otherButtonTitles:@"Okay", nil];
-            
-            alert.tag = TAG_UPGRADE_ALERT;
-            alert.delegate = self;
-            [alert show];
-        }
-    }];
+//    [GGSharedAPI getVersion:^(id operation, id aResultObject, NSError *anError) {
+//        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//        
+//        _upgradeInfo = [parser parseGetVersion];
+//        if ([_upgradeInfo needUpgrade])
+//        {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_upgradeInfo.upgradeTitle
+//                                                            message:_upgradeInfo.upgradeMessage
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"Later"
+//                                                  otherButtonTitles:@"Okay", nil];
+//            
+//            alert.tag = TAG_UPGRADE_ALERT;
+//            alert.delegate = self;
+//            [alert show];
+//        }
+//    }];
 }
 
 -(void)makeNaviBarCustomed:(BOOL)aCustomed

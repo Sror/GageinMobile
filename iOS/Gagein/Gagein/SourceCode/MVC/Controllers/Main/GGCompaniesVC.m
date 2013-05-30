@@ -1040,9 +1040,9 @@
     {
         newsID = lastUpdate.ID;
         pageTime = lastUpdate.date;
+        
+        [self _getDataWithNewsID:newsID pageFlag:kGGPageFlagMoveDown pageTime:pageTime relevance:_relevance];
     }
-    
-    [self _getDataWithNewsID:newsID pageFlag:kGGPageFlagMoveDown pageTime:pageTime relevance:_relevance];
 }
 
 -(void)_getPrevPage
@@ -1114,7 +1114,8 @@
         {
             _viewUpdateEmpty = [GGEmptyActionView viewFromNibWithOwner:self];
             _viewUpdateEmpty.frame = self.view.bounds;
-            [_viewUpdateEmpty setMessageCode:parser.messageCode];
+            //[_viewUpdateEmpty setMessageCode:parser.messageCode];
+            [_viewUpdateEmpty setMessageCode:parser vc:self];
             
             //_viewUpdateEmpty = _emptyView;
             [_updatesTV addSubview:_viewUpdateEmpty];
@@ -1254,7 +1255,8 @@
         {
             _viewHappeningEmpty = [GGEmptyActionView viewFromNibWithOwner:self];
             _viewHappeningEmpty.frame = self.view.bounds;
-            [_viewHappeningEmpty setMessageCode:parser.messageCode];
+            //[_viewHappeningEmpty setMessageCode:parser.messageCode];
+            [_viewHappeningEmpty setMessageCode:parser vc:self];
             
             //_viewHappeningEmpty = _emptyView;
             [_happeningsTV addSubview:_viewHappeningEmpty];

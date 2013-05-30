@@ -26,6 +26,45 @@
     //self.hidden = YES;
 }
 
+-(void)setMessageCode:(GGApiParser *)anApiParser vc:(GGBaseViewController *)aVc
+{
+    if (anApiParser && aVc)
+    {
+        [self setMessageCode:anApiParser.messageCode];
+        
+        [_btnAction removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
+        switch (anApiParser.messageCode)
+        {
+            case kGGMsgCodeNoUpdateForLessFollowedCompanies:
+            {
+                [_btnAction addTarget:aVc action:@selector(enterFollowCompaniesAction) forControlEvents:UIControlEventTouchUpInside];
+            }
+                break;
+                
+            case kGGMsgCodeNoUpdateForAllSalesTriggers:
+            {
+                [_btnAction addTarget:aVc action:@selector(enterSelectAgentsAction) forControlEvents:UIControlEventTouchUpInside];
+            }
+                break;
+                
+            case kGGMsgCodeNoEventForLessFollowedContacts:
+            {
+                [_btnAction addTarget:aVc action:@selector(enterFollowPeopleAction) forControlEvents:UIControlEventTouchUpInside];
+            }
+                break;
+                
+            case kGGMsgCodeNoEventForTheAllSelectedFunctionals:
+            {
+                [_btnAction addTarget:aVc action:@selector(enterSelectFunctionalAreasAction) forControlEvents:UIControlEventTouchUpInside];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+
 -(void)setMessageCode:(EGGMessageCode)aMessageCode
 {
     _viewSimple.hidden = NO;

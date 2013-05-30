@@ -15,6 +15,11 @@
 #import "GGFacebookOAuther.h"
 #import "GGImageVC.h"
 
+#import "GGFollowCompanyVC.h"
+#import "GGFollowPeopleVC.h"
+#import "GGSelectAgentsVC.h"
+#import "GGSelectFuncAreasVC.h"
+
 #define MAX_NAVI_TITLE_LENGTH   20
 
 @interface GGBaseViewController ()
@@ -435,6 +440,29 @@
     return _oAuthLoginView;
 }
 
-#pragma mark -
+#pragma mark - config & exploring actions
+-(void)enterFollowCompaniesAction
+{
+    GGFollowCompanyVC *vc = [[GGFollowCompanyVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)enterFollowPeopleAction
+{
+    GGFollowPeopleVC *vc = [[GGFollowPeopleVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)enterSelectAgentsAction
+{
+    GGSelectAgentsVC *vc = [[GGSelectAgentsVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)enterSelectFunctionalAreasAction
+{
+    GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 @end

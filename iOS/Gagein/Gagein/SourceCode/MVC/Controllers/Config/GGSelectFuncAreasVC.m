@@ -25,6 +25,7 @@
 @implementation GGSelectFuncAreasVC
 {
     NSMutableArray *_functionalAreas;
+    BOOL            _isSelectionChanged;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -112,6 +113,12 @@
 
 -(IBAction)doneAction:(id)sender
 {
+    if (!_isSelectionChanged)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    
     id op = [GGSharedAPI selectFunctionalAreas:[self _selectedAreaIDs] callback:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
@@ -162,6 +169,8 @@
     GGFunctionalArea *areaData = _functionalAreas[indexPath.row];
     areaData.checked = !areaData.checked;
     [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    _isSelectionChanged = YES;
     
     self.btnDoneStep.hidden = ([self _selectedAreaIDs].count <= 0);
 }

@@ -58,9 +58,14 @@
 
 // operation management
 -(void)registerOperation:(id)anOperation;
-
 -(void)unregisterOperation:(id)anOperation;
 
 -(void)presentImageWithURL:(NSString *)anImageURL;
+
+#pragma mark - config & exploring actions
+-(void)enterFollowCompaniesAction;
+-(void)enterFollowPeopleAction;
+-(void)enterSelectAgentsAction;
+-(void)enterSelectFunctionalAreasAction;
 
 @end

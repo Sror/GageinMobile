@@ -558,9 +558,9 @@
     {
         happeningID = lastOne.ID;
         pageTime = lastOne.timestamp;
+        
+        [self _getDataWithPageFlag:kGGPageFlagMoveDown pageTime:pageTime eventID:happeningID];
     }
-    
-    [self _getDataWithPageFlag:kGGPageFlagMoveDown pageTime:pageTime eventID:happeningID];
 }
 
 -(void)_getDataWithPageFlag:(int)aPageFlag pageTime:(long long)aPageTime eventID:(long long)anEventID
