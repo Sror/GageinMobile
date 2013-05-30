@@ -300,6 +300,10 @@
     return [self _parsePageforClass:[GGPerson class]];
 }
 
+-(GGDataPage *)parseGetFollowedPeople
+{
+    return [self _parsePageforClass:[GGPerson class]];
+}
 
 #pragma mark - sn
 -(NSArray *)parseSnGetList

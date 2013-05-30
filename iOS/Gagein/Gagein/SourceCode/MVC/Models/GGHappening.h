@@ -122,10 +122,10 @@ typedef enum {
 @property (copy) NSString                       *profilePic;
 @property (copy) NSString                       *oldProfilePic;
 
-@property (strong) GGHappeningPerson      *person;
+@property (strong) GGHappeningPerson            *person;
 
-@property (strong) GGHappeningCompany      *company;
-@property (strong) GGHappeningCompany      *oldCompany;
+@property (strong) GGHappeningCompany           *company;
+@property (strong) GGHappeningCompany           *oldCompany;
 
 @property (copy) NSString                       *change;        // e.g. LEAVE
 @property (assign) EGGHappeningType             type;

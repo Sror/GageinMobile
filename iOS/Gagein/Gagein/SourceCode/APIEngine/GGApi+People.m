@@ -37,7 +37,7 @@
                                                 callback:(GGApiBlock)aCallback
 {
     //POST
-    NSString *path = @"search/contact/get_suggestions";
+    NSString *path = @"search/contacts/get_suggestions";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
@@ -84,7 +84,7 @@
 //GET: /svc/member/me/contact/get_followed
 //Parameters: access_token=b4790223c67f68b744d6ac3bb9b830e6&page=1
 //
--(AFHTTPRequestOperation *)getFollowedPeople:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)getFollowedPeopleWithPage:(long long)aPageNumber callback:(GGApiBlock)aCallback
 {
     //GET
     NSString *path = @"member/me/contact/get_followed";
@@ -92,6 +92,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:__LONGLONG(aPageNumber) forKey:@"page"];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }

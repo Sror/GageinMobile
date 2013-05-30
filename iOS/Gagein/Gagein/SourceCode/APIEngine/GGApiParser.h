@@ -65,6 +65,7 @@
 
 #pragma mark - people
 -(GGDataPage *)parseSearchForPeople;
+-(GGDataPage *)parseGetFollowedPeople;
 
 #pragma mark - sn
 -(NSArray *)parseSnGetList;

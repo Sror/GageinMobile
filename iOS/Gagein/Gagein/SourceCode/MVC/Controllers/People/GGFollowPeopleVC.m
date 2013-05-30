@@ -389,8 +389,10 @@
             
             if (data.followed)  // unfollow him
             {
-#warning TODO: No follow/unfollow person API
+//#warning TODO: No follow/unfollow person API
+                [self showLoadingHUD];
                 id op = [GGSharedAPI unfollowPersonWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                    [self hideLoadingHUD];
                     GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
                     if (parser.isOK)
                     {
@@ -407,7 +409,9 @@
             }
             else    // follow him
             {
+                [self showLoadingHUD];
                 id op = [GGSharedAPI followPersonWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                    [self hideLoadingHUD];
                     GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
                     if (parser.isOK)
                     {
@@ -435,7 +439,10 @@
         }
         else
         {
+            [self showLoadingHUD];
             id op = [GGSharedAPI followPersonWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                
+                [self hideLoadingHUD];
                 GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
                 if (parser.isOK)
                 {
@@ -623,10 +630,25 @@
 #pragma mark - API calls
 -(void)_callSearchPeopleSuggestion
 {
-    if (_searchBar.tfSearch.text.length)
+    NSString *keyword = _searchBar.tfSearch.text;
+    if (keyword.length)
     {
 #warning TODO: Currently no API for people suggestion
-
+        //getSuggestedPeopleWithKeyword
+        [self showLoadingHUD];
+        id op = [GGSharedAPI getSuggestedPeopleWithKeyword:keyword page:0 callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
+            
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                
+            }
+            
+            [_tvSearchResult reloadData];
+        }];
+        
+        [self registerOperation:op];
     }
 }
 
@@ -655,7 +677,24 @@
 
 -(void)_callGetFollowedPeople
 {
-#warning TODO: Currently no API for followed people list
+//#warning TODO: Currently no API for followed people list
+    [self showLoadingHUD];
+    id op = [GGSharedAPI getFollowedPeopleWithPage:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            GGDataPage *page = [parser parseGetFollowedPeople];
+            [_followedPeople removeAllObjects];
+            [_followedPeople addObjectsFromArray:page.items];
+        }
+        
+        [_tvPeople reloadData];
+        
+    }];
+    
+    [self registerOperation:op];
 }
 
 @end
