@@ -8,7 +8,8 @@
 
 #import "NSMutableArray+AddOn.h"
 
-@implementation NSMutableArray (AddOn)
+@implementation NSArray (AddOn)
+
 -(id)objectAtIndexSafe:(NSUInteger)index
 {
     if (index < self.count)
@@ -18,6 +19,11 @@
     
     return nil;
 }
+
+@end
+
+@implementation NSMutableArray (AddOn)
+
 
 -(void)addObjectIfNotNil:(id)anObject
 {

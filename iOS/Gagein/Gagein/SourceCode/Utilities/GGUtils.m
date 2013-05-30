@@ -376,4 +376,30 @@
     return APP_CODE_IPHONE;
 }
 
+
+#pragma mark - version & build
++ (NSString *) appVersion
+{
+    return [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
+}
+
++ (NSString *) appBuild
+{
+    return [[NSBundle mainBundle] objectForInfoDictionaryKey: (NSString *)kCFBundleVersionKey];
+}
+
++ (NSString *) appVersionBuild
+{
+    NSString * version = [self appVersion];
+    NSString * build = [self appBuild];
+    
+    NSString * versionBuild = [NSString stringWithFormat: @"v%@", version];
+    
+    if (![version isEqualToString: build]) {
+        versionBuild = [NSString stringWithFormat: @"%@(%@)", versionBuild, build];
+    }
+    
+    return versionBuild;
+}
+
 @end

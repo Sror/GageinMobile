@@ -19,7 +19,7 @@
 #import "GGRuntimeData.h"
 #import "GGSlideSettingView.h"
 #import "GGFacebookOAuth.h"
-
+#import "GGUpgradeInfo.h"
 
 
 @implementation GGAppDelegate
@@ -85,7 +85,16 @@
 
 -(void)_checkForUpgrade
 {
-#warning TODO: Need to check upgrade
+//#warning TODO: Need to check upgrade
+    [GGSharedAPI getVersion:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        
+        GGUpgradeInfo *info = [parser parseGetVersion];
+        if ([info needUpgrade])
+        {
+            [GGAlert alertWithMessage:info.upgradeMessage title:info.upgradeTitle];
+        }
+    }];
 }
 
 -(void)makeNaviBarCustomed:(BOOL)aCustomed
@@ -107,7 +116,6 @@
 {
     return _rootVC.viewSetting;
 }
-
 
 -(void)_alertEnv
 {

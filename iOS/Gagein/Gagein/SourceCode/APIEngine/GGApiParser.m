@@ -21,6 +21,7 @@
 #import "GGCategoryFilter.h"
 #import "GGMediaFilter.h"
 #import "GGSnUserInfo.h"
+#import "GGUpgradeInfo.h"
 
 #define GG_ASSERT_API_DATA_IS_DIC   NSAssert([_apiData isKindOfClass:[NSDictionary class]], @"Api Data should be a NSDictionary");
 
@@ -312,6 +313,15 @@
     [userInfo parseWithData:self.data];
     
     return userInfo;
+}
+
+#pragma mark - upgrade version check
+-(GGUpgradeInfo *)parseGetVersion
+{
+    GGUpgradeInfo *info = [GGUpgradeInfo model];
+    [info parseWithData:self.data];
+    
+    return info;
 }
 
 @end

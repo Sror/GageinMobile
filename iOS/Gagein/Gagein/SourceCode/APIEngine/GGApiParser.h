@@ -16,6 +16,7 @@
 @class GGPerson;
 @class GGUserProfile;
 @class GGSnUserInfo;
+@class GGUpgradeInfo;
 
 @interface GGApiParser : NSObject
 @property (strong)  NSDictionary    *apiData;
@@ -68,4 +69,9 @@
 #pragma mark - sn
 -(NSArray *)parseSnGetList;
 -(GGSnUserInfo *)parseSnGetUserInfo;
+
+#pragma mark - upgrade version check
+-(GGUpgradeInfo *)parseGetVersion;
+
+
 @end

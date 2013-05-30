@@ -51,4 +51,10 @@
 
 +(NSString *)appcodeString;
 
+
+#pragma mark - version & build
++ (NSString *) appVersion;
++ (NSString *) appBuild;
++ (NSString *) appVersionBuild;
+
 @end

@@ -31,7 +31,7 @@ typedef enum {
 #define GGN_STR_STAGING_SERVER_URL                  @"http://gageinstaging.dyndns.org"
 #define GGN_STR_ROSHEN_SERVER_URL                   @"http://192.168.10.138:8080"
 
-#define CURRENT_ENV 2
+#define CURRENT_ENV 5
 
 #undef CURRENT_SERVER_URL
 #if (CURRENT_ENV == 1)

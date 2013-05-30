@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSMutableArray (AddOn) 
+@interface NSArray (AddOn)
 -(id)objectAtIndexSafe:(NSUInteger)index;
+@end
+
+@interface NSMutableArray (AddOn)
+
 -(void)addObjectIfNotNil:(id)anObject;
 @end

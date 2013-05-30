@@ -171,6 +171,7 @@
 		EA2F009C1746BFA700E191BD /* action-white-button-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2F00861746BFA700E191BD /* action-white-button-selected@2x.png */; };
 		EA2F009D1746BFA700E191BD /* action-white-button.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2F00871746BFA700E191BD /* action-white-button.png */; };
 		EA2F009E1746BFA700E191BD /* action-white-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2F00881746BFA700E191BD /* action-white-button@2x.png */; };
+		EA30D7831756C05C000F8D73 /* GGUpgradeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EA30D7821756C05C000F8D73 /* GGUpgradeInfo.m */; };
 		EA381C5E171FA6C2004535B5 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = EA381C5D171FA6C2004535B5 /* placeholder.png */; };
 		EA381C61171FA700004535B5 /* GGImagePool.m in Sources */ = {isa = PBXBuildFile; fileRef = EA381C60171FA700004535B5 /* GGImagePool.m */; };
 		EA381C65171FBBEB004535B5 /* GGSavedUpdatesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA381C63171FBBEB004535B5 /* GGSavedUpdatesVC.m */; };
@@ -709,6 +710,8 @@
 		EA2F00861746BFA700E191BD /* action-white-button-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-white-button-selected@2x.png"; sourceTree = "<group>"; };
 		EA2F00871746BFA700E191BD /* action-white-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-white-button.png"; sourceTree = "<group>"; };
 		EA2F00881746BFA700E191BD /* action-white-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-white-button@2x.png"; sourceTree = "<group>"; };
+		EA30D7811756C05C000F8D73 /* GGUpgradeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGUpgradeInfo.h; sourceTree = "<group>"; };
+		EA30D7821756C05C000F8D73 /* GGUpgradeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUpgradeInfo.m; sourceTree = "<group>"; };
 		EA381C5D171FA6C2004535B5 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		EA381C5F171FA700004535B5 /* GGImagePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGImagePool.h; sourceTree = "<group>"; };
 		EA381C60171FA700004535B5 /* GGImagePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGImagePool.m; sourceTree = "<group>"; };
@@ -2219,6 +2222,8 @@
 				EA9923C6174593530043251E /* GGTimeZone.m */,
 				EA62C6CF174C405A0031BF42 /* GGSnUserInfo.h */,
 				EA62C6D0174C405A0031BF42 /* GGSnUserInfo.m */,
+				EA30D7811756C05C000F8D73 /* GGUpgradeInfo.h */,
+				EA30D7821756C05C000F8D73 /* GGUpgradeInfo.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3165,6 +3170,7 @@
 				EA57DAE3174FD83900BA742A /* NSString+GGAddOn.m in Sources */,
 				EA2A1D501754457200A0911F /* GGFont.m in Sources */,
 				EAC9F90D17568124006FA45F /* GGImageVC.m in Sources */,
+				EA30D7831756C05C000F8D73 /* GGUpgradeInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
