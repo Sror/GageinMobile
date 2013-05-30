@@ -34,5 +34,5 @@
 @property (strong)  NSMutableArray  *mentionedCompanies;
 
 -(NSString *)doubleReturnedText;
--(NSString *)headlineMaxCharCount:(NSUInteger)aMaxCharCount;
+-(NSString *)headlineTruncated;
 @end

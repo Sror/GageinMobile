@@ -61,9 +61,9 @@
     return [str stringByReplacingOccurrencesOfString:@"\n\n\n\n" withString:@"\n\n"];
 }
 
--(NSString *)headlineMaxCharCount:(NSUInteger)aMaxCharCount
+-(NSString *)headlineTruncated
 {
-    return [_headline stringLimitedToLength:aMaxCharCount];
+    return [_headline stringLimitedToLength:80];
 }
 
 @end

@@ -242,7 +242,7 @@
     
     cell.ID = updateData.ID;
     cell.logoBtn.tag = indexPath.row;
-    cell.titleLbl.text = updateData.headline;
+    cell.titleLbl.text = [updateData headlineTruncated];
     cell.sourceLbl.text = updateData.fromSource;
     
 //#warning FAKE DATA - company update description
