@@ -79,7 +79,7 @@
     
     [self makeNaviBarCustomed:YES];
     
-    [self _checkForUpgrade];
+    [self checkForUpgrade];
     
     [self.window makeKeyAndVisible];
     
@@ -89,7 +89,7 @@
     return YES;
 }
 
--(void)_checkForUpgrade
+-(void)checkForUpgrade
 {
 //#warning TODO: Need to check upgrade
     [GGSharedAPI getVersion:^(id operation, id aResultObject, NSError *anError) {

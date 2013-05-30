@@ -30,7 +30,8 @@
 
 -(void)makeNaviBarCustomed:(BOOL)aCustomed;
 
-//-(void)installSlideSettingView;
+-(void)checkForUpgrade;
+
 @end
 
 #define GGSharedDelegate  ((GGAppDelegate*)[UIApplication sharedApplication].delegate)

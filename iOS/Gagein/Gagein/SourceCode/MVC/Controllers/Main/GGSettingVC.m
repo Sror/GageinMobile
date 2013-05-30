@@ -168,7 +168,7 @@
             
             [cell showSubTitle:YES];
             cell.lblTitle.text = @"Version";
-            cell.lblSubTitle.text = @"1.0";
+            cell.lblSubTitle.text = [GGUtils appVersion];
             cell.style = kGGGroupCellFirst;
             [cell hideAllAccessory];
             
@@ -274,7 +274,9 @@
         
         if (row == 0) {
             //@"Version";
-#warning TODO: Need a way to get app version
+//#warning TODO: Need a way to get app version
+            [GGSharedDelegate checkForUpgrade];
+            
         } else if (row == 1) {
 
             GGWebVC *vc = [[GGWebVC alloc] init];

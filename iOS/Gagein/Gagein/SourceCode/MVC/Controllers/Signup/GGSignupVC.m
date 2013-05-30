@@ -73,9 +73,9 @@
     }
     else
     {
-#warning TEST register data
-        self.tfFirstName.text = @"Mcdonald";
-        self.tfLastName.text = @"Kentucky";
+//#warning TEST register data
+        //self.tfFirstName.text = @"Mcdonald";
+        //self.tfLastName.text = @"Kentucky";
     }
 
 }
