@@ -277,7 +277,7 @@
             }
             else
             {
-                [GGAlert alertWithApiMessage:parser.message];
+                [GGAlert alertWithApiParser:parser];
             }
         }];
         

@@ -179,7 +179,7 @@
             else
             {
                 DLog(@"Login Failed");
-                [GGAlert alertWithApiMessage:parser.message];
+                [GGAlert alertWithApiParser:parser];
             }
         }];
         

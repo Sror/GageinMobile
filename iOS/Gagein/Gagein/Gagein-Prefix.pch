@@ -36,4 +36,5 @@
     #import "UILabel+AddOn.h"
     #import "NSString+GGAddOn.h"
     #import "GGFont.h"
+    #import "GGStringPool.h"
 #endif

@@ -208,7 +208,7 @@
                     }
                     else
                     {
-                        [GGAlert alertWithApiMessage:parser.message];
+                        [GGAlert alertWithApiParser:parser];
                     }
                 }];
                 
@@ -217,7 +217,7 @@
             else
             {
                 DLog(@"register Failed");
-                [GGAlert alertWithApiMessage:parser.message];
+                [GGAlert alertWithApiParser:parser];
             }
             
         };

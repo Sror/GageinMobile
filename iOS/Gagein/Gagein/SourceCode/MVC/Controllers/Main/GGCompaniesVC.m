@@ -1020,7 +1020,7 @@
         else
         {
             _menuDatas = nil;
-            [GGAlert alertWithApiMessage:parser.message];
+            [GGAlert alertWithApiParser:parser];
         }
     }];
     

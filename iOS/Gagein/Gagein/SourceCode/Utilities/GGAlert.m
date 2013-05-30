@@ -10,11 +10,27 @@
 
 @implementation GGAlert
 
++(void)alertWithApiParser:(GGApiParser *)aParser
+{
+    if (aParser)
+    {
+        if (aParser.status == kGGApiStatusUserOperationError)
+        {
+            NSString *message = [GGStringPool stringWithMessageCode:aParser.messageCode];
+            [self alertWithApiMessage:message];
+        }
+        else
+        {
+            [self alertWithApiMessage:aParser.message];
+        }
+    }
+}
+
 +(void)alertWithApiMessage:(NSString *)aMessage
 {
     if (aMessage.length <= 0)
     {
-        [self alertWithMessage:@"Ops, No data retrieved, may due to network problem."];
+        //[self alertWithMessage:@"Ops, No data retrieved, may due to network problem."];
     }
     else if ([aMessage isEqualToString:@"error"])
     {

@@ -10,6 +10,7 @@
 
 @interface GGAlert : NSObject
 
++(void)alertWithApiParser:(GGApiParser *)aParser;
 +(void)alertWithApiMessage:(NSString *)aMessage;
 
 +(void)alertWithMessage:(NSString *)aMessage;

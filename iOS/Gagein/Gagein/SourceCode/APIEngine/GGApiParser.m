@@ -72,6 +72,13 @@
     return [[_apiData objectForKey:@"msg_code"] longLongValue];
 }
 
+-(NSString *)messageExtraInfo
+{
+    //
+    GG_ASSERT_API_DATA_IS_DIC;
+    return [_apiData objectForKey:@"msg_extra_info"];
+}
+
 -(id)data
 {
     GG_ASSERT_API_DATA_IS_DIC;

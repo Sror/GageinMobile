@@ -40,6 +40,7 @@ typedef enum
 -(int)status;
 -(NSString *)message;
 -(long long)messageCode;
+-(NSString *)messageExtraInfo;
 -(id)data;
 
 #pragma mark - data elements

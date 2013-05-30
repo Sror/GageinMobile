@@ -30,7 +30,7 @@
 {
     if (anApiParser && aVc)
     {
-        [self setMessageCode:anApiParser.messageCode];
+        [self setMessageCode:anApiParser];
         
         [_btnAction removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
         switch (anApiParser.messageCode)
@@ -65,11 +65,11 @@
     }
 }
 
--(void)setMessageCode:(EGGMessageCode)aMessageCode
+-(void)setMessageCode:(GGApiParser *)anApiParser
 {
     _viewSimple.hidden = NO;
     
-    switch (aMessageCode)
+    switch (anApiParser.messageCode)
     {
         case kGGMsgCodeNoUpdateForLessFollowedCompanies:
         {
@@ -82,7 +82,7 @@
             
         case kGGMsgCodeNoUpdateForMoreFollowedCompanies:
         {
-            _lblSimpleMessage.text = @"In the last 7 days, there were no triggers found for your followed companies.";
+            _lblSimpleMessage.text = [NSString stringWithFormat:@"In the last %@ days, there were no triggers found for your followed companies.", anApiParser.messageExtraInfo];
         }
             break;
             
