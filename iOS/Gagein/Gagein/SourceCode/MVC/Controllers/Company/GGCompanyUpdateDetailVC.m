@@ -415,7 +415,7 @@
     [self _showActionSheet];
 }
 
--(BOOL)_hasLinedSnType:(EGGSnType)aSnType
+-(BOOL)_hasLinkedSnType:(EGGSnType)aSnType
 {
     for (NSString *type in _snTypes)
     {
@@ -430,7 +430,7 @@
 
 -(void)_addSnType:(EGGSnType)aSnType
 {
-    if (![self _hasLinedSnType:aSnType]) {
+    if (![self _hasLinkedSnType:aSnType]) {
         [_snTypes addObject:[NSString stringWithFormat:@"%d", aSnType]];
     }
 }
@@ -452,7 +452,7 @@
     
     UIImage *bgImg = nil;
     
-    if ([self _hasLinedSnType:kGGSnTypeSalesforce])
+    if ([self _hasLinkedSnType:kGGSnTypeSalesforce])
     {
         bgImg = [UIImage imageNamed:@"chatterLongBtnBg"];
         [actionSheet addButtonWithTitle:@"Chatter" bgImage:bgImg block:^{
@@ -476,7 +476,7 @@
     bgImg = [UIImage imageNamed:@"facebookLongBtnBg"];
     [actionSheet addButtonWithTitle:@"LinkedIn" bgImage:bgImg block:^{
         DLog(@"Shared to LinkedIn.");
-        if ([self _hasLinedSnType:kGGSnTypeLinkedIn])
+        if ([self _hasLinkedSnType:kGGSnTypeLinkedIn])
         {
 //#warning TODO: Enter a page to change message and share
             [self _shareWithType:kGGSnTypeLinkedIn];
@@ -491,7 +491,7 @@
     [actionSheet addButtonWithTitle:@"Twitter" bgImage:bgImg block:^{
         DLog(@"Shared to Twitter.");
         
-        if ([self _hasLinedSnType:kGGSnTypeTwitter])
+        if ([self _hasLinkedSnType:kGGSnTypeTwitter])
         {
             [self _shareWithType:kGGSnTypeTwitter];
         }
@@ -506,7 +506,7 @@
     [actionSheet addButtonWithTitle:@"Facebook" bgImage:bgImg block:^{
         DLog(@"Shared to facebook.");
         
-        if ([self _hasLinedSnType:kGGSnTypeFacebook])
+        if ([self _hasLinkedSnType:kGGSnTypeFacebook])
         {
             [self _shareWithType:kGGSnTypeFacebook];
         }
@@ -518,7 +518,7 @@
     }];
     
     
-    if ([self _hasLinedSnType:kGGSnTypeYammer])
+    if ([self _hasLinkedSnType:kGGSnTypeYammer])
     {
         bgImg = [UIImage imageNamed:@"chatterLongBtnBg"];
         [actionSheet addButtonWithTitle:@"Yammer" bgImage:bgImg block:^{

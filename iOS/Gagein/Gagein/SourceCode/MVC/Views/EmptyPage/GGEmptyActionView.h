@@ -15,4 +15,5 @@
 @property (weak, nonatomic) IBOutlet UIView *viewSimple;
 @property (weak, nonatomic) IBOutlet UILabel *lblSimpleMessage;
 
+-(void)setMessageCode:(EGGMessageCode)aMessageCode;
 @end

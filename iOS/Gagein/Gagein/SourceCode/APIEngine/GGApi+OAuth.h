@@ -84,8 +84,8 @@ typedef enum
 
 
 //7.get the status of importing companies from salesforce or linkedin.
-#warning TODO: need use the API - getCompanyImportStatusWithType
--(AFHTTPRequestOperation *)getCompanyImportStatusWithType:(EGGSnType)aSnType callback:(GGApiBlock)aCallback;
+//#warning TODO: need use the API - getCompanyImportStatusWithType
+//-(AFHTTPRequestOperation *)getCompanyImportStatusWithType:(EGGSnType)aSnType callback:(GGApiBlock)aCallback;
 
 
 //1.import companies from linkedin/salesforce

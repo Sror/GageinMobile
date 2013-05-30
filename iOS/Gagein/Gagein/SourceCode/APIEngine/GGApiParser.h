@@ -18,6 +18,15 @@
 @class GGSnUserInfo;
 @class GGUpgradeInfo;
 
+typedef enum
+{
+    kGGApiStatusSuccess = 1
+    , kGGApiStatusWrongParam
+    , kGGApiStatusVerificationFailed
+    , kGGApiStatusInternalSystemError
+    , kGGApiStatusUserOperationError
+}EGGApiStatus;
+
 @interface GGApiParser : NSObject
 @property (strong)  NSDictionary    *apiData;
 
@@ -30,6 +39,7 @@
 #pragma mark - basic data
 -(int)status;
 -(NSString *)message;
+-(long long)messageCode;
 -(id)data;
 
 #pragma mark - data elements

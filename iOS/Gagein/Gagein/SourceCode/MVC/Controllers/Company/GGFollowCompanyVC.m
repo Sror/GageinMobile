@@ -14,6 +14,11 @@
 #import "GGConfigLabel.h"
 #import "GGGroupedCell.h"
 
+#define BUTTON_WIDTH_LONG       247.f
+#define BUTTON_WIDTH_SHORT      116.f
+#define BUTTON_HEIGHT           31.f
+
+
 @interface GGFollowCompanyVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *viewScroll;
 //@property (weak, nonatomic) IBOutlet GGSearchBar *searchBar;
@@ -49,64 +54,12 @@
 #warning XXX: this two boolean value should be replaced by real judgement for salesforce and linkedIn account.
     BOOL                _needImportFromSalesforce;
     BOOL                _needImportFromLinkedIn;
+    NSMutableArray      *_snTypes;
 }
 
 
-#define BUTTON_WIDTH_LONG       247.f
-#define BUTTON_WIDTH_SHORT      116.f
-#define BUTTON_HEIGHT           31.f
--(void)_adjustStyleForSuggestedHeaderView
-{
-    _tableViewCompanies.tableHeaderView = (!_needImportFromLinkedIn && !_needImportFromSalesforce) ? nil : _viewTvCompaniesHeader;
-    
-    CGRect headerRc = _viewTvCompaniesHeader.frame;
-    _btnSalesForce.hidden = _btnLinkedIn.hidden = YES;
-    
-    if (_needImportFromLinkedIn && _needImportFromSalesforce)
-    {
-        // case 1
-        float horiGap = (headerRc.size.width - BUTTON_WIDTH_SHORT * 2) / 3;
-        CGRect salesBtnRc = _btnSalesForce.frame;
-        salesBtnRc.size.width = BUTTON_WIDTH_SHORT;
-        salesBtnRc.origin.x = horiGap;
-        _btnSalesForce.frame = salesBtnRc;
-        [_btnSalesForce setImage:[UIImage imageNamed:@"salesForceBtnBg"] forState:UIControlStateNormal];
-        
-        CGRect linkedInRc = _btnLinkedIn.frame;
-        linkedInRc.size.width = BUTTON_WIDTH_SHORT;
-        linkedInRc.origin.x = headerRc.size.width - horiGap - BUTTON_WIDTH_SHORT;
-        _btnLinkedIn.frame = linkedInRc;
-        [_btnLinkedIn setImage:[UIImage imageNamed:@"linkedInBtnBg"] forState:UIControlStateNormal];
-        
-        _btnSalesForce.hidden = _btnLinkedIn.hidden = NO;
-    }
-    else if (_needImportFromSalesforce)
-    {
-        // case 2
-        // salesForceLongBtnBg
-        
-        CGRect salesBtnRc = _btnLinkedIn.frame;
-        salesBtnRc.size.width = BUTTON_WIDTH_LONG;
-        salesBtnRc.origin.x = (headerRc.size.width - BUTTON_WIDTH_LONG) / 2;
-        _btnSalesForce.frame = salesBtnRc;
-        [_btnSalesForce setImage:[UIImage imageNamed:@"salesForceLongBtnBg"] forState:UIControlStateNormal];
-        
-        _btnSalesForce.hidden = NO;
-    }
-    else if (_needImportFromLinkedIn)
-    {
-        // case 3
-        // linkedInLongBtnBg
-        
-        CGRect linkedInRc = _btnLinkedIn.frame;
-        linkedInRc.size.width = BUTTON_WIDTH_LONG;
-        linkedInRc.origin.x = (headerRc.size.width - BUTTON_WIDTH_LONG) / 2;
-        _btnLinkedIn.frame = linkedInRc;
-        [_btnLinkedIn setImage:[UIImage imageNamed:@"linkedInLongBtnBg"] forState:UIControlStateNormal];
-        
-        _btnLinkedIn.hidden = NO;
-    }
-}
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -115,6 +68,7 @@
         _searchedCompanies = [NSMutableArray array];
         _followedCompanies = [NSMutableArray array];
         _suggestedCompanies = [NSMutableArray array];
+        _snTypes = [NSMutableArray array];
     }
     
     return self;
@@ -156,7 +110,7 @@
     _tableViewCompanies.rowHeight = [GGGroupedCell HEIGHT];
     
     //
-    _needImportFromLinkedIn = YES;
+    _needImportFromLinkedIn = NO;
     _needImportFromSalesforce = NO;
     [self _adjustStyleForSuggestedHeaderView];
     
@@ -166,6 +120,7 @@
     
     
     [self _callGetFollowedCompanies];
+    [self _callApiGetSnList];
 }
 
 -(void)tapToHideSearch:(UITapGestureRecognizer *)aTapGest
@@ -202,6 +157,26 @@
 }
 
 #pragma mark - internal
+-(BOOL)_hasLinkedSnType:(EGGSnType)aSnType
+{
+    for (NSString *type in _snTypes)
+    {
+        if (type.longLongValue == aSnType)
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+-(void)_addSnType:(EGGSnType)aSnType
+{
+    if (![self _hasLinkedSnType:aSnType]) {
+        [_snTypes addObject:[NSString stringWithFormat:@"%d", aSnType]];
+    }
+}
+
 -(void)_showDoneBtn:(BOOL)aShow
 {
     if (aShow)
@@ -257,6 +232,60 @@
     
     return NSNotFound;
 }
+
+-(void)_adjustStyleForSuggestedHeaderView
+{
+    _tableViewCompanies.tableHeaderView = (!_needImportFromLinkedIn && !_needImportFromSalesforce) ? nil : _viewTvCompaniesHeader;
+    
+    CGRect headerRc = _viewTvCompaniesHeader.frame;
+    _btnSalesForce.hidden = _btnLinkedIn.hidden = YES;
+    
+    if (_needImportFromLinkedIn && _needImportFromSalesforce)
+    {
+        // case 1
+        float horiGap = (headerRc.size.width - BUTTON_WIDTH_SHORT * 2) / 3;
+        CGRect salesBtnRc = _btnSalesForce.frame;
+        salesBtnRc.size.width = BUTTON_WIDTH_SHORT;
+        salesBtnRc.origin.x = horiGap;
+        _btnSalesForce.frame = salesBtnRc;
+        [_btnSalesForce setImage:[UIImage imageNamed:@"salesForceBtnBg"] forState:UIControlStateNormal];
+        
+        CGRect linkedInRc = _btnLinkedIn.frame;
+        linkedInRc.size.width = BUTTON_WIDTH_SHORT;
+        linkedInRc.origin.x = headerRc.size.width - horiGap - BUTTON_WIDTH_SHORT;
+        _btnLinkedIn.frame = linkedInRc;
+        [_btnLinkedIn setImage:[UIImage imageNamed:@"linkedInBtnBg"] forState:UIControlStateNormal];
+        
+        _btnSalesForce.hidden = _btnLinkedIn.hidden = NO;
+    }
+    else if (_needImportFromSalesforce)
+    {
+        // case 2
+        // salesForceLongBtnBg
+        
+        CGRect salesBtnRc = _btnLinkedIn.frame;
+        salesBtnRc.size.width = BUTTON_WIDTH_LONG;
+        salesBtnRc.origin.x = (headerRc.size.width - BUTTON_WIDTH_LONG) / 2;
+        _btnSalesForce.frame = salesBtnRc;
+        [_btnSalesForce setImage:[UIImage imageNamed:@"salesForceLongBtnBg"] forState:UIControlStateNormal];
+        
+        _btnSalesForce.hidden = NO;
+    }
+    else if (_needImportFromLinkedIn)
+    {
+        // case 3
+        // linkedInLongBtnBg
+        
+        CGRect linkedInRc = _btnLinkedIn.frame;
+        linkedInRc.size.width = BUTTON_WIDTH_LONG;
+        linkedInRc.origin.x = (headerRc.size.width - BUTTON_WIDTH_LONG) / 2;
+        _btnLinkedIn.frame = linkedInRc;
+        [_btnLinkedIn setImage:[UIImage imageNamed:@"linkedInLongBtnBg"] forState:UIControlStateNormal];
+        
+        _btnLinkedIn.hidden = NO;
+    }
+}
+
 
 #pragma mark - actions
 -(void)doneAction:(id)sender
@@ -665,6 +694,29 @@
         }
         
         [self.tableViewCompanies reloadData];
+    }];
+    
+    [self registerOperation:op];
+}
+
+-(void)_callGetRecommendCompanies
+{
+#warning TODO: need API for getting recommend companies
+}
+
+-(void)_callApiGetSnList
+{
+    id op = [GGSharedAPI snGetList:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            NSArray *snTypes = [parser parseSnGetList];
+            [_snTypes removeAllObjects];
+            [_snTypes addObjectsFromArray:snTypes];
+            
+            _needImportFromLinkedIn = (![self _hasLinkedSnType:kGGSnTypeLinkedIn]);
+            [self _adjustStyleForSuggestedHeaderView];
+        }
     }];
     
     [self registerOperation:op];

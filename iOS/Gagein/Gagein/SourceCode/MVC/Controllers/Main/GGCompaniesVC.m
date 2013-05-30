@@ -1065,48 +1065,62 @@
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         GGDataPage *page = [parser parseGetCompanyUpdates];
         
-        if (page.items.count)
-        {
-            switch (aPageFlag)
-            {
-                case kGGPageFlagFirstPage:
-                {
-                    [_updates removeAllObjects];
-                    [_updates addObjectsFromArray:page.items];
-                }
-                    break;
-                    
-                case kGGPageFlagMoveDown:
-                {
-                    [_updates addObjectsFromArray:page.items];
-                    
-                    
-                }
-                    break;
-                    
-                case kGGPageFlagMoveUp:
-                {
-                    NSMutableArray *newUpdates = [NSMutableArray arrayWithArray:page.items];
-                    [newUpdates addObjectsFromArray:_updates];
-                    self.updates = newUpdates;
-                }
-                    break;
-                    
-                default:
-                    break;
-            }
-        }
+        [_viewUpdateEmpty removeFromSuperview];
         
-        if (_updates.count)
+        if (parser.isOK)
         {
-            [_viewUpdateEmpty removeFromSuperview];
+            if (page.items.count)
+            {
+                switch (aPageFlag)
+                {
+                    case kGGPageFlagFirstPage:
+                    {
+                        [_updates removeAllObjects];
+                        [_updates addObjectsFromArray:page.items];
+                    }
+                        break;
+                        
+                    case kGGPageFlagMoveDown:
+                    {
+                        [_updates addObjectsFromArray:page.items];
+                        
+                        
+                    }
+                        break;
+                        
+                    case kGGPageFlagMoveUp:
+                    {
+                        NSMutableArray *newUpdates = [NSMutableArray arrayWithArray:page.items];
+                        [newUpdates addObjectsFromArray:_updates];
+                        self.updates = newUpdates;
+                    }
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }
+            
+//            if (_updates.count)
+//            {
+//                [_viewUpdateEmpty removeFromSuperview];
+//            }
+//            else
+//            {
+//                [_updatesTV addSubview:_viewUpdateEmpty];
+//            }
         }
-        else
+        else if (parser.status == kGGApiStatusUserOperationError)
         {
+            _viewUpdateEmpty = [GGEmptyActionView viewFromNibWithOwner:self];
+            _viewUpdateEmpty.frame = self.view.bounds;
+            [_viewUpdateEmpty setMessageCode:parser.messageCode];
+            
+            //_viewUpdateEmpty = _emptyView;
             [_updatesTV addSubview:_viewUpdateEmpty];
         }
         
-        [self _installEmptyViewToUpdateTV:YES];
+        //[self _installEmptyViewToUpdateTV:YES];
         
         [self.updatesTV reloadData];
         
@@ -1127,52 +1141,52 @@
     }
 }
 
--(void)_installEmptyViewToUpdateTV:(BOOL)aIsUpdate
-{
-    //
-    aIsUpdate ? [_viewUpdateEmpty removeFromSuperview] : [_viewHappeningEmpty removeFromSuperview];
-    if ((aIsUpdate &&_updates.count) || (!aIsUpdate && _happenings.count))
-    {
-        return;
-    }
-    
-    GGEmptyActionView *emptyView = [GGEmptyActionView viewFromNibWithOwner:self];
-    emptyView.frame = self.view.bounds;
-    emptyView.viewSimple.hidden = YES;
-    aIsUpdate ? [_updatesTV addSubview:emptyView] : [_happeningsTV addSubview:emptyView];
-    
-    emptyView.lblTitle.text = @"Have trouble seeing updates?";
-    
-    if (_menuType == kGGMenuTypeCompany)
-    {
-        if (((GGDataPage *)_menuDatas[0]).items.count <= 0)
-        {
-            emptyView.lblMessage.text = @"Add companies to watch for important updates.";
-            [emptyView.btnAction addTarget:self action:@selector(_addCompanyAction:) forControlEvents:UIControlEventTouchUpInside];
-            [emptyView.btnAction setTitle:@"Add Companies to Follow" forState:UIControlStateNormal];
-        }
-        else
-        {
-            emptyView.viewSimple.hidden = NO;
-            if (aIsUpdate)
-            {
-                emptyView.lblSimpleMessage.text = @"In the last 7 days, there were no triggers found for your followed companies.";
-            }
-            else
-            {
-                emptyView.lblSimpleMessage.text = @"No happenings found for your followed companies as of this new feature launch in May 2013";
-            }
-        }
-    }
-    else if (_menuType == kGGMenuTypeAgent)
-    {
-        emptyView.lblMessage.text = @"Select sales triggers to explore new opportunities.";
-        [emptyView.btnAction addTarget:self action:@selector(_exploringConfigTapped:) forControlEvents:UIControlEventTouchUpInside];
-        [emptyView.btnAction setTitle:@"Select Sales Triggers" forState:UIControlStateNormal];
-    }
-    
-    aIsUpdate ? (_viewUpdateEmpty = emptyView) : (_viewHappeningEmpty = emptyView);
-}
+//-(void)_installEmptyViewToUpdateTV:(BOOL)aIsUpdate // 'aIsUpdate' means if the context is an update or a happening
+//{
+//    //
+//    aIsUpdate ? [_viewUpdateEmpty removeFromSuperview] : [_viewHappeningEmpty removeFromSuperview];
+//    if ((aIsUpdate &&_updates.count) || (!aIsUpdate && _happenings.count))
+//    {
+//        return;
+//    }
+//    
+//    GGEmptyActionView *emptyView = [GGEmptyActionView viewFromNibWithOwner:self];
+//    emptyView.frame = self.view.bounds;
+//    emptyView.viewSimple.hidden = YES;
+//    aIsUpdate ? [_updatesTV addSubview:emptyView] : [_happeningsTV addSubview:emptyView];
+//    
+//    emptyView.lblTitle.text = @"Have trouble seeing updates?";
+//    
+//    if (_menuType == kGGMenuTypeCompany)
+//    {
+//        if (((GGDataPage *)_menuDatas[0]).items.count <= 0)
+//        {
+//            emptyView.lblMessage.text = @"Add companies to watch for important updates.";
+//            [emptyView.btnAction addTarget:self action:@selector(_addCompanyAction:) forControlEvents:UIControlEventTouchUpInside];
+//            [emptyView.btnAction setTitle:@"Add Companies to Follow" forState:UIControlStateNormal];
+//        }
+//        else
+//        {
+//            emptyView.viewSimple.hidden = NO;
+//            if (aIsUpdate)
+//            {
+//                emptyView.lblSimpleMessage.text = @"In the last 7 days, there were no triggers found for your followed companies.";
+//            }
+//            else
+//            {
+//                emptyView.lblSimpleMessage.text = @"No happenings found for your followed companies as of this new feature launch in May 2013";
+//            }
+//        }
+//    }
+//    else if (_menuType == kGGMenuTypeAgent)
+//    {
+//        emptyView.lblMessage.text = @"Select sales triggers to explore new opportunities.";
+//        [emptyView.btnAction addTarget:self action:@selector(_exploringConfigTapped:) forControlEvents:UIControlEventTouchUpInside];
+//        [emptyView.btnAction setTitle:@"Select Sales Triggers" forState:UIControlStateNormal];
+//    }
+//    
+//    aIsUpdate ? (_viewUpdateEmpty = emptyView) : (_viewHappeningEmpty = emptyView);
+//}
 
 #pragma mark -
 -(void)_getFirstHappeningPage
@@ -1200,39 +1214,53 @@
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         GGDataPage *page = [parser parseGetCompanyHappenings];
         
-        if (page.items.count)
+        [_viewHappeningEmpty removeFromSuperview];
+        
+        if (parser.isOK)
         {
-            switch (aPageFlag)
+            if (page.items.count)
             {
-                case kGGPageFlagFirstPage:
+                switch (aPageFlag)
                 {
-                    [_happenings removeAllObjects];
-                    [_happenings addObjectsFromArray:page.items];
+                    case kGGPageFlagFirstPage:
+                    {
+                        [_happenings removeAllObjects];
+                        [_happenings addObjectsFromArray:page.items];
+                    }
+                        break;
+                        
+                    case kGGPageFlagMoveDown:
+                    {
+                        [_happenings addObjectsFromArray:page.items];
+                        
+                        
+                    }
+                        break;
+                        
+                    case kGGPageFlagMoveUp:
+                    {
+                        NSMutableArray *newUpdates = [NSMutableArray arrayWithArray:page.items];
+                        [newUpdates addObjectsFromArray:_happenings];
+                        self.happenings = newUpdates;
+                    }
+                        break;
+                        
+                    default:
+                        break;
                 }
-                    break;
-                    
-                case kGGPageFlagMoveDown:
-                {
-                    [_happenings addObjectsFromArray:page.items];
-                    
-                    
-                }
-                    break;
-                    
-                case kGGPageFlagMoveUp:
-                {
-                    NSMutableArray *newUpdates = [NSMutableArray arrayWithArray:page.items];
-                    [newUpdates addObjectsFromArray:_happenings];
-                    self.happenings = newUpdates;
-                }
-                    break;
-                    
-                default:
-                    break;
             }
         }
+        else if (parser.status == kGGApiStatusUserOperationError)
+        {
+            _viewHappeningEmpty = [GGEmptyActionView viewFromNibWithOwner:self];
+            _viewHappeningEmpty.frame = self.view.bounds;
+            [_viewHappeningEmpty setMessageCode:parser.messageCode];
+            
+            //_viewHappeningEmpty = _emptyView;
+            [_happeningsTV addSubview:_viewHappeningEmpty];
+        }
         
-        [self _installEmptyViewToUpdateTV:NO];
+        //[self _installEmptyViewToUpdateTV:NO];
         
         [self.happeningsTV reloadData];
         

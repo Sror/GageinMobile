@@ -50,7 +50,7 @@
 
 -(BOOL)isOK
 {
-    return self.status == 1;
+    return self.status == kGGApiStatusSuccess;
 }
 
 #pragma mark - basic data
@@ -64,6 +64,12 @@
 {
     GG_ASSERT_API_DATA_IS_DIC;
     return [_apiData objectForKey:@"msg"];
+}
+
+-(long long)messageCode
+{
+    GG_ASSERT_API_DATA_IS_DIC;
+    return [[_apiData objectForKey:@"msg_code"] longLongValue];
 }
 
 -(id)data
