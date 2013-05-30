@@ -38,7 +38,7 @@
                                                 callback:(GGApiBlock)aCallback;
 
 //5.get followed
-#warning TODO: use the API - getFollowedPeople
+//#warning TODO: use the API - getFollowedPeople
 -(AFHTTPRequestOperation *)getFollowedPeopleWithPage:(long long)aPageNumber callback:(GGApiBlock)aCallback;
 
 //6.get recommended contacts for follow

@@ -153,6 +153,7 @@
     //
     //_tvPeople.tableHeaderView = _viewTvPeopleHeader;
     _tvPeople.backgroundColor = GGSharedColor.silver;
+    _tvPeople.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tvPeople.rowHeight = [GGGroupedCell HEIGHT];
     
     //
@@ -293,19 +294,6 @@
         
         return cell;
     }
-    
-    /////
-//    static NSString *companyCellId = @"companyCellId";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:companyCellId];
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:companyCellId];
-//    }
-//    
-//    GGPerson *data = _followedPeople[indexPath.row];
-//    cell.textLabel.text = data.name;
-//    cell.accessoryType = data.followed ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-//    
-//    return cell;
     
     static NSString *cellID = @"GGGroupedCell";
     GGGroupedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -633,7 +621,7 @@
     NSString *keyword = _searchBar.tfSearch.text;
     if (keyword.length)
     {
-#warning TODO: Currently no API for people suggestion
+//#warning TODO: Currently no API for people suggestion
         //getSuggestedPeopleWithKeyword
         [self showLoadingHUD];
         id op = [GGSharedAPI getSuggestedPeopleWithKeyword:keyword page:0 callback:^(id operation, id aResultObject, NSError *anError) {
@@ -642,7 +630,11 @@
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {
-                
+                GGDataPage *page = [parser parseGetSeggestedPeople];
+                _searchedPeople = page.items;
+//                if (_searchedPeople.count <= 0) {
+//                    [GGAlert alertWithMessage:@"No results."];
+//                }
             }
             
             [_tvSearchResult reloadData];
@@ -665,7 +657,7 @@
             GGDataPage *page = [parser parseSearchForPeople];
             _searchedPeople = page.items;
             if (_searchedPeople.count <= 0) {
-                [GGAlert alertWithMessage:@"Sorry, No person matched."];
+                [GGAlert alertWithMessage:@"No results."];
             }
             
             [self.tvSearchResult reloadData];

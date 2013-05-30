@@ -302,6 +302,17 @@
 
 -(GGDataPage *)parseGetFollowedPeople
 {
+    GGDataPage *page = [self _parsePageforClass:[GGPerson class]];
+    for (GGPerson *person in page.items)
+    {
+        person.followed = YES;
+    }
+    
+    return page;
+}
+
+-(GGDataPage *)parseGetSeggestedPeople
+{
     return [self _parsePageforClass:[GGPerson class]];
 }
 
