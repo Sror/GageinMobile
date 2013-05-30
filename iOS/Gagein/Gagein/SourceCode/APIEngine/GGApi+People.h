@@ -32,7 +32,7 @@
 -(AFHTTPRequestOperation *)sendUpgradeLink:(GGApiBlock)aCallback;
 
 //4. get suggested contacts when search contacts.
-#warning TODO: use the API - getSuggestedPeopleWithKeyword
+//#warning TODO: use the API - getSuggestedPeopleWithKeyword
 -(AFHTTPRequestOperation *)getSuggestedPeopleWithKeyword:(NSString *)aKeyword
                                                     page:(int)aPage
                                                 callback:(GGApiBlock)aCallback;
@@ -42,7 +42,7 @@
 -(AFHTTPRequestOperation *)getFollowedPeopleWithPage:(long long)aPageNumber callback:(GGApiBlock)aCallback;
 
 //6.get recommended contacts for follow
-#warning TODO: use the API - getRecommendedPeople
--(AFHTTPRequestOperation *)getRecommendedPeople:(GGApiBlock)aCallback;
+//#warning TODO: use the API - getRecommendedPeople
+-(AFHTTPRequestOperation *)getRecommendedPeopleWithPage:(long long)aPageNumber callback:(GGApiBlock)aCallback;
 
 @end

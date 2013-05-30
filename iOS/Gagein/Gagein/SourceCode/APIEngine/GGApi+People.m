@@ -100,7 +100,7 @@
 //6.get recommended contacts for follow
 //GET: /svc/member/me/contact/get_recommended
 //Parameters: access_token=b4790223c67f68b744d6ac3bb9b830e6&page=1
--(AFHTTPRequestOperation *)getRecommendedPeople:(GGApiBlock)aCallback
+-(AFHTTPRequestOperation *)getRecommendedPeopleWithPage:(long long)aPageNumber callback:(GGApiBlock)aCallback
 {
     //GET
     NSString *path = @"member/me/contact/get_recommended";
@@ -108,6 +108,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:__LONGLONG(aPageNumber) forKey:@"page"];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }

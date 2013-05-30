@@ -316,6 +316,11 @@
     return [self _parsePageforClass:[GGPerson class]];
 }
 
+-(GGDataPage *)parseGetRecommendedPeople
+{
+    return [self _parsePageforClass:[GGPerson class]];
+}
+
 #pragma mark - sn
 -(NSArray *)parseSnGetList
 {

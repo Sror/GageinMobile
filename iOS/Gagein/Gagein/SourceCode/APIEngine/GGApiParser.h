@@ -67,6 +67,7 @@
 -(GGDataPage *)parseSearchForPeople;
 -(GGDataPage *)parseGetFollowedPeople;
 -(GGDataPage *)parseGetSeggestedPeople;
+-(GGDataPage *)parseGetRecommendedPeople;
 
 #pragma mark - sn
 -(NSArray *)parseSnGetList;

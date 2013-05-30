@@ -156,7 +156,7 @@
     _tvPeople.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tvPeople.rowHeight = [GGGroupedCell HEIGHT];
     
-    //
+    // for now, both flags are set to NO, to hide the import buttons since API is not ready --- Daniel Dong
     _needImportFromLinkedIn = NO;
     _needImportFromSalesforce = NO;
     [self _adjustStyleForSuggestedHeaderView];
@@ -165,6 +165,7 @@
     [self _showDoneBtn:YES];
     
     [self _callGetFollowedPeople];
+    [self _callGetRecommendedPeople];
 }
 
 -(void)tapToHideSearch:(UITapGestureRecognizer *)aTapGest
@@ -684,6 +685,24 @@
         
         [_tvPeople reloadData];
         
+    }];
+    
+    [self registerOperation:op];
+}
+
+-(void)_callGetRecommendedPeople
+{
+    [self showLoadingHUD];
+    id op = [GGSharedAPI getRecommendedPeopleWithPage:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            GGDataPage *page = [parser parseGetRecommendedPeople];
+            [_followedPeople removeAllObjects];
+            [_followedPeople addObjectsFromArray:page.items];
+        }
+        
+        [_tvPeople reloadData];
     }];
     
     [self registerOperation:op];
