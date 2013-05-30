@@ -36,7 +36,7 @@ typedef enum
 
 #pragma mark - basic APIs
 //1. get client latest version info
-#warning TODO: need use the API - getVersion
+//#warning TODO: need use the API - getVersion
 -(AFHTTPRequestOperation *)getVersion:(GGApiBlock)aCallback;
 
 @end

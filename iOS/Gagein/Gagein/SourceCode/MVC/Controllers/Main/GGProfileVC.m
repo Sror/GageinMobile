@@ -52,6 +52,7 @@
     
     _viewHeader = [GGProfileHeaderView viewFromNibWithOwner:self];
     _viewFooter = [GGProfileFooterView viewFromNibWithOwner:self];
+    [_viewFooter.btnUpgrade addTarget:self action:@selector(upgradeMembershipAction:) forControlEvents:UIControlEventTouchUpInside];
     
     [self _callApiGetMyOverview];
 }
@@ -64,6 +65,19 @@
 - (void)viewDidUnload {
     [self setTvProfile:nil];
     [super viewDidUnload];
+}
+
+#pragma mark - actions
+-(IBAction)upgradeMembershipAction:(id)sender
+{
+    [GGSharedAPI sendUpgradeLink:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            // give user a message
+            [GGAlert alertWithMessage:@"Congratulations! We have sent the link to you via Email! Please check your Email and follow the instruction in it."];
+        }
+    }];
 }
 
 #pragma mark - table view datasource

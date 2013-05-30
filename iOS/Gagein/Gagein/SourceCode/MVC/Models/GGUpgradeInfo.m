@@ -33,7 +33,7 @@
     [str appendFormat:@"What's new in version %@:", _version];
     for (int i = 0; i < _features.count; i++)
     {
-        [str appendFormat:@"%@", _features[i]];
+        [str appendFormat:@"\n%@", _features[i]];
     }
     
     return str;

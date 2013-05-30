@@ -28,7 +28,7 @@
 -(AFHTTPRequestOperation *)getMyOverview:(GGApiBlock)aCallback;
 
 //2.send upgrade link
-#warning TODO: use the API - sendUpgradeLink
+//#warning TODO: use the API - sendUpgradeLink
 -(AFHTTPRequestOperation *)sendUpgradeLink:(GGApiBlock)aCallback;
 
 //4. get suggested contacts when search contacts.
