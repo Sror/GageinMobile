@@ -79,4 +79,5 @@ typedef enum
                          pageNumber:(NSUInteger)aPageNumber
                            callback:(GGApiBlock)aCallback;
 
+-(AFHTTPRequestOperation *)getRecommendedCompanieWithPage:(long long)aPageNumber callback:(GGApiBlock)aCallback;
 @end

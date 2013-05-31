@@ -219,6 +219,11 @@
     return [self _parsePageforClass:[GGCompany class]];
 }
 
+-(GGDataPage *)parseGetRecommendedCompanies
+{
+    return [self _parsePageforClass:[GGCompany class]];
+}
+
 -(GGCompanyUpdate *)parseGetCompanyUpdateDetail
 {
     GGCompanyUpdate * update = [GGCompanyUpdate model];

@@ -125,6 +125,7 @@
     
     
     [self _callGetFollowedCompanies];
+    [self _callGetRecommendCompanies];
     [self _callApiGetSnList];
 }
 
@@ -770,12 +771,16 @@
     id op = [GGSharedAPI getFollowedCompaniesWithPage:0 callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-        GGDataPage *page = [parser parseFollowedCompanies];
-        [_followedCompanies removeAllObjects];
-        [_followedCompanies addObjectsFromArray:page.items];
         
-        for (GGCompany *company in _followedCompanies) {
-            company.followed = 1;
+        if (parser.isOK)
+        {
+            GGDataPage *page = [parser parseFollowedCompanies];
+            [_followedCompanies removeAllObjects];
+            [_followedCompanies addObjectsFromArray:page.items];
+            
+            for (GGCompany *company in _followedCompanies) {
+                company.followed = 1;
+            }
         }
         
         [self.tableViewCompanies reloadData];
@@ -786,7 +791,26 @@
 
 -(void)_callGetRecommendCompanies
 {
-#warning TODO: need API for getting recommend companies
+//#warning TODO: need API for getting recommend companies
+    [self showLoadingHUD];
+    id op = [GGSharedAPI getRecommendedCompanieWithPage:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            if (parser.isOK)
+            {
+                GGDataPage *page = [parser parseGetRecommendedCompanies];
+                [_suggestedCompanies removeAllObjects];
+                [_suggestedCompanies addObjectsFromArray:page.items];
+            }
+            
+            [self.tableViewCompanies reloadData];
+        }
+    }];
+    
+    [self registerOperation:op];
 }
 
 -(void)_callApiGetSnList

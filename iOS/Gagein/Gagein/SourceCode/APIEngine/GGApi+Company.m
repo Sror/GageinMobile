@@ -225,6 +225,18 @@
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
-
+///me/company/get_recommended
+-(AFHTTPRequestOperation *)getRecommendedCompanieWithPage:(long long)aPageNumber callback:(GGApiBlock)aCallback
+{
+    //GET
+    NSString *path = @"member/me/company/get_recommended";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aPageNumber] forKey:@"page"];
+    
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
+}
 
 @end
