@@ -9,7 +9,6 @@
 #import "GGApi.h"
 
 
-
 @implementation GGApi
 
 +(NSString *)apiBaseUrl
@@ -36,6 +35,25 @@
     
     [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
     [self setDefaultHeader:@"Accept" value:@"text/json"];
+    
+    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    [self setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if (status == AFNetworkReachabilityStatusNotReachable) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                MBProgressHUD*  hud= [MBProgressHUD showHUDAddedTo:window
+                                                          animated:YES];
+                hud.mode = MBProgressHUDModeText;
+                hud.dimBackground = YES;
+                hud.labelText = @"No active internet connection";
+                
+            });
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideAllHUDsForView:window animated:NO];
+            });
+        }
+    }];
     
     return self;
 }
