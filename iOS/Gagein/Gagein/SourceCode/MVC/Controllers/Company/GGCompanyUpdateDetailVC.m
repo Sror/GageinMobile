@@ -477,7 +477,8 @@
     
     if ([self _hasLinkedSnType:kGGSnTypeSalesforce])
     {
-        bgImg = [UIImage imageNamed:@"chatterLongBtnBg"];
+        // lightGrayBtnBg
+        bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"chatterLongBtnBg"];
         [actionSheet addButtonWithTitle:@"Chatter" bgImage:bgImg block:^{
             
             DLog(@"Shared to chatter.");
@@ -496,7 +497,7 @@
     }
     
     
-    bgImg = [UIImage imageNamed:@"facebookLongBtnBg"];
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
     [actionSheet addButtonWithTitle:@"LinkedIn" bgImage:bgImg block:^{
         DLog(@"Shared to LinkedIn.");
         if ([self _hasLinkedSnType:kGGSnTypeLinkedIn])
@@ -510,7 +511,7 @@
         }
     }];
     
-    bgImg = [UIImage imageNamed:@"twitterLongBtnBg"];
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"twitterLongBtnBg"];
     [actionSheet addButtonWithTitle:@"Twitter" bgImage:bgImg block:^{
         DLog(@"Shared to Twitter.");
         
@@ -525,7 +526,7 @@
     
     }];
     
-    bgImg = [UIImage imageNamed:@"facebookLongBtnBg"];
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
     [actionSheet addButtonWithTitle:@"Facebook" bgImage:bgImg block:^{
         DLog(@"Shared to facebook.");
         
@@ -543,18 +544,39 @@
     
     if ([self _hasLinkedSnType:kGGSnTypeYammer])
     {
-        bgImg = [UIImage imageNamed:@"chatterLongBtnBg"];
+        bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"chatterLongBtnBg"];
         [actionSheet addButtonWithTitle:@"Yammer" bgImage:bgImg block:^{
             DLog(@"Shared to Yammer.");
             [self _shareWithType:kGGSnTypeYammer];
         }];
     }
     
+    [actionSheet addSeparator];
+    
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"Email" bgImage:bgImg block:^{
+        [self sendMailAction:nil];
+    }];
+    
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"SMS" bgImage:bgImg block:^{
+        [self sendSMSAction:nil];
+    }];
     
     [actionSheet addSeparator];
-    [actionSheet addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:^{
-        NSLog(@"Dismiss action sheet with \"Close Button\"");
+    
+    bgImg = [UIImage imageNamed:@"grayBtnBg"];
+    UIButton *cancelBtn = [actionSheet addButtonWithTitle:@"Cancel" bgImage:bgImg block:^{
+        
     }];
+    [cancelBtn setTitleColor:GGSharedColor.white forState:UIControlStateNormal];
+    [cancelBtn setTitleShadowColor:GGSharedColor.black forState:UIControlStateNormal];
+    
+    
+//    [actionSheet addSeparator];
+//    [actionSheet addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:^{
+//        NSLog(@"Dismiss action sheet with \"Close Button\"");
+//    }];
     
     // Present
     [actionSheet present];
