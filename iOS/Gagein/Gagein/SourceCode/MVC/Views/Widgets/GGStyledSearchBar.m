@@ -129,7 +129,7 @@
     
     _btnCancel.hidden = !aShow;
     
-    float filterX = aShow ? self.frame.size.width : (self.frame.size.width - FILTER_SPACE_LEN);
+    float filterX = aShow ? self.frame.size.width : (self.frame.size.width - FILTER_SPACE_LEN - 5);
     CGRect filterRc = _btnFilter.frame;
     filterRc.origin.x = filterX;
     _btnFilter.frame = filterRc;

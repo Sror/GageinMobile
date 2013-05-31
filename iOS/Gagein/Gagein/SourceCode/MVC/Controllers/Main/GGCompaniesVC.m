@@ -99,6 +99,9 @@
     _slideSettingView.delegate = self;
     _slideSettingView.viewTable.rowHeight = [GGSettingMenuCell HEIGHT];
     _slideSettingView.searchBar.tfSearch.placeholder = @"Search for updates";
+    
+    [_slideSettingView.searchBar.btnFilter addTarget:self action:@selector(_exploringConfigTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
     [_slideSettingView changeDelegate:self];
 }
 
@@ -462,8 +465,12 @@
         [_followingSectionView setHightlighted:NO];
         //_followingSectionView.ivSelected.hidden = YES;
         [_followingSectionView.btnBg addTarget:self action:@selector(_followingTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
         [_followingSectionView.btnAdd addTarget:self action:@selector(_addCompanyAction:) forControlEvents:UIControlEventTouchUpInside];
-        [_followingSectionView.btnConfig addTarget:self action:@selector(_configFiltersAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        _followingSectionView.btnAdd.frame = _followingSectionView.btnConfig.frame;
+        _followingSectionView.btnConfig.hidden = YES;
+        //[_followingSectionView.btnConfig addTarget:self action:@selector(_configFiltersAction:) forControlEvents:UIControlEventTouchUpInside];
         
         [_followingSectionView usingFollowingStyle];
     }
@@ -478,10 +485,12 @@
         _exploringSectionView = [GGSettingHeaderView viewFromNibWithOwner:self];
         _exploringSectionView.lblTitle.text = @"EXPLORING";
         [_exploringSectionView setHightlighted:YES];
-        //_exploringSectionView.ivSelected.hidden = NO;
+        
         _exploringSectionView.btnAdd.hidden = YES;
         [_exploringSectionView.btnBg addTarget:self action:@selector(_exploringTapped:) forControlEvents:UIControlEventTouchUpInside];
-        [_exploringSectionView.btnConfig addTarget:self action:@selector(_exploringConfigTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        _exploringSectionView.btnConfig.hidden = YES;
+        //[_exploringSectionView.btnConfig addTarget:self action:@selector(_exploringConfigTapped:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _exploringSectionView;
