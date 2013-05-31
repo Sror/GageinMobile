@@ -9,6 +9,7 @@
 #import "GGStyledSearchBar.h"
 
 #define CANCEL_SPACE_LEN        70
+#define FILTER_SPACE_LEN        30
 
 @implementation GGBaseSearchBar
 
@@ -116,7 +117,7 @@
 
 -(void)_showCancelButton:(BOOL)aShow
 {
-    float width = (aShow) ? self.frame.size.width - CANCEL_SPACE_LEN : self.frame.size.width;
+    float width = (aShow) ? self.frame.size.width - CANCEL_SPACE_LEN : self.frame.size.width - FILTER_SPACE_LEN;
     
     CGRect searchRc = _viewSearchField.frame;
     searchRc.size.width = width;
@@ -127,6 +128,13 @@
     _btnCancel.frame = cancelRc;
     
     _btnCancel.hidden = !aShow;
+    
+    float filterX = aShow ? self.frame.size.width : (self.frame.size.width - FILTER_SPACE_LEN);
+    CGRect filterRc = _btnFilter.frame;
+    filterRc.origin.x = filterX;
+    _btnFilter.frame = filterRc;
+    
+    _btnFilter.hidden = aShow;
 }
 
 -(BOOL)resignFirstResponder

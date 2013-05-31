@@ -46,6 +46,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ivSearchGlass;
 @property (weak, nonatomic) IBOutlet UITextField *tfSearch;
 @property (weak, nonatomic) IBOutlet UIButton *btnCancel;
+@property (weak, nonatomic) IBOutlet UIButton *btnFilter;
 
 
 -(void)showCancelButton:(BOOL)aShow animated:(BOOL)animated;
