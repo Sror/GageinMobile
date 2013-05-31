@@ -27,7 +27,8 @@
 @property (assign)  long long date;
 @property (assign)  int         type;
 @property (strong)  NSMutableArray  *pictures;  // when parsing update detail
-@property (assign)  BOOL        hasBeenRead;
+@property (assign)  BOOL        hasBeenRead;    // if the user have read this update
+@property (assign)  BOOL        liked;          // if the user liked this update
 
 @property (copy)    NSString    *linkedInSignal;
 @property (copy)    NSString    *twitterTweets;

@@ -53,7 +53,7 @@
     [super dealloc];
 }
 
-- (void)addButtonWithTitle:(NSString *)buttonTitle bgImage:(UIImage *)aBgImage type:(CMActionSheetButtonType)type block:(CallbackBlock)block
+- (UIButton *)addButtonWithTitle:(NSString *)buttonTitle bgImage:(UIImage *)aBgImage type:(CMActionSheetButtonType)type block:(CallbackBlock)block
 {
     NSAssert(buttonTitle, @"Button title must not be nil!");
     
@@ -118,9 +118,9 @@
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
     } else if (CMActionSheetButtonTypeBlue == type || CMActionSheetButtonTypeCustomBg == type) {
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [button setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor colorWithRed:40 / 255.0 green:170 / 255.0 blue:255 / 255.0 alpha:1] forState:UIControlStateHighlighted];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitleShadowColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [button setTitleColor:GGSharedColor.white forState:UIControlStateHighlighted];
         [button setTitleShadowColor:[UIColor blackColor] forState:UIControlStateHighlighted];
     } else {
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -149,16 +149,18 @@
     }
     
     index++;
+    
+    return button;
 }
 
-- (void)addButtonWithTitle:(NSString *)buttonTitle bgImage:(UIImage *)aBgImage block:(CallbackBlock)block
+- (UIButton *)addButtonWithTitle:(NSString *)buttonTitle bgImage:(UIImage *)aBgImage block:(CallbackBlock)block
 {
-    [self addButtonWithTitle:buttonTitle bgImage:aBgImage type:CMActionSheetButtonTypeCustomBg block:block];
+    return [self addButtonWithTitle:buttonTitle bgImage:aBgImage type:CMActionSheetButtonTypeCustomBg block:block];
 }
 
-- (void)addButtonWithTitle:(NSString *)buttonTitle type:(CMActionSheetButtonType)type block:(CallbackBlock)block
+- (UIButton *)addButtonWithTitle:(NSString *)buttonTitle type:(CMActionSheetButtonType)type block:(CallbackBlock)block
 {
-	[self addButtonWithTitle:buttonTitle bgImage:nil type:type block:block];
+	return [self addButtonWithTitle:buttonTitle bgImage:nil type:type block:block];
 }
 
 - (void)addSeparator {

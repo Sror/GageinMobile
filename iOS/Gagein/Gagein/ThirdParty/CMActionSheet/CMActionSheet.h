@@ -23,12 +23,12 @@ typedef enum {
 @property (assign)  BOOL        isBgCustomized;
 @property (assign) CGSize       buttonSize;
 
-- (void)addButtonWithTitle:(NSString *)title type:(CMActionSheetButtonType)type block:(CallbackBlock)block;
+- (UIButton *)addButtonWithTitle:(NSString *)title type:(CMActionSheetButtonType)type block:(CallbackBlock)block;
 
 // added by daniel
-- (void)addButtonWithTitle:(NSString *)buttonTitle bgImage:(UIImage *)aBgImage block:(CallbackBlock)block;
+- (UIButton *)addButtonWithTitle:(NSString *)buttonTitle bgImage:(UIImage *)aBgImage block:(CallbackBlock)block;
 // added by daniel
-- (void)addButtonWithTitle:(NSString *)title bgImage:(UIImage *)aBgImage type:(CMActionSheetButtonType)type block:(CallbackBlock)block;
+- (UIButton *)addButtonWithTitle:(NSString *)title bgImage:(UIImage *)aBgImage type:(CMActionSheetButtonType)type block:(CallbackBlock)block;
 - (void)addSeparator;
 
 - (void)present;

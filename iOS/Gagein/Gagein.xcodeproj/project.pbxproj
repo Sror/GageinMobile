@@ -334,6 +334,13 @@
 		EAB8D5491739AF7900D033FC /* NGTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D5401739AF7900D033FC /* NGTabBarItem.m */; };
 		EAB8D54A1739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D5441739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.m */; };
 		EAB8D54B1739AF7900D033FC /* UIViewController+NGTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D5461739AF7900D033FC /* UIViewController+NGTabBarItem.m */; };
+		EAC6F8C11759158F00BC0B97 /* btnLike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC6F8BA1759158F00BC0B97 /* btnLike@2x.png */; };
+		EAC6F8C21759158F00BC0B97 /* btnLiked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC6F8BB1759158F00BC0B97 /* btnLiked@2x.png */; };
+		EAC6F8C31759158F00BC0B97 /* btnSave@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC6F8BC1759158F00BC0B97 /* btnSave@2x.png */; };
+		EAC6F8C41759158F00BC0B97 /* btnSaved@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC6F8BD1759158F00BC0B97 /* btnSaved@2x.png */; };
+		EAC6F8C51759158F00BC0B97 /* btnShare@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC6F8BE1759158F00BC0B97 /* btnShare@2x.png */; };
+		EAC6F8C61759158F00BC0B97 /* btnSignal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC6F8BF1759158F00BC0B97 /* btnSignal@2x.png */; };
+		EAC6F8C71759158F00BC0B97 /* lightGrayBtnBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC6F8C01759158F00BC0B97 /* lightGrayBtnBg@2x.png */; };
 		EAC96C2B1709833C003FAFAA /* GGSignupPortalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */; };
 		EAC96C3D170983B5003FAFAA /* GGWelcomePageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */; };
 		EAC96C441709868B003FAFAA /* NSObject+BeeNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC96C431709868B003FAFAA /* NSObject+BeeNotification.m */; };
@@ -980,6 +987,13 @@
 		EAB8D5441739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+NGTabBarNavigationDelegate.m"; sourceTree = "<group>"; };
 		EAB8D5451739AF7900D033FC /* UIViewController+NGTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NGTabBarItem.h"; sourceTree = "<group>"; };
 		EAB8D5461739AF7900D033FC /* UIViewController+NGTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NGTabBarItem.m"; sourceTree = "<group>"; };
+		EAC6F8BA1759158F00BC0B97 /* btnLike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnLike@2x.png"; sourceTree = "<group>"; };
+		EAC6F8BB1759158F00BC0B97 /* btnLiked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnLiked@2x.png"; sourceTree = "<group>"; };
+		EAC6F8BC1759158F00BC0B97 /* btnSave@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnSave@2x.png"; sourceTree = "<group>"; };
+		EAC6F8BD1759158F00BC0B97 /* btnSaved@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnSaved@2x.png"; sourceTree = "<group>"; };
+		EAC6F8BE1759158F00BC0B97 /* btnShare@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnShare@2x.png"; sourceTree = "<group>"; };
+		EAC6F8BF1759158F00BC0B97 /* btnSignal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnSignal@2x.png"; sourceTree = "<group>"; };
+		EAC6F8C01759158F00BC0B97 /* lightGrayBtnBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lightGrayBtnBg@2x.png"; sourceTree = "<group>"; };
 		EAC96C281709833C003FAFAA /* GGSignupPortalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSignupPortalVC.h; sourceTree = "<group>"; };
 		EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSignupPortalVC.m; sourceTree = "<group>"; };
 		EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGWelcomePageView.xib; sourceTree = "<group>"; };
@@ -2055,6 +2069,13 @@
 		EACAE0B117094A3100E7088F /* 2X */ = {
 			isa = PBXGroup;
 			children = (
+				EAC6F8BA1759158F00BC0B97 /* btnLike@2x.png */,
+				EAC6F8BB1759158F00BC0B97 /* btnLiked@2x.png */,
+				EAC6F8BC1759158F00BC0B97 /* btnSave@2x.png */,
+				EAC6F8BD1759158F00BC0B97 /* btnSaved@2x.png */,
+				EAC6F8BE1759158F00BC0B97 /* btnShare@2x.png */,
+				EAC6F8BF1759158F00BC0B97 /* btnSignal@2x.png */,
+				EAC6F8C01759158F00BC0B97 /* lightGrayBtnBg@2x.png */,
 				EA2A1D4C17543C5800A0911F /* searchBarWhiteBg@2x.png */,
 				EA975759174D3424007D64CD /* updateSwitchBackbtn@2x.png */,
 				EA975757174D3419007D64CD /* sendSmsbtn@2x.png */,
@@ -2947,6 +2968,13 @@
 				EA997426174E8D5100A125D5 /* Happening_Cases_and_data_format.txt in Resources */,
 				EA2A1D4D17543C5800A0911F /* searchBarWhiteBg@2x.png in Resources */,
 				EAC9F90E17568124006FA45F /* GGImageVC.xib in Resources */,
+				EAC6F8C11759158F00BC0B97 /* btnLike@2x.png in Resources */,
+				EAC6F8C21759158F00BC0B97 /* btnLiked@2x.png in Resources */,
+				EAC6F8C31759158F00BC0B97 /* btnSave@2x.png in Resources */,
+				EAC6F8C41759158F00BC0B97 /* btnSaved@2x.png in Resources */,
+				EAC6F8C51759158F00BC0B97 /* btnShare@2x.png in Resources */,
+				EAC6F8C61759158F00BC0B97 /* btnSignal@2x.png in Resources */,
+				EAC6F8C71759158F00BC0B97 /* lightGrayBtnBg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

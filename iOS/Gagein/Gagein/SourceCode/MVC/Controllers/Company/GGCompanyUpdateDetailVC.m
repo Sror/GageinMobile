@@ -34,6 +34,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnSave;
 @property (weak, nonatomic) IBOutlet UIButton *btnEmail;
 @property (weak, nonatomic) IBOutlet UIButton *btnShare;
+@property (weak, nonatomic) IBOutlet UIButton *btnSignal;
+@property (weak, nonatomic) IBOutlet UIButton *btnLike;
+
+
 @property (weak, nonatomic) IBOutlet UIButton *btnTwitter;
 @property (weak, nonatomic) IBOutlet UIButton *btnSms;
 @property (weak, nonatomic) IBOutlet UIButton *btnLinkedIn;
@@ -44,10 +48,10 @@
 
 @implementation GGCompanyUpdateDetailVC
 {
-    GGCompanyUpdate *_companyUpdateDetail;
-    UIButton *_btnPrevUpdate;
-    UIButton *_btnNextUpdate;
-    CGRect  _originalTextViewFrame;
+    GGCompanyUpdate         *_companyUpdateDetail;
+    UIButton                *_btnPrevUpdate;
+    UIButton                *_btnNextUpdate;
+    CGRect                  _originalTextViewFrame;
     
     GGComUpdateDetailView   *_comUpdateDetailCell;
     UIActivityIndicatorView *_activityIndicator;
@@ -182,6 +186,8 @@
     [self setBtnTwitter:nil];
     [self setBtnSms:nil];
     [self setBtnLinkedIn:nil];
+    [self setBtnSignal:nil];
+    [self setBtnLike:nil];
     [super viewDidUnload];
 }
 
@@ -219,7 +225,56 @@
 #pragma mark - Helper
 -(void)_updateSaveBtnSaved:(BOOL)aSaved
 {
-    [_btnSave setImage:(aSaved ? [UIImage imageNamed:@"unsaveIcon"] : [UIImage imageNamed:@"saveIcon"]) forState:UIControlStateNormal];
+    [_btnSave setImage:(aSaved ? [UIImage imageNamed:@"btnSaved"] : [UIImage imageNamed:@"btnSave"]) forState:UIControlStateNormal];
+}
+
+-(void)_updateLikedButton
+{
+    [_btnLike setImage:(_companyUpdateDetail.liked ? [UIImage imageNamed:@"btnLiked"] : [UIImage imageNamed:@"btnLike"]) forState:UIControlStateNormal];
+}
+
+-(void)_showWebSignal:(BOOL)aShow url:(NSString *)aURL
+{
+    BOOL needAnimation = (_webviewSignal.hidden == aShow);
+    _webviewSignal.hidden = !aShow;
+    self.navigationController.navigationBarHidden = aShow;
+    
+    [self _showSwitchButton:aShow];
+    
+    if (aShow)
+    {
+        if (needAnimation)
+        {
+            [self.viewContent.layer addAnimation:[GGAnimation animationFlipFromRight] forKey:nil];
+        }
+        
+        [_webviewSignal loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:aURL]]];
+        _webviewSignal.delegate = self;
+    }
+    else
+    {
+        if (needAnimation)
+        {
+            [self.viewContent.layer addAnimation:[GGAnimation animationFlipFromLeft] forKey:nil];
+        }
+        
+        [_webviewSignal stopLoading];
+    }
+}
+
+-(void)_showSwitchButton:(BOOL)aShow
+{
+    _btnSwitchBack.hidden = !aShow;
+    
+    _btnSave.hidden =
+    _btnShare.hidden =
+    //_btnSms.hidden =
+    //_btnTwitter.hidden =
+    //_btnLinkedIn.hidden =
+    _btnSignal.hidden =
+    _btnLike.hidden =
+    //_btnEmail.hidden =
+    aShow;
 }
 
 #pragma mark - notification
@@ -303,6 +358,19 @@
 }
 
 #pragma mark - Actions
+-(IBAction)signalAction:(id)sender
+{
+#warning TODO: implementation needed
+    [self _showSheetToSignal];
+}
+
+-(IBAction)likeAction:(id)sender
+{
+#warning TODO: implementation needed, dummy logic
+    _companyUpdateDetail.liked = !_companyUpdateDetail.liked;
+    [self _updateLikedButton];
+}
+
 -(IBAction)sendMailAction:(id)sender
 {
     if (![MFMailComposeViewController canSendMail])
@@ -339,46 +407,7 @@
     [GGSharedDelegate makeNaviBarCustomed:NO];
 }
 
--(void)_showWebSignal:(BOOL)aShow url:(NSString *)aURL
-{
-    BOOL needAnimation = (_webviewSignal.hidden == aShow);
-    _webviewSignal.hidden = !aShow;
-    self.navigationController.navigationBarHidden = aShow;
-    
-    [self _showSwitchButton:aShow];
-    
-    if (aShow)
-    {
-        if (needAnimation)
-        {
-            [self.viewContent.layer addAnimation:[GGAnimation animationFlipFromRight] forKey:nil];
-        }
-        
-        [_webviewSignal loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:aURL]]];
-        _webviewSignal.delegate = self;
-    }
-    else
-    {
-        if (needAnimation)
-        {
-            [self.viewContent.layer addAnimation:[GGAnimation animationFlipFromLeft] forKey:nil];
-        }
-        
-        [_webviewSignal stopLoading];
-    }
-}
 
--(void)_showSwitchButton:(BOOL)aShow
-{
-    _btnSwitchBack.hidden = !aShow;
-    
-    _btnSave.hidden =
-    _btnShare.hidden =
-    _btnSms.hidden =
-    _btnTwitter.hidden =
-    _btnLinkedIn.hidden =
-    _btnEmail.hidden = aShow;
-}
 
 -(IBAction)switchBackAction:(id)sender
 {
@@ -389,17 +418,11 @@
 -(IBAction)linkedInAction:(id)sender
 {
     [self _showWebSignal:YES url:_companyUpdateDetail.linkedInSignal];
-//    [self _showWebSignal:!_isShowingLinkedIn url:_companyUpdateDetail.linkedInSignal];
-//    _isShowingLinkedIn = !_isShowingLinkedIn;
-//    _isShowingTwitter = NO;
 }
 
 -(IBAction)twitterAction:(id)sender
 {
     [self _showWebSignal:YES url:_companyUpdateDetail.twitterTweets];
-//    [self _showWebSignal:!_isShowingTwitter url:_companyUpdateDetail.twitterTweets];
-//    _isShowingTwitter = !_isShowingTwitter;
-//    _isShowingLinkedIn = NO;
 }
 
 -(IBAction)shareAction:(id)sender
@@ -412,7 +435,7 @@
     // 3. if linked account not linked, go authentication, if auth OK, call API to report the token.
     // 4. Share the update.
     
-    [self _showActionSheet];
+    [self _showSheetToShare];
 }
 
 -(BOOL)_hasLinkedSnType:(EGGSnType)aSnType
@@ -446,7 +469,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
--(void)_showActionSheet
+-(void)_showSheetToShare
 {
     CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
     
@@ -532,6 +555,42 @@
     [actionSheet addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:^{
         NSLog(@"Dismiss action sheet with \"Close Button\"");
     }];
+    
+    // Present
+    [actionSheet present];
+}
+
+
+-(void)_showSheetToSignal
+{
+    CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
+    
+    UIImage *bgImg = nil;
+ 
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];
+    [actionSheet addButtonWithTitle:@"LinkedIn" bgImage:bgImg block:^{
+        //DLog(@"Signal to LinkedIn.");
+        [self linkedInAction:nil];
+    }];
+    
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];
+    [actionSheet addButtonWithTitle:@"Twitter" bgImage:bgImg block:^{
+        //DLog(@"Signal to Twitter.");
+        [self twitterAction:nil];
+    }];
+    
+    bgImg = [UIImage imageNamed:@"grayBtnBg"];
+    UIButton *cancelBtn = [actionSheet addButtonWithTitle:@"Cancel" bgImage:bgImg block:^{
+        
+    }];
+    [cancelBtn setTitleColor:GGSharedColor.white forState:UIControlStateNormal];
+    [cancelBtn setTitleShadowColor:GGSharedColor.black forState:UIControlStateNormal];
+    
+    
+//    [actionSheet addSeparator];
+//    [actionSheet addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:^{
+//        NSLog(@"Dismiss action sheet with \"Close Button\"");
+//    }];
     
     // Present
     [actionSheet present];
@@ -630,6 +689,7 @@
         
         _comUpdateDetailCell.lblSource.text = ((GGCompanyUpdate *)(_updates[_updateIndex])).fromSource;
         [self _updateSaveBtnSaved:_companyUpdateDetail.saved];
+        [self _updateLikedButton];
         
         NSString *urlStr = nil;
         if (_companyUpdateDetail.pictures.count)
@@ -741,17 +801,17 @@
 #pragma mark - webview delegate
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [self showLoadingHUD];
+    [webView showLoadingHUD];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [self hideLoadingHUD];
+    [webView hideLoadingHUD];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    [self hideLoadingHUD];
+    [webView hideLoadingHUD];
 }
 
 #pragma mark - tableview datasource
