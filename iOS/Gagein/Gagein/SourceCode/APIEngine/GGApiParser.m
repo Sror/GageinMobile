@@ -204,13 +204,17 @@
     return userProfile;
 }
 
-#pragma mark - parse page
 -(GGDataPage *)parseSearchCompany
 {
     return [self _parsePageforClass:[GGCompany class]];
 }
 
 -(GGDataPage *)parseFollowedCompanies
+{
+    return [self _parsePageforClass:[GGCompany class]];
+}
+
+-(GGDataPage *)parseImportCompanies
 {
     return [self _parsePageforClass:[GGCompany class]];
 }

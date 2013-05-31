@@ -117,7 +117,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{37, 32}, {247, 31}}</string>
 						<reference key="NSSuperview" ref="932273618"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

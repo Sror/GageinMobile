@@ -61,6 +61,7 @@ typedef enum
 -(GGPerson *)parseGetPersonOverview;
 -(GGDataPage *)parseSearchCompany;
 -(GGDataPage *)parseFollowedCompanies;
+-(GGDataPage *)parseImportCompanies;
 -(GGCompanyUpdate *)parseGetCompanyUpdateDetail;
 -(GGHappening *)parseCompanyEventDetail;
 -(NSArray *)parseGetMenu:(BOOL)aIsCompanyMenu;

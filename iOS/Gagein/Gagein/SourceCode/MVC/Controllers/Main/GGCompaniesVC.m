@@ -423,6 +423,8 @@
         
         [_happenings removeAllObjects];
         [self.happeningsTV reloadData];
+        
+        [self.navigationController popToRootViewControllerAnimated:NO];
     }
     else if ([noteName isEqualToString:GG_NOTIFY_LOG_IN])
     {

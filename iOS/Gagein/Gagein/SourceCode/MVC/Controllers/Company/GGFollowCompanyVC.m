@@ -13,6 +13,7 @@
 #import "GGSearchSuggestionCell.h"
 #import "GGConfigLabel.h"
 #import "GGGroupedCell.h"
+#import "GGLinkedInOAuthVC.h"
 
 #define BUTTON_WIDTH_LONG       247.f
 #define BUTTON_WIDTH_SHORT      116.f
@@ -30,7 +31,7 @@
 @property (weak, nonatomic) IBOutlet GGStyledSearchBar *viewSearchBar;
 @property (weak, nonatomic) IBOutlet UIView *viewSearchTransparent;
 
-@property (weak, nonatomic) IBOutlet UIView *viewTvCompaniesHeader;
+@property (strong, nonatomic) IBOutlet UIView *viewTvCompaniesHeader;
 @property (weak, nonatomic) IBOutlet UIButton *btnSalesForce;
 @property (weak, nonatomic) IBOutlet UIButton *btnLinkedIn;
 
@@ -82,6 +83,10 @@
     self.naviTitle = @"Follow Companies";
     self.view.backgroundColor = GGSharedColor.silver;
     
+    // action binding
+    [_btnLinkedIn addTarget:self action:@selector(importFromLinkedInAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_btnSalesForce addTarget:self action:@selector(importFromSalesforceAction:) forControlEvents:UIControlEventTouchUpInside];
+    
     // replace the search bar placeholder view with the real search bar
     _viewSearchBar = [GGUtils replaceFromNibForView:_viewSearchBar];
     _viewSearchBar.tfSearch.placeholder = @"Search for companies";
@@ -131,6 +136,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
+    
     [self hideBackButton];
 }
 
@@ -235,7 +242,8 @@
 
 -(void)_adjustStyleForSuggestedHeaderView
 {
-    _tableViewCompanies.tableHeaderView = (!_needImportFromLinkedIn && !_needImportFromSalesforce) ? nil : _viewTvCompaniesHeader;
+    id headerView = (!_needImportFromLinkedIn && !_needImportFromSalesforce) ? nil : _viewTvCompaniesHeader;
+    _tableViewCompanies.tableHeaderView = headerView;
     
     CGRect headerRc = _viewTvCompaniesHeader.frame;
     _btnSalesForce.hidden = _btnLinkedIn.hidden = YES;
@@ -286,11 +294,56 @@
     }
 }
 
+#pragma mark - handle notifications
+-(void)handleNotification:(NSNotification *)notification
+{
+    [super handleNotification:notification];
+    
+    NSString *notiName = notification.name;
+    //id notiObj = notification.object;
+    
+    if ([notiName isEqualToString:OA_NOTIFY_LINKEDIN_AUTH_OK])
+    {
+        [self unobserveNotification:OA_NOTIFY_LINKEDIN_AUTH_OK];
+        
+        [self showLoadingHUD];
+        id op = [GGSharedAPI snSaveLinedInWithToken:self.linkedInAuthView.accessToken.key secret:self.linkedInAuthView.accessToken.secret callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [self _addSnType:kGGSnTypeLinkedIn];
+                [self _callImportCompaniesWithSnType:kGGSnTypeLinkedIn];
+            }
+        }];
+        
+        [self registerOperation:op];
+        
+    }
+}
 
 #pragma mark - actions
 -(void)doneAction:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)importFromLinkedInAction:(id)sender
+{
+    if ([self _hasLinkedSnType:kGGSnTypeLinkedIn])
+    {
+        [self _callImportCompaniesWithSnType:kGGSnTypeLinkedIn];
+    }
+    else
+    {
+        [self connectLinkedIn];
+    }
+}
+
+-(void)importFromSalesforceAction:(id)sender
+{
+    [self connectSalesForce];
+    //[self _callImportCompaniesWithSnType:kGGSnTypeSalesforce];
 }
 
 #pragma mark - table view datasource
@@ -315,13 +368,22 @@
         return _searchedCompanies.count;
     }
     
-    return _followedCompanies.count;
+    if (section == 0)
+    {
+        return _followedCompanies.count;
+    }
+    else
+    {
+        return _suggestedCompanies.count;
+    }
+    
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = indexPath.row;
-    //int section = indexPath.section;
+    int section = indexPath.section;
     
     if (tableView == self.tableViewSearchResult) {
         static NSString *searchResultCellId = @"GGSearchSuggestionCell";
@@ -360,12 +422,14 @@
         cell = [GGGroupedCell viewFromNibWithOwner:self];
     }
     
-    GGCompany *data = _followedCompanies[indexPath.row];
     
+    NSArray *companies = (section == 0) ? _followedCompanies : _suggestedCompanies;
+
+    GGCompany *data = companies[row];
     cell.lblTitle.text = data.name;
     cell.tag = row;
     
-    cell.style = [GGUtils styleForArrayCount:_followedCompanies.count atIndex:row];
+    cell.style = [GGUtils styleForArrayCount:companies.count atIndex:row];
     
     cell.checked = data.followed;
     [cell showSubTitle:NO];
@@ -420,50 +484,71 @@
     return 0.f;
 }
 
+-(BOOL)_isExistsInFollowedCompanies:(GGCompany *)aCompany
+{
+    for (GGCompany *comany in _followedCompanies)
+    {
+        if (aCompany.ID == comany.ID)
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
 #pragma mark - table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //int row = indexPath.row;
+    int section = indexPath.section;
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (tableView == self.tableViewCompanies)
     {
-        if (indexPath.section == 0)
+        NSArray *companies = (section == 0) ? _followedCompanies : _suggestedCompanies;
+        
+        GGCompany *company = companies[indexPath.row];
+        
+        if (company.followed)
         {
-            GGCompany *company = _followedCompanies[indexPath.row];
+            id op = [GGSharedAPI unfollowCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                if (parser.isOK)
+                {
+                    company.followed = NO;
+                    [tableView reloadData];
+                }
+                else
+                {
+                    [GGAlert alertWithApiParser:parser];
+                }
+            }];
             
-            if (company.followed)
-            {
-                id op = [GGSharedAPI unfollowCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
-                    GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-                    if (parser.isOK)
+            [self registerOperation:op];
+        }
+        else
+        {
+            id op = [GGSharedAPI followCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                if (parser.isOK)
+                {
+                    company.followed = YES;
+                    
+                    if (![self _isExistsInFollowedCompanies:company])
                     {
-                        company.followed = NO;
-                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                        [_followedCompanies addObjectIfNotNil:company];
                     }
-                    else
-                    {
-                        [GGAlert alertWithApiParser:parser];
-                    }
-                }];
-                
-                [self registerOperation:op];
-            }
-            else
-            {
-                id op = [GGSharedAPI followCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
-                    GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-                    if (parser.isOK)
-                    {
-                        company.followed = YES;
-                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                    }
-                    else
-                    {
-                        [GGAlert alertWithApiParser:parser];
-                    }
-                }];
-                
-                [self registerOperation:op];
-            }
+                    
+                    [tableView reloadData];
+                }
+                else
+                {
+                    [GGAlert alertWithApiParser:parser];
+                }
+            }];
+            
+            [self registerOperation:op];
         }
     }
     else if (tableView == self.tableViewSearchResult)
@@ -717,6 +802,26 @@
             _needImportFromLinkedIn = (![self _hasLinkedSnType:kGGSnTypeLinkedIn]);
             [self _adjustStyleForSuggestedHeaderView];
         }
+    }];
+    
+    [self registerOperation:op];
+}
+
+-(void)_callImportCompaniesWithSnType:(EGGSnType)aSnType
+{
+    [self showLoadingHUD];
+    id op = [GGSharedAPI importCompaniesWithType:aSnType callback:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            GGDataPage *page = [parser parseImportCompanies];
+            NSMutableArray *newSuggestedCompanies = [NSMutableArray arrayWithArray:page.items];
+            [newSuggestedCompanies addObjectsFromArray:_suggestedCompanies];
+            _suggestedCompanies = newSuggestedCompanies;
+        }
+        
+        [self.tableViewCompanies reloadData];
     }];
     
     [self registerOperation:op];
