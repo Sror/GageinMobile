@@ -136,6 +136,7 @@
     
 //#warning FAKE DATA - company update description
     cell.descriptionLbl.text = updateData.content;
+    cell.hasBeenRead = updateData.hasBeenRead;
     
     [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
     

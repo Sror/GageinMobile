@@ -66,9 +66,12 @@
     [self.updatesTV triggerPullToRefresh];
 }
 
--(void)dealloc
+
+-(void)viewWillAppear:(BOOL)animated
 {
-    [self unobserveAllNotifications];
+    [super viewWillAppear:animated];
+    
+    [_updatesTV reloadData];
 }
 
 #pragma mark - notification handling
@@ -134,6 +137,7 @@
     [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
     
     cell.intervalLbl.text = [updateData intervalStringWithDate:updateData.date];
+    cell.hasBeenRead = updateData.hasBeenRead;
     [cell adjustLayout];
     
     return cell;
@@ -158,6 +162,9 @@
     vc.naviTitleString = self.customNaviTitle.text;
     vc.updates = self.updates;
     vc.updateIndex = indexPath.row;
+    GGCompanyUpdate *data = _updates[indexPath.row];
+    data.hasBeenRead = YES;
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 

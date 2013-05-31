@@ -89,7 +89,7 @@ typedef enum
 
 
 //1.import companies from linkedin/salesforce
-#warning TODO: need use the API - importCompaniesWithType
+//#warning TODO: need use the API - importCompaniesWithType
 -(AFHTTPRequestOperation *)importCompaniesWithType:(EGGSnType)aSnType callback:(GGApiBlock)aCallback;
 
 @end

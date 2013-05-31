@@ -765,6 +765,7 @@
     }
 }
 
+#warning TODO: both followed and recommended companies need paging
 -(void)_callGetFollowedCompanies
 {
     [self showLoadingHUD];
