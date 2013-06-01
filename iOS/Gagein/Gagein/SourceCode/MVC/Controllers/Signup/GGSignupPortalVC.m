@@ -121,8 +121,6 @@
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[GGStringPool stringWithMessageCode:kGGMsgCodeSnSaleforceCantAuth] delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:@"Learn more", nil];
                 alert.tag = TAG_ALERT_SALESFORCE_OAUTH_FAILED;
                 [alert show];
-//                Salesforce has declined your request to connect, as your current Salesforce account edition does not authorize such actions. To learn more, visit https://www.salesforce.com/crm/editions-pricing.
-                //String salesforce_account_edition_cannot_authorize_actions = "40005";
             }
             
         }];

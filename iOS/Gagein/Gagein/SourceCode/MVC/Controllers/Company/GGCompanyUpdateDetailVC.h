@@ -15,6 +15,7 @@
 , MFMessageComposeViewControllerDelegate
 , UITableViewDataSource
 , UITableViewDelegate
+, UIAlertViewDelegate
 >
 //@property (assign) long long    newsID;
 @property (copy)    NSString    *naviTitleString;

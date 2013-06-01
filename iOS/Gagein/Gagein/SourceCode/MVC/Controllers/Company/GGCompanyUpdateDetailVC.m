@@ -23,6 +23,8 @@
 #import "GGCompany.h"
 #import "GGCompanyDetailVC.h"
 
+#define TAG_ALERT_SALESFORCE_OAUTH_FAILED   1000
+
 @interface GGCompanyUpdateDetailVC () <MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -326,10 +328,17 @@
             
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            
             if (parser.isOK)
             {
                 [self _addSnType:kGGSnTypeSalesforce];
                 [self _shareWithType:kGGSnTypeSalesforce];
+            }
+            else if (parser.messageCode == kGGMsgCodeSnSaleforceCantAuth)
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[GGStringPool stringWithMessageCode:kGGMsgCodeSnSaleforceCantAuth] delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:@"Learn more", nil];
+                alert.tag = TAG_ALERT_SALESFORCE_OAUTH_FAILED;
+                [alert show];
             }
             
         }];
@@ -905,6 +914,18 @@
     [GGSharedDelegate makeNaviBarCustomed:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
     
+}
+
+#pragma mark - ui alertview delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == TAG_ALERT_SALESFORCE_OAUTH_FAILED)
+    {
+        if (buttonIndex == 1)
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.salesforce.com/crm/editions-pricing.jsp"]];
+        }
+    }
 }
 
 @end
