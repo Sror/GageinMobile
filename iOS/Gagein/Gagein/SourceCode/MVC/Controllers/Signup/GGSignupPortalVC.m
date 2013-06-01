@@ -21,6 +21,9 @@
 #import "OAToken.h"
 #import "GGAppDelegate.h"
 
+#define TAG_ALERT_SALESFORCE_OAUTH_FAILED   1000
+
+
 @interface GGSignupPortalVC ()
 
 @end
@@ -113,9 +116,12 @@
                 userInfo.snType = kGGSnTypeSalesforce;
                 [self _signupWithUserInfo:userInfo];
             }
-            else
+            else if (parser.messageCode == kGGMsgCodeSnSaleforceCantAuth)
             {
-#warning TODO: give user a message
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[GGStringPool stringWithMessageCode:kGGMsgCodeSnSaleforceCantAuth] delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:@"Learn more", nil];
+                alert.tag = TAG_ALERT_SALESFORCE_OAUTH_FAILED;
+                [alert show];
+//                Salesforce has declined your request to connect, as your current Salesforce account edition does not authorize such actions. To learn more, visit https://www.salesforce.com/crm/editions-pricing.
                 //String salesforce_account_edition_cannot_authorize_actions = "40005";
             }
             
@@ -223,6 +229,16 @@
     [GGAlert alertWithMessage:@"Connect to Yammer (TODO)"];
 }
 
-
+#pragma mark - 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == TAG_ALERT_SALESFORCE_OAUTH_FAILED)
+    {
+        if (buttonIndex == 1)
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.salesforce.com/crm/editions-pricing.jsp"]];
+        }
+    }
+}
 
 @end

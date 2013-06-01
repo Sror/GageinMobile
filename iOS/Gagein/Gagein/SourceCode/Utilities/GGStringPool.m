@@ -160,6 +160,12 @@
         }
             break;
             
+        case kGGMsgCodeSnSaleforceCantAuth:
+        {
+            return @"Salesforce has declined your request to connect, as your current Salesforce account edition does not authorize such actions.";
+        }
+            break;
+            
         case kGGMsgCodeCrmAlreadyConnected:
         {
             return @"";

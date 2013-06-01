@@ -82,6 +82,7 @@ typedef enum {
 
     , kGGMsgCodeSnLinkedInAccountDisconnected               // try to send a message to a linkedIn contact, but not connected
     , kGGMsgCodeSnCantGetUserInfo                           // failed to get user info using social account
+    , kGGMsgCodeSnSaleforceCantAuth                         // salesforce_account_edition_cannot_authorize_actions = "40005"
     
     // crm
     , kGGMsgCodeCrmAlreadyConnected = 80001               // N/A FOR IOS
