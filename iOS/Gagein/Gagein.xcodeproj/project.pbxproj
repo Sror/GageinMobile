@@ -341,6 +341,7 @@
 		EAC6F8C51759158F00BC0B97 /* btnShare@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC6F8BE1759158F00BC0B97 /* btnShare@2x.png */; };
 		EAC6F8C61759158F00BC0B97 /* btnSignal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC6F8BF1759158F00BC0B97 /* btnSignal@2x.png */; };
 		EAC6F8C71759158F00BC0B97 /* lightGrayBtnBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC6F8C01759158F00BC0B97 /* lightGrayBtnBg@2x.png */; };
+		EAC6F918175987FF00BC0B97 /* GGPercentageBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC6F917175987FF00BC0B97 /* GGPercentageBar.m */; };
 		EAC96C2B1709833C003FAFAA /* GGSignupPortalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */; };
 		EAC96C3D170983B5003FAFAA /* GGWelcomePageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */; };
 		EAC96C441709868B003FAFAA /* NSObject+BeeNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC96C431709868B003FAFAA /* NSObject+BeeNotification.m */; };
@@ -995,6 +996,8 @@
 		EAC6F8BF1759158F00BC0B97 /* btnSignal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnSignal@2x.png"; sourceTree = "<group>"; };
 		EAC6F8C01759158F00BC0B97 /* lightGrayBtnBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lightGrayBtnBg@2x.png"; sourceTree = "<group>"; };
 		EAC6F8C81759514A00BC0B97 /* GGBackLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGBackLog.h; sourceTree = "<group>"; };
+		EAC6F916175987FF00BC0B97 /* GGPercentageBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPercentageBar.h; sourceTree = "<group>"; };
+		EAC6F917175987FF00BC0B97 /* GGPercentageBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPercentageBar.m; sourceTree = "<group>"; };
 		EAC96C281709833C003FAFAA /* GGSignupPortalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSignupPortalVC.h; sourceTree = "<group>"; };
 		EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSignupPortalVC.m; sourceTree = "<group>"; };
 		EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGWelcomePageView.xib; sourceTree = "<group>"; };
@@ -2265,6 +2268,8 @@
 				EAD960431721327700A72A9C /* CompanyDetail */,
 				EA79B8A61724D57A00141E6D /* GGCustomBriefCell.h */,
 				EA79B8A71724D57A00141E6D /* GGCustomBriefCell.m */,
+				EAC6F916175987FF00BC0B97 /* GGPercentageBar.h */,
+				EAC6F917175987FF00BC0B97 /* GGPercentageBar.m */,
 				EACAE13E1709629400E7088F /* GGWelcomePageView.h */,
 				EACAE13F1709629400E7088F /* GGWelcomePageView.m */,
 				EAD481F71710FFB300556288 /* GGCompanyUpdateCell.h */,
@@ -3207,6 +3212,7 @@
 				EAC9F90D17568124006FA45F /* GGImageVC.m in Sources */,
 				EA30D7831756C05C000F8D73 /* GGUpgradeInfo.m in Sources */,
 				EA1CA78B175812FC007C9232 /* GGStringPool.m in Sources */,
+				EAC6F918175987FF00BC0B97 /* GGPercentageBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

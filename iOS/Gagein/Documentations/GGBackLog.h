@@ -14,9 +14,11 @@
 #warning TODO: happening landing page share action
 #warning TODO: update landing page, related articles
 #warning TODO: connection timeout handling
-#warning TODO: salesforce OAuth
-#warning TODO: Yammer OAuth
+#warning TODO: event field name changed according to roshen's mail
+//#warning TODO: salesforce OAuth
 
+
+#warning BACKLOG: Yammer OAuth
 #warning BACKLOG: send message to linkedIn account while reading a company update detail.
 #warning BACKLOG: Grade-c companies grayed out in searching result (need to get grade info).
 #warning BACKLOG: company following state: not followed / pending / following

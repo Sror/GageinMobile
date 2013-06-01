@@ -116,6 +116,7 @@
             else
             {
 #warning TODO: give user a message
+                //String salesforce_account_edition_cannot_authorize_actions = "40005";
             }
             
         }];
