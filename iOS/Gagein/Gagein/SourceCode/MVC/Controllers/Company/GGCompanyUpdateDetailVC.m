@@ -475,23 +475,23 @@
     
     UIImage *bgImg = nil;
     
-    if ([self _hasLinkedSnType:kGGSnTypeSalesforce])
+    //if ([self _hasLinkedSnType:kGGSnTypeSalesforce])
     {
         // lightGrayBtnBg
         bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"chatterLongBtnBg"];
         [actionSheet addButtonWithTitle:@"Chatter" bgImage:bgImg block:^{
             
             DLog(@"Shared to chatter.");
-            [self _shareWithType:kGGSnTypeSalesforce];
+            //[self _shareWithType:kGGSnTypeSalesforce];
             
-//            if ([self _hasLinedSnType:kGGSnTypeSalesforce])
-//            {
-//                [self _shareWithType:kGGSnTypeSalesforce];
-//            }
-//            else
-//            {
-//                [self connectSalesForce];
-//            }
+            if ([self _hasLinkedSnType:kGGSnTypeSalesforce])
+            {
+                [self _shareWithType:kGGSnTypeSalesforce];
+            }
+            else
+            {
+                [self connectSalesForce];
+            }
             
         }];
     }

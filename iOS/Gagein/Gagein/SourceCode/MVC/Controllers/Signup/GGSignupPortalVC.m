@@ -113,6 +113,10 @@
                 userInfo.snType = kGGSnTypeSalesforce;
                 [self _signupWithUserInfo:userInfo];
             }
+            else
+            {
+#warning TODO: give user a message
+            }
             
         }];
         
