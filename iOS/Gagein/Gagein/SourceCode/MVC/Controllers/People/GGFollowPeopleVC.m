@@ -46,7 +46,7 @@
     
     UITapGestureRecognizer        *_tapGestToHideSearch;
     
-#warning XXX: this two boolean value should be replaced by real judgement for salesforce and linkedIn account.
+//#warning XXX: this two boolean value should be replaced by real judgement for salesforce and linkedIn account.
     BOOL                _needImportFromSalesforce;
     BOOL                _needImportFromLinkedIn;
 }

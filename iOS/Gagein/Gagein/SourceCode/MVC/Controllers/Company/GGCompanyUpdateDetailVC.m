@@ -360,7 +360,7 @@
 #pragma mark - Actions
 -(IBAction)signalAction:(id)sender
 {
-#warning TODO: implementation needed
+//#warning TODO: implementation needed
     [self _showSheetToSignal];
 }
 

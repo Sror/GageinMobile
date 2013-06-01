@@ -99,7 +99,24 @@
     }
     else if ([notiName isEqualToString:OA_NOTIFY_SALESFORCE_AUTH_OK])   // salesforce ok
     {
+        SFOAuthCredentials *credential = notification.object;
         
+        [self showLoadingHUD];
+        id op = [GGSharedAPI snGetUserInfoSalesforceWithToken:credential.accessToken accountID:credential.userId refreshToken:credential.refreshToken instanceURL:credential.instanceUrl.absoluteString callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
+            
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            
+            if (parser.isOK)
+            {
+                GGSnUserInfo *userInfo = [parser parseSnGetUserInfo];
+                userInfo.snType = kGGSnTypeSalesforce;
+                [self _signupWithUserInfo:userInfo];
+            }
+            
+        }];
+        
+        [self registerOperation:op];
     }
     else if ([notiName isEqualToString:OA_NOTIFY_FACEBOOK_AUTH_OK]) // facebook ok
     {

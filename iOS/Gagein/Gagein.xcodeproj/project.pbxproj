@@ -994,6 +994,7 @@
 		EAC6F8BE1759158F00BC0B97 /* btnShare@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnShare@2x.png"; sourceTree = "<group>"; };
 		EAC6F8BF1759158F00BC0B97 /* btnSignal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnSignal@2x.png"; sourceTree = "<group>"; };
 		EAC6F8C01759158F00BC0B97 /* lightGrayBtnBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lightGrayBtnBg@2x.png"; sourceTree = "<group>"; };
+		EAC6F8C81759514A00BC0B97 /* GGBackLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGBackLog.h; sourceTree = "<group>"; };
 		EAC96C281709833C003FAFAA /* GGSignupPortalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSignupPortalVC.h; sourceTree = "<group>"; };
 		EAC96C291709833C003FAFAA /* GGSignupPortalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSignupPortalVC.m; sourceTree = "<group>"; };
 		EAC96C36170983B5003FAFAA /* GGWelcomePageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGWelcomePageView.xib; sourceTree = "<group>"; };
@@ -1825,6 +1826,7 @@
 				EA62C6D8174C5DD80031BF42 /* SN_setting_Yammer.txt */,
 				EAAE074817169B58007C4A30 /* API_evoving.txt */,
 				EA997425174E8D5100A125D5 /* Happening_Cases_and_data_format.txt */,
+				EAC6F8C81759514A00BC0B97 /* GGBackLog.h */,
 			);
 			path = Documentations;
 			sourceTree = "<group>";

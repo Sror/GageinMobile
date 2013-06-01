@@ -20,6 +20,7 @@ static MBProgressHUD * hud;
     hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.labelText = @"Loading";
+    //hud.dimBackground = YES;
 }
 
 -(void)hideLoadingHUD

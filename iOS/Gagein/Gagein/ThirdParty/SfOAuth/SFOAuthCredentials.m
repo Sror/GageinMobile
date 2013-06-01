@@ -289,9 +289,9 @@ static NSException * kSFOAuthExceptionNilIdentifier;
         result = [self writeToKeychain:dict];
     } else {
         result = SecItemDelete((CFDictionaryRef)dict); // remove token
-        //self.instanceUrl = nil;
-        //self.issuedAt    = nil;
-        //self.identityUrl = nil;
+        self.instanceUrl = nil;
+        self.issuedAt    = nil;
+        self.identityUrl = nil;
     }
     if (errSecSuccess != result && errSecItemNotFound != result) { // errSecItemNotFound is an expected condition
         NSLog(@"%@:setRefreshToken: (%ld) %@", [self class], result, [[self class] stringForKeychainResultCode:result]);

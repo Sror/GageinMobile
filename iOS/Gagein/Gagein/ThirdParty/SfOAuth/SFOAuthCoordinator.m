@@ -260,17 +260,20 @@ static NSString * const kHttpPostContentType                    = @"application/
     if ([self.scopes count] > 0) {
         //append scopes
         [approvalUrl appendFormat:@"&%@=", kSFOAuthScope];
-        NSMutableString *scopeStr = [[NSMutableString alloc] initWithString:kSFOAuthRefreshToken];
+        NSMutableString *scopeStr = [[NSMutableString alloc] init];//[[NSMutableString alloc] initWithString:kSFOAuthRefreshToken];
 
         for (NSString *scope in self.scopes) {
             if (![scope isEqualToString:kSFOAuthRefreshToken])
             {
-            	[scopeStr appendFormat:@" %@", scope]; // scopes are delimited by a space character
+            	[scopeStr appendFormat:@"%@ ", scope]; // scopes are delimited by a space character
             }
         }
+        //[scopeStr appendString:@"api "];
+        [scopeStr appendFormat:@"%@", kSFOAuthRefreshToken];
         
         NSString *finalScopeStr = [scopeStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [scopeStr release];
+        
         [approvalUrl appendString:finalScopeStr];
     }
     
@@ -484,7 +487,7 @@ static NSString * const kHttpPostContentType                    = @"application/
     NSString *requestUrlString = [requestUrl absoluteString];
     
     // to fix the http protocol bug - salesforce
-    requestUrlString = [requestUrlString stringByReplacingOccurrencesOfString:@"https://" withString:@"http://"];
+    //requestUrlString = [requestUrlString stringByReplacingOccurrencesOfString:@"https://" withString:@"http://"];
     
     DLog(@"requestUrlString:%@ , redirectUri : %@", requestUrlString, self.credentials.redirectUri);
     //[self.credentials.redirectUri relc]

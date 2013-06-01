@@ -79,7 +79,7 @@ typedef enum {
     // social network
     , kGGMsgCodeSnShareUpdateError = 40001                  // failed sharing an update
     , kGGMsgCodeSnShareEventError                           // failed sharing a happening
-#warning BACKLOG:send message to linkedIn account
+
     , kGGMsgCodeSnLinkedInAccountDisconnected               // try to send a message to a linkedIn contact, but not connected
     , kGGMsgCodeSnCantGetUserInfo                           // failed to get user info using social account
     
