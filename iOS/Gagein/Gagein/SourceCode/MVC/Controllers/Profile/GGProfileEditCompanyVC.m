@@ -65,18 +65,19 @@
     tvComRc.size.height = [UIScreen mainScreen].applicationFrame.size.height - self.navigationController.navigationBar.frame.size.height - _viewSearchBar.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT;
     _tvSuggestedCompanies.frame = tvComRc;
     
-    [self _updateUiIsComanyCustomed:NO];
+    [self _updateUiIsComanyCustomed];
 }
 
--(void)_updateUiIsComanyCustomed:(BOOL)aIsCustom
+-(void)_updateUiIsComanyCustomed
 {
-    _viewComInfoDefined.hidden = aIsCustom;
-    _viewComInfoCustom.hidden = !aIsCustom;
+    BOOL isCustomCompany = (_userProfile.orgID <= 0);
+    _viewComInfoDefined.hidden = isCustomCompany;
+    _viewComInfoCustom.hidden = !isCustomCompany;
     [self hideDimedView];
     
-    if (aIsCustom)
+    if (isCustomCompany)
     {
-        _lblComNameCustom.text = _customComName;
+        _lblComNameCustom.text = _userProfile.orgName;
     }
     else
     {
@@ -157,9 +158,16 @@
             _userProfile.orgWebsite = company.website;
             _userProfile.orgLogoPath = company.logoPath;
             
-            [self _updateUiIsComanyCustomed:NO];
-            [GGAlert alertWithMessage:@"Company changed OK!"];
+            [self _updateUiIsComanyCustomed];
+            //[GGAlert alertWithMessage:@"Company changed OK!"];
         }
+        else
+        {
+            //[GGAlert alertWithMessage:@"Failed"];
+        }
+        
+        [self.viewSearchBar.tfSearch resignFirstResponder];
+        _tvSuggestedCompanies.hidden = YES;
     }];
     
     [self registerOperation:op];
@@ -229,9 +237,12 @@
                 _userProfile.orgWebsite = nil;
                 _userProfile.orgLogoPath = nil;
                 
-                [self _updateUiIsComanyCustomed:YES];
-                [GGAlert alertWithMessage:@"Company changed OK!"];
+                [self _updateUiIsComanyCustomed];
+                //[GGAlert alertWithMessage:@"Company changed OK!"];
             }
+            
+            [self.viewSearchBar.tfSearch resignFirstResponder];
+            _tvSuggestedCompanies.hidden = YES;
         }];
         
         [self registerOperation:op];

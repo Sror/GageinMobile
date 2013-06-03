@@ -9,13 +9,9 @@
 #ifndef Gagein_GGBackLog_h
 #define Gagein_GGBackLog_h
 
-#warning TODO: paging for followed/suggested companies/peoples
 #warning TODO: agents analysis graph
-//#warning TODO: happening landing page share action
 #warning TODO: update landing page, related articles
-#warning TODO: connection timeout handling (low)
-//#warning TODO: event field name changed according to roshen's mail
-//#warning TODO: salesforce OAuth
+//#warning TODO: connection timeout handling (low)
 
 
 #warning BACKLOG: Yammer OAuth
