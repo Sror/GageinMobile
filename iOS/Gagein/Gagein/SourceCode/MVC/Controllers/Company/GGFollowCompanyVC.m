@@ -56,6 +56,9 @@
     BOOL                _needImportFromSalesforce;
     BOOL                _needImportFromLinkedIn;
     NSMutableArray      *_snTypes;
+    
+    NSUInteger          _pageNumberFollowedCompanies;
+    NSUInteger          _pageNumberSuggestedCompanies;
 }
 
 
@@ -70,6 +73,9 @@
         _followedCompanies = [NSMutableArray array];
         _suggestedCompanies = [NSMutableArray array];
         _snTypes = [NSMutableArray array];
+        
+        _pageNumberFollowedCompanies = 1;
+        _pageNumberSuggestedCompanies = 1;
     }
     
     return self;
@@ -124,8 +130,8 @@
     [self _showDoneBtn:YES];
     
     
-    [self _callGetFollowedCompanies];
-    [self _callGetRecommendCompanies];
+    [self _getAllFollowedCompanies];
+    [self _getAllSuggestedCompanies];
     [self _callApiGetSnList];
 }
 
@@ -404,17 +410,6 @@
     }
     
     /////
-//    static NSString *companyCellId = @"companyCellId";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:companyCellId];
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:companyCellId];
-//    }
-//    
-//    GGCompany *companyData = _followedCompanies[indexPath.row];
-//    cell.textLabel.text = companyData.name;
-//    cell.accessoryType = companyData.followed ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-//    
-//    return cell;
     
     static NSString *cellID = @"GGGroupedCell";
     GGGroupedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -438,22 +433,6 @@
     return cell;
 }
 
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//    if (tableView == self.tableViewCompanies)
-//    {
-//        if (section == 0)
-//        {
-//            return @"Followed Companies";
-//        }
-//        else if (section == 1)
-//        {
-//            return @"Suggested Companies";
-//        }
-//    }
-//    
-//    return nil;
-//}
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -701,26 +680,6 @@
 }
 
 
-//- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
-//{
-//    DLog(@"cancel button clicked");
-//    
-//    [_searchedCompanies removeAllObjects];
-//    [self.tableViewSearchResult reloadData];
-//    
-//    searchBar.text = @"";
-//    [searchBar resignFirstResponder];
-//    searchBar.showsCancelButton = NO;
-//    searchBar.frame = _searchBarRect;
-//    [self.viewScroll addSubview:searchBar];
-//    
-//    [self _showTitle:YES];
-//    [self _showDoneBtn:YES];
-//    //[self hideBackButton];
-//    
-//    self.viewSearchBg.hidden = YES;
-//}
-
 #pragma mark - API calls
 -(void)_callSearchCompanySuggestion
 {
@@ -765,7 +724,54 @@
     }
 }
 
-#warning TODO: both followed and recommended companies need paging
+//#warning TODO: both followed and recommended companies need paging
+-(void)_getAllFollowedCompanies
+{
+    _pageNumberFollowedCompanies = 1;
+    [self _callGetAllFollowedCompanies];
+}
+
+-(void)_getAllSuggestedCompanies
+{
+    _pageNumberSuggestedCompanies = 1;
+    [self _callGetAllRecommendCompanies];
+}
+
+-(void)_callGetAllFollowedCompanies
+{
+    [self showLoadingHUD];
+    id op = [GGSharedAPI getFollowedCompaniesWithPage:_pageNumberFollowedCompanies callback:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        
+        if (parser.isOK)
+        {
+            GGDataPage *page = [parser parseFollowedCompanies];
+            
+            if (_pageNumberFollowedCompanies == 1)  // first page
+            {
+                [_followedCompanies removeAllObjects];
+            }
+            
+            [_followedCompanies addObjectsFromArray:page.items];
+            
+            for (GGCompany *company in _followedCompanies) {
+                company.followed = 1;
+            }
+            
+            if (page.hasMore)
+            {
+                _pageNumberFollowedCompanies++;
+                [self _callGetAllFollowedCompanies];
+            }
+        }
+        
+        [self.tableViewCompanies reloadData];
+    }];
+    
+    [self registerOperation:op];
+}
+
 -(void)_callGetFollowedCompanies
 {
     [self showLoadingHUD];
@@ -781,6 +787,39 @@
             
             for (GGCompany *company in _followedCompanies) {
                 company.followed = 1;
+            }
+        }
+        
+        [self.tableViewCompanies reloadData];
+    }];
+    
+    [self registerOperation:op];
+}
+
+-(void)_callGetAllRecommendCompanies
+{
+    //#warning TODO: need API for getting recommend companies
+    [self showLoadingHUD];
+    id op = [GGSharedAPI getRecommendedCompanieWithPage:_pageNumberSuggestedCompanies callback:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        
+        if (parser.isOK)
+        {
+            GGDataPage *page = [parser parseGetRecommendedCompanies];
+            
+            if (_pageNumberFollowedCompanies == 1)
+            {
+                [_suggestedCompanies removeAllObjects];
+            }
+            
+            [_suggestedCompanies addObjectsFromArray:page.items];
+            
+            if (page.hasMore)
+            {
+                _pageNumberSuggestedCompanies ++;
+                [self _callGetAllRecommendCompanies];
             }
         }
         
