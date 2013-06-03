@@ -163,6 +163,7 @@
         _person = [GGHappeningPerson model];
         _company = [GGHappeningCompany model];
         _oldCompany = [GGHappeningCompany model];
+        _revenues = [NSMutableArray array];
     }
     return self;
 }
@@ -174,9 +175,7 @@
     self.change = [aData objectForKey:@"change"];
     
     self.timestamp = [[[aData objectForKey:@"timestamp"] objectForKey:@"timestamp"] longLongValue];
-    self.newTimestamp = [[[aData objectForKey:@"newTimestamp"] objectForKey:@"timestamp"] longLongValue];
-    self.oldTimestamp = [[[aData objectForKey:@"oldTimestamp"] objectForKey:@"timestamp"] longLongValue];
-    self.fundingTimestamp = [[[aData objectForKey:@"oldTimestamp"] objectForKey:@"timestamp"] longLongValue];
+    
     
     self.protocol = [[aData objectForKey:@"protocol"] longLongValue];
     self.dateStr = [aData objectForKey:@"date_str"];
@@ -187,7 +186,7 @@
     
     [self.person parseWithData:[aData objectForKey:@"person"]];
     [self.company parseWithData:[aData objectForKey:@"company"]];
-    [self.oldCompany parseWithData:[aData objectForKey:@"oldCompany"]];
+    
     
     self.ID = [[aData objectForKey:@"eventid"] longLongValue];
     self.type = [[aData objectForKey:@"type"] intValue];
@@ -201,19 +200,20 @@
     self.oldProfilePic = [aData objectForKey:@"oldProfilepic"];
     
     self.title = [[aData objectForKey:@"title"] objectForKey:@"title"];
-    self.jobTitle = [[aData objectForKey:@"jobtitle"] objectForKey:@"title"];
     
-    self.oldJobTitle = [[aData objectForKey:@"oldjobtitle"] objectForKey:@"title"];
-    if (_oldJobTitle.length <= 0)   // stupid!!! use different key for the same variable, the only diff is Capitalize or not
-    {
-        _oldJobTitle = [[aData objectForKey:@"oldJobtitle"] objectForKey:@"title"];
-    }
+    
+    
+//    if (_oldJobTitle.length <= 0)   // stupid!!! use different key for the same variable, the only diff is Capitalize or not
+//    {
+//        _oldJobTitle = [[aData objectForKey:@"oldJobtitle"] objectForKey:@"title"];
+//    }
     
     self.theNewJobTitle = [[aData objectForKey:@"newjobtitle"] objectForKey:@"title"];
 
     self.address = [[aData objectForKey:@"address"] objectForKey:@"address"];
-    self.addressMap = [aData objectForKey:@"address_map"];
     self.oldAddress = [[aData objectForKey:@"oldAddress"] objectForKey:@"address"];
+    
+    self.addressMap = [aData objectForKey:@"address_map"];
     
     _oldRevenue = [aData objectForKey:@"oldRevenue"];
     _theNewRevenue = [aData objectForKey:@"newRevenue"];
@@ -227,6 +227,45 @@
     _oldEmployNum = [aData objectForKey:@"oldEmployNum"];
     _employNum = [aData objectForKey:@"employNum"];
     _direction = [aData objectForKey:@"direction"];
+    
+    
+    //
+    [self.oldCompany parseWithData:[aData objectForKey:@"oldCompany"]];
+    self.jobTitle = [[aData objectForKey:@"jobtitle"] objectForKey:@"title"];
+    self.oldJobTitle = [[aData objectForKey:@"oldjobtitle"] objectForKey:@"title"];
+    
+    self.newTimestamp = [[[aData objectForKey:@"newTimestamp"] objectForKey:@"timestamp"] longLongValue];
+    self.oldTimestamp = [[[aData objectForKey:@"oldTimestamp"] objectForKey:@"timestamp"] longLongValue];
+    self.fundingTimestamp = [[[aData objectForKey:@"oldTimestamp"] objectForKey:@"timestamp"] longLongValue];
+}
+
+
+
+-(void)_parseNewProtocolWithData:(NSDictionary *)aData
+{
+//    ;
+    [self.oldCompany parseWithData:[aData objectForKey:@"old_company"]];
+//    ;
+    self.jobTitle = [[aData objectForKey:@"jobtitle"] objectForKey:@"job_title"];
+    self.oldJobTitle = [[aData objectForKey:@"oldjobtitle"] objectForKey:@"old_job_title"];
+    
+    self.newTimestamp = [[[aData objectForKey:@"new_timestamp"] objectForKey:@"timestamp"] longLongValue];
+    self.oldTimestamp = [[[aData objectForKey:@"old_timestamp"] objectForKey:@"timestamp"] longLongValue];
+    self.fundingTimestamp = [[[aData objectForKey:@"funding_timestamp"] objectForKey:@"timestamp"] longLongValue];
+    
+//    company_address;
+//    old_company_address;
+//    person_address;
+//    old_person_address;
+    
+    
+//    revenues;
+//    new_revenue;
+//    old_revenue;
+//    employ_num;
+//    old_employ_num;
+//    profile_pic;
+//    old_profile_pic;
 }
 
 -(BOOL)_isOldData

@@ -30,7 +30,13 @@
 //agentid:all of the checked id
 -(AFHTTPRequestOperation *)selectAgents:(NSArray *)aAgentIDs callback:(GGApiBlock)aCallback
 {
-    NSAssert(aAgentIDs.count, @"u must provide at lest 1 agent id");
+    //NSAssert(aAgentIDs.count, @"u must provide at lest 1 agent id");
+    if (aAgentIDs.count <= 0)
+    {
+        [GGAlert alertWithMessage:@"You must select at least one agent."];
+        return nil;
+    }
+    
     //POST
     NSString *path = @"config/sales_trigger/save";
     

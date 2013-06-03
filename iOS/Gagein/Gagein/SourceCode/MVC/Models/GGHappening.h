@@ -81,6 +81,12 @@ typedef enum {
 -(NSString *)addressCityStateCountry;
 @end
 
+//
+@interface GGHappeningRevenuePlot : GGDataModel
+@property (assign) long long                period;
+@property (assign) float                    revenue;
+@end
+
 
 
 //
@@ -106,6 +112,7 @@ typedef enum {
 @property (copy) NSString                       *percentage;
 @property (copy) NSString                       *period;
 @property (copy) NSString                       *revenueChart;
+@property (copy) NSMutableArray                 *revenues;          // each one is a GGHappeningRevenuePlot
 
 @property (copy) NSString                       *funding;
 @property (copy) NSString                       *round;
