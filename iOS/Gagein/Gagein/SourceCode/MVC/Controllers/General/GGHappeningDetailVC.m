@@ -15,6 +15,8 @@
 #import "GGAppDelegate.h"
 #import "GGImageVC.h"
 #import "GGAutosizingLabel.h"
+#import "CMActionSheet.h"
+#import "GGSnShareVC.h"
 
 @interface GGCellData : NSObject
 @property (assign) long long    ID;
@@ -52,6 +54,8 @@
     UITapGestureRecognizer *_tapGestEnterCompanyDetail;
     UITapGestureRecognizer *_tapGestEnterOldCompanyDetail;
     UITapGestureRecognizer *_tapGestEnterPersonDetail;
+    
+    NSMutableArray          *_snTypes;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -59,6 +63,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _cellDatas = [NSMutableArray array];
+        _snTypes = [NSMutableArray array];
+        self.hidesBottomBarWhenPushed = YES;
     }
     return self;
 }
@@ -105,6 +111,7 @@
     //
     
     [self _callApiGetHappeningDetail];
+    [self _callApiGetSnList];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -192,6 +199,156 @@
     [GGUtils sendSmsTo:nil body:body vcDelegate:self];
     [GGSharedDelegate makeNaviBarCustomed:NO];
 }
+
+-(IBAction)shareAction:(id)sender
+{
+    [self _showSheetToShare];
+}
+
+-(void)_showSheetToShare
+{
+    CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
+    
+    UIImage *bgImg = nil;
+    
+    //if ([self _hasLinkedSnType:kGGSnTypeSalesforce])
+    {
+        // lightGrayBtnBg
+        bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"chatterLongBtnBg"];
+        [actionSheet addButtonWithTitle:@"Chatter" bgImage:bgImg block:^{
+            
+            DLog(@"Shared to chatter.");
+            //[self _shareWithType:kGGSnTypeSalesforce];
+            
+            if ([self _hasLinkedSnType:kGGSnTypeSalesforce])
+            {
+                [self _shareWithType:kGGSnTypeSalesforce];
+            }
+            else
+            {
+                [self connectSalesForce];
+            }
+            
+        }];
+    }
+    
+    
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"LinkedIn" bgImage:bgImg block:^{
+        DLog(@"Shared to LinkedIn.");
+        if ([self _hasLinkedSnType:kGGSnTypeLinkedIn])
+        {
+            //#warning TODO: Enter a page to change message and share
+            [self _shareWithType:kGGSnTypeLinkedIn];
+        }
+        else
+        {
+            [self connectLinkedIn];
+        }
+    }];
+    
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"twitterLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"Twitter" bgImage:bgImg block:^{
+        DLog(@"Shared to Twitter.");
+        
+        if ([self _hasLinkedSnType:kGGSnTypeTwitter])
+        {
+            [self _shareWithType:kGGSnTypeTwitter];
+        }
+        else
+        {
+            [self connectTwitter];
+        }
+        
+    }];
+    
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"Facebook" bgImage:bgImg block:^{
+        DLog(@"Shared to facebook.");
+        
+        if ([self _hasLinkedSnType:kGGSnTypeFacebook])
+        {
+            [self _shareWithType:kGGSnTypeFacebook];
+        }
+        else
+        {
+            [self connectFacebook];
+        }
+        
+    }];
+    
+    
+    if ([self _hasLinkedSnType:kGGSnTypeYammer])
+    {
+        bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"chatterLongBtnBg"];
+        [actionSheet addButtonWithTitle:@"Yammer" bgImage:bgImg block:^{
+            DLog(@"Shared to Yammer.");
+            [self _shareWithType:kGGSnTypeYammer];
+        }];
+    }
+    
+    [actionSheet addSeparator];
+    
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"Email" bgImage:bgImg block:^{
+        [self sendMailAction:nil];
+    }];
+    
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"SMS" bgImage:bgImg block:^{
+        [self sendSMSAction:nil];
+    }];
+    
+    [actionSheet addSeparator];
+    
+    bgImg = [UIImage imageNamed:@"grayBtnBg"];
+    UIButton *cancelBtn = [actionSheet addButtonWithTitle:@"Cancel" bgImage:bgImg block:^{
+        
+    }];
+    [cancelBtn setTitleColor:GGSharedColor.white forState:UIControlStateNormal];
+    [cancelBtn setTitleShadowColor:GGSharedColor.black forState:UIControlStateNormal];
+    
+    
+    //    [actionSheet addSeparator];
+    //    [actionSheet addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:^{
+    //        NSLog(@"Dismiss action sheet with \"Close Button\"");
+    //    }];
+    
+    // Present
+    [actionSheet present];
+}
+
+-(BOOL)_hasLinkedSnType:(EGGSnType)aSnType
+{
+    for (NSString *type in _snTypes)
+    {
+        if (type.longLongValue == aSnType)
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+-(void)_addSnType:(EGGSnType)aSnType
+{
+    if (![self _hasLinkedSnType:aSnType]) {
+        [_snTypes addObject:[NSString stringWithFormat:@"%d", aSnType]];
+    }
+}
+
+
+-(void)_shareWithType:(EGGSnType)aType
+{
+    GGSnShareVC *vc = [[GGSnShareVC alloc] init];
+    vc.happening = _currentDetail;
+    vc.snType = aType;
+    vc.snTypesRef = _snTypes;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 #pragma mark - MFMailComposeViewControllerDelegate
 - (void)mailComposeController:(MFMailComposeViewController*)controller
@@ -636,6 +793,21 @@
         [self registerOperation:op];
     }
     
+}
+
+-(void)_callApiGetSnList
+{
+    id op = [GGSharedAPI snGetList:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            NSArray *snTypes = [parser parseSnGetList];
+            [_snTypes removeAllObjects];
+            [_snTypes addObjectsFromArray:snTypes];
+        }
+    }];
+    
+    [self registerOperation:op];
 }
 
 @end

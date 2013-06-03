@@ -85,7 +85,7 @@
 									</object>
 									<object class="IBUIButton" id="273486756">
 										<reference key="NSNextResponder" ref="812019759"/>
-										<int key="NSvFlags">297</int>
+										<int key="NSvFlags">-2147483351</int>
 										<string key="NSFrame">{{275, 12}, {32, 32}}</string>
 										<reference key="NSSuperview" ref="812019759"/>
 										<reference key="NSWindow"/>
@@ -121,7 +121,7 @@
 									<object class="IBUIButton" id="428853660">
 										<reference key="NSNextResponder" ref="812019759"/>
 										<int key="NSvFlags">297</int>
-										<string key="NSFrame">{{235, 12}, {32, 32}}</string>
+										<string key="NSFrame">{{275, 12}, {32, 32}}</string>
 										<reference key="NSSuperview" ref="812019759"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="273486756"/>
@@ -138,7 +138,7 @@
 										<reference key="IBUINormalTitleShadowColor" ref="638872826"/>
 										<object class="NSCustomResource" key="IBUINormalImage">
 											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">actionIcon@2x.png</string>
+											<string key="NSResourceName">btnShare@2x.png</string>
 										</object>
 										<reference key="IBUIFontDescription" ref="40268503"/>
 										<reference key="IBUIFont" ref="229620561"/>
@@ -279,6 +279,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">shareAction:</string>
+						<reference key="source" ref="428853660"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">28</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">sendMailAction:</string>
 						<reference key="source" ref="273486756"/>
 						<reference key="destination" ref="372490531"/>
@@ -337,8 +346,8 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="750050814"/>
 							<reference ref="273486756"/>
-							<reference ref="428853660"/>
 							<reference ref="1048970800"/>
+							<reference ref="428853660"/>
 						</array>
 						<reference key="parent" ref="944725336"/>
 						<string key="objectName">viewBottomBar</string>
@@ -353,7 +362,7 @@
 						<int key="objectID">22</int>
 						<reference key="object" ref="428853660"/>
 						<reference key="parent" ref="812019759"/>
-						<string key="objectName">btnAction</string>
+						<string key="objectName">btnShare</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">23</int>
@@ -386,7 +395,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">27</int>
+			<int key="maxID">28</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -401,17 +410,25 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">GGHappeningDetailVC</string>
 					<string key="superclassName">GGBaseViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">sendMailAction:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">sendMailAction:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="sendMailAction:">id</string>
+						<string key="sendSMSAction:">id</string>
+						<string key="shareAction:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="sendMailAction:">
 							<string key="name">sendMailAction:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+						<object class="IBActionInfo" key="sendSMSAction:">
+							<string key="name">sendSMSAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="shareAction:">
+							<string key="name">shareAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="svContent">UIScrollView</string>
 						<string key="tvDetail">UITableView</string>
@@ -443,7 +460,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="actionIcon@2x.png">{62, 64}</string>
+			<string key="btnShare@2x.png">{62, 64}</string>
 			<string key="emailIcon@2x.png">{62, 64}</string>
 			<string key="happeningBottomBarBg@2x.png">{1, 100}</string>
 			<string key="linkedInIcon@2x.png">{62, 64}</string>

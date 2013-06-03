@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @class GGCompanyUpdate;
+@class GGHappening;
 
 @interface GGSnShareVC : GGBaseViewController
 @property (strong)  GGCompanyUpdate *comUpdateDetail;
+@property (strong)  GGHappening *happening;
+
 @property (assign)  EGGSnType       snType;
 @property (strong)  NSMutableArray  *snTypesRef;    // for modification when sn sharing failed
 @end

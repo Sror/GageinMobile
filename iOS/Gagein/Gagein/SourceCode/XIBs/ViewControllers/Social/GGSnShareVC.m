@@ -8,6 +8,7 @@
 
 #import "GGSnShareVC.h"
 #import "GGCompanyUpdate.h"
+#import "GGHappening.h"
 
 #define MAX_MESSAGE_LENGTH              (400)
 #define MAX_MESSAGE_LENGTH_TWITTER      (140)
@@ -95,16 +96,21 @@
 #pragma mark - actions
 -(void)shareAction:(id)sender
 {
-    NSString *summary = _comUpdateDetail.content.length ? _comUpdateDetail.content : _comUpdateDetail.textview;
+    NSString *summary, *message, *picURL;
     
-    summary = (summary.length > MAX_SUMMARY_LENGTH) ? [summary substringToIndex:MAX_SUMMARY_LENGTH] : summary;
-    
+    //
     int maxLength = [self maxLenghForMessageType:_snType];
     maxLength -= 20;
-    NSString *message = (_textView.text.length > maxLength) ? [_textView.text substringToIndex:maxLength] : _textView.text;
+    message = (_textView.text.length > maxLength) ? [_textView.text substringToIndex:maxLength] : _textView.text;
     
-    NSString *picURL = _comUpdateDetail.pictures.count ? _comUpdateDetail.pictures[0] : nil;
-    //picURL = @"http://image.gsfc.nasa.gov/image/image_launch_a5.jpg";
+    if (_comUpdateDetail)
+    {
+        summary = _comUpdateDetail.content.length ? _comUpdateDetail.content : _comUpdateDetail.textview;
+        summary = (summary.length > MAX_SUMMARY_LENGTH) ? [summary substringToIndex:MAX_SUMMARY_LENGTH] : summary;
+        
+        picURL = _comUpdateDetail.pictures.count ? _comUpdateDetail.pictures[0] : nil;
+    }
+    
     [self showLoadingHUD];
     id op = [GGSharedAPI snShareNewsWithID:_comUpdateDetail.ID snType:_snType message:message headLine:_comUpdateDetail.headline summary:summary pictureURL:picURL callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
@@ -146,8 +152,16 @@
 
 -(NSString *)_messageToShare
 {
-    NSString *message = [NSString stringWithFormat:@"%@\n\n - shared from GageIn, a visual sales intelligence company.", _comUpdateDetail.headline];
-    ;
+    NSString *message = nil;
+    if (_comUpdateDetail)
+    {
+        message = [NSString stringWithFormat:@"%@\n\n - shared from GageIn, a visual sales intelligence company.", _comUpdateDetail.headline];
+        ;
+    }
+    else if (_happening)
+    {
+        message = [NSString stringWithFormat:@"%@\n\n - shared from GageIn, a visual sales intelligence company.", _happening.headLineText];
+    }
     
     return message;
 }
