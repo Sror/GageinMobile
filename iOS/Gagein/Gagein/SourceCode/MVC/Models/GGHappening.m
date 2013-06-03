@@ -21,6 +21,8 @@
 
 // d)      Employees Join Another Company (<Contact Name> <Old title> at <Old Company> has joined <Company> as <Title>)
 #define EVENT_MSG_COM_PERSON_JONIED     @"%@ %@ at %@ has joined %@ as %@"
+//<Contact Name> has joined <Company> as <Title>
+#define EVENT_MSG_COM_PERSON_JONIED_1ST_JOB     @"%@ has joined %@ as %@"
 //<contact name> has joined <company name> as <job title>
 #define EVENT_MSG_COM_PERSON_JONIED_OLD  @"%@ has joined %@ as %@"
 
@@ -264,8 +266,8 @@
 //    ;
     [self.oldCompany parseWithData:[aData objectForKey:@"old_company"]];
 //    ;
-    self.jobTitle = [[aData objectForKey:@"jobtitle"] objectForKey:@"job_title"];
-    self.oldJobTitle = [[aData objectForKey:@"oldjobtitle"] objectForKey:@"old_job_title"];
+    self.jobTitle = [[aData objectForKey:@"job_title"] objectForKey:@"title"];
+    self.oldJobTitle = [[aData objectForKey:@"old_job_title"] objectForKey:@"title"];
     
     self.newTimestamp = [[[aData objectForKey:@"new_timestamp"] objectForKey:@"timestamp"] longLongValue];
     self.oldTimestamp = [[[aData objectForKey:@"old_timestamp"] objectForKey:@"timestamp"] longLongValue];
@@ -351,10 +353,24 @@
         {
             if ([self isJoin])
             {
-                return [self _isOldData] ? [NSString stringWithFormat:EVENT_MSG_COM_PERSON_JONIED_OLD, self.person.name, self.company.name, self.jobTitle]
-                : [NSString stringWithFormat:EVENT_MSG_COM_PERSON_JONIED, self.person.name
-                   , self.oldJobTitle, self.oldCompany.name
-                   , self.company.name, self.jobTitle];
+                if ([self _isOldData])
+                {
+                    return [NSString stringWithFormat:EVENT_MSG_COM_PERSON_JONIED_OLD, self.person.name, self.company.name, self.jobTitle];
+                }
+                else
+                {
+                    if (_oldCompany.name.length)
+                    {
+                        return [NSString stringWithFormat:EVENT_MSG_COM_PERSON_JONIED, self.person.name
+                                , self.oldJobTitle, self.oldCompany.name
+                                , self.company.name, self.jobTitle];
+                    }
+                    else
+                    {
+                        return [NSString stringWithFormat:EVENT_MSG_COM_PERSON_JONIED_1ST_JOB, self.person.name
+                                , self.company.name, self.jobTitle];
+                    }
+                }
 
             }
             else
