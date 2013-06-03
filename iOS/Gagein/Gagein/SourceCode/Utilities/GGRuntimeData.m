@@ -22,6 +22,7 @@ DEF_SINGLETON(GGRuntimeData)
     if (self) {
         [self loadCurrentUser];
         [self _loadRunedBefore];
+        [self _loadRecentSearches];
     }
     return self;
 }
@@ -81,4 +82,56 @@ DEF_SINGLETON(GGRuntimeData)
     [GGPath removePath:[GGPath pathCurrentUserData]];
     self.currentUser = nil;
 }
+
+#pragma mark - recent searches
+-(void)_loadRecentSearches
+{
+    if (_recentSearches == nil)
+    {
+        _recentSearches = [NSMutableArray array];
+        [_recentSearches addObjectsFromArray:[[NSArray alloc] initWithContentsOfFile:[GGPath pathRecentSearches]]];
+    }
+}
+
+-(void)_saveRecentSearches
+{
+    [GGPath ensurePathExists:[GGPath savedDataPath]];
+    [_recentSearches writeToFile:[GGPath pathRecentSearches] atomically:YES];
+}
+
+-(void)saveKeyword:(NSString *)aKeyword
+{
+    if (aKeyword.length)
+    {
+       // int keywordIndex = -1;
+        int count = _recentSearches.count;
+        for (int i = 0; i < count; i++)
+        {
+            NSString *recentSearch = _recentSearches[i];
+            if ([recentSearch isEqualToString:aKeyword])
+            {
+                [_recentSearches removeObject:recentSearch];
+                break;
+            }
+        }
+        
+//        if (keywordIndex >= 0)
+//        {
+//            id obj = _recentSearches[keywordIndex];
+//            [_recentSearches removeObject:obj];
+//        }
+        
+        [_recentSearches insertObject:aKeyword atIndex:0];
+        
+        
+        // limit max recent searches count to 5
+        while (_recentSearches.count > 5)
+        {
+            [_recentSearches removeLastObject];
+        }
+        
+        [self _saveRecentSearches];
+    }
+}
+
 @end

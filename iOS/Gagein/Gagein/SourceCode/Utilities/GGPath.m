@@ -42,6 +42,11 @@
     return [[self savedDataPath] stringByAppendingPathComponent:@"currentUser.plist"];
 }
 
++(NSString *)pathRecentSearches
+{
+    return [[self savedDataPath] stringByAppendingPathComponent:@"recentSearches.plist"];
+}
+
 +(NSString *)ensurePathExists:(NSString *)aPath
 {
     NSError *error;

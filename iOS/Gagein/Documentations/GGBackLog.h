@@ -11,6 +11,7 @@
 
 #warning TODO: agents analysis graph
 #warning TODO: update landing page, related articles
+#warning TODO: grade info of company
 //#warning TODO: connection timeout handling (low)
 
 

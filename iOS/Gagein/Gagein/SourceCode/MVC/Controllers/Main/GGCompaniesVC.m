@@ -36,6 +36,7 @@
 #import "GGEmptyActionView.h"
 #import "GGComUpdateSearchResultVC.h"
 #import "GGKeywordExampleCell.h"
+#import "GGConfigLabel.h"
 
 #define SWITCH_WIDTH 90
 #define SWITCH_HEIGHT 20
@@ -72,6 +73,8 @@
     
     NSTimer                     *_searchTimer;
     NSMutableArray              *_suggestedUpdates;
+    BOOL                        _isShowingRecentSearches;
+    
     GGKeywordExampleCell        *_keywordExampleView;
 }
 
@@ -296,7 +299,10 @@
 
 - (void)searchBarTextDidBeginEditing:(GGBaseSearchBar *)searchBar
 {
-    
+    GGBlackSearchBar *blackBar = (GGBlackSearchBar *)searchBar;
+    BOOL needShowRecentSearches = (blackBar.tfSearch.text.length <= 0);
+    [self _showRecentSearches:needShowRecentSearches];
+    [_slideSettingView.tvSuggestedUpdates reloadData];
 }
 
 - (BOOL)searchBarShouldEndEditing:(GGBaseSearchBar *)searchBar
@@ -330,9 +336,25 @@
 {
     [_searchTimer invalidate];
     _searchTimer = nil;
-    _slideSettingView.tvSuggestedUpdates.hidden = YES;
+    //_slideSettingView.tvSuggestedUpdates.hidden = YES;
+    
+    [self _showRecentSearches:YES];
+    [_slideSettingView.tvSuggestedUpdates reloadData];
     
     return YES;
+}
+
+-(void)_showRecentSearches:(BOOL)aIsShow
+{
+    _isShowingRecentSearches = aIsShow;
+    
+//    if (_isShowingRecentSearches)
+//    {
+//        [_suggestedUpdates removeAllObjects];
+//        [_suggestedUpdates addObjectsFromArray:GGSharedRuntimeData.recentSearches];
+//    }
+    
+    //[_slideSettingView.tvSuggestedUpdates reloadData];
 }
 
 - (BOOL)searchBarShouldSearch:(GGBaseSearchBar *)searchBar
@@ -399,6 +421,7 @@
                 }
             }
             
+            [self _showRecentSearches:NO];
             [_slideSettingView.tvSuggestedUpdates reloadData];
         }];
         
@@ -646,8 +669,11 @@
     }
     else if (tableView == _slideSettingView.tvSuggestedUpdates)
     {
-        int count = _suggestedUpdates.count;
-        _slideSettingView.tvSuggestedUpdates.hidden = (count <= 0);
+        
+        
+        int count = [self _suggestedUpdatesDataSource].count;
+        
+        //_slideSettingView.tvSuggestedUpdates.hidden = (count <= 0);
         return count + 1;   // add one extra cell
     }
     
@@ -737,7 +763,8 @@
     }
     else if (tableView == _slideSettingView.tvSuggestedUpdates)
     {
-        if (row == _suggestedUpdates.count) // extra one
+        NSArray *dataSource = [self _suggestedUpdatesDataSource];
+        if (row == dataSource.count) // extra one
         {
             return _keywordExampleView;
         }
@@ -751,7 +778,7 @@
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }
             
-            NSString *keyword = _suggestedUpdates[row];
+            NSString *keyword = dataSource[row];
             cell.textLabel.text = keyword;
             
             return cell;
@@ -762,6 +789,10 @@
     return nil;
 }
 
+-(NSArray *)_suggestedUpdatesDataSource
+{
+    return _isShowingRecentSearches ? GGSharedRuntimeData.recentSearches : _suggestedUpdates;
+}
 
 #pragma mark - tableView delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -790,6 +821,10 @@
     {
         return [GGSettingHeaderView HEIGHT];
     }
+    else if (_isShowingRecentSearches && tableView == _slideSettingView.tvSuggestedUpdates)
+    {
+        return [GGConfigLabel HEIGHT];
+    }
     
     return 0;
 }
@@ -805,6 +840,12 @@
         } else {
             return [self _exploringSectionView];
         }
+    }
+    else if (_isShowingRecentSearches && tableView == _slideSettingView.tvSuggestedUpdates)
+    {
+        GGConfigLabel *configLabel = [GGConfigLabel viewFromNibWithOwner:self];
+        configLabel.lblText.text = @"Recent Searches";
+        return configLabel;
     }
     
     return nil;
@@ -826,7 +867,7 @@
     {
         return [GGSettingMenuCell HEIGHT];
     }
-    else if (tableView == _slideSettingView.tvSuggestedUpdates && indexPath.row == _suggestedUpdates.count) // extra one
+    else if (tableView == _slideSettingView.tvSuggestedUpdates && indexPath.row == [self _suggestedUpdatesDataSource].count) // extra one
     {
         return _keywordExampleView.frame.size.height;
     }
@@ -882,9 +923,10 @@
     }
     else if (tableView == _slideSettingView.tvSuggestedUpdates)
     {
-        if (row < _suggestedUpdates.count)
+        NSArray *dataSource = [self _suggestedUpdatesDataSource];
+        if (row < dataSource.count)
         {
-            NSString *keyword = _suggestedUpdates[row];
+            NSString *keyword = dataSource[row];
             [self _doSearchWithKeyword:keyword];
         }
     }

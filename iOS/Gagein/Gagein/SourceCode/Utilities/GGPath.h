@@ -12,6 +12,7 @@
 +(NSString*)docPath;
 +(NSString *)savedDataPath;
 +(NSString *)pathCurrentUserData;
++(NSString *)pathRecentSearches;
 
 +(NSString *)ensurePathExists:(NSString *)aPath;
 +(void)removePath:(NSString *)aPath;

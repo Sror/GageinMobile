@@ -145,7 +145,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GGCompany *company = _suggestedCompanies[indexPath.row];
-#warning TODO: set company to user profile
+//#warning TODO: set company to user profile
     
     [self showLoadingHUD];
     id op = [GGSharedAPI changeProfileWithOrgID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {

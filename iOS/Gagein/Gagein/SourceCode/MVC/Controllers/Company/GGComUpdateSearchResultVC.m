@@ -44,7 +44,7 @@
     
     [super viewDidLoad];
     
-    self.naviTitle = @"Updates";
+    self.naviTitle = _keyword;
     
     self.updatesTV = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
     //self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
@@ -64,6 +64,8 @@
     }];
     
     [self.updatesTV triggerPullToRefresh];
+    
+    [GGSharedRuntimeData saveKeyword:_keyword];
 }
 
 
