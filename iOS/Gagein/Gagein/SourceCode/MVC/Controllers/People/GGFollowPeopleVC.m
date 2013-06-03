@@ -49,6 +49,9 @@
 //#warning XXX: this two boolean value should be replaced by real judgement for salesforce and linkedIn account.
     BOOL                _needImportFromSalesforce;
     BOOL                _needImportFromLinkedIn;
+    
+    NSUInteger          _pageNumberFollowedPeople;
+    NSUInteger          _pageNumberSuggestedPeople;
 }
 
 #define BUTTON_WIDTH_LONG       247.f
@@ -164,8 +167,8 @@
     [self _showTitle:YES];
     [self _showDoneBtn:YES];
     
-    [self _callGetFollowedPeople];
-    [self _callGetRecommendedPeople];
+    [self _getAllFollowedPeople];
+    [self _getAllSuggestedPeople];
 }
 
 -(void)tapToHideSearch:(UITapGestureRecognizer *)aTapGest
@@ -668,6 +671,45 @@
     }
 }
 
+-(void)_getAllFollowedPeople
+{
+    _pageNumberFollowedPeople = 1;
+    [self _callGetAllFollowedPeople];
+}
+
+-(void)_callGetAllFollowedPeople
+{
+    //#warning TODO: Currently no API for followed people list
+    [self showLoadingHUD];
+    id op = [GGSharedAPI getFollowedPeopleWithPage:_pageNumberFollowedPeople callback:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            GGDataPage *page = [parser parseGetFollowedPeople];
+            
+            if (_pageNumberFollowedPeople == 1)
+            {
+                [_followedPeople removeAllObjects];
+            }
+            
+            [_followedPeople addObjectsFromArray:page.items];
+            
+            if (page.hasMore)
+            {
+                _pageNumberFollowedPeople++;
+                [self _callGetAllFollowedPeople];
+            }
+        }
+        
+        [_tvPeople reloadData];
+        
+    }];
+    
+    [self registerOperation:op];
+}
+
 -(void)_callGetFollowedPeople
 {
 //#warning TODO: Currently no API for followed people list
@@ -685,6 +727,41 @@
         
         [_tvPeople reloadData];
         
+    }];
+    
+    [self registerOperation:op];
+}
+
+-(void)_getAllSuggestedPeople
+{
+    _pageNumberSuggestedPeople = 1;
+    [self _callGetAllRecommendedPeople];
+}
+
+-(void)_callGetAllRecommendedPeople
+{
+    [self showLoadingHUD];
+    id op = [GGSharedAPI getRecommendedPeopleWithPage:_pageNumberSuggestedPeople callback:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            GGDataPage *page = [parser parseGetRecommendedPeople];
+            
+            if (_pageNumberSuggestedPeople == 1)
+            {
+                [_followedPeople removeAllObjects];
+            }
+            
+            [_followedPeople addObjectsFromArray:page.items];
+            
+            if (page.hasMore)
+            {
+                _pageNumberSuggestedPeople++;
+                [self _callGetAllRecommendedPeople];
+            }
+        }
+        
+        [_tvPeople reloadData];
     }];
     
     [self registerOperation:op];
