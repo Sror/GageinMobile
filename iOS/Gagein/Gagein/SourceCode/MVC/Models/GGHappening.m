@@ -153,6 +153,20 @@
 @end
 
 
+//
+@implementation GGHappeningRevenuePlot
+
+-(void)parseWithData:(NSDictionary *)aData
+{
+    [super parseWithData:aData];
+    
+    _period = [[[aData objectForKey:@"period"] objectForKey:@"timestamp"] longLongValue];
+    _revenue = [[aData objectForKey:@"revenue"] floatValue];
+}
+
+@end
+
+
 
 //
 @implementation GGHappening
@@ -172,12 +186,11 @@
 {
     [super parseWithData:aData];
     
-    self.change = [aData objectForKey:@"change"];
+    self.protocol = [[aData objectForKey:@"protocol"] longLongValue];   // IMPORTANT: parse this first
     
+    self.change = [aData objectForKey:@"change"];
     self.timestamp = [[[aData objectForKey:@"timestamp"] objectForKey:@"timestamp"] longLongValue];
     
-    
-    self.protocol = [[aData objectForKey:@"protocol"] longLongValue];
     self.dateStr = [aData objectForKey:@"date_str"];
     
     self.contactID = [[aData objectForKey:@"contactid"] longLongValue];
@@ -196,27 +209,14 @@
     self.orgName = [aData objectForKey:@"org_name"];
     self.orgLogoPath = [aData objectForKey:@"org_logo_path"];
     
-    self.profilePic = [aData objectForKey:@"profilepic"];
-    self.oldProfilePic = [aData objectForKey:@"oldProfilepic"];
-    
     self.title = [[aData objectForKey:@"title"] objectForKey:@"title"];
-    
-    
-    
-//    if (_oldJobTitle.length <= 0)   // stupid!!! use different key for the same variable, the only diff is Capitalize or not
-//    {
-//        _oldJobTitle = [[aData objectForKey:@"oldJobtitle"] objectForKey:@"title"];
-//    }
-    
     self.theNewJobTitle = [[aData objectForKey:@"newjobtitle"] objectForKey:@"title"];
 
     self.address = [[aData objectForKey:@"address"] objectForKey:@"address"];
-    self.oldAddress = [[aData objectForKey:@"oldAddress"] objectForKey:@"address"];
     
     self.addressMap = [aData objectForKey:@"address_map"];
     
-    _oldRevenue = [aData objectForKey:@"oldRevenue"];
-    _theNewRevenue = [aData objectForKey:@"newRevenue"];
+    
     _percentage = [aData objectForKey:@"percentage"];
     _period = [aData objectForKey:@"period"];
     _revenueChart = [aData objectForKey:@"revenue_chart"];
@@ -224,11 +224,22 @@
     _funding = [aData objectForKey:@"funding"];
     _round = [aData objectForKey:@"round"];
 
-    _oldEmployNum = [aData objectForKey:@"oldEmployNum"];
-    _employNum = [aData objectForKey:@"employNum"];
+    
     _direction = [aData objectForKey:@"direction"];
     
+    if ([self _isOldData])
+    {
+        [self _parseOldProtocolWithData:aData];
+    }
+    else
+    {
+        [self _parseNewProtocolWithData:aData];
+    }
     
+}
+
+-(void)_parseOldProtocolWithData:(NSDictionary *)aData
+{
     //
     [self.oldCompany parseWithData:[aData objectForKey:@"oldCompany"]];
     self.jobTitle = [[aData objectForKey:@"jobtitle"] objectForKey:@"title"];
@@ -237,9 +248,16 @@
     self.newTimestamp = [[[aData objectForKey:@"newTimestamp"] objectForKey:@"timestamp"] longLongValue];
     self.oldTimestamp = [[[aData objectForKey:@"oldTimestamp"] objectForKey:@"timestamp"] longLongValue];
     self.fundingTimestamp = [[[aData objectForKey:@"oldTimestamp"] objectForKey:@"timestamp"] longLongValue];
+    
+    _oldRevenue = [aData objectForKey:@"oldRevenue"];
+    _theNewRevenue = [aData objectForKey:@"newRevenue"];
+    
+    _oldEmployNum = [aData objectForKey:@"oldEmployNum"];
+    _employNum = [aData objectForKey:@"employNum"];
+    
+    self.profilePic = [aData objectForKey:@"profilepic"];
+    self.oldProfilePic = [aData objectForKey:@"oldProfilepic"];
 }
-
-
 
 -(void)_parseNewProtocolWithData:(NSDictionary *)aData
 {
@@ -253,19 +271,32 @@
     self.oldTimestamp = [[[aData objectForKey:@"old_timestamp"] objectForKey:@"timestamp"] longLongValue];
     self.fundingTimestamp = [[[aData objectForKey:@"funding_timestamp"] objectForKey:@"timestamp"] longLongValue];
     
-//    company_address;
-//    old_company_address;
-//    person_address;
-//    old_person_address;
-    
+    _addressCompany = [[aData objectForKey:@"company_address"] objectForKey:@"address"];
+    _addressCompanyOld = [[aData objectForKey:@"old_company_address"] objectForKey:@"address"];
+    _addressPerson = [[aData objectForKey:@"person_address"] objectForKey:@"address"];
+    _addressPersonOld = [[aData objectForKey:@"old_person_address"] objectForKey:@"address"];
     
 //    revenues;
-//    new_revenue;
-//    old_revenue;
-//    employ_num;
-//    old_employ_num;
-//    profile_pic;
-//    old_profile_pic;
+    NSArray *revenues = [aData objectForKey:@"revenues"];
+    [_revenues removeAllObjects];
+    if (revenues.count)
+    {
+        for (id revenuePlotDic in revenues)
+        {
+            GGHappeningRevenuePlot *revenuePlot = [GGHappeningRevenuePlot model];
+            [revenuePlot parseWithData:aData];
+            [_revenues addObjectIfNotNil:revenuePlot];
+        }
+    }
+
+    _oldRevenue = [aData objectForKey:@"old_revenue"];
+    _theNewRevenue = [aData objectForKey:@"new_revenue"];
+
+    _oldEmployNum = [aData objectForKey:@"old_employ_num"];
+    _employNum = [aData objectForKey:@"employ_num"];
+    
+    self.profilePic = [aData objectForKey:@"profile_pic"];
+    self.oldProfilePic = [aData objectForKey:@"old_profile_pic"];
 }
 
 -(BOOL)_isOldData
@@ -389,7 +420,7 @@
         {
             //<company name> has a new address: <address>
 //#define EVENT_MSG_COM_ADDRESS_CHANGED @"%@ has a new address: %@"
-            return [NSString stringWithFormat:EVENT_MSG_COM_ADDRESS_CHANGED_OLD, self.company.name, self.address];
+            return [NSString stringWithFormat:EVENT_MSG_COM_ADDRESS_CHANGED_OLD, self.company.name, self.addressCompany];
         }
             break;
             
@@ -451,8 +482,8 @@
                     , self.person.name
                     , self.title
                     , self.company.name
-                    , self.oldAddress
-                    , self.address];
+                    , self.addressPersonOld
+                    , self.addressPerson];
         }
             break;
             

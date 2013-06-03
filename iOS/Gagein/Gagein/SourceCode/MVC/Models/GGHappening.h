@@ -122,8 +122,13 @@ typedef enum {
 @property (copy) NSString                       *direction;
 
 @property (copy) NSString                       *address;
+@property (copy) NSString                       *addressCompany;
+@property (copy) NSString                       *addressCompanyOld;
+@property (copy) NSString                       *addressPerson;
+@property (copy) NSString                       *addressPersonOld;
+
 @property (copy) NSString                       *addressMap;
-@property (copy) NSString                       *oldAddress;
+//@property (copy) NSString                       *oldAddress;
 
 @property (copy) NSString                       *photoPath;
 @property (copy) NSString                       *profilePic;
