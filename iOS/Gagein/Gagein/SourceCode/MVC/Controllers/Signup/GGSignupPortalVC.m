@@ -83,6 +83,20 @@
     [self unobserveNotification:GG_NOTIFY_GET_STARTED];
 }
 
+-(void)doLayoutUIForIPad
+{
+    float offsetY = CGRectGetMaxY(self.ivGageinLogo.frame) + 5;
+    _lblConnect.frame = CGRectMake((self.view.frame.size.width - _lblConnect.frame.size.width) / 2
+                                   , offsetY, _lblConnect.frame.size.width, _lblConnect.frame.size.height);
+    
+    //
+    offsetY = CGRectGetMaxY(_lblConnect.frame) + 5;
+    UIImage *salesforceImg = [UIImage imageNamed:@"pad_btnSalesforce"];
+    [_btnSalesforce setImage:salesforceImg forState:UIControlStateNormal];
+    _btnSalesforce.frame = CGRectMake((self.view.frame.size.width - salesforceImg.size.width) / 2
+                                      , offsetY, salesforceImg.size.width, salesforceImg.size.height);
+}
+
 #pragma mark - handle notification
 - (void)handleNotification:(NSNotification *)notification
 {

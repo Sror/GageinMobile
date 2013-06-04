@@ -13,9 +13,10 @@
 
 @interface GGBaseViewController : UIViewController
 
-@property (strong) UILabel          *customNaviTitle;
-@property (copy) NSString           *naviTitle;
-@property (strong) UIButton         *naviButtonLeft;
+@property (strong)  UILabel                     *customNaviTitle;
+@property (copy)    NSString                    *naviTitle;
+@property (strong)  UIButton                    *naviButtonLeft;
+@property (strong)  UIImageView                 *ivGageinLogo;
 
 +(id)createInstance;
 

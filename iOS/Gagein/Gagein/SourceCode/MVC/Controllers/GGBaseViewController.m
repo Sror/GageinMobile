@@ -36,6 +36,7 @@
     GGFacebookOAuther          *_facebookOAuther;
     
     NSMutableSet              *_apiOperations;
+    
 }
 
 -(void)registerOperation:(id)anOperation
@@ -285,13 +286,15 @@
     if (aView)
     {
         UIImage *image = (ISIPADDEVICE) ? [UIImage imageNamed:@"pad_gageinLogo"] : [UIImage imageNamed:@"gageinLogo"];
-        UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+        
+        [_ivGageinLogo removeFromSuperview];
+        _ivGageinLogo = [[UIImageView alloc] initWithImage:image];
 
         CGRect rcScreen = [UIScreen mainScreen].applicationFrame;
-        iv.frame = CGRectMake((rcScreen.size.width - image.size.width) / 2
+        _ivGageinLogo.frame = CGRectMake((rcScreen.size.width - image.size.width) / 2
                               , (ISIPADDEVICE ? 100 : 20)
                               , image.size.width, image.size.height);
-        [aView addSubview:iv];
+        [aView addSubview:_ivGageinLogo];
     }
 }
 
