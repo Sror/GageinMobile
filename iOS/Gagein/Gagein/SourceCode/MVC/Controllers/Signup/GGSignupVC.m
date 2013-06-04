@@ -299,6 +299,11 @@
                                          , self.viewEnterLogin.frame.origin.y
                                          , self.viewEnterLogin.frame.size.width
                                          , self.viewEnterLogin.frame.size.height);
+    //
+    self.lblSuccessTip.frame = CGRectMake((screenRc.size.width - self.lblSuccessTip.frame.size.width) / 2
+                                           , self.lblSuccessTip.frame.origin.y
+                                           , self.lblSuccessTip.frame.size.width
+                                           , self.lblSuccessTip.frame.size.height);
 }
 
 @end
