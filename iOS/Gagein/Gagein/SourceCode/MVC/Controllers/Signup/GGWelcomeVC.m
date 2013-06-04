@@ -52,6 +52,12 @@
     [self.pageControl addTarget:self action:@selector(pageAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+-(CGRect)_viewBoundsWithOrient:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    CGRect windowRc = [UIScreen mainScreen].bounds;
+    return [GGUtils frameWithOrientation:toInterfaceOrientation rect:windowRc];
+}
+
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
@@ -65,11 +71,26 @@
                                   , logoSize.width
                                   , logoSize.height);
     
-    
+    CGRect orientRc = [self _viewBoundsWithOrient:toInterfaceOrientation];
+    self.scrollView.autoresizingMask = UIViewAutoresizingNone;
+    self.scrollView.frame = orientRc;
+    //self.scrollView.backgroundColor = GGSharedColor.darkRed;
+    int i = 0;
     for (GGWelcomePageView *welcomePage in _welcomePages)
     {
+        [welcomePage removeFromSuperview];
         [welcomePage doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+        //CGRect welcomeRc = welcomePage.frame;
+        welcomePage.frame = CGRectMake(i * orientRc.size.width
+                                       , 0
+                                       , orientRc.size.width
+                                       , orientRc.size.height);
+        [self.scrollView addSubview:welcomePage];
+        i++;
     }
+    
+    CGSize contentSize = CGSizeMake(orientRc.size.width * _welcomePages.count, orientRc.size.height);
+    self.scrollView.contentSize = contentSize;
     
 }
 
@@ -83,7 +104,11 @@
 #pragma mark - UIScrollViewDelegate
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    self.pageControl.currentPage = scrollView.contentOffset.x / 320;
+    CGRect orientRc = [self _viewBoundsWithOrient:[UIApplication sharedApplication].statusBarOrientation];
+    float offsetX = scrollView.contentOffset.x;
+    float pageWidth = orientRc.size.width;
+    NSUInteger  currentPage = offsetX / pageWidth;
+    self.pageControl.currentPage = currentPage;
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     //self.pageControl.currentPage = scrollView.contentOffset.x / 320;
@@ -93,7 +118,20 @@
 -(void)pageAction:(id)sender{
     int currentPage = self.pageControl.currentPage;
     //self.scrollView.contentOffset = CGPointMake(currentPage * 320, 0);
-    [self.scrollView setContentOffset:CGPointMake(currentPage * 320, 0) animated:YES];
+    CGRect orientRc = [self _viewBoundsWithOrient:[UIApplication sharedApplication].statusBarOrientation];
+    [self.scrollView setContentOffset:CGPointMake(currentPage * orientRc.size.width, 0) animated:YES];
 }
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    
+    if (ISIPADDEVICE)
+    {
+        CGRect orientRc = [self _viewBoundsWithOrient:toInterfaceOrientation];
+        [self.scrollView setContentOffset:CGPointMake(self.pageControl.currentPage * orientRc.size.width, 0) animated:NO];
+    }
+}
+
 
 @end

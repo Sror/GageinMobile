@@ -229,7 +229,12 @@
 
 - (BOOL)shouldAutorotate {
     
-    return YES;
+    if (ISIPADDEVICE)
+    {
+        return YES;
+    }
+    
+    return NO;
 }
 
 -(NSUInteger)supportedInterfaceOrientations{
@@ -509,12 +514,5 @@
     DLog(@"will orientation: %d", toInterfaceOrientation);
     [self layoutUIForIPadIfNeededWithOrientation:toInterfaceOrientation];
 }
-
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    DLog(@"did orientation: %d", fromInterfaceOrientation);
-}
-
-
 
 @end

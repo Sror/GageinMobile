@@ -109,7 +109,7 @@
     CGRect getStartedRc = _getStartedBtn.frame;
     getStartedRc.size.width = 409.f;
     getStartedRc.size.height = 44.f;
-    _getStartedBtn.frame =  CGRectMake((self.frame.size.width - getStartedRc.size.width) / 2
+    _getStartedBtn.frame =  CGRectMake((thisRc.size.width - getStartedRc.size.width) / 2
                                        , offsetY
                                        , getStartedRc.size.width
                                        , getStartedRc.size.height);
