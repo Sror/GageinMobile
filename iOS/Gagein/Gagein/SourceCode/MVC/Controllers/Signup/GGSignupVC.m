@@ -264,13 +264,13 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField == self.tfFirstName) {
-        [self.scrolView setContentOffset:CGPointMake(0, 40) animated:YES];
+        [self.scrolView setContentOffset:(ISIPADDEVICE ? CGPointMake(0, 80): CGPointMake(0, 40)) animated:YES];
     }else if (textField == self.tfLastName) {
-        [self.scrolView setContentOffset:CGPointMake(0, 80) animated:YES];
+        [self.scrolView setContentOffset:(ISIPADDEVICE ? CGPointMake(0, 120): CGPointMake(0, 80)) animated:YES];
     }else if (textField == self.tfEmail) {
-        [self.scrolView setContentOffset:CGPointMake(0, 120) animated:YES];
+        [self.scrolView setContentOffset:(ISIPADDEVICE ? CGPointMake(0, 160): CGPointMake(0, 120)) animated:YES];
     }else if (textField == self.tfPassword) {
-        [self.scrolView setContentOffset:CGPointMake(0, 160) animated:YES];
+        [self.scrolView setContentOffset:(ISIPADDEVICE ? CGPointMake(0, 200): CGPointMake(0, 160)) animated:YES];
     }
 }
 
