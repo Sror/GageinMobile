@@ -72,5 +72,8 @@
 
 #pragma mark - lay out for ipad
 //-(void)layoutUIForIPad;     // do not overwrite
--(void)doLayoutUIForIPad;   // for overwriting
+//-(void)doLayoutUIForIPad;   // for overwriting
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation; // for overwriting
+
+-(CGRect)frameWithOrientation:(UIInterfaceOrientation)anOrientation;
 @end

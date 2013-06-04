@@ -180,7 +180,7 @@
         [self viewWillAppearNotFirstTimeAction];
     }
     
-    [self layoutUIForIPad];
+    [self layoutUIForIPadIfNeeded];
 }
 
 -(void)viewWillAppearNotFirstTimeAction
@@ -473,18 +473,60 @@
 }
 
 #pragma mark - lay out for ipad
--(void)layoutUIForIPad
+-(void)layoutUIForIPadIfNeeded
+{
+    [self layoutUIForIPadIfNeededWithOrientation:[UIApplication sharedApplication].statusBarOrientation];
+}
+
+-(void)layoutUIForIPadIfNeededWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     // do not overwrite
     if (ISIPADDEVICE)
     {
-        [self doLayoutUIForIPad];
+        [self doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     }
 }
 
--(void)doLayoutUIForIPad
+//-(void)doLayoutUIForIPad
+//{
+//    // for subclass to overwrite
+//}
+
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     // for subclass to overwrite
+}
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    DLog(@"will orientation: %d", toInterfaceOrientation);
+    [self layoutUIForIPadIfNeededWithOrientation:toInterfaceOrientation];
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    DLog(@"did orientation: %d", fromInterfaceOrientation);
+   
+}
+
+-(CGRect)frameWithOrientation:(UIInterfaceOrientation)anOrientation
+{
+    CGRect orientationFrame = self.view.frame;
+    float max = MAX(orientationFrame.size.width, orientationFrame.size.height);
+    float min = MIN(orientationFrame.size.width, orientationFrame.size.height);
+    
+    if (anOrientation == UIInterfaceOrientationPortrait || anOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        orientationFrame.size.width = min;
+        orientationFrame.size.height = max;
+    }
+    else
+    {
+        orientationFrame.size.width = max;
+        orientationFrame.size.height = min;
+    }
+    
+    return orientationFrame;
 }
 
 @end

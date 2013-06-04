@@ -76,7 +76,7 @@
 }
 
 
--(void)doLayoutUIForIPad
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     //
     _ivPage1.frame = CGRectMake((self.frame.size.width - _ivPage1.frame.size.width) / 2

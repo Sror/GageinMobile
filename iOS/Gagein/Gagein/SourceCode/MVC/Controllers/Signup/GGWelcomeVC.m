@@ -52,7 +52,7 @@
     [self.pageControl addTarget:self action:@selector(pageAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
--(void)doLayoutUIForIPad
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     //pad_gageinLogo
     float offsetY = 100.f;
@@ -67,7 +67,7 @@
     
     for (GGWelcomePageView *welcomePage in _welcomePages)
     {
-        [welcomePage doLayoutUIForIPad];
+        [welcomePage doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     }
     
 }

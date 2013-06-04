@@ -25,5 +25,5 @@
 
 -(IBAction)getStartedAction:(id)sender;
 
--(void)doLayoutUIForIPad;
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation;
 @end
