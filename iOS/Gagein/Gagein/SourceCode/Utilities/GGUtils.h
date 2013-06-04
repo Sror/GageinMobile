@@ -58,5 +58,6 @@
 + (NSString *) appVersionBuild;
 
 +(CGRect)frameWithOrientation:(UIInterfaceOrientation)anOrientation rect:(CGRect)aRect;
++(CAAnimation *)animationTransactionPushed:(BOOL)aPushed;
 
 @end

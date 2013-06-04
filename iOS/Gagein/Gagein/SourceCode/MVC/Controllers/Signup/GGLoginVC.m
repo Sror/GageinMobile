@@ -81,7 +81,7 @@
 #pragma mark - overriding
 -(void)naviBackAction:(id)aSender
 {
-    [self.view.window.layer addAnimation:[GGAnimation animationPushFromLeft] forKey:nil];
+    [self.view.window.layer addAnimation:[GGUtils animationTransactionPushed:NO] forKey:nil];
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 

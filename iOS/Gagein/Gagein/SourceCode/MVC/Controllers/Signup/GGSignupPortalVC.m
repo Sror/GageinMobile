@@ -178,7 +178,7 @@
     }
     else if ([notiName isEqualToString:GG_NOTIFY_GET_STARTED])
     {
-        [self.navigationController.view.layer addAnimation:[GGAnimation animationPushFromRight] forKey:nil];
+        [self.navigationController.view.layer addAnimation:[GGUtils animationTransactionPushed:YES] forKey:nil];
         [self.navigationController popViewControllerAnimated:NO];
     }
     else if ([notiName isEqualToString:OA_NOTIFY_SALESFORCE_AUTH_OK])   // salesforce ok
@@ -250,12 +250,14 @@
     }
 }
 
+
+
 #pragma mark - actions
 -(IBAction)learnMoreAction:(id)sender
 {
     GGWelcomeVC *vc = [[GGWelcomeVC alloc] init];
     
-    [self.navigationController.view.layer addAnimation:[GGAnimation animationPushFromRight] forKey:nil];
+    [self.navigationController.view.layer addAnimation:[GGUtils animationTransactionPushed:YES] forKey:nil];
     [self.navigationController pushViewController:vc animated:NO];
 }
 
@@ -264,7 +266,7 @@
     GGLoginVC *vc = [GGLoginVC createInstance];
     
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    [self.view.window.layer addAnimation:[GGAnimation animationPushFromRight] forKey:nil];
+    [self.view.window.layer addAnimation:[GGUtils animationTransactionPushed:YES] forKey:nil];
     [self presentViewController:nc animated:NO completion:nil];
 }
 
@@ -279,7 +281,7 @@
     vc.userInfo = aUserInfo;
     
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    [self.view.window.layer addAnimation:[GGAnimation animationPushFromRight] forKey:nil];
+    [self.view.window.layer addAnimation:[GGUtils animationTransactionPushed:YES] forKey:nil];
     [self presentViewController:nc animated:NO completion:nil];
 }
 

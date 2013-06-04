@@ -423,4 +423,40 @@
     return orientationFrame;
 }
 
++(CAAnimation *)animationTransactionPushed:(BOOL)aPushed
+{
+    UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
+    switch (orient)
+    {
+        case UIInterfaceOrientationPortrait:
+        {
+            return aPushed ? [GGAnimation animationPushFromRight] : [GGAnimation animationPushFromLeft];
+        }
+            break;
+            
+        case UIInterfaceOrientationPortraitUpsideDown:
+        {
+            return aPushed ? [GGAnimation animationPushFromLeft] : [GGAnimation animationPushFromRight];
+        }
+            break;
+            
+        case UIInterfaceOrientationLandscapeLeft:
+        {
+            return aPushed ? [GGAnimation animationPushFromBottom] : [GGAnimation animationPushFromTop];
+        }
+            break;
+            
+        case UIInterfaceOrientationLandscapeRight:
+        {
+            return aPushed ? [GGAnimation animationPushFromTop] : [GGAnimation animationPushFromBottom];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    return nil;
+}
+
 @end
