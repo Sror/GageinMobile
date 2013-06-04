@@ -185,6 +185,8 @@
 		EA3CB5DF175D6DE000285986 /* pad_btnSalesforce@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA3CB5DA175D6DE000285986 /* pad_btnSalesforce@2x.png */; };
 		EA3CB5E0175D6DE000285986 /* pad_btnTwitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA3CB5DB175D6DE000285986 /* pad_btnTwitter@2x.png */; };
 		EA3CB5E1175D6DE000285986 /* pad_btnYammer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA3CB5DC175D6DE000285986 /* pad_btnYammer@2x.png */; };
+		EA3CB5E3175D71C700285986 /* pad_btnSignupFree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA3CB5E2175D71C700285986 /* pad_btnSignupFree@2x.png */; };
+		EA3CB5E5175D71E000285986 /* pad_btnLogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA3CB5E4175D71DF00285986 /* pad_btnLogin@2x.png */; };
 		EA4022311728F1A000E5D179 /* GGHappeningDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4022301728F1A000E5D179 /* GGHappeningDetailCell.m */; };
 		EA4022341728F1B800E5D179 /* GGHappeningDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4022331728F1B800E5D179 /* GGHappeningDetailCell.xib */; };
 		EA4239F7173501D5002D718A /* tableSelectedDot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA4239F1173501D5002D718A /* tableSelectedDot@2x.png */; };
@@ -744,6 +746,8 @@
 		EA3CB5DA175D6DE000285986 /* pad_btnSalesforce@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pad_btnSalesforce@2x.png"; sourceTree = "<group>"; };
 		EA3CB5DB175D6DE000285986 /* pad_btnTwitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pad_btnTwitter@2x.png"; sourceTree = "<group>"; };
 		EA3CB5DC175D6DE000285986 /* pad_btnYammer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pad_btnYammer@2x.png"; sourceTree = "<group>"; };
+		EA3CB5E2175D71C700285986 /* pad_btnSignupFree@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pad_btnSignupFree@2x.png"; sourceTree = "<group>"; };
+		EA3CB5E4175D71DF00285986 /* pad_btnLogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pad_btnLogin@2x.png"; sourceTree = "<group>"; };
 		EA40222F1728F1A000E5D179 /* GGHappeningDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGHappeningDetailCell.h; sourceTree = "<group>"; };
 		EA4022301728F1A000E5D179 /* GGHappeningDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGHappeningDetailCell.m; sourceTree = "<group>"; };
 		EA4022331728F1B800E5D179 /* GGHappeningDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGHappeningDetailCell.xib; sourceTree = "<group>"; };
@@ -1646,6 +1650,8 @@
 		EA3CB5D5175D5B2600285986 /* 2x */ = {
 			isa = PBXGroup;
 			children = (
+				EA3CB5E4175D71DF00285986 /* pad_btnLogin@2x.png */,
+				EA3CB5E2175D71C700285986 /* pad_btnSignupFree@2x.png */,
 				EA3CB5D8175D6DE000285986 /* pad_btnFacebook@2x.png */,
 				EA3CB5D9175D6DE000285986 /* pad_btnLinkedIn@2x.png */,
 				EA3CB5DA175D6DE000285986 /* pad_btnSalesforce@2x.png */,
@@ -3030,6 +3036,8 @@
 				EA3CB5DF175D6DE000285986 /* pad_btnSalesforce@2x.png in Resources */,
 				EA3CB5E0175D6DE000285986 /* pad_btnTwitter@2x.png in Resources */,
 				EA3CB5E1175D6DE000285986 /* pad_btnYammer@2x.png in Resources */,
+				EA3CB5E3175D71C700285986 /* pad_btnSignupFree@2x.png in Resources */,
+				EA3CB5E5175D71E000285986 /* pad_btnLogin@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -85,16 +85,63 @@
 
 -(void)doLayoutUIForIPad
 {
-    float offsetY = CGRectGetMaxY(self.ivGageinLogo.frame) + 5;
+    float offsetY = CGRectGetMaxY(self.ivGageinLogo.frame) + 50;
     _lblConnect.frame = CGRectMake((self.view.frame.size.width - _lblConnect.frame.size.width) / 2
                                    , offsetY, _lblConnect.frame.size.width, _lblConnect.frame.size.height);
     
     //
-    offsetY = CGRectGetMaxY(_lblConnect.frame) + 5;
+    offsetY = CGRectGetMaxY(_lblConnect.frame) + 10;
     UIImage *salesforceImg = [UIImage imageNamed:@"pad_btnSalesforce"];
     [_btnSalesforce setImage:salesforceImg forState:UIControlStateNormal];
     _btnSalesforce.frame = CGRectMake((self.view.frame.size.width - salesforceImg.size.width) / 2
                                       , offsetY, salesforceImg.size.width, salesforceImg.size.height);
+    
+    //
+    offsetY = CGRectGetMaxY(_btnSalesforce.frame) + 10;
+    UIImage *linkedInImg = [UIImage imageNamed:@"pad_btnLinkedIn"];
+    [_btnLinkedIn setImage:linkedInImg forState:UIControlStateNormal];
+    _btnLinkedIn.frame = CGRectMake((self.view.frame.size.width - linkedInImg.size.width) / 2
+                                      , offsetY, linkedInImg.size.width, linkedInImg.size.height);
+    
+    //
+    offsetY = CGRectGetMaxY(_btnLinkedIn.frame) + 10;
+    UIImage *facebookImg = [UIImage imageNamed:@"pad_btnFacebook"];
+    [_btnFacebook setImage:facebookImg forState:UIControlStateNormal];
+    _btnFacebook.frame = CGRectMake((self.view.frame.size.width - facebookImg.size.width) / 2
+                                    , offsetY, facebookImg.size.width, facebookImg.size.height);
+    
+    //
+    offsetY = CGRectGetMaxY(_btnFacebook.frame) + 10;
+    UIImage *twitterImg = [UIImage imageNamed:@"pad_btnTwitter"];
+    [_btnTwitter setImage:twitterImg forState:UIControlStateNormal];
+    _btnTwitter.frame = CGRectMake((self.view.frame.size.width - twitterImg.size.width) / 2
+                                    , offsetY, twitterImg.size.width, twitterImg.size.height);
+    
+    //
+    offsetY = CGRectGetMaxY(_btnTwitter.frame) + 10;
+    UIImage *signupFreeImg = [UIImage imageNamed:@"pad_btnSignupFree"];
+    [_btnSignupFree setImage:signupFreeImg forState:UIControlStateNormal];
+    _btnSignupFree.frame = CGRectMake((self.view.frame.size.width - signupFreeImg.size.width) / 2
+                                   , offsetY, signupFreeImg.size.width, signupFreeImg.size.height);
+    
+    //
+    offsetY = CGRectGetMaxY(_btnSignupFree.frame) + 10;
+    
+    _lblAlreadyMember.frame = CGRectMake((self.view.frame.size.width - _lblAlreadyMember.frame.size.width) / 2
+                                 , offsetY, _lblAlreadyMember.frame.size.width, _lblAlreadyMember.frame.size.height);
+    
+    //
+    offsetY = CGRectGetMaxY(_lblAlreadyMember.frame) + 10;
+    UIImage *loginImg = [UIImage imageNamed:@"pad_btnLogin"];
+    [_btnLogin setImage:loginImg forState:UIControlStateNormal];
+    _btnLogin.frame = CGRectMake((self.view.frame.size.width - loginImg.size.width) / 2
+                                      , offsetY, loginImg.size.width, loginImg.size.height);
+    
+    //
+    offsetY = CGRectGetMaxY(_btnLogin.frame) + 20;
+    
+    _btnLearnMore.frame = CGRectMake((self.view.frame.size.width - _btnLearnMore.frame.size.width) / 2
+                                         , offsetY, _btnLearnMore.frame.size.width, _btnLearnMore.frame.size.height);
 }
 
 #pragma mark - handle notification
