@@ -218,11 +218,18 @@ static NSString * const kHttpPostContentType                    = @"application/
     }
 }
 
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    CGRect orientRc = [GGUtils frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
+    _view.frame = orientRc;
+}
+
 - (void)beginUserAgentFlow {
     
     if (nil == _view) {
         // lazily create web view if needed
-        _view = [[UIWebView  alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        CGRect orientRc = [GGUtils frameWithOrientation:[UIApplication sharedApplication].statusBarOrientation rect:[UIScreen mainScreen].bounds];
+        _view = [[UIWebView  alloc] initWithFrame:orientRc];
     }
     _view.delegate = self;
 

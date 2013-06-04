@@ -110,8 +110,11 @@
 //    }];
 }
 
+
+static BOOL s_isCustomed = NO;
 -(void)makeNaviBarCustomed:(BOOL)aCustomed
 {
+    s_isCustomed = aCustomed;
     UIImage *neededNaviBgImg = nil;
     if (aCustomed)
     {
@@ -123,6 +126,20 @@
     
     [[UINavigationBar appearance] setBackgroundImage:neededNaviBgImg forBarMetrics:UIBarMetricsDefault];
     //[[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
+}
+
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    if (s_isCustomed)
+    {
+        UIImage *neededNaviBgImg = nil;
+        UIImage *naviBgImg = [UIImage imageNamed:@"bgNavibar"];
+        CGSize navBgSize = naviBgImg.size;
+        CGRect orientRc = [GGUtils frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
+        CGSize neededSize = CGSizeMake(orientRc.size.width, navBgSize.height);
+        neededNaviBgImg = [GGUtils imageFor:naviBgImg size:neededSize];
+        [[UINavigationBar appearance] setBackgroundImage:neededNaviBgImg forBarMetrics:UIBarMetricsDefault];
+    }
 }
 
 -(GGSlideSettingView *)slideSettingView

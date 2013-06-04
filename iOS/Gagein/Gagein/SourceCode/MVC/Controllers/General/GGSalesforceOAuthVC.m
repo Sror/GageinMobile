@@ -59,35 +59,6 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
 @implementation GGSalesforceOAuthVC
 
 
-//public static class SALESFORCE {
-
-//    
-//    private static SITE_KEYS qacnKeys = new SITE_KEYS(
-//                                                      "GageInApp.qacn",
-//                                                      "http://gageincn.dyndns.org:3031",
-//                                                      "",
-//                                                      "3MVG9QDx8IX8nP5Rg7yD2yhM0mTep67cL1i5rgZf680Zc30kzy9j6G_vyEvH9EZaUcsp3uMGMK_58ELiarVjc",
-//                                                      "1169752873003592920"
-//                                                      );
-//    
-//    
-//    private static SITE_KEYS stagingKeys = new SITE_KEYS(
-//                                                         "GageInApp.staging",
-//                                                         "http://gageinstaging.dyndns.org",
-//                                                         "",
-//                                                         "3MVG9QDx8IX8nP5Rg7yD2yhM0mXzbRfDUkFTsEmylcNYdpLf3MpiegNCjNhLn4WoQ36aNg5a5muZtOtiBsGcs",
-//                                                         "5228913310560653116"
-//                                                         );
-//    
-//    private static SITE_KEYS demoKeys = new SITE_KEYS(
-//                                                      "GageInApp.demo",
-//                                                      "http://gageindemo.dyndns.org/",
-//                                                      "",
-//                                                      "3MVG9QDx8IX8nP5Rg7yD2yhM0mRvh1db.tHJhAvmBc4Tsze3dupGHqlChVxEiCFPLLV8qYtL.oX8Um8sZvg4p",
-//                                                      "351992569387772761"
-//                                                      );
-
-
 +(GGSalesForceParam *)_param
 {
     GGSalesForceParam * _param = [[GGSalesForceParam alloc] init];
@@ -280,6 +251,12 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
     self.authInfo = nil;
 }
 
-
+#pragma mark - 
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    [self.oauthCoordinator doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+}
 
 @end

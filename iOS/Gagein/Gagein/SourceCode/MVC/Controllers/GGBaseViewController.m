@@ -19,6 +19,7 @@
 #import "GGFollowPeopleVC.h"
 #import "GGSelectAgentsVC.h"
 #import "GGSelectFuncAreasVC.h"
+#import "GGAppDelegate.h"
 
 #define MAX_NAVI_TITLE_LENGTH   20
 
@@ -112,8 +113,9 @@
 
 -(void)_customizeNaviTitleView
 {
-    //
-    _customNaviTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, self.view.bounds.size.width, 44)];
+    CGRect orientRc = [GGUtils frameWithOrientation:[UIApplication sharedApplication].statusBarOrientation rect:[UIScreen mainScreen].bounds];
+    
+    _customNaviTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, orientRc.size.width, 44)];
 	_customNaviTitle.backgroundColor = [UIColor clearColor];
 	_customNaviTitle.font = [UIFont boldSystemFontOfSize:16.0];
 	_customNaviTitle.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
@@ -121,7 +123,7 @@
 	_customNaviTitle.textColor = GGSharedColor.white;
     
     //
-    CGRect titleRc = CGRectMake(0, 0, self.view.bounds.size.width, 44);
+    CGRect titleRc = CGRectMake(0, 0, orientRc.size.width, 44);
     UIView *titleView = [[UIView alloc] initWithFrame:titleRc];
     [titleView addSubview:_customNaviTitle];
     titleView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
@@ -507,6 +509,11 @@
                                      , 100
                                      , _ivGageinLogo.image.size.width
                                      , _ivGageinLogo.image.size.height);
+    
+    CGRect windowRc = [GGUtils frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
+    _customNaviTitle.frame = CGRectMake(0, 5, windowRc.size.width, 44);
+    
+    [GGSharedDelegate doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

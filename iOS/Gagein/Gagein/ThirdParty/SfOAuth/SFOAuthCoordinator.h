@@ -265,4 +265,7 @@ enum {
  */
 - (void)revokeAuthentication;
 
+
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation;
+
 @end

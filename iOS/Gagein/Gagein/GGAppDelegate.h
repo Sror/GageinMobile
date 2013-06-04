@@ -32,6 +32,8 @@
 
 -(void)checkForUpgrade;
 
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation;
+
 @end
 
 #define GGSharedDelegate  ((GGAppDelegate*)[UIApplication sharedApplication].delegate)
