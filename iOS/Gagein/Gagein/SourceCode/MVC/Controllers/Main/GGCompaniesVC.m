@@ -1352,39 +1352,35 @@
     [weakSelf.happeningsTV.infiniteScrollingView stopAnimating];
 }
 
+#pragma mark -
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    //CGRect orientRc = [GGUtils frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
+    self.navigationItem.leftBarButtonItem = nil;
+    static BOOL isMenuShowingBeforeChangeToLandscape = NO;
+    
+    if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
+    {
+        [self _installMenuButton];
+        
+        if (!isMenuShowingBeforeChangeToLandscape)
+        {
+            [_slideSettingView hideSlide];
+        }
+    }
+    else
+    {
+        isMenuShowingBeforeChangeToLandscape = GGSharedDelegate.rootVC.isRevealed;
+        
+        if (!isMenuShowingBeforeChangeToLandscape)
+        {
+            [_slideSettingView showSlide];
+            [self _callApiGetMenu];
+        }
+    }
+}
 
-
-
-
-//- (void)insertRowAtTop {
-//    __weak GGCompaniesVC *weakSelf = self;
-//    
-//    int64_t delayInSeconds = 2.0;
-//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-//        [weakSelf.updatesTV beginUpdates];
-//        [weakSelf.dataSource insertObject:[NSDate date] atIndex:0];
-//        [weakSelf.updatesTV insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
-//        [weakSelf.updatesTV endUpdates];
-//        
-//        [weakSelf.updatesTV.pullToRefreshView stopAnimating];
-//    });
-//}
-//
-//
-//- (void)insertRowAtBottom {
-//    __weak GGCompaniesVC *weakSelf = self;
-//    
-//    int64_t delayInSeconds = 2.0;
-//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-//        [weakSelf.updatesTV beginUpdates];
-//        [weakSelf.dataSource addObject:[weakSelf.dataSource.lastObject dateByAddingTimeInterval:-90]];
-//        [weakSelf.updatesTV insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:weakSelf.dataSource.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
-//        [weakSelf.updatesTV endUpdates];
-//        
-//        [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
-//    });
-//}
 
 @end

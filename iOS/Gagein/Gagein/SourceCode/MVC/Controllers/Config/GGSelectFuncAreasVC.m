@@ -202,16 +202,4 @@
     [self registerOperation:op];
 }
 
-//#pragma mark -
-//-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-//{
-//    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
-//    
-//    CGRect orientRc = [GGUtils frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
-////    _btn.frame = CGRectMake((orientRc.size.width - _btnAddCustomAgent.frame.size.width) / 2
-////                                          , _btnAddCustomAgent.frame.origin.y
-////                                          , _btnAddCustomAgent.frame.size.width
-////                                          , _btnAddCustomAgent.frame.size.height);
-//}
-
 @end
