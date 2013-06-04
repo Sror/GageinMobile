@@ -40,7 +40,7 @@
 					<object class="IBUIButton" id="408232249">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{37, 106}, {247, 32}}</string>
+						<string key="NSFrame">{{37, 115}, {247, 32}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="188763054"/>
@@ -78,7 +78,7 @@
 					<object class="IBUIButton" id="188763054">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{37, 146}, {247, 32}}</string>
+						<string key="NSFrame">{{37, 158}, {247, 32}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="67839158"/>
@@ -104,7 +104,7 @@
 					<object class="IBUIButton" id="67839158">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{37, 189}, {247, 32}}</string>
+						<string key="NSFrame">{{37, 201}, {247, 32}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="307741110"/>
@@ -130,7 +130,7 @@
 					<object class="IBUIButton" id="307741110">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{37, 232}, {247, 32}}</string>
+						<string key="NSFrame">{{37, 244}, {247, 32}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="869209516"/>
@@ -181,7 +181,7 @@
 					<object class="IBUIButton" id="237785631">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{37, 384}, {247, 32}}</string>
+						<string key="NSFrame">{{37, 357}, {247, 32}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="251079343"/>
@@ -207,7 +207,7 @@
 					<object class="IBUIButton" id="869209516">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{37, 316}, {247, 32}}</string>
+						<string key="NSFrame">{{37, 289}, {247, 32}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="420810134"/>
@@ -234,7 +234,7 @@
 					<object class="IBUIButton" id="251079343">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{100, 429}, {121, 28}}</string>
+						<string key="NSFrame">{{100, 402}, {121, 28}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="74201352"/>
@@ -295,7 +295,7 @@
 					<object class="IBUILabel" id="138584195">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{118, 77}, {84, 21}}</string>
+						<string key="NSFrame">{{118, 86}, {84, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="408232249"/>
@@ -320,7 +320,7 @@
 					<object class="IBUILabel" id="420810134">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{66, 355}, {189, 21}}</string>
+						<string key="NSFrame">{{66, 328}, {189, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="237785631"/>
@@ -677,50 +677,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">GGSignupPortalVC</string>
 					<string key="superclassName">GGBaseViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="connectFacebookAction:">id</string>
-						<string key="connectLinkedInAction:">id</string>
-						<string key="connectSalesForceAction:">id</string>
-						<string key="connectTwitterAction:">id</string>
-						<string key="connectYammerAction:">id</string>
-						<string key="learnMoreAction:">id</string>
-						<string key="loginAction:">id</string>
-						<string key="signupAction:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="connectFacebookAction:">
-							<string key="name">connectFacebookAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="connectLinkedInAction:">
-							<string key="name">connectLinkedInAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="connectSalesForceAction:">
-							<string key="name">connectSalesForceAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="connectTwitterAction:">
-							<string key="name">connectTwitterAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="connectYammerAction:">
-							<string key="name">connectYammerAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="learnMoreAction:">
-							<string key="name">learnMoreAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="loginAction:">
-							<string key="name">loginAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="signupAction:">
-							<string key="name">signupAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="btnFacebook">UIButton</string>
 						<string key="btnLearnMore">UIButton</string>
