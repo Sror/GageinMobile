@@ -25,6 +25,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblSuccessTip;
 @property (weak, nonatomic) IBOutlet UIImageView *ivSignupFieldsBg;
 
+// ipad xib
+@property (weak, nonatomic) IBOutlet UIView *viewEnterLogin;
+
+
 @end
 
 @implementation GGSignupVC
@@ -112,6 +116,7 @@
     [self setBtnJoinNow:nil];
     [self setLblSuccessTip:nil];
     [self setIvSignupFieldsBg:nil];
+    [self setViewEnterLogin:nil];
     [super viewDidUnload];
 }
 
@@ -289,6 +294,11 @@
                                      , 100
                                      , self.ivGageinLogo.image.size.width
                                      , self.ivGageinLogo.image.size.height);
+    
+    self.viewEnterLogin.frame = CGRectMake((screenRc.size.width - self.viewEnterLogin.frame.size.width) / 2
+                                         , self.viewEnterLogin.frame.origin.y
+                                         , self.viewEnterLogin.frame.size.width
+                                         , self.viewEnterLogin.frame.size.height);
 }
 
 @end
