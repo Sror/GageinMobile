@@ -290,6 +290,13 @@
         [_ivGageinLogo removeFromSuperview];
         _ivGageinLogo = [[UIImageView alloc] initWithImage:image];
         [aView addSubview:_ivGageinLogo];
+        
+        _ivGageinLogo.frame = CGRectMake((aView.frame.size.width - _ivGageinLogo.image.size.width) / 2
+                                         , 20
+                                         , _ivGageinLogo.image.size.width
+                                         , _ivGageinLogo.image.size.height);
+        
+        [self layoutUIForIPadIfNeeded];
     }
 }
 
@@ -489,11 +496,12 @@
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    CGRect rcScreen = [self frameWithOrientation:toInterfaceOrientation];
+    CGRect rcScreen = [GGUtils frameWithOrientation:toInterfaceOrientation rect:self.view.frame];
     
     _ivGageinLogo.frame = CGRectMake((rcScreen.size.width - _ivGageinLogo.image.size.width) / 2
-                                     , (ISIPADDEVICE ? 100 : 20)
-                                     , _ivGageinLogo.image.size.width, _ivGageinLogo.image.size.height);
+                                     , 100
+                                     , _ivGageinLogo.image.size.width
+                                     , _ivGageinLogo.image.size.height);
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -507,24 +515,6 @@
     DLog(@"did orientation: %d", fromInterfaceOrientation);
 }
 
--(CGRect)frameWithOrientation:(UIInterfaceOrientation)anOrientation
-{
-    CGRect orientationFrame = self.view.frame;
-    float max = MAX(orientationFrame.size.width, orientationFrame.size.height);
-    float min = MIN(orientationFrame.size.width, orientationFrame.size.height);
-    
-    if (anOrientation == UIInterfaceOrientationPortrait || anOrientation == UIInterfaceOrientationPortraitUpsideDown)
-    {
-        orientationFrame.size.width = min;
-        orientationFrame.size.height = max;
-    }
-    else
-    {
-        orientationFrame.size.width = max;
-        orientationFrame.size.height = min;
-    }
-    
-    return orientationFrame;
-}
+
 
 @end

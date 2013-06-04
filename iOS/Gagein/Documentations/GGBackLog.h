@@ -27,4 +27,9 @@
 #warning OPTIMISE: profile UI for 3.5 inch screen
 
 
+
+//iPad
+#warning XXX: welcome page problem while change orientation
+
+
 #endif

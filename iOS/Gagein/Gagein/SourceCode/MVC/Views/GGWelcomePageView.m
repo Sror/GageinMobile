@@ -79,26 +79,28 @@
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     //
-    _ivPage1.frame = CGRectMake((self.frame.size.width - _ivPage1.frame.size.width) / 2
-                                , (self.frame.size.height - _ivPage1.frame.size.height) / 2
+    CGRect thisRc = [GGUtils frameWithOrientation:toInterfaceOrientation rect:self.frame];
+    
+    _ivPage1.frame = CGRectMake((thisRc.size.width - _ivPage1.frame.size.width) / 2
+                                , (thisRc.size.height - _ivPage1.frame.size.height) / 2
                                 , _ivPage1.frame.size.width
                                 , _ivPage1.frame.size.height);
     
     //
-    _ivPage2.frame = CGRectMake((self.frame.size.width - _ivPage2.frame.size.width) / 2
-                                , (self.frame.size.height - _ivPage2.frame.size.height) / 2
+    _ivPage2.frame = CGRectMake((thisRc.size.width - _ivPage2.frame.size.width) / 2
+                                , (thisRc.size.height - _ivPage2.frame.size.height) / 2
                                 , _ivPage2.frame.size.width
                                 , _ivPage2.frame.size.height);
     
     //
-    _ivPage3.frame = CGRectMake((self.frame.size.width - _ivPage3.frame.size.width) / 2
-                                , (self.frame.size.height - _ivPage3.frame.size.height) / 2
+    _ivPage3.frame = CGRectMake((thisRc.size.width - _ivPage3.frame.size.width) / 2
+                                , (thisRc.size.height - _ivPage3.frame.size.height) / 2
                                 , _ivPage3.frame.size.width
                                 , _ivPage3.frame.size.height);
     
     //
-    _ivPage4.frame = CGRectMake((self.frame.size.width - _ivPage4.frame.size.width) / 2
-                                , (self.frame.size.height - _ivPage4.frame.size.height) / 2
+    _ivPage4.frame = CGRectMake((thisRc.size.width - _ivPage4.frame.size.width) / 2
+                                , (thisRc.size.height - _ivPage4.frame.size.height) / 2
                                 , _ivPage4.frame.size.width
                                 , _ivPage4.frame.size.height);
     

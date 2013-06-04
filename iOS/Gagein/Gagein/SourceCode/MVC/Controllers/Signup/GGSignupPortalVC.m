@@ -88,7 +88,7 @@
 {
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
-    CGRect thisRc = [self frameWithOrientation:toInterfaceOrientation];
+    CGRect thisRc = [GGUtils frameWithOrientation:toInterfaceOrientation rect:self.view.frame];
     
     float offsetY = CGRectGetMaxY(self.ivGageinLogo.frame) + 50;
     _lblConnect.frame = CGRectMake((thisRc.size.width - _lblConnect.frame.size.width) / 2

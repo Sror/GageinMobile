@@ -57,4 +57,6 @@
 + (NSString *) appBuild;
 + (NSString *) appVersionBuild;
 
++(CGRect)frameWithOrientation:(UIInterfaceOrientation)anOrientation rect:(CGRect)aRect;
+
 @end

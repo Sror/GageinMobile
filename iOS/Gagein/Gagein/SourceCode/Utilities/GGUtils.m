@@ -402,4 +402,25 @@
     return versionBuild;
 }
 
+#pragma mark -
++(CGRect)frameWithOrientation:(UIInterfaceOrientation)anOrientation rect:(CGRect)aRect
+{
+    CGRect orientationFrame = aRect;
+    float max = MAX(orientationFrame.size.width, orientationFrame.size.height);
+    float min = MIN(orientationFrame.size.width, orientationFrame.size.height);
+    
+    if (anOrientation == UIInterfaceOrientationPortrait || anOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        orientationFrame.size.width = min;
+        orientationFrame.size.height = max;
+    }
+    else
+    {
+        orientationFrame.size.width = max;
+        orientationFrame.size.height = min;
+    }
+    
+    return orientationFrame;
+}
+
 @end
