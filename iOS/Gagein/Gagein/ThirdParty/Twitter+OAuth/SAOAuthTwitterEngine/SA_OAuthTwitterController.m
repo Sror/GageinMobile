@@ -232,7 +232,7 @@ static NSString* const kGGTwitterLoadingBackgroundImage = @"twitter_load.png";
 	_backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
-	if (!UIInterfaceOrientationIsLandscape( self.orientation))
+	if (!UIInterfaceOrientationIsLandscape(self.orientation))
     {
         [self.view addSubview:_backgroundView];
     }
@@ -283,13 +283,17 @@ static NSString* const kGGTwitterLoadingBackgroundImage = @"twitter_load.png";
     //[GGSharedDelegate makeNaviBarCustomed:YES];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
-}
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+//    return YES;
+//}
 
 - (void) didRotateFromInterfaceOrientation: (UIInterfaceOrientation) fromInterfaceOrientation {
 	self.orientation = self.interfaceOrientation;
-	_blockerView.center = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height / 2);
+    
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    
+    CGRect orientRc = [GGUtils frameWithOrientation:self.orientation rect:self.view.bounds];
+	_blockerView.center = CGPointMake(orientRc.size.width / 2, orientRc.size.height / 2);
 //	[self performInjection];			//removed due to twitter update
 }
 

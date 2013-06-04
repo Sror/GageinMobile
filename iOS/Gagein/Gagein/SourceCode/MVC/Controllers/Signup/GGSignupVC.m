@@ -23,10 +23,21 @@
 @property (weak, nonatomic) IBOutlet UITextField *tfPassword;
 @property (weak, nonatomic) IBOutlet UIButton *btnJoinNow;
 @property (weak, nonatomic) IBOutlet UILabel *lblSuccessTip;
+@property (weak, nonatomic) IBOutlet UIImageView *ivSignupFieldsBg;
 
 @end
 
 @implementation GGSignupVC
+
++(id)createInstance
+{
+    if (ISIPADDEVICE)
+    {
+        return [[self alloc] initWithNibName:@"GGSignupVC_iPad" bundle:nil];
+    }
+    
+    return [[self alloc] initWithNibName:@"GGSignupVC" bundle:nil];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,6 +68,10 @@
     self.view.backgroundColor = GGSharedColor.bgGray;
     self.naviTitle = @"Join Gagein";
     [self installGageinLogoTo:self.scrolView];
+    
+    //bgSignupField@2x.png
+    self.ivSignupFieldsBg.image = [[UIImage imageNamed:@"bgSignupField"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+    [self.btnJoinNow setBackgroundImage:GGSharedImagePool.bgBtnOrange forState:UIControlStateNormal];
     
     if (_userInfo)
     {
@@ -96,6 +111,7 @@
     [self setTfPassword:nil];
     [self setBtnJoinNow:nil];
     [self setLblSuccessTip:nil];
+    [self setIvSignupFieldsBg:nil];
     [super viewDidUnload];
 }
 

@@ -277,7 +277,7 @@
 
 -(void)_signupWithUserInfo:(GGSnUserInfo *)aUserInfo
 {
-    GGSignupVC *vc = [[GGSignupVC alloc] init];
+    GGSignupVC *vc = [GGSignupVC createInstance];
     vc.userInfo = aUserInfo;
     
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
