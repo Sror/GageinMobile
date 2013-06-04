@@ -68,4 +68,8 @@
 -(void)enterSelectAgentsAction;
 -(void)enterSelectFunctionalAreasAction;
 
+
+#pragma mark - lay out for ipad
+//-(void)layoutUIForIPad;     // do not overwrite
+-(void)doLayoutUIForIPad;   // for overwriting
 @end

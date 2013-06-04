@@ -25,6 +25,17 @@
 
 
 @interface GGSignupPortalVC ()
+@property (weak, nonatomic) IBOutlet UILabel *lblConnect;
+@property (weak, nonatomic) IBOutlet UILabel *lblAlreadyMember;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnSalesforce;
+@property (weak, nonatomic) IBOutlet UIButton *btnLinkedIn;
+@property (weak, nonatomic) IBOutlet UIButton *btnFacebook;
+@property (weak, nonatomic) IBOutlet UIButton *btnTwitter;
+@property (weak, nonatomic) IBOutlet UIButton *btnYammer;
+@property (weak, nonatomic) IBOutlet UIButton *btnLogin;
+@property (weak, nonatomic) IBOutlet UIButton *btnSignupFree;
+@property (weak, nonatomic) IBOutlet UIButton *btnLearnMore;
 
 @end
 
@@ -57,6 +68,8 @@
     {
         [self learnMoreAction:nil];
     }
+    
+    [self installGageinLogo];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -239,4 +252,17 @@
     }
 }
 
+- (void)viewDidUnload {
+    [self setLblConnect:nil];
+    [self setLblAlreadyMember:nil];
+    [self setBtnSalesforce:nil];
+    [self setBtnLinkedIn:nil];
+    [self setBtnFacebook:nil];
+    [self setBtnTwitter:nil];
+    [self setBtnYammer:nil];
+    [self setBtnLogin:nil];
+    [self setBtnSignupFree:nil];
+    [self setBtnLearnMore:nil];
+    [super viewDidUnload];
+}
 @end

@@ -13,10 +13,17 @@
 @property (weak, nonatomic) IBOutlet UIView *page2;
 @property (weak, nonatomic) IBOutlet UIView *page3;
 @property (weak, nonatomic) IBOutlet UIView *page4;
+
+@property (weak, nonatomic) IBOutlet UIImageView *ivPage1;
+@property (weak, nonatomic) IBOutlet UIImageView *ivPage2;
+@property (weak, nonatomic) IBOutlet UIImageView *ivPage3;
+@property (weak, nonatomic) IBOutlet UIImageView *ivPage4;
+
 @property (weak, nonatomic) IBOutlet UIButton *getStartedBtn;
 
 -(void)showPageWithIndex:(NSUInteger)aIndex;
 
 -(IBAction)getStartedAction:(id)sender;
 
+-(void)doLayoutUIForIPad;
 @end

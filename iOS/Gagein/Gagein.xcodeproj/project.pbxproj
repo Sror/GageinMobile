@@ -179,6 +179,7 @@
 		EA381C68171FBC19004535B5 /* GGSavedUpdatesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA381C67171FBC19004535B5 /* GGSavedUpdatesVC.xib */; };
 		EA3951D5173DE55D004985E2 /* GGEditCustomAgentFilterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3951D3173DE55D004985E2 /* GGEditCustomAgentFilterVC.m */; };
 		EA3951D6173DE55D004985E2 /* GGEditCustomAgentFilterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3951D4173DE55D004985E2 /* GGEditCustomAgentFilterVC.xib */; };
+		EA3CB5D7175D5B5A00285986 /* pad_gageinLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA3CB5D6175D5B5A00285986 /* pad_gageinLogo@2x.png */; };
 		EA4022311728F1A000E5D179 /* GGHappeningDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4022301728F1A000E5D179 /* GGHappeningDetailCell.m */; };
 		EA4022341728F1B800E5D179 /* GGHappeningDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4022331728F1B800E5D179 /* GGHappeningDetailCell.xib */; };
 		EA4239F7173501D5002D718A /* tableSelectedDot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA4239F1173501D5002D718A /* tableSelectedDot@2x.png */; };
@@ -732,6 +733,7 @@
 		EA3951D2173DE55D004985E2 /* GGEditCustomAgentFilterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGEditCustomAgentFilterVC.h; sourceTree = "<group>"; };
 		EA3951D3173DE55D004985E2 /* GGEditCustomAgentFilterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGEditCustomAgentFilterVC.m; sourceTree = "<group>"; };
 		EA3951D4173DE55D004985E2 /* GGEditCustomAgentFilterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGEditCustomAgentFilterVC.xib; sourceTree = "<group>"; };
+		EA3CB5D6175D5B5A00285986 /* pad_gageinLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pad_gageinLogo@2x.png"; sourceTree = "<group>"; };
 		EA40222F1728F1A000E5D179 /* GGHappeningDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGHappeningDetailCell.h; sourceTree = "<group>"; };
 		EA4022301728F1A000E5D179 /* GGHappeningDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGHappeningDetailCell.m; sourceTree = "<group>"; };
 		EA4022331728F1B800E5D179 /* GGHappeningDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGHappeningDetailCell.xib; sourceTree = "<group>"; };
@@ -1615,6 +1617,30 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		EA3CB5D3175D5B2600285986 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				EA3CB5D4175D5B2600285986 /* 1x */,
+				EA3CB5D5175D5B2600285986 /* 2x */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		EA3CB5D4175D5B2600285986 /* 1x */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = 1x;
+			sourceTree = "<group>";
+		};
+		EA3CB5D5175D5B2600285986 /* 2x */ = {
+			isa = PBXGroup;
+			children = (
+				EA3CB5D6175D5B5A00285986 /* pad_gageinLogo@2x.png */,
+			);
+			path = 2x;
+			sourceTree = "<group>";
+		};
 		EA4239F0173501D5002D718A /* setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -2328,6 +2354,7 @@
 		EACAE0D417094BE100E7088F /* iPad */ = {
 			isa = PBXGroup;
 			children = (
+				EA3CB5D3175D5B2600285986 /* Images */,
 				EACAE0D717094C3000E7088F /* XIBs */,
 				EACAE0D517094BE100E7088F /* MVC */,
 			);
@@ -2982,6 +3009,7 @@
 				EAC6F8C51759158F00BC0B97 /* btnShare@2x.png in Resources */,
 				EAC6F8C61759158F00BC0B97 /* btnSignal@2x.png in Resources */,
 				EAC6F8C71759158F00BC0B97 /* lightGrayBtnBg@2x.png in Resources */,
+				EA3CB5D7175D5B5A00285986 /* pad_gageinLogo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,6 +22,7 @@
 -(void)awakeFromNib
 {
     self.frame = [UIScreen mainScreen].applicationFrame;
+    [_getStartedBtn setBackgroundImage:GGSharedImagePool.bgBtnOrange forState:UIControlStateNormal];
 }
 
 -(void)showPageWithIndex:(NSUInteger)aIndex
@@ -72,6 +73,44 @@
 {
     DLog(@"show sign up screen");
     [self postNotification:GG_NOTIFY_GET_STARTED];
+}
+
+
+-(void)doLayoutUIForIPad
+{
+    //
+    _ivPage1.frame = CGRectMake((self.frame.size.width - _ivPage1.frame.size.width) / 2
+                                , (self.frame.size.height - _ivPage1.frame.size.height) / 2
+                                , _ivPage1.frame.size.width
+                                , _ivPage1.frame.size.height);
+    
+    //
+    _ivPage2.frame = CGRectMake((self.frame.size.width - _ivPage2.frame.size.width) / 2
+                                , (self.frame.size.height - _ivPage2.frame.size.height) / 2
+                                , _ivPage2.frame.size.width
+                                , _ivPage2.frame.size.height);
+    
+    //
+    _ivPage3.frame = CGRectMake((self.frame.size.width - _ivPage3.frame.size.width) / 2
+                                , (self.frame.size.height - _ivPage3.frame.size.height) / 2
+                                , _ivPage3.frame.size.width
+                                , _ivPage3.frame.size.height);
+    
+    //
+    _ivPage4.frame = CGRectMake((self.frame.size.width - _ivPage4.frame.size.width) / 2
+                                , (self.frame.size.height - _ivPage4.frame.size.height) / 2
+                                , _ivPage4.frame.size.width
+                                , _ivPage4.frame.size.height);
+    
+    //
+    float offsetY = CGRectGetMaxY(_ivPage4.frame) + 50;
+    CGRect getStartedRc = _getStartedBtn.frame;
+    getStartedRc.size.width = 409.f;
+    getStartedRc.size.height = 44.f;
+    _getStartedBtn.frame =  CGRectMake((self.frame.size.width - getStartedRc.size.width) / 2
+                                       , offsetY
+                                       , getStartedRc.size.width
+                                       , getStartedRc.size.height);
 }
 
 @end

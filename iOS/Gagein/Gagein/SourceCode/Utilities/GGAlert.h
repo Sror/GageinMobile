@@ -70,7 +70,7 @@ typedef enum {
     , kGGMsgCodeNoEventForTheFunctional                     // Empty Page Message No.??? -- no happening for a specific func area
     
     // saved updates/searches
-#warning TODO: search keywords need to be saved locally
+//#warning TODO: search keywords need to be saved locally
     , kGGMsgCodeSavedSearchDoesNotExist = 34001             // N/A FOR IOS
     , kGGMsgCodeUpdateNotSaved                              // N/A FOR IOS
     , kGGMsgCodeTagNameCreated                              // N/A FOR IOS

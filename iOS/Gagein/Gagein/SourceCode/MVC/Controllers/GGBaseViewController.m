@@ -179,6 +179,7 @@
         [self viewWillAppearNotFirstTimeAction];
     }
     
+    [self layoutUIForIPad];
 }
 
 -(void)viewWillAppearNotFirstTimeAction
@@ -283,11 +284,13 @@
 {
     if (aView)
     {
-        UIImage *image = [UIImage imageNamed:@"gageinLogo"];
+        UIImage *image = (ISIPADDEVICE) ? [UIImage imageNamed:@"pad_gageinLogo"] : [UIImage imageNamed:@"gageinLogo"];
         UIImageView *iv = [[UIImageView alloc] initWithImage:image];
 
         CGRect rcScreen = [UIScreen mainScreen].applicationFrame;
-        iv.frame = CGRectMake((rcScreen.size.width - image.size.width) / 2, 20, image.size.width, image.size.height);
+        iv.frame = CGRectMake((rcScreen.size.width - image.size.width) / 2
+                              , (ISIPADDEVICE ? 100 : 20)
+                              , image.size.width, image.size.height);
         [aView addSubview:iv];
     }
 }
@@ -464,6 +467,21 @@
 {
     GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - lay out for ipad
+-(void)layoutUIForIPad
+{
+    // do not overwrite
+    if (ISIPADDEVICE)
+    {
+        [self doLayoutUIForIPad];
+    }
+}
+
+-(void)doLayoutUIForIPad
+{
+    // for subclass to overwrite
 }
 
 @end
