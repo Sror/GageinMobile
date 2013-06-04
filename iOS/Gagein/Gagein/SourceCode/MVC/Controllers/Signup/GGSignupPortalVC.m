@@ -86,6 +86,8 @@
 //-(void)doLayoutUIForIPad
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
     CGRect thisRc = [self frameWithOrientation:toInterfaceOrientation];
     
     float offsetY = CGRectGetMaxY(self.ivGageinLogo.frame) + 50;

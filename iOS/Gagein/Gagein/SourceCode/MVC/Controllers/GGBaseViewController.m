@@ -289,11 +289,6 @@
         
         [_ivGageinLogo removeFromSuperview];
         _ivGageinLogo = [[UIImageView alloc] initWithImage:image];
-
-        CGRect rcScreen = [UIScreen mainScreen].applicationFrame;
-        _ivGageinLogo.frame = CGRectMake((rcScreen.size.width - image.size.width) / 2
-                              , (ISIPADDEVICE ? 100 : 20)
-                              , image.size.width, image.size.height);
         [aView addSubview:_ivGageinLogo];
     }
 }
@@ -494,7 +489,11 @@
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    // for subclass to overwrite
+    CGRect rcScreen = [self frameWithOrientation:toInterfaceOrientation];
+    
+    _ivGageinLogo.frame = CGRectMake((rcScreen.size.width - _ivGageinLogo.image.size.width) / 2
+                                     , (ISIPADDEVICE ? 100 : 20)
+                                     , _ivGageinLogo.image.size.width, _ivGageinLogo.image.size.height);
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -506,7 +505,6 @@
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     DLog(@"did orientation: %d", fromInterfaceOrientation);
-   
 }
 
 -(CGRect)frameWithOrientation:(UIInterfaceOrientation)anOrientation

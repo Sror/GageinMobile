@@ -54,7 +54,8 @@
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    //pad_gageinLogo
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
     float offsetY = 100.f;
     UIImage *logoImg = [UIImage imageNamed:@"pad_gageinLogo"];
     CGSize logoSize = logoImg.size;
