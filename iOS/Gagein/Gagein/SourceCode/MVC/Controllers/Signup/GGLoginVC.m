@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrolView;
 @property (weak, nonatomic) IBOutlet UIImageView *ivLoginFieldBg;
 
+// ipad xib
+@property (weak, nonatomic) IBOutlet UIView *viewEnterSignup;
+
 @end
 
 @implementation GGLoginVC
@@ -75,6 +78,7 @@
     [self setBtnLogin:nil];
     [self setScrolView:nil];
     [self setIvLoginFieldBg:nil];
+    [self setViewEnterSignup:nil];
     [super viewDidUnload];
 }
 
@@ -121,7 +125,7 @@
 {
     //[self.navigationController popViewControllerAnimated:NO];
     
-    GGSignupVC *vc = [[GGSignupVC alloc] init];
+    GGSignupVC *vc = [GGSignupVC createInstance];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -202,6 +206,23 @@
 {
     [self.tfEmail resignFirstResponder];
     [self.tfPassword resignFirstResponder];
+}
+
+#pragma mark - 
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    CGRect screenRc = [GGUtils frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
+    
+    self.ivGageinLogo.frame = CGRectMake((screenRc.size.width - self.ivGageinLogo.image.size.width) / 2
+                                         , 100
+                                         , self.ivGageinLogo.image.size.width
+                                         , self.ivGageinLogo.image.size.height);
+    _viewEnterSignup.frame = CGRectMake((screenRc.size.width - _viewEnterSignup.frame.size.width) / 2
+                                        , _viewEnterSignup.frame.origin.y
+                                        , _viewEnterSignup.frame.size.width
+                                        , _viewEnterSignup.frame.size.height);
 }
 
 @end

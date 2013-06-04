@@ -277,4 +277,18 @@
     [self.tfEmail resignFirstResponder];
     [self.tfPassword resignFirstResponder];
 }
+
+#pragma mark -
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    CGRect screenRc = [GGUtils frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
+    
+    self.ivGageinLogo.frame = CGRectMake((screenRc.size.width - self.ivGageinLogo.image.size.width) / 2
+                                     , 100
+                                     , self.ivGageinLogo.image.size.width
+                                     , self.ivGageinLogo.image.size.height);
+}
+
 @end
