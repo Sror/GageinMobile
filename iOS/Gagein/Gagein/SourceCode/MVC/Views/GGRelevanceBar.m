@@ -27,6 +27,7 @@
     self.btnSwitch = [GGSwitchButton viewFromNibWithOwner:self];
     [self.btnSwitch changeSkin:YES];
     self.btnSwitch.frame = switchRc;
+    self.btnSwitch.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
     [self addSubview:self.btnSwitch];
 }
 

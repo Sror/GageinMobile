@@ -68,8 +68,8 @@
     
     CGPoint                     _lastContentOffset;
     
-    CGRect                      _relevanceRectShow;
-    CGRect                      _relevanceRectHide;
+    //CGRect                      _relevanceRectShow;
+    //CGRect                      _relevanceRectHide;
     CGRect                      _updateTvRect;
     
     NSTimer                     *_searchTimer;
@@ -77,6 +77,8 @@
     BOOL                        _isShowingRecentSearches;
     
     GGKeywordExampleCell        *_keywordExampleView;
+    
+    BOOL                        _isRelevanceBarShowing;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -141,6 +143,19 @@
     _btnSwitchUpdate.frame = switchRc;
 }
 
+-(CGRect)_relevanceFrameHided:(BOOL)aHided
+{
+    CGRect relevanceRc = _relevanceBar.frame;
+    float width = _updatesTV.frame.size.width;
+    
+    if (!aHided)
+    {
+        return CGRectMake(0, 5, width, relevanceRc.size.height);
+    }
+    
+    return CGRectMake(0, -relevanceRc.size.height + 5, width, relevanceRc.size.height);
+}
+
 - (void)viewDidLoad
 {
     [self observeNotification:GG_NOTIFY_LOG_OUT];
@@ -161,14 +176,15 @@
     [self _initSlideSettingView];
     
     _relevanceBar = [GGRelevanceBar viewFromNibWithOwner:self];
-    _relevanceRectShow = CGRectOffset(_relevanceBar.frame, 0, 5);
-    _relevanceRectHide = CGRectOffset(_relevanceRectShow, 0, -_relevanceBar.frame.size.height);
-    _relevanceBar.frame = _relevanceRectShow;
+    //_relevanceRectShow = CGRectOffset(_relevanceBar.frame, 0, 5);
+    //_relevanceRectHide = CGRectOffset(_relevanceRectShow, 0, -_relevanceBar.frame.size.height);
+    _relevanceBar.frame = [self _relevanceFrameHided:NO];
     [self.view addSubview:_relevanceBar];
     _relevanceBar.btnSwitch.delegate = self;
     _relevanceBar.btnSwitch.lblOn.text = @"High";
     _relevanceBar.btnSwitch.lblOff.text = @"Medium";
     _relevanceBar.btnSwitch.isOn = YES;
+    _isRelevanceBarShowing = YES;
     
     //
      _updateTvRect = [self viewportAdjsted];
@@ -1053,10 +1069,11 @@
 
 -(void)_showRelevanceBar:(BOOL)aShow
 {
+    _isRelevanceBarShowing = aShow;
     if (aShow)
     {
         [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            _relevanceBar.frame = _relevanceRectShow;
+            _relevanceBar.frame = [self _relevanceFrameHided:NO];
             
             _updatesTV.frame = _updateTvRect;
             
@@ -1065,11 +1082,11 @@
     else
     {
         [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            _relevanceBar.frame = _relevanceRectHide;
+            _relevanceBar.frame = [self _relevanceFrameHided:YES];
             
             CGRect tvRc = _updateTvRect;
-            tvRc.origin.y = _relevanceRectShow.origin.y;
-            tvRc.size.height += _relevanceRectShow.size.height;
+            tvRc.origin.y = [self _relevanceFrameHided:NO].origin.y;
+            tvRc.size.height += [self _relevanceFrameHided:NO].size.height;
             _updatesTV.frame = tvRc;
             
         } completion:nil];
@@ -1450,6 +1467,9 @@
     
     [_updatesTV reloadData];
     [_happeningsTV reloadData];
+    
+    CGRect relevanceRc = [self _relevanceFrameHided:!_isRelevanceBarShowing];
+    _relevanceBar.frame = relevanceRc;
 }
 
 
