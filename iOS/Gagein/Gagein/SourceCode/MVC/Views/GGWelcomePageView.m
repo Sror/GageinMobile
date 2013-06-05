@@ -105,7 +105,7 @@
                                 , _ivPage4.frame.size.height);
     
     //
-    float offsetY = CGRectGetMaxY(_ivPage4.frame) + 50;
+    float offsetY = CGRectGetMaxY(_ivPage4.frame) + (ISIPADDEVICE ? 50 : 10);
     CGRect getStartedRc = _getStartedBtn.frame;
     getStartedRc.size.width = 409.f;
     getStartedRc.size.height = 44.f;
