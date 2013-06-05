@@ -37,6 +37,7 @@
 #import "GGComUpdateSearchResultVC.h"
 #import "GGKeywordExampleCell.h"
 #import "GGConfigLabel.h"
+#import "GGCompanyUpdateIpadCell.h"
 
 #define SWITCH_WIDTH 90
 #define SWITCH_HEIGHT 20
@@ -169,6 +170,7 @@
     _relevanceBar.btnSwitch.lblOff.text = @"Medium";
     _relevanceBar.btnSwitch.isOn = YES;
     
+    //
      _updateTvRect = [self viewportAdjsted];
     
     self.happeningsTV = [[UITableView alloc] initWithFrame:_updateTvRect style:UITableViewStylePlain];
@@ -177,15 +179,18 @@
     self.happeningsTV.backgroundColor = GGSharedColor.silver;
     self.happeningsTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.happeningsTV.hidden = YES;
+    //self.happeningsTV.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.happeningsTV];
     
+    //
     _updateTvRect.origin.y = CGRectGetMaxY(_relevanceBar.frame) - 5;
     _updateTvRect.size.height = self.view.frame.size.height - _updateTvRect.origin.y;
     self.updatesTV = [[UITableView alloc] initWithFrame:_updateTvRect style:UITableViewStylePlain];
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
-    self.updatesTV.backgroundColor = GGSharedColor.silver;
+    self.updatesTV.backgroundColor = GGSharedColor.darkRed;
     self.updatesTV.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //self.updatesTV.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.updatesTV];
 
     
@@ -433,7 +438,10 @@
 #pragma mark - slide setting view delegate
 -(void)slideview:(GGSlideSettingView *)aSlideView isShowed:(BOOL)aIsShowed
 {
-    self.view.userInteractionEnabled = !aIsShowed;
+    if (![self isIPadLandscape])
+    {
+        [self freezeMe:aIsShowed];
+    }
 }
 
 #pragma mark - notification handling
@@ -459,11 +467,14 @@
     }
     else if ([noteName isEqualToString:GG_NOTIFY_MENU_REVEAL])
     {
-        self.view.userInteractionEnabled = NO;
+        if (![self isIPadLandscape])
+        {
+            [self freezeMe:YES];
+        }
     }
     else if ([noteName isEqualToString:GG_NOTIFY_MENU_COVER])
     {
-        self.view.userInteractionEnabled = YES;
+        [self freezeMe:NO];
         [_slideSettingView.searchBar resignFirstResponder];
     }
     
@@ -535,6 +546,11 @@
 
 -(IBAction)_followingTapped:(id)sender
 {
+    [self _doFollowingHideSlide:![self isIPadLandscape]];
+}
+
+-(void)_doFollowingHideSlide:(BOOL)aHideSlide
+{
     self.naviTitle = @"FOLLOWING";
     
     [[self _followingSectionView] setHightlighted:YES];
@@ -543,7 +559,7 @@
     [self _unselectAllMenuItem];
     [_slideSettingView.viewTable reloadData];
     
-    [self _refreshWithMenuId:GG_ALL_RESULT_ID type:kGGMenuTypeCompany];
+    [self _refreshWithMenuId:GG_ALL_RESULT_ID type:kGGMenuTypeCompany hideSlide:aHideSlide];
 }
 
 -(IBAction)_exploringConfigTapped:(id)sender
@@ -555,6 +571,11 @@
 
 -(IBAction)_exploringTapped:(id)sender
 {
+    [self _doExploringHideSlide:![self isIPadLandscape]];
+}
+
+-(void)_doExploringHideSlide:(BOOL)aHideSlide
+{
     self.naviTitle = @"EXPLORING";
     
     [[self _followingSectionView] setHightlighted:NO];
@@ -563,12 +584,15 @@
     [self _unselectAllMenuItem];
     [_slideSettingView.viewTable reloadData];
     
-    [self _refreshWithMenuId:GG_ALL_RESULT_ID type:kGGMenuTypeAgent];
+    [self _refreshWithMenuId:GG_ALL_RESULT_ID type:kGGMenuTypeAgent hideSlide:aHideSlide];
 }
 
--(void)_refreshWithMenuId:(long long)aMenuID type:(EGGMenuType)aType
+-(void)_refreshWithMenuId:(long long)aMenuID type:(EGGMenuType)aType hideSlide:(BOOL)aHideSlide
 {
-    [_slideSettingView hideSlide];
+    if (aHideSlide)
+    {
+        [_slideSettingView hideSlide];
+    }
     
     _menuType = aType;
     _menuID = aMenuID;
@@ -717,13 +741,54 @@
     return cell;
 }
 
+-(GGCompanyUpdateIpadCell *)_updateIpadCellForIndexPath:(NSIndexPath *)indexPath
+{
+    int row = indexPath.row;
+    
+    static NSString *updateCellId = @"GGCompanyUpdateIpadCell";
+    GGCompanyUpdateIpadCell *cell = [_updatesTV dequeueReusableCellWithIdentifier:updateCellId];
+    if (cell == nil) {
+        cell = [GGCompanyUpdateIpadCell viewFromNibWithOwner:self];
+        [cell.btnLogo addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    GGCompanyUpdate *updateData = self.updates[row];
+    
+    //cell.ID = updateData.ID;
+    cell.btnLogo.tag = row;
+    
+    cell.lblHeadline.text = [updateData headlineTruncated];
+    cell.lblSource.text = updateData.fromSource;//[NSString stringWithFormat:@"%@ · %@", updateData.fromSource, [updateData intervalStringWithDate:updateData.date]];
+    
+    //#warning FAKE DATA - company update description
+    cell.lblDescription.text = updateData.content;
+    
+    [cell.ivLogo setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+    
+    cell.lblInterval.text = [updateData intervalStringWithDate:updateData.date];
+    //cell.hasBeenRead = updateData.hasBeenRead;
+    //[cell adjustLayout];
+    
+    return cell;
+}
+
+//GGCompanyUpdateIpadCell
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = indexPath.row;
     
     if (tableView == self.updatesTV)
     {
-        return [self _updateCellForIndexPath:indexPath];
+        if (ISIPADDEVICE)
+        {
+            return [self _updateIpadCellForIndexPath:indexPath];
+        }
+        else
+        {
+            return [self _updateCellForIndexPath:indexPath];
+        }
     }
     else if (tableView == self.happeningsTV)
     {
@@ -919,7 +984,7 @@
         _menuType = theData.type;
         _menuID = theData.ID;
         
-        [self _refreshWithMenuId:theData.ID type:theData.type];
+        [self _refreshWithMenuId:theData.ID type:theData.type hideSlide:![self isIPadLandscape]];
     }
     else if (tableView == _slideSettingView.tvSuggestedUpdates)
     {
@@ -1029,11 +1094,11 @@
         
         if (_menuType == kGGMenuTypeCompany)
         {
-            [self _followingTapped:nil];
+            [self _doFollowingHideSlide:NO];
         }
         else
         {
-            [self _exploringTapped:nil];
+            [self _doExploringHideSlide:NO];
         }
     }];
     
@@ -1372,6 +1437,8 @@
     }
     else
     {
+        [self freezeMe:NO];
+        
         isMenuShowingBeforeChangeToLandscape = GGSharedDelegate.rootVC.isRevealed;
         
         if (!isMenuShowingBeforeChangeToLandscape)
@@ -1380,6 +1447,9 @@
             [self _callApiGetMenu];
         }
     }
+    
+    [_updatesTV reloadData];
+    [_happeningsTV reloadData];
 }
 
 

@@ -76,4 +76,9 @@
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation; // for overwriting
 
 //-(CGRect)frameWithOrientation:(UIInterfaceOrientation)anOrientation;
+-(CGRect)frameOrientated;
+
+-(BOOL)isIPadLandscape;
+
+-(void)freezeMe:(BOOL)aFreeze;
 @end

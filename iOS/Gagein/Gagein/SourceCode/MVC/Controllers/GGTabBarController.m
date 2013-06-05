@@ -91,6 +91,7 @@
 {
     static BOOL isLoaded = NO;
     NSArray *subviews = self.tabBar.subviews;
+    
     if (!isLoaded && subviews.count > 4)
     {
         isLoaded = YES;
@@ -161,5 +162,13 @@
     return [[UINavigationController alloc] initWithRootViewController:rootVC];
 }
 
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    float offsetX = UIInterfaceOrientationIsPortrait(toInterfaceOrientation) ? 0 : -100;
+    self.tabBar.frame = CGRectMake(offsetX
+                                   , self.tabBar.frame.origin.y
+                                   , self.tabBar.frame.size.width
+                                   , self.tabBar.frame.size.height);
+}
 
 @end

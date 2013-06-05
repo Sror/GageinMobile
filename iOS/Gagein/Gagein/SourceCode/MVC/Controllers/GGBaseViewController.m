@@ -496,10 +496,10 @@
     }
 }
 
-//-(void)doLayoutUIForIPad
-//{
-//    // for subclass to overwrite
-//}
+-(CGRect)frameOrientated
+{
+    return [GGUtils frameWithOrientation:[UIApplication sharedApplication].statusBarOrientation rect:self.view.frame];
+}
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
@@ -520,6 +520,16 @@
 {
     DLog(@"will orientation: %d", toInterfaceOrientation);
     [self layoutUIForIPadIfNeededWithOrientation:toInterfaceOrientation];
+}
+
+-(BOOL)isIPadLandscape
+{
+    return ISIPADDEVICE && UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
+}
+
+-(void)freezeMe:(BOOL)aFreeze
+{
+    self.view.userInteractionEnabled = !aFreeze;
 }
 
 @end

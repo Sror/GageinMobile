@@ -140,6 +140,8 @@ static BOOL s_isCustomed = NO;
         neededNaviBgImg = [GGUtils imageFor:naviBgImg size:neededSize];
         [[UINavigationBar appearance] setBackgroundImage:neededNaviBgImg forBarMetrics:UIBarMetricsDefault];
     }
+    
+    [_tabBarController doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
 }
 
 -(GGSlideSettingView *)slideSettingView

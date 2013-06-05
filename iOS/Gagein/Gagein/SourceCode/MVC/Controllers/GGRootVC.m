@@ -46,15 +46,20 @@
 {
     [super viewDidLoad];
     
+    //_viewBack.backgroundColor = [UIColor blueColor];
+    //_viewCover.backgroundColor = [UIColor orangeColor];
+    
     [_viewCover addSubview:GGSharedDelegate.tabBarController.view];
     [self addChildViewController:GGSharedDelegate.tabBarController];
     [GGSharedDelegate.tabBarController didMoveToParentViewController:self];
+    
+    _viewCover.clipsToBounds = YES;
     
     _viewSetting = [[GGSlideSettingView alloc] initWithFrame:_viewBack.bounds];
     [_viewBack addSubview:_viewSetting];
     
     //
-    _tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cover)];
+    _tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hadleTap)];
     
     //
     _panGest = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanSwipe:)];
@@ -107,6 +112,13 @@
     [self reveal];
 }
 
+-(void)hadleTap
+{
+    if (![self isIPadLandscape])
+    {
+        [self cover];
+    }
+}
 
 - (void)handlePanSwipe:(UIPanGestureRecognizer*)recognizer
 {
@@ -244,7 +256,7 @@
 {
     [_viewCover removeGestureRecognizer:_tapGest];
     
-    if (anEnabled)
+    if (anEnabled && ![self isIPadLandscape])
     {
         [_viewCover addGestureRecognizer:_tapGest];
     }
@@ -270,7 +282,8 @@
     _isRevealed = YES;
     [UIView animateWithDuration:SLIDE_TIMING delay:0 options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-                         _viewCover.frame = CGRectMake(SLIDE_SETTING_VIEW_WIDTH, 0, self.view.frame.size.width, self.view.frame.size.height);
+                         CGRect orientRc = [self frameOrientated];
+                         _viewCover.frame = CGRectMake(SLIDE_SETTING_VIEW_WIDTH, 0, orientRc.size.width, orientRc.size.height);
                      }
                      completion:^(BOOL finished) {
                          if (finished) {
@@ -293,7 +306,8 @@
     _isRevealed = NO;
     [UIView animateWithDuration:SLIDE_TIMING delay:0 options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-                         _viewCover.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+                         CGRect orientRc = [self frameOrientated];
+                         _viewCover.frame = CGRectMake(0, 0, orientRc.size.width, orientRc.size.height);
                      }
                      completion:^(BOOL finished) {
                          if (finished) {
@@ -315,7 +329,8 @@
 {
     [UIView animateWithDuration:SLIDE_TIMING delay:0 options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-                         _viewCover.frame = CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height);
+                         CGRect orientRc = [self frameOrientated];
+                         _viewCover.frame = CGRectMake(orientRc.size.width, 0, orientRc.size.width, orientRc.size.height);
                      }
                      completion:^(BOOL finished) {
                          if (finished) {
@@ -325,6 +340,14 @@
                              }
                          }
                      }];
+}
+
+
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    //CGRect rcScreen = [GGUtils frameWithOrientation:toInterfaceOrientation rect:self.view.frame];
 }
 
 @end

@@ -12,4 +12,5 @@
 
 -(id)initWithViewControllers:(NSArray *)aViewControllers;
 
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation;
 @end
