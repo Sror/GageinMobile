@@ -103,16 +103,9 @@
     maxLength -= 20;
     message = (_textView.text.length > maxLength) ? [_textView.text substringToIndex:maxLength] : _textView.text;
     
-    if (_comUpdateDetail)
-    {
-        summary = _comUpdateDetail.content.length ? _comUpdateDetail.content : _comUpdateDetail.textview;
-        summary = (summary.length > MAX_SUMMARY_LENGTH) ? [summary substringToIndex:MAX_SUMMARY_LENGTH] : summary;
+    //
+    GGApiBlock callback = ^(id operation, id aResultObject, NSError* anError) {
         
-        picURL = _comUpdateDetail.pictures.count ? _comUpdateDetail.pictures[0] : nil;
-    }
-    
-    [self showLoadingHUD];
-    id op = [GGSharedAPI snShareNewsWithID:_comUpdateDetail.ID snType:_snType message:message headLine:_comUpdateDetail.headline summary:summary pictureURL:picURL callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
@@ -126,15 +119,61 @@
         else
         {
             //It looks like your account has been disconnected from Facebook
-
+            
             NSString *message = [NSString stringWithFormat:@"It looks like your account has been disconnected from %@.", [GGUtils stringForSnType:_snType]];
             [GGAlert alertWithMessage:message title:@"Share failed"];
             [self _removeSnType:_snType];
             [self naviBackAction:nil];
         }
-    }];
+        
+    };
     
-    [self registerOperation:op];
+    //
+    switch (_shareType)
+    {
+        case kGGSnShareTypeUpdate:
+        {
+            summary = _comUpdateDetail.content.length ? _comUpdateDetail.content : _comUpdateDetail.textview;
+            summary = (summary.length > MAX_SUMMARY_LENGTH) ? [summary substringToIndex:MAX_SUMMARY_LENGTH] : summary;
+            
+            picURL = _comUpdateDetail.pictures.count ? _comUpdateDetail.pictures[0] : nil;
+            
+            [self showLoadingHUD];
+            id op = [GGSharedAPI snShareNewsWithID:_comUpdateDetail.ID
+                                            snType:_snType
+                                           message:message
+                                          headLine:_comUpdateDetail.headline
+                                           summary:summary
+                                        pictureURL:picURL
+                                          callback:callback];
+            
+            [self registerOperation:op];
+        }
+            break;
+            
+        case kGGSnShareTypeHappeningCompany:
+        {
+            [self showLoadingHUD];
+            id op = [GGSharedAPI snShareComanyEventWithID:_happening.ID
+                                                   snType:_snType
+                                                  message:message callback:callback];
+            [self registerOperation:op];
+        }
+            break;
+            
+        case kGGSnShareTypeHappeningPerson:
+        {
+            [self showLoadingHUD];
+            id op = [GGSharedAPI snSharePersonEventWithID:_happening.ID
+                                                   snType:_snType
+                                                  message:message callback:callback];
+            [self registerOperation:op];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 -(void)_removeSnType:(EGGSnType)aSnType

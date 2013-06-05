@@ -473,6 +473,7 @@
 {
     GGSnShareVC *vc = [[GGSnShareVC alloc] init];
     vc.comUpdateDetail = _companyUpdateDetail;
+    vc.shareType = kGGSnShareTypeUpdate;
     vc.snType = aType;
     vc.snTypesRef = _snTypes;
     

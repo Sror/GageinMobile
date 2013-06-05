@@ -17,6 +17,15 @@
 #import "GGAutosizingLabel.h"
 #import "CMActionSheet.h"
 #import "GGSnShareVC.h"
+#import "GGLinkedInOAuthVC.h"
+#import "OAToken.h"
+
+#import "GGFacebookOAuth.h"
+#import "GGTwitterOAuthVC.h"
+#import "GGSalesforceOAuthVC.h"
+
+
+#define TAG_ALERT_SALESFORCE_OAUTH_FAILED   1000
 
 @interface GGCellData : NSObject
 @property (assign) long long    ID;
@@ -71,6 +80,10 @@
 
 - (void)viewDidLoad
 {
+    [self observeNotification:OA_NOTIFY_FACEBOOK_AUTH_OK];
+    [self observeNotification:OA_NOTIFY_SALESFORCE_AUTH_OK];
+    [self observeNotification:OA_NOTIFY_TWITTER_OAUTH_OK];
+    
     [super viewDidLoad];
     self.naviTitle = @"Happening";
     self.svContent.frame = [self viewportAdjsted];
@@ -345,6 +358,7 @@
     vc.happening = _currentDetail;
     vc.snType = aType;
     vc.snTypesRef = _snTypes;
+    vc.shareType = _isPeopleHappening ? kGGSnShareTypeHappeningPerson : kGGSnShareTypeHappeningCompany;
     
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -808,6 +822,106 @@
     }];
     
     [self registerOperation:op];
+}
+
+#pragma mark - notification
+- (void)handleNotification:(NSNotification *)notification
+{
+    NSString *notiName = notification.name;
+    if ([notiName isEqualToString:OA_NOTIFY_LINKEDIN_AUTH_OK])
+    {
+        [self unobserveNotification:OA_NOTIFY_LINKEDIN_AUTH_OK];
+        
+        [self showLoadingHUD];
+        id op = [GGSharedAPI snSaveLinedInWithToken:self.linkedInAuthView.accessToken.key secret:self.linkedInAuthView.accessToken.secret callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [self _addSnType:kGGSnTypeLinkedIn];
+                [self _shareWithType:kGGSnTypeLinkedIn];
+                //#warning TODO: Enter a page to change message and share
+            }
+        }];
+        
+        [self registerOperation:op];
+        
+    }
+    else if ([notiName isEqualToString:OA_NOTIFY_FACEBOOK_AUTH_OK])
+    {
+        FBSession *session = notification.object;
+        NSString *accessToken = session.accessTokenData.accessToken;//[GGFacebookOAuth sharedInstance].session.accessTokenData.accessToken;
+        
+        [self showLoadingHUD];
+        id op = [GGSharedAPI snSaveFacebookWithToken:accessToken callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [self _addSnType:kGGSnTypeFacebook];
+                [self _shareWithType:kGGSnTypeFacebook];
+            }
+        }];
+        
+        [self registerOperation:op];
+    }
+    else if ([notiName isEqualToString:OA_NOTIFY_SALESFORCE_AUTH_OK]) // salesforce ok
+    {
+        SFOAuthCredentials *credencial = notification.object;
+        
+        [self showLoadingHUD];
+        id op = [GGSharedAPI snSaveSalesforceWithToken:credencial.accessToken accountID:credencial.userId refreshToken:credencial.refreshToken instanceURL:credencial.instanceUrl.absoluteString callback:^(id operation, id aResultObject, NSError *anError) {
+            
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            
+            if (parser.isOK)
+            {
+                [self _addSnType:kGGSnTypeSalesforce];
+                [self _shareWithType:kGGSnTypeSalesforce];
+            }
+            else if (parser.messageCode == kGGMsgCodeSnSaleforceCantAuth)
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[GGStringPool stringWithMessageCode:kGGMsgCodeSnSaleforceCantAuth] delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:@"Learn more", nil];
+                alert.tag = TAG_ALERT_SALESFORCE_OAUTH_FAILED;
+                [alert show];
+            }
+            
+        }];
+        
+        [self registerOperation:op];
+    }
+    else if ([notiName isEqualToString:OA_NOTIFY_TWITTER_OAUTH_OK]) // twitter oauth ok
+    {
+        OAToken *token = notification.object;
+        
+        [self showLoadingHUD];
+        id op = [GGSharedAPI snSaveTwitterWithToken:token.key secret:token.secret callback:^(id operation, id aResultObject, NSError *anError) {
+            
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [self _addSnType:kGGSnTypeTwitter];
+                [self _shareWithType:kGGSnTypeTwitter];
+            }
+            
+        }];
+        
+        [self registerOperation:op];
+    }
+}
+
+#pragma mark - ui alertview delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == TAG_ALERT_SALESFORCE_OAUTH_FAILED)
+    {
+        if (buttonIndex == 1)
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.salesforce.com/crm/editions-pricing.jsp"]];
+        }
+    }
 }
 
 @end
