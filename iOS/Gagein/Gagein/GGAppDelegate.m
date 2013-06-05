@@ -185,7 +185,10 @@ static BOOL s_isCustomed = NO;
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     // attempt to extract a token from the url
-    return [[GGFacebookOAuth sharedInstance] handleOpenURL:url sourceApplication:sourceApplication];
+    //return [[GGFacebookOAuth sharedInstance] handleOpenURL:url sourceApplication:sourceApplication];
+    return [FBAppCall handleOpenURL:url
+                  sourceApplication:sourceApplication
+                        withSession:[FBSession activeSession]];
 }
 
 

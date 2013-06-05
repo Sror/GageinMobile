@@ -20,6 +20,7 @@
 #import "GGSelectAgentsVC.h"
 #import "GGSelectFuncAreasVC.h"
 #import "GGAppDelegate.h"
+#import "GGFacebookAuthVC.h"
 
 #define MAX_NAVI_TITLE_LENGTH   20
 
@@ -37,7 +38,7 @@
     GGFacebookOAuther          *_facebookOAuther;
     
     NSMutableSet              *_apiOperations;
-    
+    GGFacebookAuthVC            *_facebookAuthVC;
 }
 
 -(void)registerOperation:(id)anOperation
@@ -442,7 +443,10 @@
 
 -(void)connectFacebook
 {
-    _facebookOAuther = [[GGFacebookOAuther alloc] init];
+    //_facebookOAuther = [[GGFacebookOAuther alloc] init];
+    
+    _facebookAuthVC = [[GGFacebookAuthVC alloc] init];
+    [self presentViewController:_facebookAuthVC animated:NO completion:nil];
 }
 
 -(void)connectTwitter

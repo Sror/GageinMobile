@@ -455,7 +455,7 @@ __attribute__((deprecated));
  */
 - (void)reauthorizeWithReadPermissions:(NSArray*)readPermissions
                      completionHandler:(FBSessionReauthorizeResultHandler)handler
-__attribute__((deprecated));
+;//__attribute__((deprecated));
 
 /*!
  @abstract
@@ -474,7 +474,7 @@ __attribute__((deprecated));
 - (void)reauthorizeWithPublishPermissions:(NSArray*)writePermissions
                           defaultAudience:(FBSessionDefaultAudience)defaultAudience
                         completionHandler:(FBSessionReauthorizeResultHandler)handler
-__attribute__((deprecated));
+;//__attribute__((deprecated));
 
 /*!
  @abstract

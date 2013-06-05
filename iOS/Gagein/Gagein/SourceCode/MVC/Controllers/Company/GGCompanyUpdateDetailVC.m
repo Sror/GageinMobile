@@ -304,7 +304,8 @@
     }
     else if ([notiName isEqualToString:OA_NOTIFY_FACEBOOK_AUTH_OK])
     {
-        NSString *accessToken = [GGFacebookOAuth sharedInstance].session.accessTokenData.accessToken;
+        FBSession *session = notification.object;
+        NSString *accessToken = session.accessTokenData.accessToken;//[GGFacebookOAuth sharedInstance].session.accessTokenData.accessToken;
         
         [self showLoadingHUD];
         id op = [GGSharedAPI snSaveFacebookWithToken:accessToken callback:^(id operation, id aResultObject, NSError *anError) {
@@ -475,7 +476,7 @@
     vc.snType = aType;
     vc.snTypesRef = _snTypes;
     
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:vc animated:NO];
 }
 
 -(void)_showSheetToShare

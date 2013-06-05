@@ -15,17 +15,18 @@
     self = [super init];
     if (self)
     {
-        if (![self _sharedSession].isOpen)
-        {
-            [self _doCreateSession];
-            
-            if ([self _sharedSession].state == FBSessionStateCreatedTokenLoaded)
-            {
-                [self _doOpenSession];
-            }
-        }
-        
-        [self switchSession];
+        [self _doOpenSession];
+//        if (![self _sharedSession].isOpen)
+//        {
+//            [self _doCreateSession];
+//            
+//            if ([self _sharedSession].state == FBSessionStateCreatedTokenLoaded)
+//            {
+//                [self _doOpenSession];
+//            }
+//        }
+//        
+//        [self switchSession];
     }
     return self;
 }
@@ -58,14 +59,64 @@
 
 -(void)_doOpenSession
 {
-    [[self _sharedSession] openWithCompletionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-        [self _handleSuccess];
+    __block NSArray *permissions = [NSArray arrayWithObjects:@"email", nil];
+    
+    [FBSession openActiveSessionWithReadPermissions:permissions
+                                       allowLoginUI:YES
+                                  completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+                                      
+                                      if (!error && session.isOpen&& [FBSession activeSession].isOpen)
+                                      {
+                                          dispatch_async(dispatch_get_current_queue(), ^{
+                                              [self _authReadPermissions];
+                                          });
+                                      }
+                                      
+    }];
+    
+    
+//    [[self _sharedSession] openWithCompletionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+//        [self _handleSuccess];
+//    }];
+}
+
+-(void)_authReadPermissions
+{
+    NSArray *permissions = [NSArray arrayWithObjects:@"read_stream", @"user_photos", @"friends_photos", nil];
+    
+    [[FBSession activeSession] reauthorizeWithReadPermissions:permissions
+                                            completionHandler:^(FBSession *session, NSError *error) {
+                                                
+                                                if (!error && session.isOpen && [FBSession activeSession].isOpen)
+                                                {
+                                                    dispatch_async(dispatch_get_current_queue(), ^{
+                                                        [self _authPublishPermissions];
+                                                    });
+                                                }
+                                                     
+    }];
+}
+
+-(void)_authPublishPermissions
+{
+    NSArray *permissions = [NSArray arrayWithObjects:@"publish_actions", nil];
+     
+     [[FBSession activeSession] reauthorizeWithPublishPermissions:permissions
+                                                  defaultAudience:FBSessionDefaultAudienceFriends
+                                                completionHandler:^(FBSession *session, NSError *error) {
+                                                    
+                                                    if (!error && session.isOpen)
+                                                    {
+                                                        //[GGFacebookOAuth sharedInstance].session = session;
+                                                        [self _handleSuccess];
+                                                    }
+                                                    
     }];
 }
 
 -(FBSession *)_sharedSession
 {
-    return [GGFacebookOAuth sharedInstance].session;
+    return [FBSession activeSession];//[GGFacebookOAuth sharedInstance].session;
 }
 
 -(void)_handleSuccess

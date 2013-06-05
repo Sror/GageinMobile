@@ -210,7 +210,8 @@
     }
     else if ([notiName isEqualToString:OA_NOTIFY_FACEBOOK_AUTH_OK]) // facebook ok
     {
-        NSString *accessToken = [GGFacebookOAuth sharedInstance].session.accessTokenData.accessToken;
+        FBSession *session = notification.object;
+        NSString *accessToken = session.accessTokenData.accessToken;//[GGFacebookOAuth sharedInstance].session.accessTokenData.accessToken;
         
         [self showLoadingHUD];
         id op = [GGSharedAPI snGetUserInfoFacebookWithToken:accessToken callback:^(id operation, id aResultObject, NSError *anError) {

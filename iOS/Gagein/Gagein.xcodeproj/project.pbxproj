@@ -195,6 +195,7 @@
 		EA4239FA173501D5002D718A /* welcome02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA4239F4173501D5002D718A /* welcome02@2x.png */; };
 		EA4239FB173501D5002D718A /* welcome03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA4239F5173501D5002D718A /* welcome03@2x.png */; };
 		EA4239FC173501D5002D718A /* welcome04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA4239F6173501D5002D718A /* welcome04@2x.png */; };
+		EA449698175FC8C700F514F0 /* GGFacebookAuthVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA449697175FC8C700F514F0 /* GGFacebookAuthVC.m */; };
 		EA4CC67F172B736B0082A048 /* GGPersonDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4CC67E172B736B0082A048 /* GGPersonDetailVC.xib */; };
 		EA4CC683172B98D10082A048 /* GGRelevanceBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4CC682172B98D10082A048 /* GGRelevanceBar.m */; };
 		EA4CC685172B98E90082A048 /* GGRelevanceBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4CC684172B98E90082A048 /* GGRelevanceBar.xib */; };
@@ -760,6 +761,8 @@
 		EA4239F4173501D5002D718A /* welcome02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome02@2x.png"; sourceTree = "<group>"; };
 		EA4239F5173501D5002D718A /* welcome03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome03@2x.png"; sourceTree = "<group>"; };
 		EA4239F6173501D5002D718A /* welcome04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome04@2x.png"; sourceTree = "<group>"; };
+		EA449696175FC8C700F514F0 /* GGFacebookAuthVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFacebookAuthVC.h; sourceTree = "<group>"; };
+		EA449697175FC8C700F514F0 /* GGFacebookAuthVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFacebookAuthVC.m; sourceTree = "<group>"; };
 		EA4CC67E172B736B0082A048 /* GGPersonDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGPersonDetailVC.xib; sourceTree = "<group>"; };
 		EA4CC681172B98D10082A048 /* GGRelevanceBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGRelevanceBar.h; sourceTree = "<group>"; };
 		EA4CC682172B98D10082A048 /* GGRelevanceBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGRelevanceBar.m; sourceTree = "<group>"; };
@@ -2589,6 +2592,8 @@
 				EAC9F90A17568124006FA45F /* GGImageVC.h */,
 				EAC9F90B17568124006FA45F /* GGImageVC.m */,
 				EAC9F90C17568124006FA45F /* GGImageVC.xib */,
+				EA449696175FC8C700F514F0 /* GGFacebookAuthVC.h */,
+				EA449697175FC8C700F514F0 /* GGFacebookAuthVC.m */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -3283,6 +3288,7 @@
 				EA1CA78B175812FC007C9232 /* GGStringPool.m in Sources */,
 				EAC6F918175987FF00BC0B97 /* GGPercentageBar.m in Sources */,
 				EAA18812175EA0E600580B00 /* GGCompanyUpdateIpadCell.m in Sources */,
+				EA449698175FC8C700F514F0 /* GGFacebookAuthVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3343,8 +3349,8 @@
 					"\"$(SRCROOT)/Gagein/ThirdParty/LinkedInOAuth/Twitter+OAuth/Libraries & Headers\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9A7B4E98-5EE4-4EEB-B9AA-A45BDA2B3E5A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A7B4E98-5EE4-4EEB-B9AA-A45BDA2B3E5A";
+				PROVISIONING_PROFILE = "3F9902E9-C941-40C0-9FBF-F07CB7BD6DA5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3F9902E9-C941-40C0-9FBF-F07CB7BD6DA5";
 				WRAPPER_EXTENSION = app;
 			};
 			name = AdHoc;
@@ -3421,8 +3427,8 @@
 					"\"$(SRCROOT)/Gagein/ThirdParty/LinkedInOAuth/Twitter+OAuth/Libraries & Headers\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "40A2D4B0-99E5-4917-A31F-F4F4CC0D4662";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "40A2D4B0-99E5-4917-A31F-F4F4CC0D4662";
+				PROVISIONING_PROFILE = "9AFC9A10-BB3E-4DCD-B93D-82369B395D1D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9AFC9A10-BB3E-4DCD-B93D-82369B395D1D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
