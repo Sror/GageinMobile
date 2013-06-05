@@ -480,8 +480,9 @@
     }
     else if ([noteName isEqualToString:GG_NOTIFY_LOG_IN])
     {
-        [self.updatesTV triggerPullToRefresh];
-        [self.happeningsTV triggerPullToRefresh];
+        //[self.updatesTV triggerPullToRefresh];
+        [self _getInitData];
+        //[self.happeningsTV triggerPullToRefresh];
     }
     else if ([noteName isEqualToString:GG_NOTIFY_MENU_REVEAL])
     {
