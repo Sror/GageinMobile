@@ -272,7 +272,7 @@
         }
         else
         {
-            [self connectFacebook];
+            [self connectFacebookReadAndPublish];
         }
         
     }];

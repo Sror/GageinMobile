@@ -10,5 +10,7 @@
 
 @interface GGFacebookOAuther : NSObject
 
+-(void)authReadPermission;
+-(void)authReadAndPublishPermission;
 @end
 

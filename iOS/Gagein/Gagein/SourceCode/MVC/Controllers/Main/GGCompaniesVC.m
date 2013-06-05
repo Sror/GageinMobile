@@ -231,6 +231,8 @@
         [weakSelf _getNextHappeningPage];
     }];
     
+    
+    //[UIView setAnimationsEnabled:NO];
     [self _getInitData];
 }
 
@@ -1117,6 +1119,8 @@
         {
             [self _doExploringHideSlide:NO];
         }
+        
+        //[UIView setAnimationsEnabled:YES];
     }];
     
     [self registerOperation:op];

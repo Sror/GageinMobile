@@ -32,13 +32,13 @@
     [super viewDidLoad];
 	
     _fbLoginView = [[FBLoginView alloc] init];
-    
+    _fbLoginView.frame = self.view.bounds;
     //_fbLoginView.frame = CGRectOffset(loginview.frame, 5, 5);
     _fbLoginView.delegate = self;
     
     [self.view addSubview:_fbLoginView];
     
-    [_fbLoginView sizeToFit];
+    //[_fbLoginView sizeToFit];
 }
 
 

@@ -51,7 +51,8 @@
 
 -(void)connectLinkedIn;
 
--(void)connectFacebook;
+-(void)connectFacebookRead;
+-(void)connectFacebookReadAndPublish;
 
 -(void)connectTwitter;
 

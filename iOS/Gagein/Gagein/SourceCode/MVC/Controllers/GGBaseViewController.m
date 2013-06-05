@@ -38,7 +38,7 @@
     GGFacebookOAuther          *_facebookOAuther;
     
     NSMutableSet              *_apiOperations;
-    GGFacebookAuthVC            *_facebookAuthVC;
+    //GGFacebookAuthVC            *_facebookAuthVC;
 }
 
 -(void)registerOperation:(id)anOperation
@@ -441,12 +441,19 @@
     [self.navigationController pushViewController:_oAuthLoginView animated:YES];
 }
 
--(void)connectFacebook
+-(void)connectFacebookRead
 {
-    //_facebookOAuther = [[GGFacebookOAuther alloc] init];
+    _facebookOAuther = [[GGFacebookOAuther alloc] init];
+    [_facebookOAuther authReadPermission];
     
-    _facebookAuthVC = [[GGFacebookAuthVC alloc] init];
-    [self presentViewController:_facebookAuthVC animated:NO completion:nil];
+    //_facebookAuthVC = [[GGFacebookAuthVC alloc] init];
+    //[self presentViewController:_facebookAuthVC animated:NO completion:nil];
+}
+
+-(void)connectFacebookReadAndPublish
+{
+    _facebookOAuther = [[GGFacebookOAuther alloc] init];
+    [_facebookOAuther authReadAndPublishPermission];
 }
 
 -(void)connectTwitter

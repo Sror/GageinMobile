@@ -298,7 +298,7 @@
 
 -(IBAction)connectFacebookAction:(id)sender
 {
-    [self connectFacebook];
+    [self connectFacebookRead];
 }
 
 -(IBAction)connectTwitterAction:(id)sender
