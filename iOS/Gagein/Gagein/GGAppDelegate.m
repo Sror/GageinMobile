@@ -64,9 +64,6 @@
     
     [self _initTabbar];
     
-    //UIViewController *viewController1 = [[GGCompaniesVC alloc] initWithNibName:@"GGCompaniesVC" bundle:nil];
-    
-    
     _rootVC = [[GGRootVC alloc] init];
     self.window.rootViewController = _rootVC;
     
@@ -74,8 +71,6 @@
     _signPortalVC = [[GGSignupPortalVC alloc] init];
     self.naviController = [[GGRootNaviVC alloc] initWithRootViewController:_signPortalVC];
     self.naviController.navigationBarHidden = YES;
-    //[self.window addSubview:_naviController.view];
-    //[self.window sendSubviewToBack:_naviController.view];
     
     [self makeNaviBarCustomed:YES];
     

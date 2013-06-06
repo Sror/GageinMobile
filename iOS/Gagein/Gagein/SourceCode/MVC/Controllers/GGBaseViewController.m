@@ -514,17 +514,17 @@
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    CGRect rcScreen = [GGLayout frameWithOrientation:toInterfaceOrientation rect:self.view.frame];
+    [GGSharedDelegate doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    CGRect rcScreen = [GGLayout frameWithOrientation:toInterfaceOrientation rect:self.view.superview.frame];
     
     _ivGageinLogo.frame = CGRectMake((rcScreen.size.width - _ivGageinLogo.image.size.width) / 2
                                      , 100
                                      , _ivGageinLogo.image.size.width
                                      , _ivGageinLogo.image.size.height);
     
-    CGRect windowRc = [GGLayout frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
-    _customNaviTitle.frame = CGRectMake(0, 5, windowRc.size.width, 44);
-    
-    [GGSharedDelegate doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    CGRect naviRc = [GGLayout frameWithOrientation:toInterfaceOrientation rect:self.navigationController.view.frame];
+    _customNaviTitle.frame = CGRectMake(0, 5, naviRc.size.width, 44);
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

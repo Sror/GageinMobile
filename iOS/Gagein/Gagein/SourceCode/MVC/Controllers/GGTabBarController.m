@@ -9,6 +9,7 @@
 #import "GGTabBarController.h"
 #import <QuartzCore/QuartzCore.h>
 #import <CoreFoundation/CoreFoundation.h>
+#import "GGAppDelegate.h"
 
 #define ICON_WIDTH      76
 #define ICON_HEIGHT     48
@@ -163,13 +164,26 @@
     return [[UINavigationController alloc] initWithRootViewController:rootVC];
 }
 
--(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+-(void)adjustTabbarPosForIpadWithOrient:(UIInterfaceOrientation)toInterfaceOrientation
 {
     float offsetX = UIInterfaceOrientationIsPortrait(toInterfaceOrientation) ? 0 : -100;
     self.tabBar.frame = CGRectMake(offsetX
                                    , self.tabBar.frame.origin.y
                                    , self.tabBar.frame.size.width
                                    , self.tabBar.frame.size.height);
+}
+
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [self adjustTabbarPosForIpadWithOrient:toInterfaceOrientation];
+    
+    CGRect coverRc = GGSharedDelegate.rootVC.viewCover.bounds;
+    self.view.frame = coverRc;
+    
+    for (UIViewController *vc in self.viewControllers)
+    {
+        vc.view.frame = vc.view.superview.bounds;
+    }
 }
 
 @end

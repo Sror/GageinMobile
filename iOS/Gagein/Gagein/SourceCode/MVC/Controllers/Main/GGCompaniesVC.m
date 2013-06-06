@@ -159,7 +159,8 @@
     [super viewDidLoad];
     
     [self _installMenuButton];
-    self.view.backgroundColor = GGSharedColor.silver;
+#warning COLOR is originally silver
+    self.view.backgroundColor = GGSharedColor.orangeGageinDark;
     self.naviTitle = @"EXPLORING";
     
     [self _initRoundSwitch];

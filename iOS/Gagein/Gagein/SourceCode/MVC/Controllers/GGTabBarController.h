@@ -13,5 +13,6 @@
 
 -(id)initWithViewControllers:(NSArray *)aViewControllers;
 
+-(void)adjustTabbarPosForIpadWithOrient:(UIInterfaceOrientation)toInterfaceOrientation;
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation;
 @end

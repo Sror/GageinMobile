@@ -54,7 +54,12 @@
     [GGSharedDelegate.tabBarController didMoveToParentViewController:self];
     
     _viewCover.clipsToBounds = YES;
+    if (ISIPADDEVICE)
+    {
+        _viewCover.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+    }
     
+    // add setting view to back view
     _viewSetting = [[GGSlideSettingView alloc] initWithFrame:_viewBack.bounds];
     [_viewBack addSubview:_viewSetting];
     
@@ -282,8 +287,9 @@
     _isRevealed = YES;
     [UIView animateWithDuration:SLIDE_TIMING delay:0 options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-                         CGRect orientRc = [self frameOrientated];
-                         _viewCover.frame = CGRectMake(SLIDE_SETTING_VIEW_WIDTH, 0, orientRc.size.width, orientRc.size.height);
+                         //CGRect orientRc = [self frameOrientated];
+                         CGRect coverRc = CGRectMake(SLIDE_SETTING_VIEW_WIDTH, 0, _viewCover.frame.size.width, _viewCover.frame.size.height);
+                         _viewCover.frame = coverRc;
                      }
                      completion:^(BOOL finished) {
                          if (finished) {
@@ -306,8 +312,9 @@
     _isRevealed = NO;
     [UIView animateWithDuration:SLIDE_TIMING delay:0 options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-                         CGRect orientRc = [self frameOrientated];
-                         _viewCover.frame = CGRectMake(0, 0, orientRc.size.width, orientRc.size.height);
+                         //CGRect orientRc = [self frameOrientated];
+                         CGRect coverRc = CGRectMake(0, 0, _viewCover.frame.size.width, _viewCover.frame.size.height);
+                         _viewCover.frame = coverRc;
                      }
                      completion:^(BOOL finished) {
                          if (finished) {
@@ -330,7 +337,8 @@
     [UIView animateWithDuration:SLIDE_TIMING delay:0 options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          CGRect orientRc = [self frameOrientated];
-                         _viewCover.frame = CGRectMake(orientRc.size.width, 0, orientRc.size.width, orientRc.size.height);
+                         CGRect coverRc = CGRectMake(orientRc.size.width, 0, _viewCover.frame.size.width, _viewCover.frame.size.height);
+                         _viewCover.frame = coverRc;
                      }
                      completion:^(BOOL finished) {
                          if (finished) {
@@ -345,10 +353,12 @@
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    //[super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
     CGRect coverRc = [GGLayout rootCoverFrameForWithOrient:toInterfaceOrientation];
     _viewCover.frame = CGRectMake(_viewCover.frame.origin.x, _viewCover.frame.origin.y, coverRc.size.width, coverRc.size.height);
+    
+    [GGSharedDelegate.tabBarController doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
 }
 
 @end
