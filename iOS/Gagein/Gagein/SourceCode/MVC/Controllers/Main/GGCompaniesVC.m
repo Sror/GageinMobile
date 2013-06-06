@@ -78,7 +78,7 @@
     
     GGKeywordExampleCell        *_keywordExampleView;
     
-    BOOL                        _isRelevanceBarShowing;
+    //BOOL                        _isRelevanceBarShowing;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -143,17 +143,11 @@
     _btnSwitchUpdate.frame = switchRc;
 }
 
--(CGRect)_relevanceFrameHided:(BOOL)aHided
+-(CGRect)_relevanceFrame
 {
     CGRect relevanceRc = _relevanceBar.frame;
     float width = _updatesTV.frame.size.width;
-    
-    if (!aHided)
-    {
-        return CGRectMake(0, 5, width, relevanceRc.size.height);
-    }
-    
-    return CGRectMake(0, -relevanceRc.size.height + 5, width, relevanceRc.size.height);
+    return CGRectMake(0, 5, width, relevanceRc.size.height);
 }
 
 - (void)viewDidLoad
@@ -175,16 +169,7 @@
 
     [self _initSlideSettingView];
     
-    _relevanceBar = [GGRelevanceBar viewFromNibWithOwner:self];
-    //_relevanceRectShow = CGRectOffset(_relevanceBar.frame, 0, 5);
-    //_relevanceRectHide = CGRectOffset(_relevanceRectShow, 0, -_relevanceBar.frame.size.height);
-    _relevanceBar.frame = [self _relevanceFrameHided:NO];
-    [self.view addSubview:_relevanceBar];
-    _relevanceBar.btnSwitch.delegate = self;
-    _relevanceBar.btnSwitch.lblOn.text = @"High";
-    _relevanceBar.btnSwitch.lblOff.text = @"Medium";
-    _relevanceBar.btnSwitch.isOn = YES;
-    _isRelevanceBarShowing = YES;
+    
     
     //
      _updateTvRect = [self viewportAdjsted];
@@ -199,18 +184,31 @@
     [self.view addSubview:self.happeningsTV];
     
     //
-    _updateTvRect.origin.y = CGRectGetMaxY(_relevanceBar.frame) - 5;
-    _updateTvRect.size.height = self.view.frame.size.height - _updateTvRect.origin.y;
     self.updatesTV = [[UITableView alloc] initWithFrame:_updateTvRect style:UITableViewStylePlain];
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
-    self.updatesTV.backgroundColor = GGSharedColor.darkRed;
+    self.updatesTV.backgroundColor = GGSharedColor.silver;
     self.updatesTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     //self.updatesTV.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.updatesTV];
 
+    //
+    _relevanceBar = [GGRelevanceBar viewFromNibWithOwner:self];
+    //_relevanceRectShow = CGRectOffset(_relevanceBar.frame, 0, 5);
+    //_relevanceRectHide = CGRectOffset(_relevanceRectShow, 0, -_relevanceBar.frame.size.height);
+    _relevanceBar.frame = [self _relevanceFrame];
+    [self.view addSubview:_relevanceBar];
+    _relevanceBar.btnSwitch.delegate = self;
+    _relevanceBar.btnSwitch.lblOn.text = @"High";
+    _relevanceBar.btnSwitch.lblOff.text = @"Medium";
+    _relevanceBar.btnSwitch.isOn = YES;
+    //_isRelevanceBarShowing = YES;
     
-    [self.view bringSubviewToFront:_relevanceBar];
+    _updateTvRect.origin.y = CGRectGetMaxY(_relevanceBar.frame) - 5;
+    _updateTvRect.size.height = self.view.frame.size.height - _updateTvRect.origin.y;
+    _updatesTV.frame = _updateTvRect;
+    
+    //[self.view bringSubviewToFront:_relevanceBar];
     
     // setup pull-to-refresh and infinite scrolling
     __weak GGCompaniesVC *weakSelf = self;
@@ -624,7 +622,7 @@
     [self.happeningsTV triggerPullToRefresh];
     
     _btnSwitchUpdate.hidden = (_menuType == kGGMenuTypeAgent);
-    [self _showRelevanceBar:YES];
+    //[self _showRelevanceBar:YES];
 }
 
 -(void)_unselectAllMenuItem
@@ -1052,49 +1050,56 @@
 //- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
     
-    if (scrollView == _updatesTV)
+    if (scrollView == _updatesTV && !ISIPADDEVICE)
     {
-        if (_lastContentOffset.y < (int)scrollView.contentOffset.y) {
+        if (_lastContentOffset.y < (int)scrollView.contentOffset.y)
+        {
             DLog(@"moved up");
             
-            [self _showRelevanceBar:NO];
-            
+            //[self _showRelevanceBar:NO];
+            [GGUtils hideTabBar];
         }
         else
         {
             DLog(@"moved down");
             
-            [self _showRelevanceBar:YES];
-
+            //[self _showRelevanceBar:YES];
+            [GGUtils showTabBar];
         }
+        
+        CGRect updateRc = _updatesTV.frame;
+        updateRc.size.height = self.view.bounds.size.height - CGRectGetMaxY(_relevanceBar.frame);
+        _updatesTV.frame = updateRc;
     }
 }
 
--(void)_showRelevanceBar:(BOOL)aShow
-{
-    _isRelevanceBarShowing = aShow;
-    if (aShow)
-    {
-        [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            _relevanceBar.frame = [self _relevanceFrameHided:NO];
-            
-            _updatesTV.frame = _updateTvRect;
-            
-        } completion:nil];
-    }
-    else
-    {
-        [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            _relevanceBar.frame = [self _relevanceFrameHided:YES];
-            
-            CGRect tvRc = _updateTvRect;
-            tvRc.origin.y = [self _relevanceFrameHided:NO].origin.y;
-            tvRc.size.height += [self _relevanceFrameHided:NO].size.height;
-            _updatesTV.frame = tvRc;
-            
-        } completion:nil];
-    }
-}
+//-(void)_showRelevanceBar:(BOOL)aShow
+//{
+//    _isRelevanceBarShowing = aShow;
+//    if (aShow)
+//    {
+//        [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+//            //_relevanceBar.frame = [self _relevanceFrameHided:NO];
+//            _relevanceBar.alpha = 1.f;
+//            
+//        } completion:^(BOOL finished){
+//            //_updatesTV.frame = _updateTvRect;
+//        }];
+//    }
+//    else
+//    {
+//        [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+//           // _relevanceBar.frame = [self _relevanceFrameHided:YES];
+//            _relevanceBar.alpha = 0.5f;
+//            
+//        } completion:^(BOOL finished){
+////            CGRect tvRc = _updateTvRect;
+////            tvRc.origin.y = [self _relevanceFrameHided:NO].origin.y;
+////            tvRc.size.height += [self _relevanceFrameHided:NO].size.height;
+////            _updatesTV.frame = tvRc;
+//        }];
+//    }
+//}
 
 
 #pragma mark - data handling
@@ -1473,7 +1478,7 @@
     [_updatesTV reloadData];
     [_happeningsTV reloadData];
     
-    CGRect relevanceRc = [self _relevanceFrameHided:!_isRelevanceBarShowing];
+    CGRect relevanceRc = [self _relevanceFrame];
     _relevanceBar.frame = relevanceRc;
 }
 

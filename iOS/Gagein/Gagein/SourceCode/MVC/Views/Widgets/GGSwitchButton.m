@@ -59,6 +59,7 @@
     {
         _isOn = aIsOn;
         _viewOff.hidden = _isOn;
+        _viewOn.hidden = !_viewOff.hidden;
         [_delegate switchButton:self isOn:_isOn];
     }
 }

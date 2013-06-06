@@ -62,7 +62,8 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    _initialTabRect = self.tabBar.frame;
+
     [self _costomizeTab];
 }
 

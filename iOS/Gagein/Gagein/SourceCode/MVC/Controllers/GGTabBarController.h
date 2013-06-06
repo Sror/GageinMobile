@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface GGTabBarController : UITabBarController
+@property (assign)      CGRect      initialTabRect;
 
 -(id)initWithViewControllers:(NSArray *)aViewControllers;
 
