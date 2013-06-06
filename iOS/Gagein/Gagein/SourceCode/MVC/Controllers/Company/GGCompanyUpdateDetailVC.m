@@ -60,6 +60,8 @@
     
     NSMutableArray          *_snTypes;
     UITableView             *_tvMentionedCompanies;
+    
+    BOOL                    _isTabbarHiddenWhenLoaded;
 }
 
 
@@ -68,10 +70,14 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.hidesBottomBarWhenPushed = YES;
         _snTypes = [NSMutableArray array];
     }
     return self;
+}
+
+-(void)dealloc
+{
+    _isTabbarHiddenWhenLoaded ? [GGUtils hideTabBarAnimated:YES] : [GGUtils showTabBarAnimated:YES];
 }
 
 - (void)viewDidLoad
@@ -81,6 +87,9 @@
     [self observeNotification:OA_NOTIFY_TWITTER_OAUTH_OK];
     
     [super viewDidLoad];
+    
+    _isTabbarHiddenWhenLoaded = GGSharedDelegate.tabBarController.isTabbarHidden;
+    [GGUtils hideTabBarAnimated:YES];
     
     self.naviTitle = _naviTitleString;
     self.view.backgroundColor = GGSharedColor.silver;
@@ -174,6 +183,8 @@
     self.scrollView.contentSize = contentSize;
     self.scrollView.contentOffset = CGPointZero;
 }
+
+
 
 
 - (void)viewDidUnload {

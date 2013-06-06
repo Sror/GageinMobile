@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface GGTabBarController : UITabBarController
-@property (assign)      CGRect      initialTabRect;
+@property (assign, nonatomic)      CGRect      initialTabRect;
+@property (readonly, nonatomic)     BOOL    isTabbarHidden;
 
 -(id)initWithViewControllers:(NSArray *)aViewControllers;
 
 -(void)adjustTabbarPosForIpadWithOrient:(UIInterfaceOrientation)toInterfaceOrientation;
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation;
+
+- (void)showTabBarAnimated:(BOOL)aAnimated;
+- (void)hideTabBarAnimated:(BOOL)aAnimated;
 @end

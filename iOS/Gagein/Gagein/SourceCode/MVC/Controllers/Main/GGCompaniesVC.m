@@ -166,9 +166,7 @@
     [self _initRoundSwitch];
 
     [self _initSlideSettingView];
-    
-    
-    
+
     //
      _updateTvRect = [self viewportAdjsted];
     
@@ -238,7 +236,7 @@
 {
     [super viewWillAppear:animated];
     
-    
+    [self _adjustUpdateTvFrame];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -1047,7 +1045,17 @@
 }
 
 
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+-(void)_adjustUpdateTvFrame
+{
+    if (!ISIPADDEVICE)
+    {
+        CGRect updateRc = _updatesTV.frame;
+        updateRc.origin.y = CGRectGetMaxY(_relevanceBar.frame);
+        updateRc.size.height = _updatesTV.superview.bounds.size.height - updateRc.origin.y;
+        _updatesTV.frame = updateRc;
+    }
+}
+
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
     
     if (scrollView == _updatesTV && !ISIPADDEVICE)
@@ -1067,10 +1075,7 @@
             [GGUtils showTabBar];
         }
         
-        CGRect updateRc = _updatesTV.frame;
-        updateRc.origin.y = CGRectGetMaxY(_relevanceBar.frame);
-        updateRc.size.height = _updatesTV.superview.bounds.size.height - updateRc.origin.y;
-        _updatesTV.frame = updateRc;
+        [self _adjustUpdateTvFrame];
     }
 }
 

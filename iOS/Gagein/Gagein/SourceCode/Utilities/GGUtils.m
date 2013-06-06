@@ -445,77 +445,23 @@
 
 + (void)showTabBar
 {
-    [self showTabBar:GGSharedDelegate.tabBarController];
+    [self showTabBarAnimated:YES];
 }
 
-static BOOL s_isTabbarHidden = NO;
-+ (void)showTabBar:(GGTabBarController *)tabbarcontroller
++ (void)showTabBarAnimated:(BOOL)aAnimated
 {
-    if (s_isTabbarHidden)
-    {
-        s_isTabbarHidden = NO;
-        
-        tabbarcontroller.tabBar.hidden = NO;
-        CGRect initialTabRc = tabbarcontroller.initialTabRect;
-        
-        [UIView animateWithDuration:.5f animations:^{
-            for (UIView *view in tabbarcontroller.view.subviews) {
-                if ([view isKindOfClass:[UITabBar class]]) {
-                    [view setFrame:CGRectMake(initialTabRc.origin.x, initialTabRc.origin.y - 20, initialTabRc.size.width, initialTabRc.size.height)];
-//                }
-//                else {
-//                    [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height-49.f)];
-                }
-            }
-        } completion:^(BOOL finished) {
-            
-            for (UIView *view in tabbarcontroller.view.subviews)
-            {
-                if (![view isKindOfClass:[UITabBar class]])
-                {
-                    [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height-49.f)];
-                }
-            }
-            
-        }];
-        
-        
-    }
+    [GGSharedDelegate.tabBarController showTabBarAnimated:aAnimated];
 }
 
 + (void)hideTabBar
 {
-    [self hideTabBar:GGSharedDelegate.tabBarController];
+    [self hideTabBarAnimated:YES];
 }
 
-+ (void)hideTabBar:(GGTabBarController *)tabbarcontroller
++ (void)hideTabBarAnimated:(BOOL)aAnimated
 {
-    if (!s_isTabbarHidden)
-    {
-        s_isTabbarHidden = YES;
-        
-        CGRect initialTabRc = tabbarcontroller.initialTabRect;
-        
-        [UIView animateWithDuration:.5f animations:^{
-            for (UIView *view in tabbarcontroller.view.subviews) {
-                if ([view isKindOfClass:[UITabBar class]]) {
-                    [view setFrame:CGRectMake(initialTabRc.origin.x, initialTabRc.origin.y+60.f, initialTabRc.size.width, initialTabRc.size.height)];
-//                }
-//                else {
-//                    [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height+49.f)];
-                }
-            }
-        } completion:^(BOOL finished) {
-            //do smth after animation finishes
-            tabbarcontroller.tabBar.hidden = YES;
-        }];
-        
-        for (UIView *view in tabbarcontroller.view.subviews) {
-            if (![view isKindOfClass:[UITabBar class]]) {
-                [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height+49.f)];
-            }
-        }
-    }
+    [GGSharedDelegate.tabBarController hideTabBarAnimated:aAnimated];
 }
+
 
 @end

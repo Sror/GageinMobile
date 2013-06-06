@@ -65,6 +65,7 @@
     UITapGestureRecognizer *_tapGestEnterPersonDetail;
     
     NSMutableArray          *_snTypes;
+    BOOL                    _isTabbarHiddenWhenLoaded;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -73,9 +74,13 @@
     if (self) {
         _cellDatas = [NSMutableArray array];
         _snTypes = [NSMutableArray array];
-        self.hidesBottomBarWhenPushed = YES;
     }
     return self;
+}
+
+-(void)dealloc
+{
+    _isTabbarHiddenWhenLoaded ? [GGUtils hideTabBarAnimated:YES] : [GGUtils showTabBarAnimated:YES];
 }
 
 - (void)viewDidLoad
@@ -85,6 +90,10 @@
     [self observeNotification:OA_NOTIFY_TWITTER_OAUTH_OK];
     
     [super viewDidLoad];
+    
+    _isTabbarHiddenWhenLoaded = GGSharedDelegate.tabBarController.isTabbarHidden;
+    [GGUtils hideTabBarAnimated:YES];
+    
     self.naviTitle = @"Happening";
     self.svContent.frame = [self viewportAdjsted];
     self.tvDetail.backgroundColor = GGSharedColor.silver;

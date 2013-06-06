@@ -60,7 +60,9 @@
 //+(CGRect)frameWithOrientation:(UIInterfaceOrientation)anOrientation rect:(CGRect)aRect;
 +(CAAnimation *)animationTransactionPushed:(BOOL)aPushed;
 
-+ (void)showTabBar;
-+ (void)hideTabBar;
++ (void)showTabBar; // animated by default
++ (void)showTabBarAnimated:(BOOL)aAnimated;
++ (void)hideTabBar; // animated by default
++ (void)hideTabBarAnimated:(BOOL)aAnimated;
 
 @end

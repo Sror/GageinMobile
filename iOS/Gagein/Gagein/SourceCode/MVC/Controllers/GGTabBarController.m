@@ -26,6 +26,8 @@
     
     NSInteger _currentIndex;
     NSArray *_viewControllers;
+    
+    BOOL    _isTabbarHidden;
 }
 
 -(id)initWithViewControllers:(NSArray *)aViewControllers
@@ -184,6 +186,109 @@
     {
         vc.view.frame = vc.view.superview.bounds;
     }
+}
+
+#pragma mark - show/hide tabbar
+- (void)showTabBarAnimated:(BOOL)aAnimated
+{
+    if (ISIPADDEVICE)   return;
+    
+    if (_isTabbarHidden)
+    {
+        _isTabbarHidden = NO;
+        self.tabBar.hidden = NO;
+        
+        //int (^getGlobalInt)(void) = ^{ return GlobalInt; };
+        void(^moveTabbarUp)(void) = ^{
+            for (UIView *view in self.view.subviews) {
+                if ([view isKindOfClass:[UITabBar class]]) {
+                    [view setFrame:CGRectMake(_initialTabRect.origin.x, _initialTabRect.origin.y - 20, _initialTabRect.size.width, _initialTabRect.size.height)];
+                }
+            }
+        };
+        
+        //
+        void(^adjustOtherViews)(void) = ^{
+            
+            for (UIView *view in self.view.subviews)
+            {
+                if (![view isKindOfClass:[UITabBar class]])
+                {
+                    [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height-49.f)];
+                }
+            }
+        };
+        
+        if (aAnimated)
+        {
+            [UIView animateWithDuration:.5f animations:^{
+                
+                moveTabbarUp();
+                
+            } completion:^(BOOL finished) {
+                
+                adjustOtherViews();
+                
+            }];
+        }
+        else
+        {
+            moveTabbarUp();
+            adjustOtherViews();
+        }
+        
+    }
+}
+
+
+- (void)hideTabBarAnimated:(BOOL)aAnimated
+{
+    if (ISIPADDEVICE)   return;
+    
+    if (!_isTabbarHidden)
+    {
+        _isTabbarHidden = YES;
+        
+        void(^moveTabbarDown)(void) = ^{
+        
+            for (UIView *view in self.view.subviews) {
+                if ([view isKindOfClass:[UITabBar class]]) {
+                    [view setFrame:CGRectMake(_initialTabRect.origin.x, _initialTabRect.origin.y + 60.f, _initialTabRect.size.width, _initialTabRect.size.height)];
+                }
+            }
+        };
+        
+        void(^adjustOtherViews)(void) = ^{
+            
+            for (UIView *view in self.view.subviews) {
+                if (![view isKindOfClass:[UITabBar class]]) {
+                    [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height+49.f)];
+                }
+            }
+            
+        };
+        
+        adjustOtherViews();
+        
+        if (aAnimated)
+        {
+            [UIView animateWithDuration:.5f animations:^{
+                
+                moveTabbarDown();
+                
+            } completion:^(BOOL finished) {
+                
+                self.tabBar.hidden = YES;
+            }];
+        }
+        else
+        {
+            moveTabbarDown();
+            self.tabBar.hidden = YES;
+        }
+        
+    }
+
 }
 
 @end
