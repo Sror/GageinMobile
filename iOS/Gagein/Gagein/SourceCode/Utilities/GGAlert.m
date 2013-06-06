@@ -7,6 +7,7 @@
 //
 
 #import "GGAlert.h"
+#import "YRDropdownView.h"
 
 @implementation GGAlert
 
@@ -95,6 +96,19 @@
                                           cancelButtonTitle:@"Cancel"
                                           otherButtonTitles:@"Ok", nil];
     [alert show];
+}
+
+
+
+#pragma mark -
++(void)showWarning:(NSString *)aTitle message:(NSString *)aMessage
+{
+    [YRDropdownView showDropdownInView:[UIApplication sharedApplication].windows.lastObject
+                                 title:aTitle
+                                detail:aMessage
+                                 image:[UIImage imageNamed:@"dropdown-alert"]
+                              animated:YES
+                             hideAfter:0.f];
 }
 
 @end

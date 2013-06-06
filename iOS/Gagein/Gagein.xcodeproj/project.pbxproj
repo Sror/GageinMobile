@@ -307,6 +307,11 @@
 		EA959D75171539DD005B06F6 /* GGSearchSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA959D74171539DD005B06F6 /* GGSearchSuggestionCell.m */; };
 		EA959D7717157102005B06F6 /* topOrangeLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA959D7617157102005B06F6 /* topOrangeLine@2x.png */; };
 		EA964951176104A600739F73 /* GGLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EA964950176104A600739F73 /* GGLayout.m */; };
+		EA96495717613D4D00739F73 /* bg-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = EA96495317613D4D00739F73 /* bg-yellow.png */; };
+		EA96495817613D4D00739F73 /* bg-yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA96495417613D4D00739F73 /* bg-yellow@2x.png */; };
+		EA96495917613D4D00739F73 /* YRDropdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA96495617613D4D00739F73 /* YRDropdownView.m */; };
+		EA96495C17613D5E00739F73 /* dropdown-alert.png in Resources */ = {isa = PBXBuildFile; fileRef = EA96495A17613D5E00739F73 /* dropdown-alert.png */; };
+		EA96495D17613D5E00739F73 /* dropdown-alert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA96495B17613D5E00739F73 /* dropdown-alert@2x.png */; };
 		EA975758174D3419007D64CD /* sendSmsbtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA975757174D3419007D64CD /* sendSmsbtn@2x.png */; };
 		EA97575A174D3424007D64CD /* updateSwitchBackbtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA975759174D3424007D64CD /* updateSwitchBackbtn@2x.png */; };
 		EA97575D174D45A4007D64CD /* NSMutableArray+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA97575C174D45A4007D64CD /* NSMutableArray+AddOn.m */; };
@@ -944,6 +949,12 @@
 		EA959D7617157102005B06F6 /* topOrangeLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topOrangeLine@2x.png"; sourceTree = "<group>"; };
 		EA96494F176104A600739F73 /* GGLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGLayout.h; sourceTree = "<group>"; };
 		EA964950176104A600739F73 /* GGLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGLayout.m; sourceTree = "<group>"; };
+		EA96495317613D4D00739F73 /* bg-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-yellow.png"; sourceTree = "<group>"; };
+		EA96495417613D4D00739F73 /* bg-yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-yellow@2x.png"; sourceTree = "<group>"; };
+		EA96495517613D4D00739F73 /* YRDropdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRDropdownView.h; sourceTree = "<group>"; };
+		EA96495617613D4D00739F73 /* YRDropdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRDropdownView.m; sourceTree = "<group>"; };
+		EA96495A17613D5E00739F73 /* dropdown-alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropdown-alert.png"; sourceTree = "<group>"; };
+		EA96495B17613D5E00739F73 /* dropdown-alert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropdown-alert@2x.png"; sourceTree = "<group>"; };
 		EA975757174D3419007D64CD /* sendSmsbtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sendSmsbtn@2x.png"; sourceTree = "<group>"; };
 		EA975759174D3424007D64CD /* updateSwitchBackbtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "updateSwitchBackbtn@2x.png"; sourceTree = "<group>"; };
 		EA97575B174D45A4007D64CD /* NSMutableArray+AddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+AddOn.h"; sourceTree = "<group>"; };
@@ -1862,6 +1873,19 @@
 			path = DCRoundSwitch;
 			sourceTree = "<group>";
 		};
+		EA96495217613D4D00739F73 /* YRDropdownView */ = {
+			isa = PBXGroup;
+			children = (
+				EA96495A17613D5E00739F73 /* dropdown-alert.png */,
+				EA96495B17613D5E00739F73 /* dropdown-alert@2x.png */,
+				EA96495317613D4D00739F73 /* bg-yellow.png */,
+				EA96495417613D4D00739F73 /* bg-yellow@2x.png */,
+				EA96495517613D4D00739F73 /* YRDropdownView.h */,
+				EA96495617613D4D00739F73 /* YRDropdownView.m */,
+			);
+			path = YRDropdownView;
+			sourceTree = "<group>";
+		};
 		EA9923C2174591E50043251E /* Others */ = {
 			isa = PBXGroup;
 			children = (
@@ -2370,6 +2394,7 @@
 		EACAE0BB17094A3100E7088F /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				EA96495217613D4D00739F73 /* YRDropdownView */,
 				EA62C67F174BFCD90031BF42 /* Twitter+OAuth */,
 				EA2F006F1746BFA700E191BD /* CMActionSheet */,
 				EAB8D5381739AF7900D033FC /* NGTabBarController */,
@@ -3061,6 +3086,10 @@
 				EA3CB5E5175D71E000285986 /* pad_btnLogin@2x.png in Resources */,
 				EAA1880F175E7BB700580B00 /* GGSignupVC_iPad.xib in Resources */,
 				EAA18814175EA11500580B00 /* GGCompanyUpdateIpadCell.xib in Resources */,
+				EA96495717613D4D00739F73 /* bg-yellow.png in Resources */,
+				EA96495817613D4D00739F73 /* bg-yellow@2x.png in Resources */,
+				EA96495C17613D5E00739F73 /* dropdown-alert.png in Resources */,
+				EA96495D17613D5E00739F73 /* dropdown-alert@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3295,6 +3324,7 @@
 				EAA18812175EA0E600580B00 /* GGCompanyUpdateIpadCell.m in Sources */,
 				EA449698175FC8C700F514F0 /* GGFacebookAuthVC.m in Sources */,
 				EA964951176104A600739F73 /* GGLayout.m in Sources */,
+				EA96495917613D4D00739F73 /* YRDropdownView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,6 +20,10 @@
 +(void)alertCancelOK:(NSString *)aMessage delegate:(id)aDelegate;
 +(void)alertCancelOK:(NSString *)aMessage  title:(NSString *)aTitle  delegate:(id)aDelegate;
 +(void)alertErrorForParser:(GGApiParser *)aParser;
+
+#pragma mark - warnings
++(void)showWarning:(NSString *)aTitle message:(NSString *)aMessage;
+
 @end
 
 typedef enum {

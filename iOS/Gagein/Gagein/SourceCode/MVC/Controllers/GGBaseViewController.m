@@ -41,6 +41,7 @@
     //GGFacebookAuthVC            *_facebookAuthVC;
 }
 
+#pragma mark - api operation management
 -(void)registerOperation:(id)anOperation
 {    
     if (anOperation)
@@ -65,6 +66,7 @@
     }
 }
 
+#pragma mark - handle notification
 -(void)handleNotification:(NSNotification *)notification
 {
     NSString *notiName = notification.name;
@@ -78,8 +80,13 @@
         [self unregisterOperation:notiObj];
         //DLog(@"\n\n api operation Success\n path:%@", ((AFHTTPRequestOperation *)notiObj).request.URL.relativeString);
     }
+    else if ([notiName isEqualToString:GG_NOTIFY_HIDE_ALL_LOADING_HUD])
+    {
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    }
 }
 
+#pragma mark - view & memory management
 +(id)createInstance
 {
     return [[self alloc] init];
@@ -98,6 +105,7 @@
 {
     [self observeNotification:GG_NOTIFY_API_OPERATION_SUCCESS];
     [self observeNotification:GG_NOTIFY_API_OPERATION_FAILED];
+    [self observeNotification:GG_NOTIFY_HIDE_ALL_LOADING_HUD];
     
     [super viewDidLoad];
     _isViewFirstAppear = YES;

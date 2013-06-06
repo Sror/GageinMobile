@@ -7,7 +7,9 @@
 //
 
 #import "GGApi.h"
+#import "YRDropdownView.h"
 
+static AFNetworkReachabilityStatus s_netStatus = AFNetworkReachabilityStatusUnknown;
 
 @implementation GGApi
 
@@ -36,26 +38,27 @@
     [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
     [self setDefaultHeader:@"Accept" value:@"text/json"];
     
-    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    //UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    GGApi *this = self;
     [self setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        if (status == AFNetworkReachabilityStatusNotReachable) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                MBProgressHUD*  hud= [MBProgressHUD showHUDAddedTo:window
-                                                          animated:YES];
-                hud.mode = MBProgressHUDModeText;
-                hud.dimBackground = YES;
-                hud.labelText = @"No active internet connection";
-                
-            });
-        }
-        else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideAllHUDsForView:window animated:NO];
-            });
-        }
+        s_netStatus = status;
+        
+        [this _tellUserIfNoConnection];
+        
     }];
     
     return self;
+}
+
+-(void)_tellUserIfNoConnection
+{
+    if (s_netStatus == AFNetworkReachabilityStatusNotReachable) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [GGAlert showWarning:@"No internet connection" message:nil];
+            
+        });
+    }
 }
 
 -(void)canceAllOperations
@@ -67,6 +70,12 @@
 -(void)_logRawResponse:(id)anOperation
 {
     AFHTTPRequestOperation *httpOp = anOperation;
+    
+    if (httpOp.responseString.length <= 0 && s_netStatus != AFNetworkReachabilityStatusNotReachable)
+    {
+        [GGAlert showWarning:@"Network Error" message:nil];
+        [self postNotification:GG_NOTIFY_HIDE_ALL_LOADING_HUD];
+    }
     
     DLog(@"\nRequest:\n%@\n\nRAW DATA:\n%@\n", httpOp.request.URL.absoluteString, httpOp.responseString);
 }
@@ -85,6 +94,8 @@
 
 -(AFHTTPRequestOperation *)_execGetWithPath:(NSString *)aPath params:(NSDictionary *)aParams callback:(GGApiBlock)aCallback
 {
+    [self _tellUserIfNoConnection];
+    
     AFHTTPRequestOperation *operation = [self getPath:aPath
        parameters:aParams
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -103,6 +114,8 @@
 
 -(AFHTTPRequestOperation *)_execPostWithPath:(NSString *)aPath params:(NSDictionary *)aParams callback:(GGApiBlock)aCallback
 {
+    [self _tellUserIfNoConnection];
+    
     AFHTTPRequestOperation *operation = [self postPath:aPath
         parameters:aParams
            success:^(AFHTTPRequestOperation *operation, id responseObject) {
