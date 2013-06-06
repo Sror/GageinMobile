@@ -671,13 +671,26 @@
 
 -(void)companyDetailAction:(id)sender
 {
-    //GGCompanyUpdateCell *cell = (GGCompanyUpdateCell *)((UIButton*)sender).superview.superview;
     int index = ((UIButton*)sender).tag;
     GGCompanyUpdate *update = [_updates objectAtIndex:index];
     
     GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
     vc.companyID = update.company.ID;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)companyDetailForHappeningAction:(id)sender
+{
+    int index = ((UIButton*)sender).tag;
+    GGHappening *data = _happenings[index];
+    
+    if (data.company.orgID > 0)
+    {
+        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+        vc.companyID = data.company.orgID;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 
@@ -812,14 +825,18 @@
         if (cell == nil) {
             cell = [GGCompanyHappeningCell viewFromNibWithOwner:self];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            [cell.btnLogo addTarget:self action:@selector(companyDetailForHappeningAction:) forControlEvents:UIControlEventTouchUpInside];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
         GGHappening *data = _happenings[row];
         cell.tag = row;
+        cell.btnLogo.tag = row;
         cell.lblName.text = data.sourceText;
         cell.lblDescription.text = data.headLineText;
         cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
-        [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+        [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
         cell.hasBeenRead = data.hasBeenRead;
         
         return cell;

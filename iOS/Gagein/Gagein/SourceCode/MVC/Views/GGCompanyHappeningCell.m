@@ -32,6 +32,8 @@
     
     _ivLogo.layer.borderColor = GGSharedColor.silver.CGColor;
     _ivLogo.layer.borderWidth = 1;
+    
+    [GGUtils applyLogoStyleToView:_ivLogo];
 }
 
 +(float)HEIGHT

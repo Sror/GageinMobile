@@ -73,6 +73,21 @@
     [self unobserveAllNotifications];
 }
 
+#pragma mark - actions
+-(void)companyDetailForHappeningAction:(id)sender
+{
+    int index = ((UIButton*)sender).tag;
+    GGHappening *data = _happenings[index];
+    
+    if (data.company.orgID > 0)
+    {
+        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+        vc.companyID = data.company.orgID;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
 #pragma mark - notification handling
 -(void)handleNotification:(NSNotification *)notification
 {
@@ -101,16 +116,18 @@
     GGCompanyHappeningCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
     if (cell == nil) {
         cell = [GGCompanyHappeningCell viewFromNibWithOwner:self];
-        //[cell.logoBtn addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        [cell.btnLogo addTarget:self action:@selector(companyDetailForHappeningAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     GGHappening *data = [self.happenings objectAtIndex:indexPath.row];
     
+    cell.btnLogo.tag = indexPath.row;
     cell.lblName.text = data.sourceText;
     cell.lblDescription.text = data.headLineText;
     cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
-    [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.orgLogoPath] placeholderImage:(_isPersonHappenings ? GGSharedImagePool.logoDefaultPerson : GGSharedImagePool.logoDefaultCompany)];
+    [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.company.orgLogoPath] placeholderImage:(_isPersonHappenings ? GGSharedImagePool.logoDefaultPerson : GGSharedImagePool.logoDefaultCompany)];
     
     return cell;
 }
