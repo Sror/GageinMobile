@@ -639,43 +639,5 @@
     [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
 }
 
-//-(void)_installEmptyView
-//{
-//    //
-//    [_viewUpdateEmpty removeFromSuperview];
-//    if (_updates.count)
-//    {
-//        return;
-//    }
-//    
-//    _viewUpdateEmpty = [GGEmptyActionView viewFromNibWithOwner:self];
-//    _viewUpdateEmpty.frame = self.view.bounds;
-//    [_updatesTV addSubview:_viewUpdateEmpty];
-//    
-//    _viewUpdateEmpty.lblTitle.text = @"Have trouble seeing updates?";
-//    _viewUpdateEmpty.viewSimple.hidden = YES;
-//    
-//    if (_menuType == kGGMenuTypePerson)
-//    {
-//        if (((GGDataPage *)_menuDatas[0]).items.count <= 0)
-//        {
-//            _viewUpdateEmpty.lblMessage.text = @"Add people to watch for job, location and other changes.";
-//            [_viewUpdateEmpty.btnAction addTarget:self action:@selector(_enterFollowPeople) forControlEvents:UIControlEventTouchUpInside];
-//            [_viewUpdateEmpty.btnAction setTitle:@"Add People to Follow" forState:UIControlStateNormal];
-//        }
-//        else
-//        {
-//            _viewUpdateEmpty.viewSimple.hidden = NO;
-//            _viewUpdateEmpty.lblSimpleMessage.text = @"No update found for this person as of this new feature launch in May 2013.";
-//        }
-//    }
-//    else if (_menuType == kGGMenuTypeFunctionalArea)
-//    {
-//        _viewUpdateEmpty.lblMessage.text = @"Select functional roles to keep up with leadership changes.";
-//        [_viewUpdateEmpty.btnAction addTarget:self action:@selector(_exploringConfigTapped:) forControlEvents:UIControlEventTouchUpInside];
-//        [_viewUpdateEmpty.btnAction setTitle:@"Select Functional Roles" forState:UIControlStateNormal];
-//    }
-//}
-
 
 @end

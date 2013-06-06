@@ -27,6 +27,9 @@
 #import "GGCompanyEmployeesVC.h"
 #import "GGSimilarCompaniesVC.h"
 #import "GGComOverviewDetailVC.h"
+#import "GGPersonDetailVC.h"
+#import "GGCompanyUpdateDetailVC.h"
+#import "GGHappeningDetailVC.h"
 
 typedef enum
 {
@@ -270,10 +273,30 @@ typedef enum
         [self.navigationController pushViewController:vc animated:YES];
         
     } else if (section == kGGSectionUpdates) {
-
+        
+        GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
+        
+        vc.naviTitleString = self.customNaviTitle.text;
+        vc.updates = _updates;
+        vc.updateIndex = indexPath.row;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+        
     } else if (section == kGGSectionHappenings) {
+        
+        GGHappeningDetailVC *vc = [[GGHappeningDetailVC alloc] init];
+        vc.happenings = _happenings;
+        vc.happeningIndex = row;
+        
+        [self.navigationController pushViewController:vc animated:YES];
 
     } else if (section == kGGSectionEmployees) {
+        
+        GGPerson *data = _people[row];
+        
+        GGPersonDetailVC *vc = [GGPersonDetailVC createInstance];
+        vc.personID = data.ID;
+        [self.navigationController pushViewController:vc animated:YES];
 
     } else if (section == kGGSectionSimilarCompanies) {
         

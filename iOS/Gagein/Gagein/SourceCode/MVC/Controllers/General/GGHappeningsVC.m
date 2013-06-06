@@ -15,6 +15,7 @@
 
 #import "GGCompanyHappeningCell.h"
 #import "GGHappening.h"
+#import "GGHappeningDetailVC.h"
 
 @interface GGHappeningsVC ()
 @property (nonatomic, strong) UITableView *tvHappenings;
@@ -117,6 +118,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    GGHappeningDetailVC *vc = [[GGHappeningDetailVC alloc] init];
+    vc.happenings = _happenings;
+    vc.happeningIndex = indexPath.row;
+    
+    [self.navigationController pushViewController:vc animated:YES];
     
 //    GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
 //    

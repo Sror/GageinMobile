@@ -12,6 +12,7 @@
 #import "SVPullToRefresh.h"
 #import "GGCustomBriefCell.h"
 #import "GGPerson.h"
+#import "GGPersonDetailVC.h"
 
 @interface GGCompanyEmployeesVC ()
 @property (nonatomic, strong) UITableView *tvEmployees;
@@ -118,6 +119,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    GGPerson *data = [self.employees objectAtIndex:indexPath.row];
+    
+    GGPersonDetailVC *vc = [GGPersonDetailVC createInstance];
+    vc.personID = data.ID;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark -

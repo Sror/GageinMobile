@@ -7,6 +7,7 @@
 //
 
 #import "GGPersonDetailVC.h"
+
 #import "GGPerson.h"
 #import "GGCompanyDetailUpdateCell.h"
 #import "GGHappening.h"
