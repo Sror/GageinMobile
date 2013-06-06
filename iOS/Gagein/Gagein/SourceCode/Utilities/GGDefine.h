@@ -53,6 +53,8 @@ typedef enum {
 
 #define SAMPLE_TEXT         @"This is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing"
 
+#define GAGEIN_SLOGAN       @"a sales intelligence company"
+
 //
 #undef	__INT
 #define __INT( __x )			[NSNumber numberWithInt:(NSInteger)(__x)]

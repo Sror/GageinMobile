@@ -408,10 +408,10 @@
                              <p><a href=\"%@\">%@</a></p> \
                              <p><strong>%@</strong></p> \
                              <p><em>%@</em></p> \
-                             Shared from <a href=\"www.gagein.com\">GageIn</a>, a visual sales intelligence company </div>"
+                             Shared from <a href=\"www.gagein.com\">GageIn</a>, %@ </div>"
                              , _companyUpdateDetail.url, _companyUpdateDetail.url
                              , _companyUpdateDetail.headline
-                             , _companyUpdateDetail.contentInDetail];
+                             , _companyUpdateDetail.contentInDetail, GAGEIN_SLOGAN];
 
     
     [controller setMessageBody:contentBody isHTML:YES];

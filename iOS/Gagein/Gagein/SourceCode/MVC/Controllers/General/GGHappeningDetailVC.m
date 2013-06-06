@@ -203,9 +203,9 @@
     
     NSString *contentBody = [NSString stringWithFormat:@"<div><p>I want to share this update with you.</p> \
                              <p><strong>%@</strong></p> \
-                             Shared from <a href=\"www.gagein.com\">GageIn</a>, a visual sales intelligence company </div>"
+                             Shared from <a href=\"www.gagein.com\">GageIn</a>, %@ </div>"
                              
-                             , [_currentDetail headLineText]];
+                             , [_currentDetail headLineText], GAGEIN_SLOGAN];
     
     
     [controller setMessageBody:contentBody isHTML:YES];

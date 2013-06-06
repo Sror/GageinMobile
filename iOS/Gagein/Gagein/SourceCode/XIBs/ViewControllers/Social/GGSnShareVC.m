@@ -194,12 +194,14 @@
     NSString *message = nil;
     if (_comUpdateDetail)
     {
-        message = [NSString stringWithFormat:@"%@\n\n - shared from GageIn, a visual sales intelligence company.", _comUpdateDetail.headline];
-        ;
+//        message = [NSString stringWithFormat:@"%@\n\n - shared from GageIn, a visual sales intelligence company.", _comUpdateDetail.headline];
+//        ;
+        message = _comUpdateDetail.headline;
     }
     else if (_happening)
     {
-        message = [NSString stringWithFormat:@"%@\n\n - shared from GageIn, a visual sales intelligence company.", _happening.headLineText];
+//        message = [NSString stringWithFormat:@"%@\n\n - shared from GageIn, a visual sales intelligence company.", _happening.headLineText];
+        message = _happening.headLineText;
     }
     
     return message;
