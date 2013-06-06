@@ -103,12 +103,23 @@
 #pragma mark -
 +(void)showWarning:(NSString *)aTitle message:(NSString *)aMessage
 {
-    [YRDropdownView showDropdownInView:[UIApplication sharedApplication].windows.lastObject
-                                 title:aTitle
-                                detail:aMessage
-                                 image:[UIImage imageNamed:@"dropdown-alert"]
-                              animated:YES
-                             hideAfter:0.f];
+    if (ISIPADDEVICE)
+    {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].windows.lastObject animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = aTitle;
+        hud.dimBackground = YES;
+        [hud hide:YES afterDelay:3.f];
+    }
+    else
+    {
+        [YRDropdownView showDropdownInView:[UIApplication sharedApplication].windows.lastObject
+                                     title:aTitle
+                                    detail:aMessage
+                                     image:[UIImage imageNamed:@"dropdown-alert"]
+                                  animated:YES
+                                 hideAfter:0.f];
+    }
 }
 
 @end
