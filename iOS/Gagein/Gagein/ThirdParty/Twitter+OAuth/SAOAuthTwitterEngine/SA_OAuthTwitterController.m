@@ -292,7 +292,7 @@ static NSString* const kGGTwitterLoadingBackgroundImage = @"twitter_load.png";
     
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     
-    CGRect orientRc = [GGUtils frameWithOrientation:self.orientation rect:self.view.bounds];
+    CGRect orientRc = [GGLayout frameWithOrientation:self.orientation rect:self.view.bounds];
 	_blockerView.center = CGPointMake(orientRc.size.width / 2, orientRc.size.height / 2);
 //	[self performInjection];			//removed due to twitter update
 }

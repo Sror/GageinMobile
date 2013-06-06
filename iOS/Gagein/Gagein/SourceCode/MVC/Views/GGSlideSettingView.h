@@ -38,4 +38,4 @@
 -(void)switchSearchMode:(BOOL)aUsingSearchMode;
 @end
 
-#define SLIDE_SETTING_VIEW_WIDTH    260
+

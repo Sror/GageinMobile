@@ -55,7 +55,7 @@
 -(CGRect)_viewBoundsWithOrient:(UIInterfaceOrientation)toInterfaceOrientation
 {
     CGRect windowRc = [UIScreen mainScreen].bounds;
-    return [GGUtils frameWithOrientation:toInterfaceOrientation rect:windowRc];
+    return [GGLayout frameWithOrientation:toInterfaceOrientation rect:windowRc];
 }
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation

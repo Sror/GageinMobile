@@ -288,7 +288,7 @@
 {
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
-    CGRect screenRc = [GGUtils frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
+    CGRect screenRc = [GGLayout frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
     
     self.ivGageinLogo.frame = CGRectMake((screenRc.size.width - self.ivGageinLogo.image.size.width) / 2
                                      , 100

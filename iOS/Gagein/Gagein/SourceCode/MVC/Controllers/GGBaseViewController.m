@@ -114,7 +114,7 @@
 
 -(void)_customizeNaviTitleView
 {
-    CGRect orientRc = [GGUtils frameWithOrientation:[UIApplication sharedApplication].statusBarOrientation rect:[UIScreen mainScreen].bounds];
+    CGRect orientRc = [GGLayout frameWithOrientation:[UIApplication sharedApplication].statusBarOrientation rect:[UIScreen mainScreen].bounds];
     
     _customNaviTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, orientRc.size.width, 44)];
 	_customNaviTitle.backgroundColor = [UIColor clearColor];
@@ -509,19 +509,19 @@
 
 -(CGRect)frameOrientated
 {
-    return [GGUtils frameWithOrientation:[UIApplication sharedApplication].statusBarOrientation rect:self.view.frame];
+    return [GGLayout frameWithOrientation:[UIApplication sharedApplication].statusBarOrientation rect:self.view.frame];
 }
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    CGRect rcScreen = [GGUtils frameWithOrientation:toInterfaceOrientation rect:self.view.frame];
+    CGRect rcScreen = [GGLayout frameWithOrientation:toInterfaceOrientation rect:self.view.frame];
     
     _ivGageinLogo.frame = CGRectMake((rcScreen.size.width - _ivGageinLogo.image.size.width) / 2
                                      , 100
                                      , _ivGageinLogo.image.size.width
                                      , _ivGageinLogo.image.size.height);
     
-    CGRect windowRc = [GGUtils frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
+    CGRect windowRc = [GGLayout frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
     _customNaviTitle.frame = CGRectMake(0, 5, windowRc.size.width, 44);
     
     [GGSharedDelegate doLayoutUIForIPadWithOrientation:toInterfaceOrientation];

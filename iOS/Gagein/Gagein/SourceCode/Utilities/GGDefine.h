@@ -106,6 +106,8 @@ return __singleton__; \
 #define GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT 216.f
 #define GG_KEY_BOARD_HEIGHT_IPHONE_LANDSCAPE 162.f
 
+#define SLIDE_SETTING_VIEW_WIDTH    260
+
 //
 @interface GGDefine : NSObject
 @end

@@ -50,35 +50,32 @@
 
 @implementation GGCompaniesVC
 {
-    EGGCompanyUpdateRelevance   _relevance;
+    EGGCompanyUpdateRelevance           _relevance;
     
-    GGSlideSettingView          *_slideSettingView;
-    GGRelevanceBar              *_relevanceBar;
+    GGSlideSettingView                  *_slideSettingView;
+    GGRelevanceBar                      *_relevanceBar;
     
-    GGEmptyActionView                 *_viewUpdateEmpty;
-    GGEmptyActionView                 *_viewHappeningEmpty;
+    GGEmptyActionView                   *_viewUpdateEmpty;
+    GGEmptyActionView                   *_viewHappeningEmpty;
+    GGKeywordExampleCell                *_keywordExampleView;
     
-    GGSwitchButton             *_btnSwitchUpdate;
-    BOOL                       _isShowingUpdate;
+    GGSwitchButton                      *_btnSwitchUpdate;
+    BOOL                                _isShowingUpdate;
     
-    NSArray                    *_menuDatas;
+    NSArray                             *_menuDatas;
+    EGGMenuType                         _menuType;
+    long long                           _menuID;
     
-    EGGMenuType                _menuType;
-    long long                  _menuID;
+    CGPoint                             _lastContentOffset;
+
+    CGRect                              _updateTvRect;
     
-    CGPoint                     _lastContentOffset;
+    NSTimer                             *_searchTimer;
+    NSMutableArray                      *_suggestedUpdates;
+    BOOL                                _isShowingRecentSearches;
     
-    //CGRect                      _relevanceRectShow;
-    //CGRect                      _relevanceRectHide;
-    CGRect                      _updateTvRect;
-    
-    NSTimer                     *_searchTimer;
-    NSMutableArray              *_suggestedUpdates;
-    BOOL                        _isShowingRecentSearches;
-    
-    GGKeywordExampleCell        *_keywordExampleView;
-    
-    //BOOL                        _isRelevanceBarShowing;
+    BOOL                                _hasMoreUpdates;
+    BOOL                                _hasMoreHappenings;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -143,11 +140,11 @@
     _btnSwitchUpdate.frame = switchRc;
 }
 
--(CGRect)_relevanceFrame
+-(CGRect)_relevanceFrameHided:(BOOL)aHided
 {
     CGRect relevanceRc = _relevanceBar.frame;
     float width = _updatesTV.frame.size.width;
-    return CGRectMake(0, 5, width, relevanceRc.size.height);
+    return aHided ? CGRectMake(0, 5 - relevanceRc.size.height, width, relevanceRc.size.height) : CGRectMake(0, 5, width, relevanceRc.size.height);
 }
 
 - (void)viewDidLoad
@@ -180,6 +177,7 @@
     self.happeningsTV.backgroundColor = GGSharedColor.silver;
     self.happeningsTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.happeningsTV.hidden = YES;
+    _happeningsTV.showsVerticalScrollIndicator = NO;
     //self.happeningsTV.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.happeningsTV];
     
@@ -189,6 +187,7 @@
     self.updatesTV.delegate = self;
     self.updatesTV.backgroundColor = GGSharedColor.silver;
     self.updatesTV.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _updatesTV.showsVerticalScrollIndicator = NO;
     //self.updatesTV.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.updatesTV];
 
@@ -196,7 +195,7 @@
     _relevanceBar = [GGRelevanceBar viewFromNibWithOwner:self];
     //_relevanceRectShow = CGRectOffset(_relevanceBar.frame, 0, 5);
     //_relevanceRectHide = CGRectOffset(_relevanceRectShow, 0, -_relevanceBar.frame.size.height);
-    _relevanceBar.frame = [self _relevanceFrame];
+    _relevanceBar.frame = [self _relevanceFrameHided:NO];
     [self.view addSubview:_relevanceBar];
     _relevanceBar.btnSwitch.delegate = self;
     _relevanceBar.btnSwitch.lblOn.text = @"High";
@@ -1056,50 +1055,52 @@
         {
             DLog(@"moved up");
             
-            //[self _showRelevanceBar:NO];
+            [self _showRelevanceBar:NO];
             [GGUtils hideTabBar];
         }
         else
         {
             DLog(@"moved down");
             
-            //[self _showRelevanceBar:YES];
+            [self _showRelevanceBar:YES];
             [GGUtils showTabBar];
         }
         
         CGRect updateRc = _updatesTV.frame;
-        updateRc.size.height = self.view.bounds.size.height - CGRectGetMaxY(_relevanceBar.frame);
+        updateRc.origin.y = CGRectGetMaxY(_relevanceBar.frame);
+        updateRc.size.height = _updatesTV.superview.bounds.size.height - updateRc.origin.y;
         _updatesTV.frame = updateRc;
     }
 }
 
-//-(void)_showRelevanceBar:(BOOL)aShow
-//{
-//    _isRelevanceBarShowing = aShow;
-//    if (aShow)
-//    {
-//        [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-//            //_relevanceBar.frame = [self _relevanceFrameHided:NO];
-//            _relevanceBar.alpha = 1.f;
-//            
-//        } completion:^(BOOL finished){
-//            //_updatesTV.frame = _updateTvRect;
-//        }];
-//    }
-//    else
-//    {
-//        [UIView animateWithDuration:.5f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-//           // _relevanceBar.frame = [self _relevanceFrameHided:YES];
-//            _relevanceBar.alpha = 0.5f;
-//            
-//        } completion:^(BOOL finished){
-////            CGRect tvRc = _updateTvRect;
-////            tvRc.origin.y = [self _relevanceFrameHided:NO].origin.y;
-////            tvRc.size.height += [self _relevanceFrameHided:NO].size.height;
-////            _updatesTV.frame = tvRc;
-//        }];
-//    }
-//}
+-(void)_showRelevanceBar:(BOOL)aShow
+{
+    //_isRelevanceBarShowing = aShow;
+    float kAnimInterval = .3f;
+    if (aShow)
+    {
+        [UIView animateWithDuration:kAnimInterval delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        _relevanceBar.frame = [self _relevanceFrameHided:NO];
+           // _relevanceBar.alpha = 1.f;
+            
+        } completion:^(BOOL finished){
+            //_updatesTV.frame = _updateTvRect;
+        }];
+    }
+    else
+    {
+        [UIView animateWithDuration:kAnimInterval delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+           _relevanceBar.frame = [self _relevanceFrameHided:YES];
+            //_relevanceBar.alpha = 0.5f;
+            
+        } completion:^(BOOL finished){
+//            CGRect tvRc = _updateTvRect;
+//            tvRc.origin.y = [self _relevanceFrameHided:NO].origin.y;
+//            tvRc.size.height += [self _relevanceFrameHided:NO].size.height;
+//            _updatesTV.frame = tvRc;
+        }];
+    }
+}
 
 
 #pragma mark - data handling
@@ -1179,14 +1180,21 @@
 
 -(void)_getNextPage
 {
-    long long newsID = 0, pageTime = 0;
-    GGCompanyUpdate *lastUpdate = [_updates lastObject];
-    if (lastUpdate)
+    if (_hasMoreUpdates)
     {
-        newsID = lastUpdate.ID;
-        pageTime = lastUpdate.date;
-        
-        [self _getDataWithNewsID:newsID pageFlag:kGGPageFlagMoveDown pageTime:pageTime relevance:_relevance];
+        long long newsID = 0, pageTime = 0;
+        GGCompanyUpdate *lastUpdate = [_updates lastObject];
+        if (lastUpdate)
+        {
+            newsID = lastUpdate.ID;
+            pageTime = lastUpdate.date;
+            
+            [self _getDataWithNewsID:newsID pageFlag:kGGPageFlagMoveDown pageTime:pageTime relevance:_relevance];
+        }
+    }
+    else
+    {
+        [self _delayedStopAnimating];
     }
 }
 
@@ -1214,6 +1222,8 @@
         
         if (parser.isOK)
         {
+            _hasMoreUpdates = page.hasMore;
+            
             if (page.items.count)
             {
                 switch (aPageFlag)
@@ -1245,28 +1255,15 @@
                         break;
                 }
             }
-            
-//            if (_updates.count)
-//            {
-//                [_viewUpdateEmpty removeFromSuperview];
-//            }
-//            else
-//            {
-//                [_updatesTV addSubview:_viewUpdateEmpty];
-//            }
         }
         else if (parser.status == kGGApiStatusUserOperationError)
         {
             _viewUpdateEmpty = [GGEmptyActionView viewFromNibWithOwner:self];
             _viewUpdateEmpty.frame = self.view.bounds;
-            //[_viewUpdateEmpty setMessageCode:parser.messageCode];
             [_viewUpdateEmpty setMessageCode:parser vc:self];
-            
-            //_viewUpdateEmpty = _emptyView;
+
             [_updatesTV addSubview:_viewUpdateEmpty];
         }
-        
-        //[self _installEmptyViewToUpdateTV:YES];
         
         [self.updatesTV reloadData];
         
@@ -1287,53 +1284,6 @@
     }
 }
 
-//-(void)_installEmptyViewToUpdateTV:(BOOL)aIsUpdate // 'aIsUpdate' means if the context is an update or a happening
-//{
-//    //
-//    aIsUpdate ? [_viewUpdateEmpty removeFromSuperview] : [_viewHappeningEmpty removeFromSuperview];
-//    if ((aIsUpdate &&_updates.count) || (!aIsUpdate && _happenings.count))
-//    {
-//        return;
-//    }
-//    
-//    GGEmptyActionView *emptyView = [GGEmptyActionView viewFromNibWithOwner:self];
-//    emptyView.frame = self.view.bounds;
-//    emptyView.viewSimple.hidden = YES;
-//    aIsUpdate ? [_updatesTV addSubview:emptyView] : [_happeningsTV addSubview:emptyView];
-//    
-//    emptyView.lblTitle.text = @"Have trouble seeing updates?";
-//    
-//    if (_menuType == kGGMenuTypeCompany)
-//    {
-//        if (((GGDataPage *)_menuDatas[0]).items.count <= 0)
-//        {
-//            emptyView.lblMessage.text = @"Add companies to watch for important updates.";
-//            [emptyView.btnAction addTarget:self action:@selector(_addCompanyAction:) forControlEvents:UIControlEventTouchUpInside];
-//            [emptyView.btnAction setTitle:@"Add Companies to Follow" forState:UIControlStateNormal];
-//        }
-//        else
-//        {
-//            emptyView.viewSimple.hidden = NO;
-//            if (aIsUpdate)
-//            {
-//                emptyView.lblSimpleMessage.text = @"In the last 7 days, there were no triggers found for your followed companies.";
-//            }
-//            else
-//            {
-//                emptyView.lblSimpleMessage.text = @"No happenings found for your followed companies as of this new feature launch in May 2013";
-//            }
-//        }
-//    }
-//    else if (_menuType == kGGMenuTypeAgent)
-//    {
-//        emptyView.lblMessage.text = @"Select sales triggers to explore new opportunities.";
-//        [emptyView.btnAction addTarget:self action:@selector(_exploringConfigTapped:) forControlEvents:UIControlEventTouchUpInside];
-//        [emptyView.btnAction setTitle:@"Select Sales Triggers" forState:UIControlStateNormal];
-//    }
-//    
-//    aIsUpdate ? (_viewUpdateEmpty = emptyView) : (_viewHappeningEmpty = emptyView);
-//}
-
 #pragma mark -
 -(void)_getFirstHappeningPage
 {
@@ -1342,15 +1292,22 @@
 
 -(void)_getNextHappeningPage
 {
-    long long happeningID = 0, pageTime = 0;
-    GGHappening *lastHappening = [_happenings lastObject];
-    if (lastHappening)
+    if (_hasMoreHappenings)
     {
-        happeningID = lastHappening.ID;
-        pageTime = lastHappening.timestamp;
+        long long happeningID = 0, pageTime = 0;
+        GGHappening *lastHappening = [_happenings lastObject];
+        if (lastHappening)
+        {
+            happeningID = lastHappening.ID;
+            pageTime = lastHappening.timestamp;
+        }
+        
+        [self _getHappeningsDataWithPageFlag:kGGPageFlagMoveDown pageTime:pageTime eventID:happeningID];
     }
-    
-    [self _getHappeningsDataWithPageFlag:kGGPageFlagMoveDown pageTime:pageTime eventID:happeningID];
+    else
+    {
+        [self _delayedStopHappeningAnimating];
+    }
 }
 
 -(void)_getHappeningsDataWithPageFlag:(int)aPageFlag pageTime:(long long)aPageTime eventID:(long long)anEventID
@@ -1364,6 +1321,8 @@
         
         if (parser.isOK)
         {
+            _hasMoreHappenings = page.hasMore;
+            
             if (page.items.count)
             {
                 switch (aPageFlag)
@@ -1400,14 +1359,10 @@
         {
             _viewHappeningEmpty = [GGEmptyActionView viewFromNibWithOwner:self];
             _viewHappeningEmpty.frame = self.view.bounds;
-            //[_viewHappeningEmpty setMessageCode:parser.messageCode];
             [_viewHappeningEmpty setMessageCode:parser vc:self];
             
-            //_viewHappeningEmpty = _emptyView;
             [_happeningsTV addSubview:_viewHappeningEmpty];
         }
-        
-        //[self _installEmptyViewToUpdateTV:NO];
         
         [self.happeningsTV reloadData];
         
@@ -1415,7 +1370,6 @@
         [self performSelector:@selector(_delayedStopHappeningAnimating) withObject:nil afterDelay:.5f];
     };
     
-    //[self showLoadingHUD];
     if (_menuType == kGGMenuTypeCompany)
     {
         id op = [GGSharedAPI getHappeningsWithCompanyID:_menuID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
@@ -1423,7 +1377,6 @@
     }
     else if (_menuType == kGGMenuTypeAgent)
     {
-//#warning no happenings for agent!
         [self performSelector:@selector(_delayedStopHappeningAnimating) withObject:nil afterDelay:.5f];
     }
 }
@@ -1478,7 +1431,7 @@
     [_updatesTV reloadData];
     [_happeningsTV reloadData];
     
-    CGRect relevanceRc = [self _relevanceFrame];
+    CGRect relevanceRc = [self _relevanceFrameHided:NO];
     _relevanceBar.frame = relevanceRc;
 }
 

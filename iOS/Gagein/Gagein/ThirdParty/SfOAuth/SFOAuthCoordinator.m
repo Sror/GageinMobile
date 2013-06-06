@@ -220,7 +220,7 @@ static NSString * const kHttpPostContentType                    = @"application/
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    CGRect orientRc = [GGUtils frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
+    CGRect orientRc = [GGLayout frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
     _view.frame = orientRc;
 }
 
@@ -228,7 +228,7 @@ static NSString * const kHttpPostContentType                    = @"application/
     
     if (nil == _view) {
         // lazily create web view if needed
-        CGRect orientRc = [GGUtils frameWithOrientation:[UIApplication sharedApplication].statusBarOrientation rect:[UIScreen mainScreen].bounds];
+        CGRect orientRc = [GGLayout frameWithOrientation:[UIApplication sharedApplication].statusBarOrientation rect:[UIScreen mainScreen].bounds];
         _view = [[UIWebView  alloc] initWithFrame:orientRc];
     }
     _view.delegate = self;

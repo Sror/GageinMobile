@@ -79,7 +79,7 @@
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     //
-    CGRect thisRc = [GGUtils frameWithOrientation:toInterfaceOrientation rect:self.frame];
+    CGRect thisRc = [GGLayout frameWithOrientation:toInterfaceOrientation rect:self.frame];
     
     _ivPage1.frame = CGRectMake((thisRc.size.width - _ivPage1.frame.size.width) / 2
                                 , (thisRc.size.height - _ivPage1.frame.size.height) / 2

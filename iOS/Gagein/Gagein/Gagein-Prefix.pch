@@ -37,6 +37,7 @@
     #import "NSString+GGAddOn.h"
     #import "GGFont.h"
     #import "GGStringPool.h"
+    #import "GGLayout.h"
 #endif
 
 #include "GGBackLog.h"

@@ -347,7 +347,8 @@
 {
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
-    //CGRect rcScreen = [GGUtils frameWithOrientation:toInterfaceOrientation rect:self.view.frame];
+    CGRect coverRc = [GGLayout rootCoverFrameForWithOrient:toInterfaceOrientation];
+    _viewCover.frame = CGRectMake(_viewCover.frame.origin.x, _viewCover.frame.origin.y, coverRc.size.width, coverRc.size.height);
 }
 
 @end
