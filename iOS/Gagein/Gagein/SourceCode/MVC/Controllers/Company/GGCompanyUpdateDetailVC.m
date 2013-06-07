@@ -151,14 +151,31 @@
 
 -(void)_updateMentionedCompanyTV
 {
+    if (ISIPADDEVICE)
+    {
+        CGRect detailRc = _comUpdateDetailCell.frame;
+        detailRc.size.width = IPAD_CONTENT_WIDTH;
+        detailRc.origin.x = (_comUpdateDetailCell.superview.frame.size.width - IPAD_CONTENT_WIDTH) / 2;
+        _comUpdateDetailCell.frame = detailRc;
+    }
+    
     _tvMentionedCompanies.hidden = (_companyUpdateDetail.mentionedCompanies.count <= 0);
     if (!_tvMentionedCompanies.hidden)
     {
+        [_scrollView addSubview:_tvMentionedCompanies];
+        
         CGRect mentionedComRc = _tvMentionedCompanies.frame;
+        
+        if (ISIPADDEVICE)
+        {
+            mentionedComRc.size.width = IPAD_CONTENT_WIDTH;
+            mentionedComRc.origin.x = (_tvMentionedCompanies.superview.frame.size.width - IPAD_CONTENT_WIDTH) / 2 - 5;
+        }
+        
         mentionedComRc.size.height = _companyUpdateDetail.mentionedCompanies.count * _tvMentionedCompanies.rowHeight;
         mentionedComRc.origin.y = CGRectGetMaxY(_comUpdateDetailCell.frame) + 5;
         _tvMentionedCompanies.frame = mentionedComRc;
-        [_scrollView addSubview:_tvMentionedCompanies];
+        
     }
     else
     {
@@ -763,7 +780,7 @@
                 [_comUpdateDetailCell.ivPhoto setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
 
                     CGSize imageSize = image.size;
-                    float maxImageSize = _comUpdateDetailCell.contentWidth - 10;
+                    float maxImageSize = _comUpdateDetailCell.contentWidth;
                     float ratio = imageSize.width / maxImageSize;
                     if (ratio > 1)
                     {
@@ -939,6 +956,16 @@
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.salesforce.com/crm/editions-pricing.jsp"]];
         }
     }
+}
+
+#pragma mark - layout
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    
+    
+    [self _adjustScrollviewContentSize];
 }
 
 @end

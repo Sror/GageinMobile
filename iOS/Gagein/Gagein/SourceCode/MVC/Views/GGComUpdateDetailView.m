@@ -51,7 +51,7 @@
     _viewContent.frame = theRect;
     
     theRect.size.height += 5;
-    self.frame = theRect;
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, theRect.size.width, theRect.size.height);
 }
 
 -(float)_textviewPositionY
