@@ -123,13 +123,24 @@
     _transparentBlockView = [[UIView alloc] initWithFrame:self.view.bounds];
     _transparentBlockView.backgroundColor = GGSharedColor.clear;
     
+    
     [self _customizeNaviTitleView];
+    
+//    if (!ISIPADDEVICE)
+//    {
+//        [self _customizeNaviTitleView];
+//    }
+//    else
+//    {
+//        self.navigationItem.title
+//    }
+//    
     self.navigationItem.hidesBackButton = YES;
 }
 
 -(void)_customizeNaviTitleView
 {
-    CGRect orientRc = [GGLayout frameWithOrientation:[UIApplication sharedApplication].statusBarOrientation rect:[UIScreen mainScreen].bounds];
+    CGRect orientRc = [GGLayout frameWithOrientation:[UIApplication sharedApplication].statusBarOrientation rect:self.navigationController.view.bounds];
     
     _customNaviTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, orientRc.size.width, 44)];
 	_customNaviTitle.backgroundColor = [UIColor clearColor];
@@ -491,45 +502,46 @@
 }
 
 #pragma mark - config & exploring actions
--(void)enterFollowCompaniesAction
+-(void)presentPageFollowCompanies
 {
     GGFollowCompanyVC *vc = [[GGFollowCompanyVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self popSheetInNaviForVC:vc];
+    //[self.navigationController pushViewController:vc animated:YES];
 }
 
--(void)enterFollowPeopleAction
+-(void)presentPageFollowPeople
 {
     GGFollowPeopleVC *vc = [[GGFollowPeopleVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self popSheetInNaviForVC:vc];
 }
 
--(void)presentSelectAgentsPage
+-(void)presentPageSelectAgents
 {
     GGSelectAgentsVC *vc = [[GGSelectAgentsVC alloc] init];
 
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    //UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     if (ISIPADDEVICE)
     {
-        [self popSheetForVC:nc size:CGSizeMake(650, 700)];
+        [self popSheetInNaviForVC:vc];
     }
     else
     {
-        [self presentViewController:nc animated:YES completion:nil];
+        [self presentInNaviWithVC:vc];
     }
 }
 
--(void)presentSelectFuncAreaPage
+-(void)presentPageSelectFuncArea
 {
     GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
     
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    //UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     if (ISIPADDEVICE)
     {
-        [self popSheetForVC:nc size:CGSizeMake(650, 700)];
+        [self popSheetInNaviForVC:vc];
     }
     else
     {
-        [self presentViewController:nc animated:YES completion:nil];
+        [self presentInNaviWithVC:vc];
     }
 }
 
@@ -557,7 +569,7 @@
 {
     [GGSharedDelegate doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
-    CGRect naviRc = [GGLayout frameWithOrientation:toInterfaceOrientation rect:self.navigationController.view.frame];
+    CGRect naviRc = [self isPresentedModally] ? self.navigationController.view.frame : [GGLayout frameWithOrientation:toInterfaceOrientation rect:self.navigationController.view.frame];
     _customNaviTitle.frame = CGRectMake(0, 5, naviRc.size.width, 44);
     
     _ivGageinLogo.frame = CGRectMake((naviRc.size.width - _ivGageinLogo.image.size.width) / 2
@@ -647,18 +659,38 @@
 }
 
 #pragma mark -
--(void)popVC:(UIViewController *)aViewController fromRect:(CGRect)aRect
+//-(void)popVC:(UIViewController *)aViewController fromRect:(CGRect)aRect
+//{
+//#warning XXX:Not Finish Yet
+//    if (aViewController)
+//    {
+//        [_popoverController dismissPopoverAnimated:YES];
+//        _popoverController = [[WEPopoverController alloc] initWithContentViewController:aViewController];
+//        [_popoverController presentPopoverFromRect:aRect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+//    }
+//}
+
+
+-(void)popSheetInNaviForVC:(UIViewController *)aViewController
 {
-#warning XXX:Not Finish Yet
     if (aViewController)
     {
-        [_popoverController dismissPopoverAnimated:YES];
-        _popoverController = [[WEPopoverController alloc] initWithContentViewController:aViewController];
-        [_popoverController presentPopoverFromRect:aRect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:aViewController];
+        [self popSheetForVC:nv];
     }
 }
 
--(void)popSheetForVC:(UIViewController *)aViewController size:(CGSize)aSize
+-(void)presentInNaviWithVC:(UIViewController *)aViewController
+{
+    if (aViewController)
+    {
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:aViewController];
+        nv.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:nv animated:YES completion:nil];
+    }
+}
+
+-(void)popSheetForVC:(UIViewController *)aViewController
 {
     if (aViewController)
     {
@@ -671,16 +703,16 @@
         aViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [self presentViewController:aViewController animated:YES completion:nil];
         
-        aViewController.view.superview.autoresizingMask =
-        UIViewAutoresizingFlexibleTopMargin |
-        UIViewAutoresizingFlexibleBottomMargin |
-        UIViewAutoresizingFlexibleLeftMargin |
-        UIViewAutoresizingFlexibleRightMargin;
-        
-        CGRect screenBounds = [GGLayout screenFrame];
-        aViewController.view.superview.frame = CGRectMake(0, 0, aSize.width, aSize.height);
-        CGPoint center = CGPointMake(CGRectGetMidX(screenBounds), CGRectGetMidY(screenBounds));
-        aViewController.view.superview.center = UIDeviceOrientationIsPortrait(self.interfaceOrientation) ? center : CGPointMake(center.y, center.x);
+//        aViewController.view.superview.autoresizingMask =
+//        UIViewAutoresizingFlexibleTopMargin |
+//        UIViewAutoresizingFlexibleBottomMargin |
+//        UIViewAutoresizingFlexibleLeftMargin |
+//        UIViewAutoresizingFlexibleRightMargin;
+//        
+//        CGRect screenBounds = [GGLayout screenFrame];
+//        aViewController.view.superview.frame = CGRectMake(0, 0, aSize.width, aSize.height);
+//        CGPoint center = CGPointMake(CGRectGetMidX(screenBounds), CGRectGetMidY(screenBounds));
+//        aViewController.view.superview.center = UIDeviceOrientationIsPortrait(self.interfaceOrientation) ? center : CGPointMake(center.y, center.x);
     }
 }
 

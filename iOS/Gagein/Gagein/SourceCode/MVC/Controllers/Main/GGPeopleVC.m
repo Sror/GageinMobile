@@ -236,17 +236,11 @@
 
 -(IBAction)_addPersonAction:(id)sender
 {
-    [_slideSettingView hideSlide];
+    //[_slideSettingView hideSlide];
     
-    GGFollowPeopleVC *vc = [[GGFollowPeopleVC alloc] init];
-    [self.navigationController pushViewController:vc animated:NO];
+    [self presentPageFollowPeople];
 }
 
--(void)_enterFollowPeople
-{
-    GGFollowPeopleVC *vc = [[GGFollowPeopleVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
 
 -(IBAction)_followingTapped:(id)sender
 {
@@ -263,10 +257,7 @@
 
 -(IBAction)_exploringConfigTapped:(id)sender
 {
-    [self presentSelectFuncAreaPage];
-//    [_slideSettingView hideSlide];
-//    GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
+    [self presentPageSelectFuncArea];
 }
 
 -(IBAction)_exploringTapped:(id)sender

@@ -588,7 +588,7 @@
 
 -(IBAction)_exploringConfigTapped:(id)sender
 {
-    [self presentSelectAgentsPage];
+    [self presentPageSelectAgents];
 }
 
 -(IBAction)_exploringTapped:(id)sender
@@ -666,8 +666,7 @@
 
 -(void)searchForCompanyAction:(id)sender
 {
-    GGFollowCompanyVC *vc = [[GGFollowCompanyVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self presentPageFollowCompanies];
 }
 
 //-(void)savedUpdateAction:(id)sender

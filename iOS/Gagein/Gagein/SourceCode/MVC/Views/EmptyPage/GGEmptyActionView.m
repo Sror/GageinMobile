@@ -37,25 +37,25 @@
         {
             case kGGMsgCodeNoUpdateForLessFollowedCompanies:
             {
-                [_btnAction addTarget:aVc action:@selector(enterFollowCompaniesAction) forControlEvents:UIControlEventTouchUpInside];
+                [_btnAction addTarget:aVc action:@selector(presentPageFollowCompanies) forControlEvents:UIControlEventTouchUpInside];
             }
                 break;
                 
             case kGGMsgCodeNoUpdateForAllSalesTriggers:
             {
-                [_btnAction addTarget:aVc action:@selector(presentSelectAgentsPage) forControlEvents:UIControlEventTouchUpInside];
+                [_btnAction addTarget:aVc action:@selector(presentPageSelectAgents) forControlEvents:UIControlEventTouchUpInside];
             }
                 break;
                 
             case kGGMsgCodeNoEventForLessFollowedContacts:
             {
-                [_btnAction addTarget:aVc action:@selector(enterFollowPeopleAction) forControlEvents:UIControlEventTouchUpInside];
+                [_btnAction addTarget:aVc action:@selector(presentPageFollowPeople) forControlEvents:UIControlEventTouchUpInside];
             }
                 break;
                 
             case kGGMsgCodeNoEventForTheAllSelectedFunctionals:
             {
-                [_btnAction addTarget:aVc action:@selector(presentSelectFuncAreaPage) forControlEvents:UIControlEventTouchUpInside];
+                [_btnAction addTarget:aVc action:@selector(presentPageSelectFuncArea) forControlEvents:UIControlEventTouchUpInside];
             }
                 break;
                 

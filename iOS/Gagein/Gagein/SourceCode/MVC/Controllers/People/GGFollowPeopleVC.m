@@ -251,7 +251,7 @@
 #pragma mark - actions
 -(void)doneAction:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self naviBackAction:nil];
 }
 
 #pragma mark - table view datasource
@@ -538,7 +538,7 @@
 
 - (void)searchBarCanceled:(GGBaseSearchBar *)searchBar
 {
-    [_searchBar resignFirstResponder];
+    [_searchBar.tfSearch resignFirstResponder];
     _searchBar.frame = _searchBarRect;
     [_svContent addSubview:_searchBar];
     self.viewSearchBg.hidden = YES;

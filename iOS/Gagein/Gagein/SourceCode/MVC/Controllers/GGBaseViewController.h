@@ -67,15 +67,14 @@
 -(void)presentImageWithURL:(NSString *)anImageURL;
 
 #pragma mark - config & exploring actions
--(void)enterFollowCompaniesAction;
--(void)enterFollowPeopleAction;
--(void)presentSelectAgentsPage;
--(void)presentSelectFuncAreaPage;
+-(void)presentPageFollowCompanies;
+-(void)presentPageFollowPeople;
+-(void)presentPageSelectAgents;
+-(void)presentPageSelectFuncArea;
 
 
 #pragma mark - lay out for ipad
-//-(void)layoutUIForIPad;     // do not overwrite
-//-(void)doLayoutUIForIPad;   // for overwriting
+-(void)layoutUIForIPadIfNeeded;
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation; // for overwriting
 
 //-(CGRect)frameWithOrientation:(UIInterfaceOrientation)anOrientation;
@@ -95,6 +94,8 @@
 -(BOOL)isPresentedModally;
 
 
--(void)popSheetForVC:(UIViewController *)aViewController size:(CGSize)aSize;
+-(void)popSheetForVC:(UIViewController *)aViewController;
+-(void)popSheetInNaviForVC:(UIViewController *)aViewController;
+-(void)presentInNaviWithVC:(UIViewController *)aViewController;
 
 @end

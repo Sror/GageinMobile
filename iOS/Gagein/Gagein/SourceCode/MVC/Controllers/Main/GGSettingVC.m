@@ -88,18 +88,15 @@
     [[GGAPITest sharedInstance] run];
 }
 
--(IBAction)setupAgentsAction:(id)sender
-{
-    [self presentSelectAgentsPage];
-}
-
--(IBAction)setupAreasAction:(id)sender
-{
-    //GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
-    
-    GGFollowCompanyVC *vc = [[GGFollowCompanyVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
+//-(IBAction)setupAgentsAction:(id)sender
+//{
+//    [self presentPageSelectAgents];
+//}
+//
+//-(IBAction)setupAreasAction:(id)sender
+//{
+//    [self presentPageSelectFuncArea];
+//}
 
 #pragma mark - table view datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

@@ -332,7 +332,7 @@
 #pragma mark - actions
 -(void)doneAction:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self naviBackAction:nil];
 }
 
 -(void)importFromLinkedInAction:(id)sender
@@ -650,7 +650,7 @@
 
 - (void)searchBarCanceled:(GGBaseSearchBar *)searchBar
 {
-    [_viewSearchBar resignFirstResponder];
+    [_viewSearchBar.tfSearch resignFirstResponder];
     _viewSearchBar.frame = _searchBarRect;
     [_viewScroll addSubview:_viewSearchBar];
     self.viewSearchBg.hidden = YES;
