@@ -71,7 +71,7 @@
     CGRect rect = [self frameWithOrientation:anOrient rect:[self screenFrame]];
     rect.size.height -= [self statusHeight];
     
-    if (UIInterfaceOrientationIsLandscape(anOrient))
+    if (UIInterfaceOrientationIsLandscape(anOrient) && GGSharedDelegate.rootVC.needMenu)
     {
         rect.size.width -= SLIDE_SETTING_VIEW_WIDTH;
     }

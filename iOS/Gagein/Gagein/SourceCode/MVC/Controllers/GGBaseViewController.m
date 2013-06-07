@@ -39,6 +39,8 @@
     
     NSMutableSet              *_apiOperations;
     //GGFacebookAuthVC            *_facebookAuthVC;
+    
+    BOOL                        _isMenuShowingBeforeLeavePortrait;
 }
 
 #pragma mark - api operation management
@@ -524,31 +526,69 @@
 {
     [GGSharedDelegate doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
-    CGRect rcScreen = [GGLayout frameWithOrientation:toInterfaceOrientation rect:self.view.superview.frame];
+    CGRect naviRc = [GGLayout frameWithOrientation:toInterfaceOrientation rect:self.navigationController.view.frame];
+    _customNaviTitle.frame = CGRectMake(0, 5, naviRc.size.width, 44);
     
-    _ivGageinLogo.frame = CGRectMake((rcScreen.size.width - _ivGageinLogo.image.size.width) / 2
+    _ivGageinLogo.frame = CGRectMake((naviRc.size.width - _ivGageinLogo.image.size.width) / 2
                                      , 100
                                      , _ivGageinLogo.image.size.width
                                      , _ivGageinLogo.image.size.height);
     
-    CGRect naviRc = [GGLayout frameWithOrientation:toInterfaceOrientation rect:self.navigationController.view.frame];
-    _customNaviTitle.frame = CGRectMake(0, 5, naviRc.size.width, 44);
+    //
+    if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
+    {
+            [GGSharedDelegate.rootVC cover];
+    }
+    else if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation))
+    {
+        [self freezeMe:NO];
+        
+        if ([self needMenu])
+        {
+            [GGSharedDelegate.rootVC reveal];
+        }
+        else
+        {
+            [GGSharedDelegate.rootVC cover];
+        }
+    }
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    DLog(@"will orientation: %d", toInterfaceOrientation);
+    DLog(@"will change orientation to: %d", toInterfaceOrientation);
+    
+    if ([self isPortrait])
+    {
+        _isMenuShowingBeforeLeavePortrait = GGSharedDelegate.rootVC.isRevealed;
+    }
+    
     [self layoutUIForIPadIfNeededWithOrientation:toInterfaceOrientation];
+}
+
+-(BOOL)isPortrait
+{
+    return UIInterfaceOrientationIsPortrait(self.interfaceOrientation);
 }
 
 -(BOOL)isIPadLandscape
 {
-    return ISIPADDEVICE && UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
+    return ISIPADDEVICE && ![self isPortrait];
 }
 
 -(void)freezeMe:(BOOL)aFreeze
 {
     self.view.userInteractionEnabled = !aFreeze;
+}
+
+-(void)setNeedMenu:(BOOL)aNeedMenu
+{
+    GGSharedDelegate.rootVC.needMenu = aNeedMenu;
+}
+
+-(BOOL)needMenu
+{
+    return GGSharedDelegate.rootVC.needMenu;
 }
 
 @end

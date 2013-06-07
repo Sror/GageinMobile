@@ -138,6 +138,7 @@ static BOOL s_isCustomed = NO;
         [[UINavigationBar appearance] setBackgroundImage:neededNaviBgImg forBarMetrics:UIBarMetricsDefault];
     }
     
+    [_rootVC doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     [_tabBarController doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
 }
 

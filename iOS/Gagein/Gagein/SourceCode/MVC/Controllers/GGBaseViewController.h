@@ -13,10 +13,12 @@
 
 @interface GGBaseViewController : UIViewController
 
-@property (strong)  UILabel                     *customNaviTitle;
-@property (copy)    NSString                    *naviTitle;
-@property (strong)  UIButton                    *naviButtonLeft;
-@property (strong)  UIImageView                 *ivGageinLogo;
+@property (strong, nonatomic)  UILabel                     *customNaviTitle;
+@property (copy, nonatomic)    NSString                    *naviTitle;
+@property (strong, nonatomic)  UIButton                    *naviButtonLeft;
+@property (strong, nonatomic)  UIImageView                 *ivGageinLogo;
+
+@property (assign, nonatomic)   BOOL    isMenuShowingBeforeLeavePortrait;
 
 +(id)createInstance;
 
@@ -79,7 +81,12 @@
 //-(CGRect)frameWithOrientation:(UIInterfaceOrientation)anOrientation;
 -(CGRect)frameOrientated;
 
+-(BOOL)isPortrait;
 -(BOOL)isIPadLandscape;
 
 -(void)freezeMe:(BOOL)aFreeze;
+
+-(void)setNeedMenu:(BOOL)aNeedMenu;
+-(BOOL)needMenu;
+
 @end

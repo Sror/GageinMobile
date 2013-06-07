@@ -33,6 +33,13 @@
 
 }
 
+#pragma mark -
+-(void)setIsRevealed:(BOOL)isRevealed
+{
+    _isRevealed = isRevealed;
+}
+
+#pragma mark -
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -194,48 +201,6 @@
     }
 }
 
-//-(void)pan:(UIPanGestureRecognizer *)sender
-//{
-////#warning NOT FINISHED PAN GESTURE
-//
-//    
-//    CGPoint translatedPoint = [_panGest translationInView:_viewCover];
-//    
-//    if (_panGest.state == UIGestureRecognizerStateBegan)
-//    {
-//        _firstX = _panGest.view.center.x;
-//        _firstY = _panGest.view.center.y;
-//        _panGest.view.userInteractionEnabled = NO;
-//    }
-//    else if (_panGest.state == UIGestureRecognizerStateChanged)
-//    {
-//        translatedPoint = CGPointMake(_firstX + translatedPoint.x, _firstY);
-//        if (translatedPoint.x < _panGest.view.frame.size.width / 2)
-//        {
-//            translatedPoint.x = _panGest.view.frame.size.width / 2;
-//        }
-//        
-//        [UIView animateWithDuration:.3f animations:^{
-//            _panGest.view.center = translatedPoint;
-//        }];
-//    }
-//    
-//    else if ([(UIPanGestureRecognizer*)sender state] == UIGestureRecognizerStateEnded)
-//    {
-//        _panGest.view.userInteractionEnabled = NO;
-//        if (_panGest.view.center.x < (_viewCover.frame.size.width + SLIDE_SETTING_VIEW_WIDTH) / 2)
-//        {
-//            [self cover:nil];
-//        }
-//        else
-//        {
-//            [self reveal:nil];
-//        }
-//
-//    }
-//    
-//}
-
 - (void)viewDidUnload {
     [self setViewBack:nil];
     [self setViewCover:nil];
@@ -353,7 +318,7 @@
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    //[super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    // never call super class's 'doLayoutUIForIPadWithOrientation' method here, or u'll get into trouble. -- Daniel Dong
     
     CGRect coverRc = [GGLayout rootCoverFrameForWithOrient:toInterfaceOrientation];
     _viewCover.frame = CGRectMake(_viewCover.frame.origin.x, _viewCover.frame.origin.y, coverRc.size.width, coverRc.size.height);

@@ -14,8 +14,9 @@
 @property (weak, nonatomic) IBOutlet UIView *viewCover;
 @property (strong, nonatomic) GGSlideSettingView *viewSetting;
 
-@property (assign)  BOOL    canBeDragged;
-@property (readonly) BOOL    isRevealed;
+@property (assign, nonatomic)   BOOL                canBeDragged;
+@property (readonly, nonatomic) BOOL                isRevealed;
+@property (assign, nonatomic)   BOOL                needMenu;
 
 -(void)enableSwipGesture:(BOOL)anEnabled;
 -(void)enableTapGesture:(BOOL)anEnabled;

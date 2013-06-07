@@ -159,8 +159,8 @@
     [super viewDidLoad];
     
     [self _installMenuButton];
-#warning COLOR is originally silver
-    self.view.backgroundColor = GGSharedColor.orangeGageinDark;
+//#warning COLOR is originally silver
+    self.view.backgroundColor = GGSharedColor.silver;
     self.naviTitle = @"EXPLORING";
     
     [self _initRoundSwitch];
@@ -238,9 +238,10 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [self setNeedMenu:YES];
     
-    [self _adjustTvFrames];
+    [super viewWillAppear:animated];
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -250,11 +251,15 @@
     
     [GGSharedDelegate.rootVC enableSwipGesture:NO];
     [GGSharedDelegate.rootVC enableTapGesture:NO];
+    
+    [self setNeedMenu:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [self _adjustTvFrames];
     
     // show/hide switch button
     [self.navigationController.navigationBar addSubview:_btnSwitchUpdate];
@@ -1068,19 +1073,20 @@
 
 -(void)_adjustTvFrames
 {
-    //if (!ISIPADDEVICE)
-    {
-        CGRect updateRc = _updatesTV.frame;
-        updateRc.origin.y = CGRectGetMaxY(_relevanceBar.frame);
-        updateRc.size.width = _updatesTV.superview.bounds.size.width;
-        updateRc.size.height = _updatesTV.superview.bounds.size.height - updateRc.origin.y;
-        _updatesTV.frame = updateRc;
-        
-        CGRect happeningRc = _happeningsTV.frame;
-        happeningRc.size.width = _happeningsTV.superview.bounds.size.width;
-        happeningRc.size.height = _happeningsTV.superview.bounds.size.height - happeningRc.origin.y;
-        _happeningsTV.frame = happeningRc;
-    }
+    CGRect relevanceRc = _relevanceBar.frame;
+    relevanceRc.size.width = _relevanceBar.superview.frame.size.width;
+    _relevanceBar.frame = relevanceRc;
+    
+    CGRect updateRc = _updatesTV.frame;
+    updateRc.origin.y = CGRectGetMaxY(_relevanceBar.frame);
+    updateRc.size.width = _updatesTV.superview.bounds.size.width;
+    updateRc.size.height = _updatesTV.superview.bounds.size.height - updateRc.origin.y;
+    _updatesTV.frame = updateRc;
+    
+    CGRect happeningRc = _happeningsTV.frame;
+    happeningRc.size.width = _happeningsTV.superview.bounds.size.width;
+    happeningRc.size.height = _happeningsTV.superview.bounds.size.height - happeningRc.origin.y;
+    _happeningsTV.frame = happeningRc;
 }
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
@@ -1445,28 +1451,15 @@
     
     //CGRect orientRc = [GGUtils frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
     self.navigationItem.leftBarButtonItem = nil;
-    static BOOL isMenuShowingBeforeChangeToLandscape = NO;
+    //static BOOL isMenuShowingBeforeChangeToLandscape = NO;
     
     if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
     {
         [self _installMenuButton];
-        
-        if (!isMenuShowingBeforeChangeToLandscape)
-        {
-            [_slideSettingView hideSlide];
-        }
     }
     else
     {
-        [self freezeMe:NO];
-        
-        isMenuShowingBeforeChangeToLandscape = GGSharedDelegate.rootVC.isRevealed;
-        
-        if (!isMenuShowingBeforeChangeToLandscape)
-        {
-            [_slideSettingView showSlide];
-            [self _callApiGetMenu];
-        }
+        [self _callApiGetMenu];
     }
     
     [self _adjustTvFrames];
@@ -1477,6 +1470,5 @@
     CGRect relevanceRc = [self _relevanceFrameHided:NO];
     _relevanceBar.frame = relevanceRc;
 }
-
 
 @end
