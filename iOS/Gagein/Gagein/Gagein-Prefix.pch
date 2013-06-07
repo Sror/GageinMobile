@@ -38,6 +38,7 @@
     #import "GGFont.h"
     #import "GGStringPool.h"
     #import "GGLayout.h"
+    #import "UIScrollView+OTS.h"
 #endif
 
 #include "GGBackLog.h"

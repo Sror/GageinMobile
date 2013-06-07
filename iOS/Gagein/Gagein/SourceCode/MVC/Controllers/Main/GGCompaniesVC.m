@@ -177,7 +177,8 @@
     self.happeningsTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.happeningsTV.hidden = YES;
     _happeningsTV.showsVerticalScrollIndicator = NO;
-    //self.happeningsTV.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    //_happeningsTV.scrollsToTop = YES;
+    
     [self.view addSubview:self.happeningsTV];
     
     //
@@ -187,7 +188,8 @@
     self.updatesTV.backgroundColor = GGSharedColor.silver;
     self.updatesTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     _updatesTV.showsVerticalScrollIndicator = NO;
-    //self.updatesTV.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    //_updatesTV.scrollsToTop = YES;
+    
     [self.view addSubview:self.updatesTV];
 
     //
@@ -230,13 +232,15 @@
     
     //[UIView setAnimationsEnabled:NO];
     [self _getInitData];
+    
+    //[_updatesTV ScrollMeToTopOnly];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [self _adjustUpdateTvFrame];
+    [self _adjustTvFrames];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -1048,7 +1052,7 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     
-    if (scrollView == _updatesTV)
+    if (scrollView == _updatesTV || scrollView == _happeningsTV)
     {
         _lastContentOffset = scrollView.contentOffset;
     }
@@ -1062,7 +1066,7 @@
 }
 
 
--(void)_adjustUpdateTvFrame
+-(void)_adjustTvFrames
 {
     if (!ISIPADDEVICE)
     {
@@ -1070,29 +1074,41 @@
         updateRc.origin.y = CGRectGetMaxY(_relevanceBar.frame);
         updateRc.size.height = _updatesTV.superview.bounds.size.height - updateRc.origin.y;
         _updatesTV.frame = updateRc;
+        
+        CGRect happeningRc = _happeningsTV.frame;
+        happeningRc.size.height = _happeningsTV.superview.bounds.size.height - happeningRc.origin.y;
+        _happeningsTV.frame = happeningRc;
     }
 }
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
     
-    if (scrollView == _updatesTV && !ISIPADDEVICE)
+    if (!ISIPADDEVICE)
     {
         if (_lastContentOffset.y < (int)scrollView.contentOffset.y)
         {
-            DLog(@"moved up");
+            //DLog(@"moved up");
             
-            [self _showRelevanceBar:NO];
+            if (scrollView == _updatesTV)
+            {
+                [self _showRelevanceBar:NO];
+            }
+            
             [GGUtils hideTabBar];
         }
         else
         {
-            DLog(@"moved down");
+            //DLog(@"moved down");
             
-            [self _showRelevanceBar:YES];
+            if (scrollView == _updatesTV)
+            {
+                [self _showRelevanceBar:YES];
+            }
+            
             [GGUtils showTabBar];
         }
         
-        [self _adjustUpdateTvFrame];
+        [self _adjustTvFrames];
     }
 }
 
