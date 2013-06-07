@@ -118,6 +118,7 @@
         
         //make indicator image transparent
         self.tabBar.selectionIndicatorImage = [UIImage imageNamed:@"transparent.png"];
+
     }
 }
 
@@ -168,11 +169,11 @@
 
 -(void)adjustTabbarPosForIpadWithOrient:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    float offsetX = UIInterfaceOrientationIsPortrait(toInterfaceOrientation) ? 0 : -100;
-    self.tabBar.frame = CGRectMake(offsetX
-                                   , self.tabBar.frame.origin.y
-                                   , self.tabBar.frame.size.width
-                                   , self.tabBar.frame.size.height);
+//    float offsetX = UIInterfaceOrientationIsPortrait(toInterfaceOrientation) ? 0 : -100;
+//    self.tabBar.frame = CGRectMake(offsetX
+//                                   , self.tabBar.frame.origin.y
+//                                   , self.tabBar.frame.size.width
+//                                   , self.tabBar.frame.size.height);
 }
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation

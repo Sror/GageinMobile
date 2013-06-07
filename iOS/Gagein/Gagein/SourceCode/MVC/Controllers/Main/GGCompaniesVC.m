@@ -1068,14 +1068,16 @@
 
 -(void)_adjustTvFrames
 {
-    if (!ISIPADDEVICE)
+    //if (!ISIPADDEVICE)
     {
         CGRect updateRc = _updatesTV.frame;
         updateRc.origin.y = CGRectGetMaxY(_relevanceBar.frame);
+        updateRc.size.width = _updatesTV.superview.bounds.size.width;
         updateRc.size.height = _updatesTV.superview.bounds.size.height - updateRc.origin.y;
         _updatesTV.frame = updateRc;
         
         CGRect happeningRc = _happeningsTV.frame;
+        happeningRc.size.width = _happeningsTV.superview.bounds.size.width;
         happeningRc.size.height = _happeningsTV.superview.bounds.size.height - happeningRc.origin.y;
         _happeningsTV.frame = happeningRc;
     }
@@ -1174,9 +1176,9 @@
 
 -(void)_callApiGetMenu
 {
-    //[_slideSettingView showLoadingHUD];
+    [_slideSettingView showLoadingHUD];
     id op = [GGSharedAPI getMenuByType:kGGStrMenuTypeCompanies callback:^(id operation, id aResultObject, NSError *anError) {
-        //[_slideSettingView hideLoadingHUD];
+        [_slideSettingView hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
@@ -1466,6 +1468,8 @@
             [self _callApiGetMenu];
         }
     }
+    
+    [self _adjustTvFrames];
     
     [_updatesTV reloadData];
     [_happeningsTV reloadData];
