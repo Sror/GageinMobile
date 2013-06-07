@@ -36,4 +36,9 @@ static MBProgressHUD * hud;
     }
 }
 
+-(void)goTop
+{
+    [self.superview bringSubviewToFront:self];
+}
+
 @end

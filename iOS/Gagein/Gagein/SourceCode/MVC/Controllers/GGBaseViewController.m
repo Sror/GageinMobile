@@ -25,7 +25,7 @@
 #import "WEPopoverController.h"
 
 #define MAX_NAVI_TITLE_LENGTH           20
-#define MAX_NAVI_TITLE_LENGTH_IPAD      40
+#define MAX_NAVI_TITLE_LENGTH_IPAD      50
 
 @interface GGBaseViewController ()
 
@@ -124,7 +124,8 @@
     _transparentBlockView.backgroundColor = GGSharedColor.clear;
     
     
-    [self _customizeNaviTitleView];
+    //[self _customizeNaviTitleView];
+    
     
 //    if (!ISIPADDEVICE)
 //    {
@@ -290,7 +291,7 @@
 
 -(NSString *)naviTitle
 {
-    return self.customNaviTitle.text;
+    return self.navigationItem.title;//self.customNaviTitle.text;
 }
 
 -(void)hideBackButton

@@ -56,6 +56,7 @@
     self.tabBarController = [[GGTabBarController alloc] initWithViewControllers:@[nc1, nc2, nc3, nc4]];
     self.tabBarController.delegate = self;
     [self.tabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbarBg"]];
+    
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -119,10 +120,23 @@ static BOOL s_isCustomed = NO;
         CGSize navBgSize = naviBgImg.size;
         CGSize neededSize = CGSizeMake([UIScreen mainScreen].applicationFrame.size.width, navBgSize.height);
         neededNaviBgImg = [GGUtils imageFor:naviBgImg size:neededSize];
+        
+        [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.f forBarMetrics:UIBarMetricsDefault];
+    }
+    else
+    {
+        [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.f forBarMetrics:UIBarMetricsDefault];
     }
     
     [[UINavigationBar appearance] setBackgroundImage:neededNaviBgImg forBarMetrics:UIBarMetricsDefault];
-    //[[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.0 forBarMetrics:UIBarMetricsDefault];
+    
+    
+    // common apperance
+    NSMutableDictionary *titleBarAttributes = [NSMutableDictionary dictionaryWithDictionary: [[UINavigationBar appearance] titleTextAttributes]];
+    [titleBarAttributes setValue:[UIFont fontWithName:GG_FONT_NAME_OPTIMA_BOLD size:16] forKey:UITextAttributeFont];
+    [titleBarAttributes setValue:GGSharedColor.white forKey:UITextAttributeTextColor];
+    [[UINavigationBar appearance] setTitleTextAttributes:titleBarAttributes];
+    
 }
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation

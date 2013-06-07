@@ -464,8 +464,4 @@
     [GGSharedDelegate.tabBarController hideTabBarAnimated:aAnimated];
 }
 
-
-
-
-
 @end

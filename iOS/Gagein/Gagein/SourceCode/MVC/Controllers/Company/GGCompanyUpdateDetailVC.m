@@ -80,6 +80,26 @@
     _isTabbarHiddenWhenLoaded ? [GGUtils hideTabBarAnimated:YES] : [GGUtils showTabBarAnimated:YES];
 }
 
+-(void)_setPrevBtnRect
+{
+    CGRect naviRc = self.navigationController.navigationBar.frame;
+    CGRect prevBtnRc = CGRectMake(naviRc.size.width - _btnPrevUpdate.frame.size.width * 2 - 10
+                                  , (naviRc.size.height - _btnPrevUpdate.frame.size.height) / 2 + 5
+                                  , _btnPrevUpdate.frame.size.width
+                                  , _btnPrevUpdate.frame.size.height);
+    _btnPrevUpdate.frame = prevBtnRc;
+}
+
+-(void)_setNextBtnRect
+{
+    CGRect naviRc = self.navigationController.navigationBar.frame;
+    CGRect nextBtnRc = CGRectMake(naviRc.size.width - _btnNextUpdate.frame.size.width - 10
+                                  , (naviRc.size.height - _btnNextUpdate.frame.size.height) / 2 + 5
+                                  , _btnNextUpdate.frame.size.width
+                                  , _btnNextUpdate.frame.size.height);
+    _btnNextUpdate.frame = nextBtnRc;
+}
+
 - (void)viewDidLoad
 {
     [self observeNotification:OA_NOTIFY_FACEBOOK_AUTH_OK];
@@ -104,9 +124,9 @@
     // previous update button
     UIImage *upArrowEnabledImg = [UIImage imageNamed:@"upArrowEnabled"];
     UIImage *upArrowDisabledImg = [UIImage imageNamed:@"upArrowDisabled"];
-    CGRect naviRc = self.navigationController.navigationBar.frame;
-    CGRect prevBtnRc = CGRectMake(naviRc.size.width - upArrowEnabledImg.size.width * 2 - 10
-                                  , (naviRc.size.height - upArrowEnabledImg.size.height) / 2 + 5
+    //CGRect naviRc = self.navigationController.navigationBar.frame;
+    CGRect prevBtnRc = CGRectMake(0
+                                  , 0
                                   , upArrowEnabledImg.size.width
                                   , upArrowEnabledImg.size.height);
     
@@ -121,14 +141,17 @@
     UIImage *downArrowEnabledImg = [UIImage imageNamed:@"downArrowEnabled"];
     UIImage *downArrowDisabledImg = [UIImage imageNamed:@"downArrowDisabled"];
     _btnNextUpdate = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect nextBtnRc = CGRectMake(naviRc.size.width - downArrowEnabledImg.size.width - 10
-                                  , (naviRc.size.height - downArrowEnabledImg.size.height) / 2 + 5
+    CGRect nextBtnRc = CGRectMake(0
+                                  , 0
                                   , downArrowEnabledImg.size.width
                                   , downArrowEnabledImg.size.height);
     _btnNextUpdate.frame = nextBtnRc;
     [_btnNextUpdate setImage:downArrowEnabledImg forState:UIControlStateNormal];
     [_btnNextUpdate setImage:downArrowDisabledImg forState:UIControlStateDisabled];
     [_btnNextUpdate addTarget:self action:@selector(nextUpdateAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self _setNextBtnRect];
+    [self _setPrevBtnRect];
     
     // mentioned companies table view
     _tvMentionedCompanies = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
@@ -229,6 +252,14 @@
     [self.navigationController.navigationBar addSubview:_btnPrevUpdate];
     [self.navigationController.navigationBar addSubview:_btnNextUpdate];
     [self _updateNaviBtnState];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [_btnPrevUpdate goTop];
+    [_btnNextUpdate goTop];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -963,7 +994,8 @@
 {
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
-    
+    [self _setNextBtnRect];
+    [self _setPrevBtnRect];
     
     [self _adjustScrollviewContentSize];
 }

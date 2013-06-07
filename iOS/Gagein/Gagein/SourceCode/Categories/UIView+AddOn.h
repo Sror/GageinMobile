@@ -16,4 +16,6 @@
 
 -(void)removeAllGestureRecognizers;
 
+-(void)goTop;
+
 @end
