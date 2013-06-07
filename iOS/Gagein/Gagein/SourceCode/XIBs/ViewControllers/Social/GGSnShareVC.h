@@ -18,7 +18,7 @@ typedef enum
     , kGGSnShareTypeHappeningPerson
 }EGGSnShareType;
 
-@interface GGSnShareVC : GGBaseViewController
+@interface GGSnShareVC : GGBaseViewController <UITextViewDelegate>
 @property (strong)  GGCompanyUpdate *comUpdateDetail;
 @property (strong)  GGHappening *happening;
 

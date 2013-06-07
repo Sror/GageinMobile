@@ -77,6 +77,7 @@
     self.naviTitle = [self snNameFromType:_snType];
     self.view.backgroundColor = GGSharedColor.white;
     self.textView.text = [self _messageToShare];
+    self.textView.delegate = self;
     [self.textView becomeFirstResponder];
     CGRect textRc = _textView.frame;
     textRc.size.height = [UIScreen mainScreen].applicationFrame.size.height - self.navigationController.navigationBar.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT;
@@ -101,7 +102,14 @@
     //
     int maxLength = [self maxLenghForMessageType:_snType];
     maxLength -= 20;
-    message = (_textView.text.length > maxLength) ? [_textView.text substringToIndex:maxLength] : _textView.text;
+    
+//    if (_textView.text.length > maxLength)
+//    {
+//        [GGAlert alertWithMessage:@""];
+//        return;
+//    }
+    
+    message = (_textView.text.length > maxLength) ? [NSString stringWithFormat:@"%@...", [_textView.text substringToIndex:maxLength - 3]] : _textView.text;
     
     //
     GGApiBlock callback = ^(id operation, id aResultObject, NSError* anError) {
@@ -125,7 +133,6 @@
             [self _removeSnType:_snType];
             [self naviBackAction:nil];
         }
-        
     };
     
     //
@@ -253,4 +260,11 @@
     [self setTextView:nil];
     [super viewDidUnload];
 }
+
+#pragma mark - textview delegate
+//- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+//{
+//    return YES;
+//}
+
 @end
