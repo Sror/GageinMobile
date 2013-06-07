@@ -22,7 +22,10 @@
 #import "GGAppDelegate.h"
 #import "GGFacebookAuthVC.h"
 
-#define MAX_NAVI_TITLE_LENGTH   20
+#import "WEPopoverController.h"
+
+#define MAX_NAVI_TITLE_LENGTH           20
+#define MAX_NAVI_TITLE_LENGTH_IPAD      40
 
 @interface GGBaseViewController ()
 
@@ -41,6 +44,8 @@
     //GGFacebookAuthVC            *_facebookAuthVC;
     
     BOOL                        _isMenuShowingBeforeLeavePortrait;
+    
+    WEPopoverController         *_popoverController;
 }
 
 #pragma mark - api operation management
@@ -263,9 +268,10 @@
 #pragma mark - UI element
 -(void)setNaviTitle:(NSString *)aNaviTitle
 {
-    if (aNaviTitle.length > MAX_NAVI_TITLE_LENGTH)
+    int maxLength = ISIPADDEVICE ? MAX_NAVI_TITLE_LENGTH_IPAD : MAX_NAVI_TITLE_LENGTH;
+    if (aNaviTitle.length > maxLength)
     {
-        aNaviTitle = [NSString stringWithFormat:@"%@...", [aNaviTitle substringToIndex:MAX_NAVI_TITLE_LENGTH]];
+        aNaviTitle = [NSString stringWithFormat:@"%@...", [aNaviTitle substringToIndex:maxLength]];
     }
     self.navigationItem.title = aNaviTitle;
     self.customNaviTitle.text = aNaviTitle;
@@ -330,21 +336,28 @@
 #pragma mark - actions
 -(void)naviBackAction:(id)aSender
 {
-    NSArray *controllers = self.navigationController.viewControllers;
-    NSUInteger thisIndex = controllers.count - 1;
-    for (int i = thisIndex; i >= 0; i --)
+    if ([self isPresentedModally])
     {
-        if (controllers[i] == self)
-        {
-            thisIndex = i;
-            break;
-        }
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
-    
-    if (thisIndex > 0)
+    else
     {
-        UIViewController *vc = controllers[thisIndex - 1];
-        [self.navigationController popToViewController:vc animated:YES];
+        NSArray *controllers = self.navigationController.viewControllers;
+        NSUInteger thisIndex = controllers.count - 1;
+        for (int i = thisIndex; i >= 0; i --)
+        {
+            if (controllers[i] == self)
+            {
+                thisIndex = i;
+                break;
+            }
+        }
+        
+        if (thisIndex > 0)
+        {
+            UIViewController *vc = controllers[thisIndex - 1];
+            [self.navigationController popToViewController:vc animated:YES];
+        }
     }
 }
 
@@ -490,16 +503,34 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
--(void)enterSelectAgentsAction
+-(void)presentSelectAgentsPage
 {
     GGSelectAgentsVC *vc = [[GGSelectAgentsVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    if (ISIPADDEVICE)
+    {
+        [self popSheetForVC:nc size:CGSizeMake(650, 700)];
+    }
+    else
+    {
+        [self presentViewController:nc animated:YES completion:nil];
+    }
 }
 
--(void)enterSelectFunctionalAreasAction
+-(void)presentSelectFuncAreaPage
 {
     GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    if (ISIPADDEVICE)
+    {
+        [self popSheetForVC:nc size:CGSizeMake(650, 700)];
+    }
+    else
+    {
+        [self presentViewController:nc animated:YES completion:nil];
+    }
 }
 
 #pragma mark - lay out for ipad
@@ -589,6 +620,68 @@
 -(BOOL)needMenu
 {
     return GGSharedDelegate.rootVC.needMenu;
+}
+
+
+#pragma mark - navi or modal
+-(BOOL)isTheRootOfNaviStack
+{
+    return self.navigationController.viewControllers.count
+    && self.navigationController.viewControllers[0] == self;
+}
+
+-(BOOL)isTheTopOfNaviStack
+{
+    return self.navigationController.viewControllers.count
+    && self.navigationController.viewControllers.lastObject == self;
+}
+
+-(BOOL)isPresentedModally
+{
+
+    UIViewController *modalVC = self.presentingViewController.modalViewController;
+    
+    return modalVC
+    && (modalVC == self ||
+        (modalVC == self.navigationController && [self isTheRootOfNaviStack]));
+}
+
+#pragma mark -
+-(void)popVC:(UIViewController *)aViewController fromRect:(CGRect)aRect
+{
+#warning XXX:Not Finish Yet
+    if (aViewController)
+    {
+        [_popoverController dismissPopoverAnimated:YES];
+        _popoverController = [[WEPopoverController alloc] initWithContentViewController:aViewController];
+        [_popoverController presentPopoverFromRect:aRect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
+}
+
+-(void)popSheetForVC:(UIViewController *)aViewController size:(CGSize)aSize
+{
+    if (aViewController)
+    {
+        if ([aViewController isKindOfClass:[UINavigationController class]])
+        {
+            [((UINavigationController *)aViewController).navigationBar setBackgroundImage:[UIImage imageNamed:@"bgNavibarNoTop"] forBarMetrics:UIBarMetricsDefault];
+        }
+        
+        aViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+        aViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:aViewController animated:YES completion:nil];
+        
+        aViewController.view.superview.autoresizingMask =
+        UIViewAutoresizingFlexibleTopMargin |
+        UIViewAutoresizingFlexibleBottomMargin |
+        UIViewAutoresizingFlexibleLeftMargin |
+        UIViewAutoresizingFlexibleRightMargin;
+        
+        CGRect screenBounds = [GGLayout screenFrame];
+        aViewController.view.superview.frame = CGRectMake(0, 0, aSize.width, aSize.height);
+        CGPoint center = CGPointMake(CGRectGetMidX(screenBounds), CGRectGetMidY(screenBounds));
+        aViewController.view.superview.center = UIDeviceOrientationIsPortrait(self.interfaceOrientation) ? center : CGPointMake(center.y, center.x);
+    }
 }
 
 @end

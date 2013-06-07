@@ -43,7 +43,7 @@
                 
             case kGGMsgCodeNoUpdateForAllSalesTriggers:
             {
-                [_btnAction addTarget:aVc action:@selector(enterSelectAgentsAction) forControlEvents:UIControlEventTouchUpInside];
+                [_btnAction addTarget:aVc action:@selector(presentSelectAgentsPage) forControlEvents:UIControlEventTouchUpInside];
             }
                 break;
                 
@@ -55,7 +55,7 @@
                 
             case kGGMsgCodeNoEventForTheAllSelectedFunctionals:
             {
-                [_btnAction addTarget:aVc action:@selector(enterSelectFunctionalAreasAction) forControlEvents:UIControlEventTouchUpInside];
+                [_btnAction addTarget:aVc action:@selector(presentSelectFuncAreaPage) forControlEvents:UIControlEventTouchUpInside];
             }
                 break;
                 

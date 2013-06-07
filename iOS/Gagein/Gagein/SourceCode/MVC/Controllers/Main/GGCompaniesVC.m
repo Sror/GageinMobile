@@ -588,9 +588,7 @@
 
 -(IBAction)_exploringConfigTapped:(id)sender
 {
-    [_slideSettingView hideSlide];
-    GGSelectAgentsVC *vc = [[GGSelectAgentsVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self presentSelectAgentsPage];
 }
 
 -(IBAction)_exploringTapped:(id)sender

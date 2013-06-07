@@ -263,9 +263,10 @@
 
 -(IBAction)_exploringConfigTapped:(id)sender
 {
-    [_slideSettingView hideSlide];
-    GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self presentSelectFuncAreaPage];
+//    [_slideSettingView hideSlide];
+//    GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(IBAction)_exploringTapped:(id)sender

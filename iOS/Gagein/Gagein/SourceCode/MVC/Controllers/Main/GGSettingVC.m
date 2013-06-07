@@ -90,8 +90,7 @@
 
 -(IBAction)setupAgentsAction:(id)sender
 {
-    GGSelectAgentsVC *vc = [[GGSelectAgentsVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self presentSelectAgentsPage];
 }
 
 -(IBAction)setupAreasAction:(id)sender

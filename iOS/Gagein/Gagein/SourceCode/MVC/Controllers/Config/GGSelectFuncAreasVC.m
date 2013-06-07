@@ -115,7 +115,7 @@
 {
     if (!_isSelectionChanged)
     {
-        [self.navigationController popViewControllerAnimated:YES];
+        [self naviBackAction:nil];
         return;
     }
     
@@ -130,7 +130,7 @@
             [GGAlert alertWithApiParser:parser];
         }
         
-        [self.navigationController popViewControllerAnimated:YES];
+        [self naviBackAction:nil];
     }];
     
     [self registerOperation:op];

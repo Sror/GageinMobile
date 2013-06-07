@@ -335,6 +335,10 @@
 		EAAE073B1716609A007C4A30 /* GGNaviBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAE073A1716609A007C4A30 /* GGNaviBackButton.m */; };
 		EAAE0746171689DC007C4A30 /* GGAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAE0745171689DC007C4A30 /* GGAnimation.m */; };
 		EAAE074917169B58007C4A30 /* API_evoving.txt in Resources */ = {isa = PBXBuildFile; fileRef = EAAE074817169B58007C4A30 /* API_evoving.txt */; };
+		EAAF8897176265EE00FAD594 /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF888F176265EE00FAD594 /* UIBarButtonItem+WEPopover.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EAAF8898176265EE00FAD594 /* WEPopoverContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8891176265EE00FAD594 /* WEPopoverContainerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EAAF8899176265EE00FAD594 /* WEPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8893176265EE00FAD594 /* WEPopoverController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EAAF889A176265EE00FAD594 /* WETouchableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAF8896176265EE00FAD594 /* WETouchableView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EAB60D2817415A17008EEEAE /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB60D2717415A17008EEEAE /* 37x-Checkmark.png */; };
 		EAB60D2A17415A24008EEEAE /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB60D2917415A24008EEEAE /* 37x-Checkmark@2x.png */; };
 		EAB60D2D1741650D008EEEAE /* GGAutosizingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB60D2C1741650D008EEEAE /* GGAutosizingLabel.m */; };
@@ -544,7 +548,7 @@
 		EA0CA55D170BD54000DBCD83 /* GGProfileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGProfileVC.h; sourceTree = "<group>"; };
 		EA0CA55E170BD54000DBCD83 /* GGProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGProfileVC.m; sourceTree = "<group>"; };
 		EA0CA55F170BD54000DBCD83 /* GGSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSettingVC.h; sourceTree = "<group>"; };
-		EA0CA560170BD54000DBCD83 /* GGSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSettingVC.m; sourceTree = "<group>"; };
+		EA0CA560170BD54000DBCD83 /* GGSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GGSettingVC.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EA0CA565170BD57200DBCD83 /* GGWelcomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGWelcomeVC.h; sourceTree = "<group>"; };
 		EA0CA566170BD57200DBCD83 /* GGWelcomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGWelcomeVC.m; sourceTree = "<group>"; };
 		EA0CA585170BF4A700DBCD83 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
@@ -600,11 +604,11 @@
 		EA16AA0F173231A80052B526 /* GGConfigSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGConfigSwitchCell.m; sourceTree = "<group>"; };
 		EA16AA11173231B90052B526 /* GGConfigSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGConfigSwitchCell.xib; sourceTree = "<group>"; };
 		EA16AA14173238770052B526 /* GGAgentFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAgentFilter.m; sourceTree = "<group>"; };
-		EA16AA1917325A4C0052B526 /* GGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGBaseViewController.m; sourceTree = "<group>"; };
+		EA16AA1917325A4C0052B526 /* GGBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GGBaseViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EA172730173D66750056067D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		EA172731173D66750056067D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		EA172735173D696F0056067D /* GGEmptyActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGEmptyActionView.h; sourceTree = "<group>"; };
-		EA172736173D696F0056067D /* GGEmptyActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGEmptyActionView.m; sourceTree = "<group>"; };
+		EA172736173D696F0056067D /* GGEmptyActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GGEmptyActionView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EA172738173D69960056067D /* GGEmptyActionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGEmptyActionView.xib; sourceTree = "<group>"; };
 		EA17273A173D89180056067D /* GGMediaFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGMediaFilter.h; sourceTree = "<group>"; };
 		EA17273B173D89180056067D /* GGMediaFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGMediaFilter.m; sourceTree = "<group>"; };
@@ -918,7 +922,7 @@
 		EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GGFollowCompanyVC.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EA7180E2171511B700347EA4 /* GGSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSearchBar.h; sourceTree = "<group>"; };
 		EA7180E3171511B700347EA4 /* GGSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSearchBar.m; sourceTree = "<group>"; };
-		EA79B89E1724CEDF00141E6D /* GGBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGBaseViewController.h; sourceTree = "<group>"; };
+		EA79B89E1724CEDF00141E6D /* GGBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GGBaseViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		EA79B8A41724D36200141E6D /* GGCustomBriefCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCustomBriefCell.xib; sourceTree = "<group>"; };
 		EA79B8A61724D57A00141E6D /* GGCustomBriefCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCustomBriefCell.h; sourceTree = "<group>"; };
 		EA79B8A71724D57A00141E6D /* GGCustomBriefCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCustomBriefCell.m; sourceTree = "<group>"; };
@@ -992,6 +996,15 @@
 		EAAE0742171689AE007C4A30 /* GGAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGAnimation.h; sourceTree = "<group>"; };
 		EAAE0745171689DC007C4A30 /* GGAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAnimation.m; sourceTree = "<group>"; };
 		EAAE074817169B58007C4A30 /* API_evoving.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = API_evoving.txt; sourceTree = "<group>"; };
+		EAAF888E176265EE00FAD594 /* UIBarButtonItem+WEPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+WEPopover.h"; sourceTree = "<group>"; };
+		EAAF888F176265EE00FAD594 /* UIBarButtonItem+WEPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+WEPopover.m"; sourceTree = "<group>"; };
+		EAAF8890176265EE00FAD594 /* WEPopoverContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WEPopoverContainerView.h; sourceTree = "<group>"; };
+		EAAF8891176265EE00FAD594 /* WEPopoverContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WEPopoverContainerView.m; sourceTree = "<group>"; };
+		EAAF8892176265EE00FAD594 /* WEPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WEPopoverController.h; sourceTree = "<group>"; };
+		EAAF8893176265EE00FAD594 /* WEPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WEPopoverController.m; sourceTree = "<group>"; };
+		EAAF8894176265EE00FAD594 /* WEPopoverParentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WEPopoverParentView.h; sourceTree = "<group>"; };
+		EAAF8895176265EE00FAD594 /* WETouchableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WETouchableView.h; sourceTree = "<group>"; };
+		EAAF8896176265EE00FAD594 /* WETouchableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WETouchableView.m; sourceTree = "<group>"; };
 		EAB60D2717415A17008EEEAE /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
 		EAB60D2917415A24008EEEAE /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
 		EAB60D2B1741650D008EEEAE /* GGAutosizingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGAutosizingLabel.h; sourceTree = "<group>"; };
@@ -1921,6 +1934,22 @@
 			path = Documentations;
 			sourceTree = "<group>";
 		};
+		EAAF888D176265EE00FAD594 /* Popover */ = {
+			isa = PBXGroup;
+			children = (
+				EAAF888E176265EE00FAD594 /* UIBarButtonItem+WEPopover.h */,
+				EAAF888F176265EE00FAD594 /* UIBarButtonItem+WEPopover.m */,
+				EAAF8890176265EE00FAD594 /* WEPopoverContainerView.h */,
+				EAAF8891176265EE00FAD594 /* WEPopoverContainerView.m */,
+				EAAF8892176265EE00FAD594 /* WEPopoverController.h */,
+				EAAF8893176265EE00FAD594 /* WEPopoverController.m */,
+				EAAF8894176265EE00FAD594 /* WEPopoverParentView.h */,
+				EAAF8895176265EE00FAD594 /* WETouchableView.h */,
+				EAAF8896176265EE00FAD594 /* WETouchableView.m */,
+			);
+			path = Popover;
+			sourceTree = "<group>";
+		};
 		EAB8D5001739756200D033FC /* SfOAuth */ = {
 			isa = PBXGroup;
 			children = (
@@ -2397,6 +2426,7 @@
 		EACAE0BB17094A3100E7088F /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				EAAF888D176265EE00FAD594 /* Popover */,
 				EA96495217613D4D00739F73 /* YRDropdownView */,
 				EA62C67F174BFCD90031BF42 /* Twitter+OAuth */,
 				EA2F006F1746BFA700E191BD /* CMActionSheet */,
@@ -3331,6 +3361,10 @@
 				EA964951176104A600739F73 /* GGLayout.m in Sources */,
 				EA96495917613D4D00739F73 /* YRDropdownView.m in Sources */,
 				EA964960176159A200739F73 /* UIScrollView+OTS.m in Sources */,
+				EAAF8897176265EE00FAD594 /* UIBarButtonItem+WEPopover.m in Sources */,
+				EAAF8898176265EE00FAD594 /* WEPopoverContainerView.m in Sources */,
+				EAAF8899176265EE00FAD594 /* WEPopoverController.m in Sources */,
+				EAAF889A176265EE00FAD594 /* WETouchableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

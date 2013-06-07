@@ -69,8 +69,8 @@
 #pragma mark - config & exploring actions
 -(void)enterFollowCompaniesAction;
 -(void)enterFollowPeopleAction;
--(void)enterSelectAgentsAction;
--(void)enterSelectFunctionalAreasAction;
+-(void)presentSelectAgentsPage;
+-(void)presentSelectFuncAreaPage;
 
 
 #pragma mark - lay out for ipad
@@ -88,5 +88,13 @@
 
 -(void)setNeedMenu:(BOOL)aNeedMenu;
 -(BOOL)needMenu;
+
+#pragma mark - navi or modal
+-(BOOL)isTheRootOfNaviStack;
+-(BOOL)isTheTopOfNaviStack;
+-(BOOL)isPresentedModally;
+
+
+-(void)popSheetForVC:(UIViewController *)aViewController size:(CGSize)aSize;
 
 @end

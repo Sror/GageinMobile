@@ -82,6 +82,7 @@
     [super viewWillAppear:animated];
     [self hideBackButton];
     [self _getAgentsData];
+    
 }
 
 
@@ -135,7 +136,7 @@
 {
     if (!_isSelectionChanged)
     {
-        [self.navigationController popViewControllerAnimated:YES];
+        [self naviBackAction:nil];
         return;
     }
     
@@ -150,7 +151,7 @@
             [GGAlert alertWithApiParser:parser];
         }
         
-        [self.navigationController popViewControllerAnimated:YES];
+        [self naviBackAction:nil];
     }];
     
     [self registerOperation:op];
@@ -290,8 +291,9 @@
 #pragma mark - API calls
 -(void)_getAgentsData
 {
+    [self showLoadingHUD];
     id op = [GGSharedAPI getAgents:^(id operation, id aResultObject, NSError *anError) {
-        
+        [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.status == 1)
         {
