@@ -253,6 +253,11 @@
 
 -(IBAction)_followingTapped:(id)sender
 {
+    [self _doFollowingHideSlide:![self isIPadLandscape]];
+}
+
+-(void)_doFollowingHideSlide:(BOOL)aHideSlide
+{
     self.naviTitle = @"FOLLOWING";
     
     [[self _followingSectionView] setHightlighted:YES];
@@ -261,7 +266,7 @@
     [self _unselectAllMenuItem];
     [_slideSettingView.viewTable reloadData];
     
-    [self _refreshWithMenuId:GG_ALL_RESULT_ID type:kGGMenuTypePerson];
+    [self _refreshWithMenuId:GG_ALL_RESULT_ID type:kGGMenuTypePerson hideSlide:aHideSlide];
 }
 
 -(IBAction)_exploringConfigTapped:(id)sender
@@ -271,6 +276,11 @@
 
 -(IBAction)_exploringTapped:(id)sender
 {
+    [self _doExploringHideSlide:![self isIPadLandscape]];
+}
+
+-(void)_doExploringHideSlide:(BOOL)aHideSlide
+{
     self.naviTitle = @"EXPLORING";
     
     [[self _followingSectionView] setHightlighted:NO];
@@ -279,12 +289,15 @@
     [self _unselectAllMenuItem];
     [_slideSettingView.viewTable reloadData];
     
-    [self _refreshWithMenuId:GG_ALL_RESULT_ID type:kGGMenuTypeFunctionalArea];
+    [self _refreshWithMenuId:GG_ALL_RESULT_ID type:kGGMenuTypeFunctionalArea hideSlide:aHideSlide];
 }
 
--(void)_refreshWithMenuId:(long long)aMenuID type:(EGGMenuType)aType
+-(void)_refreshWithMenuId:(long long)aMenuID type:(EGGMenuType)aType hideSlide:(BOOL)aHideSlide
 {
-    [_slideSettingView hideSlide];
+    if (aHideSlide)
+    {
+        [_slideSettingView hideSlide];
+    }
     
     _menuType = aType;
     _menuID = aMenuID;
@@ -476,7 +489,7 @@
         _menuType = theData.type;
         _menuID = theData.ID;
         
-        [self _refreshWithMenuId:theData.ID type:theData.type];
+        [self _refreshWithMenuId:theData.ID type:theData.type hideSlide:![self isIPadLandscape]];
     }
 }
 
@@ -497,11 +510,11 @@
         
         if (_menuType == kGGMenuTypePerson)
         {
-            [self _followingTapped:nil];
+            [self _doFollowingHideSlide:NO];
         }
         else
         {
-            [self _exploringTapped:nil];
+            [self _doExploringHideSlide:NO];
         }
     }];
     
