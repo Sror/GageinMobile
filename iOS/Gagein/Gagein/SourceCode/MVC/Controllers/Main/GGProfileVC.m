@@ -46,6 +46,7 @@
 {
     [super viewDidLoad];
     self.naviTitle = @"My Profile";
+    self.view.backgroundColor = GGSharedColor.silver;
     self.tvProfile.backgroundColor = GGSharedColor.silver;
     _tvProfile.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tvProfile.rowHeight = [GGGroupedCell HEIGHT];
@@ -215,6 +216,14 @@
     }];
     
     [self registerOperation:op];
+}
+
+#pragma mark - orientation change
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    [_tvProfile centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
 }
 
 @end

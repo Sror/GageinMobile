@@ -11,19 +11,21 @@
 @interface GGImagePool : NSObject
 AS_SINGLETON(GGImagePool)
 
-@property (strong) UIImage *placeholder;
-@property (strong) UIImage  *stretchShadowBgWite;
-@property (strong) UIImage  *bgNavibar;
-@property (strong) UIImage  *logoDefaultCompany;
-@property (strong) UIImage  *logoDefaultPerson;
-@property (strong) UIImage  *bgBtnOrange;
+@property (strong, nonatomic) UIImage *placeholder;
+@property (strong, nonatomic) UIImage  *stretchShadowBgWite;
+@property (strong, nonatomic) UIImage  *bgNavibar;
+@property (strong, nonatomic) UIImage  *logoDefaultCompany;
+@property (strong, nonatomic) UIImage  *logoDefaultPerson;
+@property (strong, nonatomic) UIImage  *bgBtnOrange;
 
-@property (strong) UIImage  *tableCellBottomBg;
-@property (strong) UIImage  *tableCellMiddleBg;
-@property (strong) UIImage  *tableCellRoundBg;
-@property (strong) UIImage  *tableCellTopBg;
-@property (strong) UIImage  *tableSelectedDot;
-@property (strong) UIImage  *tableUnselectedDot;
+@property (strong, nonatomic) UIImage  *tableCellBottomBg;
+@property (strong, nonatomic) UIImage  *tableCellMiddleBg;
+@property (strong, nonatomic) UIImage  *tableCellRoundBg;
+@property (strong, nonatomic) UIImage  *tableCellTopBg;
+@property (strong, nonatomic) UIImage  *tableSelectedDot;
+@property (strong, nonatomic) UIImage  *tableUnselectedDot;
+
+//@property (strong, nonatomic) UIImage  *tableCellRoundBg;
 @end
 
 #define GGSharedImagePool [GGImagePool sharedInstance]

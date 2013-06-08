@@ -38,6 +38,8 @@ DEF_SINGLETON(GGImagePool)
         _tableSelectedDot = [[UIImage imageNamed:@"tableSelectedDot"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
         
         _tableUnselectedDot = [[UIImage imageNamed:@"tableUnselectedDot"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
+        
+//        _tableCellRoundBg = [[UIImage imageNamed:@"tableCellRoundBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
     }
     return self;
 }

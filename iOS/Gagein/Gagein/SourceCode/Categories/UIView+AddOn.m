@@ -89,4 +89,14 @@ static MBProgressHUD * hud;
     self.frame = myRc;
 }
 
+-(void)resignAllResponders
+{
+    [self resignFirstResponder];
+    
+    for (UIView *subView in self.subviews)
+    {
+        [subView resignAllResponders];
+    }
+}
+
 @end

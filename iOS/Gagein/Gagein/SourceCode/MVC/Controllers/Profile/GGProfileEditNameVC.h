@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGProfileEditNameVC : GGBaseViewController
+@interface GGProfileEditNameVC : GGBaseViewController <UIScrollViewDelegate, UITextFieldDelegate>
 @property (strong) GGUserProfile       *userProfile;
 @end

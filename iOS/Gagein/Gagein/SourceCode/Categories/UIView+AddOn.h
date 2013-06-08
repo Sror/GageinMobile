@@ -26,4 +26,6 @@
 
 -(void)centerMeHorizontallyChangeMyWidth:(CGFloat)aWidth;
 
+-(void)resignAllResponders;
+
 @end
