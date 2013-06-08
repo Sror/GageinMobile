@@ -142,6 +142,8 @@ typedef enum {
 @property (copy) NSString                       *change;        // e.g. LEAVE
 @property (assign) EGGHappeningType             type;
 @property (assign) EGGHappeningSource           source;
+@property (copy) NSString                       *sourceName;
+@property (copy) NSString                       *messageStr; // only if param 'msg_format=text or html', this data is provided
 
 @property (copy) NSString                       *orgID;
 @property (copy) NSString                       *orgName;

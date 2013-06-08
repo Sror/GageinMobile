@@ -206,6 +206,8 @@
     self.ID = [[aData objectForKey:@"eventid"] longLongValue];
     self.type = [[aData objectForKey:@"type"] intValue];
     self.source = [[aData objectForKey:@"source"] intValue];
+    self.sourceName = [aData objectForKey:@"source_name"];
+    self.messageStr = [aData objectForKey:@"msg_str"];
     
     self.orgID = [aData objectForKey:@"orgid"];
     self.orgName = [aData objectForKey:@"org_name"];

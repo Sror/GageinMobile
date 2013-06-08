@@ -30,6 +30,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblOff;
 
 
+-(void)switchOn:(BOOL)aIsOn;
+
 +(float)HEIGHT;
 -(void)changeSkin:(BOOL)aIsLight;
 @end

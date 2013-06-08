@@ -281,7 +281,7 @@
     [_happeningsTV reloadData];
     
     // this line to solve that when view appear again, update switch doesnt get touch event
-    [_btnSwitchUpdate goTop];
+    //[_btnSwitchUpdate goTop];
     
     [self _callApiGetMenu];
 }
@@ -598,6 +598,8 @@
 
 -(IBAction)_exploringTapped:(id)sender
 {
+    [_btnSwitchUpdate switchOn:YES];
+    
     [self _doExploringHideSlide:![self isIPadLandscape]];
 }
 
@@ -1026,6 +1028,11 @@
         //get update data by menuID
         _menuType = theData.type;
         _menuID = theData.ID;
+        
+        if (theData.type == kGGMenuTypeAgent)
+        {
+            [_btnSwitchUpdate switchOn:YES];
+        }
         
         [self _refreshWithMenuId:theData.ID type:theData.type hideSlide:![self isIPadLandscape]];
     }
