@@ -246,24 +246,14 @@
     
     [super viewWillAppear:animated];
 
-}
-
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [_btnSwitchUpdate removeFromSuperview];
-    
-    [GGSharedDelegate.rootVC enableSwipGesture:NO];
-    [GGSharedDelegate.rootVC enableTapGesture:NO];
-    
-    [self setNeedMenu:NO];
+    [self _adjustTvFrames];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    [self _adjustTvFrames];
+    
     
     // show/hide switch button
     [self _setSwitchUpdateRect];
@@ -285,6 +275,19 @@
     
     [self _callApiGetMenu];
 }
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [_btnSwitchUpdate removeFromSuperview];
+    
+    [GGSharedDelegate.rootVC enableSwipGesture:NO];
+    [GGSharedDelegate.rootVC enableTapGesture:NO];
+    
+    [self setNeedMenu:NO];
+}
+
+
 
 - (void)viewDidUnload {
     [_updates removeAllObjects];
@@ -593,7 +596,7 @@
 
 -(IBAction)_exploringConfigTapped:(id)sender
 {
-    [self presentPageSelectAgents];
+    [self presentPageConfigFilters];
 }
 
 -(IBAction)_exploringTapped:(id)sender
@@ -1082,6 +1085,8 @@
 
 -(void)_adjustTvFrames
 {
+    //CGRect thisRc = self.view.bounds;
+    
     CGRect relevanceRc = _relevanceBar.frame;
     relevanceRc.size.width = _relevanceBar.superview.frame.size.width;
     _relevanceBar.frame = relevanceRc;

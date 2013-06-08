@@ -21,6 +21,7 @@
 #import "GGSelectFuncAreasVC.h"
 #import "GGAppDelegate.h"
 #import "GGFacebookAuthVC.h"
+#import "GGConfigFiltersVC.h"
 
 #import "WEPopoverController.h"
 
@@ -179,6 +180,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self layoutUIForIPadIfNeeded];
+    
     // custom back button
     if (self.navigationController.viewControllers.count <= 1)
     {
@@ -209,8 +212,6 @@
     {
         [self viewWillAppearNotFirstTimeAction];
     }
-    
-    [self layoutUIForIPadIfNeeded];
 }
 
 -(void)viewWillAppearNotFirstTimeAction
@@ -519,6 +520,21 @@
 -(void)presentPageSelectAgents
 {
     GGSelectAgentsVC *vc = [[GGSelectAgentsVC alloc] init];
+    
+    //UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    if (ISIPADDEVICE)
+    {
+        [self popSheetInNaviForVC:vc];
+    }
+    else
+    {
+        [self presentInNaviWithVC:vc];
+    }
+}
+
+-(void)presentPageConfigFilters
+{
+    GGConfigFiltersVC *vc = [[GGConfigFiltersVC alloc] init];
 
     //UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     if (ISIPADDEVICE)

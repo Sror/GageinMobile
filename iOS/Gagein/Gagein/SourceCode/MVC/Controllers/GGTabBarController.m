@@ -174,7 +174,19 @@
     
     for (UIViewController *vc in self.viewControllers)
     {
-        vc.view.frame = vc.view.superview.bounds;
+        CGRect superRc = vc.view.superview.bounds;
+        vc.view.frame = superRc;
+        if ([vc isKindOfClass:[UINavigationController class]])
+        {
+            UINavigationController *nc = (UINavigationController *)vc;
+            
+            for (UIViewController *subVC in nc.viewControllers)
+            {
+                DLog(@"class:%@", NSStringFromClass([subVC class]));
+                CGRect superRc = nc.view.bounds;
+                subVC.view.frame = superRc;
+            }
+        }
     }
 }
 

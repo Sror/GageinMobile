@@ -71,6 +71,7 @@
 -(void)presentPageFollowPeople;
 -(void)presentPageSelectAgents;
 -(void)presentPageSelectFuncArea;
+-(void)presentPageConfigFilters;
 
 
 #pragma mark - lay out for ipad

@@ -18,4 +18,8 @@
 
 -(void)goTop;
 
+-(UIView *)ancestorView;
+
+-(void)printViewsTree;
+
 @end
