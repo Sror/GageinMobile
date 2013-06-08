@@ -28,4 +28,7 @@
 -(void)reveal:(void(^)(void))completion;
 - (void)cover:(void(^)(void))completion;
 - (void)bare:(void(^)(void))completion;
+
+-(void)setNeedMenuAndLayout:(BOOL)needMenu orient:(UIInterfaceOrientation)anOrient;
+
 @end

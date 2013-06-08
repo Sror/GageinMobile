@@ -153,7 +153,7 @@ static BOOL s_isCustomed = NO;
     }
     
     [_rootVC doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
-    [_tabBarController doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    //[_tabBarController doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
 }
 
 -(GGSlideSettingView *)slideSettingView

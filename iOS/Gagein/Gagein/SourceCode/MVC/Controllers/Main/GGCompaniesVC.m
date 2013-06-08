@@ -566,14 +566,22 @@
 
 -(IBAction)_configFiltersAction:(id)sender
 {
-    [_slideSettingView hideSlide];
+    if (![self isIPadLandscape])
+    {
+        [_slideSettingView hideSlide];
+    }
+    
     GGConfigFiltersVC *vc = [[GGConfigFiltersVC alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(IBAction)_addCompanyAction:(id)sender
 {
-    [_slideSettingView hideSlide];
+    if (![self isIPadLandscape])
+    {
+        [_slideSettingView hideSlide];
+    }
+    
     [self searchForCompanyAction:nil];
 }
 
@@ -597,6 +605,11 @@
 
 -(IBAction)_exploringConfigTapped:(id)sender
 {
+    if (![self isIPadLandscape])
+    {
+        [_slideSettingView hideSlide];
+    }
+    
     [self presentPageConfigFilters];
 }
 

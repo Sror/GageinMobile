@@ -43,6 +43,11 @@
     return GGSharedDelegate.naviController.navigationBar.frame;
 }
 
++(UIInterfaceOrientation)currentOrient
+{
+    return [UIApplication sharedApplication].statusBarOrientation;
+}
+
 #pragma mark - orientation
 +(CGRect)frameWithOrientation:(UIInterfaceOrientation)anOrientation rect:(CGRect)aRect
 {

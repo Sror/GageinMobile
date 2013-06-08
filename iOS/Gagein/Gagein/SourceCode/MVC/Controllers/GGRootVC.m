@@ -326,4 +326,10 @@
     [GGSharedDelegate.tabBarController doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
 }
 
+-(void)setNeedMenuAndLayout:(BOOL)needMenu orient:(UIInterfaceOrientation)anOrient
+{
+    _needMenu = needMenu;
+    [self doLayoutUIForIPadWithOrientation:anOrient];
+}
+
 @end

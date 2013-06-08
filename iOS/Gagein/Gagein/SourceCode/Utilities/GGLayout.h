@@ -17,6 +17,8 @@
 +(CGRect)tabbarFrame;
 +(CGRect)navibarFrame;
 
++(UIInterfaceOrientation)currentOrient;
+
 
 +(CGRect)frameWithOrientation:(UIInterfaceOrientation)anOrientation rect:(CGRect)aRect;
 +(CGRect)rootCoverFrameForWithOrient:(UIInterfaceOrientation)anOrient;

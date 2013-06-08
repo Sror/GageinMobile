@@ -182,11 +182,16 @@
     return NO;
 }
 
--(void)viewWillAppear:(BOOL)animated
+-(void)_checkNeedMenuAndLayout
 {
     [self setNeedMenu:[self doNeedMenu]];
     
     [self layoutUIForIPadIfNeeded];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self _checkNeedMenuAndLayout];
     
     // custom back button
     if (self.navigationController.viewControllers.count <= 1)
@@ -590,7 +595,15 @@
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    [GGSharedDelegate doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    if (self.presentingViewController == nil)
+    {
+        [self setNeedMenu:[self doNeedMenu]];
+        
+        [GGSharedDelegate doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    }
+    
+    
+    
     
     CGRect naviRc = [self isPresentedModally] ? self.navigationController.view.frame : [GGLayout frameWithOrientation:toInterfaceOrientation rect:self.navigationController.view.frame];
     _customNaviTitle.frame = CGRectMake(0, 5, naviRc.size.width, 44);
@@ -601,21 +614,24 @@
                                      , _ivGageinLogo.image.size.height);
     
     //
-    if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
+    if (self.presentingViewController == nil)
     {
-            [GGSharedDelegate.rootVC cover];
-    }
-    else if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation))
-    {
-        [self freezeMe:NO];
-        
-        if ([self needMenu])
+        if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
         {
-            [GGSharedDelegate.rootVC reveal];
+            [GGSharedDelegate.rootVC cover];
         }
-        else
+        else if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation))
         {
-            [GGSharedDelegate.rootVC cover];
+            [self freezeMe:NO];
+            
+            if ([self doNeedMenu])
+            {
+                [GGSharedDelegate.rootVC reveal];
+            }
+            else
+            {
+                [GGSharedDelegate.rootVC cover];
+            }
         }
     }
 }

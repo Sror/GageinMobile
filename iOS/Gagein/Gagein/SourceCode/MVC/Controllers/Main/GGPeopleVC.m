@@ -253,7 +253,10 @@
 
 -(IBAction)_addPersonAction:(id)sender
 {
-    //[_slideSettingView hideSlide];
+    if (![self isIPadLandscape])
+    {
+        [_slideSettingView hideSlide];
+    }
     
     [self presentPageFollowPeople];
 }
