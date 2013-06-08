@@ -125,14 +125,18 @@
 
 -(void)_initRoundSwitch
 {
-    CGRect naviRc = self.navigationController.navigationBar.frame;
-    
     _btnSwitchUpdate = [GGSwitchButton viewFromNibWithOwner:self];
     _btnSwitchUpdate.delegate = self;
     _btnSwitchUpdate.lblOn.text = @"Updates";
     _btnSwitchUpdate.lblOff.text = @"Happenings";
     _btnSwitchUpdate.isOn = _isShowingUpdate;
     
+    [self _setSwitchUpdateRect];
+}
+
+-(void)_setSwitchUpdateRect
+{
+    CGRect naviRc = self.navigationController.navigationBar.frame;
     CGRect switchRc = CGRectMake(naviRc.size.width - SWITCH_WIDTH - 5
                                  , (naviRc.size.height - [GGSwitchButton HEIGHT]) / 2 + 5
                                  , SWITCH_WIDTH
@@ -262,6 +266,7 @@
     [self _adjustTvFrames];
     
     // show/hide switch button
+    [self _setSwitchUpdateRect];
     [self.navigationController.navigationBar addSubview:_btnSwitchUpdate];
     _btnSwitchUpdate.hidden = (_menuType == kGGMenuTypeAgent);
     
@@ -276,7 +281,7 @@
     [_happeningsTV reloadData];
     
     // this line to solve that when view appear again, update switch doesnt get touch event
-    //[_btnSwitchUpdate.superview bringSubviewToFront:_btnSwitchUpdate];
+    [_btnSwitchUpdate goTop];
     
     [self _callApiGetMenu];
 }
