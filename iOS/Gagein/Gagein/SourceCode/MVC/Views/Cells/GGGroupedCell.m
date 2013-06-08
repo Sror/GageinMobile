@@ -42,7 +42,7 @@
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     _seperator = [[UIView alloc] initWithFrame:CGRectMake(0, 1, 290, 1)];
-    _seperator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
+    _seperator.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _seperator.backgroundColor = GGSharedColor.silver;
     [_viewContent addSubview:_seperator];
 }

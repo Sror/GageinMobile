@@ -178,7 +178,10 @@
 #pragma mark - slide setting view delegate
 -(void)slideview:(GGSlideSettingView *)aSlideView isShowed:(BOOL)aIsShowed
 {
-    self.view.userInteractionEnabled = !aIsShowed;
+    if (![self isIPadLandscape])
+    {
+        [self freezeMe:aIsShowed];
+    }
 }
 
 #pragma mark - notification handling
@@ -198,11 +201,16 @@
     }
     else if ([noteName isEqualToString:GG_NOTIFY_MENU_REVEAL])
     {
-        self.view.userInteractionEnabled = NO;
+        //self.view.userInteractionEnabled = NO;
+        if (![self isIPadLandscape])
+        {
+            [self freezeMe:YES];
+        }
     }
     else if ([noteName isEqualToString:GG_NOTIFY_MENU_COVER])
     {
-        self.view.userInteractionEnabled = YES;
+        //self.view.userInteractionEnabled = YES;
+        [self freezeMe:NO];
         [_slideSettingView.searchBar resignFirstResponder];
     }
 }

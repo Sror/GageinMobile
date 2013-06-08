@@ -22,4 +22,8 @@
 
 -(void)printViewsTree;
 
+-(void)centerMeHorizontally;
+
+-(void)centerMeHorizontallyChangeMyWidth:(CGFloat)aWidth;
+
 @end

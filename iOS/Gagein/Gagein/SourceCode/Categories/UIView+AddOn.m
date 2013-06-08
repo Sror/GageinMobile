@@ -76,4 +76,17 @@ static MBProgressHUD * hud;
     }
 }
 
+-(void)centerMeHorizontally
+{
+    [self centerMeHorizontallyChangeMyWidth:self.frame.size.width];
+}
+
+-(void)centerMeHorizontallyChangeMyWidth:(CGFloat)aWidth
+{
+    CGRect myRc = self.frame;
+    myRc.size.width = aWidth;
+    myRc.origin.x = (self.superview.frame.size.width - aWidth) / 2;
+    self.frame = myRc;
+}
+
 @end

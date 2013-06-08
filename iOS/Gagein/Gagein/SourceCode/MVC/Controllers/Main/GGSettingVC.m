@@ -63,6 +63,7 @@
 {
     [super viewDidLoad];
     self.naviTitle = @"Settings";
+    self.svContent.backgroundColor = GGSharedColor.silver;
     self.tvSettings.backgroundColor = GGSharedColor.silver;
     _tvSettings.rowHeight = [GGGroupedCell HEIGHT];
     _tvSettings.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -189,7 +190,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     //return 3;
-    return 3;
+    return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -314,6 +315,14 @@
     }
     
     return 0;
+}
+
+#pragma mark - orientation handling
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    [_tvSettings centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
 }
 
 @end
