@@ -86,8 +86,9 @@
 
 -(void)freezeMe:(BOOL)aFreeze;
 
--(void)setNeedMenu:(BOOL)aNeedMenu;
--(BOOL)needMenu;
+//-(void)setNeedMenu:(BOOL)aNeedMenu;
+//-(BOOL)needMenu;
+-(BOOL)doNeedMenu;
 
 #pragma mark - navi or modal
 -(BOOL)isTheRootOfNaviStack;

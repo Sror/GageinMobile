@@ -177,9 +177,15 @@
     return __globalBackBtn;
 }
 
+-(BOOL)doNeedMenu
+{
+    return NO;
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self setNeedMenu:[self doNeedMenu]];
+    
     [self layoutUIForIPadIfNeeded];
     
     // custom back button

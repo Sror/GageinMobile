@@ -30,12 +30,14 @@
 
 @implementation GGPeopleVC
 {
-    GGSlideSettingView          *_slideSettingView;
-    GGEmptyActionView                 *_viewUpdateEmpty;
+    GGSlideSettingView                  *_slideSettingView;
+    GGEmptyActionView                   *_viewUpdateEmpty;
     
-    NSArray                    *_menuDatas;
-    EGGMenuType                _menuType;
-    long long                  _menuID;
+    NSArray                             *_menuDatas;
+    EGGMenuType                         _menuType;
+    long long                           _menuID;
+    
+    CGPoint                             _lastContentOffset;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -114,9 +116,16 @@
     [self _getInitData];
 }
 
+-(BOOL)doNeedMenu
+{
+    return YES;
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    [self _adjustTvFrames];
     
     // change menu to people type
     [_slideSettingView changeDelegate:self];
@@ -631,5 +640,66 @@
     [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
 }
 
+#pragma mark - scroll view delegate
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    
+    if (scrollView == _updatesTV)
+    {
+        _lastContentOffset = scrollView.contentOffset;
+    }
+    
+    GGSharedDelegate.rootVC.canBeDragged = NO;
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    GGSharedDelegate.rootVC.canBeDragged = YES;
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+    
+    if (!ISIPADDEVICE)
+    {
+        if (_lastContentOffset.y < scrollView.contentOffset.y)
+        {
+            [GGUtils hideTabBar];
+        }
+        else
+        {
+            [GGUtils showTabBar];
+        }
+        
+        [self _adjustTvFrames];
+    }
+}
+
+-(void)_adjustTvFrames
+{
+    CGRect updateRc = _updatesTV.frame;
+    updateRc.size.width = _updatesTV.superview.bounds.size.width;
+    updateRc.size.height = _updatesTV.superview.bounds.size.height - updateRc.origin.y;
+    _updatesTV.frame = updateRc;
+}
+
+#pragma mark -
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    self.navigationItem.leftBarButtonItem = nil;
+    
+    if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
+    {
+        [self _installMenuButton];
+    }
+    else
+    {
+        [self _callApiGetMenu];
+    }
+    
+    [self _adjustTvFrames];
+    
+    [_updatesTV reloadData];
+}
 
 @end

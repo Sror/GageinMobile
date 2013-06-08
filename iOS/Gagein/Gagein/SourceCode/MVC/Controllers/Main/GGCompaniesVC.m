@@ -240,10 +240,13 @@
     //[_updatesTV ScrollMeToTopOnly];
 }
 
+-(BOOL)doNeedMenu
+{
+    return YES;
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self setNeedMenu:YES];
-    
     [super viewWillAppear:animated];
 
     [self _adjustTvFrames];
@@ -283,8 +286,6 @@
     
     [GGSharedDelegate.rootVC enableSwipGesture:NO];
     [GGSharedDelegate.rootVC enableTapGesture:NO];
-    
-    [self setNeedMenu:NO];
 }
 
 
@@ -1107,7 +1108,7 @@
     
     if (!ISIPADDEVICE)
     {
-        if (_lastContentOffset.y < (int)scrollView.contentOffset.y)
+        if (_lastContentOffset.y < scrollView.contentOffset.y)
         {
             //DLog(@"moved up");
             
