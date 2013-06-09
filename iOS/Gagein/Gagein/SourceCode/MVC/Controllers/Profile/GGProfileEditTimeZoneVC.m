@@ -104,4 +104,13 @@
     [self registerOperation:op];
 }
 
+#pragma mark -
+#pragma mark -
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    [_tvTimeZone centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
+}
+
 @end
