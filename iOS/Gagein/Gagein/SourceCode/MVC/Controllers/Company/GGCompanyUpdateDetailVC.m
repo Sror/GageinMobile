@@ -660,15 +660,15 @@
     UIImage *bgImg = nil;
  
     bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];
-    [actionSheet addButtonWithTitle:@"LinkedIn" bgImage:bgImg block:^{
-        //DLog(@"Signal to LinkedIn.");
-        [self linkedInAction:nil];
-    }];
-    
-    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];
     [actionSheet addButtonWithTitle:@"Twitter" bgImage:bgImg block:^{
         //DLog(@"Signal to Twitter.");
         [self twitterAction:nil];
+    }];
+    
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];
+    [actionSheet addButtonWithTitle:@"LinkedIn" bgImage:bgImg block:^{
+        //DLog(@"Signal to LinkedIn.");
+        [self linkedInAction:nil];
     }];
     
     bgImg = [UIImage imageNamed:@"grayBtnBg"];

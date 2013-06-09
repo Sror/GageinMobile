@@ -12,6 +12,7 @@
 @interface GGProfileEditEmailVC ()
 @property (weak, nonatomic) IBOutlet UITextField *tfEmail;
 @property (weak, nonatomic) IBOutlet UIButton *btnSave;
+@property (weak, nonatomic) IBOutlet UIView *viewContent;
 
 @end
 
@@ -42,6 +43,7 @@
 - (void)viewDidUnload {
     [self setTfEmail:nil];
     [self setBtnSave:nil];
+    [self setViewContent:nil];
     [super viewDidUnload];
 }
 
@@ -68,6 +70,14 @@
         
         [self registerOperation:op];
     }
+}
+
+#pragma mark -
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    [_viewContent centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
 }
 
 @end

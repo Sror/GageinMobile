@@ -278,4 +278,12 @@
     }
 }
 
+#pragma mark -
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    [_viewComInfo centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
+}
+
 @end
