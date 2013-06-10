@@ -38,6 +38,8 @@
     long long                           _menuID;
     
     CGPoint                             _lastContentOffset;
+    
+    BOOL                                _hasMore;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -577,14 +579,21 @@
 
 -(void)_getNextPage
 {
-    long long happeningID = 0, pageTime = 0;
-    GGHappening *lastOne = [_updates lastObject];
-    if (lastOne)
+    if (_hasMore)
     {
-        happeningID = lastOne.ID;
-        pageTime = lastOne.timestamp;
-        
-        [self _getDataWithPageFlag:kGGPageFlagMoveDown pageTime:pageTime eventID:happeningID];
+        long long happeningID = 0, pageTime = 0;
+        GGHappening *lastOne = [_updates lastObject];
+        if (lastOne)
+        {
+            happeningID = lastOne.ID;
+            pageTime = lastOne.timestamp;
+            
+            [self _getDataWithPageFlag:kGGPageFlagMoveDown pageTime:pageTime eventID:happeningID];
+        }
+    }
+    else
+    {
+        [self _delayedStopInfiniteAnimating];
     }
 }
 
@@ -599,6 +608,8 @@
         
         if (parser.isOK)
         {
+            _hasMore = page.hasMore;
+            
             if (page.items.count)
             {
                 switch (aPageFlag)

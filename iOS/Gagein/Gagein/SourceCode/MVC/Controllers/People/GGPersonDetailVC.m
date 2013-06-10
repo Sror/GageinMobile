@@ -17,6 +17,7 @@
 #import "GGCompanyDetailHeaderView.h"
 #import "GGHappeningsVC.h"
 #import "GGDataPage.h"
+#import "GGHappeningDetailVC.h"
 
 @interface GGPersonDetailVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *svContent;
@@ -158,7 +159,11 @@
     
     if (section == 0) {
         
+        GGHappeningDetailVC *vc = [[GGHappeningDetailVC alloc] init];
+        vc.happenings = _updates;
+        vc.happeningIndex = row;
         
+        [self.navigationController pushViewController:vc animated:YES];
         
     } else if (section == 1) {
         

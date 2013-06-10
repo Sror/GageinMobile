@@ -24,6 +24,7 @@
 @implementation GGUpdatesVC
 {
     EGGCompanyUpdateRelevance   _relevance;
+    BOOL                                _hasMore;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -176,15 +177,22 @@
 
 -(void)_getNextPage
 {
-    long long newsID = 0, pageTime = 0;
-    GGCompanyUpdate *lastUpdate = [_updates lastObject];
-    if (lastUpdate)
+    if (_hasMore)
     {
-        newsID = lastUpdate.ID;
-        pageTime = lastUpdate.date;
+        long long newsID = 0, pageTime = 0;
+        GGCompanyUpdate *lastUpdate = [_updates lastObject];
+        if (lastUpdate)
+        {
+            newsID = lastUpdate.ID;
+            pageTime = lastUpdate.date;
+        }
+        
+        [self _getDataWithNewsID:newsID pageFlag:kGGPageFlagMoveDown pageTime:pageTime relevance:_relevance];
     }
-    
-    [self _getDataWithNewsID:newsID pageFlag:kGGPageFlagMoveDown pageTime:pageTime relevance:_relevance];
+    else
+    {
+        [self _delayedStopInfiniteAnimating];
+    }
 }
 
 -(void)_getPrevPage
@@ -210,36 +218,42 @@
         GGDataPage *page = [parser parseGetCompanyUpdates];
         //DLog(@"%@", page);
         
-        if (page.items.count)
+        if (parser.isOK)
         {
-            switch (aPageFlag)
+            _hasMore = page.hasMore;
+            
+            if (page.items.count)
             {
-                case kGGPageFlagFirstPage:
+                switch (aPageFlag)
                 {
-                    [_updates removeAllObjects];
-                    [_updates addObjectsFromArray:page.items];
+                    case kGGPageFlagFirstPage:
+                    {
+                        [_updates removeAllObjects];
+                        [_updates addObjectsFromArray:page.items];
+                    }
+                        break;
+                        
+                    case kGGPageFlagMoveDown:
+                    {
+                        [_updates addObjectsFromArray:page.items];
+                        
+                        
+                    }
+                        break;
+                        
+                    case kGGPageFlagMoveUp:
+                    {
+                        NSMutableArray *newUpdates = [NSMutableArray arrayWithArray:page.items];
+                        [newUpdates addObjectsFromArray:_updates];
+                        self.updates = newUpdates;
+                    }
+                        break;
+                        
+                    default:
+                        break;
                 }
-                    break;
-                    
-                case kGGPageFlagMoveDown:
-                {
-                    [_updates addObjectsFromArray:page.items];
-                    
-                    
-                }
-                    break;
-                    
-                case kGGPageFlagMoveUp:
-                {
-                    NSMutableArray *newUpdates = [NSMutableArray arrayWithArray:page.items];
-                    [newUpdates addObjectsFromArray:_updates];
-                    self.updates = newUpdates;
-                }
-                    break;
-                    
-                default:
-                    break;
             }
+
         }
         
         [self.updatesTV reloadData];

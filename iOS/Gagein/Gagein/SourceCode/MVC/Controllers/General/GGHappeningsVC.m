@@ -22,6 +22,9 @@
 @end
 
 @implementation GGHappeningsVC
+{
+    BOOL                                _hasMore;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,6 +57,7 @@
     self.tvHappenings.delegate = self;
     [self.view addSubview:self.tvHappenings];
     self.tvHappenings.backgroundColor = GGSharedColor.silver;
+    self.view.backgroundColor = GGSharedColor.silver;
     
     __weak GGHappeningsVC *weakSelf = self;
     
@@ -158,15 +162,22 @@
 
 -(void)_getNextPage
 {
-    long long newsID = 0, pageTime = 0;
-    GGHappening *last = [_happenings lastObject];
-    if (last)
+    if (_hasMore)
     {
-        newsID = last.ID;
-        pageTime = last.timestamp;
+        long long newsID = 0, pageTime = 0;
+        GGHappening *last = [_happenings lastObject];
+        if (last)
+        {
+            newsID = last.ID;
+            pageTime = last.timestamp;
+        }
+        
+        [self _getDataWithEventID:newsID pageFlag:kGGPageFlagMoveDown pageTime:pageTime];
     }
-    
-    [self _getDataWithEventID:newsID pageFlag:kGGPageFlagMoveDown pageTime:pageTime];
+    else
+    {
+        [self _delayedStopInfiniteAnimating];
+    }
 }
 
 -(void)_getDataWithEventID:(long long)anEventID pageFlag:(int)aPageFlag pageTime:(long long)aPageTime
@@ -176,36 +187,42 @@
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         GGDataPage *page = [parser parseGetCompanyHappenings];
         
-        if (page.items.count)
+        if (parser.isOK)
         {
-            switch (aPageFlag)
+            _hasMore = page.hasMore;
+            
+            if (page.items.count)
             {
-                case kGGPageFlagFirstPage:
+                switch (aPageFlag)
                 {
-                    [_happenings removeAllObjects];
-                    [_happenings addObjectsFromArray:page.items];
+                    case kGGPageFlagFirstPage:
+                    {
+                        [_happenings removeAllObjects];
+                        [_happenings addObjectsFromArray:page.items];
+                    }
+                        break;
+                        
+                    case kGGPageFlagMoveDown:
+                    {
+                        [_happenings addObjectsFromArray:page.items];
+                        
+                        
+                    }
+                        break;
+                        
+                    case kGGPageFlagMoveUp:
+                    {
+                        NSMutableArray *newHappenings = [NSMutableArray arrayWithArray:page.items];
+                        [newHappenings addObjectsFromArray:_happenings];
+                        self.happenings = newHappenings;
+                    }
+                        break;
+                        
+                    default:
+                        break;
                 }
-                    break;
-                    
-                case kGGPageFlagMoveDown:
-                {
-                    [_happenings addObjectsFromArray:page.items];
-                    
-                    
-                }
-                    break;
-                    
-                case kGGPageFlagMoveUp:
-                {
-                    NSMutableArray *newHappenings = [NSMutableArray arrayWithArray:page.items];
-                    [newHappenings addObjectsFromArray:_happenings];
-                    self.happenings = newHappenings;
-                }
-                    break;
-                    
-                default:
-                    break;
             }
+
         }
         
         [self.tvHappenings reloadData];
@@ -241,5 +258,13 @@
     [weakSelf.tvHappenings.infiniteScrollingView stopAnimating];
 }
 
+
+#pragma mark - 
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    [_tvHappenings centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
+}
 
 @end
