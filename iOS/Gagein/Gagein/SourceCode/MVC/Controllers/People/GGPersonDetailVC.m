@@ -69,6 +69,8 @@
     _tvDetail.separatorColor = GGSharedColor.silver;
     self.viewBaseInfo.backgroundColor = GGSharedColor.ironGray;
     _tvDetail.backgroundColor = GGSharedColor.ironGray;
+    
+    _tvDetail.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:_tvDetail];
     
     UIView *tvBgView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -336,6 +338,27 @@
     
     id op = [GGSharedAPI getHappeningsWithPersonID:_personID eventID:0 pageFlag:kGGPageFlagFirstPage pageTime:0 callback:callback];
     [self registerOperation:op];
+}
+
+#pragma mark - orientation changed
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    [self _adjustSelfFrameForIpadWithOrient:toInterfaceOrientation];
+    
+    [_tvDetail centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
+}
+
+-(void)_adjustSelfFrameForIpadWithOrient:(UIInterfaceOrientation)anOrient
+{
+    if (ISIPADDEVICE)
+    {
+        CGRect theFrame = [GGLayout frameWithOrientation:anOrient rect:[GGLayout screenFrame]];
+        theFrame.size.height -= [GGLayout statusHeight] + [GGLayout navibarFrame].size.height + [GGLayout tabbarFrame].size.height;
+        
+        self.view.frame = theFrame;
+    }
 }
 
 @end

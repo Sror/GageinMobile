@@ -644,9 +644,7 @@ typedef enum
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
     [self _adjustSelfFrameForIpadWithOrient:toInterfaceOrientation];
-    
-    CGRect tvRc = _tvDetail.frame;
-    CGRect thisRc = self.view.frame;
+
     [_tvDetail centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
 }
 

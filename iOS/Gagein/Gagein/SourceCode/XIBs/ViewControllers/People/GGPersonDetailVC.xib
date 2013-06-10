@@ -40,7 +40,7 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIScrollView" id="730314964">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">274</int>
+						<int key="NSvFlags">277</int>
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUIView" id="23542125">
 								<reference key="NSNextResponder" ref="730314964"/>
@@ -48,9 +48,10 @@
 								<array class="NSMutableArray" key="NSSubviews">
 									<object class="IBUIImageView" id="445927244">
 										<reference key="NSNextResponder" ref="23542125"/>
-										<int key="NSvFlags">292</int>
+										<int key="NSvFlags">293</int>
 										<string key="NSFrame">{{110, 16}, {100, 100}}</string>
 										<reference key="NSSuperview" ref="23542125"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="510438687"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -62,15 +63,15 @@
 									</object>
 									<object class="IBUIButton" id="269380453">
 										<reference key="NSNextResponder" ref="23542125"/>
-										<int key="NSvFlags">292</int>
+										<int key="NSvFlags">293</int>
 										<string key="NSFrame">{{42, 162}, {236, 36}}</string>
 										<reference key="NSSuperview" ref="23542125"/>
+										<reference key="NSWindow"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<int key="IBUIContentHorizontalAlignment">0</int>
 										<int key="IBUIContentVerticalAlignment">0</int>
-										<int key="IBUIButtonType">1</int>
 										<string key="IBUINormalTitle">Follow</string>
 										<object class="NSColor" key="IBUIHighlightedTitleColor" id="422669630">
 											<int key="NSColorSpace">3</int>
@@ -93,9 +94,10 @@
 									</object>
 									<object class="IBUILabel" id="510438687">
 										<reference key="NSNextResponder" ref="23542125"/>
-										<int key="NSvFlags">292</int>
+										<int key="NSvFlags">290</int>
 										<string key="NSFrame">{{20, 121}, {280, 18}}</string>
 										<reference key="NSSuperview" ref="23542125"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="950144483"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
@@ -124,9 +126,10 @@
 									</object>
 									<object class="IBUILabel" id="950144483">
 										<reference key="NSNextResponder" ref="23542125"/>
-										<int key="NSvFlags">292</int>
+										<int key="NSvFlags">290</int>
 										<string key="NSFrame">{{20, 138}, {280, 18}}</string>
 										<reference key="NSSuperview" ref="23542125"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="269380453"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
@@ -149,6 +152,7 @@
 								</array>
 								<string key="NSFrameSize">{320, 213}</string>
 								<reference key="NSSuperview" ref="730314964"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="445927244"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -160,6 +164,7 @@
 						</array>
 						<string key="NSFrameSize">{320, 455}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="23542125"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -169,6 +174,7 @@
 				</array>
 				<string key="NSFrame">{{0, 64}, {320, 455}}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="730314964"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -376,17 +382,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">GGPersonDetailVC</string>
 					<string key="superclassName">GGBaseViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">followPersonAction:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">followPersonAction:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">followPersonAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="btnFollow">UIButton</string>
 						<string key="ivPhoto">UIImageView</string>

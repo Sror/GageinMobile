@@ -32,6 +32,7 @@
     self.naviTitle = _naviTitleString;
 	
     _webview = [[UIWebView alloc] initWithFrame:[self viewportAdjsted]];
+    _webview.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _webview.delegate = self;
     _webview.scalesPageToFit = YES;
     [self.view addSubview:_webview];
