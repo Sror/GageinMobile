@@ -29,7 +29,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _dataSource = [NSMutableArray arrayWithObjects:@"Agent Filters", @"Category Filters", @"Media Filters", nil];
+        _dataSource = [NSMutableArray arrayWithObjects:@"Trigger Filters", @"Category Filters", @"Media Filters", nil];
     }
     return self;
 }

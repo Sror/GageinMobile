@@ -60,7 +60,7 @@
     //if (NO)
     if (!_isFromRegistration)
     {
-        self.naviTitle = @"Choose Agents";
+        self.naviTitle = @"Choose Triggers";
         
         // add done button
         self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(doneAction:)];
@@ -69,9 +69,9 @@
         self.viewSetupLower.hidden = self.viewSetupUpper.hidden = YES;
         
         // addjust layout
-        self.btnAddCustomAgent.frame = [GGUtils setY:20 rect:self.btnAddCustomAgent.frame];
-        float tvGap = 60;
-        self.viewTable.frame = [GGUtils setH:self.view.frame.size.height - tvGap rect:[GGUtils setY:tvGap rect:self.viewTable.frame]];
+//        self.btnAddCustomAgent.frame = [GGUtils setY:20 rect:self.btnAddCustomAgent.frame];
+//        float tvGap = 60;
+//        self.viewTable.frame = [GGUtils setH:self.view.frame.size.height - tvGap rect:[GGUtils setY:tvGap rect:self.viewTable.frame]];
     }
     
     [self _getAgentsData];
@@ -181,10 +181,10 @@
 #pragma mark - table view datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (_customAgents.count)
-    {
-        return 2;
-    }
+//    if (_customAgents.count)
+//    {
+//        return 2;
+//    }
     
     return 1;
 }
@@ -242,38 +242,38 @@
     return cell;    
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if (_customAgents.count && section == 0)
-    {
-        return @"CUSTOM AGENTS";
-    }
-    
-    return @"PREDEFINED AGENTS";
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    if (_customAgents.count && section == 0)
+//    {
+//        return @"CUSTOM TRIGGERS";
+//    }
+//    
+//    return @"PREDEFINED TRIGGERS";
+//}
 
 #pragma mark - table view delegate
--(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return [GGConfigLabel HEIGHT];
-}
-
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    GGConfigLabel *configLabel = [GGConfigLabel viewFromNibWithOwner:self];
-    //configLabel.backgroundColor = GGSharedColor.silver;
-    
-    if (_customAgents.count && section == 0)
-    {
-        configLabel.lblText.text = @"CUSTOM AGENTS";
-    }
-    else
-    {
-        configLabel.lblText.text = @"PREDEFINED AGENTS";
-    }
-    
-    return configLabel;
-}
+//-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return [GGConfigLabel HEIGHT];
+//}
+//
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    GGConfigLabel *configLabel = [GGConfigLabel viewFromNibWithOwner:self];
+//    //configLabel.backgroundColor = GGSharedColor.silver;
+//    
+//    if (_customAgents.count && section == 0)
+//    {
+//        configLabel.lblText.text = @"CUSTOM TRIGGERS";
+//    }
+//    else
+//    {
+//        configLabel.lblText.text = @"PREDEFINED TRIGGERS";
+//    }
+//    
+//    return configLabel;
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -331,11 +331,13 @@
 {
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
-    CGRect orientRc = [GGLayout frameWithOrientation:toInterfaceOrientation rect:self.view.superview.bounds];
-    _btnAddCustomAgent.frame = CGRectMake((orientRc.size.width - _btnAddCustomAgent.frame.size.width) / 2
-                                          , _btnAddCustomAgent.frame.origin.y
-                                          , _btnAddCustomAgent.frame.size.width
-                                          , _btnAddCustomAgent.frame.size.height);
+    [_viewTable centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
+    
+//    CGRect orientRc = [GGLayout frameWithOrientation:toInterfaceOrientation rect:self.view.superview.bounds];
+//    _btnAddCustomAgent.frame = CGRectMake((orientRc.size.width - _btnAddCustomAgent.frame.size.width) / 2
+//                                          , _btnAddCustomAgent.frame.origin.y
+//                                          , _btnAddCustomAgent.frame.size.width
+//                                          , _btnAddCustomAgent.frame.size.height);
 }
 
 @end

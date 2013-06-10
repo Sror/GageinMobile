@@ -42,7 +42,7 @@
     _predefinedAgentFilters = [NSMutableArray array];
     
     [super viewDidLoad];
-    self.naviTitle = @"Agent Filters";
+    self.naviTitle = @"Trigger Filters";
     self.view.backgroundColor = GGSharedColor.silver;
     self.tv.backgroundColor = GGSharedColor.silver;
     _tv.rowHeight = [GGGroupedCell HEIGHT];
@@ -223,12 +223,12 @@ viewForHeaderInSection:(NSInteger)section
     if (section == 0)
     {
         head = [GGConfigLabel viewFromNibWithOwner:self];
-        head.lblText.text = @"CUSTOM AGENTS";
+        head.lblText.text = @"CUSTOM TRIGGERS";
         
     } else if (section == 1)
     {
         head = [GGConfigLabel viewFromNibWithOwner:self];
-        head.lblText.text = @"PREDEFINED AGENTS";
+        head.lblText.text = @"PREDEFINED TRIGGERS";
     }
     
     return head;

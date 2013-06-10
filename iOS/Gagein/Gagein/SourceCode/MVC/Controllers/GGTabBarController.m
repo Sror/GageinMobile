@@ -149,6 +149,16 @@
         [[self _iconAt:_currentIndex] setImage:[_normalImages objectAtIndex:_currentIndex]];
         [[self _iconAt:index] setImage:[_selectedImages objectAtIndex:index]];
         
+//        UIViewController *vc = self.viewControllers[index];
+//        if ([vc isKindOfClass:[UINavigationController class]])
+//        {
+//            UIViewController *subVC = ((UINavigationController *)vc).viewControllers[0];
+//            if ([subVC isKindOfClass:[GGBaseViewController class]])
+//            {
+//                [((GGBaseViewController *)subVC) layoutUIForIPadIfNeeded];
+//            }
+//        }
+        
         _currentIndex = index;
     }
 }

@@ -62,8 +62,8 @@
         self.viewSetupLower.hidden = self.viewSetupUpper.hidden = YES;
         
         // addjust layout
-        float tvGap = 20;
-        self.viewTable.frame = [GGUtils setH:self.view.frame.size.height - tvGap * 2 rect:[GGUtils setY:tvGap rect:self.viewTable.frame]];
+//        float tvGap = 20;
+//        self.viewTable.frame = [GGUtils setH:self.view.frame.size.height - tvGap * 2 rect:[GGUtils setY:tvGap rect:self.viewTable.frame]];
     }
     
     [self _getAreasData];
@@ -200,6 +200,14 @@
     }];
     
     [self registerOperation:op];
+}
+
+#pragma mark -
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    [_viewTable centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
 }
 
 @end

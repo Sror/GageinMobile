@@ -39,9 +39,9 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUITableView" id="251781968">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">274</int>
+						<int key="NSvFlags">277</int>
 						<array class="NSMutableArray" key="NSSubviews"/>
-						<string key="NSFrame">{{0, 12}, {320, 489}}</string>
+						<string key="NSFrame">{{0, 20}, {320, 480}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="502941985"/>
@@ -66,7 +66,7 @@
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUILabel" id="690376971">
 								<reference key="NSNextResponder" ref="502941985"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">290</int>
 								<string key="NSFrame">{{9, 10}, {248, 21}}</string>
 								<reference key="NSSuperview" ref="502941985"/>
 								<reference key="NSWindow"/>
@@ -104,6 +104,7 @@
 								<string key="NSFrame">{{255, 7}, {59, 30}}</string>
 								<reference key="NSSuperview" ref="502941985"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -314,20 +315,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">GGSelectFuncAreasVC</string>
 					<string key="superclassName">GGBaseViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="doneAction:">id</string>
-						<string key="doneStepAction:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="doneAction:">
-							<string key="name">doneAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="doneStepAction:">
-							<string key="name">doneStepAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="btnDoneStep">UIButton</string>
 						<string key="viewSetupLower">UIView</string>

@@ -108,11 +108,10 @@
 									</object>
 									<object class="IBUIImageView" id="12385042">
 										<reference key="NSNextResponder" ref="336047485"/>
-										<int key="NSvFlags">-2147483391</int>
+										<int key="NSvFlags">-2147483351</int>
 										<string key="NSFrame">{{270, 18}, {5, 7}}</string>
 										<reference key="NSSuperview" ref="336047485"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<bool key="IBUIMultipleTouchEnabled">YES</bool>

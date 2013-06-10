@@ -63,6 +63,7 @@
 {
     [super viewDidLoad];
     self.naviTitle = @"Settings";
+    self.view.backgroundColor = GGSharedColor.silver;
     self.svContent.backgroundColor = GGSharedColor.silver;
     self.tvSettings.backgroundColor = GGSharedColor.silver;
     _tvSettings.rowHeight = [GGGroupedCell HEIGHT];
@@ -322,7 +323,8 @@
 {
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
-    [_tvSettings centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
+    [_svContent centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
+    [_tvSettings centerMeHorizontally];
 }
 
 @end
