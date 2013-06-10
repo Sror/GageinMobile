@@ -721,9 +721,26 @@
         [self _callApiGetMenu];
     }
     
+    [self _adjustSelfFrameForIpadWithOrient:toInterfaceOrientation];
+    
     [self _adjustTvFrames];
     
     [_updatesTV reloadData];
+}
+
+-(void)_adjustSelfFrameForIpadWithOrient:(UIInterfaceOrientation)anOrient
+{
+    if (ISIPADDEVICE)
+    {
+        CGRect theFrame = [GGLayout frameWithOrientation:anOrient rect:[GGLayout screenFrame]];
+        theFrame.size.height -= [GGLayout statusHeight] + [GGLayout navibarFrame].size.height + [GGLayout tabbarFrame].size.height;
+        if (UIInterfaceOrientationIsLandscape(anOrient))
+        {
+            theFrame.size.width -= SLIDE_SETTING_VIEW_WIDTH;
+        }
+        
+        self.view.frame = theFrame;
+    }
 }
 
 @end
