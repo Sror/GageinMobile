@@ -59,6 +59,8 @@
     self.tvHappenings.backgroundColor = GGSharedColor.silver;
     self.view.backgroundColor = GGSharedColor.silver;
     
+    _tvHappenings.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
     __weak GGHappeningsVC *weakSelf = self;
     
     [self.tvHappenings addPullToRefreshWithActionHandler:^{

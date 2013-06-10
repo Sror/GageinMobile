@@ -47,6 +47,7 @@
     [self _prevViewLoaded];
     
     [super viewDidLoad];
+    self.view.backgroundColor = GGSharedColor.silver;
     
     self.naviTitle = @"Similar Companies";
     
@@ -56,6 +57,7 @@
     self.tvSimilarCompanies.delegate = self;
     [self.view addSubview:self.tvSimilarCompanies];
     self.tvSimilarCompanies.backgroundColor = GGSharedColor.silver;
+    _tvSimilarCompanies.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
     __weak GGSimilarCompaniesVC *weakSelf = self;
     
@@ -193,6 +195,14 @@
     [weakSelf.tvSimilarCompanies.infiniteScrollingView stopAnimating];
 }
 
+
+#pragma mark - orient change
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    [_tvSimilarCompanies centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
+}
 
 @end
 

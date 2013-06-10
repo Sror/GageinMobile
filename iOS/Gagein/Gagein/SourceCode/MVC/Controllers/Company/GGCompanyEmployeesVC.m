@@ -47,6 +47,7 @@
     [self _prevViewLoaded];
     
     [super viewDidLoad];
+    self.view.backgroundColor = GGSharedColor.silver;
     
     self.naviTitle = @"Employees";
     
@@ -56,6 +57,7 @@
     self.tvEmployees.delegate = self;
     [self.view addSubview:self.tvEmployees];
     self.tvEmployees.backgroundColor = GGSharedColor.silver;
+    _tvEmployees.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     __weak GGCompanyEmployeesVC *weakSelf = self;
     
@@ -193,6 +195,13 @@
     [weakSelf.tvEmployees.infiniteScrollingView stopAnimating];
 }
 
+#pragma mark - orientation change
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    [_tvEmployees centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
+}
 
 @end
 
