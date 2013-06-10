@@ -234,5 +234,12 @@
     [weakSelf.tvHappenings.infiniteScrollingView stopAnimating];
 }
 
+-(void)_delayedStopInfiniteAnimating
+{
+    __weak GGHappeningsVC *weakSelf = self;
+    
+    [weakSelf.tvHappenings.infiniteScrollingView stopAnimating];
+}
+
 
 @end

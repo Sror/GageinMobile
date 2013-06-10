@@ -1167,9 +1167,7 @@
         _relevanceBar.frame = [self _relevanceFrameHided:NO];
            // _relevanceBar.alpha = 1.f;
             
-        } completion:^(BOOL finished){
-            //_updatesTV.frame = _updateTvRect;
-        }];
+        } completion:nil];
     }
     else
     {
@@ -1177,12 +1175,7 @@
            _relevanceBar.frame = [self _relevanceFrameHided:YES];
             //_relevanceBar.alpha = 0.5f;
             
-        } completion:^(BOOL finished){
-//            CGRect tvRc = _updateTvRect;
-//            tvRc.origin.y = [self _relevanceFrameHided:NO].origin.y;
-//            tvRc.size.height += [self _relevanceFrameHided:NO].size.height;
-//            _updatesTV.frame = tvRc;
-        }];
+        } completion:nil];
     }
 }
 

@@ -664,6 +664,13 @@
     [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
 }
 
+-(void)_delayedStopInfiniteAnimating
+{
+    __weak GGPeopleVC *weakSelf = self;
+    
+    [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
+}
+
 #pragma mark - scroll view delegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     

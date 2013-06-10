@@ -180,7 +180,7 @@
     }
     else
     {
-        [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:.5f];
+        [self performSelector:@selector(_delayedStopInfiniteAnimating) withObject:nil afterDelay:.5f];
     }
 }
 
@@ -211,6 +211,15 @@
 {
     __weak GGSavedUpdatesVC *weakSelf = self;
     [weakSelf.tvUpdates.pullToRefreshView stopAnimating];
+    [weakSelf.tvUpdates.infiniteScrollingView stopAnimating];
+    
+    _roundSwitch.btnSwitch.enabled = YES;
+}
+
+-(void)_delayedStopInfiniteAnimating
+{
+    __weak GGSavedUpdatesVC *weakSelf = self;
+    
     [weakSelf.tvUpdates.infiniteScrollingView stopAnimating];
     
     _roundSwitch.btnSwitch.enabled = YES;

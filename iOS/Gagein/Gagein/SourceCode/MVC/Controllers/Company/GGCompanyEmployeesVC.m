@@ -147,7 +147,7 @@
     }
     else
     {
-        [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:.5f];
+        [self performSelector:@selector(_delayedStopInfiniteAnimating) withObject:nil afterDelay:.5f];
     }
 }
 
@@ -183,6 +183,13 @@
 {
     __weak GGCompanyEmployeesVC *weakSelf = self;
     [weakSelf.tvEmployees.pullToRefreshView stopAnimating];
+    [weakSelf.tvEmployees.infiniteScrollingView stopAnimating];
+}
+
+-(void)_delayedStopInfiniteAnimating
+{
+    __weak GGCompanyEmployeesVC *weakSelf = self;
+    
     [weakSelf.tvEmployees.infiniteScrollingView stopAnimating];
 }
 

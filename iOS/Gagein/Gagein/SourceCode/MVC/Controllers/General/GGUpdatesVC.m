@@ -260,4 +260,11 @@
     [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
 }
 
+-(void)_delayedStopInfiniteAnimating
+{
+    __weak GGUpdatesVC *weakSelf = self;
+    
+    [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
+}
+
 @end
