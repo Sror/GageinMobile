@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12C3103</string>
+		<string key="IBDocument.SystemVersion">12D78</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.34</string>
-		<string key="IBDocument.HIToolboxVersion">625.00</string>
+		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">2083</string>
@@ -40,7 +40,7 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIScrollView" id="455175203">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">274</int>
+						<int key="NSvFlags">277</int>
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUIView" id="736472750">
 								<reference key="NSNextResponder" ref="455175203"/>
@@ -48,9 +48,10 @@
 								<array class="NSMutableArray" key="NSSubviews">
 									<object class="IBUIImageView" id="670032226">
 										<reference key="NSNextResponder" ref="736472750"/>
-										<int key="NSvFlags">292</int>
+										<int key="NSvFlags">293</int>
 										<string key="NSFrame">{{110, 20}, {100, 100}}</string>
 										<reference key="NSSuperview" ref="736472750"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="366306926"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -62,15 +63,15 @@
 									</object>
 									<object class="IBUIButton" id="942115418">
 										<reference key="NSNextResponder" ref="736472750"/>
-										<int key="NSvFlags">292</int>
+										<int key="NSvFlags">293</int>
 										<string key="NSFrame">{{42, 158}, {236, 36}}</string>
 										<reference key="NSSuperview" ref="736472750"/>
+										<reference key="NSWindow"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<int key="IBUIContentHorizontalAlignment">0</int>
 										<int key="IBUIContentVerticalAlignment">0</int>
-										<int key="IBUIButtonType">1</int>
 										<string key="IBUINormalTitle">Follow</string>
 										<object class="NSColor" key="IBUIHighlightedTitleColor" id="129157274">
 											<int key="NSColorSpace">3</int>
@@ -93,9 +94,10 @@
 									</object>
 									<object class="IBUILabel" id="366306926">
 										<reference key="NSNextResponder" ref="736472750"/>
-										<int key="NSvFlags">292</int>
+										<int key="NSvFlags">290</int>
 										<string key="NSFrame">{{20, 129}, {280, 21}}</string>
 										<reference key="NSSuperview" ref="736472750"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="942115418"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
@@ -125,6 +127,7 @@
 								</array>
 								<string key="NSFrameSize">{320, 213}</string>
 								<reference key="NSSuperview" ref="455175203"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="670032226"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -136,6 +139,7 @@
 						</array>
 						<string key="NSFrameSize">{320, 548}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="736472750"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -145,6 +149,7 @@
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 548}}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="455175203"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -171,9 +176,11 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUILabel" id="956821662">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<string key="NSFrameSize">{280, 21}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClipsSubviews">YES</bool>
@@ -361,7 +368,60 @@
 			<nil key="sourceID"/>
 			<int key="maxID">18</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">GGBaseViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/GGBaseViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">GGCompanyDetailVC</string>
+					<string key="superclassName">GGBaseViewController</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="btnFollow">UIButton</string>
+						<string key="ivLogo">UIImageView</string>
+						<string key="lblName">UILabel</string>
+						<string key="lblWebsite">UILabel</string>
+						<string key="scrollView">UIScrollView</string>
+						<string key="viewBaseInfo">UIView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="btnFollow">
+							<string key="name">btnFollow</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="ivLogo">
+							<string key="name">ivLogo</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblName">
+							<string key="name">lblName</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblWebsite">
+							<string key="name">lblWebsite</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="scrollView">
+							<string key="name">scrollView</string>
+							<string key="candidateClassName">UIScrollView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewBaseInfo">
+							<string key="name">viewBaseInfo</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/GGCompanyDetailVC.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

@@ -182,7 +182,7 @@
     CGRect coverRc = GGSharedDelegate.rootVC.viewCover.bounds;
     self.view.frame = coverRc;
     
-    [self.view printViewsTree];
+    //[self.view printViewsTree];
     
     for (UIViewController *vc in self.viewControllers)
     {

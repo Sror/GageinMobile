@@ -84,6 +84,8 @@ typedef enum
     self.naviTitle = @"";
     self.lblName.text = @"";
     self.lblWebsite.text = @"";
+    self.scrollView.backgroundColor = GGSharedColor.clear;
+    
     self.ivLogo.layer.borderWidth = 1.f;
     self.ivLogo.layer.borderColor = GGSharedColor.silver.CGColor;
     self.ivLogo.layer.cornerRadius = 3.f;
@@ -93,14 +95,19 @@ typedef enum
     [self.btnFollow setBackgroundImage:[[UIImage imageNamed:@"grayBtnBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 10, 30, 10)] forState:UIControlStateSelected];
     
     //
-    _tvDetail = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    CGRect tvRc = self.view.bounds;
+    //tvRc.size.height -= 20;
+    _tvDetail = [[UITableView alloc] initWithFrame:tvRc style:UITableViewStylePlain];
     _tvDetail.delegate = self;
     _tvDetail.dataSource = self;
+    
     _tvDetail.tableHeaderView = self.viewBaseInfo;
     _tvDetail.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     _tvDetail.separatorColor = GGSharedColor.silver;
     self.viewBaseInfo.backgroundColor = GGSharedColor.ironGray;
     _tvDetail.backgroundColor = GGSharedColor.ironGray;
+    _tvDetail.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
+    _tvDetail.showsVerticalScrollIndicator = NO;
     [self.view addSubview:_tvDetail];
     
     UIView *tvBgView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -629,6 +636,29 @@ typedef enum
     }];
     
     [self registerOperation:op];
+}
+
+#pragma mark - orientation changed
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    [self _adjustSelfFrameForIpadWithOrient:toInterfaceOrientation];
+    
+    CGRect tvRc = _tvDetail.frame;
+    CGRect thisRc = self.view.frame;
+    [_tvDetail centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
+}
+
+-(void)_adjustSelfFrameForIpadWithOrient:(UIInterfaceOrientation)anOrient
+{
+    if (ISIPADDEVICE)
+    {
+        CGRect theFrame = [GGLayout frameWithOrientation:anOrient rect:[GGLayout screenFrame]];
+        theFrame.size.height -= [GGLayout statusHeight] + [GGLayout navibarFrame].size.height + [GGLayout tabbarFrame].size.height;
+        
+        self.view.frame = theFrame;
+    }
 }
 
 @end

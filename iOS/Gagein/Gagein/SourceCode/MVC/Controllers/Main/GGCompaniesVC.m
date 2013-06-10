@@ -1092,14 +1092,14 @@
     GGSharedDelegate.rootVC.canBeDragged = NO;
 }
 
--(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
-{
-    DLog(@"scrollView: %@ Will End Dragging, is dragging:%d", NSStringFromClass([scrollView class]), scrollView.isDragging);
-}
+//-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+//{
+//    //DLog(@"scrollView: %@ Will End Dragging, is dragging:%d", NSStringFromClass([scrollView class]), scrollView.isDragging);
+//}
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    DLog(@"scrollView: %@ did End Dragging, is dragging:%d", NSStringFromClass([scrollView class]), scrollView.isDragging);
+    //DLog(@"scrollView: %@ did End Dragging, is dragging:%d", NSStringFromClass([scrollView class]), scrollView.isDragging);
     
     GGSharedDelegate.rootVC.canBeDragged = YES;
 }
