@@ -285,4 +285,13 @@
     [self setViewEmpty:nil];
     [super viewDidUnload];
 }
+
+#pragma mark -
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    [_tvUpdates centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
+}
+
 @end

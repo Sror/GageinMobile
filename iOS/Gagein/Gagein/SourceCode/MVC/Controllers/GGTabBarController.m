@@ -182,21 +182,24 @@
     CGRect coverRc = GGSharedDelegate.rootVC.viewCover.bounds;
     self.view.frame = coverRc;
     
+    [self.view printViewsTree];
+    
     for (UIViewController *vc in self.viewControllers)
     {
         CGRect superRc = vc.view.superview.bounds;
         vc.view.frame = superRc;
-        if ([vc isKindOfClass:[UINavigationController class]])
-        {
-            UINavigationController *nc = (UINavigationController *)vc;
-            
-            for (UIViewController *subVC in nc.viewControllers)
-            {
-                DLog(@"class:%@", NSStringFromClass([subVC class]));
-                CGRect superRc = nc.view.bounds;
-                subVC.view.frame = superRc;
-            }
-        }
+        
+//        if ([vc isKindOfClass:[UINavigationController class]])
+//        {
+//            UINavigationController *nc = (UINavigationController *)vc;
+//            
+//            for (UIViewController *subVC in nc.viewControllers)
+//            {
+//                DLog(@"class:%@", NSStringFromClass([subVC class]));
+//                CGRect superRc = nc.view.bounds;
+//                subVC.view.frame = superRc;
+//            }
+//        }
     }
 }
 

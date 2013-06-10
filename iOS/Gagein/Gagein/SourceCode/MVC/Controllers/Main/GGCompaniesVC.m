@@ -209,6 +209,7 @@
     //_isRelevanceBarShowing = YES;
     
     _updateTvRect.origin.y = CGRectGetMaxY(_relevanceBar.frame) - 5;
+#warning working
     _updateTvRect.size.height = self.view.frame.size.height - _updateTvRect.origin.y;
     _updatesTV.frame = _updateTvRect;
     
@@ -1099,7 +1100,8 @@
 
 -(void)_adjustTvFrames
 {
-    //CGRect thisRc = self.view.bounds;
+    CGRect thisRc = self.view.bounds;
+    //[self.view centerMeHorizontally];
     
     CGRect relevanceRc = _relevanceBar.frame;
     relevanceRc.size.width = _relevanceBar.superview.frame.size.width;
@@ -1107,13 +1109,13 @@
     
     CGRect updateRc = _updatesTV.frame;
     updateRc.origin.y = CGRectGetMaxY(_relevanceBar.frame);
-    updateRc.size.width = _updatesTV.superview.bounds.size.width;
-    updateRc.size.height = _updatesTV.superview.bounds.size.height - updateRc.origin.y;
+    updateRc.size.width = self.view.bounds.size.width;
+    updateRc.size.height = self.view.bounds.size.height - updateRc.origin.y;
     _updatesTV.frame = updateRc;
     
     CGRect happeningRc = _happeningsTV.frame;
-    happeningRc.size.width = _happeningsTV.superview.bounds.size.width;
-    happeningRc.size.height = _happeningsTV.superview.bounds.size.height - happeningRc.origin.y;
+    happeningRc.size.width = self.view.bounds.size.width;
+    happeningRc.size.height = self.view.bounds.size.height - happeningRc.origin.y;
     _happeningsTV.frame = happeningRc;
 }
 
@@ -1490,6 +1492,8 @@
         [self _callApiGetMenu];
     }
     
+    [self _adjustSelfFrameForIpadWithOrient:toInterfaceOrientation];
+    
     [self _adjustTvFrames];
     
     [_updatesTV reloadData];
@@ -1497,6 +1501,21 @@
     
     CGRect relevanceRc = [self _relevanceFrameHided:NO];
     _relevanceBar.frame = relevanceRc;
+}
+
+-(void)_adjustSelfFrameForIpadWithOrient:(UIInterfaceOrientation)anOrient
+{
+    if (ISIPADDEVICE)
+    {
+        CGRect theFrame = [GGLayout frameWithOrientation:anOrient rect:[GGLayout screenFrame]];
+        theFrame.size.height -= [GGLayout statusHeight] + [GGLayout navibarFrame].size.height + [GGLayout tabbarFrame].size.height;
+        if (UIInterfaceOrientationIsLandscape(anOrient))
+        {
+            theFrame.size.width -= SLIDE_SETTING_VIEW_WIDTH;
+        }
+        
+        self.view.frame = theFrame;
+    }
 }
 
 @end
