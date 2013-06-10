@@ -298,6 +298,8 @@ static char UIScrollViewPullToRefreshView;
     if(self.state != SVPullToRefreshStateLoading) {
         CGFloat scrollOffsetThreshold = self.frame.origin.y-self.originalTopInset;
         
+        DLog(@"pull refresh is dragging: %d", self.scrollView.isDragging);
+        
         if(!self.scrollView.isDragging && self.state == SVPullToRefreshStateTriggered)
             self.state = SVPullToRefreshStateLoading;
         else if(contentOffset.y < scrollOffsetThreshold && self.scrollView.isDragging && self.state == SVPullToRefreshStateStopped)
@@ -476,6 +478,8 @@ static char UIScrollViewPullToRefreshView;
 }
 
 - (void)setState:(SVPullToRefreshState)newState {
+    
+    DLog(@"pull refresh set new state: %d", newState);
     
     if(_state == newState)
         return;

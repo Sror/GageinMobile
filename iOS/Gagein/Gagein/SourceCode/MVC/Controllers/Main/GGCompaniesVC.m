@@ -1092,8 +1092,15 @@
     GGSharedDelegate.rootVC.canBeDragged = NO;
 }
 
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    DLog(@"scrollView: %@ Will End Dragging, is dragging:%d", NSStringFromClass([scrollView class]), scrollView.isDragging);
+}
+
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
+    DLog(@"scrollView: %@ did End Dragging, is dragging:%d", NSStringFromClass([scrollView class]), scrollView.isDragging);
+    
     GGSharedDelegate.rootVC.canBeDragged = YES;
 }
 
@@ -1121,7 +1128,7 @@
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
     
-    if (!ISIPADDEVICE)
+    if (!ISIPADDEVICE && scrollView.contentSize.height > scrollView.frame.size.height)
     {
         if (_lastContentOffset.y < scrollView.contentOffset.y)
         {
@@ -1271,7 +1278,7 @@
     }
     else
     {
-        [self _delayedStopAnimating];
+        [self _delayedStopInfiniteAnimating];
     }
 }
 
@@ -1383,7 +1390,7 @@
     }
     else
     {
-        [self _delayedStopHappeningAnimating];
+        [self _delayedStopHappeningInfiniteAnimating];
     }
 }
 
@@ -1458,12 +1465,23 @@
     }
 }
 
-
+#pragma mark - stop animation
 
 -(void)_delayedStopAnimating
 {
+    [self _delayedStopRefreshAnimating];
+    [self _delayedStopInfiniteAnimating];
+}
+
+-(void)_delayedStopRefreshAnimating
+{
     __weak GGCompaniesVC *weakSelf = self;
     [weakSelf.updatesTV.pullToRefreshView stopAnimating];
+}
+
+-(void)_delayedStopInfiniteAnimating
+{
+    __weak GGCompaniesVC *weakSelf = self;
     [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
 }
 
@@ -1471,6 +1489,18 @@
 {
     __weak GGCompaniesVC *weakSelf = self;
     [weakSelf.happeningsTV.pullToRefreshView stopAnimating];
+    [weakSelf.happeningsTV.infiniteScrollingView stopAnimating];
+}
+
+-(void)_delayedStopHappeningRefreshAnimating
+{
+    __weak GGCompaniesVC *weakSelf = self;
+    [weakSelf.happeningsTV.pullToRefreshView stopAnimating];
+}
+
+-(void)_delayedStopHappeningInfiniteAnimating
+{
+    __weak GGCompaniesVC *weakSelf = self;
     [weakSelf.happeningsTV.infiniteScrollingView stopAnimating];
 }
 
