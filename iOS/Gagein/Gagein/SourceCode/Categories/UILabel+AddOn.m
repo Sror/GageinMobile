@@ -22,7 +22,6 @@
     CGSize constraint = CGSizeMake(self.frame.size.width, aMaxHeight);
     CGSize size = [self.text sizeWithFont:self.font constrainedToSize:constraint lineBreakMode:self.lineBreakMode];
     
-    
     //float realHeight = size.height * size.width / constraint.width;
     
     
