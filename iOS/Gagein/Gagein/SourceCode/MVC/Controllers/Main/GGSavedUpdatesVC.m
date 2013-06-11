@@ -19,6 +19,7 @@
 #import "GGCompanyDetailVC.h"
 #import "GGCompanyUpdateDetailVC.h"
 #import "GGEmptyView.h"
+#import "GGCompanyUpdateIpadCell.h"
 
 #define SWITCH_WIDTH 80
 #define SWITCH_HEIGHT 20
@@ -56,13 +57,18 @@
 
 -(void)_initRoundSwitch
 {
-    CGRect naviRc = self.navigationController.navigationBar.frame;
-    
     _roundSwitch = [GGSwitchButton viewFromNibWithOwner:self];
     _roundSwitch.delegate = self;
     _roundSwitch.lblOn.text = @"Unread";
     _roundSwitch.lblOff.text = @"All";
     _roundSwitch.isOn = _isUnread;
+    
+    [self _setSwitchRect];
+}
+
+-(void)_setSwitchRect
+{
+    CGRect naviRc = self.navigationController.navigationBar.frame;
     
     CGRect switchRc = CGRectMake(naviRc.size.width - SWITCH_WIDTH - 5
                                  , (naviRc.size.height - [GGSwitchButton HEIGHT]) / 2 + 5
@@ -90,6 +96,8 @@
     _tvUpdates.delegate = self;
     _tvUpdates.backgroundColor = GGSharedColor.silver;
     _tvUpdates.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tvUpdates.showsVerticalScrollIndicator = NO;
+    _tvUpdates.autoresizingMask = UIViewAutoresizingFlexibleWidth |UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:_tvUpdates];
     
     _viewEmpty = [GGEmptyView viewFromNibWithOwner:self];
@@ -117,6 +125,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar addSubview:_roundSwitch];
+    [self _setSwitchRect];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -181,7 +190,8 @@
     }
     else
     {
-        [self performSelector:@selector(_delayedStopInfiniteAnimating) withObject:nil afterDelay:.5f];
+        [self _delayedStopInfiniteAnimating];
+        //[self performSelector:@selector(_delayedStopInfiniteAnimating) withObject:nil afterDelay:.5f];
     }
 }
 
@@ -196,6 +206,10 @@
             
             GGDataPage *page = [parser parseGetSavedUpdates];
             [_updates addObjectsFromArray:page.items];
+        }
+        else
+        {
+            _hasMore = NO;
         }
         
         _viewEmpty.hidden = _updates.count;
@@ -267,9 +281,45 @@
     return cell;
 }
 
+-(GGCompanyUpdateIpadCell *)_updateIpadCellForIndexPath:(NSIndexPath *)indexPath
+{
+    int row = indexPath.row;
+    
+    static NSString *updateCellId = @"GGCompanyUpdateIpadCell";
+    GGCompanyUpdateIpadCell *cell = [_tvUpdates dequeueReusableCellWithIdentifier:updateCellId];
+    if (cell == nil) {
+        cell = [GGCompanyUpdateIpadCell viewFromNibWithOwner:self];
+        [cell.btnLogo addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    GGCompanyUpdate *updateData = [_updates objectAtIndexSafe:row];
+    
+    cell.btnLogo.tag = row;
+    
+    cell.lblHeadline.text = [updateData headlineTruncated];
+    cell.lblSource.text = updateData.fromSource;
+    cell.lblDescription.text = updateData.content;
+    
+    [cell.ivLogo setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+    
+    cell.lblInterval.text = [updateData intervalStringWithDate:updateData.date];
+    
+    return cell;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self _updateCellForIndexPath:indexPath];
+    if (ISIPADDEVICE)
+    {
+        return [self _updateIpadCellForIndexPath:indexPath];
+    }
+    else
+    {
+        return [self _updateCellForIndexPath:indexPath];
+    }
+    
+    return nil;
 }
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -301,7 +351,9 @@
 {
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
-    [_tvUpdates centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
+    [_tvUpdates centerMeHorizontallyChangeMyWidth:_tvUpdates.superview.frame.size.width];
+    
+    [self _setSwitchRect];
 }
 
 @end
