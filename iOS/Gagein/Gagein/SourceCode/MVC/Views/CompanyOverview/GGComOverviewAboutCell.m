@@ -8,6 +8,10 @@
 
 #import "GGComOverviewAboutCell.h"
 
+@interface GGComOverviewAboutCell ()
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+@end
+
 @implementation GGComOverviewAboutCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -37,7 +41,23 @@
 //}
 -(float)height
 {
-    return self.textView.contentSize.height + 20;
+    float contentHeight = self.textView.contentSize.height;
+    return contentHeight + 20;
+}
+
+-(void)setTextViewText:(NSString *)aText
+{
+    _textView.text = aText;
+    
+    if (ISIPADDEVICE && aText.length)
+    {
+        CGSize tightContentSize = [aText sizeWithFont:_textView.font constrainedToSize:CGSizeMake(_textView.bounds.size.width, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+        
+        // i Dont know why, but for ipad need to devide by 2...Daniel Dong
+        tightContentSize.height /= 2;
+        
+        [_textView setContentSize:tightContentSize];
+    }
 }
 
 

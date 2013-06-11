@@ -62,6 +62,8 @@ typedef enum
     _tv.delegate = self;
     //_tv.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tv.separatorColor = GGSharedColor.silver;
+    _tv.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
     [self.view addSubview:_tv];
 }
 
@@ -98,7 +100,7 @@ typedef enum
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    cell.textView.text = _overview.description;
+    [cell setTextViewText:_overview.description];
     
     return cell;
 }
@@ -388,6 +390,14 @@ typedef enum
     }
     
     return header;
+}
+
+#pragma mark - orient change
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    [_tv centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
 }
 
 @end
