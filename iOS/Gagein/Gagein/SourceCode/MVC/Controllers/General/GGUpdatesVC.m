@@ -151,6 +151,11 @@
     return cell;
 }
 
+-(float)_updateIpadCellHeightForIndexPath:(NSIndexPath *)indexPath
+{
+    return [self _updateIpadCellForIndexPath:indexPath].frame.size.height;
+}
+
 -(GGCompanyUpdateIpadCell *)_updateIpadCellForIndexPath:(NSIndexPath *)indexPath
 {
     int row = indexPath.row;
@@ -171,14 +176,13 @@
     cell.lblHeadline.text = [updateData headlineTruncated];
     cell.lblSource.text = updateData.fromSource;//[NSString stringWithFormat:@"%@ · %@", updateData.fromSource, [updateData intervalStringWithDate:updateData.date]];
     
-    //#warning FAKE DATA - company update description
     cell.lblDescription.text = updateData.content;
     
     [cell.ivLogo setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
     
     cell.lblInterval.text = [updateData intervalStringWithDate:updateData.date];
-    //cell.hasBeenRead = updateData.hasBeenRead;
-    //[cell adjustLayout];
+    cell.hasBeenRead = updateData.hasBeenRead;
+    [cell adjustLayout];
     
     return cell;
 }
@@ -211,7 +215,9 @@
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self _updateCellHeightForIndexPath:indexPath];
+    float height = ISIPADDEVICE ? [self _updateIpadCellHeightForIndexPath:indexPath] : [self _updateCellHeightForIndexPath:indexPath];
+    
+    return height;
 }
 
 #pragma mark - 

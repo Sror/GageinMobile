@@ -19,6 +19,7 @@
     return self;
 }
 
+
 -(void)awakeFromNib
 {
     _lblDescription.text = _lblHeadline.text = _lblInterval.text = _lblSource.text = @"";
@@ -29,7 +30,12 @@
 
 -(void)adjustLayout
 {
-    [_lblDescription sizeToFit];
+    [_lblDescription calculateSize];
+    
+    CGRect rc = self.frame;
+    rc.size.height = [self maxHeightForContent] + 10;
+    self.frame = rc;
+    //[self adjustHeightToFitContent];
 }
 
 -(void)setHasBeenRead:(BOOL)hasRead

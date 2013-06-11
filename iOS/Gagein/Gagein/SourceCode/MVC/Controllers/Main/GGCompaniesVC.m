@@ -771,6 +771,11 @@
     return [self _updateCellForIndexPath:indexPath].frame.size.height;
 }
 
+-(float)_updateIpadCellHeightForIndexPath:(NSIndexPath *)indexPath
+{
+    return [self _updateIpadCellForIndexPath:indexPath].frame.size.height;
+}
+
 -(GGCompanyUpdateCell *)_updateCellForIndexPath:(NSIndexPath *)indexPath
 {
     int row = indexPath.row;
@@ -829,8 +834,8 @@
     [cell.ivLogo setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
     
     cell.lblInterval.text = [updateData intervalStringWithDate:updateData.date];
-    //cell.hasBeenRead = updateData.hasBeenRead;
-    //[cell adjustLayout];
+    cell.hasBeenRead = updateData.hasBeenRead;
+    [cell adjustLayout];
     
     return cell;
 }
@@ -986,7 +991,7 @@
 {
     if (tableView == self.updatesTV)
     {
-        float height = [self _updateCellHeightForIndexPath:indexPath];
+        float height = ISIPADDEVICE ? [self _updateIpadCellHeightForIndexPath:indexPath] : [self _updateCellHeightForIndexPath:indexPath];
         //DLog(@"table view height:%f", height);
         return height;
     }

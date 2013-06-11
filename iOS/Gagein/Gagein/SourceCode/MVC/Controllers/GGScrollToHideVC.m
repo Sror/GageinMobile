@@ -56,7 +56,7 @@
 #pragma mark - scrollview delegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     
-    DLog(@"start drag");
+    //DLog(@"start drag");
     if ([self _hasTheScrollView:scrollView])
     {
         _offsetWhenStartDragging = scrollView.contentOffset;
@@ -69,13 +69,13 @@
     {
         if (_offsetWhenStartDragging.y < scrollView.contentOffset.y)
         {
-            DLog(@"moved up");
+            //DLog(@"moved up");
             
             [GGUtils hideTabBar];
         }
         else
         {
-            DLog(@"moved down");
+            //DLog(@"moved down");
             
             [GGUtils showTabBar];
         }

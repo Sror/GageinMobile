@@ -14,7 +14,7 @@
 #define ICON_WIDTH      76
 #define ICON_HEIGHT     48
 
-#define TABBAR_ANIM_DURATION    .5f
+#define TABBAR_ANIM_DURATION    .4f
 
 @interface GGTabBarController ()
 
@@ -190,18 +190,6 @@
     {
         CGRect superRc = vc.view.superview.bounds;
         vc.view.frame = superRc;
-        
-//        if ([vc isKindOfClass:[UINavigationController class]])
-//        {
-//            UINavigationController *nc = (UINavigationController *)vc;
-//            
-//            for (UIViewController *subVC in nc.viewControllers)
-//            {
-//                DLog(@"class:%@", NSStringFromClass([subVC class]));
-//                CGRect superRc = nc.view.bounds;
-//                subVC.view.frame = superRc;
-//            }
-//        }
     }
 }
 
@@ -227,9 +215,12 @@
             
         } completion:^(BOOL finished){
             DLog(@"show tabbar finished:%d", finished);
+            
         }];
         
-        [UIView animateWithDuration:1.f animations:^{
+        
+        
+        [UIView animateWithDuration:TABBAR_ANIM_DURATION * 2 animations:^{
             [self _adjustOtherViewsHideBar:NO];
         }];
     }

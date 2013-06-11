@@ -30,4 +30,10 @@
 
 -(void)resignAllResponders;
 
+
+-(float)maxHeightForContent;
+
+-(void)adjustHeightToFitContent;
+
+
 @end

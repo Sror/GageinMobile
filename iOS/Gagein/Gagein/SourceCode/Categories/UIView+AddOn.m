@@ -110,4 +110,23 @@ static MBProgressHUD * hud;
     }
 }
 
+-(float)maxHeightForContent
+{
+    float maxHeight = 0.f;
+    for (UIView *subView in self.subviews)
+    {
+        float subMaxH = CGRectGetMaxY(subView.frame);
+        maxHeight = MAX(maxHeight, subMaxH);
+    }
+    
+    return maxHeight;
+}
+
+-(void)adjustHeightToFitContent
+{
+    CGRect thisRc = self.frame;
+    thisRc.size.height = [self maxHeightForContent];
+    self.frame = thisRc;
+}
+
 @end

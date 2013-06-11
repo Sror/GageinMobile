@@ -21,4 +21,5 @@
 
 @property (assign, nonatomic)  BOOL         hasBeenRead;
 
+-(void)adjustLayout;
 @end
