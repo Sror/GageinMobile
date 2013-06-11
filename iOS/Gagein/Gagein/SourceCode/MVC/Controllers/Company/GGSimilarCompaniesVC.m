@@ -70,6 +70,7 @@
     }];
     
     [self.tvSimilarCompanies triggerPullToRefresh];
+    [self addScrollToHide:_tvSimilarCompanies];
 }
 
 -(void)dealloc

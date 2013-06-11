@@ -70,6 +70,7 @@
     }];
     
     [self.tvEmployees triggerPullToRefresh];
+    [self addScrollToHide:_tvEmployees];
 }
 
 -(void)dealloc

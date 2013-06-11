@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "GGSwitchButton.h"
+#import "GGScrollToHideVC.h"
 
-@interface GGSavedUpdatesVC : GGBaseViewController
+@interface GGSavedUpdatesVC : GGScrollToHideVC
 <UITableViewDelegate, UITableViewDataSource, GGSwitchButtonDelegate>
 @end

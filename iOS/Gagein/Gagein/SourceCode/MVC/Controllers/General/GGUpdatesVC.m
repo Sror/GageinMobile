@@ -75,6 +75,7 @@
     }];
 
     [self.updatesTV triggerPullToRefresh];
+    [self addScrollToHide:_updatesTV];
 }
 
 -(void)dealloc

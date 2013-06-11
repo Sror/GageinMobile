@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GGScrollToHideVC.h"
 
-@interface GGHappeningsVC : GGBaseViewController
+@interface GGHappeningsVC : GGScrollToHideVC
 <UITableViewDelegate, UITableViewDataSource>
 @property (strong)   NSMutableArray              *happenings;
 @property (assign) long long                      companyID;

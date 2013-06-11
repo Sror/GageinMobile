@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GGScrollToHideVC.h"
 
-@interface GGUpdatesVC : GGBaseViewController
+@interface GGUpdatesVC : GGScrollToHideVC
 <UITableViewDelegate, UITableViewDataSource>
 @property (strong)   NSMutableArray              *updates;
 @property (assign) long long                      companyID;

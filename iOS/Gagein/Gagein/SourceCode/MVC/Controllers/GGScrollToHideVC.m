@@ -21,6 +21,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = GGSharedColor.silver;
     
     _scrolls = [NSMutableSet set];
 }
@@ -55,6 +56,7 @@
 #pragma mark - scrollview delegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     
+    DLog(@"start drag");
     if ([self _hasTheScrollView:scrollView])
     {
         _offsetWhenStartDragging = scrollView.contentOffset;
@@ -63,20 +65,33 @@
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
 {
-    if (!ISIPADDEVICE && scrollView.contentSize.height > scrollView.frame.size.height)
+    if (!ISIPADDEVICE /*&& scrollView.contentSize.height > scrollView.frame.size.height*/)
     {
         if (_offsetWhenStartDragging.y < scrollView.contentOffset.y)
         {
-            //DLog(@"moved up");
+            DLog(@"moved up");
             
             [GGUtils hideTabBar];
         }
         else
         {
-            //DLog(@"moved down");
+            DLog(@"moved down");
             
             [GGUtils showTabBar];
         }
+        
+        [self adjustScrollViewFrames];
+    }
+}
+
+-(void)adjustScrollViewFrames
+{
+    for (UIScrollView *scrollView in _scrolls)
+    {
+        CGRect updateRc = scrollView.frame;
+        updateRc.size.width = scrollView.superview.bounds.size.width;
+        updateRc.size.height = scrollView.superview.bounds.size.height - updateRc.origin.y;
+        scrollView.frame = updateRc;
     }
 }
 

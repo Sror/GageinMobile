@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GGScrollToHideVC.h"
 
-@interface GGComUpdateSearchResultVC : GGBaseViewController
+@interface GGComUpdateSearchResultVC : GGScrollToHideVC
 <UITableViewDelegate, UITableViewDataSource>
 @property (strong)   NSMutableArray              *updates;
 @property (copy)    NSString                    *keyword;

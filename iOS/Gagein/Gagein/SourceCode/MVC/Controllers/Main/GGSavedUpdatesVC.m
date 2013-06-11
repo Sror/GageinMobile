@@ -110,6 +110,7 @@
     }];
     
     [_tvUpdates triggerPullToRefresh];
+    [self addScrollToHide:_tvUpdates];
 }
 
 -(void)viewWillAppear:(BOOL)animated

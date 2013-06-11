@@ -99,6 +99,7 @@
     self.updatesTV.rowHeight = [GGCompanyHappeningCell HEIGHT];
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
+    _updatesTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     //[_scrollingView addPage:self.updatesTV];
     self.updatesTV.backgroundColor = GGSharedColor.silver;
     [self.view addSubview:self.updatesTV];
@@ -128,7 +129,7 @@
 {
     [super viewWillAppear:animated];
 
-    [self _adjustTvFrames];
+    [self adjustScrollViewFrames];
     
     // change menu to people type
     [_slideSettingView changeDelegate:self];
@@ -696,23 +697,13 @@
     GGSharedDelegate.rootVC.canBeDragged = YES;
 }
 
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
-{
-    [super scrollViewWillBeginDecelerating:scrollView];
-    
-    if (!ISIPADDEVICE)
-    {
-        [self _adjustTvFrames];
-    }
-}
-
--(void)_adjustTvFrames
-{
-    CGRect updateRc = _updatesTV.frame;
-    updateRc.size.width = _updatesTV.superview.bounds.size.width;
-    updateRc.size.height = _updatesTV.superview.bounds.size.height - updateRc.origin.y;
-    _updatesTV.frame = updateRc;
-}
+//-(void)_adjustTvFrames
+//{
+//    CGRect updateRc = _updatesTV.frame;
+//    updateRc.size.width = _updatesTV.superview.bounds.size.width;
+//    updateRc.size.height = _updatesTV.superview.bounds.size.height - updateRc.origin.y;
+//    _updatesTV.frame = updateRc;
+//}
 
 #pragma mark -
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -732,7 +723,7 @@
     
     [self _adjustSelfFrameForIpadWithOrient:toInterfaceOrientation];
     
-    [self _adjustTvFrames];
+    [self adjustScrollViewFrames];
     
     [_updatesTV reloadData];
 }

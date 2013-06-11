@@ -72,6 +72,7 @@
     }];
     
     [self.tvHappenings triggerPullToRefresh];
+    [self addScrollToHide:_tvHappenings];
 }
 
 -(void)dealloc

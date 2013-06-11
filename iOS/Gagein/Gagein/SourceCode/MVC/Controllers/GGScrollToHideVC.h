@@ -11,7 +11,10 @@
 @interface GGScrollToHideVC : GGBaseViewController <UIScrollViewDelegate>
 @property (readonly, nonatomic) CGPoint    offsetWhenStartDragging;
 
+
 -(void)addScrollToHide:(UIScrollView *)aScrollView;
 -(void)removeScrollToHide:(UIScrollView *)aScrollView;
+
+-(void)adjustScrollViewFrames;
 
 @end

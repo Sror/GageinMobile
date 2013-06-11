@@ -50,6 +50,7 @@
     //self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
+    _updatesTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.updatesTV];
     self.updatesTV.backgroundColor = GGSharedColor.silver;
     
@@ -66,6 +67,7 @@
     [self.updatesTV triggerPullToRefresh];
     
     [GGSharedRuntimeData saveKeyword:_keyword];
+    [self addScrollToHide:_updatesTV];
 }
 
 
