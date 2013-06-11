@@ -81,14 +81,19 @@
 
 -(CGRect)_dimmedRect
 {
-    return CGRectMake(0, (CGRectGetMaxY(_searchBar.frame)), self.frame.size.width, self.frame.size.height);
+    float width = (ISIPADDEVICE ? SLIDE_SETTING_VIEW_WIDTH : self.frame.size.width);
+    return CGRectMake(0, (CGRectGetMaxY(_searchBar.frame)), width, self.frame.size.height);
 }
 
 -(void)switchSearchMode:(BOOL)aUsingSearchMode
 {
     if (aUsingSearchMode)
     {
-        [GGSharedDelegate.rootVC bare];
+        if (!ISIPADDEVICE)
+        {
+            [GGSharedDelegate.rootVC bare];
+        }
+        
         _viewDimmed.frame = [self _dimmedRect];
         [self addSubview:_viewDimmed];
         
@@ -97,7 +102,11 @@
     }
     else
     {
-        [GGSharedDelegate.rootVC reveal];
+        if (!ISIPADDEVICE)
+        {
+            [GGSharedDelegate.rootVC reveal];
+        }
+        
         [_viewDimmed removeFromSuperview];
         [_tvSuggestedUpdates removeFromSuperview];
         
@@ -112,7 +121,7 @@
 
 -(void)_switchSearhBarMode:(BOOL)aUsingSearchMode
 {
-    CGRect searchRc = [self _searchBarRect:aUsingSearchMode];
+    CGRect searchRc = [self _searchBarRect:(ISIPADDEVICE ? NO : aUsingSearchMode)];
     _searchBar.frame = searchRc;
     [_searchBar showCancelButton:aUsingSearchMode animated:YES];
 }

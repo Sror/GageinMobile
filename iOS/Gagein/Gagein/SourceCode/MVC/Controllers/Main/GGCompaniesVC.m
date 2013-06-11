@@ -333,6 +333,7 @@
 - (BOOL)searchBarShouldBeginEditing:(GGBaseSearchBar *)searchBar
 {
     [_slideSettingView switchSearchMode:YES];
+    
     return YES;
 }
 
@@ -446,7 +447,8 @@
     NSString *keyword = _slideSettingView.searchBar.tfSearch.text;
     if (keyword.length)
     {
-        [_slideSettingView showLoadingHUD];
+        CGSize loadingOffset = ISIPADDEVICE ? CGSizeMake(-(_slideSettingView.frame.size.width - SLIDE_SETTING_VIEW_WIDTH) / 2, -250) : CGSizeMake(0, -50);
+        [_slideSettingView showLoadingHUDWithOffset:loadingOffset];
         id op = [GGSharedAPI getUpdateSuggestionWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
             [_slideSettingView hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];

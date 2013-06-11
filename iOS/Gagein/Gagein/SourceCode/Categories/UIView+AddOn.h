@@ -11,6 +11,8 @@
 @interface UIView (AddOn)
 
 -(void)showLoadingHUD;
+-(void)showLoadingHUDWithOffsetY:(float)aOffsetY;
+-(void)showLoadingHUDWithOffset:(CGSize)aOffset;
 
 -(void)hideLoadingHUD;
 

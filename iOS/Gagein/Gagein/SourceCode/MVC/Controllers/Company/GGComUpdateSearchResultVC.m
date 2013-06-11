@@ -15,6 +15,7 @@
 #import "GGCompany.h"
 #import "GGCompanyDetailVC.h"
 #import "GGCompanyUpdateDetailVC.h"
+#import "GGCompanyUpdateIpadCell.h"
 
 @interface GGComUpdateSearchResultVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
@@ -51,6 +52,9 @@
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
     _updatesTV.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _updatesTV.showsVerticalScrollIndicator = NO;
+    _updatesTV.autoresizingMask = UIViewAutoresizingFlexibleWidth |UIViewAutoresizingFlexibleHeight;
+    
     [self.view addSubview:self.updatesTV];
     self.updatesTV.backgroundColor = GGSharedColor.silver;
     
@@ -147,9 +151,45 @@
     return cell;
 }
 
+-(GGCompanyUpdateIpadCell *)_updateIpadCellForIndexPath:(NSIndexPath *)indexPath
+{
+    int row = indexPath.row;
+    
+    static NSString *updateCellId = @"GGCompanyUpdateIpadCell";
+    GGCompanyUpdateIpadCell *cell = [_updatesTV dequeueReusableCellWithIdentifier:updateCellId];
+    if (cell == nil) {
+        cell = [GGCompanyUpdateIpadCell viewFromNibWithOwner:self];
+        [cell.btnLogo addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    GGCompanyUpdate *updateData = [_updates objectAtIndexSafe:row];
+    
+    cell.btnLogo.tag = row;
+    
+    cell.lblHeadline.text = [updateData headlineTruncated];
+    cell.lblSource.text = updateData.fromSource;
+    cell.lblDescription.text = updateData.content;
+    
+    [cell.ivLogo setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+    
+    cell.lblInterval.text = [updateData intervalStringWithDate:updateData.date];
+    
+    return cell;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self _updateCellForIndexPath:indexPath];
+    if (ISIPADDEVICE)
+    {
+        return [self _updateIpadCellForIndexPath:indexPath];
+    }
+    else
+    {
+        return [self _updateCellForIndexPath:indexPath];
+    }
+    
+    return nil;
 }
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -234,6 +274,15 @@
     __weak GGComUpdateSearchResultVC *weakSelf = self;
     
     [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
+}
+
+
+#pragma mark -
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    [_updatesTV centerMeHorizontallyChangeMyWidth:_updatesTV.superview.frame.size.width];
 }
 
 @end

@@ -16,11 +16,22 @@ static MBProgressHUD * hud;
 -(void)showLoadingHUD
 {
     
+    [self showLoadingHUDWithOffsetY:0];
+}
+
+-(void)showLoadingHUDWithOffsetY:(float)aOffsetY
+{
+    [self showLoadingHUDWithOffset:CGSizeMake(0, aOffsetY)];
+}
+
+-(void)showLoadingHUDWithOffset:(CGSize)aOffset
+{
     [hud hide:YES];
     hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
+    hud.xOffset = aOffset.width;
+    hud.yOffset = aOffset.height;
     hud.labelText = @"Loading";
-    //hud.dimBackground = YES;
 }
 
 -(void)hideLoadingHUD

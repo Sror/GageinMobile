@@ -60,7 +60,14 @@
     [self addChildViewController:GGSharedDelegate.tabBarController];
     [GGSharedDelegate.tabBarController didMoveToParentViewController:self];
     
-    _viewCover.clipsToBounds = YES;
+    //_viewCover.clipsToBounds = YES;
+    //_viewCover.layer.cornerRadius = 8.f;
+    _viewCover.layer.masksToBounds = NO;
+    _viewCover.layer.shadowColor = GGSharedColor.darkGray.CGColor;
+    _viewCover.layer.shadowOffset = CGSizeMake(-5, 0);
+    _viewCover.layer.shadowOpacity = .6f;
+    _viewCover.layer.shadowRadius = 5.f;
+    
     if (ISIPADDEVICE)
     {
         _viewCover.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
