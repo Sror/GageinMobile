@@ -8,6 +8,8 @@
 
 #import "GGComOverviewRevenuesCell.h"
 
+#define HEIGHT_FOR_IPAD      280
+
 @implementation GGComOverviewRevenuesCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -29,6 +31,13 @@
 -(void)awakeFromNib
 {
     self.ivCellBg.image = GGSharedImagePool.stretchShadowBgWite;
+    
+    if (ISIPADDEVICE)
+    {
+        CGRect rc = self.frame;
+        rc.size.height = HEIGHT_FOR_IPAD;
+        self.frame = rc;
+    }
 }
 
 -(float)height

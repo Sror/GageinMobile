@@ -289,7 +289,7 @@ typedef enum
         {
             GGWebVC *vc = [[GGWebVC alloc] init];
             vc.urlStr = _overview.revenuesChartUrl;
-            vc.naviTitle = @"Chart";
+            vc.naviTitleString = @"Chart";
             
             [self.navigationController pushViewController:vc animated:YES];
         }
