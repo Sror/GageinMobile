@@ -122,6 +122,8 @@ typedef enum
     cell.lblFortuneRank.text = _overview.fortuneRank;
     cell.lblFiscalYear.text = _overview.fiscalYear;
     
+    [cell layMeOut];
+    
     return cell;
 }
 

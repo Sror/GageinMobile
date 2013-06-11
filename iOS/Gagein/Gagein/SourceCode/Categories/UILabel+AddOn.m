@@ -14,7 +14,12 @@
 
 - (void)calculateSize
 {
-    CGSize constraint = CGSizeMake(self.frame.size.width, FLT_MAX);
+    [self calculateSizeConstaintToHeight:FLT_MAX];
+}
+
+-(void)calculateSizeConstaintToHeight:(float)aMaxHeight
+{
+    CGSize constraint = CGSizeMake(self.frame.size.width, aMaxHeight);
     CGSize size = [self.text sizeWithFont:self.font constrainedToSize:constraint lineBreakMode:self.lineBreakMode];
     
     

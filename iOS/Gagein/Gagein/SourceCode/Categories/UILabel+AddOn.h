@@ -10,4 +10,5 @@
 
 @interface UILabel (AddOn)
 - (void)calculateSize;
+-(void)calculateSizeConstaintToHeight:(float)aMaxHeight;
 @end

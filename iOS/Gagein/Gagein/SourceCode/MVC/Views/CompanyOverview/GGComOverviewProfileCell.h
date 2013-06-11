@@ -22,4 +22,5 @@
 
 -(float)height;
 
+-(void)layMeOut;
 @end

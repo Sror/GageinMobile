@@ -36,4 +36,10 @@
     return self.frame.size.height;
 }
 
+-(void)layMeOut
+{
+    [_lblIndustry calculateSizeConstaintToHeight:32];
+    [_lblSpeciality calculateSizeConstaintToHeight:32];
+}
+
 @end
