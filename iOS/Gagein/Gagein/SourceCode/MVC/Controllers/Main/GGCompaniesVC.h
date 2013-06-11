@@ -10,8 +10,9 @@
 #import "GGSwitchButton.h"
 #import "GGSlideSettingView.h"
 #import "GGStyledSearchBar.h"
+#import "GGScrollToHideVC.h"
 
-@interface GGCompaniesVC : GGBaseViewController
+@interface GGCompaniesVC : GGScrollToHideVC
 <UITableViewDelegate
 , UITableViewDataSource
 , GGStyledSearchBarDelegate

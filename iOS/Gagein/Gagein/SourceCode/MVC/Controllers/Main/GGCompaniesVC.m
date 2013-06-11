@@ -209,7 +209,6 @@
     //_isRelevanceBarShowing = YES;
     
     _updateTvRect.origin.y = CGRectGetMaxY(_relevanceBar.frame) - 5;
-#warning working
     _updateTvRect.size.height = self.view.frame.size.height - _updateTvRect.origin.y;
     _updatesTV.frame = _updateTvRect;
     
@@ -238,7 +237,9 @@
     //[UIView setAnimationsEnabled:NO];
     [self _getInitData];
     
-    //[_updatesTV ScrollMeToTopOnly];
+    
+    [self addScrollToHide:_updatesTV];
+    [self addScrollToHide:_happeningsTV];
 }
 
 -(BOOL)doNeedMenu
@@ -1084,10 +1085,7 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     
-    if (scrollView == _updatesTV || scrollView == _happeningsTV)
-    {
-        _lastContentOffset = scrollView.contentOffset;
-    }
+    [super scrollViewWillBeginDragging:scrollView];
     
     GGSharedDelegate.rootVC.canBeDragged = NO;
 }
@@ -1107,7 +1105,7 @@
 
 -(void)_adjustTvFrames
 {
-    CGRect thisRc = self.view.bounds;
+    //CGRect thisRc = self.view.bounds;
     //[self.view centerMeHorizontally];
     
     CGRect relevanceRc = _relevanceBar.frame;
@@ -1130,7 +1128,7 @@
     
     if (!ISIPADDEVICE && scrollView.contentSize.height > scrollView.frame.size.height)
     {
-        if (_lastContentOffset.y < scrollView.contentOffset.y)
+        if (self.offsetWhenStartDragging.y < scrollView.contentOffset.y)
         {
             //DLog(@"moved up");
             

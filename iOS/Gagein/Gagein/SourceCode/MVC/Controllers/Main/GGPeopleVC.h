@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "GGSlideSettingView.h"
+#import "GGScrollToHideVC.h"
 
-@interface GGPeopleVC : GGBaseViewController
+@interface GGPeopleVC : GGScrollToHideVC
 <UITableViewDelegate
 , UITableViewDataSource
 , GGStyledSearchBarDelegate
-, GGSlideSettingViewDelegate
-, UIScrollViewDelegate>
+, GGSlideSettingViewDelegate>
 
 @property (strong)   NSMutableArray              *updates;
 

@@ -37,7 +37,7 @@
     EGGMenuType                         _menuType;
     long long                           _menuID;
     
-    CGPoint                             _lastContentOffset;
+    //CGPoint                             _lastContentOffset;
     
     BOOL                                _hasMore;
 }
@@ -102,6 +102,7 @@
     //[_scrollingView addPage:self.updatesTV];
     self.updatesTV.backgroundColor = GGSharedColor.silver;
     [self.view addSubview:self.updatesTV];
+    [self addScrollToHide:_updatesTV];
     
     // setup pull-to-refresh and infinite scrolling
     __weak GGPeopleVC *weakSelf = self;
@@ -683,12 +684,9 @@
 }
 
 #pragma mark - scroll view delegate
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    
-    if (scrollView == _updatesTV)
-    {
-        _lastContentOffset = scrollView.contentOffset;
-    }
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [super scrollViewWillBeginDragging:scrollView];
     
     GGSharedDelegate.rootVC.canBeDragged = NO;
 }
@@ -698,19 +696,12 @@
     GGSharedDelegate.rootVC.canBeDragged = YES;
 }
 
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+    [super scrollViewWillBeginDecelerating:scrollView];
     
     if (!ISIPADDEVICE)
     {
-        if (_lastContentOffset.y < scrollView.contentOffset.y)
-        {
-            [GGUtils hideTabBar];
-        }
-        else
-        {
-            [GGUtils showTabBar];
-        }
-        
         [self _adjustTvFrames];
     }
 }
