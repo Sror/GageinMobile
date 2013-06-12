@@ -219,35 +219,36 @@
     CGRect containerRc = CGRectMake(0, 0, _tv.frame.size.width, _viewSwitch.frame.size.height + 30);
     _headerView = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     _headerView.frame = containerRc;
+    //_headerView.contentView.backgroundColor = GGSharedColor.darkGray;
     _headerView.selectionStyle = UITableViewCellSelectionStyleNone;
+    _headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     //[[UIView alloc] initWithFrame:containerRc];
-    _headerView.backgroundColor = GGSharedColor.silver;
+    //_headerView.backgroundColor = GGSharedColor.darkGray; // useless
     float switchWidth = 290.f;
     _viewSwitch.frame = CGRectMake((containerRc.size.width - switchWidth) / 2
                                    , (containerRc.size.height - _viewSwitch.frame.size.height) / 2
                                    , switchWidth
                                    , _viewSwitch.frame.size.height);
-    [_headerView addSubview:_viewSwitch];
+    //_viewSwitch.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [_headerView.contentView addSubview:_viewSwitch];
 }
 
 -(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
 {
     DLog(@"switch tapped:%d", aIsOn);
+}
+
+#pragma mark - orientation change
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
-//    [self showLoadingHUD];
-//    id op = [GGSharedAPI setAgentFilterEnabled:aIsOn callback:^(id operation, id aResultObject, NSError *anError) {
-//        [self hideLoadingHUD];
-//        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-//        if (parser.isOK)
-//        {
-//            [self _callApiGetConfigOptions];
-//        }
-//        
-//        [_tv reloadData];
-//        
-//    }];
-//    
-//    [self registerOperation:op];
+//    CGRect headerRc = _viewSwitch.frame;
+//    headerRc.size.width = self.view.frame.size.width;
+//    _viewSwitch.frame = headerRc;
+    
+    float width = _headerView.contentView.frame.size.width - 30;
+    [_viewSwitch centerMeHorizontallyChangeMyWidth:width];
 }
 
 @end

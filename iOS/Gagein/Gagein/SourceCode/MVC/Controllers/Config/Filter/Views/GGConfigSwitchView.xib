@@ -33,11 +33,11 @@
 			</object>
 			<object class="IBUIView" id="620685841">
 				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">274</int>
+				<int key="NSvFlags">290</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="30603803">
 						<reference key="NSNextResponder" ref="620685841"/>
-						<int key="NSvFlags">297</int>
+						<int key="NSvFlags">289</int>
 						<string key="NSFrame">{{214, 10}, {76, 24}}</string>
 						<reference key="NSSuperview" ref="620685841"/>
 						<reference key="NSWindow"/>
@@ -70,7 +70,7 @@
 							<bytes key="NSWhite">MC4yNQA</bytes>
 							<reference key="NSCustomColorSpace" ref="717899717"/>
 						</object>
-						<object class="NSColor" key="IBUIHighlightedColor">
+						<object class="NSColor" key="IBUIHighlightedColor" id="940119419">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
@@ -92,10 +92,7 @@
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="439570455"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
-				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MCAwAA</bytes>
-				</object>
+				<reference key="IBUIBackgroundColor" ref="940119419"/>
 				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
 					<string key="IBUISimulatedSizeMetricsClass">IBUISimulatedFreeformSizeMetricsSentinel</string>
 					<string key="IBUIDisplayName">Freeform</string>

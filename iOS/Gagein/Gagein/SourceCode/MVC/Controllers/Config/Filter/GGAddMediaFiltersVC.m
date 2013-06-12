@@ -53,6 +53,7 @@
     
     //
     _viewSearchBar = [GGUtils replaceFromNibForView:_viewSearchBar];
+    _viewSearchBar.tfSearch.placeholder = @"Search for media";
     _viewSearchBar.delegate = self;
     
     [self _callApiGetSuggestedMediaFilters];
