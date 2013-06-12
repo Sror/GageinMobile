@@ -45,12 +45,12 @@
     
     _tvSearchResult.hidden = YES;
     
-    if (!ISIPADDEVICE)
-    {
-        CGRect tvSearchRc = _tvSearchResult.frame;
-        tvSearchRc.size.height = [UIScreen mainScreen].applicationFrame.size.height - self.navigationController.navigationBar.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT - _viewSearchBar.frame.size.height;
-        _tvSearchResult.frame = tvSearchRc;
-    }
+//    if (!ISIPADDEVICE)
+//    {
+//        CGRect tvSearchRc = _tvSearchResult.frame;
+//        tvSearchRc.size.height = [UIScreen mainScreen].applicationFrame.size.height - self.navigationController.navigationBar.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT - _viewSearchBar.frame.size.height;
+//        _tvSearchResult.frame = tvSearchRc;
+//    }
     
     self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(doneAction:)];
     [self hideBackButton];
@@ -258,6 +258,8 @@
     NSString *keyword = ((GGStyledSearchBar *)searchBar).tfSearch.text;
     if (keyword.length)
     {
+        [searchBar endEditing:YES];
+        
         [self showLoadingHUD];
         id op = [GGSharedAPI searchMediaWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
