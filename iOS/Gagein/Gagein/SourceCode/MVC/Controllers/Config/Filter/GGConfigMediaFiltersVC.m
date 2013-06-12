@@ -107,11 +107,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     int count = _mediaSources.count;
-    CGRect tvRc = _viewTvBg.frame;
- 
-    tvRc.size.height = MIN(TV_HEIGHT, 44 * count);
-    
-    _viewTvBg.frame = tvRc;
+//    CGRect tvRc = _viewTvBg.frame;
+// 
+//    tvRc.size.height = MIN(TV_HEIGHT, 44 * count);
+//    
+//    _viewTvBg.frame = tvRc;
     return count;
 }
 
