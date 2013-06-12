@@ -714,7 +714,7 @@
 {
     if (aViewController)
     {
-        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:aViewController];
+        GGNavigationController *nv = [[GGNavigationController alloc] initWithRootViewController:aViewController];
         [self popSheetForVC:nv];
     }
 }
@@ -723,7 +723,7 @@
 {
     if (aViewController)
     {
-        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:aViewController];
+        GGNavigationController *nv = [[GGNavigationController alloc] initWithRootViewController:aViewController];
         nv.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [self presentViewController:nv animated:YES completion:nil];
     }

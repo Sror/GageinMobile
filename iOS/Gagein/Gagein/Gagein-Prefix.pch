@@ -39,6 +39,7 @@
     #import "GGStringPool.h"
     #import "GGLayout.h"
     #import "UIScrollView+OTS.h"
+    #import "GGNavigationController.h"
 #endif
 
 #include "GGBackLog.h"
