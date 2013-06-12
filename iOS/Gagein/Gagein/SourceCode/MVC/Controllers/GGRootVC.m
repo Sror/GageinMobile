@@ -112,7 +112,7 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
-    return _canBeDragged;
+    return ![self isIPadLandscape] && _canBeDragged;
 }
 
 
