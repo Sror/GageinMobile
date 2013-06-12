@@ -129,26 +129,42 @@
     self.svContent.backgroundColor = GGSharedColor.silver;
     self.naviTitle = @"Follow People";
     
+    //
     _searchBar = [GGStyledSearchBar viewFromNibWithOwner:self];
     _searchBar.tfSearch.placeholder = @"Search for people";
+    _searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _searchBar.delegate = self;
     [self.svContent addSubview:_searchBar];
     
     _searchBarRect = _searchBar.frame;
+    _searchBarRect.size.width = _svContent.frame.size.width;
+    _searchBar.frame = _searchBarRect;
+    
     _searchBarRectOnNavi = CGRectMake((self.navigationController.navigationBar.frame.size.width - _searchBarRect.size.width) / 2
                                       , (self.navigationController.navigationBar.frame.size.height - _searchBarRect.size.height) / 2
                                       , _searchBarRect.size.width
                                       , _searchBarRect.size.height);
     
-    //_tvSearchResultRect = self.tvSearchResult.frame;
-    float height = self.view.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT + self.tabBarController.tabBar.frame.size.height;
-    _tvSearchResultRectShort = [GGUtils setH:height rect:self.tvSearchResult.frame];
-    self.tvSearchResult.frame = _tvSearchResultRectShort;
+    //
+    //
+    if (ISIPADDEVICE)
+    {
+        CGRect dimBgRc = _viewSearchBg.frame;
+        dimBgRc.origin.y = CGRectGetMaxY(_searchBar.frame);
+        dimBgRc.size.height = _viewSearchBg.superview.frame.size.height - dimBgRc.origin.y;
+        _viewSearchBg.frame = dimBgRc;
+    }
+    
+    //
+    if (!ISIPADDEVICE)
+    {
+        float height = self.view.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT + self.tabBarController.tabBar.frame.size.height;
+        _tvSearchResultRectShort = [GGUtils setH:height rect:self.tvSearchResult.frame];
+        self.tvSearchResult.frame = _tvSearchResultRectShort;
+    }
     
     self.tvSearchResult.rowHeight = [GGSearchSuggestionCell HEIGHT];
     
-//    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(doneAction:)];
-//    self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(doneAction:)];
     
     _tapGestToHideSearch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToHideSearch:)];
     [_viewSearchTransparent addGestureRecognizer:_tapGestToHideSearch];
@@ -473,13 +489,16 @@
 
 - (BOOL)searchBarShouldBeginEditing:(GGBaseSearchBar *)searchBar
 {
-    // install the search bar to the navigation bar
-    searchBar.frame = _searchBarRectOnNavi;
-    [self.navigationController.navigationBar addSubview:searchBar];
-    
-    [self _showDoneBtn:NO];
-    [self _showTitle:NO];
-    //[self hideBackButton];
+    if (!ISIPADDEVICE)
+    {
+        // install the search bar to the navigation bar
+        searchBar.frame = _searchBarRectOnNavi;
+        [self.navigationController.navigationBar addSubview:searchBar];
+        
+        [self _showDoneBtn:NO];
+        [self _showTitle:NO];
+        //[self hideBackButton];
+    }
     
     self.viewSearchBg.hidden = NO;
     //self.tableViewSearchResult.frame = _tvSearchResultRectShort;
@@ -539,12 +558,16 @@
 - (void)searchBarCanceled:(GGBaseSearchBar *)searchBar
 {
     [_searchBar.tfSearch resignFirstResponder];
-    _searchBar.frame = _searchBarRect;
-    [_svContent addSubview:_searchBar];
     self.viewSearchBg.hidden = YES;
     
-    [self _showDoneBtn:YES];
-    [self _showTitle:YES];
+    if (!ISIPADDEVICE)
+    {
+        _searchBar.frame = _searchBarRect;
+        [_svContent addSubview:_searchBar];
+        
+        [self _showDoneBtn:YES];
+        [self _showTitle:YES];
+    }
 }
 
 - (BOOL)searchBarShouldSearch:(GGBaseSearchBar *)searchBar
