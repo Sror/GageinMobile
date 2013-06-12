@@ -15,6 +15,7 @@
 
 //#import "GGGroupedCell.h"
 #import "GGTriggerChartCell.h"
+#import "GGConfigSwitchView.h"
 
 @interface GGConfigAgentFiltersVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tv;
@@ -27,6 +28,9 @@
     
     NSMutableArray      *_customAgentFilters;
     NSMutableArray      *_predefinedAgentFilters;
+    
+    GGConfigSwitchView  *_viewSwitch;
+    UIView              *_headerView;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -50,7 +54,10 @@
     _tv.rowHeight = [GGTriggerChartCell HEIGHT];
     _tv.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Edit" target:self selector:@selector(editCustomAgentAction:)];
+//    self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Edit" target:self selector:@selector(editCustomAgentAction:)];
+    
+    //
+    [self _createSwitchView];
     
     // at last
     [self _callApiGetConfigOptions];
@@ -94,23 +101,6 @@
         cell = [GGTriggerChartCell viewFromNibWithOwner:self];
     }
     
-//    if (section == 0)
-//    {
-//        GGAgentFilter *data = _customAgentFilters[row];
-//        cell.lblTitle.text = data.name;
-//        [cell setChecked:data.checked];
-//        
-//        cell.style = [GGUtils styleForArrayCount:_customAgentFilters.count atIndex:row];
-//    }
-//    else if (section == 1)
-//    {
-//        GGAgentFilter *data = _predefinedAgentFilters[row];
-//        cell.lblTitle.text = data.name;
-//        [cell setChecked:data.checked];
-//        
-//        cell.style = [GGUtils styleForArrayCount:_predefinedAgentFilters.count atIndex:row];
-//    }
-    
     GGAgentFilter *data = _predefinedAgentFilters[row];
     cell.lblTitle.text = data.name;
     [cell setChecked:data.checked];
@@ -125,39 +115,6 @@
     return cell;
 }
 
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    
-//        if (section == 0) {
-//        
-//        return [GGConfigLabel HEIGHT];
-//        
-//    } else if (section == 1) {
-//        
-//        return [GGConfigLabel HEIGHT];
-//    }
-//    
-//    return 0.f;
-//}
-
-//- (UIView *)tableView:(UITableView *)tableView
-//viewForHeaderInSection:(NSInteger)section
-//{
-//    GGConfigLabel *head;
-//    if (section == 0)
-//    {
-//        head = [GGConfigLabel viewFromNibWithOwner:self];
-//        head.lblText.text = @"CUSTOM TRIGGERS";
-//        
-//    } else if (section == 1)
-//    {
-//        head = [GGConfigLabel viewFromNibWithOwner:self];
-//        head.lblText.text = @"PREDEFINED TRIGGERS";
-//    }
-//    
-//    return head;
-//}
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -181,6 +138,18 @@
         
         [self registerOperation:op];
     }
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    //UIView *header = _viewSwitch.superview;
+    return _headerView;
+}
+
+-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+   // UIView *header = _viewSwitch.superview;
+    return _headerView.frame.size.height;
 }
 
 - (void)viewDidUnload {
@@ -220,8 +189,33 @@
 }
 
 #pragma mark - GGSwitchButtonDelegate
+-(void)_createSwitchView
+{
+    _viewSwitch = [GGConfigSwitchView viewFromNibWithOwner:self];
+    
+    _viewSwitch.backgroundColor = GGSharedColor.white;
+    _viewSwitch.lblTitle.text = @"Trigger Chart";
+    _viewSwitch.btnSwitch.isOn = YES;
+    _viewSwitch.btnSwitch.lblOn.text = @"Likes";
+    _viewSwitch.btnSwitch.lblOff.text = @"Clicks";
+    _viewSwitch.btnSwitch.delegate = self;
+    [GGUtils applyTableStyle1ToView:_viewSwitch];
+    
+    CGRect containerRc = CGRectMake(0, 0, _tv.frame.size.width, _viewSwitch.frame.size.height + 30);
+    _headerView = [[UIView alloc] initWithFrame:containerRc];
+    _headerView.backgroundColor = GGSharedColor.silver;
+    float switchWidth = 290.f;
+    _viewSwitch.frame = CGRectMake((containerRc.size.width - switchWidth) / 2
+                                   , (containerRc.size.height - _viewSwitch.frame.size.height) / 2
+                                   , switchWidth
+                                   , _viewSwitch.frame.size.height);
+    [_headerView addSubview:_viewSwitch];
+}
+
 -(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
 {
+    DLog(@"switch tapped:%d", aIsOn);
+    
 //    [self showLoadingHUD];
 //    id op = [GGSharedAPI setAgentFilterEnabled:aIsOn callback:^(id operation, id aResultObject, NSError *anError) {
 //        [self hideLoadingHUD];
