@@ -38,8 +38,8 @@
 
 -(void)layMeOut
 {
-    [_lblIndustry calculateSizeConstaintToHeight:32];
-    [_lblSpeciality calculateSizeConstaintToHeight:32];
+    [_lblIndustry calculateSizeConstaintToHeight:40];
+    [_lblSpeciality calculateSizeConstaintToHeight:40];
 }
 
 @end
