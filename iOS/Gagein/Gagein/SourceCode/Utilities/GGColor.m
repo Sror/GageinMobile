@@ -91,4 +91,9 @@ DEF_SINGLETON(GGColor)
     return [UIColor clearColor];
 }
 
+-(UIColor *)colorFromR:(int)aRed g:(int)aGreen b:(int)aBlue
+{
+    return [UIColor colorWithRed:aRed / 255.f green:aGreen / 255.f blue:aBlue / 255.f alpha:1.f];
+}
+
 @end

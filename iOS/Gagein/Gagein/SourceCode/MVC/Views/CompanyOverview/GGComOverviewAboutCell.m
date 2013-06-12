@@ -39,6 +39,7 @@
 //{
 //    return 200;
 //}
+
 -(float)height
 {
     float contentHeight = self.textView.contentSize.height;
@@ -55,6 +56,7 @@
         
         // i Dont know why, but for ipad need to devide by 2...Daniel Dong
         tightContentSize.height /= 2;
+        tightContentSize.height = MAX(tightContentSize.height, 40);
         
         [_textView setContentSize:tightContentSize];
     }

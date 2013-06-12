@@ -328,6 +328,8 @@
 		EA9923C91745AD290043251E /* timezones.json in Resources */ = {isa = PBXBuildFile; fileRef = EA9923C81745AD290043251E /* timezones.json */; };
 		EA997426174E8D5100A125D5 /* Happening_Cases_and_data_format.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA997425174E8D5100A125D5 /* Happening_Cases_and_data_format.txt */; };
 		EA99742C174EEB1600A125D5 /* UILabel+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA99742B174EEB1500A125D5 /* UILabel+AddOn.m */; };
+		EA9B3A0C1768E24E008C5709 /* GGTriggerChartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9B3A0B1768E24E008C5709 /* GGTriggerChartCell.m */; };
+		EA9B3A0E1768E280008C5709 /* GGTriggerChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9B3A0D1768E280008C5709 /* GGTriggerChartCell.xib */; };
 		EAA1880F175E7BB700580B00 /* GGSignupVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA1880E175E7BB700580B00 /* GGSignupVC_iPad.xib */; };
 		EAA18812175EA0E600580B00 /* GGCompanyUpdateIpadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA18811175EA0E600580B00 /* GGCompanyUpdateIpadCell.m */; };
 		EAA18814175EA11500580B00 /* GGCompanyUpdateIpadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA18813175EA11500580B00 /* GGCompanyUpdateIpadCell.xib */; };
@@ -987,6 +989,9 @@
 		EA997425174E8D5100A125D5 /* Happening_Cases_and_data_format.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Happening_Cases_and_data_format.txt; sourceTree = "<group>"; };
 		EA99742A174EEB1500A125D5 /* UILabel+AddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+AddOn.h"; sourceTree = "<group>"; };
 		EA99742B174EEB1500A125D5 /* UILabel+AddOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+AddOn.m"; sourceTree = "<group>"; };
+		EA9B3A0A1768E24E008C5709 /* GGTriggerChartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTriggerChartCell.h; sourceTree = "<group>"; };
+		EA9B3A0B1768E24E008C5709 /* GGTriggerChartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGTriggerChartCell.m; sourceTree = "<group>"; };
+		EA9B3A0D1768E280008C5709 /* GGTriggerChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGTriggerChartCell.xib; sourceTree = "<group>"; };
 		EAA1880E175E7BB700580B00 /* GGSignupVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSignupVC_iPad.xib; sourceTree = "<group>"; };
 		EAA18810175EA0E600580B00 /* GGCompanyUpdateIpadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GGCompanyUpdateIpadCell.h; path = Cells/GGCompanyUpdateIpadCell.h; sourceTree = "<group>"; };
 		EAA18811175EA0E600580B00 /* GGCompanyUpdateIpadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GGCompanyUpdateIpadCell.m; path = Cells/GGCompanyUpdateIpadCell.m; sourceTree = "<group>"; };
@@ -2077,6 +2082,7 @@
 				EA4022331728F1B800E5D179 /* GGHappeningDetailCell.xib */,
 				EA4CC684172B98E90082A048 /* GGRelevanceBar.xib */,
 				EAD16177173AE22B0092C11B /* GGComUpdateDetailView.xib */,
+				EA9B3A0D1768E280008C5709 /* GGTriggerChartCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2397,6 +2403,8 @@
 				EA79B8A71724D57A00141E6D /* GGCustomBriefCell.m */,
 				EAC6F916175987FF00BC0B97 /* GGPercentageBar.h */,
 				EAC6F917175987FF00BC0B97 /* GGPercentageBar.m */,
+				EA9B3A0A1768E24E008C5709 /* GGTriggerChartCell.h */,
+				EA9B3A0B1768E24E008C5709 /* GGTriggerChartCell.m */,
 				EACAE13E1709629400E7088F /* GGWelcomePageView.h */,
 				EACAE13F1709629400E7088F /* GGWelcomePageView.m */,
 				EAD481F71710FFB300556288 /* GGCompanyUpdateCell.h */,
@@ -3135,6 +3143,7 @@
 				EA96495817613D4D00739F73 /* bg-yellow@2x.png in Resources */,
 				EA96495C17613D5E00739F73 /* dropdown-alert.png in Resources */,
 				EA96495D17613D5E00739F73 /* dropdown-alert@2x.png in Resources */,
+				EA9B3A0E1768E280008C5709 /* GGTriggerChartCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3377,6 +3386,7 @@
 				EAAF889A176265EE00FAD594 /* WETouchableView.m in Sources */,
 				EA916216176792B4000AB2FB /* GGScrollToHideVC.m in Sources */,
 				EA9162631767F6F1000AB2FB /* GGNavigationController.m in Sources */,
+				EA9B3A0C1768E24E008C5709 /* GGTriggerChartCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,6 +26,9 @@ AS_SINGLETON(GGColor)
 -(UIColor *)bgGray;
 -(UIColor *)graySettingBg;
 -(UIColor *)silver;
+
+-(UIColor *)colorFromR:(int)aRed g:(int)aGreen b:(int)aBlue;
+
 @end
 
 #define GGSharedColor [GGColor sharedInstance]
