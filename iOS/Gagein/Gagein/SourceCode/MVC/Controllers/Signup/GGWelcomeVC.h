@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FXPageControl.h"
 
-@interface GGWelcomeVC : GGBaseViewController <UIScrollViewDelegate>
-@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
+@interface GGWelcomeVC : GGBaseViewController
+<UIScrollViewDelegate, FXPageControlDelegate>
+@property (weak, nonatomic) IBOutlet FXPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
+//@property (weak, nonatomic) IBOutlet FXPageControl     *customPageControl;
 @end

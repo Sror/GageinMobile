@@ -18,6 +18,8 @@
 @implementation GGWelcomeVC
 {
     NSMutableArray      *_welcomePages;
+    UIImage             *_imgPageDotNormal;
+    UIImage             *_imgPageDotSelected;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -25,6 +27,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _welcomePages = [NSMutableArray array];
+        _imgPageDotNormal = [UIImage imageNamed:@"pageDotDarkGray"];
+        _imgPageDotSelected = [UIImage imageNamed:@"pageDotYellow"];
     }
     return self;
 }
@@ -49,7 +53,13 @@
     self.scrollView.contentSize = contentSize;
     self.scrollView.delegate = self;
     
+    _pageControl.numberOfPages = 4;
+    _pageControl.defersCurrentPageDisplay = YES;
+    _pageControl.dotImage = _imgPageDotNormal;
+    _pageControl.selectedDotImage = _imgPageDotSelected;
+    self.pageControl.delegate = self;
     [self.pageControl addTarget:self action:@selector(pageAction:) forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
 -(CGRect)_viewBoundsWithOrient:(UIInterfaceOrientation)toInterfaceOrientation
@@ -115,11 +125,13 @@
 }
 
 #pragma mark - page action
+
 -(void)pageAction:(id)sender{
     int currentPage = self.pageControl.currentPage;
     //self.scrollView.contentOffset = CGPointMake(currentPage * 320, 0);
     CGRect orientRc = [self _viewBoundsWithOrient:[UIApplication sharedApplication].statusBarOrientation];
     [self.scrollView setContentOffset:CGPointMake(currentPage * orientRc.size.width, 0) animated:YES];
+    self.pageControl.currentPage = currentPage;
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -132,6 +144,17 @@
         [self.scrollView setContentOffset:CGPointMake(self.pageControl.currentPage * orientRc.size.width, 0) animated:NO];
     }
 }
+
+#pragma mark - fx page control delegate
+//- (UIImage *)pageControl:(FXPageControl *)pageControl imageForDotAtIndex:(NSInteger)index
+//{
+//    return _imgPageDotNormal;
+//}
+//
+//- (UIImage *)pageControl:(FXPageControl *)pageControl selectedImageForDotAtIndex:(NSInteger)index
+//{
+//    return _imgPageDotSelected;
+//}
 
 
 @end
