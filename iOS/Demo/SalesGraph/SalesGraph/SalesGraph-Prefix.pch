@@ -1,0 +1,21 @@
+//
+// Prefix header for all source files of the 'SalesGraph' target in the 'SalesGraph' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_4_0
+#warning "This project uses features only available in iOS SDK 4.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+ #import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
+#import "UIView+LoadFromNib.h"
+#endif
+
+#define TEST_IMG_URL    @"http://content4.lovelytoday.com/cache/2012/09/29/12196.88920213.img-thumb1-198x198-128.jpg"
+
+#define PANEL_COLOR     [UIColor colorWithRed:39.f/255 green:39.f/255 blue:39.f/255 alpha:1]

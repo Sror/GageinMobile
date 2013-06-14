@@ -1,0 +1,126 @@
+//
+//  GGSsgrfTitledImgScrollView.m
+//  SalesGraph
+//
+//  Created by Dong Yiming on 6/12/13.
+//  Copyright (c) 2013 Dong Yiming. All rights reserved.
+//
+
+#import "GGSsgrfTitledImgScrollView.h"
+
+#import "GGAutosizingLabel.h"
+#import "GGSsgrfRndImgButton.h"
+#import <QuartzCore/QuartzCore.h>
+
+
+
+#define IMAGE_GAP   5
+
+#define IMAGE_SIZE_WIDTH    31
+#define IMAGE_SIZE_HEIGHT   31
+
+#define SCROLL_VIEW_CAP_WIDTH   20
+
+@implementation GGSsgrfTitledImgScrollView
+{
+    UIScrollView                *_viewScroll;
+    GGAutosizingLabel           *_lblTitle;
+    
+    NSMutableArray              *_imageButtons;
+    UIImage                     *_placeholder;
+    NSArray                     *_imageUrls;
+}
+
+//- (id)initWithFrame:(CGRect)frame
+//{
+//    self = [super initWithFrame:frame];
+//    if (self) {
+//        [self _doInit];
+//    }
+//    return self;
+//}
+
+-(void)_doInit
+{
+    CGSize thisSize = self.bounds.size;
+    _imageButtons = [NSMutableArray array];
+    //self.backgroundColor = [UIColor blackColor];
+    
+    CGRect titleRc = CGRectMake(0, 0, thisSize.width, 30);
+    _lblTitle = [[GGAutosizingLabel alloc] initWithFrame:titleRc];
+    _lblTitle.font = [UIFont boldSystemFontOfSize:12.f];
+    _lblTitle.textColor = [UIColor lightGrayColor];
+    _lblTitle.backgroundColor = [UIColor clearColor];
+    _lblTitle.textAlignment = NSTextAlignmentCenter;
+    _lblTitle.numberOfLines = 0;
+    
+    [self addSubview:_lblTitle];
+    
+    //_lblTitle.text = @"Competitor";
+    
+    //
+    CGRect scrollRc = CGRectMake(SCROLL_VIEW_CAP_WIDTH, CGRectGetMaxY(_lblTitle.frame) + 15, thisSize.width - SCROLL_VIEW_CAP_WIDTH * 2, IMAGE_SIZE_HEIGHT);
+    _viewScroll = [[UIScrollView alloc] initWithFrame:scrollRc];
+    _viewScroll.showsHorizontalScrollIndicator = NO;
+    //_viewScroll.backgroundColor = [UIColor blackColor];
+    [self addSubview:_viewScroll];
+    
+    CGRect thisRc = self.frame;
+    thisRc.size.height = CGRectGetMaxY(_viewScroll.frame) + 10;
+    self.frame = thisRc;
+    
+    [self _reinstallImages];
+}
+
+-(void)_reinstallImages
+{
+//#warning TEST CODE
+    for (UIView *sub in _viewScroll.subviews)
+    {
+        [sub removeFromSuperview];
+    }
+    [_imageButtons removeAllObjects];
+    
+    int offsetX = 0;
+    int count = _imageUrls.count;
+    for (int i = 0; i < count; i++)
+    {
+        GGSsgrfRndImgButton *button = [[GGSsgrfRndImgButton alloc] initWithFrame:CGRectMake(offsetX, 0, IMAGE_SIZE_WIDTH, IMAGE_SIZE_HEIGHT)];
+        
+        NSString *urlStr = _imageUrls[i];
+        [button setImageWithURL:[NSURL URLWithString:urlStr]
+                       forState:UIControlStateNormal placeholderImage:_placeholder];
+        button.layer.cornerRadius = 4.f;
+        //[button addTarget:self action:@selector(dummy)];
+        [_viewScroll addSubview:button];
+        [_imageButtons addObject:button];
+        
+        offsetX = CGRectGetMaxX(button.frame) + IMAGE_GAP;
+    }
+    
+    _viewScroll.contentSize = CGSizeMake(offsetX - IMAGE_GAP, IMAGE_SIZE_HEIGHT);
+}
+
+
+-(void)setTitle:(NSString *)aTitle
+{
+    _lblTitle.text = aTitle;
+}
+
+-(void)setTaget:(id)aTarget action:(SEL)aAction
+{
+    for (GGSsgrfRndImgButton *button in _imageButtons)
+    {
+        [button addTarget:aTarget action:aAction];
+    }
+}
+
+-(void)setImageUrls:(NSArray *)imageUrls placeholder:(UIImage *)aPlaceholder
+{
+    _imageUrls = imageUrls;
+    _placeholder = aPlaceholder;
+    
+    [self _reinstallImages];
+}
+
+@end
