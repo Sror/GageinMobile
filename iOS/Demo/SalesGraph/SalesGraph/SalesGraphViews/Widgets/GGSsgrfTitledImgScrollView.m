@@ -7,6 +7,7 @@
 //
 
 #import "GGSsgrfTitledImgScrollView.h"
+#import "GGSsgrfInfoWidgetView.h"
 
 #import "GGAutosizingLabel.h"
 #import "GGSsgrfRndImgButton.h"
@@ -28,8 +29,6 @@
     
     UIImage                     *_placeholder;
     NSArray                     *_imageUrls;
-    
-    
 }
 
 
@@ -55,9 +54,10 @@
     //_lblTitle.text = @"Competitor";
     
     //
-    CGRect scrollRc = CGRectMake(SCROLL_VIEW_CAP_WIDTH, CGRectGetMaxY(_lblTitle.frame) + 15, thisSize.width - SCROLL_VIEW_CAP_WIDTH * 2, IMAGE_SIZE_HEIGHT);
+    CGRect scrollRc = CGRectMake(SCROLL_VIEW_CAP_WIDTH, CGRectGetMaxY(_lblTitle.frame) + 15, thisSize.width - SCROLL_VIEW_CAP_WIDTH * 2, [self scrollViewHeight]);
     _viewScroll = [[UIScrollView alloc] initWithFrame:scrollRc];
     _viewScroll.showsHorizontalScrollIndicator = NO;
+    _viewScroll.delegate = self;
     //_viewScroll.backgroundColor = [UIColor blackColor];
     [self addSubview:_viewScroll];
     
@@ -66,6 +66,11 @@
     self.frame = thisRc;
     
     [self _reinstallImages];
+}
+
+-(float)scrollViewHeight
+{
+    return IMAGE_SIZE_HEIGHT;
 }
 
 -(void)setGap:(float)aGap
@@ -87,7 +92,7 @@
     int count = _imageUrls.count;
     for (int i = 0; i < count; i++)
     {
-        GGSsgrfRndImgButton *button = [[GGSsgrfRndImgButton alloc] initWithFrame:CGRectMake(offsetX, 0, IMAGE_SIZE_WIDTH, IMAGE_SIZE_HEIGHT)];
+        GGSsgrfRndImgButton *button = [[GGSsgrfRndImgButton alloc] initWithFrame:CGRectMake(offsetX, ([self scrollViewHeight] - IMAGE_SIZE_HEIGHT) / 2, IMAGE_SIZE_WIDTH, IMAGE_SIZE_HEIGHT)];
         
         button.tag = i;
         
@@ -100,6 +105,21 @@
         [_imageButtons addObject:button];
         
         offsetX = CGRectGetMaxX(button.frame) + _gap;
+    }
+    
+    _viewScroll.contentSize = CGSizeMake(offsetX - _gap, IMAGE_SIZE_HEIGHT);
+}
+
+
+-(void)reArrangeImagePos
+{
+    int count = _imageButtons.count;
+    int offsetX = 0;
+    for (int i = 0; i < count; i++)
+    {
+        GGSsgrfRndImgButton *btn = _imageButtons[i];
+        btn.frame = CGRectMake(offsetX, btn.frame.origin.y, btn.frame.size.width, btn.frame.size.height);
+        offsetX = CGRectGetMaxX(btn.frame) + _gap;
     }
     
     _viewScroll.contentSize = CGSizeMake(offsetX - _gap, IMAGE_SIZE_HEIGHT);
@@ -135,13 +155,30 @@
 @implementation GGSsgrfPushAwayScrollView
 {
     float                       _pushGap;
+    GGSsgrfInfoWidgetView       *_infoWidget;
 }
 
 -(void)_doInit
 {
-    _pushGap = 25.f;
-    
     [super _doInit];
+    
+    _gap = 35.f;
+    _pushGap = 35.f;
+    
+    _infoWidget = [[GGSsgrfInfoWidgetView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    //_infoWidget.backgroundColor = PANEL_COLOR;
+    //[self addSubview:_infoWidget];
+    [_infoWidget setMainImageUrl:TEST_IMG_URL placeholder:nil];
+    [_infoWidget setTitle:@"Company"];
+    [_infoWidget setSubTitle:@"Company detail"];
+    [_infoWidget setScrollImageUrls:[NSArray arrayWithObjects:TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, nil] placeholder:nil];
+    _infoWidget.hidden = YES;
+    
+}
+
+-(float)scrollViewHeight
+{
+    return 250.f;
 }
 
 -(void)_reinstallImages
@@ -154,12 +191,23 @@
     }
 }
 
+#define THIS_ANIM_DURATION  .4f
+
 -(void)pushAwayFromIndex:(UIButton *)aButton
 {
     int index = aButton.tag;
     int count = _imageButtons.count;
+    UIButton *pushedButton = _imageButtons[index];
+    _infoWidget.hidden = YES;
     
-    if (count <= 1) return; // dont need
+    if (count <= 1)
+    {
+        _infoWidget.hidden = NO;
+        _infoWidget.center = pushedButton.center;
+        [_viewScroll addSubview:_infoWidget];
+        
+        return; // dont need
+    }
     
     //
     CGRect rects[count];
@@ -171,11 +219,11 @@
     }
     
     //
-    UIButton *pushedButton = _imageButtons[index];
-    CGRect pushedRc = pushedButton.frame;
-    float posRelative = pushedRc.origin.x - _viewScroll.contentOffset.x;
+    
+    //CGRect pushedRc = pushedButton.frame;
+    //float posRelative = pushedRc.origin.x - _viewScroll.contentOffset.x;
 
-    [UIView animateWithDuration:.2f animations:^{
+    [UIView animateWithDuration:THIS_ANIM_DURATION / 4 animations:^{
         
         // push buttons before
         if (index > 0)
@@ -252,14 +300,97 @@
         float contentWidth = CGRectGetMaxX(rectsPtr[count - 1]) - (rectsPtr[0]).origin.x;
         _viewScroll.contentSize = CGSizeMake(contentWidth, _viewScroll.contentSize.height);
 
-        float contentOffsetX = pushedButton.frame.origin.x - posRelative;
-        contentOffsetX = MAX(contentOffsetX, 0);
+        //float contentOffsetX = pushedButton.frame.origin.x - posRelative;
+        float contentOffsetX = pushedButton.frame.origin.x + pushedButton.frame.size.width / 2 - self.frame.size.width / 2;
+        //contentOffsetX = MAX(contentOffsetX, 0);
         _viewScroll.contentOffset = CGPointMake(contentOffsetX, _viewScroll.contentOffset.y);
         
     } completion:^(BOOL finished) {
-        //
+        
+        _infoWidget.hidden = NO;
+        CGPoint center = pushedButton.center;
+        center.y -= 0;
+        _infoWidget.center = center;
+        [_viewScroll addSubview:_infoWidget];
+        
+        CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+        opacityAnimation.fromValue = @(0);
+        opacityAnimation.toValue = @(1);
+        opacityAnimation.duration = THIS_ANIM_DURATION / 2;
+        [_infoWidget.layer addAnimation:opacityAnimation forKey:@"opacityAnimation"];
+        
+        CAKeyframeAnimation *alertScaleAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+        
+        CATransform3D startingScale = CATransform3DScale(_infoWidget.layer.transform, 0, 0, 0);
+        CATransform3D overshootScale = CATransform3DScale(_infoWidget.layer.transform, 1.1, 1.1, 1.0);
+        CATransform3D undershootScale = CATransform3DScale(_infoWidget.layer.transform, 0.95, 0.95, 1.0);
+        CATransform3D endingScale = _infoWidget.layer.transform;
+        
+        alertScaleAnimation.values = @[
+                                       [NSValue valueWithCATransform3D:startingScale],
+                                       [NSValue valueWithCATransform3D:overshootScale],
+                                       [NSValue valueWithCATransform3D:undershootScale],
+                                       [NSValue valueWithCATransform3D:endingScale]
+                                       ];
+        
+        alertScaleAnimation.keyTimes = @[
+                                         @(0.0f),
+                                         @(0.3f),
+                                         @(0.85f),
+                                         @(1.0f)
+                                         ];
+        
+        alertScaleAnimation.timingFunctions = @[
+                                                [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut],
+                                                [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+                                                [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]
+                                                ];
+        alertScaleAnimation.fillMode = kCAFillModeForwards;
+        alertScaleAnimation.removedOnCompletion = NO;
+        
+        CAAnimationGroup *alertAnimation = [CAAnimationGroup animation];
+        alertAnimation.animations = @[
+                                      alertScaleAnimation,
+                                      opacityAnimation
+                                      ];
+        alertAnimation.duration = THIS_ANIM_DURATION;
+        [_infoWidget.layer addAnimation:alertAnimation forKey:@"alertAnimation"];
+        
     }];
     
+}
+
+#pragma mark - 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    CATransform3D transform = CATransform3DScale(_infoWidget.layer.transform, 0, 0, 0);
+    CATransform3D endingScale = _infoWidget.layer.transform;
+    
+    CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    opacityAnimation.fromValue = @(1);
+    opacityAnimation.toValue = @(0);
+    opacityAnimation.duration = THIS_ANIM_DURATION;
+    [_infoWidget.layer addAnimation:opacityAnimation forKey:@"opacityAnimation"];
+    
+    [UIView animateWithDuration:THIS_ANIM_DURATION
+                          delay:0
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+
+                         _infoWidget.layer.transform = transform;
+                         
+                         [self reArrangeImagePos];
+                         
+                     }
+                     completion:^(BOOL finished){
+                         
+                         [_infoWidget removeFromSuperview];
+                         
+                         _infoWidget.hidden = YES;
+                         _infoWidget.layer.transform = endingScale;
+                         
+
+                     }];
 }
 
 @end

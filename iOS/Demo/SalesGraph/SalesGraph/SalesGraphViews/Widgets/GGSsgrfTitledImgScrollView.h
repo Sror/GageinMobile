@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GGSsgrfBaseWidget.h"
 
-@interface GGSsgrfTitledImgScrollView : GGSsgrfBaseWidget
+@interface GGSsgrfTitledImgScrollView : GGSsgrfBaseWidget <UIScrollViewDelegate>
 {
  @protected
     NSMutableArray              *_imageButtons;
@@ -21,6 +21,10 @@
 -(void)setTaget:(id)aTarget action:(SEL)aAction;
 -(void)setImageUrls:(NSArray *)imageUrls placeholder:(UIImage *)aPlaceholder;
 -(void)setGap:(float)aGap;
+
+-(void)reArrangeImagePos;
+
+-(float)scrollViewHeight;
 @end
 
 

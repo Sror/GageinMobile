@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EA37679F176B7C1B0087232F /* 85.png in Resources */ = {isa = PBXBuildFile; fileRef = EA37679E176B7C1B0087232F /* 85.png */; };
+		EA3767A2176BC53E0087232F /* GGSsgrfPanelUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3767A1176BC53E0087232F /* GGSsgrfPanelUpdate.m */; };
+		EA3767A4176BC56C0087232F /* GGSsgrfPanelUpdate.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3767A3176BC56C0087232F /* GGSsgrfPanelUpdate.xib */; };
 		EA979873176A47A4008DE92B /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EA97985F176A47A4008DE92B /* MKAnnotationView+WebCache.m */; };
 		EA979874176A47A4008DE92B /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EA979861176A47A4008DE92B /* SDImageCache.m */; };
 		EA979875176A47A4008DE92B /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = EA979863176A47A4008DE92B /* SDWebImageCompat.m */; };
@@ -78,6 +80,9 @@
 
 /* Begin PBXFileReference section */
 		EA37679E176B7C1B0087232F /* 85.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 85.png; sourceTree = "<group>"; };
+		EA3767A0176BC53E0087232F /* GGSsgrfPanelUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfPanelUpdate.h; sourceTree = "<group>"; };
+		EA3767A1176BC53E0087232F /* GGSsgrfPanelUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfPanelUpdate.m; sourceTree = "<group>"; };
+		EA3767A3176BC56C0087232F /* GGSsgrfPanelUpdate.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSsgrfPanelUpdate.xib; sourceTree = "<group>"; };
 		EA97985E176A47A4008DE92B /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		EA97985F176A47A4008DE92B /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		EA979860176A47A4008DE92B /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
@@ -262,6 +267,9 @@
 				EA9798C0176AA982008DE92B /* GGSsgrfPanelTripleInfoPlus.xib */,
 				EA9798C2176AB573008DE92B /* GGSsgrfPanelBase.h */,
 				EA9798C3176AB573008DE92B /* GGSsgrfPanelBase.m */,
+				EA3767A0176BC53E0087232F /* GGSsgrfPanelUpdate.h */,
+				EA3767A1176BC53E0087232F /* GGSsgrfPanelUpdate.m */,
+				EA3767A3176BC56C0087232F /* GGSsgrfPanelUpdate.xib */,
 			);
 			path = Panels;
 			sourceTree = "<group>";
@@ -476,6 +484,7 @@
 				EA9798BC176A9A4F008DE92B /* GGSsgrfPanelDoubleInfoPlus.xib in Resources */,
 				EA9798C1176AA982008DE92B /* GGSsgrfPanelTripleInfoPlus.xib in Resources */,
 				EA37679F176B7C1B0087232F /* 85.png in Resources */,
+				EA3767A4176BC56C0087232F /* GGSsgrfPanelUpdate.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,6 +547,7 @@
 				EA9798BA176A9A37008DE92B /* GGSsgrfPanelDoubleInfoPlus.m in Sources */,
 				EA9798BF176AA813008DE92B /* GGSsgrfPanelTripleInfoPlus.m in Sources */,
 				EA9798C4176AB574008DE92B /* GGSsgrfPanelBase.m in Sources */,
+				EA3767A2176BC53E0087232F /* GGSsgrfPanelUpdate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,12 +23,14 @@
 #import "GGSsgrfPanelDoubleInfoPlus.h"
 #import "GGSsgrfPanelTripleInfoPlus.h"
 
+#import "GGSsgrfPanelUpdate.h"
+
 #import "UIView+AddOn.h"
 #import "UIButton+WebCache.h"
 
 #define SAMPLE_LONG_TEXT    @"WWDC 2013\n is great!WWDC 2013 is great!WWDC 2013 is great!WWDC 2013 is great!WWDC 2013 is great!WWDC 2013 is great!WWDC 2013 is great!WWDC 2013 is great!WWDC 2013 is great!WWDC 2013 is great!WWDC 2013 is great!WWDC 2013 is great!WWDC 2013 is great!"
 
-#define PANEL_POS   CGPointMake(114, 332)
+#define PANEL_POS   CGPointMake(114, 420)
 
 @interface GGViewController ()
 
@@ -60,17 +62,31 @@
     
     
     
-    [self _installImageGap];
+    [self _installPanelUpdate];
     
     
+}
+
+-(void)_installPanelUpdate
+{
+    GGSsgrfPanelUpdate *panel = [GGSsgrfPanelUpdate viewFromNibWithOwner:self];
+    [panel setPos:PANEL_POS];
+    //panel.alpha = .8f;
+    
+    UIImage *placeholder = [UIImage imageNamed:@"picSample.jpg"];
+    NSArray * imageURLs = [NSArray arrayWithObjects:TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, nil];
+    
+    [panel.viewScroll setImageUrls:imageURLs placeholder:placeholder];
+    
+    [self.view addSubview:panel];
 }
 
 
 -(void)_installImageGap
 {
     GGSsgrfPushAwayScrollView *scroll = [[GGSsgrfPushAwayScrollView alloc] initWithFrame:CGRectMake(160, 600, 500, 0)];
-    [scroll setTitle:@"This is a scroll view"];
-    scroll.backgroundColor = [UIColor blackColor];
+    //[scroll setTitle:@"This is a scroll view"];
+    //scroll.backgroundColor = [UIColor blackColor];
     
     UIImage *placeholder = [UIImage imageNamed:@"picSample.jpg"];
     NSArray * imageURLs = [NSArray arrayWithObjects:TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, nil];
