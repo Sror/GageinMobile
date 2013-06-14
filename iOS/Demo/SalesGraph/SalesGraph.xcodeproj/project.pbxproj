@@ -10,6 +10,8 @@
 		EA37679F176B7C1B0087232F /* 85.png in Resources */ = {isa = PBXBuildFile; fileRef = EA37679E176B7C1B0087232F /* 85.png */; };
 		EA3767A2176BC53E0087232F /* GGSsgrfPanelUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3767A1176BC53E0087232F /* GGSsgrfPanelUpdate.m */; };
 		EA3767A4176BC56C0087232F /* GGSsgrfPanelUpdate.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3767A3176BC56C0087232F /* GGSsgrfPanelUpdate.xib */; };
+		EA3767A7176BCFB50087232F /* GGCompanyUpdateIpadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3767A6176BCFB50087232F /* GGCompanyUpdateIpadCell.m */; };
+		EA3767A9176BCFE00087232F /* GGCompanyUpdateIpadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3767A8176BCFE00087232F /* GGCompanyUpdateIpadCell.xib */; };
 		EA979873176A47A4008DE92B /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EA97985F176A47A4008DE92B /* MKAnnotationView+WebCache.m */; };
 		EA979874176A47A4008DE92B /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EA979861176A47A4008DE92B /* SDImageCache.m */; };
 		EA979875176A47A4008DE92B /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = EA979863176A47A4008DE92B /* SDWebImageCompat.m */; };
@@ -58,31 +60,19 @@
 		EA9B3A3517693220008C5709 /* GGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9B3A3417693220008C5709 /* GGViewController.m */; };
 		EA9B3A3817693220008C5709 /* GGViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9B3A3617693220008C5709 /* GGViewController_iPhone.xib */; };
 		EA9B3A3B17693220008C5709 /* GGViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9B3A3917693220008C5709 /* GGViewController_iPad.xib */; };
-		EA9B3A4317693220008C5709 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9B3A4217693220008C5709 /* SenTestingKit.framework */; };
-		EA9B3A4417693220008C5709 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9B3A1B17693220008C5709 /* UIKit.framework */; };
-		EA9B3A4517693220008C5709 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9B3A1D17693220008C5709 /* Foundation.framework */; };
-		EA9B3A4D17693220008C5709 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA9B3A4B17693220008C5709 /* InfoPlist.strings */; };
-		EA9B3A5017693220008C5709 /* SalesGraphTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9B3A4F17693220008C5709 /* SalesGraphTests.m */; };
 		EA9B3A6217693E33008C5709 /* GGAutosizingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9B3A6117693E33008C5709 /* GGAutosizingLabel.m */; };
 		EA9B3A6717694856008C5709 /* picSample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA9B3A6617694856008C5709 /* picSample.jpg */; };
 		EA9B3A6C176959BB008C5709 /* 94.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9B3A6B176959BB008C5709 /* 94.png */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		EA9B3A4617693220008C5709 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EA9B3A1017693220008C5709 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EA9B3A1717693220008C5709;
-			remoteInfo = SalesGraph;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		EA37679E176B7C1B0087232F /* 85.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 85.png; sourceTree = "<group>"; };
 		EA3767A0176BC53E0087232F /* GGSsgrfPanelUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfPanelUpdate.h; sourceTree = "<group>"; };
 		EA3767A1176BC53E0087232F /* GGSsgrfPanelUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfPanelUpdate.m; sourceTree = "<group>"; };
 		EA3767A3176BC56C0087232F /* GGSsgrfPanelUpdate.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSsgrfPanelUpdate.xib; sourceTree = "<group>"; };
+		EA3767A5176BCFB50087232F /* GGCompanyUpdateIpadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompanyUpdateIpadCell.h; sourceTree = "<group>"; };
+		EA3767A6176BCFB50087232F /* GGCompanyUpdateIpadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompanyUpdateIpadCell.m; sourceTree = "<group>"; };
+		EA3767A8176BCFE00087232F /* GGCompanyUpdateIpadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyUpdateIpadCell.xib; sourceTree = "<group>"; };
 		EA97985E176A47A4008DE92B /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		EA97985F176A47A4008DE92B /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		EA979860176A47A4008DE92B /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
@@ -161,7 +151,6 @@
 		EA9B3A3417693220008C5709 /* GGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGViewController.m; sourceTree = "<group>"; };
 		EA9B3A3717693220008C5709 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GGViewController_iPhone.xib; sourceTree = "<group>"; };
 		EA9B3A3A17693220008C5709 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GGViewController_iPad.xib; sourceTree = "<group>"; };
-		EA9B3A4117693220008C5709 /* SalesGraphTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalesGraphTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA9B3A4217693220008C5709 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		EA9B3A4A17693220008C5709 /* SalesGraphTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SalesGraphTests-Info.plist"; sourceTree = "<group>"; };
 		EA9B3A4C17693220008C5709 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -186,16 +175,6 @@
 				EA9B3A1C17693220008C5709 /* UIKit.framework in Frameworks */,
 				EA9B3A1E17693220008C5709 /* Foundation.framework in Frameworks */,
 				EA9B3A2017693220008C5709 /* CoreGraphics.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EA9B3A3D17693220008C5709 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EA9B3A4317693220008C5709 /* SenTestingKit.framework in Frameworks */,
-				EA9B3A4417693220008C5709 /* UIKit.framework in Frameworks */,
-				EA9B3A4517693220008C5709 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +222,9 @@
 		EA979888176A54A1008DE92B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				EA3767A8176BCFE00087232F /* GGCompanyUpdateIpadCell.xib */,
+				EA3767A5176BCFB50087232F /* GGCompanyUpdateIpadCell.h */,
+				EA3767A6176BCFB50087232F /* GGCompanyUpdateIpadCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -312,7 +294,6 @@
 			isa = PBXGroup;
 			children = (
 				EA9B3A1817693220008C5709 /* SalesGraph.app */,
-				EA9B3A4117693220008C5709 /* SalesGraphTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -416,25 +397,6 @@
 			productReference = EA9B3A1817693220008C5709 /* SalesGraph.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EA9B3A4017693220008C5709 /* SalesGraphTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EA9B3A5617693220008C5709 /* Build configuration list for PBXNativeTarget "SalesGraphTests" */;
-			buildPhases = (
-				EA9B3A3C17693220008C5709 /* Sources */,
-				EA9B3A3D17693220008C5709 /* Frameworks */,
-				EA9B3A3E17693220008C5709 /* Resources */,
-				EA9B3A3F17693220008C5709 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EA9B3A4717693220008C5709 /* PBXTargetDependency */,
-			);
-			name = SalesGraphTests;
-			productName = SalesGraphTests;
-			productReference = EA9B3A4117693220008C5709 /* SalesGraphTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -458,7 +420,6 @@
 			projectRoot = "";
 			targets = (
 				EA9B3A1717693220008C5709 /* SalesGraph */,
-				EA9B3A4017693220008C5709 /* SalesGraphTests */,
 			);
 		};
 /* End PBXProject section */
@@ -485,34 +446,11 @@
 				EA9798C1176AA982008DE92B /* GGSsgrfPanelTripleInfoPlus.xib in Resources */,
 				EA37679F176B7C1B0087232F /* 85.png in Resources */,
 				EA3767A4176BC56C0087232F /* GGSsgrfPanelUpdate.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EA9B3A3E17693220008C5709 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EA9B3A4D17693220008C5709 /* InfoPlist.strings in Resources */,
+				EA3767A9176BCFE00087232F /* GGCompanyUpdateIpadCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		EA9B3A3F17693220008C5709 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EA9B3A1417693220008C5709 /* Sources */ = {
@@ -548,26 +486,11 @@
 				EA9798BF176AA813008DE92B /* GGSsgrfPanelTripleInfoPlus.m in Sources */,
 				EA9798C4176AB574008DE92B /* GGSsgrfPanelBase.m in Sources */,
 				EA3767A2176BC53E0087232F /* GGSsgrfPanelUpdate.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EA9B3A3C17693220008C5709 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EA9B3A5017693220008C5709 /* SalesGraphTests.m in Sources */,
+				EA3767A7176BCFB50087232F /* GGCompanyUpdateIpadCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		EA9B3A4717693220008C5709 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EA9B3A1717693220008C5709 /* SalesGraph */;
-			targetProxy = EA9B3A4617693220008C5709 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		EA9B3A2417693220008C5709 /* InfoPlist.strings */ = {
@@ -685,40 +608,6 @@
 			};
 			name = Release;
 		};
-		EA9B3A5717693220008C5709 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SalesGraph.app/SalesGraph";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SalesGraph/SalesGraph-Prefix.pch";
-				INFOPLIST_FILE = "SalesGraphTests/SalesGraphTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		EA9B3A5817693220008C5709 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SalesGraph.app/SalesGraph";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SalesGraph/SalesGraph-Prefix.pch";
-				INFOPLIST_FILE = "SalesGraphTests/SalesGraphTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -736,15 +625,6 @@
 			buildConfigurations = (
 				EA9B3A5417693220008C5709 /* Debug */,
 				EA9B3A5517693220008C5709 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EA9B3A5617693220008C5709 /* Build configuration list for PBXNativeTarget "SalesGraphTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EA9B3A5717693220008C5709 /* Debug */,
-				EA9B3A5817693220008C5709 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

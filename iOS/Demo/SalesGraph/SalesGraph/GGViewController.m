@@ -25,6 +25,8 @@
 
 #import "GGSsgrfPanelUpdate.h"
 
+#import "GGCompanyUpdateIpadCell.h"
+
 #import "UIView+AddOn.h"
 #import "UIButton+WebCache.h"
 
@@ -33,10 +35,15 @@
 #define PANEL_POS   CGPointMake(114, 420)
 
 @interface GGViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tv;
 
 @end
 
 @implementation GGViewController
+{
+    int         expandIndex;
+    BOOL        isExpand;
+}
 
 - (void)viewDidLoad
 {
@@ -62,9 +69,11 @@
     
     
     
-    [self _installPanelUpdate];
+    //[self _installPanelUpdate];
     
-    
+    _tv.backgroundColor = [UIColor lightGrayColor];
+    _tv.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tv.rowHeight = 80;
 }
 
 -(void)_installPanelUpdate
@@ -343,6 +352,80 @@
 -(void)puppy
 {
     NSLog(@"good boy jumps");
+}
+
+
+#pragma mark - 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 100;
+}
+
+-(GGCompanyUpdateIpadCell *)cellForTv:(UITableView *)aTv IndePath:(NSIndexPath *)indexPath
+{
+    static NSString *cellID = @"GGCompanyUpdateIpadCell";
+    GGCompanyUpdateIpadCell *cell = nil;//[aTv dequeueReusableCellWithIdentifier:cellID];
+    if (cell == nil)
+    {
+        cell = [GGCompanyUpdateIpadCell viewFromNibWithOwner:self];
+    }
+    
+    cell.lblSource.text = @"aaaaa";
+    
+    if (isExpand && indexPath.row == expandIndex)
+    {
+        [cell expand:YES];
+    }
+    else
+    {
+        [cell expand:NO];
+    }
+    
+    return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self cellForTv:tableView IndePath:indexPath];
+}
+
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self cellForTv:tableView IndePath:indexPath].frame.size.height;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int index = indexPath.row;
+    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:expandIndex inSection:indexPath.section];
+    
+    if (isExpand)
+    {
+        isExpand = NO;
+//        if (index == expandIndex)
+//        {
+//            isExpand = NO;
+//        }
+//        else
+//        {
+//            expandIndex = index;
+//        }
+    }
+    else
+    {
+        expandIndex = index;
+        isExpand = YES;
+    }
+    
+    if (oldIndexPath.row == indexPath.row)
+    {
+        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    else
+    {
+        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+
 }
 
 @end
