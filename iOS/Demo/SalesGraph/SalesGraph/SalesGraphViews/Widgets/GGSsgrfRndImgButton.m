@@ -49,9 +49,14 @@
     [self setImageWithURL:[NSURL URLWithString:aURL]];
 }
 
+-(void)clearActions
+{
+    [self removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
+}
+
 -(void)addTarget:(id)target action:(SEL)action
 {
-    //[self removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
+    //
     [self addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
 }
 

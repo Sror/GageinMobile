@@ -10,8 +10,21 @@
 #import "GGSsgrfBaseWidget.h"
 
 @interface GGSsgrfTitledImgScrollView : GGSsgrfBaseWidget
+{
+ @protected
+    NSMutableArray              *_imageButtons;
+    float                       _gap;
+    UIScrollView                *_viewScroll;
+}
 
 -(void)setTitle:(NSString *)aTitle;
 -(void)setTaget:(id)aTarget action:(SEL)aAction;
 -(void)setImageUrls:(NSArray *)imageUrls placeholder:(UIImage *)aPlaceholder;
+-(void)setGap:(float)aGap;
+@end
+
+
+// tap to push away scroll view
+@interface GGSsgrfPushAwayScrollView : GGSsgrfTitledImgScrollView
+
 @end

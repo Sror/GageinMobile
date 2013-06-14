@@ -14,7 +14,7 @@
 
 
 
-#define IMAGE_GAP   5
+//#define IMAGE_GAP   5
 
 #define IMAGE_SIZE_WIDTH    31
 #define IMAGE_SIZE_HEIGHT   31
@@ -23,25 +23,21 @@
 
 @implementation GGSsgrfTitledImgScrollView
 {
-    UIScrollView                *_viewScroll;
     GGAutosizingLabel           *_lblTitle;
     
-    NSMutableArray              *_imageButtons;
+    
     UIImage                     *_placeholder;
     NSArray                     *_imageUrls;
+    
+    
 }
 
-//- (id)initWithFrame:(CGRect)frame
-//{
-//    self = [super initWithFrame:frame];
-//    if (self) {
-//        [self _doInit];
-//    }
-//    return self;
-//}
+
 
 -(void)_doInit
 {
+    _gap = 5.f;
+    
     CGSize thisSize = self.bounds.size;
     _imageButtons = [NSMutableArray array];
     //self.backgroundColor = [UIColor blackColor];
@@ -72,6 +68,12 @@
     [self _reinstallImages];
 }
 
+-(void)setGap:(float)aGap
+{
+    _gap = aGap;
+    [self _reinstallImages];
+}
+
 -(void)_reinstallImages
 {
 //#warning TEST CODE
@@ -87,6 +89,8 @@
     {
         GGSsgrfRndImgButton *button = [[GGSsgrfRndImgButton alloc] initWithFrame:CGRectMake(offsetX, 0, IMAGE_SIZE_WIDTH, IMAGE_SIZE_HEIGHT)];
         
+        button.tag = i;
+        
         NSString *urlStr = _imageUrls[i];
         [button setImageWithURL:[NSURL URLWithString:urlStr]
                        forState:UIControlStateNormal placeholderImage:_placeholder];
@@ -95,10 +99,10 @@
         [_viewScroll addSubview:button];
         [_imageButtons addObject:button];
         
-        offsetX = CGRectGetMaxX(button.frame) + IMAGE_GAP;
+        offsetX = CGRectGetMaxX(button.frame) + _gap;
     }
     
-    _viewScroll.contentSize = CGSizeMake(offsetX - IMAGE_GAP, IMAGE_SIZE_HEIGHT);
+    _viewScroll.contentSize = CGSizeMake(offsetX - _gap, IMAGE_SIZE_HEIGHT);
 }
 
 
@@ -123,4 +127,141 @@
     [self _reinstallImages];
 }
 
+
+
 @end
+
+//////////////////////// GGSsgrfPushAwayScrollView/////////////////////////
+@implementation GGSsgrfPushAwayScrollView
+{
+    float                       _pushGap;
+}
+
+-(void)_doInit
+{
+    _pushGap = 25.f;
+    
+    [super _doInit];
+}
+
+-(void)_reinstallImages
+{
+    [super _reinstallImages];
+    
+    for (GGSsgrfRndImgButton *button in _imageButtons)
+    {
+        [button addTarget:self action:@selector(pushAwayFromIndex:)];
+    }
+}
+
+-(void)pushAwayFromIndex:(UIButton *)aButton
+{
+    int index = aButton.tag;
+    int count = _imageButtons.count;
+    
+    if (count <= 1) return; // dont need
+    
+    //
+    CGRect rects[count];
+    CGRect *rectsPtr = rects;
+    for (int i = 0; i < count; i++)
+    {
+        GGSsgrfRndImgButton *theButton = _imageButtons[i];
+        rects[i] = theButton.frame;
+    }
+    
+    //
+    UIButton *pushedButton = _imageButtons[index];
+    CGRect pushedRc = pushedButton.frame;
+    float posRelative = pushedRc.origin.x - _viewScroll.contentOffset.x;
+
+    [UIView animateWithDuration:.2f animations:^{
+        
+        // push buttons before
+        if (index > 0)
+        {
+            for (int i = index - 1; i >= 0; i--)
+            {
+                //GGSsgrfRndImgButton *inButton = _imageButtons[i + 1];
+                CGRect targetRc = rectsPtr[i + 1];
+                //CGRect targetRc = inButton.frame;
+                //GGSsgrfRndImgButton *outButton = _imageButtons[i];
+                //CGRect moveRc = rectsPtr[i];
+                
+                float distance = (i == index - 1) ? (_gap + _pushGap) : _gap;
+                
+                rectsPtr[i] = CGRectMake((targetRc.origin.x - distance - IMAGE_SIZE_WIDTH)
+                                             , targetRc.origin.y
+                                             , IMAGE_SIZE_WIDTH
+                                             , IMAGE_SIZE_HEIGHT);
+            }
+        }
+        
+        // push buttons after
+        if (index < count - 1)
+        {
+            for (int i = index + 1; i < count; i++)
+            {
+                //GGSsgrfRndImgButton *inButton = _imageButtons[i - 1];
+                CGRect targetRc = rectsPtr[i - 1];
+                //CGRect targetRc = inButton.frame;
+                //GGSsgrfRndImgButton *outButton = _imageButtons[i];
+                //CGRect moveRc = rectsPtr[i];
+                
+                float distance = (i == index + 1) ? (_gap + _pushGap) : _gap;
+                
+                rectsPtr[i] = CGRectMake((targetRc.origin.x + IMAGE_SIZE_WIDTH + distance)
+                                             , targetRc.origin.y
+                                             , IMAGE_SIZE_WIDTH
+                                             , IMAGE_SIZE_HEIGHT);
+            }
+        }
+        
+        //UIButton *firstBtn = _imageButtons[0];
+        CGRect firstRc = rectsPtr[0];
+        
+        // adjust the offset
+        if (ABS(firstRc.origin.x) > 0.001f )
+        {
+            float offsetX = -firstRc.origin.x;
+            
+            for (int i = 0; i < count; i++)
+            {
+                //CGRect theRc = rectsPtr[i];
+                rectsPtr[i] = CGRectOffset(rectsPtr[i], offsetX, 0);
+            }
+            
+//            for (GGSsgrfRndImgButton *button in _imageButtons)
+//            {
+//                button.frame = CGRectOffset(button.frame, offsetX, 0);
+//            }
+        }
+        
+        for (int i = 0; i < count; i++)
+        {
+            CGRect theRc = rectsPtr[i];
+            GGSsgrfRndImgButton *theBtn = _imageButtons[i];
+            theBtn.frame = theRc;
+        }
+        
+        //UIButton *lastBtn = _imageButtons.lastObject;
+        //CGRect firstRc = firstBtn.frame;
+        //CGRect lastRc = lastBtn.frame;
+        
+        // set scroll content size
+        float contentWidth = CGRectGetMaxX(rectsPtr[count - 1]) - (rectsPtr[0]).origin.x;
+        _viewScroll.contentSize = CGSizeMake(contentWidth, _viewScroll.contentSize.height);
+
+        float contentOffsetX = pushedButton.frame.origin.x - posRelative;
+        contentOffsetX = MAX(contentOffsetX, 0);
+        _viewScroll.contentOffset = CGPointMake(contentOffsetX, _viewScroll.contentOffset.y);
+        
+    } completion:^(BOOL finished) {
+        //
+    }];
+    
+}
+
+@end
+
+

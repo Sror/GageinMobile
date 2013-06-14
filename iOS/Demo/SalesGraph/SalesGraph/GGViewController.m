@@ -60,9 +60,25 @@
     
     
     
-    [self _installPanelTripplePlus];
+    [self _installImageGap];
     
     
+}
+
+
+-(void)_installImageGap
+{
+    GGSsgrfPushAwayScrollView *scroll = [[GGSsgrfPushAwayScrollView alloc] initWithFrame:CGRectMake(160, 600, 500, 0)];
+    [scroll setTitle:@"This is a scroll view"];
+    scroll.backgroundColor = [UIColor blackColor];
+    
+    UIImage *placeholder = [UIImage imageNamed:@"picSample.jpg"];
+    NSArray * imageURLs = [NSArray arrayWithObjects:TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, nil];
+    
+    [scroll setImageUrls:imageURLs placeholder:placeholder];
+    [scroll setGap:45];
+    
+    [self.view addSubview:scroll];
 }
 
 -(void)_installBgView

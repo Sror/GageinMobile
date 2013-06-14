@@ -50,7 +50,7 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">97.png</string>
+							<string key="NSResourceName">85.png</string>
 						</object>
 					</object>
 				</array>
@@ -254,7 +254,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">97.png</string>
+			<string key="NS.key.0">85.png</string>
 			<string key="NS.object.0">{1536, 2048}</string>
 		</object>
 		<bool key="IBDocument.UseAutolayout">YES</bool>

@@ -14,6 +14,7 @@
  #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
 #import "UIView+LoadFromNib.h"
+#import "UIView+AddOn.h"
 #endif
 
 #define TEST_IMG_URL    @"http://content4.lovelytoday.com/cache/2012/09/29/12196.88920213.img-thumb1-198x198-128.jpg"

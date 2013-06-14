@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA37679F176B7C1B0087232F /* 85.png in Resources */ = {isa = PBXBuildFile; fileRef = EA37679E176B7C1B0087232F /* 85.png */; };
 		EA979873176A47A4008DE92B /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EA97985F176A47A4008DE92B /* MKAnnotationView+WebCache.m */; };
 		EA979874176A47A4008DE92B /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EA979861176A47A4008DE92B /* SDImageCache.m */; };
 		EA979875176A47A4008DE92B /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = EA979863176A47A4008DE92B /* SDWebImageCompat.m */; };
@@ -76,6 +77,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA37679E176B7C1B0087232F /* 85.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 85.png; sourceTree = "<group>"; };
 		EA97985E176A47A4008DE92B /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		EA97985F176A47A4008DE92B /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		EA979860176A47A4008DE92B /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				EA9798A2176A569C008DE92B /* UIView+LoadFromNib.m */,
 				EA97985D176A47A4008DE92B /* SDWebImage */,
 				EA9B3A6B176959BB008C5709 /* 94.png */,
+				EA37679E176B7C1B0087232F /* 85.png */,
 				EA9798B6176A94EB008DE92B /* 97.png */,
 				EA9B3A6617694856008C5709 /* picSample.jpg */,
 				EA9B3A6017693E33008C5709 /* GGAutosizingLabel.h */,
@@ -472,6 +475,7 @@
 				EA9798B7176A94EB008DE92B /* 97.png in Resources */,
 				EA9798BC176A9A4F008DE92B /* GGSsgrfPanelDoubleInfoPlus.xib in Resources */,
 				EA9798C1176AA982008DE92B /* GGSsgrfPanelTripleInfoPlus.xib in Resources */,
+				EA37679F176B7C1B0087232F /* 85.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
