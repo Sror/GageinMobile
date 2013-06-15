@@ -219,8 +219,8 @@
     
     //
     
-    //CGRect pushedRc = pushedButton.frame;
-    //float posRelative = pushedRc.origin.x - _viewScroll.contentOffset.x;
+    CGRect pushedRc = pushedButton.frame;
+    float posRelative = pushedRc.origin.x - _viewScroll.contentOffset.x;
 
     [UIView animateWithDuration:THIS_ANIM_DURATION / 4 animations:^{
         
@@ -299,8 +299,14 @@
         float contentWidth = CGRectGetMaxX(rectsPtr[count - 1]) - (rectsPtr[0]).origin.x;
         _viewScroll.contentSize = CGSizeMake(contentWidth, _viewScroll.contentSize.height);
 
-        //float contentOffsetX = pushedButton.frame.origin.x - posRelative;
-        float contentOffsetX = pushedButton.frame.origin.x + pushedButton.frame.size.width / 2 - self.frame.size.width / 2;
+        float contentOffsetX = pushedButton.frame.origin.x - posRelative;
+        float widgetOriginX = pushedButton.frame.origin.x + (pushedButton.frame.size.width - _infoWidget.frame.size.width) / 2;
+        float widgetMaxX = widgetOriginX + _infoWidget.frame.size.width;
+        contentOffsetX = MIN(contentOffsetX, widgetOriginX);
+        contentOffsetX = MAX(contentOffsetX, widgetMaxX - _viewScroll.frame.size.width);
+        _viewScroll.contentOffset = CGPointMake(contentOffsetX, _viewScroll.contentOffset.y);
+        
+        //float contentOffsetX = pushedButton.frame.origin.x + pushedButton.frame.size.width / 2 - self.frame.size.width / 2;
         //contentOffsetX = MAX(contentOffsetX, 0);
         _viewScroll.contentOffset = CGPointMake(contentOffsetX, _viewScroll.contentOffset.y);
         
@@ -312,6 +318,12 @@
         _infoWidget.center = center;
         [_viewScroll addSubview:_infoWidget];
         
+//        float contentOffsetX = _viewScroll.contentOffset.x;
+//        float widgetX = _infoWidget.frame.origin.x;
+//        contentOffsetX = MIN(contentOffsetX, widgetX);
+//        contentOffsetX = MAX(contentOffsetX, CGRectGetMaxX(_infoWidget.frame) - _viewScroll.frame.size.width);
+//        _viewScroll.contentOffset = CGPointMake(contentOffsetX, _viewScroll.contentOffset.y);
+        
         CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
         opacityAnimation.fromValue = @(0);
         opacityAnimation.toValue = @(1);
@@ -321,7 +333,7 @@
         CAKeyframeAnimation *alertScaleAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
         
         CATransform3D startingScale = CATransform3DScale(_infoWidget.layer.transform, 0, 0, 0);
-        CATransform3D overshootScale = CATransform3DScale(_infoWidget.layer.transform, 1.1, 1.1, 1.0);
+        CATransform3D overshootScale = CATransform3DScale(_infoWidget.layer.transform, 1.05, 1.05, 1.0);
         CATransform3D undershootScale = CATransform3DScale(_infoWidget.layer.transform, 0.95, 0.95, 1.0);
         CATransform3D endingScale = _infoWidget.layer.transform;
         

@@ -54,6 +54,7 @@ typedef enum {
 #define SAMPLE_TEXT         @"This is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing"
 
 #define GAGEIN_SLOGAN       @"a sales intelligence company"
+#define TEST_IMG_URL        @"http://content4.lovelytoday.com/cache/2012/09/29/12196.88920213.img-thumb1-198x198-128.jpg"
 
 //
 #undef	__INT

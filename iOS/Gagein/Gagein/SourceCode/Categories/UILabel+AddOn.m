@@ -19,8 +19,7 @@
 
 -(void)calculateSizeConstaintToHeight:(float)aMaxHeight
 {
-    CGSize constraint = CGSizeMake(self.frame.size.width, aMaxHeight);
-    CGSize size = [self.text sizeWithFont:self.font constrainedToSize:constraint lineBreakMode:self.lineBreakMode];
+    CGSize size = [self calculatedSize:aMaxHeight];
     
     //float realHeight = size.height * size.width / constraint.width;
     
@@ -28,6 +27,17 @@
     CGRect newRc = self.frame;
     newRc.size.height = size.height;
     self.frame = newRc;
+}
+
+-(CGSize)calculatedSize
+{
+    return [self calculatedSize:FLT_MAX];
+}
+
+-(CGSize)calculatedSize:(float)aMaxHeight
+{
+    CGSize constraint = CGSizeMake(self.frame.size.width, aMaxHeight);
+    return [self.text sizeWithFont:self.font constrainedToSize:constraint lineBreakMode:self.lineBreakMode];
 }
 
 @end

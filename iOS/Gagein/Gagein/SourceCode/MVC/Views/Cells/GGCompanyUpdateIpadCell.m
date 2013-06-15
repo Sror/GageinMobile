@@ -86,10 +86,16 @@
         [self addSubview:_panel];
         
         NSMutableArray *imageURLs = [NSMutableArray array];
+        
+#if 0
         for (GGCompany *company in _data.mentionedCompanies)
         {
             [imageURLs addObjectIfNotNil:company.logoPath];
         }
+#else
+        imageURLs = [NSMutableArray arrayWithObjects:TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, nil];
+#endif
+        
         
         [_panel.viewScroll setImageUrls:imageURLs placeholder:GGSharedImagePool.logoDefaultCompany];
         
