@@ -35,5 +35,6 @@
 
 -(void)adjustHeightToFitContent;
 
+-(void)setPos:(CGPoint)aNewPos;
 
 @end

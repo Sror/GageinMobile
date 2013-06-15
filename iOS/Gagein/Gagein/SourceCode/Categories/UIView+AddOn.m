@@ -129,4 +129,11 @@ static MBProgressHUD * hud;
     self.frame = thisRc;
 }
 
+-(void)setPos:(CGPoint)aNewPos
+{
+    CGRect thisRc = self.frame;
+    thisRc.origin = aNewPos;
+    self.frame = thisRc;
+}
+
 @end

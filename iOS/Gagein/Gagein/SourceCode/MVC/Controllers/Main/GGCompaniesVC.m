@@ -76,6 +76,9 @@
     
     BOOL                                _hasMoreUpdates;
     BOOL                                _hasMoreHappenings;
+    
+    NSIndexPath                         *_expandIndexPath;      // for iPad
+    BOOL                                _isExpanding;           // for iPad
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -812,8 +815,9 @@
 {
     int row = indexPath.row;
     
-    static NSString *updateCellId = @"GGCompanyUpdateIpadCell";
-    GGCompanyUpdateIpadCell *cell = [_updatesTV dequeueReusableCellWithIdentifier:updateCellId];
+    //static NSString *updateCellId = @"GGCompanyUpdateIpadCell";
+#warning DISABLE Reuse, for height error;
+    GGCompanyUpdateIpadCell *cell = nil;//[_updatesTV dequeueReusableCellWithIdentifier:updateCellId];
     if (cell == nil) {
         cell = [GGCompanyUpdateIpadCell viewFromNibWithOwner:self];
         [cell.btnLogo addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -822,19 +826,27 @@
     
     GGCompanyUpdate *updateData = self.updates[row];
     
-    //cell.ID = updateData.ID;
+    cell.data = updateData;
     cell.btnLogo.tag = row;
     
     cell.lblHeadline.text = [updateData headlineTruncated];
-    cell.lblSource.text = updateData.fromSource;//[NSString stringWithFormat:@"%@ · %@", updateData.fromSource, [updateData intervalStringWithDate:updateData.date]];
-    
-    //#warning FAKE DATA - company update description
+    cell.lblSource.text = updateData.fromSource;
     cell.lblDescription.text = updateData.content;
     
     [cell.ivLogo setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
     
     cell.lblInterval.text = [updateData intervalStringWithDate:updateData.date];
     cell.hasBeenRead = updateData.hasBeenRead;
+    
+    if (indexPath.row == _expandIndexPath.row)
+    {
+        cell.expanded = _isExpanding;
+    }
+    else
+    {
+        cell.expanded = NO;
+    }
+    
     [cell adjustLayout];
     
     return cell;
@@ -1018,12 +1030,32 @@
     
     if (tableView == self.updatesTV)
     {
-        GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
-        vc.naviTitleString = self.naviTitle;
-        vc.updates = self.updates;
-        vc.updateIndex = row;
-        
-        [self.navigationController pushViewController:vc animated:YES];
+        if (ISIPADDEVICE)
+        {
+            NSIndexPath *oldIdxPath = _expandIndexPath;
+            _expandIndexPath = indexPath;
+            _isExpanding = !_isExpanding;
+            
+            [tableView beginUpdates];
+            if (indexPath.row == oldIdxPath.row)
+            {
+                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            else
+            {
+                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIdxPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            [tableView endUpdates];
+        }
+        else
+        {
+            GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
+            vc.naviTitleString = self.naviTitle;
+            vc.updates = self.updates;
+            vc.updateIndex = row;
+            
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
     else if (tableView == self.happeningsTV)
     {

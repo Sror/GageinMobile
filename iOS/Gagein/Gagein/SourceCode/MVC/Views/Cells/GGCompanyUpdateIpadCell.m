@@ -8,7 +8,16 @@
 
 #import "GGCompanyUpdateIpadCell.h"
 
+#import "GGSsgrfPanelUpdate.h"
+#import "GGSsgrfTitledImgScrollView.h"
+
+#import "GGCompanyUpdate.h"
+#import "GGCompany.h"
+
 @implementation GGCompanyUpdateIpadCell
+{
+    GGSsgrfPanelUpdate *_panel;
+}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -47,6 +56,44 @@
     else
     {
         _lblHeadline.textColor = GGSharedColor.orangeGageinDark;
+    }
+}
+
+-(void)setExpanded:(BOOL)expanded
+{
+    _expanded = expanded;
+    [self _doExpand];
+}
+
+-(void)_doExpand
+{
+//    for (UIView *subView in self.subviews)
+//    {
+//        if ([subView isKindOfClass:[GGSsgrfPanelUpdate class]])
+//        {
+//            [subView removeFromSuperview];
+//        }
+//    }
+    [_panel removeFromSuperview];
+    
+    [self adjustLayout];
+    
+    if (_expanded)
+    {
+        _panel = [GGSsgrfPanelUpdate viewFromNibWithOwner:self];
+        float thisH = self.frame.size.height;
+        [_panel setPos:CGPointMake(110, thisH)];
+        [self addSubview:_panel];
+        
+        NSMutableArray *imageURLs = [NSMutableArray array];
+        for (GGCompany *company in _data.mentionedCompanies)
+        {
+            [imageURLs addObjectIfNotNil:company.logoPath];
+        }
+        
+        [_panel.viewScroll setImageUrls:imageURLs placeholder:GGSharedImagePool.logoDefaultCompany];
+        
+        [self adjustLayout];
     }
 }
 

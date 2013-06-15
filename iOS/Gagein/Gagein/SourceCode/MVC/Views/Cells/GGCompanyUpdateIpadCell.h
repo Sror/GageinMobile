@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class GGCompanyUpdate;
+
 @interface GGCompanyUpdateIpadCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *viewContent;
 @property (weak, nonatomic) IBOutlet UIImageView *ivContentBg;
@@ -20,6 +22,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnLogo;
 
 @property (assign, nonatomic)  BOOL         hasBeenRead;
+
+@property (assign, nonatomic) BOOL          expanded;
+@property (strong, nonatomic)   GGCompanyUpdate     *data;
 
 -(void)adjustLayout;
 @end

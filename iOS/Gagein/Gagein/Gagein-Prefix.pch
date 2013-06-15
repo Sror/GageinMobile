@@ -26,6 +26,7 @@
     #import "GGBaseViewController.h"
     #import "GGColor.h"
     #import "UIImageView+WebCache.h"
+    #import "UIButton+WebCache.h"
     #import "GGUtils.h"
     #import "GGAnimation.h"
     #import "GGImagePool.h"

@@ -173,6 +173,25 @@
 		EA2F009D1746BFA700E191BD /* action-white-button.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2F00871746BFA700E191BD /* action-white-button.png */; };
 		EA2F009E1746BFA700E191BD /* action-white-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2F00881746BFA700E191BD /* action-white-button@2x.png */; };
 		EA30D7831756C05C000F8D73 /* GGUpgradeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EA30D7821756C05C000F8D73 /* GGUpgradeInfo.m */; };
+		EA3767D3176BE32E0087232F /* GGSsgrfPanelBase.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3767B1176BE32D0087232F /* GGSsgrfPanelBase.m */; };
+		EA3767D4176BE32E0087232F /* GGSsgrfPanelComChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3767B3176BE32D0087232F /* GGSsgrfPanelComChart.m */; };
+		EA3767D5176BE32E0087232F /* GGSsgrfPanelComChart.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3767B4176BE32D0087232F /* GGSsgrfPanelComChart.xib */; };
+		EA3767D6176BE32E0087232F /* GGSsgrfPanelDoubleInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3767B6176BE32D0087232F /* GGSsgrfPanelDoubleInfo.m */; };
+		EA3767D7176BE32E0087232F /* GGSsgrfPanelDoubleInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3767B7176BE32D0087232F /* GGSsgrfPanelDoubleInfo.xib */; };
+		EA3767D8176BE32E0087232F /* GGSsgrfPanelDoubleInfoPlus.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3767B9176BE32D0087232F /* GGSsgrfPanelDoubleInfoPlus.m */; };
+		EA3767D9176BE32E0087232F /* GGSsgrfPanelDoubleInfoPlus.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3767BA176BE32D0087232F /* GGSsgrfPanelDoubleInfoPlus.xib */; };
+		EA3767DA176BE32E0087232F /* GGSsgrfPanelTripleInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3767BC176BE32D0087232F /* GGSsgrfPanelTripleInfo.m */; };
+		EA3767DB176BE32E0087232F /* GGSsgrfPanelTripleInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3767BD176BE32D0087232F /* GGSsgrfPanelTripleInfo.xib */; };
+		EA3767DC176BE32E0087232F /* GGSsgrfPanelTripleInfoPlus.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3767BF176BE32D0087232F /* GGSsgrfPanelTripleInfoPlus.m */; };
+		EA3767DD176BE32E0087232F /* GGSsgrfPanelTripleInfoPlus.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3767C0176BE32D0087232F /* GGSsgrfPanelTripleInfoPlus.xib */; };
+		EA3767DE176BE32E0087232F /* GGSsgrfPanelUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3767C2176BE32D0087232F /* GGSsgrfPanelUpdate.m */; };
+		EA3767DF176BE32E0087232F /* GGSsgrfPanelUpdate.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3767C3176BE32D0087232F /* GGSsgrfPanelUpdate.xib */; };
+		EA3767E0176BE32E0087232F /* GGSsgrfBaseWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3767C6176BE32D0087232F /* GGSsgrfBaseWidget.m */; };
+		EA3767E1176BE32E0087232F /* GGSsgrfDblTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3767C8176BE32D0087232F /* GGSsgrfDblTitleView.m */; };
+		EA3767E2176BE32E0087232F /* GGSsgrfInfoWidgetView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3767CA176BE32D0087232F /* GGSsgrfInfoWidgetView.m */; };
+		EA3767E3176BE32E0087232F /* GGSsgrfRndImgButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3767CC176BE32D0087232F /* GGSsgrfRndImgButton.m */; };
+		EA3767E4176BE32E0087232F /* GGSsgrfTitledImageBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3767CE176BE32D0087232F /* GGSsgrfTitledImageBtnView.m */; };
+		EA3767E5176BE32E0087232F /* GGSsgrfTitledImgScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3767D0176BE32D0087232F /* GGSsgrfTitledImgScrollView.m */; };
 		EA381C5E171FA6C2004535B5 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = EA381C5D171FA6C2004535B5 /* placeholder.png */; };
 		EA381C61171FA700004535B5 /* GGImagePool.m in Sources */ = {isa = PBXBuildFile; fileRef = EA381C60171FA700004535B5 /* GGImagePool.m */; };
 		EA381C65171FBBEB004535B5 /* GGSavedUpdatesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA381C63171FBBEB004535B5 /* GGSavedUpdatesVC.m */; };
@@ -750,6 +769,38 @@
 		EA2F00881746BFA700E191BD /* action-white-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-white-button@2x.png"; sourceTree = "<group>"; };
 		EA30D7811756C05C000F8D73 /* GGUpgradeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGUpgradeInfo.h; sourceTree = "<group>"; };
 		EA30D7821756C05C000F8D73 /* GGUpgradeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUpgradeInfo.m; sourceTree = "<group>"; };
+		EA3767B0176BE32D0087232F /* GGSsgrfPanelBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfPanelBase.h; sourceTree = "<group>"; };
+		EA3767B1176BE32D0087232F /* GGSsgrfPanelBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfPanelBase.m; sourceTree = "<group>"; };
+		EA3767B2176BE32D0087232F /* GGSsgrfPanelComChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfPanelComChart.h; sourceTree = "<group>"; };
+		EA3767B3176BE32D0087232F /* GGSsgrfPanelComChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfPanelComChart.m; sourceTree = "<group>"; };
+		EA3767B4176BE32D0087232F /* GGSsgrfPanelComChart.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSsgrfPanelComChart.xib; sourceTree = "<group>"; };
+		EA3767B5176BE32D0087232F /* GGSsgrfPanelDoubleInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfPanelDoubleInfo.h; sourceTree = "<group>"; };
+		EA3767B6176BE32D0087232F /* GGSsgrfPanelDoubleInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfPanelDoubleInfo.m; sourceTree = "<group>"; };
+		EA3767B7176BE32D0087232F /* GGSsgrfPanelDoubleInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSsgrfPanelDoubleInfo.xib; sourceTree = "<group>"; };
+		EA3767B8176BE32D0087232F /* GGSsgrfPanelDoubleInfoPlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfPanelDoubleInfoPlus.h; sourceTree = "<group>"; };
+		EA3767B9176BE32D0087232F /* GGSsgrfPanelDoubleInfoPlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfPanelDoubleInfoPlus.m; sourceTree = "<group>"; };
+		EA3767BA176BE32D0087232F /* GGSsgrfPanelDoubleInfoPlus.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSsgrfPanelDoubleInfoPlus.xib; sourceTree = "<group>"; };
+		EA3767BB176BE32D0087232F /* GGSsgrfPanelTripleInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfPanelTripleInfo.h; sourceTree = "<group>"; };
+		EA3767BC176BE32D0087232F /* GGSsgrfPanelTripleInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfPanelTripleInfo.m; sourceTree = "<group>"; };
+		EA3767BD176BE32D0087232F /* GGSsgrfPanelTripleInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSsgrfPanelTripleInfo.xib; sourceTree = "<group>"; };
+		EA3767BE176BE32D0087232F /* GGSsgrfPanelTripleInfoPlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfPanelTripleInfoPlus.h; sourceTree = "<group>"; };
+		EA3767BF176BE32D0087232F /* GGSsgrfPanelTripleInfoPlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfPanelTripleInfoPlus.m; sourceTree = "<group>"; };
+		EA3767C0176BE32D0087232F /* GGSsgrfPanelTripleInfoPlus.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSsgrfPanelTripleInfoPlus.xib; sourceTree = "<group>"; };
+		EA3767C1176BE32D0087232F /* GGSsgrfPanelUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfPanelUpdate.h; sourceTree = "<group>"; };
+		EA3767C2176BE32D0087232F /* GGSsgrfPanelUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfPanelUpdate.m; sourceTree = "<group>"; };
+		EA3767C3176BE32D0087232F /* GGSsgrfPanelUpdate.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSsgrfPanelUpdate.xib; sourceTree = "<group>"; };
+		EA3767C5176BE32D0087232F /* GGSsgrfBaseWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfBaseWidget.h; sourceTree = "<group>"; };
+		EA3767C6176BE32D0087232F /* GGSsgrfBaseWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfBaseWidget.m; sourceTree = "<group>"; };
+		EA3767C7176BE32D0087232F /* GGSsgrfDblTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfDblTitleView.h; sourceTree = "<group>"; };
+		EA3767C8176BE32D0087232F /* GGSsgrfDblTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfDblTitleView.m; sourceTree = "<group>"; };
+		EA3767C9176BE32D0087232F /* GGSsgrfInfoWidgetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfInfoWidgetView.h; sourceTree = "<group>"; };
+		EA3767CA176BE32D0087232F /* GGSsgrfInfoWidgetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfInfoWidgetView.m; sourceTree = "<group>"; };
+		EA3767CB176BE32D0087232F /* GGSsgrfRndImgButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfRndImgButton.h; sourceTree = "<group>"; };
+		EA3767CC176BE32D0087232F /* GGSsgrfRndImgButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfRndImgButton.m; sourceTree = "<group>"; };
+		EA3767CD176BE32D0087232F /* GGSsgrfTitledImageBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfTitledImageBtnView.h; sourceTree = "<group>"; };
+		EA3767CE176BE32D0087232F /* GGSsgrfTitledImageBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfTitledImageBtnView.m; sourceTree = "<group>"; };
+		EA3767CF176BE32D0087232F /* GGSsgrfTitledImgScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfTitledImgScrollView.h; sourceTree = "<group>"; };
+		EA3767D0176BE32D0087232F /* GGSsgrfTitledImgScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfTitledImgScrollView.m; sourceTree = "<group>"; };
 		EA381C5D171FA6C2004535B5 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		EA381C5F171FA700004535B5 /* GGImagePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGImagePool.h; sourceTree = "<group>"; };
 		EA381C60171FA700004535B5 /* GGImagePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGImagePool.m; sourceTree = "<group>"; };
@@ -1682,6 +1733,61 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		EA3767AA176BE32D0087232F /* SalesGraphViews */ = {
+			isa = PBXGroup;
+			children = (
+				EA3767AF176BE32D0087232F /* Panels */,
+				EA3767C4176BE32D0087232F /* Widgets */,
+			);
+			path = SalesGraphViews;
+			sourceTree = "<group>";
+		};
+		EA3767AF176BE32D0087232F /* Panels */ = {
+			isa = PBXGroup;
+			children = (
+				EA3767B0176BE32D0087232F /* GGSsgrfPanelBase.h */,
+				EA3767B1176BE32D0087232F /* GGSsgrfPanelBase.m */,
+				EA3767B2176BE32D0087232F /* GGSsgrfPanelComChart.h */,
+				EA3767B3176BE32D0087232F /* GGSsgrfPanelComChart.m */,
+				EA3767B4176BE32D0087232F /* GGSsgrfPanelComChart.xib */,
+				EA3767B5176BE32D0087232F /* GGSsgrfPanelDoubleInfo.h */,
+				EA3767B6176BE32D0087232F /* GGSsgrfPanelDoubleInfo.m */,
+				EA3767B7176BE32D0087232F /* GGSsgrfPanelDoubleInfo.xib */,
+				EA3767B8176BE32D0087232F /* GGSsgrfPanelDoubleInfoPlus.h */,
+				EA3767B9176BE32D0087232F /* GGSsgrfPanelDoubleInfoPlus.m */,
+				EA3767BA176BE32D0087232F /* GGSsgrfPanelDoubleInfoPlus.xib */,
+				EA3767BB176BE32D0087232F /* GGSsgrfPanelTripleInfo.h */,
+				EA3767BC176BE32D0087232F /* GGSsgrfPanelTripleInfo.m */,
+				EA3767BD176BE32D0087232F /* GGSsgrfPanelTripleInfo.xib */,
+				EA3767BE176BE32D0087232F /* GGSsgrfPanelTripleInfoPlus.h */,
+				EA3767BF176BE32D0087232F /* GGSsgrfPanelTripleInfoPlus.m */,
+				EA3767C0176BE32D0087232F /* GGSsgrfPanelTripleInfoPlus.xib */,
+				EA3767C1176BE32D0087232F /* GGSsgrfPanelUpdate.h */,
+				EA3767C2176BE32D0087232F /* GGSsgrfPanelUpdate.m */,
+				EA3767C3176BE32D0087232F /* GGSsgrfPanelUpdate.xib */,
+			);
+			path = Panels;
+			sourceTree = "<group>";
+		};
+		EA3767C4176BE32D0087232F /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				EA3767C5176BE32D0087232F /* GGSsgrfBaseWidget.h */,
+				EA3767C6176BE32D0087232F /* GGSsgrfBaseWidget.m */,
+				EA3767C7176BE32D0087232F /* GGSsgrfDblTitleView.h */,
+				EA3767C8176BE32D0087232F /* GGSsgrfDblTitleView.m */,
+				EA3767C9176BE32D0087232F /* GGSsgrfInfoWidgetView.h */,
+				EA3767CA176BE32D0087232F /* GGSsgrfInfoWidgetView.m */,
+				EA3767CB176BE32D0087232F /* GGSsgrfRndImgButton.h */,
+				EA3767CC176BE32D0087232F /* GGSsgrfRndImgButton.m */,
+				EA3767CD176BE32D0087232F /* GGSsgrfTitledImageBtnView.h */,
+				EA3767CE176BE32D0087232F /* GGSsgrfTitledImageBtnView.m */,
+				EA3767CF176BE32D0087232F /* GGSsgrfTitledImgScrollView.h */,
+				EA3767D0176BE32D0087232F /* GGSsgrfTitledImgScrollView.m */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
 		EA3CB5D3175D5B2600285986 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -2063,6 +2169,7 @@
 		EAC96C35170983B5003FAFAA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EA3767AA176BE32D0087232F /* SalesGraphViews */,
 				EA18C3031742B5CF008A2D67 /* Cells */,
 				EAF99599173C7E3C009DA08E /* EmptyPage */,
 				EA4CC68D172BB4380082A048 /* Profile */,
@@ -3144,6 +3251,12 @@
 				EA96495C17613D5E00739F73 /* dropdown-alert.png in Resources */,
 				EA96495D17613D5E00739F73 /* dropdown-alert@2x.png in Resources */,
 				EA9B3A0E1768E280008C5709 /* GGTriggerChartCell.xib in Resources */,
+				EA3767D5176BE32E0087232F /* GGSsgrfPanelComChart.xib in Resources */,
+				EA3767D7176BE32E0087232F /* GGSsgrfPanelDoubleInfo.xib in Resources */,
+				EA3767D9176BE32E0087232F /* GGSsgrfPanelDoubleInfoPlus.xib in Resources */,
+				EA3767DB176BE32E0087232F /* GGSsgrfPanelTripleInfo.xib in Resources */,
+				EA3767DD176BE32E0087232F /* GGSsgrfPanelTripleInfoPlus.xib in Resources */,
+				EA3767DF176BE32E0087232F /* GGSsgrfPanelUpdate.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3387,6 +3500,19 @@
 				EA916216176792B4000AB2FB /* GGScrollToHideVC.m in Sources */,
 				EA9162631767F6F1000AB2FB /* GGNavigationController.m in Sources */,
 				EA9B3A0C1768E24E008C5709 /* GGTriggerChartCell.m in Sources */,
+				EA3767D3176BE32E0087232F /* GGSsgrfPanelBase.m in Sources */,
+				EA3767D4176BE32E0087232F /* GGSsgrfPanelComChart.m in Sources */,
+				EA3767D6176BE32E0087232F /* GGSsgrfPanelDoubleInfo.m in Sources */,
+				EA3767D8176BE32E0087232F /* GGSsgrfPanelDoubleInfoPlus.m in Sources */,
+				EA3767DA176BE32E0087232F /* GGSsgrfPanelTripleInfo.m in Sources */,
+				EA3767DC176BE32E0087232F /* GGSsgrfPanelTripleInfoPlus.m in Sources */,
+				EA3767DE176BE32E0087232F /* GGSsgrfPanelUpdate.m in Sources */,
+				EA3767E0176BE32E0087232F /* GGSsgrfBaseWidget.m in Sources */,
+				EA3767E1176BE32E0087232F /* GGSsgrfDblTitleView.m in Sources */,
+				EA3767E2176BE32E0087232F /* GGSsgrfInfoWidgetView.m in Sources */,
+				EA3767E3176BE32E0087232F /* GGSsgrfRndImgButton.m in Sources */,
+				EA3767E4176BE32E0087232F /* GGSsgrfTitledImageBtnView.m in Sources */,
+				EA3767E5176BE32E0087232F /* GGSsgrfTitledImgScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
