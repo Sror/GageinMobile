@@ -10,13 +10,17 @@
 
 #import "GGSsgrfPanelUpdate.h"
 #import "GGSsgrfTitledImgScrollView.h"
+#import "GGUpdateActionBar.h"
 
 #import "GGCompanyUpdate.h"
 #import "GGCompany.h"
 
+#define EXPAND_PANEL_OFFSET_X       110
+
 @implementation GGCompanyUpdateIpadCell
 {
-    GGSsgrfPanelUpdate *_panel;
+    GGSsgrfPanelUpdate  *_panel;
+    GGUpdateActionBar   *_actionBar;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -75,15 +79,23 @@
 //        }
 //    }
     [_panel removeFromSuperview];
+    [_actionBar removeFromSuperview];
     
     [self adjustLayout];
+    
+    _ivDblArrow.image = _expanded ? [UIImage imageNamed:@"dblUpArrow"] : [UIImage imageNamed:@"dblDownArrow"];
     
     if (_expanded)
     {
         _panel = [GGSsgrfPanelUpdate viewFromNibWithOwner:self];
         float thisH = self.frame.size.height;
-        [_panel setPos:CGPointMake(110, thisH)];
+        [_panel setPos:CGPointMake(EXPAND_PANEL_OFFSET_X, thisH)];
         [self addSubview:_panel];
+        
+        _actionBar = [GGUpdateActionBar viewFromNibWithOwner:self];
+        float actionOriginY = CGRectGetMaxY(_panel.frame);
+        [_actionBar setPos:CGPointMake(EXPAND_PANEL_OFFSET_X, actionOriginY)];
+        [self addSubview:_actionBar];
         
         NSMutableArray *imageURLs = [NSMutableArray array];
         

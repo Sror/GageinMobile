@@ -99,7 +99,7 @@
 										<string key="NSFrame">{{425, 4}, {210, 21}}</string>
 										<reference key="NSSuperview" ref="297775012"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="133733877"/>
+										<reference key="NSNextKeyView" ref="607736387"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -154,6 +154,7 @@
 										<string key="NSFrame">{{15, 47}, {620, 35}}</string>
 										<reference key="NSSuperview" ref="297775012"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -173,6 +174,21 @@
 										<reference key="IBUIFont" ref="682345732"/>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 										<double key="preferredMaxLayoutWidth">620</double>
+									</object>
+									<object class="IBUIImageView" id="607736387">
+										<reference key="NSNextResponder" ref="297775012"/>
+										<int key="NSvFlags">292</int>
+										<string key="NSFrame">{{610, 29}, {9, 6}}</string>
+										<reference key="NSSuperview" ref="297775012"/>
+										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView" ref="133733877"/>
+										<string key="NSReuseIdentifierKey">_NS:9</string>
+										<bool key="IBUIUserInteractionEnabled">NO</bool>
+										<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+										<object class="NSCustomResource" key="IBUIImage">
+											<string key="NSClassName">NSImage</string>
+											<string key="NSResourceName">dblDownArrow@2x.png</string>
+										</object>
 									</object>
 								</array>
 								<string key="NSFrame">{{83, 9}, {646, 84}}</string>
@@ -322,6 +338,14 @@
 					</object>
 					<int key="connectionID">22</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ivDblArrow</string>
+						<reference key="source" ref="103463306"/>
+						<reference key="destination" ref="607736387"/>
+					</object>
+					<int key="connectionID">25</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -361,6 +385,7 @@
 							<reference ref="133733877"/>
 							<reference ref="170259457"/>
 							<reference ref="316124690"/>
+							<reference ref="607736387"/>
 						</array>
 						<reference key="parent" ref="103463306"/>
 						<string key="objectName">viewContent</string>
@@ -407,6 +432,12 @@
 						<reference key="parent" ref="297775012"/>
 						<string key="objectName">lblHeadline</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">23</int>
+						<reference key="object" ref="607736387"/>
+						<reference key="parent" ref="297775012"/>
+						<string key="objectName">ivDblArrow</string>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -420,6 +451,7 @@
 				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="2.CustomClassName">GGCompanyUpdateIpadCell</string>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -428,7 +460,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">22</int>
+			<int key="maxID">25</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -438,6 +470,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="btnLogo">UIButton</string>
 						<string key="ivContentBg">UIImageView</string>
+						<string key="ivDblArrow">UIImageView</string>
 						<string key="ivLogo">UIImageView</string>
 						<string key="lblDescription">UILabel</string>
 						<string key="lblHeadline">UILabel</string>
@@ -452,6 +485,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="ivContentBg">
 							<string key="name">ivContentBg</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="ivDblArrow">
+							<string key="name">ivDblArrow</string>
 							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="ivLogo">
@@ -490,6 +527,10 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">dblDownArrow@2x.png</string>
+			<string key="NS.object.0">{18, 12}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>

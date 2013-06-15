@@ -334,6 +334,10 @@
 		EA96495C17613D5E00739F73 /* dropdown-alert.png in Resources */ = {isa = PBXBuildFile; fileRef = EA96495A17613D5E00739F73 /* dropdown-alert.png */; };
 		EA96495D17613D5E00739F73 /* dropdown-alert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA96495B17613D5E00739F73 /* dropdown-alert@2x.png */; };
 		EA964960176159A200739F73 /* UIScrollView+OTS.m in Sources */ = {isa = PBXBuildFile; fileRef = EA96495F1761599E00739F73 /* UIScrollView+OTS.m */; };
+		EA96DDC1176D01C6007355DB /* dblDownArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA96DDBF176D01C6007355DB /* dblDownArrow@2x.png */; };
+		EA96DDC2176D01C6007355DB /* dblUpArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA96DDC0176D01C6007355DB /* dblUpArrow@2x.png */; };
+		EA96DDC6176D0F57007355DB /* GGUpdateActionBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA96DDC5176D0F57007355DB /* GGUpdateActionBar.m */; };
+		EA96DDC8176D0F71007355DB /* GGUpdateActionBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA96DDC7176D0F71007355DB /* GGUpdateActionBar.xib */; };
 		EA975758174D3419007D64CD /* sendSmsbtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA975757174D3419007D64CD /* sendSmsbtn@2x.png */; };
 		EA97575A174D3424007D64CD /* updateSwitchBackbtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA975759174D3424007D64CD /* updateSwitchBackbtn@2x.png */; };
 		EA97575D174D45A4007D64CD /* NSMutableArray+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA97575C174D45A4007D64CD /* NSMutableArray+AddOn.m */; };
@@ -1021,6 +1025,11 @@
 		EA96495B17613D5E00739F73 /* dropdown-alert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropdown-alert@2x.png"; sourceTree = "<group>"; };
 		EA96495E1761599E00739F73 /* UIScrollView+OTS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+OTS.h"; sourceTree = "<group>"; };
 		EA96495F1761599E00739F73 /* UIScrollView+OTS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+OTS.m"; sourceTree = "<group>"; };
+		EA96DDBF176D01C6007355DB /* dblDownArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dblDownArrow@2x.png"; sourceTree = "<group>"; };
+		EA96DDC0176D01C6007355DB /* dblUpArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dblUpArrow@2x.png"; sourceTree = "<group>"; };
+		EA96DDC4176D0F57007355DB /* GGUpdateActionBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGUpdateActionBar.h; sourceTree = "<group>"; };
+		EA96DDC5176D0F57007355DB /* GGUpdateActionBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUpdateActionBar.m; sourceTree = "<group>"; };
+		EA96DDC7176D0F71007355DB /* GGUpdateActionBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGUpdateActionBar.xib; sourceTree = "<group>"; };
 		EA975757174D3419007D64CD /* sendSmsbtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sendSmsbtn@2x.png"; sourceTree = "<group>"; };
 		EA975759174D3424007D64CD /* updateSwitchBackbtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "updateSwitchBackbtn@2x.png"; sourceTree = "<group>"; };
 		EA97575B174D45A4007D64CD /* NSMutableArray+AddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+AddOn.h"; sourceTree = "<group>"; };
@@ -2019,6 +2028,16 @@
 			path = YRDropdownView;
 			sourceTree = "<group>";
 		};
+		EA96DDC3176D0F29007355DB /* Bars */ = {
+			isa = PBXGroup;
+			children = (
+				EA96DDC4176D0F57007355DB /* GGUpdateActionBar.h */,
+				EA96DDC5176D0F57007355DB /* GGUpdateActionBar.m */,
+				EA96DDC7176D0F71007355DB /* GGUpdateActionBar.xib */,
+			);
+			path = Bars;
+			sourceTree = "<group>";
+		};
 		EA9923C2174591E50043251E /* Others */ = {
 			isa = PBXGroup;
 			children = (
@@ -2310,6 +2329,8 @@
 		EACAE0B117094A3100E7088F /* 2X */ = {
 			isa = PBXGroup;
 			children = (
+				EA96DDBF176D01C6007355DB /* dblDownArrow@2x.png */,
+				EA96DDC0176D01C6007355DB /* dblUpArrow@2x.png */,
 				EAC6F8BA1759158F00BC0B97 /* btnLike@2x.png */,
 				EAC6F8BB1759158F00BC0B97 /* btnLiked@2x.png */,
 				EAC6F8BC1759158F00BC0B97 /* btnSave@2x.png */,
@@ -2500,6 +2521,7 @@
 		EACAE0BA17094A3100E7088F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EA96DDC3176D0F29007355DB /* Bars */,
 				EA18C2FF1742B450008A2D67 /* Cells */,
 				EAF99595173C7DF6009DA08E /* EmptyPage */,
 				EA4CC686172BB3F80082A048 /* Profile */,
@@ -3257,6 +3279,9 @@
 				EA3767DB176BE32E0087232F /* GGSsgrfPanelTripleInfo.xib in Resources */,
 				EA3767DD176BE32E0087232F /* GGSsgrfPanelTripleInfoPlus.xib in Resources */,
 				EA3767DF176BE32E0087232F /* GGSsgrfPanelUpdate.xib in Resources */,
+				EA96DDC1176D01C6007355DB /* dblDownArrow@2x.png in Resources */,
+				EA96DDC2176D01C6007355DB /* dblUpArrow@2x.png in Resources */,
+				EA96DDC8176D0F71007355DB /* GGUpdateActionBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3513,6 +3538,7 @@
 				EA3767E3176BE32E0087232F /* GGSsgrfRndImgButton.m in Sources */,
 				EA3767E4176BE32E0087232F /* GGSsgrfTitledImageBtnView.m in Sources */,
 				EA3767E5176BE32E0087232F /* GGSsgrfTitledImgScrollView.m in Sources */,
+				EA96DDC6176D0F57007355DB /* GGUpdateActionBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

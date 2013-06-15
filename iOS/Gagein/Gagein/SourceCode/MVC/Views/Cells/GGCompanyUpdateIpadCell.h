@@ -17,13 +17,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblHeadline;
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
 @property (weak, nonatomic) IBOutlet UILabel *lblInterval;
+@property (weak, nonatomic) IBOutlet UIImageView *ivDblArrow;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ivLogo;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogo;
 
-@property (assign, nonatomic)  BOOL         hasBeenRead;
+@property (assign, nonatomic)  BOOL             hasBeenRead;
 
-@property (assign, nonatomic) BOOL          expanded;
+@property (assign, nonatomic) BOOL                  expanded;
 @property (strong, nonatomic)   GGCompanyUpdate     *data;
 
 -(void)adjustLayout;
