@@ -338,6 +338,8 @@
 		EA96DDC2176D01C6007355DB /* dblUpArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA96DDC0176D01C6007355DB /* dblUpArrow@2x.png */; };
 		EA96DDC6176D0F57007355DB /* GGUpdateActionBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA96DDC5176D0F57007355DB /* GGUpdateActionBar.m */; };
 		EA96DDC8176D0F71007355DB /* GGUpdateActionBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA96DDC7176D0F71007355DB /* GGUpdateActionBar.xib */; };
+		EA96DDCC176D1780007355DB /* GGHappeningIpadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA96DDCB176D1780007355DB /* GGHappeningIpadCell.m */; };
+		EA96DDCE176D1793007355DB /* GGHappeningIpadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA96DDCD176D1793007355DB /* GGHappeningIpadCell.xib */; };
 		EA975758174D3419007D64CD /* sendSmsbtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA975757174D3419007D64CD /* sendSmsbtn@2x.png */; };
 		EA97575A174D3424007D64CD /* updateSwitchBackbtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA975759174D3424007D64CD /* updateSwitchBackbtn@2x.png */; };
 		EA97575D174D45A4007D64CD /* NSMutableArray+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA97575C174D45A4007D64CD /* NSMutableArray+AddOn.m */; };
@@ -1030,6 +1032,9 @@
 		EA96DDC4176D0F57007355DB /* GGUpdateActionBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGUpdateActionBar.h; sourceTree = "<group>"; };
 		EA96DDC5176D0F57007355DB /* GGUpdateActionBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUpdateActionBar.m; sourceTree = "<group>"; };
 		EA96DDC7176D0F71007355DB /* GGUpdateActionBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGUpdateActionBar.xib; sourceTree = "<group>"; };
+		EA96DDCA176D1780007355DB /* GGHappeningIpadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGHappeningIpadCell.h; sourceTree = "<group>"; };
+		EA96DDCB176D1780007355DB /* GGHappeningIpadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGHappeningIpadCell.m; sourceTree = "<group>"; };
+		EA96DDCD176D1793007355DB /* GGHappeningIpadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGHappeningIpadCell.xib; sourceTree = "<group>"; };
 		EA975757174D3419007D64CD /* sendSmsbtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sendSmsbtn@2x.png"; sourceTree = "<group>"; };
 		EA975759174D3424007D64CD /* updateSwitchBackbtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "updateSwitchBackbtn@2x.png"; sourceTree = "<group>"; };
 		EA97575B174D45A4007D64CD /* NSMutableArray+AddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+AddOn.h"; sourceTree = "<group>"; };
@@ -1745,6 +1750,7 @@
 		EA3767AA176BE32D0087232F /* SalesGraphViews */ = {
 			isa = PBXGroup;
 			children = (
+				EA96DDC9176D1749007355DB /* Cells */,
 				EA3767AF176BE32D0087232F /* Panels */,
 				EA3767C4176BE32D0087232F /* Widgets */,
 			);
@@ -2036,6 +2042,16 @@
 				EA96DDC7176D0F71007355DB /* GGUpdateActionBar.xib */,
 			);
 			path = Bars;
+			sourceTree = "<group>";
+		};
+		EA96DDC9176D1749007355DB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EA96DDCA176D1780007355DB /* GGHappeningIpadCell.h */,
+				EA96DDCB176D1780007355DB /* GGHappeningIpadCell.m */,
+				EA96DDCD176D1793007355DB /* GGHappeningIpadCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		EA9923C2174591E50043251E /* Others */ = {
@@ -3282,6 +3298,7 @@
 				EA96DDC1176D01C6007355DB /* dblDownArrow@2x.png in Resources */,
 				EA96DDC2176D01C6007355DB /* dblUpArrow@2x.png in Resources */,
 				EA96DDC8176D0F71007355DB /* GGUpdateActionBar.xib in Resources */,
+				EA96DDCE176D1793007355DB /* GGHappeningIpadCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3539,6 +3556,7 @@
 				EA3767E4176BE32E0087232F /* GGSsgrfTitledImageBtnView.m in Sources */,
 				EA3767E5176BE32E0087232F /* GGSsgrfTitledImgScrollView.m in Sources */,
 				EA96DDC6176D0F57007355DB /* GGUpdateActionBar.m in Sources */,
+				EA96DDCC176D1780007355DB /* GGHappeningIpadCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

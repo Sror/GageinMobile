@@ -15,6 +15,7 @@
 -(void)setSubTitle:(NSString *)aTitle;
 -(void)setScrollTitle:(NSString *)aTitle;
 
+-(void)makeMeSimple;
 -(void)showScrollBar:(BOOL)aShow;
 
 -(void)setMainImageUrl:(NSString *)aImageUrl placeholder:(UIImage *)aPlaceholder;

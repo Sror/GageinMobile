@@ -64,6 +64,11 @@
     [_viewTitledScroll setTitle:aTitle];
 }
 
+-(void)makeMeSimple
+{
+    [self showScrollBar:NO];
+}
+
 -(void)showScrollBar:(BOOL)aShow
 {
     _viewTitledScroll.hidden = !aShow;
