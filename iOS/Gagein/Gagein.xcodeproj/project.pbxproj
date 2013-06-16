@@ -274,6 +274,7 @@
 		EA5DFAFD174AB62300577BAC /* GGSnShareVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA5DFAFB174AB62300577BAC /* GGSnShareVC.xib */; };
 		EA5DFB00174B142E00577BAC /* NSMutableDictionary+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5DFAFF174B142E00577BAC /* NSMutableDictionary+AddOn.m */; };
 		EA5DFB03174B1A6900577BAC /* GGFacebookOAuther.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5DFB02174B1A6900577BAC /* GGFacebookOAuther.m */; };
+		EA5ED6FB176E449E0083670E /* GGSsgrfActionListener.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5ED6FA176E449E0083670E /* GGSsgrfActionListener.m */; };
 		EA62C62B174B3A750031BF42 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EA62C62A174B3A750031BF42 /* libxml2.dylib */; };
 		EA62C62E174B3D700031BF42 /* GGTwitterOAuthVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA62C62D174B3D700031BF42 /* GGTwitterOAuthVC.m */; };
 		EA62C6BB174BFCDA0031BF42 /* jQueryInject.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA62C681174BFCDA0031BF42 /* jQueryInject.txt */; };
@@ -912,6 +913,8 @@
 		EA5DFAFF174B142E00577BAC /* NSMutableDictionary+AddOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+AddOn.m"; sourceTree = "<group>"; };
 		EA5DFB01174B1A6900577BAC /* GGFacebookOAuther.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFacebookOAuther.h; sourceTree = "<group>"; };
 		EA5DFB02174B1A6900577BAC /* GGFacebookOAuther.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFacebookOAuther.m; sourceTree = "<group>"; };
+		EA5ED6F9176E449E0083670E /* GGSsgrfActionListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfActionListener.h; sourceTree = "<group>"; };
+		EA5ED6FA176E449E0083670E /* GGSsgrfActionListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfActionListener.m; sourceTree = "<group>"; };
 		EA62C62A174B3A750031BF42 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		EA62C62C174B3D700031BF42 /* GGTwitterOAuthVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTwitterOAuthVC.h; sourceTree = "<group>"; };
 		EA62C62D174B3D700031BF42 /* GGTwitterOAuthVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGTwitterOAuthVC.m; sourceTree = "<group>"; };
@@ -1750,6 +1753,7 @@
 		EA3767AA176BE32D0087232F /* SalesGraphViews */ = {
 			isa = PBXGroup;
 			children = (
+				EA96DDCF176D3965007355DB /* Others */,
 				EA96DDC9176D1749007355DB /* Cells */,
 				EA3767AF176BE32D0087232F /* Panels */,
 				EA3767C4176BE32D0087232F /* Widgets */,
@@ -2052,6 +2056,15 @@
 				EA96DDCD176D1793007355DB /* GGHappeningIpadCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		EA96DDCF176D3965007355DB /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				EA5ED6F9176E449E0083670E /* GGSsgrfActionListener.h */,
+				EA5ED6FA176E449E0083670E /* GGSsgrfActionListener.m */,
+			);
+			path = Others;
 			sourceTree = "<group>";
 		};
 		EA9923C2174591E50043251E /* Others */ = {
@@ -3557,6 +3570,7 @@
 				EA3767E5176BE32E0087232F /* GGSsgrfTitledImgScrollView.m in Sources */,
 				EA96DDC6176D0F57007355DB /* GGUpdateActionBar.m in Sources */,
 				EA96DDCC176D1780007355DB /* GGHappeningIpadCell.m in Sources */,
+				EA5ED6FB176E449E0083670E /* GGSsgrfActionListener.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,14 +25,17 @@
 
 #import "WEPopoverController.h"
 
+#import "GGSsgrfActionListener.h"
+#import "GGPersonDetailVC.h"
+
 #define MAX_NAVI_TITLE_LENGTH           20
 #define MAX_NAVI_TITLE_LENGTH_IPAD      50
 
-@interface GGBaseViewController ()
+@interface GGBaseViewController () <GGSsgrfActionDelegate>
 
 @end
 
-@implementation GGBaseViewController
+@implementation GGBaseViewController 
 {
     __weak MBProgressHUD        *hud;
     BOOL                        _isViewFirstAppear;
@@ -236,6 +239,14 @@
     [self pushBackButtonFront];
     
     [self _adjustCustomNaviTitlePosition];
+    [GGSsgrfActionListener sharedInstance].delegate = self;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [GGSsgrfActionListener sharedInstance].delegate = nil;
 }
 
 -(void)dealloc
@@ -753,6 +764,67 @@
 //        CGPoint center = CGPointMake(CGRectGetMidX(screenBounds), CGRectGetMidY(screenBounds));
 //        aViewController.view.superview.center = UIDeviceOrientationIsPortrait(self.interfaceOrientation) ? center : CGPointMake(center.y, center.x);
     }
+}
+
+#pragma mark - GGSsgrfActionDelegate
+
+-(void)ssGraphShowPersonPanel:(NSNumber *)aPersonID
+{
+    DLog(@"ssGraphShowPersonPanel:%@", aPersonID);
+}
+
+-(void)ssGraphShowCompanyPanel:(NSNumber *)aCompanyID
+{
+    DLog(@"ssGraphShowCompanyPanel:%@", aCompanyID);
+}
+
+-(void)ssGraphShowPersonLandingPage:(NSNumber *)aPersonID
+{
+    DLog(@"ssGraphShowPersonLandingPage:%@", aPersonID);
+    
+    GGPersonDetailVC *vc = [GGPersonDetailVC createInstance];
+    vc.personID = [aPersonID longLongValue];
+    
+}
+
+-(void)ssGraphShowCompanyLandingPage:(NSNumber *)aCompanyID
+{
+    DLog(@"ssGraphShowCompanyLandingPage:%@", aCompanyID);
+}
+
+-(void)ssGraphShowEmployeeListPage:(NSArray *)aEmployees
+{
+    DLog(@"ssGraphShowEmployeeListPage:%@", aEmployees);
+}
+
+-(void)ssGraphShowCompanyListPage:(NSArray *)aCompanies
+{
+    DLog(@"ssGraphShowCompanyListPage:%@", aCompanies);
+}
+
+-(void)ssGraphShowWebPage:(NSString *)aURL
+{
+    DLog(@"ssGraphShowWebPage:%@", aURL);
+}
+
+-(void)ssGraphFollowPerson:(NSNumber *)aPersonID
+{
+    DLog(@"ssGraphFollowPerson:%@", aPersonID);
+}
+
+-(void)ssGraphUnfollowPerson:(NSNumber *)aPersonID
+{
+    DLog(@"ssGraphUnfollowPerson:%@", aPersonID);
+}
+
+-(void)ssGraphFollowCompany:(NSNumber *)aCompanyID
+{
+    DLog(@"ssGraphFollowCompany:%@", aCompanyID);
+}
+
+-(void)ssGraphUnfollowCompany:(NSNumber *)aCompanyID
+{
+    DLog(@"ssGraphUnfollowCompany:%@", aCompanyID);
 }
 
 @end
