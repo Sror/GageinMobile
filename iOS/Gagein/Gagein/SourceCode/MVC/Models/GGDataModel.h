@@ -16,4 +16,5 @@
 -(void)parseWithData:(NSDictionary *)aData;
 
 -(NSString *)intervalStringWithDate:(long long)aDate;
+-(NSString *)monthDayWithDate:(long long)aDate;
 @end

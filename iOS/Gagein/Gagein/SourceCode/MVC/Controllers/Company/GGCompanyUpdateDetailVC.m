@@ -780,6 +780,10 @@
         _comUpdateDetailCell.tvContent.text = [_companyUpdateDetail doubleReturnedText];
         
         _comUpdateDetailCell.lblSource.text = ((GGCompanyUpdate *)(_updates[_updateIndex])).fromSource;
+        
+        GGCompanyUpdate *data = _updates[_updateIndex];
+        _comUpdateDetailCell.lblDate.text = [_companyUpdateDetail monthDayWithDate:data.date];
+        
         [self _updateSaveBtnSaved:_companyUpdateDetail.saved];
         [self _updateLikedButton];
         

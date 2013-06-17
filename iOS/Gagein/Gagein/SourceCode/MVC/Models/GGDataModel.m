@@ -23,6 +23,16 @@
     // to be implemented in subclass
 }
 
+-(NSString *)monthDayWithDate:(long long)aDate
+{
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:aDate / 1000];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM dd"];
+    
+    return [formatter stringFromDate:date];
+}
+
 -(NSString *)intervalStringWithDate:(long long)aDate
 {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:aDate / 1000];
