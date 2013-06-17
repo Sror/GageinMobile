@@ -11,7 +11,12 @@
 #import "GGSsgrfInfoWidgetView.h"
 #import "GGSsgrfDblTitleView.h"
 
+#import "GGHappening.h"
+
 @implementation GGSsgrfPanelDoubleInfo
+{
+    GGHappening     *_happening;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -101,6 +106,63 @@
 {
     [_viewRightText useBigTitle];
     [self _adjustTextPos];
+}
+
+
+-(void)updateWithHappening:(GGHappening *)aHappening
+{
+    _happening = aHappening;
+    if (_happening)
+    {
+        switch (aHappening.type)
+        {
+            case kGGHappeningCompanyPersonJion:
+            {
+                if ([_happening isJoin])
+                {
+                    // left - person
+                    [self.viewLeftInfo makeMeSimple];
+                    
+                    // right - new company
+                    [self.viewRightInfo setTitle:@"new"];
+                }
+                else
+                {
+                    // left - old company
+                    [self.viewLeftInfo setTitle:@"old"];
+                    
+                    // right - person
+                    [self.viewRightInfo makeMeSimple];
+                }
+                
+            }
+                break;
+                
+            case kGGHappeningCompanyNewFunding:
+            {
+                // left - big funding text
+                [self setLeftText:@"Funding"];
+                [self setLeftBigTitle];
+                
+                // right - company
+                [self.viewRightInfo setTitle:@"company"];
+            }
+                break;
+                
+            case kGGHappeningCompanyNewLocation:
+            {
+                // left - company
+                [self.viewLeftInfo setTitle:@"comany"];
+                
+                // right - location
+                [self.viewRightInfo makeMeSimple];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
 }
 
 @end

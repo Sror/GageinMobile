@@ -93,12 +93,7 @@
                 {
                     //double info
                     GGSsgrfPanelDoubleInfo *thePanel = [GGSsgrfPanelDoubleInfo viewFromNibWithOwner:self];
-                    
-                    // left - person
-                    [thePanel.viewLeftInfo makeMeSimple];
-                    
-                    // right - new company
-                    [thePanel.viewRightInfo setTitle:@"new"];
+                    [thePanel updateWithHappening:_data];
                     
                     // set panel
                     panel = thePanel;
@@ -108,12 +103,7 @@
             {
                 //double info
                 GGSsgrfPanelDoubleInfo *thePanel = [GGSsgrfPanelDoubleInfo viewFromNibWithOwner:self];
-                
-                // left - old company
-                [thePanel.viewLeftInfo setTitle:@"old"];
-                
-                // right - person
-                [thePanel.viewRightInfo makeMeSimple];
+                [thePanel updateWithHappening:_data];
                 
                 // set panel
                 panel = thePanel;
@@ -168,13 +158,8 @@
             // funding
             //double info
             GGSsgrfPanelDoubleInfo *thePanel = [GGSsgrfPanelDoubleInfo viewFromNibWithOwner:self];
+            [thePanel updateWithHappening:_data];
             
-            // left - big funding text
-            [thePanel setLeftText:@"Funding"];
-            [thePanel setLeftBigTitle];
-            
-            // right - company
-            [thePanel.viewRightInfo setTitle:@"company"];
             
             // set panel
             panel = thePanel;
@@ -186,12 +171,7 @@
             // company has a new location
             //double info
             GGSsgrfPanelDoubleInfo *thePanel = [GGSsgrfPanelDoubleInfo viewFromNibWithOwner:self];
-            
-            // left - company
-            [thePanel.viewLeftInfo setTitle:@"comany"];
-            
-            // right - location
-            [thePanel.viewRightInfo makeMeSimple];
+            [thePanel updateWithHappening:_data];
             
             // set panel
             panel = thePanel;
