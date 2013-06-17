@@ -88,6 +88,11 @@
         [self addSubview:_panel];
         
         _actionBar = [GGUpdateActionBar viewFromNibWithOwner:self];
+        [_actionBar.btnSignal addTarget:self action:@selector(signalAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_actionBar.btnLike addTarget:self action:@selector(likeAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_actionBar.btnSave addTarget:self action:@selector(saveAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_actionBar.btnShare addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
+        
         //_actionBar.backgroundColor = GGSharedColor.darkRed;
         float actionOriginY = CGRectGetMaxY(_panel.frame);
         [_actionBar setPos:CGPointMake(positionX, actionOriginY)];
@@ -138,6 +143,26 @@
     
     [_panel.viewScroll.infoWidget updateWithCompany:fakeCom];
 #endif
+}
+
+-(void)signalAction:(id)sender
+{
+    DLog(@"signalAction");
+}
+
+-(void)likeAction:(id)sender
+{
+    DLog(@"likeAction");
+}
+
+-(void)saveAction:(id)sender
+{
+    DLog(@"saveAction");
+}
+
+-(void)shareAction:(id)sender
+{
+    DLog(@"shareAction");
 }
 
 @end
