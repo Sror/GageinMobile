@@ -9,8 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "GGSsgrfBaseWidget.h"
 
+typedef enum {
+    kGGSsGrfInfoWidgetCompany = 0
+    , kGGSsGrfInfoWidgetPerson
+    , kGGSsGrfInfoWidgetAddress
+} EGGSsGrfInfoWidgetType;
+
 @interface GGSsgrfInfoWidgetView : GGSsgrfBaseWidget
 @property (nonatomic, strong)   id      data;
+@property (nonatomic, copy) NSString    *mapURL;
+
+@property (assign, nonatomic) EGGSsGrfInfoWidgetType    type;
 
 -(void)setTitle:(NSString *)aTitle;
 -(void)setSubTitle:(NSString *)aTitle;
@@ -26,5 +35,7 @@
 -(void)setScrollTaget:(id)aTarget action:(SEL)aAction;
 
 -(void)updateWithCompany:(GGCompany *)aCompany;
+-(void)updateWithPerson:(GGPerson *)aPerson;
+-(void)updateWithMapUrl:(NSString *)aMapURL;
 
 @end

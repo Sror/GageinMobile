@@ -68,7 +68,7 @@
     [self _doExpand];
 }
 
--(GGSsgrfPanelBase *)panelForHappening
+-(GGSsgrfPanelHappeningBase *)panelForHappening
 {
     EGGHappeningType happeningType = _data.type;
     GGSsgrfPanelHappeningBase *panel = nil;

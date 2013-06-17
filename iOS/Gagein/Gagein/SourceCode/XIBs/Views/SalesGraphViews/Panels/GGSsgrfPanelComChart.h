@@ -15,6 +15,4 @@
 @property (weak, nonatomic) IBOutlet GGSsgrfInfoWidgetView *viewLeftInfo;
 @property (weak, nonatomic) IBOutlet UIButton *btnChart;
 
-//-(void)updateWithHappening:(GGHappening *)aHappening;
-
 @end

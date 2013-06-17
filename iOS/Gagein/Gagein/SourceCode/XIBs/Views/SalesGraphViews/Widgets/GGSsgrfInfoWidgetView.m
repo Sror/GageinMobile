@@ -12,6 +12,7 @@
 #import "GGSsgrfTitledImgScrollView.h"
 
 #import "GGCompany.h"
+#import "GGPerson.h"
 
 @interface GGSsgrfInfoWidgetView ()
 @property (strong, nonatomic)   GGSsgrfTitledImageBtnView   *viewTitledImage;
@@ -115,6 +116,26 @@
     return nil;
 }
 
+-(GGPerson *)_person
+{
+    if ([_data isKindOfClass:[GGPerson class]])
+    {
+        return ((GGPerson *)_data);
+    }
+    
+    return nil;
+}
+
+-(NSString *)_mapURL
+{
+    if ([_data isKindOfClass:[NSString class]])
+    {
+        return ((NSString *)_data);
+    }
+    
+    return nil;
+}
+
 -(NSArray *)_competitors
 {
     return [self _company].competitors;
@@ -122,6 +143,7 @@
 
 -(void)updateWithCompany:(GGCompany *)aCompany
 {
+    _type = kGGSsGrfInfoWidgetCompany;
     _data = aCompany;
     
     if (aCompany)
@@ -142,12 +164,47 @@
     }
 }
 
+-(void)updateWithPerson:(GGPerson *)aPerson
+{
+    _type = kGGSsGrfInfoWidgetPerson;
+    _data = aPerson;
+    
+    if (aPerson)
+    {
+        [self setTitle:aPerson.name];
+        [self setMainImageUrl:aPerson.photoPath placeholder:GGSharedImagePool.logoDefaultPerson];
+        [self setMainTaget:self action:@selector(personLogoTapped:)];
+    }
+}
+
+-(void)updateWithMapUrl:(NSString *)aMapURL
+{
+    _type = kGGSsGrfInfoWidgetAddress;
+    _data = aMapURL;
+    
+    if (aMapURL)
+    {
+        [self setMainImageUrl:aMapURL placeholder:GGSharedImagePool.placeholder];
+        [self setMainTaget:self action:@selector(mapTapped:)];
+    }
+}
+
 #pragma mark - actions
 -(void)companyLogoTapped:(id)sender
 {
     //UIButton * btn = (UIButton *)sender;
     //DLog(@"companyLogoTapped: %d", btn.tag);
     [self postNotification:GG_NOTIFY_SSGRF_SHOW_COMPANY_PANEL withObject:@([self _company].ID)];
+}
+
+-(void)personLogoTapped:(id)sender
+{
+    [self postNotification:GG_NOTIFY_SSGRF_SHOW_PERSON_PANEL withObject:@([self _person].ID)];
+}
+
+-(void)mapTapped:(id)sender
+{
+    [self postNotification:GG_NOTIFY_SSGRF_SHOW_IMAGE_URL withObject:[self _mapURL]];
 }
 
 -(void)competitorTapped:(id)sender

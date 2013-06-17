@@ -857,4 +857,9 @@
     DLog(@"ssGraphShare:%@", aUpdateID);
 }
 
+-(void)ssGraphShowImageURL:(NSString *)aImageURL
+{
+    DLog(@"ssGraphShowImageURL:%@", aImageURL);
+}
+
 @end

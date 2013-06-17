@@ -90,6 +90,10 @@ DEF_SINGLETON(GGSsgrfActionListener)
     {
         [_delegate ssGraphUnfollowCompany:notiObj];
     }
+    else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SHOW_IMAGE_URL])
+    {
+        [_delegate ssGraphShowImageURL:notiObj];
+    }
 }
 
 -(void)dealloc
