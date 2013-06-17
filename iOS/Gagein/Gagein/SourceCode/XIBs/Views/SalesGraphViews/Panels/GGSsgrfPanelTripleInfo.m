@@ -9,8 +9,12 @@
 #import "GGSsgrfPanelTripleInfo.h"
 #import "GGSsgrfInfoWidgetView.h"
 #import "GGSsgrfDblTitleView.h"
+#import "GGHappening.h"
 
 @implementation GGSsgrfPanelTripleInfo
+{
+    GGHappening     *_happening;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -100,6 +104,58 @@
 {
     [_viewRightText useBigTitle];
     [self _adjustTextPos];
+}
+
+-(void)updateWithHappening:(GGHappening *)aHappening
+{
+    _happening = aHappening;
+    if (aHappening)
+    {
+        switch (aHappening.type) {
+            case kGGHappeningCompanyPersonJion:
+            {
+                // left - old company
+                [_viewLeftInfo setTitle:@"old"];
+                
+                // center - person
+                [_viewCenterInfo makeMeSimple];
+                
+                // right - new company
+                [_viewRightInfo setTitle:@"new"];
+            }
+                break;
+                
+            case kGGHappeningCompanyEmloyeeSizeIncrease:
+            case kGGHappeningCompanyEmloyeeSizeDecrease:
+            {
+                // left - old employee size
+                [self setLeftText:@"old employee size"];
+                
+                // center - company
+                [self.viewCenterInfo setTitle:@"company"];
+                
+                // right - new employee size
+                [self setRightText:@"new employee size"];
+            }
+                break;
+                
+            case kGGHappeningPersonJoinOtherCompany:
+            {
+                // left - old company
+                [self.viewLeftInfo setTitle:@"old"];
+                
+                // center - person
+                [self.viewCenterInfo makeMeSimple];
+                
+                // right - new company
+                [self.viewRightInfo setTitle:@"new"];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
 }
 
 @end

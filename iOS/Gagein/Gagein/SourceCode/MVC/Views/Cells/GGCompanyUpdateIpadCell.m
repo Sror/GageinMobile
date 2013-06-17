@@ -39,6 +39,8 @@
     _lblDescription.text = _lblHeadline.text = _lblInterval.text = _lblSource.text = @"";
     _ivContentBg.image = GGSharedImagePool.stretchShadowBgWite;
     
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     [GGUtils applyLogoStyleToView:_ivLogo];
 }
 

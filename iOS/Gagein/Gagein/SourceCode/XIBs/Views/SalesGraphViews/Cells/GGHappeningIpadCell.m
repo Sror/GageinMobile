@@ -17,7 +17,7 @@
 #import "GGSsgrfPanelTripleInfoPlus.h"
 #import "GGSsgrfInfoWidgetView.h"
 
-#define EXPAND_PANEL_OFFSET_X       110
+//#define EXPAND_PANEL_OFFSET_X       110
 
 @implementation GGHappeningIpadCell
 {
@@ -84,15 +84,7 @@
                 {
                     //triple info
                     GGSsgrfPanelTripleInfo *thePanel = [GGSsgrfPanelTripleInfo viewFromNibWithOwner:self];
-                    
-                    // left - old company
-                    [thePanel.viewLeftInfo setTitle:@"old"];
-                    
-                    // center - person
-                    [thePanel.viewCenterInfo makeMeSimple];
-                    
-                    // right - new company
-                    [thePanel.viewRightInfo setTitle:@"new"];
+                    [thePanel updateWithHappening:_data];
                     
                     // set panel
                     panel = thePanel;
@@ -211,15 +203,7 @@
             // employee size increase
             //triple info
             GGSsgrfPanelTripleInfo *thePanel = [GGSsgrfPanelTripleInfo viewFromNibWithOwner:self];
-            
-            // left - old employee size
-            [thePanel setLeftText:@"old employee size"];
-            
-            // center - company
-            [thePanel.viewCenterInfo setTitle:@"company"];
-            
-            // right - new employee size
-            [thePanel setRightText:@"new employee size"];
+            [thePanel updateWithHappening:_data];
             
             // set panel
             panel = thePanel;
@@ -231,15 +215,7 @@
             // employee size decrease
             //triple info
             GGSsgrfPanelTripleInfo *thePanel = [GGSsgrfPanelTripleInfo viewFromNibWithOwner:self];
-            
-            // left - old employee size
-            [thePanel setLeftText:@"old employee size"];
-            
-            // center - company
-            [thePanel.viewCenterInfo setTitle:@"company"];
-            
-            // right - new employee size
-            [thePanel setRightText:@"new employee size"];
+            [thePanel updateWithHappening:_data];
             
             // set panel
             panel = thePanel;
@@ -271,15 +247,7 @@
             // person join other company
             //triple info
             GGSsgrfPanelTripleInfo *thePanel = [GGSsgrfPanelTripleInfo viewFromNibWithOwner:self];
-            
-            // left - old company
-            [thePanel.viewLeftInfo setTitle:@"old"];
-            
-            // center - person
-            [thePanel.viewCenterInfo makeMeSimple];
-            
-            // right - new company
-            [thePanel.viewRightInfo setTitle:@"new"];
+            [thePanel updateWithHappening:_data];
             
             // set panel
             panel = thePanel;
@@ -341,13 +309,6 @@
 
 -(void)_doExpand
 {
-    //    for (UIView *subView in self.subviews)
-    //    {
-    //        if ([subView isKindOfClass:[GGSsgrfPanelUpdate class]])
-    //        {
-    //            [subView removeFromSuperview];
-    //        }
-    //    }
     [_panel removeFromSuperview];
     //[_actionBar removeFromSuperview];
     
@@ -357,9 +318,11 @@
     
     if (_expanded)
     {
+        float positionX = self.viewContent.frame.origin.x + 2;
+        
         _panel = [self panelForHappening];
         float thisH = self.frame.size.height;
-        [_panel setPos:CGPointMake(EXPAND_PANEL_OFFSET_X, thisH)];
+        [_panel setPos:CGPointMake(positionX, thisH)];
         [self addSubview:_panel];
         
 //        _actionBar = [GGUpdateActionBar viewFromNibWithOwner:self];

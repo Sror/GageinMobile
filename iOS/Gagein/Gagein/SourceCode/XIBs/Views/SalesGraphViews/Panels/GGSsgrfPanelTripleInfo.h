@@ -29,4 +29,6 @@
 -(void)setLeftBigTitle;
 -(void)setRightBigTitle;
 
+-(void)updateWithHappening:(GGHappening *)aHappening;
+
 @end
