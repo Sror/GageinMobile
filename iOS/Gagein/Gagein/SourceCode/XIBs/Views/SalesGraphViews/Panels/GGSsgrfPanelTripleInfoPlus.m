@@ -11,7 +11,10 @@
 #import "GGSsgrfInfoWidgetView.h"
 #import "GGSsgrfDblTitleView.h"
 
+#import "GGHappening.h"
+
 @implementation GGSsgrfPanelTripleInfoPlus
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -103,6 +106,67 @@
 {
     [_viewRightText useBigTitle];
     [self _adjustTextPos];
+}
+
+-(void)updateWithHappening:(GGHappening *)aHappening
+{
+    _happening = aHappening;
+    if (_happening)
+    {
+        switch (aHappening.type)
+        {
+            case kGGHappeningCompanyPersonJionDetail:
+            {
+                // left - old title
+                [self setLeftText:@"old title"];
+                
+                // center - person
+                [self.viewCenterInfo makeMeSimple];
+                
+                // right - new title
+                [self setRightText:@"new title"];
+                
+                // bottom - company
+                [self.viewBottomInfo setTitle:@"company"];
+            }
+                break;
+                
+            case kGGHappeningPersonNewLocation:
+            {
+                // left - old location
+                [self.viewLeftInfo makeMeSimple];
+                
+                // center - person
+                [self.viewCenterInfo makeMeSimple];
+                
+                // right - new location
+                [self.viewRightInfo makeMeSimple];
+                
+                // bottom - company
+                [self.viewBottomInfo setTitle:@"company"];
+            }
+                break;
+                
+            case kGGHappeningPersonNewJobTitle:
+            {
+                // left - old jobTitle
+                [self setLeftText:@"old title"];
+                
+                // center - person
+                [self.viewCenterInfo makeMeSimple];
+                
+                // right - new Jobtitle
+                [self setRightText:@"new title"];
+                
+                // bottom - company
+                [self.viewBottomInfo setTitle:@"company"];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
 }
 
 @end

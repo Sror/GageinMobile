@@ -14,9 +14,6 @@
 #import "GGHappening.h"
 
 @implementation GGSsgrfPanelDoubleInfo
-{
-    GGHappening     *_happening;
-}
 
 - (id)initWithFrame:(CGRect)frame
 {

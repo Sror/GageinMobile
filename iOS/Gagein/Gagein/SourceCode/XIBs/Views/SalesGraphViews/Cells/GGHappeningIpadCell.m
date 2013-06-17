@@ -21,7 +21,7 @@
 
 @implementation GGHappeningIpadCell
 {
-    GGSsgrfPanelBase        *_panel;
+    GGSsgrfPanelHappeningBase        *_panel;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -71,7 +71,7 @@
 -(GGSsgrfPanelBase *)panelForHappening
 {
     EGGHappeningType happeningType = _data.type;
-    GGSsgrfPanelBase *panel = nil;
+    GGSsgrfPanelHappeningBase *panel = nil;
     
     switch (happeningType)
     {
@@ -84,7 +84,6 @@
                 {
                     //triple info
                     GGSsgrfPanelTripleInfo *thePanel = [GGSsgrfPanelTripleInfo viewFromNibWithOwner:self];
-                    [thePanel updateWithHappening:_data];
                     
                     // set panel
                     panel = thePanel;
@@ -93,7 +92,6 @@
                 {
                     //double info
                     GGSsgrfPanelDoubleInfo *thePanel = [GGSsgrfPanelDoubleInfo viewFromNibWithOwner:self];
-                    [thePanel updateWithHappening:_data];
                     
                     // set panel
                     panel = thePanel;
@@ -103,7 +101,6 @@
             {
                 //double info
                 GGSsgrfPanelDoubleInfo *thePanel = [GGSsgrfPanelDoubleInfo viewFromNibWithOwner:self];
-                [thePanel updateWithHappening:_data];
                 
                 // set panel
                 panel = thePanel;
@@ -118,18 +115,6 @@
             //triple info plus
             GGSsgrfPanelTripleInfoPlus *thePanel = [GGSsgrfPanelTripleInfoPlus viewFromNibWithOwner:self];
             
-            // left - old title
-            [thePanel setLeftText:@"old title"];
-            
-            // center - person
-            [thePanel.viewCenterInfo makeMeSimple];
-            
-            // right - new title
-            [thePanel setRightText:@"new title"];
-            
-            // bottom - company
-            [thePanel.viewBottomInfo setTitle:@"company"];
-            
             // set panel
             panel = thePanel;
         }
@@ -142,12 +127,6 @@
             //double info
             GGSsgrfPanelComChart *thePanel = [GGSsgrfPanelComChart viewFromNibWithOwner:self];
             
-            // left - old company
-            [thePanel.viewLeftInfo setTitle:@"old"];
-            
-            // right - person
-            [thePanel.btnChart setImage:nil forState:UIControlStateNormal];
-            
             // set panel
             panel = thePanel;
         }
@@ -158,7 +137,6 @@
             // funding
             //double info
             GGSsgrfPanelDoubleInfo *thePanel = [GGSsgrfPanelDoubleInfo viewFromNibWithOwner:self];
-            [thePanel updateWithHappening:_data];
             
             
             // set panel
@@ -171,7 +149,6 @@
             // company has a new location
             //double info
             GGSsgrfPanelDoubleInfo *thePanel = [GGSsgrfPanelDoubleInfo viewFromNibWithOwner:self];
-            [thePanel updateWithHappening:_data];
             
             // set panel
             panel = thePanel;
@@ -183,7 +160,6 @@
             // employee size increase
             //triple info
             GGSsgrfPanelTripleInfo *thePanel = [GGSsgrfPanelTripleInfo viewFromNibWithOwner:self];
-            [thePanel updateWithHappening:_data];
             
             // set panel
             panel = thePanel;
@@ -195,7 +171,6 @@
             // employee size decrease
             //triple info
             GGSsgrfPanelTripleInfo *thePanel = [GGSsgrfPanelTripleInfo viewFromNibWithOwner:self];
-            [thePanel updateWithHappening:_data];
             
             // set panel
             panel = thePanel;
@@ -208,14 +183,6 @@
             
             GGSsgrfPanelDoubleInfoPlus *thePanel = [GGSsgrfPanelDoubleInfoPlus viewFromNibWithOwner:self];
             
-            // left - old pic
-            [thePanel.viewLeftInfo makeMeSimple];
-            
-            // right - new pic
-            [thePanel.viewRightInfo makeMeSimple];
-            
-            // bottom - company
-            [thePanel.viewBottomInfo setTitle:@"company"];
             
             // set panel
             panel = thePanel;
@@ -227,7 +194,6 @@
             // person join other company
             //triple info
             GGSsgrfPanelTripleInfo *thePanel = [GGSsgrfPanelTripleInfo viewFromNibWithOwner:self];
-            [thePanel updateWithHappening:_data];
             
             // set panel
             panel = thePanel;
@@ -240,18 +206,6 @@
             //triple info plus
             GGSsgrfPanelTripleInfoPlus *thePanel = [GGSsgrfPanelTripleInfoPlus viewFromNibWithOwner:self];
             
-            // left - old location
-            [thePanel.viewLeftInfo makeMeSimple];
-            
-            // center - person
-            [thePanel.viewCenterInfo makeMeSimple];
-            
-            // right - new location
-            [thePanel.viewRightInfo makeMeSimple];
-            
-            // bottom - company
-            [thePanel.viewBottomInfo setTitle:@"company"];
-            
             // set panel
             panel = thePanel;
         }
@@ -263,18 +217,6 @@
             //triple info plus
             GGSsgrfPanelTripleInfoPlus *thePanel = [GGSsgrfPanelTripleInfoPlus viewFromNibWithOwner:self];
             
-            // left - old jobTitle
-            [thePanel setLeftText:@"old title"];
-            
-            // center - person
-            [thePanel.viewCenterInfo makeMeSimple];
-            
-            // right - new Jobtitle
-            [thePanel setRightText:@"new title"];
-            
-            // bottom - company
-            [thePanel.viewBottomInfo setTitle:@"company"];
-            
             // set panel
             panel = thePanel;
         }
@@ -284,6 +226,7 @@
             break;
     }
     
+    [panel updateWithHappening:_data];
     return panel;
 }
 

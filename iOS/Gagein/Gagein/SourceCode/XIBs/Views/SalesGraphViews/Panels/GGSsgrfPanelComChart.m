@@ -9,8 +9,10 @@
 #import "GGSsgrfPanelComChart.h"
 #import "GGSsgrfInfoWidgetView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "GGHappening.h"
 
 @implementation GGSsgrfPanelComChart
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -38,6 +40,30 @@
     _btnChart.layer.shadowColor = [UIColor blackColor].CGColor;
     
     _btnChart.contentMode = UIViewContentModeScaleAspectFill;
+}
+
+-(void)updateWithHappening:(GGHappening *)aHappening
+{
+    _happening = aHappening;
+    if (_happening)
+    {
+        switch (aHappening.type)
+        {
+            case kGGHappeningCompanyRevenueChange:
+            {
+                // left - old company
+                [self.viewLeftInfo setTitle:@"old"];
+                
+                // right - person
+                [self.btnChart setImage:nil forState:UIControlStateNormal];
+            }
+                break;
+                
+                
+            default:
+                break;
+        }
+    }
 }
 
 @end

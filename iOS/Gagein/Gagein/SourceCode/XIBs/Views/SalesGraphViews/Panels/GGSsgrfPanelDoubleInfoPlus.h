@@ -12,7 +12,7 @@
 @class GGSsgrfInfoWidgetView;
 @class GGSsgrfDblTitleView;
 
-@interface GGSsgrfPanelDoubleInfoPlus : GGSsgrfPanelBase
+@interface GGSsgrfPanelDoubleInfoPlus : GGSsgrfPanelHappeningBase
 @property (weak, nonatomic) IBOutlet GGSsgrfInfoWidgetView *viewLeftInfo;
 @property (weak, nonatomic) IBOutlet GGSsgrfDblTitleView *viewLeftText;
 @property (weak, nonatomic) IBOutlet GGSsgrfInfoWidgetView *viewRightInfo;
@@ -27,5 +27,7 @@
 
 -(void)setLeftBigTitle;
 -(void)setRightBigTitle;
+
+//-(void)updateWithHappening:(GGHappening *)aHappening;
 
 @end

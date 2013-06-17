@@ -25,3 +25,14 @@
 }
 
 @end
+
+
+////////////////////
+@implementation GGSsgrfPanelHappeningBase
+
+-(void)updateWithHappening:(GGHappening *)aHappening
+{
+    
+}
+
+@end

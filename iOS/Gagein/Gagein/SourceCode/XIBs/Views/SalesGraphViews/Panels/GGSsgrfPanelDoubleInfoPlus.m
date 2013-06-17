@@ -11,6 +11,8 @@
 #import "GGSsgrfInfoWidgetView.h"
 #import "GGSsgrfDblTitleView.h"
 
+#import "GGHappening.h"
+
 @implementation GGSsgrfPanelDoubleInfoPlus
 
 - (id)initWithFrame:(CGRect)frame
@@ -103,6 +105,33 @@
 {
     [_viewRightText useBigTitle];
     [self _adjustTextPos];
+}
+
+-(void)updateWithHappening:(GGHappening *)aHappening
+{
+    _happening = aHappening;
+    if (_happening)
+    {
+        switch (aHappening.type)
+        {
+            case kGGHappeningPersonUpdateProfilePic:
+            {
+                // left - old pic
+                [self.viewLeftInfo makeMeSimple];
+                
+                // right - new pic
+                [self.viewRightInfo makeMeSimple];
+                
+                // bottom - company
+                [self.viewBottomInfo setTitle:@"company"];
+            }
+                break;
+                
+                
+            default:
+                break;
+        }
+    }
 }
 
 @end
