@@ -39,6 +39,8 @@ typedef enum {
 @property (strong)  NSMutableArray *divisions; // each profile is a GGCompanyBrief
 @property (strong)  NSMutableArray *subsidiaries; // each profile is a GGCompanyBrief
 
+@property (strong)  NSMutableArray *competitors;
+
 @property (copy)    NSString *address;
 @property (copy)    NSString *faxNumber;
 @property (copy)    NSString *fiscalYear;

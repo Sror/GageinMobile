@@ -24,6 +24,8 @@
 -(void)setScrollImageUrls:(NSArray *)aScrollImageUrls placeholder:(UIImage *)aPlaceholder;
 -(void)setScrollTaget:(id)aTarget action:(SEL)aAction;
 
--(void)setData:(id)aData;
+
+
+-(void)updateWithCompany:(GGCompany *)aCompany;
 
 @end

@@ -37,4 +37,6 @@
 
 -(void)setPos:(CGPoint)aNewPos;
 
+-(void)setHeight:(float)aNewHeight;
+
 @end

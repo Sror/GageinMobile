@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "GGSsgrfBaseWidget.h"
 
+@class GGSsgrfInfoWidgetView;
+
 @interface GGSsgrfTitledImgScrollView : GGSsgrfBaseWidget <UIScrollViewDelegate>
 {
  @protected
@@ -30,5 +32,5 @@
 
 // tap to push away scroll view
 @interface GGSsgrfPushAwayScrollView : GGSsgrfTitledImgScrollView
-
+@property (strong, nonatomic) GGSsgrfInfoWidgetView       *infoWidget;
 @end

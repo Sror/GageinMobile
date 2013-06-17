@@ -29,6 +29,9 @@
     
     UIImage                     *_placeholder;
     NSArray                     *_imageUrls;
+    
+    id                          _imageBtnTarget;
+    SEL                         _imageBtnAction;
 }
 
 
@@ -100,7 +103,7 @@
         [button setImageWithURL:[NSURL URLWithString:urlStr]
                        forState:UIControlStateNormal placeholderImage:_placeholder];
         button.layer.cornerRadius = 4.f;
-        //[button addTarget:self action:@selector(dummy)];
+        [button addTarget:_imageBtnTarget action:_imageBtnAction];
         [_viewScroll addSubview:button];
         [_imageButtons addObject:button];
         
@@ -133,6 +136,9 @@
 
 -(void)setTaget:(id)aTarget action:(SEL)aAction
 {
+    _imageBtnTarget = aTarget;
+    _imageBtnAction = aAction;
+    
     for (GGSsgrfRndImgButton *button in _imageButtons)
     {
         [button addTarget:aTarget action:aAction];
@@ -155,7 +161,7 @@
 @implementation GGSsgrfPushAwayScrollView
 {
     float                       _pushGap;
-    GGSsgrfInfoWidgetView       *_infoWidget;
+    
 }
 
 -(void)_doInit
@@ -168,8 +174,8 @@
     _infoWidget = [[GGSsgrfInfoWidgetView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
 
     //[_infoWidget setMainImageUrl:TEST_IMG_URL placeholder:nil];
-    [_infoWidget setTitle:@"Company"];
-    [_infoWidget setSubTitle:@"Company detail"];
+    //[_infoWidget setTitle:@""];
+    //[_infoWidget setSubTitle:@"Company detail"];
     //[_infoWidget setScrollImageUrls:[NSArray arrayWithObjects:TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, nil] placeholder:nil];
     _infoWidget.hidden = YES;
     

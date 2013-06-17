@@ -847,7 +847,7 @@
         cell.expanded = NO;
     }
     
-    [cell adjustLayout];
+    //[cell adjustLayout];
     
     return cell;
 }
@@ -1033,8 +1033,25 @@
         if (ISIPADDEVICE)
         {
             NSIndexPath *oldIdxPath = _expandIndexPath;
-            _expandIndexPath = indexPath;
-            _isExpanding = !_isExpanding;
+            
+            if (_isExpanding)
+            {
+                if (indexPath.row == _expandIndexPath.row)
+                {
+                    _isExpanding = NO;
+                }
+                else
+                {
+                    _expandIndexPath = indexPath;
+                }
+            }
+            else
+            {
+                _isExpanding = YES;
+                _expandIndexPath = indexPath;
+            }
+//            _expandIndexPath = indexPath;
+//            _isExpanding = !_isExpanding;
             
             [tableView beginUpdates];
             if (indexPath.row == oldIdxPath.row)
@@ -1045,6 +1062,9 @@
             {
                 [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIdxPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
             }
+            
+            //[tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+            
             [tableView endUpdates];
         }
         else

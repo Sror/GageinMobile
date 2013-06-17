@@ -79,7 +79,7 @@
 
 -(void)setImageURL:(NSString *)aImageURL placeholder:(UIImage *)aPlaceholder
 {
-    [_viewRndImgBtn setImageWithURL:[NSURL URLWithString:aImageURL]
+    [_viewRndImgBtn setBackgroundImageWithURL:[NSURL URLWithString:aImageURL]
                            forState:UIControlStateNormal placeholderImage:aPlaceholder];
 }
 

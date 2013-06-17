@@ -37,16 +37,8 @@
     self.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.layer.borderWidth = 2.f;
     self.clipsToBounds = YES;
-}
-
--(void)setImage:(UIImage *)image
-{
-    [self setImage:image forState:UIControlStateNormal];
-}
-
--(void)setImageWithURL:(NSString *)aURL
-{
-    [self setImageWithURL:[NSURL URLWithString:aURL]];
+    
+    self.contentMode = UIViewContentModeScaleAspectFill;
 }
 
 -(void)clearActions

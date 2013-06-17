@@ -14,8 +14,9 @@
 
 #import "GGCompanyUpdate.h"
 #import "GGCompany.h"
+#import "GGSsgrfInfoWidgetView.h"
 
-#define EXPAND_PANEL_OFFSET_X       110
+#define SALES_GRAPH_API_READY       0
 
 @implementation GGCompanyUpdateIpadCell
 {
@@ -87,19 +88,22 @@
     
     if (_expanded)
     {
+        float positionX = self.viewContent.frame.origin.x + 2;
         _panel = [GGSsgrfPanelUpdate viewFromNibWithOwner:self];
         float thisH = self.frame.size.height;
-        [_panel setPos:CGPointMake(EXPAND_PANEL_OFFSET_X, thisH)];
+        [_panel setPos:CGPointMake(positionX, thisH)];
         [self addSubview:_panel];
         
         _actionBar = [GGUpdateActionBar viewFromNibWithOwner:self];
+        //_actionBar.backgroundColor = GGSharedColor.darkRed;
         float actionOriginY = CGRectGetMaxY(_panel.frame);
-        [_actionBar setPos:CGPointMake(EXPAND_PANEL_OFFSET_X, actionOriginY)];
+        [_actionBar setPos:CGPointMake(positionX, actionOriginY)];
+        //CGRect actionBarRc = _actionBar.frame;
         [self addSubview:_actionBar];
         
         NSMutableArray *imageURLs = [NSMutableArray array];
         
-#if 0
+#if SALES_GRAPH_API_READY
         for (GGCompany *company in _data.mentionedCompanies)
         {
             [imageURLs addObjectIfNotNil:company.logoPath];
@@ -107,12 +111,40 @@
 #else
         imageURLs = [NSMutableArray arrayWithObjects:TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, nil];
 #endif
-        
+        [_panel.viewScroll setTaget:self action:@selector(popupCompanyInfo:)];
         
         [_panel.viewScroll setImageUrls:imageURLs placeholder:GGSharedImagePool.logoDefaultCompany];
         
         [self adjustLayout];
     }
+}
+
+#pragma mark - actions
+-(void)popupCompanyInfo:(id)sender
+{
+    UIButton *btn = sender;
+    DLog(@"pop company index:%d", btn.tag);
+    
+#if SALES_GRAPH_API_READY
+    GGCompany *company = _data.mentionedCompanies[btn.tag];
+    [_panel.viewScroll.infoWidget updateWithCompany:company];
+#else
+    GGCompany *fakeCom = [GGCompany model];
+    fakeCom.name = @"Apple Inc.";
+    fakeCom.logoPath = TEST_IMG_URL;
+    
+    NSMutableArray *competitors = [NSMutableArray array];
+    for (int i = 0; i < 10; i++)
+    {
+        GGCompany *competitor = [GGCompany model];
+        competitor.name = @"Google Inc.";
+        competitor.logoPath = TEST_IMG_URL;
+        [competitors addObject:competitor];
+    }
+    fakeCom.competitors = competitors;
+    
+    [_panel.viewScroll.infoWidget updateWithCompany:fakeCom];
+#endif
 }
 
 @end

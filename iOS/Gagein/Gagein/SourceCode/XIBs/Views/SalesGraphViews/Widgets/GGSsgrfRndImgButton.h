@@ -10,8 +10,6 @@
 
 @interface GGSsgrfRndImgButton : UIButton
 
--(void)setImage:(UIImage *)image;
--(void)setImageWithURL:(NSString *)aURL;
 -(void)addTarget:(id)target action:(SEL)action;
 -(void)clearActions;
 

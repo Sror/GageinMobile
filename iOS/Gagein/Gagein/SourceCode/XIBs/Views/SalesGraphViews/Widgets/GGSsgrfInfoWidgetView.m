@@ -11,6 +11,8 @@
 #import "GGSsgrfTitledImageBtnView.h"
 #import "GGSsgrfTitledImgScrollView.h"
 
+#import "GGCompany.h"
+
 @interface GGSsgrfInfoWidgetView ()
 @property (strong, nonatomic)   GGSsgrfTitledImageBtnView   *viewTitledImage;
 @property (strong, nonatomic)   GGSsgrfTitledImgScrollView   *viewTitledScroll;
@@ -18,6 +20,9 @@
 @end
 
 @implementation GGSsgrfInfoWidgetView
+{
+    NSArray *competitors;
+}
 
 //- (id)initWithFrame:(CGRect)frame
 //{
@@ -100,9 +105,24 @@
     [_viewTitledScroll setTaget:aTarget action:aAction];
 }
 
--(void)setData:(id)aData;
+
+-(void)updateWithCompany:(GGCompany *)aCompany
 {
-    
+    if (aCompany)
+    {
+        [self setTitle:aCompany.name];
+        [self setMainImageUrl:aCompany.logoPath placeholder:GGSharedImagePool.logoDefaultCompany];
+        
+        competitors = aCompany.competitors;
+        NSMutableArray *imageURLs = [NSMutableArray array];
+        for (GGCompany *com in competitors)
+        {
+            [imageURLs addObjectIfNotNil:com.logoPath];
+        }
+        [self setScrollImageUrls:imageURLs placeholder:GGSharedImagePool.placeholder];
+    }
 }
+
+#pragma mark - actions
 
 @end
