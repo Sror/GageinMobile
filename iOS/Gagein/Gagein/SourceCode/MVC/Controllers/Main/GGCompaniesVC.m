@@ -37,7 +37,9 @@
 #import "GGComUpdateSearchResultVC.h"
 #import "GGKeywordExampleCell.h"
 #import "GGConfigLabel.h"
+
 #import "GGCompanyUpdateIpadCell.h"
+#import "GGHappeningIpadCell.h"
 
 #define SWITCH_WIDTH 90
 #define SWITCH_HEIGHT 20
@@ -821,6 +823,7 @@
     if (cell == nil) {
         cell = [GGCompanyUpdateIpadCell viewFromNibWithOwner:self];
         [cell.btnLogo addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.btnHeadline addTarget:self action:@selector(_enterCompanyUpdateDetailAction:) forControlEvents:UIControlEventTouchUpInside];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
@@ -828,6 +831,7 @@
     
     cell.data = updateData;
     cell.btnLogo.tag = row;
+    cell.btnHeadline.tag = row;
     
     cell.lblHeadline.text = [updateData headlineTruncated];
     cell.lblSource.text = updateData.fromSource;
@@ -852,7 +856,32 @@
     return cell;
 }
 
-//GGCompanyUpdateIpadCell
+-(GGHappeningIpadCell *)_happeningCellForIPadWithIndexPath:(NSIndexPath *)aIndexPath
+{
+    int row = aIndexPath.row;
+    
+    GGHappeningIpadCell *cell = nil;
+    if (cell == nil)
+    {
+        cell = [GGHappeningIpadCell viewFromNibWithOwner:self];
+    }
+    
+    GGHappening *data = _happenings[row];
+    
+    cell.data = data;
+    cell.btnLogo.tag = row;
+    
+    
+    cell.lblHeadline.text = data.headLineText;
+    cell.lblSource.text = data.sourceText;
+    
+    [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+    
+    cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
+    cell.hasBeenRead = data.hasBeenRead;
+    
+    return cell;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -871,6 +900,11 @@
     }
     else if (tableView == self.happeningsTV)
     {
+        if (ISIPADDEVICE)
+        {
+            return [self _happeningCellForIPadWithIndexPath:indexPath];
+        }
+        
         static NSString *happeningCellId = @"GGCompanyHappeningCell";
         GGCompanyHappeningCell *cell = [tableView dequeueReusableCellWithIdentifier:happeningCellId];
         if (cell == nil) {
@@ -1069,12 +1103,7 @@
         }
         else
         {
-            GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
-            vc.naviTitleString = self.naviTitle;
-            vc.updates = self.updates;
-            vc.updateIndex = row;
-            
-            [self.navigationController pushViewController:vc animated:YES];
+            [self _enterCompanyUpdateDetailWithIndex:row];
         }
     }
     else if (tableView == self.happeningsTV)
@@ -1123,6 +1152,22 @@
             [self _doSearchWithKeyword:keyword];
         }
     }
+}
+
+-(void)_enterCompanyUpdateDetailAction:(id)sender
+{
+    UIView *view = sender;
+    [self _enterCompanyUpdateDetailWithIndex:view.tag];
+}
+
+-(void)_enterCompanyUpdateDetailWithIndex:(int)aIndex
+{
+    GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
+    vc.naviTitleString = self.naviTitle;
+    vc.updates = self.updates;
+    vc.updateIndex = aIndex;
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //#pragma mark - scrolling view delegate

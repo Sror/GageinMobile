@@ -28,7 +28,6 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
     }
     return self;
 }
@@ -38,6 +37,8 @@
 {
     _lblHeadline.text = _lblInterval.text = _lblSource.text = @"";
     _ivContentBg.image = GGSharedImagePool.stretchShadowBgWite;
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [GGUtils applyLogoStyleToView:_ivLogo];
 }
