@@ -118,18 +118,18 @@
                 if ([_happening isJoin])
                 {
                     // left - person
-                    [self.viewLeftInfo makeMeSimple];
+                    [self.viewLeftInfo updateWithPerson:_happening.person];
                     
                     // right - new company
-                    [self.viewRightInfo setTitle:@"new"];
+                    [self.viewRightInfo updateWithCompany:_happening.company];
                 }
                 else
                 {
                     // left - old company
-                    [self.viewLeftInfo setTitle:@"old"];
+                    [self.viewLeftInfo updateWithCompany:_happening.oldCompany];
                     
                     // right - person
-                    [self.viewRightInfo makeMeSimple];
+                    [self.viewRightInfo updateWithPerson:_happening.person];
                 }
                 
             }
@@ -138,21 +138,25 @@
             case kGGHappeningCompanyNewFunding:
             {
                 // left - big funding text
-                [self setLeftText:@"Funding"];
+                [self setLeftText:_happening.fundingText];
                 [self setLeftBigTitle];
                 
+                [self setLeftSubText:_happening.roundText];
+                
                 // right - company
-                [self.viewRightInfo setTitle:@"company"];
+                [self.viewRightInfo updateWithCompany:_happening.company];
             }
                 break;
                 
             case kGGHappeningCompanyNewLocation:
             {
                 // left - company
-                [self.viewLeftInfo setTitle:@"comany"];
+                [self.viewLeftInfo updateWithCompany:_happening.company];
                 
                 // right - location
-                [self.viewRightInfo makeMeSimple];
+                [self setLeftText:_happening.company.city];
+                [self setLeftSubText:@"New Location"];
+                [self.viewRightInfo updateWithMapUrl:_happening.addressMap];
             }
                 break;
                 

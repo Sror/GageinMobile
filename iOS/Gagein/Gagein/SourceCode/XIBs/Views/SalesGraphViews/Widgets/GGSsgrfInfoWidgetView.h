@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GGSsgrfBaseWidget.h"
+#import "GGHappening.h"
 
 typedef enum {
     kGGSsGrfInfoWidgetCompany = 0
@@ -34,8 +35,8 @@ typedef enum {
 -(void)setScrollImageUrls:(NSArray *)aScrollImageUrls placeholder:(UIImage *)aPlaceholder;
 -(void)setScrollTaget:(id)aTarget action:(SEL)aAction;
 
--(void)updateWithCompany:(GGCompany *)aCompany;
--(void)updateWithPerson:(GGPerson *)aPerson;
+-(void)updateWithCompany:(GGHappeningCompany *)aCompany;
+-(void)updateWithPerson:(GGHappeningPerson *)aPerson;
 -(void)updateWithMapUrl:(NSString *)aMapURL;
 
 @end

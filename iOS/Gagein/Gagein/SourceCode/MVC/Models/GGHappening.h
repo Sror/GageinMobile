@@ -78,6 +78,8 @@ typedef enum {
 @property (copy) NSString       *zipcode;
 @property (copy) NSString       *address;
 
+@property (strong) NSMutableArray   *competitors;
+
 -(NSString *)addressCityStateCountry;
 @end
 
@@ -155,4 +157,7 @@ typedef enum {
 -(NSString *)headLineText;
 
 -(BOOL)isJoin;
+
+-(NSString *)fundingText;
+-(NSString *)roundText;
 @end

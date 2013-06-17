@@ -52,10 +52,12 @@
             case kGGHappeningCompanyRevenueChange:
             {
                 // left - old company
-                [self.viewLeftInfo setTitle:@"old"];
+                [self.viewLeftInfo updateWithCompany:_happening.oldCompany];
                 
-                // right - person
-                [self.btnChart setImage:nil forState:UIControlStateNormal];
+                // right - chart
+                [self.btnChart setBackgroundImageWithURL:[NSURL URLWithString:_happening.revenueChart]
+                                                forState:UIControlStateNormal
+                                        placeholderImage:GGSharedImagePool.placeholder];
             }
                 break;
                 

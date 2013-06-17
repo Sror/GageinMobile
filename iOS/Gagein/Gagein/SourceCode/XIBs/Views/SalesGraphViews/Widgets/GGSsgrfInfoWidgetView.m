@@ -106,21 +106,21 @@
     [_viewTitledScroll setTaget:aTarget action:aAction];
 }
 
--(GGCompany *)_company
+-(GGHappeningCompany *)_company
 {
-    if ([_data isKindOfClass:[GGCompany class]])
+    if ([_data isKindOfClass:[GGHappeningCompany class]])
     {
-        return ((GGCompany *)_data);
+        return ((GGHappeningCompany *)_data);
     }
     
     return nil;
 }
 
--(GGPerson *)_person
+-(GGHappeningPerson *)_person
 {
-    if ([_data isKindOfClass:[GGPerson class]])
+    if ([_data isKindOfClass:[GGHappeningPerson class]])
     {
-        return ((GGPerson *)_data);
+        return ((GGHappeningPerson *)_data);
     }
     
     return nil;
@@ -141,7 +141,7 @@
     return [self _company].competitors;
 }
 
--(void)updateWithCompany:(GGCompany *)aCompany
+-(void)updateWithCompany:(GGHappeningCompany *)aCompany
 {
     _type = kGGSsGrfInfoWidgetCompany;
     _data = aCompany;
@@ -149,14 +149,14 @@
     if (aCompany)
     {
         [self setTitle:aCompany.name];
-        [self setMainImageUrl:aCompany.logoPath placeholder:GGSharedImagePool.logoDefaultCompany];
+        [self setMainImageUrl:aCompany.orgLogoPath placeholder:GGSharedImagePool.logoDefaultCompany];
         [self setMainTaget:self action:@selector(companyLogoTapped:)];
         
         NSArray *competitors = aCompany.competitors;
         NSMutableArray *imageURLs = [NSMutableArray array];
-        for (GGCompany *com in competitors)
+        for (GGHappeningCompany *com in competitors)
         {
-            [imageURLs addObjectIfNotNil:com.logoPath];
+            [imageURLs addObjectIfNotNil:com.orgLogoPath];
         }
         
         [self setScrollTaget:self action:@selector(competitorTapped:)];
@@ -164,7 +164,7 @@
     }
 }
 
--(void)updateWithPerson:(GGPerson *)aPerson
+-(void)updateWithPerson:(GGHappeningPerson *)aPerson
 {
     _type = kGGSsGrfInfoWidgetPerson;
     _data = aPerson;
@@ -174,6 +174,8 @@
         [self setTitle:aPerson.name];
         [self setMainImageUrl:aPerson.photoPath placeholder:GGSharedImagePool.logoDefaultPerson];
         [self setMainTaget:self action:@selector(personLogoTapped:)];
+        
+        [self makeMeSimple];
     }
 }
 
@@ -186,6 +188,8 @@
     {
         [self setMainImageUrl:aMapURL placeholder:GGSharedImagePool.placeholder];
         [self setMainTaget:self action:@selector(mapTapped:)];
+        
+        [self makeMeSimple];
     }
 }
 

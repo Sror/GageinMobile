@@ -347,6 +347,16 @@
     return [self.change isEqualToString:CHANGE_TYPE_JOIN];
 }
 
+-(NSString *)fundingText
+{
+    return [NSString stringWithFormat:@"$ %@", _funding];
+}
+
+-(NSString *)roundText
+{
+    return [NSString stringWithFormat:@"%@-round", _round];
+}
+
 -(NSString *)headLineText
 {
     switch (self.type)
