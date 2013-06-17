@@ -117,13 +117,13 @@
             case kGGHappeningPersonUpdateProfilePic:
             {
                 // left - old pic
-                [self.viewLeftInfo makeMeSimple];
+                [self.viewLeftInfo updateWithPerson:_happening.person showOldPhoto:YES];
                 
                 // right - new pic
-                [self.viewRightInfo makeMeSimple];
+                [self.viewRightInfo updateWithPerson:_happening.person showOldPhoto:NO];
                 
                 // bottom - company
-                [self.viewBottomInfo setTitle:@"company"];
+                [self.viewBottomInfo updateWithCompany:_happening.company];
             }
                 break;
                 

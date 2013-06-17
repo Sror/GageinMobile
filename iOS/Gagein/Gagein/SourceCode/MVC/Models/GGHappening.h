@@ -49,6 +49,7 @@ typedef enum {
 @property (copy) NSString       *address;
 @property (copy) NSString       *linkedInID;
 @property (copy) NSString       *photoPath;
+@property (copy) NSString       *oldPhotoPath;          // from oldProfilePic
 @property (strong) NSMutableArray   *socialProfiles;
 @property (copy) NSString           *actionType;
 

@@ -166,14 +166,27 @@
 
 -(void)updateWithPerson:(GGHappeningPerson *)aPerson
 {
+    [self updateWithPerson:aPerson showOldPhoto:NO];
+}
+
+-(void)updateWithPerson:(GGHappeningPerson *)aPerson showOldPhoto:(BOOL)showOldPhoto
+{
     _type = kGGSsGrfInfoWidgetPerson;
     _data = aPerson;
     
     if (aPerson)
     {
         [self setTitle:aPerson.name];
-        [self setMainImageUrl:aPerson.photoPath placeholder:GGSharedImagePool.logoDefaultPerson];
         [self setMainTaget:self action:@selector(personLogoTapped:)];
+        
+        if (showOldPhoto)
+        {
+            [self setMainImageUrl:aPerson.oldPhotoPath placeholder:GGSharedImagePool.logoDefaultPerson];
+        }
+        else
+        {
+            [self setMainImageUrl:aPerson.photoPath placeholder:GGSharedImagePool.logoDefaultPerson];
+        }
         
         [self makeMeSimple];
     }

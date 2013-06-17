@@ -261,6 +261,7 @@
     
     self.profilePic = [aData objectForKey:@"profilepic"];
     self.oldProfilePic = [aData objectForKey:@"oldProfilepic"];
+    _person.oldPhotoPath = _oldProfilePic;
 }
 
 -(void)_parseNewProtocolWithData:(NSDictionary *)aData
@@ -301,6 +302,7 @@
     
     self.profilePic = [aData objectForKey:@"profile_pic"];
     self.oldProfilePic = [aData objectForKey:@"old_profile_pic"];
+    _person.oldPhotoPath = _oldProfilePic;
 }
 
 -(BOOL)_isOldData

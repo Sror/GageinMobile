@@ -37,6 +37,7 @@ typedef enum {
 
 -(void)updateWithCompany:(GGHappeningCompany *)aCompany;
 -(void)updateWithPerson:(GGHappeningPerson *)aPerson;
+-(void)updateWithPerson:(GGHappeningPerson *)aPerson showOldPhoto:(BOOL)showOldPhoto;
 -(void)updateWithMapUrl:(NSString *)aMapURL;
 
 @end
