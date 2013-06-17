@@ -827,4 +827,34 @@
     DLog(@"ssGraphUnfollowCompany:%@", aCompanyID);
 }
 
+-(void)ssGraphSignal:(NSNumber *)aUpdateID
+{
+    DLog(@"ssGraphSignal:%@", aUpdateID);
+}
+
+-(void)ssGraphLike:(NSNumber *)aUpdateID
+{
+    DLog(@"ssGraphLike:%@", aUpdateID);
+}
+
+-(void)ssGraphUnLike:(NSNumber *)aUpdateID
+{
+    DLog(@"ssGraphUnLike:%@", aUpdateID);
+}
+
+-(void)ssGraphSave:(NSNumber *)aUpdateID
+{
+    DLog(@"ssGraphSave:%@", aUpdateID);
+}
+
+-(void)ssGraphUnSave:(NSNumber *)aUpdateID
+{
+    DLog(@"ssGraphUnSave:%@", aUpdateID);
+}
+
+-(void)ssGraphShare:(NSNumber *)aUpdateID
+{
+    DLog(@"ssGraphShare:%@", aUpdateID);
+}
+
 @end

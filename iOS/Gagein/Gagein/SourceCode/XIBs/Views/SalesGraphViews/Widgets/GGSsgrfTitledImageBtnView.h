@@ -14,6 +14,8 @@
 -(void)setTitle:(NSString *)aTitle;
 -(void)setSubTitle:(NSString *)aTitle;
 -(void)setImageURL:(NSString *)aImageURL placeholder:(UIImage *)aPlaceholder;
--(void)setTarget:(id)aTarget action:(SEL)aAction;
 
+-(void)setTarget:(id)aTarget action:(SEL)aAction;
+-(void)resetTarget:(id)aTarget action:(SEL)aAction;
+-(void)clearActions;
 @end

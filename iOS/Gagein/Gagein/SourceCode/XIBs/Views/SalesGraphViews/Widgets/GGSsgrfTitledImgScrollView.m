@@ -103,6 +103,7 @@
         [button setImageWithURL:[NSURL URLWithString:urlStr]
                        forState:UIControlStateNormal placeholderImage:_placeholder];
         button.layer.cornerRadius = 4.f;
+        
         [button addTarget:_imageBtnTarget action:_imageBtnAction];
         [_viewScroll addSubview:button];
         [_imageButtons addObject:button];
@@ -173,10 +174,6 @@
     
     _infoWidget = [[GGSsgrfInfoWidgetView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
 
-    //[_infoWidget setMainImageUrl:TEST_IMG_URL placeholder:nil];
-    //[_infoWidget setTitle:@""];
-    //[_infoWidget setSubTitle:@"Company detail"];
-    //[_infoWidget setScrollImageUrls:[NSArray arrayWithObjects:TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, nil] placeholder:nil];
     _infoWidget.hidden = YES;
     
 }
@@ -235,11 +232,7 @@
         {
             for (int i = index - 1; i >= 0; i--)
             {
-                //GGSsgrfRndImgButton *inButton = _imageButtons[i + 1];
                 CGRect targetRc = rectsPtr[i + 1];
-                //CGRect targetRc = inButton.frame;
-                //GGSsgrfRndImgButton *outButton = _imageButtons[i];
-                //CGRect moveRc = rectsPtr[i];
                 
                 float distance = (i == index - 1) ? (_gap + _pushGap) : _gap;
                 
@@ -255,11 +248,7 @@
         {
             for (int i = index + 1; i < count; i++)
             {
-                //GGSsgrfRndImgButton *inButton = _imageButtons[i - 1];
                 CGRect targetRc = rectsPtr[i - 1];
-                //CGRect targetRc = inButton.frame;
-                //GGSsgrfRndImgButton *outButton = _imageButtons[i];
-                //CGRect moveRc = rectsPtr[i];
                 
                 float distance = (i == index + 1) ? (_gap + _pushGap) : _gap;
                 
@@ -270,7 +259,6 @@
             }
         }
         
-        //UIButton *firstBtn = _imageButtons[0];
         CGRect firstRc = rectsPtr[0];
         
         // adjust the offset
@@ -283,11 +271,6 @@
                 //CGRect theRc = rectsPtr[i];
                 rectsPtr[i] = CGRectOffset(rectsPtr[i], offsetX, 0);
             }
-            
-//            for (GGSsgrfRndImgButton *button in _imageButtons)
-//            {
-//                button.frame = CGRectOffset(button.frame, offsetX, 0);
-//            }
         }
         
         for (int i = 0; i < count; i++)
@@ -296,10 +279,6 @@
             GGSsgrfRndImgButton *theBtn = _imageButtons[i];
             theBtn.frame = theRc;
         }
-        
-        //UIButton *lastBtn = _imageButtons.lastObject;
-        //CGRect firstRc = firstBtn.frame;
-        //CGRect lastRc = lastBtn.frame;
         
         // set scroll content size
         float contentWidth = CGRectGetMaxX(rectsPtr[count - 1]) - (rectsPtr[0]).origin.x;
@@ -311,9 +290,7 @@
         contentOffsetX = MIN(contentOffsetX, widgetOriginX);
         contentOffsetX = MAX(contentOffsetX, widgetMaxX - _viewScroll.frame.size.width);
         _viewScroll.contentOffset = CGPointMake(contentOffsetX, _viewScroll.contentOffset.y);
-        
-        //float contentOffsetX = pushedButton.frame.origin.x + pushedButton.frame.size.width / 2 - self.frame.size.width / 2;
-        //contentOffsetX = MAX(contentOffsetX, 0);
+
         _viewScroll.contentOffset = CGPointMake(contentOffsetX, _viewScroll.contentOffset.y);
         
     } completion:^(BOOL finished) {
@@ -323,12 +300,6 @@
         center.y -= 0;
         _infoWidget.center = center;
         [_viewScroll addSubview:_infoWidget];
-        
-//        float contentOffsetX = _viewScroll.contentOffset.x;
-//        float widgetX = _infoWidget.frame.origin.x;
-//        contentOffsetX = MIN(contentOffsetX, widgetX);
-//        contentOffsetX = MAX(contentOffsetX, CGRectGetMaxX(_infoWidget.frame) - _viewScroll.frame.size.width);
-//        _viewScroll.contentOffset = CGPointMake(contentOffsetX, _viewScroll.contentOffset.y);
         
         CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
         opacityAnimation.fromValue = @(0);

@@ -10,6 +10,7 @@
 #import "GGSsgrfBaseWidget.h"
 
 @interface GGSsgrfInfoWidgetView : GGSsgrfBaseWidget
+@property (nonatomic, strong)   id      data;
 
 -(void)setTitle:(NSString *)aTitle;
 -(void)setSubTitle:(NSString *)aTitle;
@@ -23,8 +24,6 @@
 
 -(void)setScrollImageUrls:(NSArray *)aScrollImageUrls placeholder:(UIImage *)aPlaceholder;
 -(void)setScrollTaget:(id)aTarget action:(SEL)aAction;
-
-
 
 -(void)updateWithCompany:(GGCompany *)aCompany;
 

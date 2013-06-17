@@ -21,7 +21,7 @@
 
 @implementation GGSsgrfInfoWidgetView
 {
-    NSArray *competitors;
+    //NSArray *competitors;
 }
 
 //- (id)initWithFrame:(CGRect)frame
@@ -91,7 +91,7 @@
 
 -(void)setMainTaget:(id)aTarget action:(SEL)aAction
 {
-    [_viewTitledImage setTarget:aTarget action:aAction];
+    [_viewTitledImage resetTarget:aTarget action:aAction];
 }
 
 
@@ -105,24 +105,57 @@
     [_viewTitledScroll setTaget:aTarget action:aAction];
 }
 
+-(GGCompany *)_company
+{
+    if ([_data isKindOfClass:[GGCompany class]])
+    {
+        return ((GGCompany *)_data);
+    }
+    
+    return nil;
+}
+
+-(NSArray *)_competitors
+{
+    return [self _company].competitors;
+}
 
 -(void)updateWithCompany:(GGCompany *)aCompany
 {
+    _data = aCompany;
+    
     if (aCompany)
     {
         [self setTitle:aCompany.name];
         [self setMainImageUrl:aCompany.logoPath placeholder:GGSharedImagePool.logoDefaultCompany];
+        [self setMainTaget:self action:@selector(companyLogoTapped:)];
         
-        competitors = aCompany.competitors;
+        NSArray *competitors = aCompany.competitors;
         NSMutableArray *imageURLs = [NSMutableArray array];
         for (GGCompany *com in competitors)
         {
             [imageURLs addObjectIfNotNil:com.logoPath];
         }
+        
+        [self setScrollTaget:self action:@selector(competitorTapped:)];
         [self setScrollImageUrls:imageURLs placeholder:GGSharedImagePool.placeholder];
     }
 }
 
 #pragma mark - actions
+-(void)companyLogoTapped:(id)sender
+{
+    //UIButton * btn = (UIButton *)sender;
+    //DLog(@"companyLogoTapped: %d", btn.tag);
+    [self postNotification:GG_NOTIFY_SSGRF_SHOW_COMPANY_PANEL withObject:@([self _company].ID)];
+}
+
+-(void)competitorTapped:(id)sender
+{
+    UIButton * btn = (UIButton *)sender;
+    DLog(@"competitorTapped: %d", btn.tag);
+    GGCompany *competitor = [self _competitors][btn.tag];
+    [self postNotification:GG_NOTIFY_SSGRF_SHOW_COMPANY_PANEL withObject:@(competitor.ID)];
+}
 
 @end

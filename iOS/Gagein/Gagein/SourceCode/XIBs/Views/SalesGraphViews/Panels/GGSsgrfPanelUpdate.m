@@ -27,4 +27,10 @@
     _viewScroll.backgroundColor = [UIColor clearColor];
 }
 
+-(void)setData:(GGCompanyUpdate *)data
+{
+    _data = data;
+    _viewScroll.data = data;
+}
+
 @end

@@ -33,4 +33,5 @@
 // tap to push away scroll view
 @interface GGSsgrfPushAwayScrollView : GGSsgrfTitledImgScrollView
 @property (strong, nonatomic) GGSsgrfInfoWidgetView       *infoWidget;
+@property (strong, nonatomic) GGCompanyUpdate             *data;
 @end

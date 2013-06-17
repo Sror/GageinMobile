@@ -83,8 +83,19 @@
                            forState:UIControlStateNormal placeholderImage:aPlaceholder];
 }
 
+-(void)clearActions
+{
+    [_viewRndImgBtn clearActions];
+}
+
 -(void)setTarget:(id)aTarget action:(SEL)aAction
 {
+    [_viewRndImgBtn addTarget:aTarget action:aAction];
+}
+
+-(void)resetTarget:(id)aTarget action:(SEL)aAction
+{
+    [_viewRndImgBtn clearActions];
     [_viewRndImgBtn addTarget:aTarget action:aAction];
 }
 

@@ -72,13 +72,6 @@
 
 -(void)_doExpand
 {
-//    for (UIView *subView in self.subviews)
-//    {
-//        if ([subView isKindOfClass:[GGSsgrfPanelUpdate class]])
-//        {
-//            [subView removeFromSuperview];
-//        }
-//    }
     [_panel removeFromSuperview];
     [_actionBar removeFromSuperview];
     

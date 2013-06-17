@@ -18,10 +18,18 @@
 -(void)ssGraphShowEmployeeListPage:(NSArray *)aEmployees;
 -(void)ssGraphShowCompanyListPage:(NSArray *)aCompanies;
 -(void)ssGraphShowWebPage:(NSString *)aURL;
+
 -(void)ssGraphFollowPerson:(NSNumber *)aPersonID;
 -(void)ssGraphUnfollowPerson:(NSNumber *)aPersonID;
 -(void)ssGraphFollowCompany:(NSNumber *)aCompanyID;
 -(void)ssGraphUnfollowCompany:(NSNumber *)aCompanyID;
+
+-(void)ssGraphSignal:(NSNumber *)aUpdateID;
+-(void)ssGraphLike:(NSNumber *)aUpdateID;
+-(void)ssGraphUnLike:(NSNumber *)aUpdateID;
+-(void)ssGraphSave:(NSNumber *)aUpdateID;
+-(void)ssGraphUnSave:(NSNumber *)aUpdateID;
+-(void)ssGraphShare:(NSNumber *)aUpdateID;
 @end
 
 
