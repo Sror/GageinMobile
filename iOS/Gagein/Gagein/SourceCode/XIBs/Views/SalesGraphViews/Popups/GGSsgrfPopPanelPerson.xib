@@ -674,7 +674,7 @@
 								<string key="NSFrame">{{18, 14}, {109, 32}}</string>
 								<reference key="NSSuperview" ref="731736695"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="1003654451"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -690,54 +690,6 @@
 								</object>
 								<reference key="IBUIFontDescription" ref="953846640"/>
 								<reference key="IBUIFont" ref="852141648"/>
-							</object>
-							<object class="IBUIButton" id="1003654451">
-								<reference key="NSNextResponder" ref="731736695"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{166, 16}, {32, 32}}</string>
-								<reference key="NSSuperview" ref="731736695"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="899772639"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIHighlightedTitleColor" ref="629680600"/>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="207651667"/>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">ssgrf_btn_linkedin_gdnt@2x.png</string>
-								</object>
-								<reference key="IBUIFontDescription" ref="953846640"/>
-								<reference key="IBUIFont" ref="852141648"/>
-							</object>
-							<object class="IBUILabel" id="899772639">
-								<reference key="NSNextResponder" ref="731736695"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{206, 21}, {347, 21}}</string>
-								<reference key="NSSuperview" ref="731736695"/>
-								<reference key="NSWindow"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">7</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<string key="IBUIText">Search for connections on LinkedIn</string>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC42NTQzODE3OTM1IDAuNjU0MzgxNzkzNSAwLjY1NDM4MTc5MzUAA</bytes>
-								</object>
-								<nil key="IBUIHighlightedColor"/>
-								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="226805642"/>
-								<reference key="IBUIFont" ref="470730018"/>
-								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 						</array>
 						<string key="NSFrame">{{0, 210}, {690, 65}}</string>
@@ -804,14 +756,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">viewEmployees</string>
-						<reference key="source" ref="796411502"/>
-						<reference key="destination" ref="699588443"/>
-					</object>
-					<int key="connectionID">163</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">viewExtraInfo</string>
 						<reference key="source" ref="796411502"/>
 						<reference key="destination" ref="184071260"/>
@@ -833,6 +777,222 @@
 						<reference key="destination" ref="228222137"/>
 					</object>
 					<int key="connectionID">166</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnLogo</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="339288273"/>
+					</object>
+					<int key="connectionID">167</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblTitle</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="16163734"/>
+					</object>
+					<int key="connectionID">168</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblSubTitle</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="77913357"/>
+					</object>
+					<int key="connectionID">169</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnLinkedIn</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="50350939"/>
+					</object>
+					<int key="connectionID">170</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnFacebook</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="345819766"/>
+					</object>
+					<int key="connectionID">171</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnTwitter</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="469336695"/>
+					</object>
+					<int key="connectionID">172</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnYoutube</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="168036944"/>
+					</object>
+					<int key="connectionID">173</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnSlideShare</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="1016664987"/>
+					</object>
+					<int key="connectionID">174</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnHoover</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="592431847"/>
+					</object>
+					<int key="connectionID">175</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnYahoo</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="71981401"/>
+					</object>
+					<int key="connectionID">176</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnCB</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="336372817"/>
+					</object>
+					<int key="connectionID">177</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">viewEmployers</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="699588443"/>
+					</object>
+					<int key="connectionID">178</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">viewEmployer1</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="1002267969"/>
+					</object>
+					<int key="connectionID">179</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblEmp1Title</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="598603142"/>
+					</object>
+					<int key="connectionID">180</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ivEmp1Logo</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="778207024"/>
+					</object>
+					<int key="connectionID">181</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblEmp1SubTitle</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="830348401"/>
+					</object>
+					<int key="connectionID">182</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">viewEmployer2</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="175881117"/>
+					</object>
+					<int key="connectionID">183</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblEmp2Title</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="766986696"/>
+					</object>
+					<int key="connectionID">184</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ivEmp2Logo</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="550222125"/>
+					</object>
+					<int key="connectionID">185</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblEmp2SubTitle</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="143242494"/>
+					</object>
+					<int key="connectionID">186</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">viewEmployer3</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="177435451"/>
+					</object>
+					<int key="connectionID">187</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblEmp3Title</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="628132485"/>
+					</object>
+					<int key="connectionID">188</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ivEmp3Logo</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="851633878"/>
+					</object>
+					<int key="connectionID">189</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblEmp3SubTitle</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="505817110"/>
+					</object>
+					<int key="connectionID">190</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnMoreEmployers</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="326670086"/>
+					</object>
+					<int key="connectionID">191</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lblOwnership</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="1036211908"/>
+					</object>
+					<int key="connectionID">192</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnFollow</string>
+						<reference key="source" ref="796411502"/>
+						<reference key="destination" ref="979133073"/>
+					</object>
+					<int key="connectionID">193</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -896,7 +1056,7 @@
 							<reference ref="326670086"/>
 						</array>
 						<reference key="parent" ref="796411502"/>
-						<string key="objectName">viewEmployees</string>
+						<string key="objectName">viewEmployers</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
@@ -912,8 +1072,6 @@
 						<reference key="object" ref="731736695"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="979133073"/>
-							<reference ref="1003654451"/>
-							<reference ref="899772639"/>
 						</array>
 						<reference key="parent" ref="796411502"/>
 						<string key="objectName">viewFooter</string>
@@ -933,20 +1091,6 @@
 						<string key="objectName">btnFollow</string>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">9</int>
-						<reference key="object" ref="1003654451"/>
-						<array class="NSMutableArray" key="children"/>
-						<reference key="parent" ref="731736695"/>
-						<string key="objectName">btnLinkedInFooter</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">10</int>
-						<reference key="object" ref="899772639"/>
-						<array class="NSMutableArray" key="children"/>
-						<reference key="parent" ref="731736695"/>
-						<string key="objectName">lblPhone</string>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">11</int>
 						<reference key="object" ref="1036211908"/>
 						<reference key="parent" ref="184071260"/>
@@ -961,7 +1105,7 @@
 							<reference ref="830348401"/>
 						</array>
 						<reference key="parent" ref="699588443"/>
-						<string key="objectName">viewEmployee1</string>
+						<string key="objectName">viewEmployer1</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">13</int>
@@ -972,7 +1116,7 @@
 							<reference ref="550222125"/>
 						</array>
 						<reference key="parent" ref="699588443"/>
-						<string key="objectName">viewEmployee2</string>
+						<string key="objectName">viewEmployer2</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">14</int>
@@ -983,14 +1127,14 @@
 							<reference ref="505817110"/>
 						</array>
 						<reference key="parent" ref="699588443"/>
-						<string key="objectName">viewEmployee3</string>
+						<string key="objectName">viewEmployer3</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">15</int>
 						<reference key="object" ref="326670086"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="699588443"/>
-						<string key="objectName">btnMoreEmployees</string>
+						<string key="objectName">btnMoreEmployers</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">16</int>
@@ -1126,7 +1270,7 @@
 						<reference key="object" ref="336372817"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="372787674"/>
-						<string key="objectName">btnYahoo</string>
+						<string key="objectName">btnCB</string>
 					</object>
 				</array>
 			</object>
@@ -1134,7 +1278,6 @@
 				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1168,13 +1311,12 @@
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">166</int>
+			<int key="maxID">193</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1182,19 +1324,149 @@
 					<string key="className">GGSsgrfPopPanelPerson</string>
 					<string key="superclassName">UIView</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="btnCB">UIButton</string>
 						<string key="btnClose">UIButton</string>
-						<string key="viewEmployees">UIView</string>
+						<string key="btnFacebook">UIButton</string>
+						<string key="btnFollow">UIButton</string>
+						<string key="btnHoover">UIButton</string>
+						<string key="btnLinkedIn">UIButton</string>
+						<string key="btnLogo">UIButton</string>
+						<string key="btnMoreEmployers">UIButton</string>
+						<string key="btnSlideShare">UIButton</string>
+						<string key="btnTwitter">UIButton</string>
+						<string key="btnYahoo">UIButton</string>
+						<string key="btnYoutube">UIButton</string>
+						<string key="ivEmp1Logo">UIImageView</string>
+						<string key="ivEmp2Logo">UIImageView</string>
+						<string key="ivEmp3Logo">UIImageView</string>
+						<string key="lblEmp1SubTitle">UILabel</string>
+						<string key="lblEmp1Title">UILabel</string>
+						<string key="lblEmp2SubTitle">UILabel</string>
+						<string key="lblEmp2Title">UILabel</string>
+						<string key="lblEmp3SubTitle">UILabel</string>
+						<string key="lblEmp3Title">UILabel</string>
+						<string key="lblOwnership">UILabel</string>
+						<string key="lblSubTitle">UILabel</string>
+						<string key="lblTitle">UILabel</string>
+						<string key="viewEmployer1">UIView</string>
+						<string key="viewEmployer2">UIView</string>
+						<string key="viewEmployer3">UIView</string>
+						<string key="viewEmployers">UIView</string>
 						<string key="viewExtraInfo">UIView</string>
 						<string key="viewFooter">UIView</string>
 						<string key="viewHeader">UIView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="btnCB">
+							<string key="name">btnCB</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="btnClose">
 							<string key="name">btnClose</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="viewEmployees">
-							<string key="name">viewEmployees</string>
+						<object class="IBToOneOutletInfo" key="btnFacebook">
+							<string key="name">btnFacebook</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnFollow">
+							<string key="name">btnFollow</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnHoover">
+							<string key="name">btnHoover</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnLinkedIn">
+							<string key="name">btnLinkedIn</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnLogo">
+							<string key="name">btnLogo</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnMoreEmployers">
+							<string key="name">btnMoreEmployers</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnSlideShare">
+							<string key="name">btnSlideShare</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnTwitter">
+							<string key="name">btnTwitter</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnYahoo">
+							<string key="name">btnYahoo</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnYoutube">
+							<string key="name">btnYoutube</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="ivEmp1Logo">
+							<string key="name">ivEmp1Logo</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="ivEmp2Logo">
+							<string key="name">ivEmp2Logo</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="ivEmp3Logo">
+							<string key="name">ivEmp3Logo</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblEmp1SubTitle">
+							<string key="name">lblEmp1SubTitle</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblEmp1Title">
+							<string key="name">lblEmp1Title</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblEmp2SubTitle">
+							<string key="name">lblEmp2SubTitle</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblEmp2Title">
+							<string key="name">lblEmp2Title</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblEmp3SubTitle">
+							<string key="name">lblEmp3SubTitle</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblEmp3Title">
+							<string key="name">lblEmp3Title</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblOwnership">
+							<string key="name">lblOwnership</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblSubTitle">
+							<string key="name">lblSubTitle</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblTitle">
+							<string key="name">lblTitle</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewEmployer1">
+							<string key="name">viewEmployer1</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewEmployer2">
+							<string key="name">viewEmployer2</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewEmployer3">
+							<string key="name">viewEmployer3</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewEmployers">
+							<string key="name">viewEmployers</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="viewExtraInfo">
@@ -1228,7 +1500,6 @@
 			<string key="ssgrf_btn_gray_cross@2x.png">{26, 26}</string>
 			<string key="ssgrf_btn_hoover@2x.png">{53, 51}</string>
 			<string key="ssgrf_btn_linkedin@2x.png">{53, 51}</string>
-			<string key="ssgrf_btn_linkedin_gdnt@2x.png">{62, 64}</string>
 			<string key="ssgrf_btn_slideshare@2x.png">{53, 51}</string>
 			<string key="ssgrf_btn_twitter@2x.png">{53, 51}</string>
 			<string key="ssgrf_btn_yahoo@2x.png">{53, 51}</string>

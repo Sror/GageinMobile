@@ -43,6 +43,15 @@
     self.layer.shadowOpacity = 1.f;
     self.layer.shadowOffset = CGSizeMake(3.f, 3.f);
     self.layer.shadowRadius = 4.f;
+    
+    _lblTitle.text = _lblSubTitle.text
+    = _lblEmp1Title.text = _lblEmp1SubTitle.text
+    = _lblEmp2Title.text = _lblEmp2SubTitle.text
+    = _lblEmp3Title.text = _lblEmp3SubTitle.text
+    = _lblOwnership.text = _lblEmployees.text
+    = _lblRevenue.text = _lblFortuneRank.text
+    = _lblFiscalYear.text = _lblEmail.text
+    = _lblPhone.text = _lblFax.text = _lblAddress.text = @"";
 }
 
 
