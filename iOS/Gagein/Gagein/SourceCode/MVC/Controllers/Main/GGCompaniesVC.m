@@ -79,8 +79,11 @@
     BOOL                                _hasMoreUpdates;
     BOOL                                _hasMoreHappenings;
     
-    NSIndexPath                         *_expandIndexPath;      // for iPad
-    BOOL                                _isExpanding;           // for iPad
+    NSIndexPath                         *_expandIndexPathForUpdateTV;      // for iPad
+    BOOL                                _isUpdateTvExpanding;               // for iPad
+    
+    NSIndexPath                         *_expandIndexPathForHappeningTV;      // for iPad
+    BOOL                                _isHappeningTvExpanding;               // for iPad
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -842,9 +845,9 @@
     cell.lblInterval.text = [updateData intervalStringWithDate:updateData.date];
     cell.hasBeenRead = updateData.hasBeenRead;
     
-    if (indexPath.row == _expandIndexPath.row)
+    if (indexPath.row == _expandIndexPathForUpdateTV.row)
     {
-        cell.expanded = _isExpanding;
+        cell.expanded = _isUpdateTvExpanding;
     }
     else
     {
@@ -854,6 +857,12 @@
     //[cell adjustLayout];
     
     return cell;
+}
+
+
+-(float)_happeningIpadCellHeightForIndexPath:(NSIndexPath *)indexPath
+{
+    return [self _happeningCellForIPadWithIndexPath:indexPath].frame.size.height;
 }
 
 -(GGHappeningIpadCell *)_happeningCellForIPadWithIndexPath:(NSIndexPath *)aIndexPath
@@ -879,6 +888,16 @@
     
     cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
     cell.hasBeenRead = data.hasBeenRead;
+    
+    if (aIndexPath.row == _expandIndexPathForHappeningTV.row)
+    {
+        cell.expanded = _isHappeningTvExpanding;
+    }
+    else
+    {
+        cell.expanded = NO;
+    }
+
     
     return cell;
 }
@@ -1043,7 +1062,8 @@
     }
     else if (tableView == self.happeningsTV)
     {
-        return [GGCompanyHappeningCell HEIGHT];
+        float height = ISIPADDEVICE ? [self _happeningIpadCellHeightForIndexPath:indexPath] : [GGCompanyHappeningCell HEIGHT];
+        return height;
     }
     else if (tableView == _slideSettingView.viewTable)
     {
@@ -1066,26 +1086,24 @@
     {
         if (ISIPADDEVICE)
         {
-            NSIndexPath *oldIdxPath = _expandIndexPath;
+            NSIndexPath *oldIdxPath = _expandIndexPathForUpdateTV;
             
-            if (_isExpanding)
+            if (_isUpdateTvExpanding)
             {
-                if (indexPath.row == _expandIndexPath.row)
+                if (indexPath.row == _expandIndexPathForUpdateTV.row)
                 {
-                    _isExpanding = NO;
+                    _isUpdateTvExpanding = NO;
                 }
                 else
                 {
-                    _expandIndexPath = indexPath;
+                    _expandIndexPathForUpdateTV = indexPath;
                 }
             }
             else
             {
-                _isExpanding = YES;
-                _expandIndexPath = indexPath;
+                _isUpdateTvExpanding = YES;
+                _expandIndexPathForUpdateTV = indexPath;
             }
-//            _expandIndexPath = indexPath;
-//            _isExpanding = !_isExpanding;
             
             [tableView beginUpdates];
             if (indexPath.row == oldIdxPath.row)
@@ -1108,11 +1126,44 @@
     }
     else if (tableView == self.happeningsTV)
     {
-        GGHappeningDetailVC *vc = [[GGHappeningDetailVC alloc] init];
-        vc.happenings = _happenings;
-        vc.happeningIndex = row;
         
-        [self.navigationController pushViewController:vc animated:YES];
+        if (ISIPADDEVICE)
+        {
+            NSIndexPath *oldIdxPath = _expandIndexPathForHappeningTV;
+            
+            if (_isHappeningTvExpanding)
+            {
+                if (indexPath.row == _expandIndexPathForHappeningTV.row)
+                {
+                    _isHappeningTvExpanding = NO;
+                }
+                else
+                {
+                    _expandIndexPathForHappeningTV = indexPath;
+                }
+            }
+            else
+            {
+                _isHappeningTvExpanding = YES;
+                _expandIndexPathForHappeningTV = indexPath;
+            }
+            
+            [tableView beginUpdates];
+            if (indexPath.row == oldIdxPath.row)
+            {
+                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            else
+            {
+                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIdxPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            
+            [tableView endUpdates];
+        }
+        else
+        {
+            [self _enterHappeningDetailWithIndex:row];
+        }
     }
     else if (tableView == _slideSettingView.viewTable)
     {
@@ -1166,6 +1217,16 @@
     vc.naviTitleString = self.naviTitle;
     vc.updates = self.updates;
     vc.updateIndex = aIndex;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
+-(void)_enterHappeningDetailWithIndex:(int)aIndex
+{
+    GGHappeningDetailVC *vc = [[GGHappeningDetailVC alloc] init];
+    vc.happenings = _happenings;
+    vc.happeningIndex = aIndex;
     
     [self.navigationController pushViewController:vc animated:YES];
 }

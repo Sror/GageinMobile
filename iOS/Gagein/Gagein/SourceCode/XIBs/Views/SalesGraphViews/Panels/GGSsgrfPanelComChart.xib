@@ -37,7 +37,7 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="353846222">
 						<reference key="NSNextResponder" ref="19396986"/>
-						<int key="NSvFlags">274</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{180, 265}</string>
 						<reference key="NSSuperview" ref="19396986"/>
 						<reference key="NSWindow"/>
@@ -52,7 +52,7 @@
 					<object class="IBUIButton" id="763716324">
 						<reference key="NSNextResponder" ref="19396986"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{192, 12}, {398, 243}}</string>
+						<string key="NSFrame">{{192, 12}, {435, 243}}</string>
 						<reference key="NSSuperview" ref="19396986"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -88,7 +88,7 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{600, 265}</string>
+				<string key="NSFrameSize">{640, 265}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="353846222"/>
@@ -199,22 +199,41 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">GGSsgrfPanelComChart</string>
+					<string key="className">GGSsgrfPanelBase</string>
 					<string key="superclassName">UIView</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">viewLeftInfo</string>
-						<string key="NS.object.0">GGSsgrfInfoWidgetView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/GGSsgrfPanelBase.h</string>
 					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">viewLeftInfo</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">GGSsgrfPanelComChart</string>
+					<string key="superclassName">GGSsgrfPanelHappeningBase</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="btnChart">UIButton</string>
+						<string key="viewLeftInfo">GGSsgrfInfoWidgetView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="btnChart">
+							<string key="name">btnChart</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewLeftInfo">
 							<string key="name">viewLeftInfo</string>
 							<string key="candidateClassName">GGSsgrfInfoWidgetView</string>
 						</object>
-					</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/GGSsgrfPanelComChart.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">GGSsgrfPanelHappeningBase</string>
+					<string key="superclassName">GGSsgrfPanelBase</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/GGSsgrfPanelHappeningBase.h</string>
 					</object>
 				</object>
 			</array>
