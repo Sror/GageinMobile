@@ -433,12 +433,7 @@
 								<reference key="NSSuperview" ref="224421860"/>
 								<reference key="NSNextKeyView" ref="429924221"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-									<reference key="NSCustomColorSpace" ref="734047611"/>
-								</object>
-								<float key="IBUIAlpha">0.30000001192092896</float>
+								<reference key="IBUIBackgroundColor" ref="1019302932"/>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
 							<object class="IBUIView" id="474142197">
@@ -506,12 +501,7 @@
 								<reference key="NSSuperview" ref="224421860"/>
 								<reference key="NSNextKeyView" ref="558994117"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-									<reference key="NSCustomColorSpace" ref="734047611"/>
-								</object>
-								<float key="IBUIAlpha">0.30000001192092896</float>
+								<reference key="IBUIBackgroundColor" ref="1019302932"/>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
 							<object class="IBUIView" id="882174327">
@@ -579,12 +569,7 @@
 								<reference key="NSSuperview" ref="224421860"/>
 								<reference key="NSNextKeyView" ref="689283207"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-									<reference key="NSCustomColorSpace" ref="734047611"/>
-								</object>
-								<float key="IBUIAlpha">0.30000001192092896</float>
+								<reference key="IBUIBackgroundColor" ref="1019302932"/>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
 							<object class="IBUIButton" id="164338053">
@@ -981,6 +966,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{206, 21}, {347, 21}}</string>
 								<reference key="NSSuperview" ref="817559897"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>

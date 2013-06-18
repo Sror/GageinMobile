@@ -27,6 +27,7 @@
 
 #import "GGSsgrfActionListener.h"
 #import "GGPersonDetailVC.h"
+#import "GGSsgrfPopPanelView.h"
 
 #define MAX_NAVI_TITLE_LENGTH           20
 #define MAX_NAVI_TITLE_LENGTH_IPAD      50
@@ -776,6 +777,8 @@
 -(void)ssGraphShowCompanyPanel:(NSNumber *)aCompanyID
 {
     DLog(@"ssGraphShowCompanyPanel:%@", aCompanyID);
+
+    [GGSsgrfPopPanelComInfoView showInView:GGSharedDelegate.rootVC.view];
 }
 
 -(void)ssGraphShowPersonLandingPage:(NSNumber *)aPersonID

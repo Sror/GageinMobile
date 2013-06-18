@@ -339,4 +339,11 @@
     [self doLayoutUIForIPadWithOrientation:anOrient];
 }
 
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    
+    [self postNotification:GG_NOTIFY_ORIENTATION_WILL_CHANGE withObject:@(toInterfaceOrientation)];
+}
+
 @end

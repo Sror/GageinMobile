@@ -356,6 +356,7 @@
 		EA99742C174EEB1600A125D5 /* UILabel+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA99742B174EEB1500A125D5 /* UILabel+AddOn.m */; };
 		EA9B3A0C1768E24E008C5709 /* GGTriggerChartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9B3A0B1768E24E008C5709 /* GGTriggerChartCell.m */; };
 		EA9B3A0E1768E280008C5709 /* GGTriggerChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9B3A0D1768E280008C5709 /* GGTriggerChartCell.xib */; };
+		EA9C7F94177110F7003217F7 /* GGSsgrfPopPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C7F93177110F7003217F7 /* GGSsgrfPopPanelView.m */; };
 		EA9E00041770068100127233 /* ssgrf_bg_btn_follow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9EFFF71770068100127233 /* ssgrf_bg_btn_follow@2x.png */; };
 		EA9E00051770068100127233 /* ssgrf_bg_btn_unfollow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9EFFF81770068100127233 /* ssgrf_bg_btn_unfollow@2x.png */; };
 		EA9E00061770068100127233 /* ssgrf_btn_cb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9EFFF91770068100127233 /* ssgrf_btn_cb@2x.png */; };
@@ -1077,6 +1078,8 @@
 		EA9B3A0A1768E24E008C5709 /* GGTriggerChartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTriggerChartCell.h; sourceTree = "<group>"; };
 		EA9B3A0B1768E24E008C5709 /* GGTriggerChartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGTriggerChartCell.m; sourceTree = "<group>"; };
 		EA9B3A0D1768E280008C5709 /* GGTriggerChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGTriggerChartCell.xib; sourceTree = "<group>"; };
+		EA9C7F92177110F7003217F7 /* GGSsgrfPopPanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfPopPanelView.h; sourceTree = "<group>"; };
+		EA9C7F93177110F7003217F7 /* GGSsgrfPopPanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfPopPanelView.m; sourceTree = "<group>"; };
 		EA9E00001770068100127233 /* ssgrf_btn_twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_twitter@2x.png"; sourceTree = "<group>"; };
 		EA9E00011770068100127233 /* ssgrf_btn_yahoo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_yahoo@2x.png"; sourceTree = "<group>"; };
 		EA9E00021770068100127233 /* ssgrf_btn_youtube@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_youtube@2x.png"; sourceTree = "<group>"; };
@@ -2121,6 +2124,8 @@
 				EA9E00151770074E00127233 /* GGSsgrfPopPanelPerson.h */,
 				EA9E00161770074E00127233 /* GGSsgrfPopPanelPerson.m */,
 				EA9E00171770074E00127233 /* GGSsgrfPopPanelPerson.xib */,
+				EA9C7F92177110F7003217F7 /* GGSsgrfPopPanelView.h */,
+				EA9C7F93177110F7003217F7 /* GGSsgrfPopPanelView.m */,
 			);
 			path = Popups;
 			sourceTree = "<group>";
@@ -3659,6 +3664,7 @@
 				EA5ED6FB176E449E0083670E /* GGSsgrfActionListener.m in Sources */,
 				EA9E00181770074E00127233 /* GGSsgrfPopPanelCompany.m in Sources */,
 				EA9E001A1770074E00127233 /* GGSsgrfPopPanelPerson.m in Sources */,
+				EA9C7F94177110F7003217F7 /* GGSsgrfPopPanelView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

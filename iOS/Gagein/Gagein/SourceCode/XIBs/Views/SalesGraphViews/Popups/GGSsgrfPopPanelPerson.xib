@@ -446,14 +446,7 @@
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="778207024"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-									<object class="NSColorSpace" key="NSCustomColorSpace" id="276320147">
-										<int key="NSID">2</int>
-									</object>
-								</object>
-								<float key="IBUIAlpha">0.30000001192092896</float>
+								<reference key="IBUIBackgroundColor" ref="534318755"/>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
 							<object class="IBUIView" id="175881117">
@@ -525,12 +518,7 @@
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="550222125"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-									<reference key="NSCustomColorSpace" ref="276320147"/>
-								</object>
-								<float key="IBUIAlpha">0.30000001192092896</float>
+								<reference key="IBUIBackgroundColor" ref="534318755"/>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
 							<object class="IBUIView" id="177435451">
@@ -602,12 +590,7 @@
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="851633878"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-									<reference key="NSCustomColorSpace" ref="276320147"/>
-								</object>
-								<float key="IBUIAlpha">0.30000001192092896</float>
+								<reference key="IBUIBackgroundColor" ref="534318755"/>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
 							<object class="IBUIButton" id="326670086">
@@ -802,7 +785,9 @@
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
-					<reference key="NSCustomColorSpace" ref="276320147"/>
+					<object class="NSColorSpace" key="NSCustomColorSpace">
+						<int key="NSID">2</int>
+					</object>
 				</object>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
