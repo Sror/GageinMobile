@@ -154,8 +154,8 @@
                 [self.viewLeftInfo updateWithCompany:_happening.company];
                 
                 // right - location
-                [self setLeftText:_happening.company.city];
-                [self setLeftSubText:@"New Location"];
+                [self.viewRightInfo setTitle:_happening.company.city];
+                [self.viewRightInfo setSubTitle:@"New Location"];
                 [self.viewRightInfo updateWithMapUrl:_happening.addressMap];
             }
                 break;

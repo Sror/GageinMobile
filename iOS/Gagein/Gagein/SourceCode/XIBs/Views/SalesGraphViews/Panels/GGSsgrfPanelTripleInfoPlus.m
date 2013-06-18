@@ -118,48 +118,52 @@
             case kGGHappeningCompanyPersonJionDetail:
             {
                 // left - old title
-                [self setLeftText:@"old title"];
+                [self setLeftText:_happening.oldJobTitle];
+                [self setLeftSubText:@"Previous Title"];
                 
                 // center - person
-                [self.viewCenterInfo makeMeSimple];
+                [self.viewCenterInfo updateWithPerson:_happening.person];
                 
                 // right - new title
-                [self setRightText:@"new title"];
+                [self setRightText:_happening.theNewJobTitle];
+                [self setLeftSubText:@"New Title"];
                 
                 // bottom - company
-                [self.viewBottomInfo setTitle:@"company"];
+                [self.viewBottomInfo updateWithCompany:_happening.company];
             }
                 break;
                 
             case kGGHappeningPersonNewLocation:
             {
                 // left - old location
-                [self.viewLeftInfo makeMeSimple];
+                [self.viewLeftInfo setTitle:_happening.addressPersonOld];
+                [self.viewLeftInfo updateWithMapUrl:_happening.addressMap];
                 
                 // center - person
-                [self.viewCenterInfo makeMeSimple];
+                [self.viewCenterInfo updateWithPerson:_happening.person];
                 
                 // right - new location
-                [self.viewRightInfo makeMeSimple];
+                [self.viewRightInfo setTitle:_happening.addressPerson];
+                [self.viewRightInfo updateWithMapUrl:_happening.addressMap];
                 
                 // bottom - company
-                [self.viewBottomInfo setTitle:@"company"];
+                [self.viewBottomInfo updateWithCompany:_happening.company];
             }
                 break;
                 
             case kGGHappeningPersonNewJobTitle:
             {
                 // left - old jobTitle
-                [self setLeftText:@"old title"];
+                [self setLeftText:_happening.oldJobTitle];
                 
                 // center - person
-                [self.viewCenterInfo makeMeSimple];
+                [self.viewCenterInfo updateWithPerson:_happening.person];
                 
                 // right - new Jobtitle
-                [self setRightText:@"new title"];
+                [self setRightText:_happening.theNewJobTitle];
                 
                 // bottom - company
-                [self.viewBottomInfo setTitle:@"company"];
+                [self.viewBottomInfo updateWithCompany:_happening.company];
             }
                 break;
                 

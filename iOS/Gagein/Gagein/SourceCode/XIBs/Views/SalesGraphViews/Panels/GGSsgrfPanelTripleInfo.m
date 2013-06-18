@@ -110,15 +110,16 @@
     {
         switch (aHappening.type) {
             case kGGHappeningCompanyPersonJion:
+            case kGGHappeningPersonJoinOtherCompany:
             {
                 // left - old company
-                [_viewLeftInfo setTitle:@"old"];
+                [_viewLeftInfo updateWithCompany:_happening.oldCompany];
                 
                 // center - person
-                [_viewCenterInfo makeMeSimple];
+                [_viewCenterInfo updateWithPerson:_happening.person];
                 
                 // right - new company
-                [_viewRightInfo setTitle:@"new"];
+                [_viewRightInfo updateWithCompany:_happening.company];
             }
                 break;
                 
@@ -126,26 +127,13 @@
             case kGGHappeningCompanyEmloyeeSizeDecrease:
             {
                 // left - old employee size
-                [self setLeftText:@"old employee size"];
+                [self setLeftText:_happening.oldEmployNum];
                 
                 // center - company
-                [self.viewCenterInfo setTitle:@"company"];
+                [self.viewCenterInfo updateWithCompany:_happening.company];
                 
                 // right - new employee size
-                [self setRightText:@"new employee size"];
-            }
-                break;
-                
-            case kGGHappeningPersonJoinOtherCompany:
-            {
-                // left - old company
-                [self.viewLeftInfo setTitle:@"old"];
-                
-                // center - person
-                [self.viewCenterInfo makeMeSimple];
-                
-                // right - new company
-                [self.viewRightInfo setTitle:@"new"];
+                [self setRightText:_happening.employNum];
             }
                 break;
                 
