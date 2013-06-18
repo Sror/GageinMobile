@@ -711,10 +711,22 @@
 //    [GGAlert alert:@"Saved updates (TODO)"];
 //}
 
--(void)companyDetailAction:(id)sender
+-(void)companyDetailFromUpdateAction:(id)sender
 {
     int index = ((UIButton*)sender).tag;
-    GGCompanyUpdate *update = [_updates objectAtIndex:index];
+    [self _enterComDetailWithIndex:index fromUpdate:YES];
+}
+
+-(void)companyDetailFromHappeningAction:(id)sender
+{
+    int index = ((UIButton*)sender).tag;
+    [self _enterComDetailWithIndex:index fromUpdate:NO];
+}
+
+-(void)_enterComDetailWithIndex:(NSUInteger)aIndex fromUpdate:(BOOL)aIsFromUpdate
+{
+    //int index = ((UIButton*)sender).tag;
+    GGCompanyUpdate *update =  aIsFromUpdate ? [_updates objectAtIndex:aIndex] : _happenings[aIndex];
     
     GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
     vc.companyID = update.company.ID;
@@ -792,7 +804,7 @@
     GGCompanyUpdateCell *cell = [_updatesTV dequeueReusableCellWithIdentifier:updateCellId];
     if (cell == nil) {
         cell = [GGCompanyUpdateCell viewFromNibWithOwner:self];
-        [cell.logoBtn addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.logoBtn addTarget:self action:@selector(companyDetailFromUpdateAction:) forControlEvents:UIControlEventTouchUpInside];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
@@ -825,7 +837,7 @@
     GGCompanyUpdateIpadCell *cell = nil;//[_updatesTV dequeueReusableCellWithIdentifier:updateCellId];
     if (cell == nil) {
         cell = [GGCompanyUpdateIpadCell viewFromNibWithOwner:self];
-        [cell.btnLogo addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.btnLogo addTarget:self action:@selector(companyDetailFromUpdateAction:) forControlEvents:UIControlEventTouchUpInside];
         [cell.btnHeadline addTarget:self action:@selector(_enterCompanyUpdateDetailAction:) forControlEvents:UIControlEventTouchUpInside];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
@@ -874,7 +886,7 @@
     {
         cell = [GGHappeningIpadCell viewFromNibWithOwner:self];
         
-        [cell.btnLogo addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.btnLogo addTarget:self action:@selector(companyDetailFromHappeningAction:) forControlEvents:UIControlEventTouchUpInside];
         [cell.btnHeadline addTarget:self action:@selector(_enterHappeningDetailAction:) forControlEvents:UIControlEventTouchUpInside];
                 
     }
@@ -883,7 +895,7 @@
     
     cell.data = data;
     cell.btnLogo.tag = row;
-    
+    cell.btnHeadline.tag = row;
     
     cell.lblHeadline.text = data.headLineText;
     cell.lblSource.text = data.sourceText;

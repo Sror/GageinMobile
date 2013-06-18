@@ -15,5 +15,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnSignal;
 @property (weak, nonatomic) IBOutlet UIButton *btnLike;
 
-
+-(void)useForHappening;
 @end

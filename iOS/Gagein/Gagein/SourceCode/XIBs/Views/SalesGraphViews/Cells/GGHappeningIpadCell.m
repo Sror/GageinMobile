@@ -16,12 +16,14 @@
 #import "GGSsgrfPanelTripleInfo.h"
 #import "GGSsgrfPanelTripleInfoPlus.h"
 #import "GGSsgrfInfoWidgetView.h"
+#import "GGUpdateActionBar.h"
 
 //#define EXPAND_PANEL_OFFSET_X       110
 
 @implementation GGHappeningIpadCell
 {
-    GGSsgrfPanelHappeningBase        *_panel;
+    GGSsgrfPanelHappeningBase           *_panel;
+    GGUpdateActionBar                   *_actionBar;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -233,7 +235,7 @@
 -(void)_doExpand
 {
     [_panel removeFromSuperview];
-    //[_actionBar removeFromSuperview];
+    [_actionBar removeFromSuperview];
     
     [self adjustLayout];
     
@@ -248,10 +250,13 @@
         [_panel setPos:CGPointMake(positionX, thisH)];
         [self addSubview:_panel];
         
-//        _actionBar = [GGUpdateActionBar viewFromNibWithOwner:self];
-//        float actionOriginY = CGRectGetMaxY(_panel.frame);
-//        [_actionBar setPos:CGPointMake(EXPAND_PANEL_OFFSET_X, actionOriginY)];
-//        [self addSubview:_actionBar];
+        _actionBar = [GGUpdateActionBar viewFromNibWithOwner:self];
+        [_actionBar useForHappening];
+        [_actionBar.btnShare addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        float actionOriginY = CGRectGetMaxY(_panel.frame);
+        [_actionBar setPos:CGPointMake(positionX, actionOriginY)];
+        [self addSubview:_actionBar];
         
         NSMutableArray *imageURLs = [NSMutableArray array];
         
@@ -264,13 +269,13 @@
         imageURLs = [NSMutableArray arrayWithObjects:TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, nil];
 #endif
         
-        
-        //[_panel.viewScroll setImageUrls:imageURLs placeholder:GGSharedImagePool.logoDefaultCompany];
-        
         [self adjustLayout];
     }
 }
 
-
+-(void)shareAction:(id)sender
+{
+    DLog(@"shareAction");
+}
 
 @end

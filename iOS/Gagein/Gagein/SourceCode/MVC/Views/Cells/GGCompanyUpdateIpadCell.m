@@ -95,7 +95,6 @@
         [_actionBar.btnSave addTarget:self action:@selector(saveAction:) forControlEvents:UIControlEventTouchUpInside];
         [_actionBar.btnShare addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        //_actionBar.backgroundColor = GGSharedColor.darkRed;
         float actionOriginY = CGRectGetMaxY(_panel.frame);
         [_actionBar setPos:CGPointMake(positionX, actionOriginY)];
         //CGRect actionBarRc = _actionBar.frame;
