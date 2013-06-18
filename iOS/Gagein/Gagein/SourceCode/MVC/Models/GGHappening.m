@@ -414,8 +414,6 @@
             
         case kGGHappeningCompanyPersonJionDetail:
         {
-            
-            
             //<contact name>, <old job title>, is now <new job title> at <company name>
             //#define EVENT_MSG_COM_PERSON_TITLE_CHANGED @"%@, %@, is now %@ at %@"
             return [NSString stringWithFormat:EVENT_MSG_COM_PERSON_TITLE_CHANGED_OLD, self.person.name, self.oldJobTitle, self.theNewJobTitle, self.company.name];
