@@ -8,6 +8,7 @@
 
 #import "GGSsgrfPopPanelView.h"
 #import "GGSsgrfPopPanelCompany.h"
+#import "GGSsgrfPopPanelPerson.h"
 
 #define ANIM_DURATION   .3f
 
@@ -122,6 +123,19 @@
 -(void)_doInstallContent
 {
     self.viewContent = [GGSsgrfPopPanelCompany viewFromNibWithOwner:self];
+    self.viewContent.center = self.center;
+    [self addSubview:self.viewContent];
+}
+
+@end
+
+
+///////////////////
+@implementation GGSsgrfPopPanelPersonInfoView
+
+-(void)_doInstallContent
+{
+    self.viewContent = [GGSsgrfPopPanelPerson viewFromNibWithOwner:self];
     self.viewContent.center = self.center;
     [self addSubview:self.viewContent];
 }

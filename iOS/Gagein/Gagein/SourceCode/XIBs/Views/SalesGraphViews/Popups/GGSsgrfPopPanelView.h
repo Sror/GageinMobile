@@ -20,3 +20,8 @@
 ///////
 @interface GGSsgrfPopPanelComInfoView : GGSsgrfPopPanelView
 @end
+
+
+///////
+@interface GGSsgrfPopPanelPersonInfoView : GGSsgrfPopPanelView
+@end

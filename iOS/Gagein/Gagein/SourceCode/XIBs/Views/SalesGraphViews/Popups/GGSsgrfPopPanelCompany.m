@@ -34,6 +34,17 @@
 {
 }
 
+-(void)awakeFromNib
+{
+    self.layer.cornerRadius = 8.f;
+    
+    self.viewFooter.layer.cornerRadius = 8.f;
+    self.layer.shadowColor = GGSharedColor.black.CGColor;
+    self.layer.shadowOpacity = 1.f;
+    self.layer.shadowOffset = CGSizeMake(3.f, 3.f);
+    self.layer.shadowRadius = 4.f;
+}
+
 
 
 

@@ -11,6 +11,13 @@
 @interface GGSsgrfPopPanelCompany : UIView
 
 @property (weak, nonatomic) IBOutlet UIView *viewHeader;
+//---------
+@property (weak, nonatomic) IBOutlet UIButton *btnLogo;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblSubTitle;
+@property (weak, nonatomic) IBOutlet UIButton *btnLinkedIn;
+@property (weak, nonatomic) IBOutlet UIButton *btnFacebook;
+
 
 @property (weak, nonatomic) IBOutlet UIView *viewEmployees;
 

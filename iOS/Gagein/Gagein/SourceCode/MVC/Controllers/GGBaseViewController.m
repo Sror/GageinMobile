@@ -772,6 +772,7 @@
 -(void)ssGraphShowPersonPanel:(NSNumber *)aPersonID
 {
     DLog(@"ssGraphShowPersonPanel:%@", aPersonID);
+    [GGSsgrfPopPanelPersonInfoView showInView:GGSharedDelegate.rootVC.view];
 }
 
 -(void)ssGraphShowCompanyPanel:(NSNumber *)aCompanyID
