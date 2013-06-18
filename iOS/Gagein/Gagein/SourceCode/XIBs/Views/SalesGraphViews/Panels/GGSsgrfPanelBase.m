@@ -14,9 +14,29 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        [self _doInit];
     }
     return self;
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self _doInit];
+    }
+    return self;
+}
+
+-(void)_doInit
+{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doNothing)];
+    [self addGestureRecognizer:tap];
+}
+
+-(void)doNothing
+{
+    
 }
 
 +(float)HEIGHT

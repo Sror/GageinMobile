@@ -23,6 +23,75 @@
 
 @end
 
+/////////////////////////////////////////////
+//
+@implementation GGCompanyDigest
+
+//+(GGCompanyDigest *)instanceFromCompany:(GGCompany *)aCompany
+//{
+//    if (aCompany)
+//    {
+//        GGCompanyDigest *theCompany = [GGCompanyDigest model];
+//        theCompany.ID = aCompany.ID;
+//        theCompany.name = aCompany.name;
+//        theCompany.orgWebSite = aCompany.website;
+//        theCompany.orgLogoPath = aCompany.logoPath;
+//        theCompany.type = aCompany.type;
+//        //followed
+//        theCompany.employeeSize = aCompany.employeeSize;
+//        theCompany.fortuneRank = aCompany.fortuneRank;
+//        theCompany.ownership = aCompany.ownership;
+//        theCompany.revenueSize = aCompany.revenueSize;
+//        //alias, keywords, description
+//        theCompany.profile = aCompany.profile;
+//        theCompany.country = aCompany.country;
+//        theCompany.state = aCompany.state;
+//        theCompany.city = aCompany.city;
+//        theCompany.zipcode = aCompany.zipcode;
+//        theCompany.address = aCompany.address;
+//        theCompany.competitors = aCompany.competitors;
+//        
+//        return theCompany;
+//    }
+//    
+//    return nil;
+//}
+
+-(void)parseWithData:(NSDictionary *)aData
+{
+    [super parseWithData:aData];
+    
+    self.ID = [[aData objectForKey:@"id"] longLongValue];
+    self.orgID = [[aData objectForKey:@"orgid"] longLongValue];
+    
+    self.name = [aData objectForKey:@"name"];           // name from message, may be a old name
+    self.orgName = [aData objectForKey:@"org_name"];    // current name
+    
+    self.profile = [aData objectForKey:@"profile"];
+    
+    self.website = [aData objectForKey:@"org_website"];
+    self.logoPath = [aData objectForKey:@"org_logo_path"];
+    self.type = [aData objectForKey:@"type"];
+    self.ownership = [aData objectForKey:@"ownership"];
+    self.fortuneRank = [aData objectForKey:@"fortune_rank"];
+    self.revenueSize = [aData objectForKey:@"revenue_size"];
+    self.employeeSize = [aData objectForKey:@"employee_size"];
+    self.country = [aData objectForKey:@"country"];
+    self.state = [aData objectForKey:@"state"];
+    self.city = [aData objectForKey:@"city"];
+    self.zipcode = [aData objectForKey:@"zipcode"];
+    self.address = [aData objectForKey:@"address"];
+    
+}
+
+-(NSString *)addressCityStateCountry
+{
+    return [NSString stringWithFormat:@"%@,%@,%@", _city, _state, _country];
+}
+
+@end
+
+//////////////////////////////////////////////
 @implementation GGCompany
 
 - (id)init

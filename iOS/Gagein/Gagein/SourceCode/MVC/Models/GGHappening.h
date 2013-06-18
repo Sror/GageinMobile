@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GGDataModel.h"
+#import "GGCompany.h"
 
 typedef enum {
     kGGHappeningCompanyPersonJion = 2001
@@ -57,32 +58,7 @@ typedef enum {
 
 
 
-//
-@interface GGHappeningCompany : GGDataModel
-@property (copy) NSString       *name;
-@property (copy) NSString       *profile;
 
-@property (assign) long long    orgID;
-@property (copy) NSString       *orgName;
-@property (copy) NSString       *orgWebSite;
-@property (copy) NSString       *orgLogoPath;
-
-@property (copy) NSString       *type;
-@property (copy) NSString       *ownership;
-@property (copy) NSString       *fortuneRank;
-@property (copy) NSString       *revenueSize;
-@property (copy) NSString       *employeeSize;
-
-@property (copy) NSString       *country;
-@property (copy) NSString       *state;
-@property (copy) NSString       *city;
-@property (copy) NSString       *zipcode;
-@property (copy) NSString       *address;
-
-@property (strong) NSMutableArray   *competitors;
-
--(NSString *)addressCityStateCountry;
-@end
 
 //
 @interface GGHappeningRevenuePlot : GGDataModel
@@ -139,8 +115,8 @@ typedef enum {
 
 @property (strong) GGHappeningPerson            *person;
 
-@property (strong) GGHappeningCompany           *company;
-@property (strong) GGHappeningCompany           *oldCompany;
+@property (strong) GGCompanyDigest           *company;
+@property (strong) GGCompanyDigest           *oldCompany;
 
 @property (copy) NSString                       *change;        // e.g. LEAVE
 @property (assign) EGGHappeningType             type;

@@ -120,7 +120,6 @@
         
         //make indicator image transparent
         self.tabBar.selectionIndicatorImage = [UIImage imageNamed:@"transparent.png"];
-
     }
 }
 

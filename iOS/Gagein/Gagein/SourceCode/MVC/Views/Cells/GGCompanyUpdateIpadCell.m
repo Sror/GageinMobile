@@ -143,6 +143,7 @@
     }
     fakeCom.competitors = competitors;
     
+    //GGCompanyDigest *happeningCom = [GGCompanyDigest instanceFromCompany:fakeCom];
     [_panel.viewScroll.infoWidget updateWithCompany:fakeCom];
 #endif
 }

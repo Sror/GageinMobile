@@ -106,11 +106,11 @@
     [_viewTitledScroll setTaget:aTarget action:aAction];
 }
 
--(GGHappeningCompany *)_company
+-(GGCompanyDigest *)_company
 {
-    if ([_data isKindOfClass:[GGHappeningCompany class]])
+    if ([_data isKindOfClass:[GGCompanyDigest class]])
     {
-        return ((GGHappeningCompany *)_data);
+        return ((GGCompanyDigest *)_data);
     }
     
     return nil;
@@ -141,7 +141,7 @@
     return [self _company].competitors;
 }
 
--(void)updateWithCompany:(GGHappeningCompany *)aCompany
+-(void)updateWithCompany:(GGCompanyDigest *)aCompany
 {
     _type = kGGSsGrfInfoWidgetCompany;
     _data = aCompany;
@@ -149,14 +149,14 @@
     if (aCompany)
     {
         [self setTitle:aCompany.name];
-        [self setMainImageUrl:aCompany.orgLogoPath placeholder:GGSharedImagePool.logoDefaultCompany];
+        [self setMainImageUrl:aCompany.logoPath placeholder:GGSharedImagePool.logoDefaultCompany];
         [self setMainTaget:self action:@selector(companyLogoTapped:)];
         
         NSArray *competitors = aCompany.competitors;
         NSMutableArray *imageURLs = [NSMutableArray array];
-        for (GGHappeningCompany *com in competitors)
+        for (GGCompanyDigest *com in competitors)
         {
-            [imageURLs addObjectIfNotNil:com.orgLogoPath];
+            [imageURLs addObjectIfNotNil:com.logoPath];
         }
         
         [self setScrollTaget:self action:@selector(competitorTapped:)];

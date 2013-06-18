@@ -9,6 +9,8 @@
 #import "GGHappening.h"
 #import "GGSocialProfile.h"
 
+#import "GGCompany.h"
+
 #define SOURCE_TEXT_LINKEDIN  @"Linkedin"
 #define SOURCE_TEXT_CRUNCHBASE  @"CrunchBase"
 #define SOURCE_TEXT_YAHOO  @"Yahoo"
@@ -119,40 +121,7 @@
 @end
 
 
-//
-@implementation GGHappeningCompany
--(void)parseWithData:(NSDictionary *)aData
-{
-    [super parseWithData:aData];
-    
-    self.ID = [[aData objectForKey:@"id"] longLongValue];
-    self.name = [aData objectForKey:@"name"];
-    self.profile = [aData objectForKey:@"profile"];
-    
-    self.orgID = [[aData objectForKey:@"orgid"] longLongValue];
-    self.orgName = [aData objectForKey:@"org_name"];
-    
-    self.orgWebSite = [aData objectForKey:@"org_website"];
-    self.orgLogoPath = [aData objectForKey:@"org_logo_path"];
-    self.type = [aData objectForKey:@"type"];
-    self.ownership = [aData objectForKey:@"ownership"];
-    self.fortuneRank = [aData objectForKey:@"fortune_rank"];
-    self.revenueSize = [aData objectForKey:@"revenue_size"];
-    self.employeeSize = [aData objectForKey:@"employee_size"];
-    self.country = [aData objectForKey:@"country"];
-    self.state = [aData objectForKey:@"state"];
-    self.city = [aData objectForKey:@"city"];
-    self.zipcode = [aData objectForKey:@"zipcode"];
-    self.address = [aData objectForKey:@"address"];
-    
-}
 
--(NSString *)addressCityStateCountry
-{
-    return [NSString stringWithFormat:@"%@,%@,%@", _city, _state, _country];
-}
-
-@end
 
 
 //
@@ -177,8 +146,8 @@
     self = [super init];
     if (self) {
         _person = [GGHappeningPerson model];
-        _company = [GGHappeningCompany model];
-        _oldCompany = [GGHappeningCompany model];
+        _company = [GGCompanyDigest model];
+        _oldCompany = [GGCompanyDigest model];
         _revenues = [NSMutableArray array];
     }
     return self;

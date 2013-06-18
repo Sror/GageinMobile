@@ -134,7 +134,7 @@
     cell.lblName.text = data.sourceText;
     cell.lblDescription.text = data.headLineText;
     cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
-    [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.company.orgLogoPath] placeholderImage:(_isPersonHappenings ? GGSharedImagePool.logoDefaultPerson : GGSharedImagePool.logoDefaultCompany)];
+    [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.company.logoPath] placeholderImage:(_isPersonHappenings ? GGSharedImagePool.logoDefaultPerson : GGSharedImagePool.logoDefaultCompany)];
     
     return cell;
 }

@@ -126,7 +126,7 @@
                 
                 // right - new title
                 [self setRightText:_happening.theNewJobTitle];
-                [self setLeftSubText:@"New Title"];
+                [self setRightSubText:@"New Title"];
                 
                 // bottom - company
                 [self.viewBottomInfo updateWithCompany:_happening.company];

@@ -873,6 +873,10 @@
     if (cell == nil)
     {
         cell = [GGHappeningIpadCell viewFromNibWithOwner:self];
+        
+        [cell.btnLogo addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.btnHeadline addTarget:self action:@selector(_enterHappeningDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+                
     }
     
     GGHappening *data = _happenings[row];
@@ -884,7 +888,7 @@
     cell.lblHeadline.text = data.headLineText;
     cell.lblSource.text = data.sourceText;
     
-    [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+    [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
     
     cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
     cell.hasBeenRead = data.hasBeenRead;
@@ -940,7 +944,7 @@
         cell.lblName.text = data.sourceText;
         cell.lblDescription.text = data.headLineText;
         cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
-        [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.company.orgLogoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+        [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
         cell.hasBeenRead = data.hasBeenRead;
         
         return cell;
@@ -1205,6 +1209,8 @@
     }
 }
 
+
+#pragma mark - screen migration
 -(void)_enterCompanyUpdateDetailAction:(id)sender
 {
     UIView *view = sender;
@@ -1221,6 +1227,12 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+
+-(void)_enterHappeningDetailAction:(id)sender
+{
+    UIView *view = sender;
+    [self _enterHappeningDetailWithIndex:view.tag];
+}
 
 -(void)_enterHappeningDetailWithIndex:(int)aIndex
 {
