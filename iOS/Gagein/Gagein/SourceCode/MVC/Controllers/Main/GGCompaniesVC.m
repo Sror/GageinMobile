@@ -81,15 +81,6 @@
     BOOL                                _hasMoreUpdates;
     BOOL                                _hasMoreHappenings;
     
-    //NSIndexPath                         *_expandIndexPathForUpdateTV;      // for iPad
-    //BOOL                                _isUpdateTvExpanding;               // for iPad
-    
-    //NSIndexPath                         *_expandIndexPathForHappeningTV;      // for iPad
-    //BOOL                                _isHappeningTvExpanding;               // for iPad
-    
-    //NSMutableArray                      *_happeningCellHeights;
-    //NSMutableArray                      *_updateCellHeights;
-    
     GGTableViewExpandHelper             *_updateTvExpandHelper;
     GGTableViewExpandHelper             *_happeningTvExpandHelper;
 }

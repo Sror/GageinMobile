@@ -17,6 +17,8 @@
 #import "GGCompanyUpdateDetailVC.h"
 #import "GGCompanyUpdateIpadCell.h"
 
+#import "GGTableViewExpandHelper.h"
+
 @interface GGComUpdateSearchResultVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
 @end
@@ -28,8 +30,7 @@
     NSUInteger          _currentPageIndex;
     BOOL                _hasMore;
     
-    NSIndexPath                         *_expandIndexPathForUpdateTV;      // for iPad
-    BOOL                                _isUpdateTvExpanding;               // for iPad
+    GGTableViewExpandHelper             *_tvExpandHelper;
 }
 
 -(void)_prevViewLoaded
@@ -57,6 +58,7 @@
     _updatesTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     _updatesTV.showsVerticalScrollIndicator = NO;
     _updatesTV.autoresizingMask = UIViewAutoresizingFlexibleWidth |UIViewAutoresizingFlexibleHeight;
+    _tvExpandHelper = [[GGTableViewExpandHelper alloc] initWithTableView:_updatesTV];
     
     [self.view addSubview:self.updatesTV];
     self.updatesTV.backgroundColor = GGSharedColor.silver;
@@ -151,14 +153,14 @@
     //static NSString *updateCellId = @"GGCompanyUpdateIpadCell";
     GGCompanyUpdateIpadCell *cell = nil;//[_updatesTV dequeueReusableCellWithIdentifier:updateCellId];
     
-    GGTagetActionPair *logoAction = [GGTagetActionPair pairWithTaget:self action:@selector(companyDetailFromUpdateAction:)];
-    GGTagetActionPair *headlineAction = [GGTagetActionPair pairWithTaget:self action:@selector(_enterCompanyUpdateDetailAction:)];
+    GGTagetActionPair *logoAction = [GGTagetActionPair pairWithTaget:self action:@selector(companyDetailAction:)];
+    GGTagetActionPair *headlineAction = [GGTagetActionPair pairWithTaget:self action:@selector(_enterUpdateDetailAction:)];
     
     cell = [GGFactory cellOfComUpdateIpad:cell
                                      data:_updates[row]
                                 dataIndex:row
-                              expandIndex:_expandIndexPathForUpdateTV.row
-                            isTvExpanding:_isUpdateTvExpanding
+                              expandIndex:_tvExpandHelper.expandingIndex
+                            isTvExpanding:_tvExpandHelper.isExpanding
                                logoAction:logoAction
                            headlineAction:headlineAction];
     
@@ -203,63 +205,67 @@
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    float height = ISIPADDEVICE ? [self _updateIpadCellHeightForIndexPath:indexPath] : [self _updateCellHeightForIndexPath:indexPath];
+    if (indexPath.row == 0)
+    {
+        [_tvExpandHelper resetCellHeights];
+    }
     
+    float height = ISIPADDEVICE ? [self _updateIpadCellHeightForIndexPath:indexPath] : [self _updateCellHeightForIndexPath:indexPath];
+    [_tvExpandHelper recordCellHeight:height];
     return height;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    int row = indexPath.row;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (ISIPADDEVICE)
     {
         // snapshot old value...
-        NSIndexPath *oldIdxPath = _expandIndexPathForUpdateTV;
-        BOOL oldIsExpanding = _isUpdateTvExpanding;
-        
-        if (_isUpdateTvExpanding)
-        {
-            if (indexPath.row == _expandIndexPathForUpdateTV.row)
-            {
-                _isUpdateTvExpanding = NO;
-            }
-            else
-            {
-                _expandIndexPathForUpdateTV = indexPath;
-            }
-        }
-        else
-        {
-            _isUpdateTvExpanding = YES;
-            _expandIndexPathForUpdateTV = indexPath;
-        }
+        NSUInteger oldIndex = _tvExpandHelper.expandingIndex;
+        BOOL oldIsExpanding = _tvExpandHelper.isExpanding;
+        [_tvExpandHelper changeExpaningAt:row];
         
         // reload cells
         [tableView beginUpdates];
-        if (indexPath.row == oldIdxPath.row)
+        if (indexPath.row == oldIndex)
         {
             [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
         else
         {
-            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIdxPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+            NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:indexPath.section];
+            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
+        
+        // adjust tableview content offset
+        [_tvExpandHelper scrollToCenterFrom:oldIndex to:row oldIsExpanding:oldIsExpanding];
         
         [tableView endUpdates];
     }
     else
     {
-        GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
-        
-        vc.naviTitleString = self.customNaviTitle.text;
-        vc.updates = self.updates;
-        vc.updateIndex = indexPath.row;
-        GGCompanyUpdate *data = _updates[indexPath.row];
-        data.hasBeenRead = YES;
-        
-        [self.navigationController pushViewController:vc animated:YES];
+        [self _enterUpdateDetailAt:indexPath.row];
     }
+}
+
+-(void)_enterUpdateDetailAction:(id)sender
+{
+    [self _enterUpdateDetailAt:(((UIView *)sender).tag)];
+}
+
+-(void)_enterUpdateDetailAt:(NSUInteger)aIndex
+{
+    GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
+    
+    vc.naviTitleString = self.customNaviTitle.text;
+    vc.updates = self.updates;
+    vc.updateIndex = aIndex;
+    GGCompanyUpdate *data = _updates[aIndex];
+    data.hasBeenRead = YES;
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark -
