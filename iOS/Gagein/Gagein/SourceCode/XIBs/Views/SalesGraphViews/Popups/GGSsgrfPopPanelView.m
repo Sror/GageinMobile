@@ -81,7 +81,7 @@
     }
 }
 
--(void)_doHide
+-(void)hide
 {
     [UIView animateWithDuration:ANIM_DURATION animations:^{
         
@@ -97,7 +97,7 @@
 
 -(void)bgTapped:(id)sender
 {
-    [self _doHide];
+    [self hide];
 }
 
 #pragma mark - orientation change
@@ -122,9 +122,12 @@
 
 -(void)_doInstallContent
 {
-    self.viewContent = [GGSsgrfPopPanelCompany viewFromNibWithOwner:self];
+    GGSsgrfPopPanelCompany *content = [GGSsgrfPopPanelCompany viewFromNibWithOwner:self];
+    self.viewContent = content;
     self.viewContent.center = self.center;
     [self addSubview:self.viewContent];
+    
+    [content.btnClose addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
 }
 
 @end
@@ -133,11 +136,15 @@
 ///////////////////
 @implementation GGSsgrfPopPanelPersonInfoView
 
+
 -(void)_doInstallContent
 {
-    self.viewContent = [GGSsgrfPopPanelPerson viewFromNibWithOwner:self];
+    GGSsgrfPopPanelPerson *content = [GGSsgrfPopPanelPerson viewFromNibWithOwner:self];
+    self.viewContent = content;
     self.viewContent.center = self.center;
     [self addSubview:self.viewContent];
+    
+    [content.btnClose addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
 }
 
 @end

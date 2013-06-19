@@ -12,7 +12,7 @@
 @property (strong, nonatomic)   UIView  *viewContent;
 
 +(void)showInView:(UIView *)aView;
-
+-(void)hide;
 @end
 
 
