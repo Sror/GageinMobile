@@ -48,7 +48,7 @@
 								<array class="NSMutableArray" key="NSSubviews">
 									<object class="IBUIImageView" id="519043559">
 										<reference key="NSNextResponder" ref="146004254"/>
-										<int key="NSvFlags">274</int>
+										<int key="NSvFlags">292</int>
 										<string key="NSFrameSize">{646, 84}</string>
 										<reference key="NSSuperview" ref="146004254"/>
 										<reference key="NSWindow"/>
@@ -122,7 +122,7 @@
 									<object class="IBUILabel" id="975862396">
 										<reference key="NSNextResponder" ref="146004254"/>
 										<int key="NSvFlags">290</int>
-										<string key="NSFrame">{{15, 24}, {572, 21}}</string>
+										<string key="NSFrame">{{15, 24}, {572, 32}}</string>
 										<reference key="NSSuperview" ref="146004254"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="147275976"/>
@@ -135,6 +135,7 @@
 										<string key="IBUIText">ReutersReutersReutersReuters</string>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
+										<int key="IBUINumberOfLines">2</int>
 										<object class="IBUIFontDescription" key="IBUIFontDescription">
 											<string key="name">Optima-Bold</string>
 											<string key="family">Optima</string>
@@ -147,6 +148,7 @@
 											<int key="NSfFlags">16</int>
 										</object>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+										<double key="preferredMaxLayoutWidth">572</double>
 									</object>
 									<object class="IBUIButton" id="147275976">
 										<reference key="NSNextResponder" ref="146004254"/>
@@ -188,7 +190,6 @@
 										<string key="NSFrame">{{610, 29}, {9, 6}}</string>
 										<reference key="NSSuperview" ref="146004254"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBIPadFramework</string>

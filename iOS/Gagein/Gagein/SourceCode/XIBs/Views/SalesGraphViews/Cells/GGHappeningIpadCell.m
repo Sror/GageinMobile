@@ -41,15 +41,74 @@
     _ivContentBg.image = GGSharedImagePool.stretchShadowBgWite;
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    //self.contentView.autoresizingMask = UIViewAutoresizingNone;
     
     [GGUtils applyLogoStyleToView:_ivLogo];
 }
 
+#define MIN_CONTENT_HEIGHT      (60.f)
 -(void)adjustLayout
 {
+    [_lblHeadline sizeToFit];
+    
+    //
+    CGRect contentRc = _viewContent.frame;
+    float contentHeight = _expanded ? CGRectGetMaxY(_actionBar.frame) : CGRectGetMaxY(_lblHeadline.frame) + 5;
+    contentHeight = MAX(MIN_CONTENT_HEIGHT, contentHeight);
+    contentRc.size.height = contentHeight;
+    _viewContent.frame = contentRc;
+    
+    [_ivContentBg setHeight:contentRc.size.height];
+    
+    //
     CGRect rc = self.frame;
-    rc.size.height = [self maxHeightForContent] + 10;
+    rc.size.height = CGRectGetMaxY(_viewContent.frame);
     self.frame = rc;
+    
+    [self setNeedsLayout];
+}
+
+-(void)_doExpand
+{
+    [_panel removeFromSuperview];
+    [_actionBar removeFromSuperview];
+    
+    [self adjustLayout];
+    
+    _ivDblArrow.image = _expanded ? [UIImage imageNamed:@"dblUpArrow"] : [UIImage imageNamed:@"dblDownArrow"];
+    
+    if (_expanded)
+    {
+        //[self printViewsTree];
+        float positionX = 2;
+        
+        _panel = [self panelForHappening];
+        float thisH = CGRectGetMaxY(_lblHeadline.frame) + 5;
+        [_panel setPos:CGPointMake(positionX, thisH)];
+        [self.viewContent addSubview:_panel];
+        
+        _actionBar = [GGUpdateActionBar viewFromNibWithOwner:self];
+        [_actionBar useForHappening];
+        [_actionBar.btnShare addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        float actionOriginY = CGRectGetMaxY(_panel.frame);
+        [_actionBar setPos:CGPointMake(positionX, actionOriginY)];
+        //_actionBar.backgroundColor = GGSharedColor.darkRed;
+        [self.viewContent addSubview:_actionBar];
+        
+        NSMutableArray *imageURLs = [NSMutableArray array];
+        
+#if 0
+        for (GGCompany *company in _data.mentionedCompanies)
+        {
+            [imageURLs addObjectIfNotNil:company.logoPath];
+        }
+#else
+        imageURLs = [NSMutableArray arrayWithObjects:TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, nil];
+#endif
+        
+        [self adjustLayout];
+    }
 }
 
 -(void)setHasBeenRead:(BOOL)hasRead
@@ -232,46 +291,7 @@
     return panel;
 }
 
--(void)_doExpand
-{
-    [_panel removeFromSuperview];
-    [_actionBar removeFromSuperview];
-    
-    [self adjustLayout];
-    
-    _ivDblArrow.image = _expanded ? [UIImage imageNamed:@"dblUpArrow"] : [UIImage imageNamed:@"dblDownArrow"];
-    
-    if (_expanded)
-    {
-        float positionX = self.viewContent.frame.origin.x + 2;
-        
-        _panel = [self panelForHappening];
-        float thisH = self.frame.size.height;
-        [_panel setPos:CGPointMake(positionX, thisH)];
-        [self addSubview:_panel];
-        
-        _actionBar = [GGUpdateActionBar viewFromNibWithOwner:self];
-        [_actionBar useForHappening];
-        [_actionBar.btnShare addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
-        
-        float actionOriginY = CGRectGetMaxY(_panel.frame);
-        [_actionBar setPos:CGPointMake(positionX, actionOriginY)];
-        [self addSubview:_actionBar];
-        
-        NSMutableArray *imageURLs = [NSMutableArray array];
-        
-#if 0
-        for (GGCompany *company in _data.mentionedCompanies)
-        {
-            [imageURLs addObjectIfNotNil:company.logoPath];
-        }
-#else
-        imageURLs = [NSMutableArray arrayWithObjects:TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, nil];
-#endif
-        
-        [self adjustLayout];
-    }
-}
+
 
 -(void)shareAction:(id)sender
 {

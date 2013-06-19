@@ -881,13 +881,15 @@
 {
     int row = aIndexPath.row;
     
-    GGHappeningIpadCell *cell = nil;
+    //static NSString *updateCellId = @"GGCompanyUpdateIpadCell";
+    GGHappeningIpadCell *cell = nil;//[_happeningsTV dequeueReusableCellWithIdentifier:updateCellId];;
     if (cell == nil)
     {
         cell = [GGHappeningIpadCell viewFromNibWithOwner:self];
         
         [cell.btnLogo addTarget:self action:@selector(companyDetailFromHappeningAction:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.btnHeadline addTarget:self action:@selector(_enterHappeningDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.btnHeadline.enabled = NO;
+        //[cell.btnHeadline addTarget:self action:@selector(_enterHappeningDetailAction:) forControlEvents:UIControlEventTouchUpInside];
                 
     }
     
@@ -1078,6 +1080,7 @@
     }
     else if (tableView == self.happeningsTV)
     {
+        //DLog(@"heightForRowAtIndexPath - happening - %d", indexPath.row);
         float height = ISIPADDEVICE ? [self _happeningIpadCellHeightForIndexPath:indexPath] : [GGCompanyHappeningCell HEIGHT];
         return height;
     }
