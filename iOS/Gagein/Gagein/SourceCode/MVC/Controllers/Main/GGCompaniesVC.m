@@ -84,13 +84,14 @@
     //NSIndexPath                         *_expandIndexPathForUpdateTV;      // for iPad
     //BOOL                                _isUpdateTvExpanding;               // for iPad
     
-    NSIndexPath                         *_expandIndexPathForHappeningTV;      // for iPad
-    BOOL                                _isHappeningTvExpanding;               // for iPad
+    //NSIndexPath                         *_expandIndexPathForHappeningTV;      // for iPad
+    //BOOL                                _isHappeningTvExpanding;               // for iPad
     
-    NSMutableArray                      *_happeningCellHeights;
+    //NSMutableArray                      *_happeningCellHeights;
     //NSMutableArray                      *_updateCellHeights;
     
     GGTableViewExpandHelper             *_updateTvExpandHelper;
+    GGTableViewExpandHelper             *_happeningTvExpandHelper;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -102,8 +103,9 @@
         _happenings = [NSMutableArray array];
         _suggestedUpdates = [NSMutableArray array];
         
-        _happeningCellHeights = [NSMutableArray array];
+        //_happeningCellHeights = [NSMutableArray array];
         _updateTvExpandHelper = [[GGTableViewExpandHelper alloc] init];
+        _happeningTvExpandHelper = [[GGTableViewExpandHelper alloc] init];
         
         _menuType = kGGMenuTypeAgent;   // exploring...
         _menuID = GG_ALL_RESULT_ID;
@@ -199,6 +201,7 @@
     self.happeningsTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.happeningsTV.hidden = YES;
     _happeningsTV.showsVerticalScrollIndicator = NO;
+    _happeningTvExpandHelper.tableView = _happeningsTV;
     //_happeningsTV.scrollsToTop = YES;
     
     [self.view addSubview:self.happeningsTV];
@@ -881,9 +884,9 @@
     cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
     cell.hasBeenRead = data.hasBeenRead;
     
-    if (aIndexPath.row == _expandIndexPathForHappeningTV.row)
+    if (aIndexPath.row == _happeningTvExpandHelper.expandingIndex)
     {
-        cell.expanded = _isHappeningTvExpanding;
+        cell.expanded = _happeningTvExpandHelper.isExpanding;
     }
     else
     {
@@ -1061,12 +1064,12 @@
     {
         if (indexPath.row == 0)
         {
-            [_happeningCellHeights removeAllObjects];
+            [_happeningTvExpandHelper resetCellHeights];
         }
         
         //DLog(@"heightForRowAtIndexPath - happening - %d", indexPath.row);
         float height = ISIPADDEVICE ? [self _happeningIpadCellHeightForIndexPath:indexPath] : [GGCompanyHappeningCell HEIGHT];
-        [_happeningCellHeights addObject:@(height)];
+        [_happeningTvExpandHelper recordCellHeight:height];
         return height;
     }
     else if (tableView == _slideSettingView.viewTable)
@@ -1122,53 +1125,26 @@
         
         if (ISIPADDEVICE)
         {
-            NSIndexPath *oldIdxPath = _expandIndexPathForHappeningTV;
-            BOOL oldIsExpanding = _isHappeningTvExpanding;
+            //NSIndexPath *oldIdxPath = _expandIndexPathForHappeningTV;
+            NSUInteger oldIndex = _happeningTvExpandHelper.expandingIndex;
+            BOOL oldIsExpanding = _happeningTvExpandHelper.isExpanding;
             
-            if (_isHappeningTvExpanding)
-            {
-                if (indexPath.row == _expandIndexPathForHappeningTV.row)
-                {
-                    _isHappeningTvExpanding = NO;
-                }
-                else
-                {
-                    _expandIndexPathForHappeningTV = indexPath;
-                }
-            }
-            else
-            {
-                _isHappeningTvExpanding = YES;
-                _expandIndexPathForHappeningTV = indexPath;
-            }
+            [_happeningTvExpandHelper changeExpaningAt:row];
             
             [tableView beginUpdates];
             
-            if (indexPath.row == oldIdxPath.row)
+            if (indexPath.row == oldIndex)
             {
                 [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             }
             else
             {
-                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIdxPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+                 NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:indexPath.section];
+                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
             }
             
             // adjust tableview content offset
-            if (_isHappeningTvExpanding)
-            {
-                float yPos = [self _yPosForHappeningCellAt:indexPath.row];
-                float oldExpandCellHeight = [(_happeningCellHeights[oldIdxPath.row]) floatValue];
-                if (oldIsExpanding && oldIdxPath.row < indexPath.row)
-                {
-                    yPos -= oldExpandCellHeight - 20;
-                }
-                
-                float offsetAdjust = (_happeningsTV.frame.size.height - oldExpandCellHeight) / 4;
-                yPos = [self isPortrait] ? yPos - offsetAdjust : yPos;
-                yPos = MAX(0, yPos);
-                
-                [tableView setContentOffset:CGPointMake(0, yPos) animated:YES];
-            }
+            [_happeningTvExpandHelper scrollToCenterFrom:oldIndex to:row oldIsExpanding:oldIsExpanding];
             
             [tableView endUpdates];
         }
@@ -1215,19 +1191,6 @@
             [self _doSearchWithKeyword:keyword];
         }
     }
-}
-
-#pragma mark - y pos for cell
-
--(float)_yPosForHappeningCellAt:(NSUInteger)aIndex
-{
-    float yPos = 0.f;
-    for (int i = 0; i < aIndex; i++)
-    {
-        yPos += [(_happeningCellHeights[i]) floatValue];
-    }
-    
-    return yPos;
 }
 
 #pragma mark - screen migration
