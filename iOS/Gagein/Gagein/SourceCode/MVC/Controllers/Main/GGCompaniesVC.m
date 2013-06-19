@@ -859,7 +859,7 @@
                          dataIndex:row
                        expandIndex:_happeningTvExpandHelper.expandingIndex
                      isTvExpanding:_happeningTvExpandHelper.isExpanding
-                        logoAction:action];
+                        logoAction:action isCompanyHappening:YES];
     
     return cell;
 }
@@ -890,7 +890,7 @@
         GGCompanyHappeningCell *cell = [tableView dequeueReusableCellWithIdentifier:happeningCellId];
         
         GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(companyDetailForHappeningAction:)];
-        cell = [GGFactory cellOfHappening:cell data:_happenings[row] dataIndex:row logoAction:action];
+        cell = [GGFactory cellOfHappening:cell data:_happenings[row] dataIndex:row logoAction:action isCompanyHappening:YES];
         
         return cell;
     }

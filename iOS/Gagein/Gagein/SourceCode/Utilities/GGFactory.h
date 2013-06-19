@@ -34,13 +34,15 @@
 +(GGCompanyHappeningCell *)cellOfHappening:(id)aDequeuedCell
                                       data:(GGHappening *)aData
                                  dataIndex:(NSUInteger)aDataIndex
-                                logoAction:(GGTagetActionPair *)aLogoAction;
+                                logoAction:(GGTagetActionPair *)aLogoAction
+                        isCompanyHappening:(BOOL)aIsComHappening;
 
 +(GGHappeningIpadCell *)cellOfHappeningIpad:(id)aDequeuedCell
                                        data:(GGHappening *)aData
                                   dataIndex:(NSUInteger)aDataIndex
                                 expandIndex:(NSUInteger)aExpandIndex
                               isTvExpanding:(BOOL)aIsTvExpanding
-                                 logoAction:(GGTagetActionPair *)aLogoAction;
+                                 logoAction:(GGTagetActionPair *)aLogoAction
+                         isCompanyHappening:(BOOL)aIsComHappening;
 
 @end

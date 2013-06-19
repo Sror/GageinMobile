@@ -118,6 +118,7 @@
                                       data:(GGHappening *)aData
                                  dataIndex:(NSUInteger)aDataIndex
                                 logoAction:(GGTagetActionPair *)aLogoAction
+                        isCompanyHappening:(BOOL)aIsComHappening
 {
     GGCompanyHappeningCell *cell = aDequeuedCell;
     if (cell == nil)
@@ -140,7 +141,18 @@
         cell.lblName.text = aData.sourceText;
         cell.lblDescription.text = aData.headLineText;
         cell.lblInterval.text = [aData intervalStringWithDate:aData.timestamp];
-        [cell.ivLogo setImageWithURL:[NSURL URLWithString:aData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+        
+        if (aIsComHappening)
+        {
+            [cell.ivLogo setImageWithURL:[NSURL URLWithString:aData.company.logoPath]
+                        placeholderImage:GGSharedImagePool.logoDefaultCompany];
+        }
+        else
+        {
+            [cell.ivLogo setImageWithURL:[NSURL URLWithString:aData.person.photoPath]
+                        placeholderImage:GGSharedImagePool.logoDefaultPerson];
+        }
+        
         cell.hasBeenRead = aData.hasBeenRead;
     }
     
@@ -153,6 +165,7 @@
                                 expandIndex:(NSUInteger)aExpandIndex
                               isTvExpanding:(BOOL)aIsTvExpanding
                                  logoAction:(GGTagetActionPair *)aLogoAction
+                         isCompanyHappening:(BOOL)aIsComHappening
 {
     GGHappeningIpadCell *cell = aDequeuedCell;
     if (cell == nil)
@@ -178,7 +191,16 @@
         cell.lblHeadline.text = aData.headLineText;
         cell.lblSource.text = aData.sourceText;
         
-        [cell.ivLogo setImageWithURL:[NSURL URLWithString:aData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+        if (aIsComHappening)
+        {
+            [cell.ivLogo setImageWithURL:[NSURL URLWithString:aData.company.logoPath]
+                        placeholderImage:GGSharedImagePool.logoDefaultCompany];
+        }
+        else
+        {
+            [cell.ivLogo setImageWithURL:[NSURL URLWithString:aData.person.photoPath]
+                        placeholderImage:GGSharedImagePool.logoDefaultPerson];
+        }
         
         cell.lblInterval.text = [aData intervalStringWithDate:aData.timestamp];
         cell.hasBeenRead = aData.hasBeenRead;

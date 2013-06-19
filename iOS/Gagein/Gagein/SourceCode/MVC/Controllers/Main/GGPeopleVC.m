@@ -24,6 +24,10 @@
 #import "GGSelectFuncAreasVC.h"
 #import "GGEmptyActionView.h"
 
+#import "GGTableViewExpandHelper.h"
+#import "GGHappeningIpadCell.h"
+#import "GGCompanyDetailVC.h"
+
 @interface GGPeopleVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
 @end
@@ -40,6 +44,8 @@
     //CGPoint                             _lastContentOffset;
     
     BOOL                                _hasMore;
+    
+    GGTableViewExpandHelper             *_happeningTvExpandHelper;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -47,6 +53,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _updates = [NSMutableArray array];
+        _happeningTvExpandHelper = [[GGTableViewExpandHelper alloc] init];
         _menuType = kGGMenuTypeFunctionalArea;   // exploring...
         _menuID = GG_ALL_RESULT_ID;
     }
@@ -57,7 +64,7 @@
 {
     _slideSettingView = GGSharedDelegate.slideSettingView;
     _slideSettingView.delegate = self;
-    _slideSettingView.viewTable.rowHeight = [GGSettingMenuCell HEIGHT];
+    
     _slideSettingView.searchBar.tfSearch.placeholder = @"Search for updates";
     [_slideSettingView changeDelegate:self];
 }
@@ -96,12 +103,13 @@
     CGRect updateRc = [self viewportAdjsted];
     
     self.updatesTV = [[UITableView alloc] initWithFrame:updateRc style:UITableViewStylePlain];
-    self.updatesTV.rowHeight = [GGCompanyHappeningCell HEIGHT];
+    
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
     _updatesTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     //[_scrollingView addPage:self.updatesTV];
     self.updatesTV.backgroundColor = GGSharedColor.silver;
+    _happeningTvExpandHelper.tableView = _updatesTV;
     [self.view addSubview:self.updatesTV];
     [self addScrollToHide:_updatesTV];
     
@@ -388,28 +396,47 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+-(float)_happeningIpadCellHeightForIndexPath:(NSIndexPath *)indexPath
+{
+    return [self _happeningCellForIPadWithIndexPath:indexPath].frame.size.height;
+}
+
+-(GGHappeningIpadCell *)_happeningCellForIPadWithIndexPath:(NSIndexPath *)aIndexPath
+{
+    int row = aIndexPath.row;
+    
+    //static NSString *updateCellId = @"GGHappeningIpadCell";
+    GGHappeningIpadCell *cell = nil;//[_happeningsTV dequeueReusableCellWithIdentifier:updateCellId];;
+    
+    //
+    GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(_enterPersonDetailAction:)];
+    cell = [GGFactory cellOfHappeningIpad:cell
+                                     data:_updates[row]
+                                dataIndex:row
+                              expandIndex:_happeningTvExpandHelper.expandingIndex
+                            isTvExpanding:_happeningTvExpandHelper.isExpanding
+                               logoAction:action
+                       isCompanyHappening:NO];
+    
+    return cell;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = indexPath.row;
     
     if (tableView == self.updatesTV)
     {
-        static NSString *updateCellId = @"GGCompanyHappeningCell";
-        GGCompanyHappeningCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
-        if (cell == nil) {
-            cell = [GGCompanyHappeningCell viewFromNibWithOwner:self];
-            [cell.btnLogo addTarget:self action:@selector(_enterPersonDetailAction:) forControlEvents:UIControlEventTouchUpInside];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if (ISIPADDEVICE)
+        {
+            return [self _happeningCellForIPadWithIndexPath:indexPath];
         }
         
-        GGHappening *data = self.updates[row];
+        static NSString *updateCellId = @"GGCompanyHappeningCell";
+        GGCompanyHappeningCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
         
-        cell.tag = cell.btnLogo.tag = indexPath.row;
-        cell.lblName.text = data.sourceText;
-        cell.lblDescription.text = data.headLineText;
-        cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
-        [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
-        cell.hasBeenRead = data.hasBeenRead;
+        GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(_enterPersonDetailAction:)];
+        cell = [GGFactory cellOfHappening:cell data:_updates[row] dataIndex:row logoAction:action isCompanyHappening:NO];
         
         return cell;
     }
@@ -447,7 +474,26 @@
     return 0;
 }
 
-
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == _updatesTV)
+    {
+        if (indexPath.row == 0)
+        {
+            [_happeningTvExpandHelper resetCellHeights];
+        }
+        
+        float height = ISIPADDEVICE ? [self _happeningIpadCellHeightForIndexPath:indexPath] : [GGCompanyHappeningCell HEIGHT];
+        [_happeningTvExpandHelper recordCellHeight:height];
+        return height;
+    }
+    else if (tableView == _slideSettingView.viewTable)
+    {
+        return [GGSettingMenuCell HEIGHT];
+    }
+    
+    return 0.f;
+}
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -470,15 +516,35 @@
     
     if (tableView == self.updatesTV)
     {
-        GGHappeningDetailVC *vc = [[GGHappeningDetailVC alloc] init];
-        vc.isPeopleHappening = YES;
-        vc.happenings = _updates;
-        vc.happeningIndex = row;
-        
-        GGHappening *data = _updates[row];
-        data.hasBeenRead = YES;
-        
-        [self.navigationController pushViewController:vc animated:YES];
+        if (ISIPADDEVICE)
+        {
+            //NSIndexPath *oldIdxPath = _expandIndexPathForHappeningTV;
+            NSUInteger oldIndex = _happeningTvExpandHelper.expandingIndex;
+            BOOL oldIsExpanding = _happeningTvExpandHelper.isExpanding;
+            
+            [_happeningTvExpandHelper changeExpaningAt:row];
+            
+            [tableView beginUpdates];
+            
+            if (indexPath.row == oldIndex)
+            {
+                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            else
+            {
+                NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:indexPath.section];
+                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            
+            // adjust tableview content offset
+            [_happeningTvExpandHelper scrollToCenterFrom:oldIndex to:row oldIsExpanding:oldIsExpanding];
+            
+            [tableView endUpdates];
+        }
+        else
+        {
+            [self _enterHappeningDetailAt:row];
+        }
 
     }
     else if (tableView == _slideSettingView.viewTable)
@@ -506,6 +572,24 @@
         
         [self _refreshWithMenuId:theData.ID type:theData.type hideSlide:![self isIPadLandscape]];
     }
+}
+
+-(void)_enterHappeningDetailAction:(id)sender
+{
+    [self _enterHappeningDetailAt:(((UIView *)sender).tag)];
+}
+
+-(void)_enterHappeningDetailAt:(NSUInteger)aIndex
+{
+    GGHappeningDetailVC *vc = [[GGHappeningDetailVC alloc] init];
+    vc.isPeopleHappening = YES;
+    vc.happenings = _updates;
+    vc.happeningIndex = aIndex;
+    
+    GGHappening *data = _updates[aIndex];
+    data.hasBeenRead = YES;
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - data handling

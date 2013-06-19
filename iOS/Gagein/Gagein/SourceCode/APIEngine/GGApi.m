@@ -9,7 +9,7 @@
 #import "GGApi.h"
 #import "YRDropdownView.h"
 
-static AFNetworkReachabilityStatus s_netStatus = AFNetworkReachabilityStatusUnknown;
+//static AFNetworkReachabilityStatus s_netStatus = AFNetworkReachabilityStatusUnknown;
 
 @implementation GGApi
 
@@ -41,7 +41,7 @@ static AFNetworkReachabilityStatus s_netStatus = AFNetworkReachabilityStatusUnkn
     //UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
     GGApi *this = self;
     [self setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        s_netStatus = status;
+        //s_netStatus = status;
         
         [this _tellUserIfNoConnection];
         
@@ -52,7 +52,7 @@ static AFNetworkReachabilityStatus s_netStatus = AFNetworkReachabilityStatusUnkn
 
 -(void)_tellUserIfNoConnection
 {
-    if (s_netStatus == AFNetworkReachabilityStatusNotReachable) {
+    if (self.networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable) {
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [GGAlert showWarning:@"No internet connection" message:nil];
@@ -71,7 +71,7 @@ static AFNetworkReachabilityStatus s_netStatus = AFNetworkReachabilityStatusUnkn
 {
     AFHTTPRequestOperation *httpOp = anOperation;
     
-    if (httpOp.responseString.length <= 0 && s_netStatus != AFNetworkReachabilityStatusNotReachable)
+    if (httpOp.responseString.length <= 0 && self.networkReachabilityStatus != AFNetworkReachabilityStatusNotReachable)
     {
         [GGAlert showWarning:@"Network Error" message:nil];
         [self postNotification:GG_NOTIFY_HIDE_ALL_LOADING_HUD];
