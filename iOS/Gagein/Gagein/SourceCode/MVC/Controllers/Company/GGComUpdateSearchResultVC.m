@@ -315,8 +315,8 @@
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
-    
-    [_updatesTV centerMeHorizontallyChangeMyWidth:_updatesTV.superview.frame.size.width];
+
+    [_updatesTV centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH_FULL];
 }
 
 @end

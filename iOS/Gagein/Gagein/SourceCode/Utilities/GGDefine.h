@@ -113,6 +113,7 @@ return __singleton__; \
 #define SLIDE_SETTING_VIEW_WIDTH    260
 
 #define IPAD_CONTENT_WIDTH          650
+#define IPAD_CONTENT_WIDTH_FULL     768
 
 //
 @interface GGDefine : NSObject
