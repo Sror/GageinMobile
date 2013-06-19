@@ -84,6 +84,8 @@
     
     NSIndexPath                         *_expandIndexPathForHappeningTV;      // for iPad
     BOOL                                _isHappeningTvExpanding;               // for iPad
+    
+    NSMutableArray                      *_happeningCellHeights;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -94,6 +96,7 @@
         _updates = [NSMutableArray array];
         _happenings = [NSMutableArray array];
         _suggestedUpdates = [NSMutableArray array];
+        _happeningCellHeights = [NSMutableArray array];
         
         _menuType = kGGMenuTypeAgent;   // exploring...
         _menuID = GG_ALL_RESULT_ID;
@@ -1080,8 +1083,14 @@
     }
     else if (tableView == self.happeningsTV)
     {
+        if (indexPath.row == 0)
+        {
+            [_happeningCellHeights removeAllObjects];
+        }
+        
         //DLog(@"heightForRowAtIndexPath - happening - %d", indexPath.row);
         float height = ISIPADDEVICE ? [self _happeningIpadCellHeightForIndexPath:indexPath] : [GGCompanyHappeningCell HEIGHT];
+        [_happeningCellHeights addObject:@(height)];
         return height;
     }
     else if (tableView == _slideSettingView.viewTable)
@@ -1134,8 +1143,6 @@
                 [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIdxPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
             }
             
-            //[tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-            
             [tableView endUpdates];
         }
         else
@@ -1149,6 +1156,7 @@
         if (ISIPADDEVICE)
         {
             NSIndexPath *oldIdxPath = _expandIndexPathForHappeningTV;
+            BOOL oldIsExpanding = _isHappeningTvExpanding;
             
             if (_isHappeningTvExpanding)
             {
@@ -1168,6 +1176,7 @@
             }
             
             [tableView beginUpdates];
+            
             if (indexPath.row == oldIdxPath.row)
             {
                 [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -1175,6 +1184,22 @@
             else
             {
                 [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIdxPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            
+            if (_isHappeningTvExpanding)
+            {
+                float yPos = [self _yPosForHappeningCellAt:indexPath.row];
+                float oldExpandCellHeight = [(_happeningCellHeights[oldIdxPath.row]) floatValue];
+                if (oldIsExpanding && oldIdxPath.row < indexPath.row)
+                {
+                    yPos -= oldExpandCellHeight - 20;
+                }
+                
+                float offsetAdjust = (_happeningsTV.frame.size.height - oldExpandCellHeight) / 4;
+                yPos = [self isPortrait] ? yPos - offsetAdjust : yPos;
+                yPos = MAX(0, yPos);
+                
+                [tableView setContentOffset:CGPointMake(0, yPos) animated:YES];
             }
             
             [tableView endUpdates];
@@ -1224,6 +1249,17 @@
     }
 }
 
+             
+-(float)_yPosForHappeningCellAt:(NSUInteger)aIndex
+{
+    float yPos = 0.f;
+    for (int i = 0; i < aIndex; i++)
+    {
+        yPos += [(_happeningCellHeights[i]) floatValue];
+    }
+    
+    return yPos;
+}
 
 #pragma mark - screen migration
 -(void)_enterCompanyUpdateDetailAction:(id)sender
