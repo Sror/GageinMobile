@@ -124,29 +124,15 @@
 
 -(GGCompanyUpdateCell *)_updateCellForIndexPath:(NSIndexPath *)indexPath
 {
+    int row = indexPath.row;
     static NSString *updateCellId = @"GGCompanyUpdateCell";
     GGCompanyUpdateCell *cell = [_updatesTV dequeueReusableCellWithIdentifier:updateCellId];
-    if (cell == nil) {
-        cell = [GGCompanyUpdateCell viewFromNibWithOwner:self];
-        [cell.logoBtn addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
-    GGCompanyUpdate *updateData = [self.updates objectAtIndex:indexPath.row];
-    
-    cell.ID = updateData.ID;
-    cell.logoBtn.tag = indexPath.row;
-    cell.titleLbl.text = [updateData headlineTruncated];
-    cell.sourceLbl.text = updateData.fromSource;
-    
-//#warning FAKE DATA - company update description
-    cell.descriptionLbl.text = updateData.content;
-    cell.hasBeenRead = updateData.hasBeenRead;
-    
-    [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-    
-    cell.intervalLbl.text = [updateData intervalStringWithDate:updateData.date];
-    [cell adjustLayout];
+   
+    GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(companyDetailAction:)];
+    cell = [GGFactory cellOfComUpdate:cell
+                                 data:_updates[row]
+                            dataIndex:row
+                           logoAction:action];
     
     return cell;
 }

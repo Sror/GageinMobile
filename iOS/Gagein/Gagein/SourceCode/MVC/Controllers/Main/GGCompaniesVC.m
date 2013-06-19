@@ -808,28 +808,12 @@
     
     static NSString *updateCellId = @"GGCompanyUpdateCell";
     GGCompanyUpdateCell *cell = [_updatesTV dequeueReusableCellWithIdentifier:updateCellId];
-    if (cell == nil) {
-        cell = [GGCompanyUpdateCell viewFromNibWithOwner:self];
-        [cell.logoBtn addTarget:self action:@selector(companyDetailFromUpdateAction:) forControlEvents:UIControlEventTouchUpInside];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
     
-    GGCompanyUpdate *updateData = self.updates[row];
-    
-    cell.ID = updateData.ID;
-    cell.logoBtn.tag = row;
-    
-    cell.titleLbl.text = [updateData headlineTruncated];
-    cell.sourceLbl.text = updateData.fromSource;//[NSString stringWithFormat:@"%@ · %@", updateData.fromSource, [updateData intervalStringWithDate:updateData.date]];
-    
-//#warning FAKE DATA - company update description
-    cell.descriptionLbl.text = updateData.content;
-    
-    [cell.logoIV setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-    
-    cell.intervalLbl.text = [updateData intervalStringWithDate:updateData.date];
-    cell.hasBeenRead = updateData.hasBeenRead;
-    [cell adjustLayout];
+    GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(companyDetailFromUpdateAction:)];
+    cell = [GGFactory cellOfComUpdate:cell
+                                 data:_updates[row]
+                            dataIndex:row
+                           logoAction:action];
     
     return cell;
 }

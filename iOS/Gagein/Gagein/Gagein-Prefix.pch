@@ -41,6 +41,8 @@
     #import "GGLayout.h"
     #import "UIScrollView+OTS.h"
     #import "GGNavigationController.h"
+    #import "GGFactory.h"
+    #import "GGTagetActionPair.h"
 #endif
 
 #include "GGBackLog.h"

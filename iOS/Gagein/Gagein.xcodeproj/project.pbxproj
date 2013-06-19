@@ -140,6 +140,8 @@
 		EA1D94B017339F2F009FCC7B /* twitterLongBtnBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1D949E17339F2F009FCC7B /* twitterLongBtnBg@2x.png */; };
 		EA1D94B117339F2F009FCC7B /* upArrowDisabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1D949F17339F2F009FCC7B /* upArrowDisabled@2x.png */; };
 		EA1D94B217339F2F009FCC7B /* upArrowEnabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1D94A017339F2F009FCC7B /* upArrowEnabled@2x.png */; };
+		EA23FCB21772245500E3DBB9 /* GGFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = EA23FCB11772245500E3DBB9 /* GGFactory.m */; };
+		EA23FCB51772298400E3DBB9 /* GGTagetActionPair.m in Sources */ = {isa = PBXBuildFile; fileRef = EA23FCB41772298400E3DBB9 /* GGTagetActionPair.m */; };
 		EA24FA2D1713B269003AFBA9 /* GGScrollingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA2C1713B269003AFBA9 /* GGScrollingView.m */; };
 		EA24FA301713B2FF003AFBA9 /* GGScrollingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA24FA2F1713B2FF003AFBA9 /* GGScrollingView.xib */; };
 		EA24FA3A1713D8EA003AFBA9 /* GGSelectAgentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA24FA381713D8EA003AFBA9 /* GGSelectAgentsVC.m */; };
@@ -746,6 +748,10 @@
 		EA1D949E17339F2F009FCC7B /* twitterLongBtnBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitterLongBtnBg@2x.png"; sourceTree = "<group>"; };
 		EA1D949F17339F2F009FCC7B /* upArrowDisabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upArrowDisabled@2x.png"; sourceTree = "<group>"; };
 		EA1D94A017339F2F009FCC7B /* upArrowEnabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upArrowEnabled@2x.png"; sourceTree = "<group>"; };
+		EA23FCB01772245500E3DBB9 /* GGFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFactory.h; sourceTree = "<group>"; };
+		EA23FCB11772245500E3DBB9 /* GGFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFactory.m; sourceTree = "<group>"; };
+		EA23FCB31772298400E3DBB9 /* GGTagetActionPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTagetActionPair.h; sourceTree = "<group>"; };
+		EA23FCB41772298400E3DBB9 /* GGTagetActionPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGTagetActionPair.m; sourceTree = "<group>"; };
 		EA24FA2B1713B269003AFBA9 /* GGScrollingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGScrollingView.h; sourceTree = "<group>"; };
 		EA24FA2C1713B269003AFBA9 /* GGScrollingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGScrollingView.m; sourceTree = "<group>"; };
 		EA24FA2F1713B2FF003AFBA9 /* GGScrollingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGScrollingView.xib; sourceTree = "<group>"; };
@@ -2763,6 +2769,10 @@
 				EA1CA78A175812FC007C9232 /* GGStringPool.m */,
 				EA96494F176104A600739F73 /* GGLayout.h */,
 				EA964950176104A600739F73 /* GGLayout.m */,
+				EA23FCB01772245500E3DBB9 /* GGFactory.h */,
+				EA23FCB11772245500E3DBB9 /* GGFactory.m */,
+				EA23FCB31772298400E3DBB9 /* GGTagetActionPair.h */,
+				EA23FCB41772298400E3DBB9 /* GGTagetActionPair.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -3665,6 +3675,8 @@
 				EA9E00181770074E00127233 /* GGSsgrfPopPanelCompany.m in Sources */,
 				EA9E001A1770074E00127233 /* GGSsgrfPopPanelPerson.m in Sources */,
 				EA9C7F94177110F7003217F7 /* GGSsgrfPopPanelView.m in Sources */,
+				EA23FCB21772245500E3DBB9 /* GGFactory.m in Sources */,
+				EA23FCB51772298400E3DBB9 /* GGTagetActionPair.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
