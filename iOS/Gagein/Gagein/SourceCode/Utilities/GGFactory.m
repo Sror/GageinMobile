@@ -10,6 +10,7 @@
 #import "GGCompanyUpdateCell.h"
 #import "GGCompanyUpdate.h"
 #import "GGCompany.h"
+#import "GGCompanyUpdateIpadCell.h"
 
 @implementation GGFactory
 
@@ -48,6 +49,63 @@
         cell.intervalLbl.text = [aData intervalStringWithDate:aData.date];
         cell.hasBeenRead = aData.hasBeenRead;
         [cell adjustLayout];
+    }
+    
+    return cell;
+}
+
++(GGCompanyUpdateIpadCell *)cellOfComUpdateIpad:(id)aDequeuedCell
+                                           data:(GGCompanyUpdate *)aData
+                                      dataIndex:(NSUInteger)aDataIndex
+                                    expandIndex:(NSUInteger)aExpandIndex
+                                  isTvExpanding:(BOOL)aIsTvExpanding
+                                     logoAction:(GGTagetActionPair *)aLogoAction
+                                 headlineAction:(GGTagetActionPair *)aHeadlineAction
+{
+    GGCompanyUpdateIpadCell *cell = aDequeuedCell;
+    
+    if (cell == nil) {
+        cell = [GGCompanyUpdateIpadCell viewFromNibWithOwner:self];
+        
+        if (aLogoAction && aLogoAction.action)
+        {
+            [cell.btnLogo addTarget:aLogoAction.target action:aLogoAction.action forControlEvents:UIControlEventTouchUpInside];
+        }
+        
+        if (aHeadlineAction && aHeadlineAction.action)
+        {
+            [cell.btnHeadline addTarget:aHeadlineAction.target action:aHeadlineAction.action forControlEvents:UIControlEventTouchUpInside];
+        }
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    NSAssert([cell isKindOfClass:[GGCompanyUpdateIpadCell class]], @"cell should be GGCompanyUpdateIpadCell");
+    
+    if (aData)
+    {
+        cell.data = aData;
+        cell.btnLogo.tag = aDataIndex;
+        cell.btnHeadline.tag = aDataIndex;
+        
+        cell.lblHeadline.text = [aData headlineTruncated];
+        cell.lblSource.text = aData.fromSource;
+        cell.lblDescription.text = aData.content;
+        
+        [cell.ivLogo setImageWithURL:[NSURL URLWithString:aData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+        
+        cell.lblInterval.text = [aData intervalStringWithDate:aData.date];
+        cell.hasBeenRead = aData.hasBeenRead;
+        
+        if (aDataIndex == aExpandIndex)
+        {
+            cell.expanded = aIsTvExpanding;
+        }
+        else
+        {
+            cell.expanded = NO;
+        }
+
     }
     
     return cell;

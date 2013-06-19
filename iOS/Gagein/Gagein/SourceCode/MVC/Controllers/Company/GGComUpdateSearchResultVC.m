@@ -27,6 +27,9 @@
     
     NSUInteger          _currentPageIndex;
     BOOL                _hasMore;
+    
+    NSIndexPath                         *_expandIndexPathForUpdateTV;      // for iPad
+    BOOL                                _isUpdateTvExpanding;               // for iPad
 }
 
 -(void)_prevViewLoaded
@@ -145,8 +148,22 @@
 {
     int row = indexPath.row;
     
-    static NSString *updateCellId = @"GGCompanyUpdateIpadCell";
-    GGCompanyUpdateIpadCell *cell = [_updatesTV dequeueReusableCellWithIdentifier:updateCellId];
+    //static NSString *updateCellId = @"GGCompanyUpdateIpadCell";
+    GGCompanyUpdateIpadCell *cell = nil;//[_updatesTV dequeueReusableCellWithIdentifier:updateCellId];
+    
+    GGTagetActionPair *logoAction = [GGTagetActionPair pairWithTaget:self action:@selector(companyDetailFromUpdateAction:)];
+    GGTagetActionPair *headlineAction = [GGTagetActionPair pairWithTaget:self action:@selector(_enterCompanyUpdateDetailAction:)];
+    
+    cell = [GGFactory cellOfComUpdateIpad:cell
+                                     data:_updates[row]
+                                dataIndex:row
+                              expandIndex:_expandIndexPathForUpdateTV.row
+                            isTvExpanding:_isUpdateTvExpanding
+                               logoAction:logoAction
+                           headlineAction:headlineAction];
+    
+    return cell;
+    
     if (cell == nil) {
         cell = [GGCompanyUpdateIpadCell viewFromNibWithOwner:self];
         [cell.btnLogo addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -195,15 +212,54 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
-    
-    vc.naviTitleString = self.customNaviTitle.text;
-    vc.updates = self.updates;
-    vc.updateIndex = indexPath.row;
-    GGCompanyUpdate *data = _updates[indexPath.row];
-    data.hasBeenRead = YES;
-    
-    [self.navigationController pushViewController:vc animated:YES];
+    if (ISIPADDEVICE)
+    {
+        // snapshot old value...
+        NSIndexPath *oldIdxPath = _expandIndexPathForUpdateTV;
+        BOOL oldIsExpanding = _isUpdateTvExpanding;
+        
+        if (_isUpdateTvExpanding)
+        {
+            if (indexPath.row == _expandIndexPathForUpdateTV.row)
+            {
+                _isUpdateTvExpanding = NO;
+            }
+            else
+            {
+                _expandIndexPathForUpdateTV = indexPath;
+            }
+        }
+        else
+        {
+            _isUpdateTvExpanding = YES;
+            _expandIndexPathForUpdateTV = indexPath;
+        }
+        
+        // reload cells
+        [tableView beginUpdates];
+        if (indexPath.row == oldIdxPath.row)
+        {
+            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+        else
+        {
+            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIdxPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+        
+        [tableView endUpdates];
+    }
+    else
+    {
+        GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
+        
+        vc.naviTitleString = self.customNaviTitle.text;
+        vc.updates = self.updates;
+        vc.updateIndex = indexPath.row;
+        GGCompanyUpdate *data = _updates[indexPath.row];
+        data.hasBeenRead = YES;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma mark -

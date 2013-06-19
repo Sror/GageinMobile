@@ -11,6 +11,7 @@
 @class GGCompanyUpdateCell;
 @class GGCompanyUpdate;
 @class GGTagetActionPair;
+@class GGCompanyUpdateIpadCell;
 
 @interface GGFactory : NSObject
 
@@ -18,5 +19,13 @@
                                    data:(GGCompanyUpdate *)aData
                               dataIndex:(NSUInteger)aDataIndex
                              logoAction:(GGTagetActionPair *)anAction;
+
++(GGCompanyUpdateIpadCell *)cellOfComUpdateIpad:(id)aDequeuedCell
+                                           data:(GGCompanyUpdate *)aData
+                                      dataIndex:(NSUInteger)aDataIndex
+                                    expandIndex:(NSUInteger)aExpandIndex
+                                  isTvExpanding:(BOOL)aIsTvExpanding
+                                     logoAction:(GGTagetActionPair *)aLogoAction
+                                 headlineAction:(GGTagetActionPair *)aHeadlineAction;
 
 @end

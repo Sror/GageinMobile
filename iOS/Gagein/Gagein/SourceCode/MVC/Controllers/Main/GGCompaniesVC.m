@@ -41,6 +41,8 @@
 #import "GGCompanyUpdateIpadCell.h"
 #import "GGHappeningIpadCell.h"
 
+#import "GGTableViewExpandHelper.h"
+
 #define SWITCH_WIDTH 90
 #define SWITCH_HEIGHT 20
 
@@ -79,14 +81,16 @@
     BOOL                                _hasMoreUpdates;
     BOOL                                _hasMoreHappenings;
     
-    NSIndexPath                         *_expandIndexPathForUpdateTV;      // for iPad
-    BOOL                                _isUpdateTvExpanding;               // for iPad
+    //NSIndexPath                         *_expandIndexPathForUpdateTV;      // for iPad
+    //BOOL                                _isUpdateTvExpanding;               // for iPad
     
     NSIndexPath                         *_expandIndexPathForHappeningTV;      // for iPad
     BOOL                                _isHappeningTvExpanding;               // for iPad
     
     NSMutableArray                      *_happeningCellHeights;
-    NSMutableArray                      *_updateCellHeights;
+    //NSMutableArray                      *_updateCellHeights;
+    
+    GGTableViewExpandHelper             *_updateTvExpandHelper;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -99,7 +103,7 @@
         _suggestedUpdates = [NSMutableArray array];
         
         _happeningCellHeights = [NSMutableArray array];
-        _updateCellHeights = [NSMutableArray array];
+        _updateTvExpandHelper = [[GGTableViewExpandHelper alloc] init];
         
         _menuType = kGGMenuTypeAgent;   // exploring...
         _menuID = GG_ALL_RESULT_ID;
@@ -206,6 +210,7 @@
     self.updatesTV.backgroundColor = GGSharedColor.silver;
     self.updatesTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     _updatesTV.showsVerticalScrollIndicator = NO;
+    _updateTvExpandHelper.tableView = _updatesTV;
     //_updatesTV.scrollsToTop = YES;
     
     [self.view addSubview:self.updatesTV];
@@ -825,38 +830,17 @@
     //static NSString *updateCellId = @"GGCompanyUpdateIpadCell";
 #warning DISABLE Reuse, for height error;
     GGCompanyUpdateIpadCell *cell = nil;//[_updatesTV dequeueReusableCellWithIdentifier:updateCellId];
-    if (cell == nil) {
-        cell = [GGCompanyUpdateIpadCell viewFromNibWithOwner:self];
-        [cell.btnLogo addTarget:self action:@selector(companyDetailFromUpdateAction:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.btnHeadline addTarget:self action:@selector(_enterCompanyUpdateDetailAction:) forControlEvents:UIControlEventTouchUpInside];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
     
-    GGCompanyUpdate *updateData = self.updates[row];
+    GGTagetActionPair *logoAction = [GGTagetActionPair pairWithTaget:self action:@selector(companyDetailFromUpdateAction:)];
+    GGTagetActionPair *headlineAction = [GGTagetActionPair pairWithTaget:self action:@selector(_enterCompanyUpdateDetailAction:)];
     
-    cell.data = updateData;
-    cell.btnLogo.tag = row;
-    cell.btnHeadline.tag = row;
-    
-    cell.lblHeadline.text = [updateData headlineTruncated];
-    cell.lblSource.text = updateData.fromSource;
-    cell.lblDescription.text = updateData.content;
-    
-    [cell.ivLogo setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-    
-    cell.lblInterval.text = [updateData intervalStringWithDate:updateData.date];
-    cell.hasBeenRead = updateData.hasBeenRead;
-    
-    if (indexPath.row == _expandIndexPathForUpdateTV.row)
-    {
-        cell.expanded = _isUpdateTvExpanding;
-    }
-    else
-    {
-        cell.expanded = NO;
-    }
-    
-    //[cell adjustLayout];
+    cell = [GGFactory cellOfComUpdateIpad:cell
+                                     data:_updates[row]
+                                dataIndex:row
+                              expandIndex:_updateTvExpandHelper.expandingIndex//_expandIndexPathForUpdateTV.row
+                            isTvExpanding:_updateTvExpandHelper.isExpanding
+                               logoAction:logoAction
+                           headlineAction:headlineAction];
     
     return cell;
 }
@@ -871,7 +855,7 @@
 {
     int row = aIndexPath.row;
     
-    //static NSString *updateCellId = @"GGCompanyUpdateIpadCell";
+    //static NSString *updateCellId = @"GGHappeningIpadCell";
     GGHappeningIpadCell *cell = nil;//[_happeningsTV dequeueReusableCellWithIdentifier:updateCellId];;
     if (cell == nil)
     {
@@ -1066,11 +1050,11 @@
     {
         if (indexPath.row == 0)
         {
-            [_updateCellHeights removeAllObjects];
+            [_updateTvExpandHelper resetCellHeights];
         }
         
         float height = ISIPADDEVICE ? [self _updateIpadCellHeightForIndexPath:indexPath] : [self _updateCellHeightForIndexPath:indexPath];
-        [_updateCellHeights addObject:@(height)];
+        [_updateTvExpandHelper recordCellHeight:height];
         return height;
     }
     else if (tableView == self.happeningsTV)
@@ -1107,53 +1091,24 @@
         if (ISIPADDEVICE)
         {
             // snapshot old value...
-            NSIndexPath *oldIdxPath = _expandIndexPathForUpdateTV;
-            BOOL oldIsExpanding = _isUpdateTvExpanding;
-            
-            if (_isUpdateTvExpanding)
-            {
-                if (indexPath.row == _expandIndexPathForUpdateTV.row)
-                {
-                    _isUpdateTvExpanding = NO;
-                }
-                else
-                {
-                    _expandIndexPathForUpdateTV = indexPath;
-                }
-            }
-            else
-            {
-                _isUpdateTvExpanding = YES;
-                _expandIndexPathForUpdateTV = indexPath;
-            }
+            NSUInteger oldIndex = _updateTvExpandHelper.expandingIndex;
+            BOOL oldIsExpanding = _updateTvExpandHelper.isExpanding;
+            [_updateTvExpandHelper changeExpaningAt:row];
             
             // reload cells
             [tableView beginUpdates];
-            if (indexPath.row == oldIdxPath.row)
+            if (indexPath.row == oldIndex)
             {
                 [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             }
             else
             {
-                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIdxPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+                NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:indexPath.section];
+                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
             }
             
             // adjust tableview content offset
-            if (_isUpdateTvExpanding)
-            {
-                float yPos = [self _yPosForUpdateCellAt:indexPath.row];
-                float oldExpandCellHeight = [(_updateCellHeights[oldIdxPath.row]) floatValue];
-                if (oldIsExpanding && oldIdxPath.row < indexPath.row)
-                {
-                    yPos -= oldExpandCellHeight - 20;
-                }
-                
-                float offsetAdjust = (_updatesTV.frame.size.height - oldExpandCellHeight) / 4;
-                yPos = [self isPortrait] ? yPos - offsetAdjust : yPos;
-                yPos = MAX(0, yPos);
-                
-                [tableView setContentOffset:CGPointMake(0, yPos) animated:YES];
-            }
+            [_updateTvExpandHelper scrollToCenterFrom:oldIndex to:row oldIsExpanding:oldIsExpanding];
             
             [tableView endUpdates];
         }
@@ -1270,17 +1225,6 @@
     for (int i = 0; i < aIndex; i++)
     {
         yPos += [(_happeningCellHeights[i]) floatValue];
-    }
-    
-    return yPos;
-}
-
--(float)_yPosForUpdateCellAt:(NSUInteger)aIndex
-{
-    float yPos = 0.f;
-    for (int i = 0; i < aIndex; i++)
-    {
-        yPos += [(_updateCellHeights[i]) floatValue];
     }
     
     return yPos;
