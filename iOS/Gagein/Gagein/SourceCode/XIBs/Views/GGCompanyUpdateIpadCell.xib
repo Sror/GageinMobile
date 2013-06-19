@@ -44,11 +44,11 @@
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUIView" id="297775012">
 								<reference key="NSNextResponder" ref="509386514"/>
-								<int key="NSvFlags">274</int>
+								<int key="NSvFlags">292</int>
 								<array class="NSMutableArray" key="NSSubviews">
 									<object class="IBUIImageView" id="769331302">
 										<reference key="NSNextResponder" ref="297775012"/>
-										<int key="NSvFlags">274</int>
+										<int key="NSvFlags">292</int>
 										<string key="NSFrameSize">{646, 84}</string>
 										<reference key="NSSuperview" ref="297775012"/>
 										<reference key="NSWindow"/>
@@ -99,7 +99,7 @@
 										<string key="NSFrame">{{425, 4}, {210, 21}}</string>
 										<reference key="NSSuperview" ref="297775012"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="861698896"/>
+										<reference key="NSNextKeyView" ref="607736387"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -125,7 +125,7 @@
 										<string key="NSFrame">{{15, 24}, {573, 21}}</string>
 										<reference key="NSSuperview" ref="297775012"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="170259457"/>
+										<reference key="NSNextKeyView" ref="861698896"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -154,7 +154,7 @@
 										<string key="NSFrame">{{15, 24}, {573, 21}}</string>
 										<reference key="NSSuperview" ref="297775012"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="607736387"/>
+										<reference key="NSNextKeyView" ref="170259457"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBIPadFramework</string>

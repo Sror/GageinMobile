@@ -44,12 +44,21 @@
     [GGUtils applyLogoStyleToView:_ivLogo];
 }
 
+#define MIN_CONTENT_HEIGHT      (80.f)
 -(void)adjustLayout
 {
     [_lblDescription calculateSize];
     
+    CGRect contentRc = _viewContent.frame;
+    float contentHeight = _expanded ? CGRectGetMaxY(_actionBar.frame) : CGRectGetMaxY(_lblDescription.frame) + 5;
+    contentHeight = MAX(MIN_CONTENT_HEIGHT, contentHeight);
+    contentRc.size.height = contentHeight;
+    _viewContent.frame = contentRc;
+    
+    [_ivContentBg setHeight:contentRc.size.height];
+    
     CGRect rc = self.frame;
-    rc.size.height = [self maxHeightForContent] + 10;
+    rc.size.height = CGRectGetMaxY(_viewContent.frame);//[self maxHeightForContent] + 10;
     self.frame = rc;
     //[self adjustHeightToFitContent];
 }
@@ -83,11 +92,11 @@
     
     if (_expanded)
     {
-        float positionX = self.viewContent.frame.origin.x + 2;
+        float positionX = 2;//self.viewContent.frame.origin.x + 2;
         _panel = [GGSsgrfPanelUpdate viewFromNibWithOwner:self];
-        float thisH = self.frame.size.height;
+        float thisH =  CGRectGetMaxY(_lblDescription.frame) + 5;//self.frame.size.height;
         [_panel setPos:CGPointMake(positionX, thisH)];
-        [self addSubview:_panel];
+        [self.viewContent addSubview:_panel];
         
         _actionBar = [GGUpdateActionBar viewFromNibWithOwner:self];
         [_actionBar.btnSignal addTarget:self action:@selector(signalAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -98,7 +107,7 @@
         float actionOriginY = CGRectGetMaxY(_panel.frame);
         [_actionBar setPos:CGPointMake(positionX, actionOriginY)];
         //CGRect actionBarRc = _actionBar.frame;
-        [self addSubview:_actionBar];
+        [self.viewContent addSubview:_actionBar];
         
         NSMutableArray *imageURLs = [NSMutableArray array];
         

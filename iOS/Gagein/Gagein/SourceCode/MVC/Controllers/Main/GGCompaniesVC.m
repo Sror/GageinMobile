@@ -86,6 +86,7 @@
     BOOL                                _isHappeningTvExpanding;               // for iPad
     
     NSMutableArray                      *_happeningCellHeights;
+    NSMutableArray                      *_updateCellHeights;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -96,7 +97,9 @@
         _updates = [NSMutableArray array];
         _happenings = [NSMutableArray array];
         _suggestedUpdates = [NSMutableArray array];
+        
         _happeningCellHeights = [NSMutableArray array];
+        _updateCellHeights = [NSMutableArray array];
         
         _menuType = kGGMenuTypeAgent;   // exploring...
         _menuID = GG_ALL_RESULT_ID;
@@ -1077,8 +1080,13 @@
 {
     if (tableView == self.updatesTV)
     {
+        if (indexPath.row == 0)
+        {
+            [_updateCellHeights removeAllObjects];
+        }
+        
         float height = ISIPADDEVICE ? [self _updateIpadCellHeightForIndexPath:indexPath] : [self _updateCellHeightForIndexPath:indexPath];
-        //DLog(@"table view height:%f", height);
+        [_updateCellHeights addObject:@(height)];
         return height;
     }
     else if (tableView == self.happeningsTV)
@@ -1114,7 +1122,9 @@
     {
         if (ISIPADDEVICE)
         {
+            // snapshot old value...
             NSIndexPath *oldIdxPath = _expandIndexPathForUpdateTV;
+            BOOL oldIsExpanding = _isUpdateTvExpanding;
             
             if (_isUpdateTvExpanding)
             {
@@ -1133,6 +1143,7 @@
                 _expandIndexPathForUpdateTV = indexPath;
             }
             
+            // reload cells
             [tableView beginUpdates];
             if (indexPath.row == oldIdxPath.row)
             {
@@ -1141,6 +1152,23 @@
             else
             {
                 [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIdxPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            
+            // adjust tableview content offset
+            if (_isUpdateTvExpanding)
+            {
+                float yPos = [self _yPosForUpdateCellAt:indexPath.row];
+                float oldExpandCellHeight = [(_updateCellHeights[oldIdxPath.row]) floatValue];
+                if (oldIsExpanding && oldIdxPath.row < indexPath.row)
+                {
+                    yPos -= oldExpandCellHeight - 20;
+                }
+                
+                float offsetAdjust = (_updatesTV.frame.size.height - oldExpandCellHeight) / 4;
+                yPos = [self isPortrait] ? yPos - offsetAdjust : yPos;
+                yPos = MAX(0, yPos);
+                
+                [tableView setContentOffset:CGPointMake(0, yPos) animated:YES];
             }
             
             [tableView endUpdates];
@@ -1186,6 +1214,7 @@
                 [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIdxPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
             }
             
+            // adjust tableview content offset
             if (_isHappeningTvExpanding)
             {
                 float yPos = [self _yPosForHappeningCellAt:indexPath.row];
@@ -1249,13 +1278,25 @@
     }
 }
 
-             
+#pragma mark - y pos for cell
+
 -(float)_yPosForHappeningCellAt:(NSUInteger)aIndex
 {
     float yPos = 0.f;
     for (int i = 0; i < aIndex; i++)
     {
         yPos += [(_happeningCellHeights[i]) floatValue];
+    }
+    
+    return yPos;
+}
+
+-(float)_yPosForUpdateCellAt:(NSUInteger)aIndex
+{
+    float yPos = 0.f;
+    for (int i = 0; i < aIndex; i++)
+    {
+        yPos += [(_updateCellHeights[i]) floatValue];
     }
     
     return yPos;
