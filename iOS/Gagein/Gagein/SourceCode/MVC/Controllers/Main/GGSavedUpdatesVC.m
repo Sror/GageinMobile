@@ -20,6 +20,7 @@
 #import "GGCompanyUpdateDetailVC.h"
 #import "GGEmptyView.h"
 #import "GGCompanyUpdateIpadCell.h"
+#import "GGTableViewExpandHelper.h"
 
 #define SWITCH_WIDTH 80
 #define SWITCH_HEIGHT 20
@@ -40,6 +41,8 @@
     NSMutableArray  *_updates;
     
     BOOL            _isUnread;
+    
+    GGTableViewExpandHelper             *_tvExpandHelper;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -98,6 +101,7 @@
     _tvUpdates.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tvUpdates.showsVerticalScrollIndicator = NO;
     _tvUpdates.autoresizingMask = UIViewAutoresizingFlexibleWidth |UIViewAutoresizingFlexibleHeight;
+    _tvExpandHelper = [[GGTableViewExpandHelper alloc] initWithTableView:_tvUpdates];
     [self.view addSubview:_tvUpdates];
     
     _viewEmpty = [GGEmptyView viewFromNibWithOwner:self];
@@ -276,27 +280,19 @@
 {
     int row = indexPath.row;
     
-    static NSString *updateCellId = @"GGCompanyUpdateIpadCell";
-    GGCompanyUpdateIpadCell *cell = [_tvUpdates dequeueReusableCellWithIdentifier:updateCellId];
-    if (cell == nil) {
-        cell = [GGCompanyUpdateIpadCell viewFromNibWithOwner:self];
-        [cell.btnLogo addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
+    //static NSString *updateCellId = @"GGCompanyUpdateIpadCell";
+    GGCompanyUpdateIpadCell *cell = nil;//[_tvUpdates dequeueReusableCellWithIdentifier:updateCellId];
     
-    GGCompanyUpdate *updateData = [_updates objectAtIndexSafe:row];
+    GGTagetActionPair *logoAction = [GGTagetActionPair pairWithTaget:self action:@selector(companyDetailAction:)];
+    GGTagetActionPair *headlineAction = [GGTagetActionPair pairWithTaget:self action:@selector(_enterUpdateDetailAction:)];
     
-    cell.btnLogo.tag = row;
-    
-    cell.lblHeadline.text = [updateData headlineTruncated];
-    cell.lblSource.text = updateData.fromSource;
-    cell.lblDescription.text = updateData.content;
-    
-    [cell.ivLogo setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-    
-    cell.lblInterval.text = [updateData intervalStringWithDate:updateData.date];
-    cell.hasBeenRead = updateData.hasBeenRead;
-    [cell adjustLayout];
+    cell = [GGFactory cellOfComUpdateIpad:cell
+                                     data:[_updates objectAtIndexSafe:row]
+                                dataIndex:row
+                              expandIndex:_tvExpandHelper.expandingIndex
+                            isTvExpanding:_tvExpandHelper.isExpanding
+                               logoAction:logoAction
+                           headlineAction:headlineAction];
     
     return cell;
 }
@@ -317,21 +313,68 @@
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    float height = ISIPADDEVICE ? [self _updateIpadCellHeightForIndexPath:indexPath] : [self _updateCellHeightForIndexPath:indexPath];
+    if (indexPath.row == 0)
+    {
+        [_tvExpandHelper resetCellHeights];
+    }
     
+    float height = ISIPADDEVICE ? [self _updateIpadCellHeightForIndexPath:indexPath] : [self _updateCellHeightForIndexPath:indexPath];
+    [_tvExpandHelper recordCellHeight:height];
     return height;
 }
 
 #pragma mark - tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    int row = indexPath.row;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    if (ISIPADDEVICE)
+    {
+        // snapshot old value...
+        NSUInteger oldIndex = _tvExpandHelper.expandingIndex;
+        BOOL oldIsExpanding = _tvExpandHelper.isExpanding;
+        [_tvExpandHelper changeExpaningAt:row];
+        
+        // reload cells
+        [tableView beginUpdates];
+        if (indexPath.row == oldIndex)
+        {
+            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+        else
+        {
+            NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:indexPath.section];
+            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+        
+        // adjust tableview content offset
+        [_tvExpandHelper scrollToCenterFrom:oldIndex to:row oldIsExpanding:oldIsExpanding];
+        
+        [tableView endUpdates];
+    }
+    else
+    {
+        [self _enterUpdateDetailAt:indexPath.row];
+    }
+}
+
+
+-(void)_enterUpdateDetailAction:(id)sender
+{
+    [self _enterUpdateDetailAt:(((UIView *)sender).tag)];
+}
+
+-(void)_enterUpdateDetailAt:(NSUInteger)aIndex
+{
     GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
-    //vc.newsID = updateData.ID;
+    
     vc.naviTitleString = self.customNaviTitle.text;
     vc.updates = _updates;
-    vc.updateIndex = indexPath.row;
+    vc.updateIndex = aIndex;
+    GGCompanyUpdate *data = _updates[aIndex];
+    data.hasBeenRead = YES;
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 

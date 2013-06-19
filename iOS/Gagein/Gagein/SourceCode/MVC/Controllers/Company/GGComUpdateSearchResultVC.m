@@ -165,28 +165,6 @@
                            headlineAction:headlineAction];
     
     return cell;
-    
-    if (cell == nil) {
-        cell = [GGCompanyUpdateIpadCell viewFromNibWithOwner:self];
-        [cell.btnLogo addTarget:self action:@selector(companyDetailAction:) forControlEvents:UIControlEventTouchUpInside];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
-    GGCompanyUpdate *updateData = [_updates objectAtIndexSafe:row];
-    
-    cell.btnLogo.tag = row;
-    
-    cell.lblHeadline.text = [updateData headlineTruncated];
-    cell.lblSource.text = updateData.fromSource;
-    cell.lblDescription.text = updateData.content;
-    
-    [cell.ivLogo setImageWithURL:[NSURL URLWithString:updateData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-    
-    cell.lblInterval.text = [updateData intervalStringWithDate:updateData.date];
-    cell.hasBeenRead = updateData.hasBeenRead;
-    [cell adjustLayout];
-    
-    return cell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
