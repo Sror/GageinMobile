@@ -11,6 +11,9 @@
 #import "GGCompanyUpdate.h"
 #import "GGCompany.h"
 #import "GGCompanyUpdateIpadCell.h"
+#import "GGHappeningIpadCell.h"
+#import "GGHappening.h"
+#import "GGCompanyHappeningCell.h"
 
 @implementation GGFactory
 
@@ -110,5 +113,89 @@
     
     return cell;
 }
+
++(GGCompanyHappeningCell *)cellOfHappening:(id)aDequeuedCell
+                                      data:(GGHappening *)aData
+                                 dataIndex:(NSUInteger)aDataIndex
+                                logoAction:(GGTagetActionPair *)aLogoAction
+{
+    GGCompanyHappeningCell *cell = aDequeuedCell;
+    if (cell == nil)
+    {
+        cell = [GGCompanyHappeningCell viewFromNibWithOwner:self];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if (aLogoAction && aLogoAction.action)
+        {
+            [cell.btnLogo addTarget:aLogoAction.target action:aLogoAction.action forControlEvents:UIControlEventTouchUpInside];
+        }
+    }
+    
+    NSAssert([cell isKindOfClass:[GGCompanyHappeningCell class]], @"cell should be GGCompanyHappeningCell");
+    
+    if (aData)
+    {
+        cell.tag = aDataIndex;
+        cell.btnLogo.tag = aDataIndex;
+        
+        cell.lblName.text = aData.sourceText;
+        cell.lblDescription.text = aData.headLineText;
+        cell.lblInterval.text = [aData intervalStringWithDate:aData.timestamp];
+        [cell.ivLogo setImageWithURL:[NSURL URLWithString:aData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+        cell.hasBeenRead = aData.hasBeenRead;
+    }
+    
+    return cell;
+}
+
++(GGHappeningIpadCell *)cellOfHappeningIpad:(id)aDequeuedCell
+                                       data:(GGHappening *)aData
+                                  dataIndex:(NSUInteger)aDataIndex
+                                expandIndex:(NSUInteger)aExpandIndex
+                              isTvExpanding:(BOOL)aIsTvExpanding
+                                 logoAction:(GGTagetActionPair *)aLogoAction
+{
+    GGHappeningIpadCell *cell = aDequeuedCell;
+    if (cell == nil)
+    {
+        cell = [GGHappeningIpadCell viewFromNibWithOwner:self];
+        
+        if (aLogoAction && aLogoAction.action)
+        {
+            [cell.btnLogo addTarget:aLogoAction.target action:aLogoAction.action forControlEvents:UIControlEventTouchUpInside];
+        }
+        
+        cell.btnHeadline.enabled = NO;
+    }
+    
+    NSAssert([cell isKindOfClass:[GGHappeningIpadCell class]], @"cell should be GGHappeningIpadCell");
+    
+    if (aData)
+    {
+        cell.data = aData;
+        cell.btnLogo.tag = aDataIndex;
+        cell.btnHeadline.tag = aDataIndex;
+        
+        cell.lblHeadline.text = aData.headLineText;
+        cell.lblSource.text = aData.sourceText;
+        
+        [cell.ivLogo setImageWithURL:[NSURL URLWithString:aData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+        
+        cell.lblInterval.text = [aData intervalStringWithDate:aData.timestamp];
+        cell.hasBeenRead = aData.hasBeenRead;
+        
+        if (aDataIndex == aExpandIndex)
+        {
+            cell.expanded = aIsTvExpanding;
+        }
+        else
+        {
+            cell.expanded = NO;
+        }
+    }
+    
+    return cell;
+}
+
+
 
 @end

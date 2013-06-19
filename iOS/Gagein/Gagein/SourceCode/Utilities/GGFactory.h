@@ -12,6 +12,9 @@
 @class GGCompanyUpdate;
 @class GGTagetActionPair;
 @class GGCompanyUpdateIpadCell;
+@class GGHappeningIpadCell;
+@class GGHappening;
+@class GGCompanyHappeningCell;
 
 @interface GGFactory : NSObject
 
@@ -27,5 +30,17 @@
                                   isTvExpanding:(BOOL)aIsTvExpanding
                                      logoAction:(GGTagetActionPair *)aLogoAction
                                  headlineAction:(GGTagetActionPair *)aHeadlineAction;
+
++(GGCompanyHappeningCell *)cellOfHappening:(id)aDequeuedCell
+                                      data:(GGHappening *)aData
+                                 dataIndex:(NSUInteger)aDataIndex
+                                logoAction:(GGTagetActionPair *)aLogoAction;
+
++(GGHappeningIpadCell *)cellOfHappeningIpad:(id)aDequeuedCell
+                                       data:(GGHappening *)aData
+                                  dataIndex:(NSUInteger)aDataIndex
+                                expandIndex:(NSUInteger)aExpandIndex
+                              isTvExpanding:(BOOL)aIsTvExpanding
+                                 logoAction:(GGTagetActionPair *)aLogoAction;
 
 @end

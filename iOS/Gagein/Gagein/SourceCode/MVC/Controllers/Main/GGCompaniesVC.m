@@ -851,39 +851,15 @@
     
     //static NSString *updateCellId = @"GGHappeningIpadCell";
     GGHappeningIpadCell *cell = nil;//[_happeningsTV dequeueReusableCellWithIdentifier:updateCellId];;
-    if (cell == nil)
-    {
-        cell = [GGHappeningIpadCell viewFromNibWithOwner:self];
-        
-        [cell.btnLogo addTarget:self action:@selector(companyDetailFromHappeningAction:) forControlEvents:UIControlEventTouchUpInside];
-        cell.btnHeadline.enabled = NO;
-        //[cell.btnHeadline addTarget:self action:@selector(_enterHappeningDetailAction:) forControlEvents:UIControlEventTouchUpInside];
-                
-    }
     
-    GGHappening *data = _happenings[row];
-    
-    cell.data = data;
-    cell.btnLogo.tag = row;
-    cell.btnHeadline.tag = row;
-    
-    cell.lblHeadline.text = data.headLineText;
-    cell.lblSource.text = data.sourceText;
-    
-    [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-    
-    cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
-    cell.hasBeenRead = data.hasBeenRead;
-    
-    if (aIndexPath.row == _happeningTvExpandHelper.expandingIndex)
-    {
-        cell.expanded = _happeningTvExpandHelper.isExpanding;
-    }
-    else
-    {
-        cell.expanded = NO;
-    }
-
+    //
+    GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(companyDetailFromHappeningAction:)];
+    cell = [GGFactory cellOfHappeningIpad:cell
+                              data:_happenings[row]
+                         dataIndex:row
+                       expandIndex:_happeningTvExpandHelper.expandingIndex
+                     isTvExpanding:_happeningTvExpandHelper.isExpanding
+                        logoAction:action];
     
     return cell;
 }
@@ -912,22 +888,9 @@
         
         static NSString *happeningCellId = @"GGCompanyHappeningCell";
         GGCompanyHappeningCell *cell = [tableView dequeueReusableCellWithIdentifier:happeningCellId];
-        if (cell == nil) {
-            cell = [GGCompanyHappeningCell viewFromNibWithOwner:self];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            [cell.btnLogo addTarget:self action:@selector(companyDetailForHappeningAction:) forControlEvents:UIControlEventTouchUpInside];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
         
-        GGHappening *data = _happenings[row];
-        cell.tag = row;
-        cell.btnLogo.tag = row;
-        cell.lblName.text = data.sourceText;
-        cell.lblDescription.text = data.headLineText;
-        cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
-        [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-        cell.hasBeenRead = data.hasBeenRead;
+        GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(companyDetailForHappeningAction:)];
+        cell = [GGFactory cellOfHappening:cell data:_happenings[row] dataIndex:row logoAction:action];
         
         return cell;
     }
