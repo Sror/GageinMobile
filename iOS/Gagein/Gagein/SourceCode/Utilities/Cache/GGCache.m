@@ -8,7 +8,7 @@
 
 #import "GGCache.h"
 
-#define DEFAULT_CAPACITY    50
+#define DEFAULT_CAPACITY    20
 #define DEFAULT_CREDIT      10
 
 @implementation GGCache
@@ -49,12 +49,12 @@
     if (!hasIt)
     {
         [_cache addObjectIfNotNil:anObect];
-    }
-
-    _credit --;
-    if (_credit <= 0)
-    {
-        [self loseWeight];
+        
+        _credit --;
+        if (_credit <= 0)
+        {
+            [self loseWeight];
+        }
     }
 }
 
@@ -74,12 +74,14 @@
     int diff = count - _capacity;
     if (diff > 0)
     {
-        NSMutableArray *newCache = [NSMutableArray arrayWithCapacity:_capacity];
-        for (int i = diff - 1; i < count; count ++)
-        {
-            [newCache addObject:_cache[i]];
-        }
-        _cache = newCache;
+        //NSMutableArray *newCache = [NSMutableArray arrayWithCapacity:_capacity];
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(diff, _capacity)];
+        _cache = [NSMutableArray arrayWithArray:[_cache objectsAtIndexes:indexSet]];
+//        for (int i = diff - 1; i < count; count ++)
+//        {
+//            [newCache addObject:_cache[i]];
+//        }
+//        _cache = newCache;
     }
     
     _credit = DEFAULT_CREDIT;

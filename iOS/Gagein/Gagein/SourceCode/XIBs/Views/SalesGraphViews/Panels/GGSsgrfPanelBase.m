@@ -82,6 +82,11 @@
                 [GGSharedAPI getCompanyEventDetailWithID:aHappening.ID callback:callback];
             }
         }
+        else
+        {
+            _happening = cachedHappening;
+            [self _doUpdate];
+        }
     }
 }
 
