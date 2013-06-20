@@ -821,11 +821,10 @@
 -(void)ssGraphShowPersonPanel:(NSNumber *)aPersonID
 {
     DLog(@"ssGraphShowPersonPanel:%@", aPersonID);
-#warning TODO: get person graph data
-    //[GGSsgrfPopPanelPersonInfoView showInView:GGSharedDelegate.rootVC.view];
+
     GGSsgrfPopPanelPersonInfoView *popUp = [[GGSsgrfPopPanelPersonInfoView alloc] initWithView:GGSharedDelegate.rootVC.view];
-    popUp.panel.btnLogo.tagNumber = aPersonID;
-    popUp.panel.btnMoreEmployers.tagNumber = aPersonID;
+    [popUp updateWithPersonID:aPersonID];
+    
     [popUp.panel.btnLogo addTarget:self action:@selector(enterPersonDetailWithSender:) forControlEvents:UIControlEventTouchUpInside];
     
     //
@@ -837,10 +836,9 @@
 -(void)ssGraphShowCompanyPanel:(NSNumber *)aCompanyID
 {
     DLog(@"ssGraphShowCompanyPanel:%@", aCompanyID);
-#warning TODO: get company graph data
 
     GGSsgrfPopPanelComInfoView *popUp = [[GGSsgrfPopPanelComInfoView alloc] initWithView:GGSharedDelegate.rootVC.view];
-    popUp.panel.btnMoreEmployees.tagNumber = aCompanyID;
+    [popUp updateWithCompanyID:aCompanyID];
     //
     [_viewPopup removeFromSuperview];
     _viewPopup = popUp;

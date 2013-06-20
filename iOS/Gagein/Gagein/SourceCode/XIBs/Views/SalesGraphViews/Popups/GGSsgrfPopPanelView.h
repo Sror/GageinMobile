@@ -26,10 +26,12 @@
 ///////
 @interface GGSsgrfPopPanelComInfoView : GGSsgrfPopPanelView
 -(GGSsgrfPopPanelCompany *)panel;
+-(void)updateWithCompanyID:(NSNumber *)aCompanyID;
 @end
 
 
 ///////
 @interface GGSsgrfPopPanelPersonInfoView : GGSsgrfPopPanelView
 -(GGSsgrfPopPanelPerson *)panel;
+-(void)updateWithPersonID:(NSNumber *)aPersonID;
 @end

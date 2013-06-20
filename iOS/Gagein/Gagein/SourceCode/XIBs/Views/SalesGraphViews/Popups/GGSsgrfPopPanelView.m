@@ -157,6 +157,11 @@
     [content.btnClose addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
 }
 
+-(void)updateWithCompanyID:(NSNumber *)aCompanyID
+{
+    self.panel.btnMoreEmployees.tagNumber = aCompanyID;
+}
+
 @end
 
 
@@ -178,6 +183,12 @@
     [self addSubview:self.viewContent];
     
     [content.btnClose addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)updateWithPersonID:(NSNumber *)aPersonID
+{
+    self.panel.btnLogo.tagNumber = aPersonID;
+    self.panel.btnMoreEmployers.tagNumber = aPersonID;
 }
 
 @end
