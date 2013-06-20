@@ -44,9 +44,9 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="827352662"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor" id="599628088">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC42MTUxMDY5OTczIDAuNjE1MTA2OTk3MyAwLjYxNTEwNjk5NzMAA</bytes>
 						</object>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
@@ -58,9 +58,9 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1053195132"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC44MTMxNjE1NDIzIDAuNDcwNjA4NjE5IDAuNjY2NjY2NjY2NwA</bytes>
+						<object class="NSColor" key="IBUIBackgroundColor" id="565754370">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
@@ -74,7 +74,7 @@
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4yNTEwODM0ODU0IDAuNTg2Njc4ODMyMSAwLjcyNDc2NjE5NTMAA</bytes>
+							<bytes key="NSRGB">MC42MTUxMDY5OTczIDAuNjE1MTA2OTk3MyAwLjYxNTEwNjk5NzMAA</bytes>
 						</object>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
@@ -84,12 +84,8 @@
 						<string key="NSFrame">{{353, 83}, {150, 100}}</string>
 						<reference key="NSSuperview" ref="897209896"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4zMjc4NzI5ODM5IDAuNDcwNjA4NjE5IDAuNjY2NjY2NjY2NwA</bytes>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="565754370"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
 					<object class="IBUIView" id="800442086">
@@ -101,7 +97,10 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1071882374"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="599628088"/>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC42MTUxMDY5OTczIDAuNjE1MTA2OTk3MyAwLjYxNTEwNjk5NzMAA</bytes>
+						</object>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
 					<object class="IBUIImageView" id="1053195132">

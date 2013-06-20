@@ -328,6 +328,11 @@
     return [self.change isEqualToString:CHANGE_TYPE_JOIN];
 }
 
+-(NSString *)chartUrlWithSize:(CGSize)aSize
+{
+    return [GGUtils stringWithChartUrl:_revenueChart width:aSize.width height:aSize.height];
+}
+
 -(NSString *)fundingText
 {
     return [NSString stringWithFormat:@"$ %@", _funding];

@@ -40,12 +40,11 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 0}, {180, 265}}</string>
 						<reference key="NSSuperview" ref="356543882"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="402577071"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor" id="974612503">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
+						<object class="NSColor" key="IBUIBackgroundColor" id="848835637">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC42MTUxMDY5OTczIDAuNjE1MTA2OTk3MyAwLjYxNTEwNjk5NzMAA</bytes>
 						</object>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
@@ -54,13 +53,9 @@
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{30, 80}, {150, 100}}</string>
 						<reference key="NSSuperview" ref="356543882"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="410109151"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC44MTMxNjE1NDIzIDAuNDcwNjA4NjE5IDAuNjY2NjY2NjY2NwA</bytes>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="848835637"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
 					<object class="IBUIView" id="798892195">
@@ -68,13 +63,9 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{230, 0}, {180, 265}}</string>
 						<reference key="NSSuperview" ref="356543882"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="143278265"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4yNTEwODM0ODU0IDAuNTg2Njc4ODMyMSAwLjcyNDc2NjE5NTMAA</bytes>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="848835637"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
 					<object class="IBUIView" id="843154801">
@@ -83,10 +74,9 @@
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<string key="NSFrame">{{440, 0}, {180, 265}}</string>
 						<reference key="NSSuperview" ref="356543882"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="95805444"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="974612503"/>
+						<reference key="IBUIBackgroundColor" ref="848835637"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
 					<object class="IBUIView" id="95805444">
@@ -94,13 +84,8 @@
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{460, 80}, {150, 100}}</string>
 						<reference key="NSSuperview" ref="356543882"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4zMjc4NzI5ODM5IDAuNDcwNjA4NjE5IDAuNjY2NjY2NjY2NwA</bytes>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="848835637"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
 					<object class="IBUIView" id="1050549760">
@@ -109,10 +94,9 @@
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<string key="NSFrame">{{230, 160}, {180, 265}}</string>
 						<reference key="NSSuperview" ref="356543882"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="843154801"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="974612503"/>
+						<reference key="IBUIBackgroundColor" ref="848835637"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
 					<object class="IBUIImageView" id="410109151">
@@ -120,7 +104,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{191, 100}, {53, 38}}</string>
 						<reference key="NSSuperview" ref="356543882"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="798892195"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -136,7 +119,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{403, 100}, {53, 38}}</string>
 						<reference key="NSSuperview" ref="356543882"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1050549760"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -147,7 +129,6 @@
 				</array>
 				<string key="NSFrameSize">{640, 425}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="989921943"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
@@ -332,97 +313,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">51</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">GGSsgrfBaseWidget</string>
-					<string key="superclassName">UIView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/GGSsgrfBaseWidget.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">GGSsgrfDblTitleView</string>
-					<string key="superclassName">GGSsgrfBaseWidget</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/GGSsgrfDblTitleView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">GGSsgrfInfoWidgetView</string>
-					<string key="superclassName">GGSsgrfBaseWidget</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/GGSsgrfInfoWidgetView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">GGSsgrfPanelBase</string>
-					<string key="superclassName">UIView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/GGSsgrfPanelBase.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">GGSsgrfPanelHappeningBase</string>
-					<string key="superclassName">GGSsgrfPanelBase</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/GGSsgrfPanelHappeningBase.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">GGSsgrfPanelTripleInfoPlus</string>
-					<string key="superclassName">GGSsgrfPanelHappeningBase</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="ivLeftArrow">UIImageView</string>
-						<string key="viewBottomInfo">GGSsgrfInfoWidgetView</string>
-						<string key="viewCenterInfo">GGSsgrfInfoWidgetView</string>
-						<string key="viewLeftInfo">GGSsgrfInfoWidgetView</string>
-						<string key="viewLeftText">GGSsgrfDblTitleView</string>
-						<string key="viewRightInfo">GGSsgrfInfoWidgetView</string>
-						<string key="viewRightText">GGSsgrfDblTitleView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="ivLeftArrow">
-							<string key="name">ivLeftArrow</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewBottomInfo">
-							<string key="name">viewBottomInfo</string>
-							<string key="candidateClassName">GGSsgrfInfoWidgetView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewCenterInfo">
-							<string key="name">viewCenterInfo</string>
-							<string key="candidateClassName">GGSsgrfInfoWidgetView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewLeftInfo">
-							<string key="name">viewLeftInfo</string>
-							<string key="candidateClassName">GGSsgrfInfoWidgetView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewLeftText">
-							<string key="name">viewLeftText</string>
-							<string key="candidateClassName">GGSsgrfDblTitleView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewRightInfo">
-							<string key="name">viewRightInfo</string>
-							<string key="candidateClassName">GGSsgrfInfoWidgetView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewRightText">
-							<string key="name">viewRightText</string>
-							<string key="candidateClassName">GGSsgrfDblTitleView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/GGSsgrfPanelTripleInfoPlus.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

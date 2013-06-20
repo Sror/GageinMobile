@@ -428,7 +428,7 @@
     CGSize chartSize = [UIScreen mainScreen].applicationFrame.size;
     float width = MAX(chartSize.width, chartSize.height);
     float height = MIN(chartSize.width, chartSize.height);
-    NSString *chartUrl = [GGUtils stringWithChartUrl:_currentDetail.revenueChart width:width height:height];
+    NSString *chartUrl = [_currentDetail chartUrlWithSize:CGSizeMake(width, height)];
     
     [self presentImageWithURL:chartUrl];
 }
@@ -555,7 +555,7 @@
             [_happeningDetailCell showChangeRightImage:YES];
             //#warning TODO: show chart image
             CGSize chartSize = _happeningDetailCell.ivChart.frame.size;
-            NSString *chartUrl = [GGUtils stringWithChartUrl:_currentDetail.revenueChart width:chartSize.width height:chartSize.height];
+            NSString *chartUrl = [_currentDetail chartUrlWithSize:chartSize];
             [_happeningDetailCell.ivChart setImageWithURL:[NSURL URLWithString:chartUrl] placeholderImage:GGSharedImagePool.placeholder];
             [_happeningDetailCell.ivChart addGestureRecognizer:_tapGestOpenChart];
         }

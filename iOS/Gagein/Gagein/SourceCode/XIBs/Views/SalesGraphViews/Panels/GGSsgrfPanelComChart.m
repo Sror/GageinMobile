@@ -54,7 +54,8 @@
                 [self.viewLeftInfo updateWithCompany:_happening.oldCompany];
                 
                 // right - chart
-                [self.btnChart setBackgroundImageWithURL:[NSURL URLWithString:_happening.revenueChart]
+                NSString *chartUrl = [_happening chartUrlWithSize:_btnChart.frame.size];
+                [self.btnChart setBackgroundImageWithURL:[NSURL URLWithString:chartUrl]
                                                 forState:UIControlStateNormal
                                         placeholderImage:GGSharedImagePool.placeholder];
             }
