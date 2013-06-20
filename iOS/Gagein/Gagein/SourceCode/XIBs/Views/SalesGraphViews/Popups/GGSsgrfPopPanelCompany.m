@@ -52,9 +52,15 @@
     = _lblRevenue.text = _lblFortuneRank.text
     = _lblFiscalYear.text = _lblEmail.text
     = _lblPhone.text = _lblFax.text = _lblAddress.text = @"";
+    
+    [_btnMoreEmployees addTarget:self action:@selector(showMoreEmployeesAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 
-
+#pragma mark - action
+-(void)showMoreEmployeesAction:(id)sender
+{
+    [self postNotification:GG_NOTIFY_SSGRF_SHOW_EMPLOYEE_LIST_PAGE withObject:((UIView *)sender).tagNumber];
+}
 
 @end

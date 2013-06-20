@@ -27,7 +27,9 @@
 
 #import "GGSsgrfActionListener.h"
 #import "GGPersonDetailVC.h"
+#import "GGCompanyDetailVC.h"
 #import "GGSsgrfPopPanelView.h"
+#import "GGCompanyEmployeesVC.h"
 
 #define MAX_NAVI_TITLE_LENGTH           20
 #define MAX_NAVI_TITLE_LENGTH_IPAD      50
@@ -395,6 +397,22 @@
 {
     GGPersonDetailVC *vc = [[GGPersonDetailVC alloc] init];
     vc.personID = aPersonID;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)enterCompanyDetailWithID:(long long)aCompanyID
+{
+    GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+    vc.companyID = aCompanyID;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)enterEmployeesListWithID:(long long)aCompanyID
+{
+    GGCompanyEmployeesVC *vc = [[GGCompanyEmployeesVC alloc] init];
+    vc.companyID = aCompanyID;
     
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -807,6 +825,7 @@
     //[GGSsgrfPopPanelPersonInfoView showInView:GGSharedDelegate.rootVC.view];
     GGSsgrfPopPanelPersonInfoView *popUp = [[GGSsgrfPopPanelPersonInfoView alloc] initWithView:GGSharedDelegate.rootVC.view];
     popUp.panel.btnLogo.tagNumber = aPersonID;
+    popUp.panel.btnMoreEmployers.tagNumber = aPersonID;
     [popUp.panel.btnLogo addTarget:self action:@selector(enterPersonDetailWithSender:) forControlEvents:UIControlEventTouchUpInside];
     
     //
@@ -821,7 +840,7 @@
 #warning TODO: get company graph data
 
     GGSsgrfPopPanelComInfoView *popUp = [[GGSsgrfPopPanelComInfoView alloc] initWithView:GGSharedDelegate.rootVC.view];
-    
+    popUp.panel.btnMoreEmployees.tagNumber = aCompanyID;
     //
     [_viewPopup removeFromSuperview];
     _viewPopup = popUp;
@@ -839,11 +858,14 @@
 -(void)ssGraphShowCompanyLandingPage:(NSNumber *)aCompanyID
 {
     DLog(@"ssGraphShowCompanyLandingPage:%@", aCompanyID);
+    [self enterCompanyDetailWithID:[aCompanyID longLongValue]];
 }
 
--(void)ssGraphShowEmployeeListPage:(NSArray *)aEmployees
+-(void)ssGraphShowEmployeeListPage:(NSNumber *)aCompanyID
 {
-    DLog(@"ssGraphShowEmployeeListPage:%@", aEmployees);
+    DLog(@"ssGraphShowEmployeeListPage:%@", aCompanyID);
+    
+    [self enterEmployeesListWithID:[aCompanyID longLongValue]];
 }
 
 -(void)ssGraphShowCompanyListPage:(NSArray *)aCompanies

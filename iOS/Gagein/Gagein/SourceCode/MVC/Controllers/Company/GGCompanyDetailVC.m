@@ -446,11 +446,12 @@ typedef enum
 
 -(void)_seeAllEmployeesAction:(id)sender
 {
-    GGCompanyEmployeesVC *vc = [[GGCompanyEmployeesVC alloc] init];
-    vc.employees = _people;
-    vc.companyID = _companyID;
-    
-    [self.navigationController pushViewController:vc animated:YES];
+    [self enterEmployeesListWithID:_companyID];
+//    GGCompanyEmployeesVC *vc = [[GGCompanyEmployeesVC alloc] init];
+//    vc.employees = _people;
+//    vc.companyID = _companyID;
+//    
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)_seeAllSimilarCompaniesAction:(id)sender

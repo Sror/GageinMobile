@@ -37,6 +37,8 @@
 
 #pragma mark - screen migration
 -(void)enterPersonDetailWithID:(long long)aPersonID;
+-(void)enterCompanyDetailWithID:(long long)aCompanyID;
+-(void)enterEmployeesListWithID:(long long)aCompanyID;
 
 // for overriding
 -(void)naviBackAction:(id)aSender;
