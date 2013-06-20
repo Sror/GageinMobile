@@ -54,7 +54,7 @@
     {
         GGSsgrfPopPanelView *instance = [[self alloc] initWithFrame:aView.bounds];
         
-        [instance _doInstallContent];
+        //[instance _doInstallContent];
         
         [instance _doShowInView:aView];
     }
@@ -65,10 +65,19 @@
     
 }
 
+-(void)showMeInView:(UIView *)aView
+{
+    [self _doShowInView:aView];
+}
+
 -(void)_doShowInView:(UIView *)aView
 {
     if (aView)
     {
+        self.frame = aView.bounds;
+        
+        [self _doInstallContent];
+        
         [UIView animateWithDuration:ANIM_DURATION animations:^{
             
             [aView addSubview:self];
@@ -120,9 +129,16 @@
 ///////////////////
 @implementation GGSsgrfPopPanelComInfoView
 
+-(GGSsgrfPopPanelCompany *)panel
+{
+    return ((GGSsgrfPopPanelCompany *)self.viewContent);
+}
+
 -(void)_doInstallContent
 {
     GGSsgrfPopPanelCompany *content = [GGSsgrfPopPanelCompany viewFromNibWithOwner:self];
+    
+    [self.viewContent removeFromSuperview];
     self.viewContent = content;
     self.viewContent.center = self.center;
     [self addSubview:self.viewContent];
@@ -136,10 +152,16 @@
 ///////////////////
 @implementation GGSsgrfPopPanelPersonInfoView
 
+-(GGSsgrfPopPanelPerson *)panel
+{
+    return ((GGSsgrfPopPanelPerson *)self.viewContent);
+}
 
 -(void)_doInstallContent
 {
     GGSsgrfPopPanelPerson *content = [GGSsgrfPopPanelPerson viewFromNibWithOwner:self];
+    
+    [self.viewContent removeFromSuperview];
     self.viewContent = content;
     self.viewContent.center = self.center;
     [self addSubview:self.viewContent];

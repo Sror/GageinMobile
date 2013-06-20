@@ -772,14 +772,23 @@
 -(void)ssGraphShowPersonPanel:(NSNumber *)aPersonID
 {
     DLog(@"ssGraphShowPersonPanel:%@", aPersonID);
-    [GGSsgrfPopPanelPersonInfoView showInView:GGSharedDelegate.rootVC.view];
+    //[GGSsgrfPopPanelPersonInfoView showInView:GGSharedDelegate.rootVC.view];
+    GGSsgrfPopPanelPersonInfoView *popUp = [[GGSsgrfPopPanelPersonInfoView alloc] init];
+    
+    
+    [popUp showMeInView:GGSharedDelegate.rootVC.view];
 }
 
 -(void)ssGraphShowCompanyPanel:(NSNumber *)aCompanyID
 {
     DLog(@"ssGraphShowCompanyPanel:%@", aCompanyID);
 
-    [GGSsgrfPopPanelComInfoView showInView:GGSharedDelegate.rootVC.view];
+    //[GGSsgrfPopPanelComInfoView showInView:GGSharedDelegate.rootVC.view];
+    
+    GGSsgrfPopPanelComInfoView *popUp = [[GGSsgrfPopPanelComInfoView alloc] init];
+    
+    
+    [popUp showMeInView:GGSharedDelegate.rootVC.view];
 }
 
 -(void)ssGraphShowPersonLandingPage:(NSNumber *)aPersonID
