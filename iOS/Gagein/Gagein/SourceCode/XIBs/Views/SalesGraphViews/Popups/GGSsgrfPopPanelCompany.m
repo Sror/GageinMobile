@@ -7,6 +7,7 @@
 //
 
 #import "GGSsgrfPopPanelCompany.h"
+#import "GGSocialProfile.h"
 
 #define SOURCE_BTN_WIDTH    25
 #define SOURCE_BTN_HEIGHT    25
@@ -65,17 +66,22 @@
     [_btnMoreEmployees addTarget:self action:@selector(showMoreEmployeesAction:) forControlEvents:UIControlEventTouchUpInside];
     
     _sourceButtons = [NSArray arrayWithObjects:_btnFacebook, _btnLinkedIn, _btnTwitter, _btnYoutube, _btnSlideShare, _btnHoover, _btnYahoo, _btnCB, nil];
+    for (UIButton *btn in _sourceButtons)
+    {
+        [btn addTarget:self action:@selector(showWebPage:) forControlEvents:UIControlEventTouchUpInside];
+    }
     _sourceBtnStartPt = _btnLinkedIn.frame.origin;
     _sourceVisibleButtons = [NSMutableArray arrayWithCapacity:8];
 }
 
--(void)showSourceButtonWithType:(EGGHappeningSource)aSourceType
+-(void)showSourceButtonWithProfile:(GGSocialProfile *)aSourceProfile
 {
     float offsetX = _sourceBtnStartPt.x + _sourceVisibleButtons.count * (SOURCE_BTN_GAP + SOURCE_BTN_WIDTH);
     CGRect btnRc = CGRectMake(offsetX, _sourceBtnStartPt.y, SOURCE_BTN_WIDTH, SOURCE_BTN_HEIGHT);
     UIButton *theBtn = nil;
     
-    switch (aSourceType)
+    EGGHappeningSource sourceType = [GGUtils sourceTypeForText:aSourceProfile.type];
+    switch (sourceType)
     {
         case kGGHappeningSourceLindedIn:
         {
@@ -131,6 +137,7 @@
     
     theBtn.frame = btnRc;
     theBtn.hidden = NO;
+    theBtn.data = aSourceProfile.url;
     [_sourceVisibleButtons addObject:theBtn];
 
 }
@@ -139,6 +146,11 @@
 -(void)showMoreEmployeesAction:(id)sender
 {
     [self postNotification:GG_NOTIFY_SSGRF_SHOW_EMPLOYEE_LIST_PAGE withObject:((UIView *)sender).tagNumber];
+}
+
+-(void)showWebPage:(id)sender
+{
+    [self postNotification:GG_NOTIFY_SSGRF_SHOW_WEBPAGE withObject:((UIView *)sender).data];
 }
 
 @end

@@ -188,8 +188,7 @@
     for (GGSocialProfile *socialProfile in _overview.socialProfiles)
     {
         //DLog(@"%@", socialProfile.type);
-        EGGHappeningSource sourceType = [GGUtils sourceTypeForText:socialProfile.type];
-        [panel showSourceButtonWithType:sourceType];
+        [panel showSourceButtonWithProfile:socialProfile];
     }
 }
 

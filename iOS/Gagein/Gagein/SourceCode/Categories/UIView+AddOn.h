@@ -10,6 +10,7 @@
 
 @interface UIView (AddOn)
 @property (strong, nonatomic) NSNumber *tagNumber;
+@property (strong, nonatomic) id        data;
 
 -(void)showLoadingHUD;
 -(void)showLoadingHUDWithOffsetY:(float)aOffsetY;

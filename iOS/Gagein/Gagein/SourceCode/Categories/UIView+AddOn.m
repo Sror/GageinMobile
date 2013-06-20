@@ -9,23 +9,35 @@
 #import "UIView+AddOn.h"
 #include <objc/runtime.h>
 
-static char kDHStyleKey;
-
+static char kGGAssociateKeyTagNumber;
+static char kGGAssociateKeyData;
 
 static MBProgressHUD * hud;
 
 @implementation UIView (AddOn)
 
 @dynamic tagNumber;
+@dynamic data;
+
+-(void)setData:(id)data
+{
+    objc_setAssociatedObject(self, &kGGAssociateKeyData, data, OBJC_ASSOCIATION_COPY);
+}
+
+-(id)data
+{
+    return objc_getAssociatedObject(self, &kGGAssociateKeyData);
+}
+
 - (void)setTagNumber:(NSNumber *)tagNumber
 {
-    objc_setAssociatedObject(self, &kDHStyleKey, tagNumber, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, &kGGAssociateKeyTagNumber, tagNumber, OBJC_ASSOCIATION_COPY);
 
 }
 
 -(NSNumber *)tagNumber
 {
-    return objc_getAssociatedObject(self, &kDHStyleKey);
+    return objc_getAssociatedObject(self, &kGGAssociateKeyTagNumber);
 }
 
 

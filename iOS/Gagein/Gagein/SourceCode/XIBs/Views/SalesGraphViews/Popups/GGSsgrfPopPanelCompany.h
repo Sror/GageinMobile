@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class GGSocialProfile;
+
 @interface GGSsgrfPopPanelCompany : UIView
 
 @property (weak, nonatomic) IBOutlet UIView *viewHeader;
@@ -66,6 +68,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnClose;
 
 
--(void)showSourceButtonWithType:(EGGHappeningSource)aSourceType;
+-(void)showSourceButtonWithProfile:(GGSocialProfile *)aSourceProfile;
 
 @end
