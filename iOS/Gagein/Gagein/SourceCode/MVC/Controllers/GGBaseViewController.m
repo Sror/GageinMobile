@@ -371,7 +371,12 @@
 
 #pragma mark - screen migration
 
-
+-(void)enterPersonDetailWithSender:(id)sender
+{
+    long long ID = [((UIView *)sender).tagNumber longLongValue];
+    
+    [self enterPersonDetailWithID:ID];
+}
 
 -(void)enterPersonDetailWithID:(long long)aPersonID
 {
@@ -787,10 +792,11 @@
     DLog(@"ssGraphShowPersonPanel:%@", aPersonID);
 #warning TODO: get person graph data
     //[GGSsgrfPopPanelPersonInfoView showInView:GGSharedDelegate.rootVC.view];
-    GGSsgrfPopPanelPersonInfoView *popUp = [[GGSsgrfPopPanelPersonInfoView alloc] init];
-    //popUp.panel.btnLogo addTarget:self action:@selector(enterPersonDetailWithID:) forControlEvents:<#(UIControlEvents)#>;
+    GGSsgrfPopPanelPersonInfoView *popUp = [[GGSsgrfPopPanelPersonInfoView alloc] initWithView:GGSharedDelegate.rootVC.view];
+    popUp.panel.btnLogo.tagNumber = aPersonID;
+    [popUp.panel.btnLogo addTarget:self action:@selector(enterPersonDetailWithSender:) forControlEvents:UIControlEventTouchUpInside];
     
-    [popUp showMeInView:GGSharedDelegate.rootVC.view];
+    [popUp showMe];
 }
 
 -(void)ssGraphShowCompanyPanel:(NSNumber *)aCompanyID
@@ -798,10 +804,10 @@
     DLog(@"ssGraphShowCompanyPanel:%@", aCompanyID);
 #warning TODO: get company graph data
 
-    GGSsgrfPopPanelComInfoView *popUp = [[GGSsgrfPopPanelComInfoView alloc] init];
+    GGSsgrfPopPanelComInfoView *popUp = [[GGSsgrfPopPanelComInfoView alloc] initWithView:GGSharedDelegate.rootVC.view];
     
     
-    [popUp showMeInView:GGSharedDelegate.rootVC.view];
+    [popUp showMe];
 }
 
 -(void)ssGraphShowPersonLandingPage:(NSNumber *)aPersonID

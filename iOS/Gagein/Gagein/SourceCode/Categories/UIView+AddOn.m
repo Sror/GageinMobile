@@ -7,10 +7,27 @@
 //
 
 #import "UIView+AddOn.h"
+#include <objc/runtime.h>
+
+static char kDHStyleKey;
+
 
 static MBProgressHUD * hud;
 
 @implementation UIView (AddOn)
+
+@dynamic tagNumber;
+- (void)setTagNumber:(NSNumber *)tagNumber
+{
+    objc_setAssociatedObject(self, &kDHStyleKey, tagNumber, OBJC_ASSOCIATION_COPY);
+
+}
+
+-(NSNumber *)tagNumber
+{
+    return objc_getAssociatedObject(self, &kDHStyleKey);
+}
+
 
 
 -(void)showLoadingHUD

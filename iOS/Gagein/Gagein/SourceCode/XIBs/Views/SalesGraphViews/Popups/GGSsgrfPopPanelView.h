@@ -13,9 +13,11 @@
 @interface GGSsgrfPopPanelView : UIView
 @property (strong, nonatomic)   UIView  *viewContent;
 
+-(id)initWithView:(UIView *)aView;
+
 +(void)showInView:(UIView *)aView;
 
--(void)showMeInView:(UIView *)aView;
+-(void)showMe;
 -(void)hide;
 @end
 

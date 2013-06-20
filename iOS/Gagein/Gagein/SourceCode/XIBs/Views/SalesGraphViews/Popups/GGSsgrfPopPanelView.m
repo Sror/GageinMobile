@@ -15,7 +15,7 @@
 @implementation GGSsgrfPopPanelView
 {
     UIView  *_viewBg;
-    
+    UIView  *_superview;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -24,6 +24,19 @@
     if (self) {
         [self _doInit];
     }
+    return self;
+}
+
+-(id)initWithView:(UIView *)aView
+{
+    self = [self initWithFrame:aView.bounds];
+    if (self)
+    {
+        _superview = aView;
+        [self _doInit];
+        [self _doInstallContent];
+    }
+    
     return self;
 }
 
@@ -38,7 +51,7 @@
     
     _viewBg = [[UIView alloc] initWithFrame:self.bounds];
     _viewBg.backgroundColor = GGSharedColor.black;
-    _viewBg.alpha = 0.7f;
+    _viewBg.alpha = 0.6f;
     _viewBg.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self addSubview:_viewBg];
     
@@ -65,9 +78,9 @@
     
 }
 
--(void)showMeInView:(UIView *)aView
+-(void)showMe
 {
-    [self _doShowInView:aView];
+    [self _doShowInView:_superview];
 }
 
 -(void)_doShowInView:(UIView *)aView
@@ -75,8 +88,6 @@
     if (aView)
     {
         self.frame = aView.bounds;
-        
-        [self _doInstallContent];
         
         [UIView animateWithDuration:ANIM_DURATION animations:^{
             

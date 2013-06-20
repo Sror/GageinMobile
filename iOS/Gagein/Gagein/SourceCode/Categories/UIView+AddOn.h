@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface UIView (AddOn)
+@property (strong, nonatomic) NSNumber *tagNumber;
 
 -(void)showLoadingHUD;
 -(void)showLoadingHUDWithOffsetY:(float)aOffsetY;
