@@ -26,7 +26,6 @@
 
 #import "GGTableViewExpandHelper.h"
 #import "GGHappeningIpadCell.h"
-#import "GGCompanyDetailVC.h"
 
 @interface GGPeopleVC ()
 @property (nonatomic, strong) UITableView *updatesTV;

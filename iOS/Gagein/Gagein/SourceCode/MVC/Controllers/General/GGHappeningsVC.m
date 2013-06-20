@@ -17,6 +17,9 @@
 #import "GGHappening.h"
 #import "GGHappeningDetailVC.h"
 
+#import "GGTableViewExpandHelper.h"
+#import "GGHappeningIpadCell.h"
+
 @interface GGHappeningsVC ()
 @property (nonatomic, strong) UITableView *tvHappenings;
 @end
@@ -24,13 +27,14 @@
 @implementation GGHappeningsVC
 {
     BOOL                                _hasMore;
+    GGTableViewExpandHelper             *_happeningTvExpandHelper;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _happeningTvExpandHelper = [[GGTableViewExpandHelper alloc] init];
     }
     return self;
 }
@@ -52,11 +56,12 @@
     self.naviTitle = @"Happenings";
     
     self.tvHappenings = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
-    self.tvHappenings.rowHeight = [GGCompanyHappeningCell HEIGHT];
+    //self.tvHappenings.rowHeight = [GGCompanyHappeningCell HEIGHT];
     self.tvHappenings.dataSource = self;
     self.tvHappenings.delegate = self;
     [self.view addSubview:self.tvHappenings];
     self.tvHappenings.backgroundColor = GGSharedColor.silver;
+    _happeningTvExpandHelper.tableView = _tvHappenings;
     self.view.backgroundColor = GGSharedColor.silver;
     
     _tvHappenings.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -80,20 +85,7 @@
     [self unobserveAllNotifications];
 }
 
-#pragma mark - actions
--(void)companyDetailForHappeningAction:(id)sender
-{
-    int index = ((UIButton*)sender).tag;
-    GGHappening *data = _happenings[index];
-    
-    if (data.company.orgID > 0)
-    {
-        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-        vc.companyID = data.company.orgID;
-        
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-}
+
 
 #pragma mark - notification handling
 -(void)handleNotification:(NSNotification *)notification
@@ -117,44 +109,129 @@
     return self.happenings.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(float)_happeningIpadCellHeightForIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *updateCellId = @"GGCompanyHappeningCell";
-    GGCompanyHappeningCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
-    if (cell == nil) {
-        cell = [GGCompanyHappeningCell viewFromNibWithOwner:self];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        [cell.btnLogo addTarget:self action:@selector(companyDetailForHappeningAction:) forControlEvents:UIControlEventTouchUpInside];
-    }
+    return [self _happeningCellForIPadWithIndexPath:indexPath].frame.size.height;
+}
+
+-(GGHappeningIpadCell *)_happeningCellForIPadWithIndexPath:(NSIndexPath *)aIndexPath
+{
+    int row = aIndexPath.row;
     
-    GGHappening *data = [self.happenings objectAtIndex:indexPath.row];
+    //static NSString *updateCellId = @"GGHappeningIpadCell";
+    GGHappeningIpadCell *cell = nil;//[_happeningsTV dequeueReusableCellWithIdentifier:updateCellId];;
     
-    cell.btnLogo.tag = indexPath.row;
-    cell.lblName.text = data.sourceText;
-    cell.lblDescription.text = data.headLineText;
-    cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
-    [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.company.logoPath] placeholderImage:(_isPersonHappenings ? GGSharedImagePool.logoDefaultPerson : GGSharedImagePool.logoDefaultCompany)];
+    //
+    GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(companyDetailAction:)];
+    cell = [GGFactory cellOfHappeningIpad:cell
+                                     data:_happenings[row]
+                                dataIndex:row
+                              expandIndex:_happeningTvExpandHelper.expandingIndex
+                            isTvExpanding:_happeningTvExpandHelper.isExpanding
+                               logoAction:action
+                       isCompanyHappening:YES];
     
     return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int row = indexPath.row;
+    
+    if (ISIPADDEVICE)
+    {
+        return [self _happeningCellForIPadWithIndexPath:indexPath];
+    }
+    
+    static NSString *updateCellId = @"GGCompanyHappeningCell";
+    GGCompanyHappeningCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
+    
+    GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(companyDetailAction:)];
+    cell = [GGFactory cellOfHappening:cell data:_happenings[row] dataIndex:row logoAction:action isCompanyHappening:YES];
+    
+    return cell;
+}
+
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0)
+    {
+        [_happeningTvExpandHelper resetCellHeights];
+    }
+    
+    float height = ISIPADDEVICE ? [self _happeningIpadCellHeightForIndexPath:indexPath] : [GGCompanyHappeningCell HEIGHT];
+    [_happeningTvExpandHelper recordCellHeight:height];
+    return height;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    int row = indexPath.row;
     
+    if (ISIPADDEVICE)
+    {
+        //NSIndexPath *oldIdxPath = _expandIndexPathForHappeningTV;
+        NSUInteger oldIndex = _happeningTvExpandHelper.expandingIndex;
+        BOOL oldIsExpanding = _happeningTvExpandHelper.isExpanding;
+        
+        [_happeningTvExpandHelper changeExpaningAt:row];
+        
+        [tableView beginUpdates];
+        
+        if (indexPath.row == oldIndex)
+        {
+            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+        else
+        {
+            NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:indexPath.section];
+            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+        
+        // adjust tableview content offset
+        [_happeningTvExpandHelper scrollToCenterFrom:oldIndex to:row oldIsExpanding:oldIsExpanding];
+        
+        [tableView endUpdates];
+    }
+    else
+    {
+        [self _enterHappeningDetailAt:row];
+    }
+}
+
+
+#pragma mark - actions
+-(void)companyDetailAction:(id)sender
+{
+    int index = ((UIButton*)sender).tag;
+    GGHappening *data = _happenings[index];
+    
+    if (data.company.orgID > 0)
+    {
+        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+        vc.companyID = data.company.orgID;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+-(void)_enterHappeningDetailAction:(id)sender
+{
+    [self _enterHappeningDetailAt:(((UIView *)sender).tag)];
+}
+
+-(void)_enterHappeningDetailAt:(NSUInteger)aIndex
+{
     GGHappeningDetailVC *vc = [[GGHappeningDetailVC alloc] init];
+    vc.isPeopleHappening = YES;
     vc.happenings = _happenings;
-    vc.happeningIndex = indexPath.row;
+    vc.happeningIndex = aIndex;
+    
+    GGHappening *data = _happenings[aIndex];
+    data.hasBeenRead = YES;
     
     [self.navigationController pushViewController:vc animated:YES];
-    
-//    GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
-//    
-//    vc.naviTitleString = self.customNaviTitle.text;
-//    vc.updates = self.updates;
-//    vc.updateIndex = indexPath.row;
-//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark -
@@ -267,7 +344,7 @@
 {
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
-    [_tvHappenings centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
+    [_tvHappenings centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH_FULL];
 }
 
 @end
