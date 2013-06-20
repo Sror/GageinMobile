@@ -33,7 +33,10 @@
 
 - (void)calculateSize {
     //self.backgroundColor = GGSharedColor.darkRed;
-    CGSize constraint = CGSizeMake(self.frame.size.width, 20000.0f);
+    int numOfLine = self.numberOfLines;
+    float maxHeight = (numOfLine > 0) ? numOfLine * self.font.lineHeight : FLT_MAX;
+    
+    CGSize constraint = CGSizeMake(self.frame.size.width, maxHeight);
     CGSize size = [self.text sizeWithFont:self.font constrainedToSize:constraint lineBreakMode:self.lineBreakMode];
     
     [self setAdjustsFontSizeToFitWidth:NO];

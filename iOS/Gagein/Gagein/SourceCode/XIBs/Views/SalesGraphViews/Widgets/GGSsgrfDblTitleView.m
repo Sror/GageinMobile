@@ -31,6 +31,7 @@
     _lblTitle.textAlignment = NSTextAlignmentCenter;
     _lblTitle.lineBreakMode = UILineBreakModeTailTruncation;
     _lblTitle.numberOfLines = 0;
+    //_lblTitle.backgroundColor = GGSharedColor.darkRed;
     
     [self addSubview:_lblTitle];
     

@@ -39,6 +39,9 @@
     _viewRightText.backgroundColor = [UIColor clearColor];
     
     _viewBottomInfo.backgroundColor = [UIColor clearColor];
+    
+    [_viewLeftText setTitleNumOfLines:3];
+    [_viewRightText setTitleNumOfLines:3];
 }
 
 
