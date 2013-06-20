@@ -40,6 +40,7 @@
     _btnChart.layer.shadowColor = [UIColor blackColor].CGColor;
     
     _btnChart.contentMode = UIViewContentModeScaleAspectFill;
+    [_btnChart addTarget:self action:@selector(chartTapped:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)_doUpdate
@@ -66,6 +67,12 @@
                 break;
         }
     }
+}
+
+#pragma mark - action
+-(void)chartTapped:(id)sender
+{
+    [self postNotification:GG_NOTIFY_SSGRF_SHOW_IMAGE_URL withObject:_happening.revenueChart];
 }
 
 @end

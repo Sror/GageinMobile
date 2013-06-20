@@ -23,6 +23,8 @@ DEF_SINGLETON(GGSsgrfActionListener)
         [self observeNotification:GG_NOTIFY_SSGRF_SHOW_EMPLOYEE_LIST_PAGE];
         [self observeNotification:GG_NOTIFY_SSGRF_SHOW_COMPANY_LIST_PAGE];
         [self observeNotification:GG_NOTIFY_SSGRF_SHOW_WEBPAGE];
+        [self observeNotification:GG_NOTIFY_SSGRF_SHOW_IMAGE_URL];
+        
         [self observeNotification:GG_NOTIFY_SSGRF_FOLLOW_PERSON];
         [self observeNotification:GG_NOTIFY_SSGRF_UNFOLLOW_PERSON];
         [self observeNotification:GG_NOTIFY_SSGRF_FOLLOW_COMPANY];

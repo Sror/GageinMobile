@@ -254,8 +254,6 @@
     [super viewWillDisappear:animated];
     
     [GGSsgrfActionListener sharedInstance].delegate = nil;
-    
-     
 }
 
 -(void)viewDidDisappear:(BOOL)animated
