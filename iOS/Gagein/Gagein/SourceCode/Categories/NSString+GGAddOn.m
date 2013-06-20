@@ -20,4 +20,39 @@
     return [[self substringToIndex:aLength] stringByAppendingString:@"..."];
 }
 
+-(NSString *)stringSeperatedWith:(NSString *)aSeporator componentsCount:(NSUInteger)aCompCount maxLength:(NSUInteger)aMaxLength
+{
+    if (aSeporator.length <= 0 || aCompCount <= 0)
+    {
+        return nil;
+    }
+    
+    NSString *str = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSArray *components = [str componentsSeparatedByString:aSeporator];
+    
+    if (aCompCount > components.count)
+    {
+        return self;
+    }
+    
+    NSMutableString *resultStr = [NSMutableString string];
+    for (int i = 0; i < aCompCount; i++)
+    {
+        if (i)
+        {
+            [resultStr appendString:@" "];
+        }
+        
+        NSString *comp = components[i];
+        if (resultStr.length + comp.length > aMaxLength)
+        {
+            break;
+        }
+        
+        [resultStr appendString:comp];
+    }
+    
+    return resultStr;
+}
+
 @end

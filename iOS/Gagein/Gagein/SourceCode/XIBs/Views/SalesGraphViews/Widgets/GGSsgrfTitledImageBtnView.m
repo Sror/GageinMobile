@@ -45,6 +45,7 @@
     
     _viewDblTitle = [[GGSsgrfDblTitleView alloc] initWithFrame:CGRectMake((thisSize.width - TITLE_WIDTH) / 2, 10, TITLE_WIDTH, 0)];
     [self addSubview:_viewDblTitle];
+    [_viewDblTitle setTitleNumOfLines:1];
     //[_viewDblTitle setTitle:@"Apple Software Inc."];
     //[_viewDblTitle setSubTitle:@"World Wide Developer Conference 2013"];
     

@@ -12,6 +12,7 @@
 @interface GGSsgrfDblTitleView : GGSsgrfBaseWidget
 
 -(void)setTitle:(NSString *)aString;
+-(void)setTitleNumOfLines:(NSUInteger)aNumber;
 -(void)setSubTitle:(NSString *)aString;
 
 -(void)useBigTitle;

@@ -29,6 +29,7 @@
     _lblTitle.backgroundColor = [UIColor clearColor];
     _lblTitle.textColor = [UIColor whiteColor];
     _lblTitle.textAlignment = NSTextAlignmentCenter;
+    _lblTitle.lineBreakMode = UILineBreakModeTailTruncation;
     _lblTitle.numberOfLines = 0;
     
     [self addSubview:_lblTitle];
@@ -39,6 +40,7 @@
     _lblSubTitle.textColor = [UIColor lightGrayColor];
     _lblSubTitle.backgroundColor = [UIColor clearColor];
     _lblSubTitle.textAlignment = NSTextAlignmentCenter;
+    _lblTitle.lineBreakMode = UILineBreakModeTailTruncation;
     _lblSubTitle.numberOfLines = 0;
     
     [self addSubview:_lblSubTitle];
@@ -49,6 +51,11 @@
     _lblTitle.text = aString;
     
     [self _adjustLayout];
+}
+
+-(void)setTitleNumOfLines:(NSUInteger)aNumber
+{
+    _lblTitle.numberOfLines = aNumber;
 }
 
 -(void)setSubTitle:(NSString *)aString

@@ -12,4 +12,6 @@
 
 -(NSString *)stringLimitedToLength:(NSUInteger)aLength;
 
+-(NSString *)stringSeperatedWith:(NSString *)aSeporator componentsCount:(NSUInteger)aCompCount maxLength:(NSUInteger)aMaxLength;
+
 @end

@@ -25,16 +25,17 @@
     if ([super init]) {
         _minHeight = MIN_HEIGHT;
         [self setNumberOfLines:0];
+        [self setLineBreakMode:UILineBreakModeWordWrap];
     }
     
     return self;
 }
 
 - (void)calculateSize {
+    //self.backgroundColor = GGSharedColor.darkRed;
     CGSize constraint = CGSizeMake(self.frame.size.width, 20000.0f);
-    CGSize size = [self.text sizeWithFont:self.font constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+    CGSize size = [self.text sizeWithFont:self.font constrainedToSize:constraint lineBreakMode:self.lineBreakMode];
     
-    [self setLineBreakMode:UILineBreakModeWordWrap];
     [self setAdjustsFontSizeToFitWidth:NO];
     
     CGRect newRc = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, MAX(size.height, MIN_HEIGHT));
