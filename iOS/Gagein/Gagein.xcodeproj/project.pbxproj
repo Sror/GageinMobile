@@ -328,6 +328,8 @@
 		EA844A36171FD29C00658015 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA844A35171FD29B00658015 /* MessageUI.framework */; };
 		EA916216176792B4000AB2FB /* GGScrollToHideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA916215176792B4000AB2FB /* GGScrollToHideVC.m */; };
 		EA9162631767F6F1000AB2FB /* GGNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9162621767F6EE000AB2FB /* GGNavigationController.m */; };
+		EA95703A177377C1006DDC25 /* GGCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EA957039177377C1006DDC25 /* GGCache.m */; };
+		EA95703D17737E8B006DDC25 /* GGHappeningCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EA95703C17737E8B006DDC25 /* GGHappeningCache.m */; };
 		EA959D72171539B5005B06F6 /* GGSearchSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA959D71171539B5005B06F6 /* GGSearchSuggestionCell.xib */; };
 		EA959D75171539DD005B06F6 /* GGSearchSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA959D74171539DD005B06F6 /* GGSearchSuggestionCell.m */; };
 		EA959D7717157102005B06F6 /* topOrangeLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA959D7617157102005B06F6 /* topOrangeLine@2x.png */; };
@@ -1043,6 +1045,10 @@
 		EA916215176792B4000AB2FB /* GGScrollToHideVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGScrollToHideVC.m; sourceTree = "<group>"; };
 		EA9162611767F6EC000AB2FB /* GGNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGNavigationController.h; sourceTree = "<group>"; };
 		EA9162621767F6EE000AB2FB /* GGNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGNavigationController.m; sourceTree = "<group>"; };
+		EA957038177377C1006DDC25 /* GGCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCache.h; sourceTree = "<group>"; };
+		EA957039177377C1006DDC25 /* GGCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCache.m; sourceTree = "<group>"; };
+		EA95703B17737E8B006DDC25 /* GGHappeningCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGHappeningCache.h; sourceTree = "<group>"; };
+		EA95703C17737E8B006DDC25 /* GGHappeningCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGHappeningCache.m; sourceTree = "<group>"; };
 		EA959D71171539B5005B06F6 /* GGSearchSuggestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSearchSuggestionCell.xib; sourceTree = "<group>"; };
 		EA959D73171539DD005B06F6 /* GGSearchSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSearchSuggestionCell.h; sourceTree = "<group>"; };
 		EA959D74171539DD005B06F6 /* GGSearchSuggestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSearchSuggestionCell.m; sourceTree = "<group>"; };
@@ -2074,6 +2080,17 @@
 			path = DCRoundSwitch;
 			sourceTree = "<group>";
 		};
+		EA957037177377C1006DDC25 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				EA957038177377C1006DDC25 /* GGCache.h */,
+				EA957039177377C1006DDC25 /* GGCache.m */,
+				EA95703B17737E8B006DDC25 /* GGHappeningCache.h */,
+				EA95703C17737E8B006DDC25 /* GGHappeningCache.m */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		EA96495217613D4D00739F73 /* YRDropdownView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2746,6 +2763,7 @@
 		EACAE0F8170956BB00E7088F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				EA957037177377C1006DDC25 /* Cache */,
 				EAAE0742171689AE007C4A30 /* GGAnimation.h */,
 				EAAE0745171689DC007C4A30 /* GGAnimation.m */,
 				EA1A622A170A907A000B4EAE /* GGAlert.h */,
@@ -3683,6 +3701,8 @@
 				EA23FCB21772245500E3DBB9 /* GGFactory.m in Sources */,
 				EA23FCB51772298400E3DBB9 /* GGTagetActionPair.m in Sources */,
 				EA23FCB81772338F00E3DBB9 /* GGTableViewExpandHelper.m in Sources */,
+				EA95703A177377C1006DDC25 /* GGCache.m in Sources */,
+				EA95703D17737E8B006DDC25 /* GGHappeningCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,9 @@
 
 @end
 
+
+
+/////////
 @interface GGSsgrfPanelHappeningBase : GGSsgrfPanelBase
 {
  @protected

@@ -106,12 +106,11 @@
     [self _adjustTextPos];
 }
 
--(void)updateWithHappening:(GGHappening *)aHappening
+-(void)_doUpdate
 {
-    _happening = aHappening;
-    if (aHappening)
+    if (_happening)
     {
-        switch (aHappening.type) {
+        switch (_happening.type) {
             case kGGHappeningCompanyPersonJion:
             case kGGHappeningPersonJoinOtherCompany:
             {

@@ -153,6 +153,11 @@
     return self;
 }
 
+-(BOOL)isPersonEvent
+{
+    return _type >= kGGHappeningPersonUpdateProfilePic && _type <= kGGHappeningPersonNewJobTitle;
+}
+
 -(void)parseWithData:(NSDictionary *)aData
 {
     [super parseWithData:aData];

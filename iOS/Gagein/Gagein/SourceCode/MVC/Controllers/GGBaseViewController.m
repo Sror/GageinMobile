@@ -51,6 +51,8 @@
     BOOL                        _isMenuShowingBeforeLeavePortrait;
     
     WEPopoverController         *_popoverController;
+    
+    GGSsgrfPopPanelView         *_viewPopup;
 }
 
 #pragma mark - api operation management
@@ -227,6 +229,8 @@
     {
         [self viewWillAppearNotFirstTimeAction];
     }
+    
+    
 }
 
 -(void)viewWillAppearNotFirstTimeAction
@@ -241,6 +245,8 @@
     
     [self _adjustCustomNaviTitlePosition];
     [GGSsgrfActionListener sharedInstance].delegate = self;
+    
+    _viewPopup.hidden = NO;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -248,6 +254,15 @@
     [super viewWillDisappear:animated];
     
     [GGSsgrfActionListener sharedInstance].delegate = nil;
+    
+     
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    _viewPopup.hidden = YES;
 }
 
 -(void)dealloc
@@ -796,7 +811,10 @@
     popUp.panel.btnLogo.tagNumber = aPersonID;
     [popUp.panel.btnLogo addTarget:self action:@selector(enterPersonDetailWithSender:) forControlEvents:UIControlEventTouchUpInside];
     
-    [popUp showMe];
+    //
+    [_viewPopup removeFromSuperview];
+    _viewPopup = popUp;
+    [_viewPopup showMe];
 }
 
 -(void)ssGraphShowCompanyPanel:(NSNumber *)aCompanyID
@@ -806,7 +824,10 @@
 
     GGSsgrfPopPanelComInfoView *popUp = [[GGSsgrfPopPanelComInfoView alloc] initWithView:GGSharedDelegate.rootVC.view];
     
-    
+    //
+    [_viewPopup removeFromSuperview];
+    _viewPopup = popUp;
+    [_viewPopup showMe];
     [popUp showMe];
 }
 
@@ -814,9 +835,7 @@
 {
     DLog(@"ssGraphShowPersonLandingPage:%@", aPersonID);
     
-    GGPersonDetailVC *vc = [GGPersonDetailVC createInstance];
-    vc.personID = [aPersonID longLongValue];
-    
+    [self enterPersonDetailWithID:[aPersonID longLongValue]];
 }
 
 -(void)ssGraphShowCompanyLandingPage:(NSNumber *)aCompanyID

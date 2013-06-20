@@ -23,6 +23,7 @@ DEF_SINGLETON(GGRuntimeData)
         [self loadCurrentUser];
         [self _loadRunedBefore];
         [self _loadRecentSearches];
+        _happeningCache = [[GGHappeningCache alloc] init];
     }
     return self;
 }

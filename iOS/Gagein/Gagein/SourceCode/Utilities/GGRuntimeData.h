@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GGHappeningCache.h"
 
 @class GGMember;
 
@@ -16,6 +17,7 @@ AS_SINGLETON(GGRuntimeData)
 @property (assign)  BOOL                runedBefore;  // has runed before
 @property (strong)  GGMember            *currentUser;    // current user
 @property (readonly, nonatomic)  NSMutableArray      *recentSearches;
+@property (strong) GGHappeningCache        *happeningCache;
 
 -(BOOL)isLoggedIn;
 -(BOOL)isFirstRun;

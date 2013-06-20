@@ -7,6 +7,7 @@
 //
 
 #import "GGSsgrfPanelBase.h"
+#import "GGHappening.h"
 
 @implementation GGSsgrfPanelBase
 
@@ -52,7 +53,41 @@
 
 -(void)updateWithHappening:(GGHappening *)aHappening
 {
-    
+    _happening = aHappening;
+    if (aHappening.ID)
+    {
+        GGHappening *cachedHappening = [GGSharedRuntimeData.happeningCache happeningWithID:aHappening.ID];
+        if (cachedHappening == nil)
+        {
+            // call API to get detail
+            GGApiBlock callback = ^(id operation, id aResultObject, NSError *anError) {
+                
+                [self hideLoadingHUD];
+                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                if (parser.isOK)
+                {
+                    _happening = [parser parseCompanyEventDetail];
+                    [GGSharedRuntimeData.happeningCache add:_happening];
+                    [self _doUpdate];
+                }
+            };
+            
+            [self showLoadingHUD];
+            if ([aHappening isPersonEvent])
+            {
+                [GGSharedAPI getPeopleEventDetailWithID:aHappening.ID callback:callback];
+            }
+            else
+            {
+                [GGSharedAPI getCompanyEventDetailWithID:aHappening.ID callback:callback];
+            }
+        }
+    }
+}
+
+-(void)_doUpdate
+{
+    // leave for sub class to update UI
 }
 
 @end

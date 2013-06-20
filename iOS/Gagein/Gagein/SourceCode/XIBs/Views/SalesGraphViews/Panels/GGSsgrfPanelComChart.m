@@ -42,12 +42,11 @@
     _btnChart.contentMode = UIViewContentModeScaleAspectFill;
 }
 
--(void)updateWithHappening:(GGHappening *)aHappening
+-(void)_doUpdate
 {
-    _happening = aHappening;
     if (_happening)
     {
-        switch (aHappening.type)
+        switch (_happening.type)
         {
             case kGGHappeningCompanyRevenueChange:
             {

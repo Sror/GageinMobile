@@ -134,6 +134,7 @@ typedef enum {
 -(NSString *)headLineText;
 
 -(BOOL)isJoin;
+-(BOOL)isPersonEvent;
 
 -(NSString *)fundingText;
 -(NSString *)roundText;
