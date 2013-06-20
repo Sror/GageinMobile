@@ -8,6 +8,7 @@
 
 #import "GGSsgrfPopPanelCompany.h"
 #import "GGSocialProfile.h"
+#import "GGCompany.h"
 
 #define SOURCE_BTN_WIDTH    25
 #define SOURCE_BTN_HEIGHT    25
@@ -18,6 +19,7 @@
     NSArray                 *_sourceButtons;
     NSMutableArray          *_sourceVisibleButtons;
     CGPoint                 _sourceBtnStartPt;
+    GGCompany               *_data;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -72,6 +74,25 @@
     }
     _sourceBtnStartPt = _btnLinkedIn.frame.origin;
     _sourceVisibleButtons = [NSMutableArray arrayWithCapacity:8];
+}
+
+-(void)updateWithCompany:(GGCompany *)aCompany
+{
+    _data = aCompany;
+    if (_data)
+    {
+        _btnMoreEmployees.tagNumber = @(_data.ID);
+        
+        [_btnLogo setBackgroundImageWithURL:[NSURL URLWithString:_data.logoPath] forState:UIControlStateNormal placeholderImage:GGSharedImagePool.logoDefaultCompany];
+        _lblTitle.text = _data.name;
+        _lblSubTitle.text = _data.website;
+        
+        for (GGSocialProfile *socialProfile in _data.socialProfiles)
+        {
+            //DLog(@"%@", socialProfile.type);
+            [self showSourceButtonWithProfile:socialProfile];
+        }
+    }
 }
 
 -(void)showSourceButtonWithProfile:(GGSocialProfile *)aSourceProfile

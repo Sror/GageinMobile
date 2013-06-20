@@ -39,7 +39,6 @@
 -(void)updateWithCompanyID:(NSNumber *)aCompanyID
 {
     _companyID = [aCompanyID longLongValue];
-    self.panel.btnMoreEmployees.tagNumber = aCompanyID;
     
     [self showLoadingHUD];
     
@@ -47,22 +46,8 @@
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         _overview = [parser parseGetCompanyOverview];
-        [self _doUpdate];
+        [self.panel updateWithCompany:_overview];
     }];
-}
-
--(void)_doUpdate
-{
-    GGSsgrfPopPanelCompany *panel = self.panel;
-    [panel.btnLogo setBackgroundImageWithURL:[NSURL URLWithString:_overview.logoPath] forState:UIControlStateNormal placeholderImage:GGSharedImagePool.logoDefaultCompany];
-    panel.lblTitle.text = _overview.name;
-    panel.lblSubTitle.text = _overview.website;
-    
-    for (GGSocialProfile *socialProfile in _overview.socialProfiles)
-    {
-        //DLog(@"%@", socialProfile.type);
-        [panel showSourceButtonWithProfile:socialProfile];
-    }
 }
 
 @end

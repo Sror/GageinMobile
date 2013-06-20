@@ -68,6 +68,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnClose;
 
 
--(void)showSourceButtonWithProfile:(GGSocialProfile *)aSourceProfile;
-
+//-(void)showSourceButtonWithProfile:(GGSocialProfile *)aSourceProfile;
+-(void)updateWithCompany:(GGCompany *)aCompany;
 @end
