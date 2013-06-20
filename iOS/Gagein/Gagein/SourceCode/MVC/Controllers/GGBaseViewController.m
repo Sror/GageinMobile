@@ -28,7 +28,9 @@
 #import "GGSsgrfActionListener.h"
 #import "GGPersonDetailVC.h"
 #import "GGCompanyDetailVC.h"
-#import "GGSsgrfPopPanelView.h"
+
+#import "GGSsgrfPopPanelComInfoView.h"
+#import "GGSsgrfPopPanelPersonInfoView.h"
 #import "GGCompanyEmployeesVC.h"
 
 #define MAX_NAVI_TITLE_LENGTH           20

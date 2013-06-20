@@ -330,6 +330,8 @@
 		EA9162631767F6F1000AB2FB /* GGNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9162621767F6EE000AB2FB /* GGNavigationController.m */; };
 		EA95703A177377C1006DDC25 /* GGCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EA957039177377C1006DDC25 /* GGCache.m */; };
 		EA95703D17737E8B006DDC25 /* GGHappeningCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EA95703C17737E8B006DDC25 /* GGHappeningCache.m */; };
+		EA9570401773C913006DDC25 /* GGSsgrfPopPanelComInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA95703F1773C912006DDC25 /* GGSsgrfPopPanelComInfoView.m */; };
+		EA9570431773C9C3006DDC25 /* GGSsgrfPopPanelPersonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9570421773C9C2006DDC25 /* GGSsgrfPopPanelPersonInfoView.m */; };
 		EA959D72171539B5005B06F6 /* GGSearchSuggestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA959D71171539B5005B06F6 /* GGSearchSuggestionCell.xib */; };
 		EA959D75171539DD005B06F6 /* GGSearchSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA959D74171539DD005B06F6 /* GGSearchSuggestionCell.m */; };
 		EA959D7717157102005B06F6 /* topOrangeLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA959D7617157102005B06F6 /* topOrangeLine@2x.png */; };
@@ -1049,6 +1051,10 @@
 		EA957039177377C1006DDC25 /* GGCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCache.m; sourceTree = "<group>"; };
 		EA95703B17737E8B006DDC25 /* GGHappeningCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGHappeningCache.h; sourceTree = "<group>"; };
 		EA95703C17737E8B006DDC25 /* GGHappeningCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGHappeningCache.m; sourceTree = "<group>"; };
+		EA95703E1773C911006DDC25 /* GGSsgrfPopPanelComInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfPopPanelComInfoView.h; sourceTree = "<group>"; };
+		EA95703F1773C912006DDC25 /* GGSsgrfPopPanelComInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfPopPanelComInfoView.m; sourceTree = "<group>"; };
+		EA9570411773C9C1006DDC25 /* GGSsgrfPopPanelPersonInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfPopPanelPersonInfoView.h; sourceTree = "<group>"; };
+		EA9570421773C9C2006DDC25 /* GGSsgrfPopPanelPersonInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfPopPanelPersonInfoView.m; sourceTree = "<group>"; };
 		EA959D71171539B5005B06F6 /* GGSearchSuggestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSearchSuggestionCell.xib; sourceTree = "<group>"; };
 		EA959D73171539DD005B06F6 /* GGSearchSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSearchSuggestionCell.h; sourceTree = "<group>"; };
 		EA959D74171539DD005B06F6 /* GGSearchSuggestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSearchSuggestionCell.m; sourceTree = "<group>"; };
@@ -2152,6 +2158,10 @@
 				EA9E00171770074E00127233 /* GGSsgrfPopPanelPerson.xib */,
 				EA9C7F92177110F7003217F7 /* GGSsgrfPopPanelView.h */,
 				EA9C7F93177110F7003217F7 /* GGSsgrfPopPanelView.m */,
+				EA95703E1773C911006DDC25 /* GGSsgrfPopPanelComInfoView.h */,
+				EA95703F1773C912006DDC25 /* GGSsgrfPopPanelComInfoView.m */,
+				EA9570411773C9C1006DDC25 /* GGSsgrfPopPanelPersonInfoView.h */,
+				EA9570421773C9C2006DDC25 /* GGSsgrfPopPanelPersonInfoView.m */,
 			);
 			path = Popups;
 			sourceTree = "<group>";
@@ -3703,6 +3713,8 @@
 				EA23FCB81772338F00E3DBB9 /* GGTableViewExpandHelper.m in Sources */,
 				EA95703A177377C1006DDC25 /* GGCache.m in Sources */,
 				EA95703D17737E8B006DDC25 /* GGHappeningCache.m in Sources */,
+				EA9570401773C913006DDC25 /* GGSsgrfPopPanelComInfoView.m in Sources */,
+				EA9570431773C9C3006DDC25 /* GGSsgrfPopPanelPersonInfoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

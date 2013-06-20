@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GGSsgrfPopPanelCompany.h"
-#import "GGSsgrfPopPanelPerson.h"
+
 
 @interface GGSsgrfPopPanelView : UIView
 @property (strong, nonatomic)   UIView  *viewContent;
@@ -24,14 +23,7 @@
 
 
 ///////
-@interface GGSsgrfPopPanelComInfoView : GGSsgrfPopPanelView
--(GGSsgrfPopPanelCompany *)panel;
--(void)updateWithCompanyID:(NSNumber *)aCompanyID;
-@end
 
 
-///////
-@interface GGSsgrfPopPanelPersonInfoView : GGSsgrfPopPanelView
--(GGSsgrfPopPanelPerson *)panel;
--(void)updateWithPersonID:(NSNumber *)aPersonID;
-@end
+
+
