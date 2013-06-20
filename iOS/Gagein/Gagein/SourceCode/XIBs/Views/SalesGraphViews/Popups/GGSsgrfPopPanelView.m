@@ -10,6 +10,7 @@
 #import "GGSsgrfPopPanelCompany.h"
 #import "GGSsgrfPopPanelPerson.h"
 #import "GGCompany.h"
+#import "GGSocialProfile.h"
 
 #define ANIM_DURATION   .3f
 
@@ -179,7 +180,17 @@
 
 -(void)_doUpdate
 {
-    [self.panel.btnLogo setBackgroundImageWithURL:[NSURL URLWithString:_overview.logoPath] forState:UIControlStateNormal placeholderImage:GGSharedImagePool.logoDefaultCompany];
+    GGSsgrfPopPanelCompany *panel = self.panel;
+    [panel.btnLogo setBackgroundImageWithURL:[NSURL URLWithString:_overview.logoPath] forState:UIControlStateNormal placeholderImage:GGSharedImagePool.logoDefaultCompany];
+    panel.lblTitle.text = _overview.name;
+    panel.lblSubTitle.text = _overview.website;
+    
+    for (GGSocialProfile *socialProfile in _overview.socialProfiles)
+    {
+        //DLog(@"%@", socialProfile.type);
+        EGGHappeningSource sourceType = [GGUtils sourceTypeForText:socialProfile.type];
+        [panel showSourceButtonWithType:sourceType];
+    }
 }
 
 @end

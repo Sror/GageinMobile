@@ -464,4 +464,110 @@
     [GGSharedDelegate.tabBarController hideTabBarAnimated:aAnimated];
 }
 
++(NSString *)textForSourceType:(EGGHappeningSource)aSourceType
+{
+    switch (aSourceType) {
+        case kGGHappeningSourceLindedIn:
+        {
+            return SOURCE_TEXT_LINKEDIN;
+        }
+            break;
+            
+        case kGGHappeningSourceCrunchBase:
+        {
+            return SOURCE_TEXT_CRUNCHBASE;
+        }
+            break;
+            
+        case kGGHappeningSourceYahoo:
+        {
+            return SOURCE_TEXT_YAHOO;
+        }
+            break;
+            
+        case kGGHappeningSourceHoovers:
+        {
+            return SOURCE_TEXT_HOOVERS;
+        }
+            break;
+            
+        case kGGHappeningSourceFacebook:
+        {
+            return SOURCE_TEXT_FACEBOOK;
+        }
+            break;
+            
+        case kGGHappeningSourceTwitter:
+        {
+            return SOURCE_TEXT_TWITTER;
+        }
+            break;
+            
+        case kGGHappeningSourceYoutube:
+        {
+            return SOURCE_TEXT_YOUTUBE;
+        }
+            break;
+            
+        case kGGHappeningSourceSlideShare:
+        {
+            return SOURCE_TEXT_SLIDE_SHARE;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    return nil;
+}
+
++(EGGHappeningSource)sourceTypeForText:(NSString *)aText
+{
+    if (aText.length)
+    {
+        if ([aText isCaseInsensitiveEqualToString:SOURCE_TEXT_LINKEDIN])
+        {
+            return kGGHappeningSourceLindedIn;
+        }
+        
+        else if ([aText isCaseInsensitiveEqualToString:SOURCE_TEXT_CRUNCHBASE])
+        {
+            return kGGHappeningSourceCrunchBase;
+        }
+        
+        else if ([aText isCaseInsensitiveEqualToString:SOURCE_TEXT_YAHOO])
+        {
+            return kGGHappeningSourceYahoo;
+        }
+        
+        else if ([aText isCaseInsensitiveEqualToString:SOURCE_TEXT_HOOVERS])
+        {
+            return kGGHappeningSourceHoovers;
+        }
+        
+        else if ([aText isCaseInsensitiveEqualToString:SOURCE_TEXT_FACEBOOK])
+        {
+            return kGGHappeningSourceFacebook;
+        }
+        
+        else if ([aText isCaseInsensitiveEqualToString:SOURCE_TEXT_TWITTER])
+        {
+            return kGGHappeningSourceTwitter;
+        }
+        
+        else if ([aText isCaseInsensitiveEqualToString:SOURCE_TEXT_YOUTUBE])
+        {
+            return kGGHappeningSourceYoutube;
+        }
+        
+        else if ([aText isCaseInsensitiveEqualToString:SOURCE_TEXT_SLIDE_SHARE])
+        {
+            return kGGHappeningSourceSlideShare;
+        }
+    }
+    
+    return kGGHappeningSourceUnKnown;
+}
+
 @end

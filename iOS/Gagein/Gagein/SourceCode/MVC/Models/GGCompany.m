@@ -27,36 +27,6 @@
 //
 @implementation GGCompanyDigest
 
-//+(GGCompanyDigest *)instanceFromCompany:(GGCompany *)aCompany
-//{
-//    if (aCompany)
-//    {
-//        GGCompanyDigest *theCompany = [GGCompanyDigest model];
-//        theCompany.ID = aCompany.ID;
-//        theCompany.name = aCompany.name;
-//        theCompany.orgWebSite = aCompany.website;
-//        theCompany.orgLogoPath = aCompany.logoPath;
-//        theCompany.type = aCompany.type;
-//        //followed
-//        theCompany.employeeSize = aCompany.employeeSize;
-//        theCompany.fortuneRank = aCompany.fortuneRank;
-//        theCompany.ownership = aCompany.ownership;
-//        theCompany.revenueSize = aCompany.revenueSize;
-//        //alias, keywords, description
-//        theCompany.profile = aCompany.profile;
-//        theCompany.country = aCompany.country;
-//        theCompany.state = aCompany.state;
-//        theCompany.city = aCompany.city;
-//        theCompany.zipcode = aCompany.zipcode;
-//        theCompany.address = aCompany.address;
-//        theCompany.competitors = aCompany.competitors;
-//        
-//        return theCompany;
-//    }
-//    
-//    return nil;
-//}
-
 -(void)parseWithData:(NSDictionary *)aData
 {
     [super parseWithData:aData];

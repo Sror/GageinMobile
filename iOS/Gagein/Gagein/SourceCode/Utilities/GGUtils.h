@@ -65,4 +65,7 @@
 + (void)hideTabBar; // animated by default
 + (void)hideTabBarAnimated:(BOOL)aAnimated;
 
++(NSString *)textForSourceType:(EGGHappeningSource)aSourceType;
++(EGGHappeningSource)sourceTypeForText:(NSString *)aText;
+
 @end

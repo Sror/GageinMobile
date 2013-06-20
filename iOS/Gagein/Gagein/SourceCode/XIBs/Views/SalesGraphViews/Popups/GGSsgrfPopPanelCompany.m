@@ -8,7 +8,16 @@
 
 #import "GGSsgrfPopPanelCompany.h"
 
+#define SOURCE_BTN_WIDTH    25
+#define SOURCE_BTN_HEIGHT    25
+#define SOURCE_BTN_GAP      15
+
 @implementation GGSsgrfPopPanelCompany
+{
+    NSArray                 *_sourceButtons;
+    NSMutableArray          *_sourceVisibleButtons;
+    CGPoint                 _sourceBtnStartPt;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -54,8 +63,77 @@
     = _lblPhone.text = _lblFax.text = _lblAddress.text = @"";
     
     [_btnMoreEmployees addTarget:self action:@selector(showMoreEmployeesAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _sourceButtons = [NSArray arrayWithObjects:_btnFacebook, _btnLinkedIn, _btnTwitter, _btnYoutube, _btnSlideShare, _btnHoover, _btnYahoo, _btnCB, nil];
+    _sourceBtnStartPt = _btnLinkedIn.frame.origin;
+    _sourceVisibleButtons = [NSMutableArray arrayWithCapacity:8];
 }
 
+-(void)showSourceButtonWithType:(EGGHappeningSource)aSourceType
+{
+    float offsetX = _sourceBtnStartPt.x + _sourceVisibleButtons.count * (SOURCE_BTN_GAP + SOURCE_BTN_WIDTH);
+    CGRect btnRc = CGRectMake(offsetX, _sourceBtnStartPt.y, SOURCE_BTN_WIDTH, SOURCE_BTN_HEIGHT);
+    UIButton *theBtn = nil;
+    
+    switch (aSourceType)
+    {
+        case kGGHappeningSourceLindedIn:
+        {
+            theBtn = _btnLinkedIn;
+        }
+            break;
+            
+        case kGGHappeningSourceFacebook:
+        {
+            theBtn = _btnFacebook;
+        }
+            break;
+            
+        case kGGHappeningSourceTwitter:
+        {
+            theBtn = _btnTwitter;
+        }
+            break;
+            
+        case kGGHappeningSourceYoutube:
+        {
+            theBtn = _btnYoutube;
+        }
+            break;
+            
+        case kGGHappeningSourceSlideShare:
+        {
+            theBtn = _btnSlideShare;
+        }
+            break;
+            
+        case kGGHappeningSourceHoovers:
+        {
+            theBtn = _btnHoover;
+        }
+            break;
+            
+        case kGGHappeningSourceYahoo:
+        {
+            theBtn = _btnYahoo;
+        }
+            break;
+            
+        case kGGHappeningSourceCrunchBase:
+        {
+            theBtn = _btnCB;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    theBtn.frame = btnRc;
+    theBtn.hidden = NO;
+    [_sourceVisibleButtons addObject:theBtn];
+
+}
 
 #pragma mark - action
 -(void)showMoreEmployeesAction:(id)sender

@@ -11,10 +11,7 @@
 
 #import "GGCompany.h"
 
-#define SOURCE_TEXT_LINKEDIN  @"Linkedin"
-#define SOURCE_TEXT_CRUNCHBASE  @"CrunchBase"
-#define SOURCE_TEXT_YAHOO  @"Yahoo"
-#define SOURCE_TEXT_HOOVERS  @"Hoovers"
+
 
 #define CHANGE_TYPE_JOIN  @"JOIN"
 #define CHANGE_TYPE_LEFT  @"LEAVE"
@@ -291,36 +288,7 @@
 
 -(NSString *)sourceText
 {
-    switch (self.source) {
-        case kGGHappeningSourceLindedIn:
-        {
-            return SOURCE_TEXT_LINKEDIN;
-        }
-            break;
-            
-        case kGGHappeningSourceCrunchBase:
-        {
-            return SOURCE_TEXT_CRUNCHBASE;
-        }
-            break;
-            
-        case kGGHappeningSourceYahoo:
-        {
-            return SOURCE_TEXT_YAHOO;
-        }
-            break;
-            
-        case kGGHappeningSourceHoovers:
-        {
-            return SOURCE_TEXT_HOOVERS;
-        }
-            break;
-            
-        default:
-            break;
-    }
-    
-    return nil;
+    return [GGUtils textForSourceType:self.source];
 }
 
 -(BOOL)isJoin

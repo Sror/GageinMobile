@@ -27,14 +27,6 @@ typedef enum {
 }EGGHappeningType;
 
 
-typedef enum {
-    kGGHappeningSourceLindedIn = 2002
-    , kGGHappeningSourceCrunchBase = 3001
-    , kGGHappeningSourceYahoo = 3002
-    , kGGHappeningSourceHoovers = 2006
-}EGGHappeningSource;
-
-
 //
 @interface GGHappeningPerson : GGDataModel
 @property (copy) NSString       *name;

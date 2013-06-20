@@ -14,4 +14,6 @@
 
 -(NSString *)stringSeperatedWith:(NSString *)aSeporator componentsCount:(NSUInteger)aCompCount maxLength:(NSUInteger)aMaxLength;
 
+-(BOOL)isCaseInsensitiveEqualToString:(NSString *)aString;
+
 @end

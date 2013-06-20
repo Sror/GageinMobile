@@ -24,6 +24,31 @@ typedef enum {
     , kGGGroupCellRound
 }EGGGroupedCellStyle;
 
+typedef enum {
+    kGGHappeningSourceLindedIn = 2002
+    , kGGHappeningSourceCrunchBase = 3001
+    , kGGHappeningSourceYahoo = 3002
+    , kGGHappeningSourceHoovers = 2006
+    
+    , kGGHappeningSourceFacebook = 10000
+    , kGGHappeningSourceTwitter
+    , kGGHappeningSourceYoutube
+    , kGGHappeningSourceSlideShare
+    
+    , kGGHappeningSourceUnKnown = 99999
+}EGGHappeningSource;
+
+#define SOURCE_TEXT_LINKEDIN        @"Linkedin"
+#define SOURCE_TEXT_FACEBOOK        @"Facebook"
+#define SOURCE_TEXT_TWITTER         @"Twitter"
+#define SOURCE_TEXT_YOUTUBE         @"Youtube"
+#define SOURCE_TEXT_SLIDE_SHARE     @"Slideshare"
+#define SOURCE_TEXT_HOOVERS         @"Hoovers"
+#define SOURCE_TEXT_YAHOO           @"Yahoo"
+#define SOURCE_TEXT_CRUNCHBASE      @"CrunchBase"
+
+
+
 //
 #define GGN_STR_PRODUCTION_SERVER_URL               @"https://www.gagein.com"
 #define GGN_STR_DEMO_SERVER_URL                     @"http://gageindemo.dyndns.org"

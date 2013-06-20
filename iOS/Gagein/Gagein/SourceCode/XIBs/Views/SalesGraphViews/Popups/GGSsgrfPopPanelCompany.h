@@ -65,4 +65,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnClose;
 
+
+-(void)showSourceButtonWithType:(EGGHappeningSource)aSourceType;
+
 @end

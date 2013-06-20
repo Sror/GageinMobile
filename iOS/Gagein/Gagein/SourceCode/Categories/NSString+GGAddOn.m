@@ -55,4 +55,9 @@
     return resultStr;
 }
 
+-(BOOL)isCaseInsensitiveEqualToString:(NSString *)aString
+{
+    return [self.lowercaseString isEqualToString:aString.lowercaseString];
+}
+
 @end
