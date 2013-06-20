@@ -137,4 +137,6 @@ typedef enum {
 
 -(NSString *)fundingText;
 -(NSString *)roundText;
+
+-(NSString *)currentTitle;
 @end

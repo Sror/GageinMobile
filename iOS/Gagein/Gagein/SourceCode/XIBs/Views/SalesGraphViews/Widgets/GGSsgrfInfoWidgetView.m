@@ -146,6 +146,7 @@
     _type = kGGSsGrfInfoWidgetCompany;
     _data = aCompany;
     
+    DLog(@"company:%@, name:%@ logo:%@", aCompany, aCompany.name, aCompany.logoPath);
     if (aCompany)
     {
         NSString *trunckName = [aCompany.name stringSeperatedWith:@" " componentsCount:2 maxLength:20];

@@ -119,6 +119,7 @@
         switch (aHappening.type)
         {
             case kGGHappeningCompanyPersonJionDetail:
+            case kGGHappeningPersonNewJobTitle:
             {
                 // left - old title
                 [self setLeftText:_happening.oldJobTitle];
@@ -128,7 +129,7 @@
                 [self.viewCenterInfo updateWithPerson:_happening.person];
                 
                 // right - new title
-                [self setRightText:_happening.theNewJobTitle];
+                [self setRightText:_happening.currentTitle];
                 [self setRightSubText:@"New Title"];
                 
                 // bottom - company
@@ -148,22 +149,6 @@
                 // right - new location
                 [self.viewRightInfo setTitle:_happening.addressPerson];
                 [self.viewRightInfo updateWithMapUrl:_happening.addressMap];
-                
-                // bottom - company
-                [self.viewBottomInfo updateWithCompany:_happening.company];
-            }
-                break;
-                
-            case kGGHappeningPersonNewJobTitle:
-            {
-                // left - old jobTitle
-                [self setLeftText:_happening.oldJobTitle];
-                
-                // center - person
-                [self.viewCenterInfo updateWithPerson:_happening.person];
-                
-                // right - new Jobtitle
-                [self setRightText:_happening.theNewJobTitle];
                 
                 // bottom - company
                 [self.viewBottomInfo updateWithCompany:_happening.company];

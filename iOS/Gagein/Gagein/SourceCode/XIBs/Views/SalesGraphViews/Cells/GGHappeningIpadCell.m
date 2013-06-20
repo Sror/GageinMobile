@@ -275,11 +275,24 @@
         case kGGHappeningPersonNewJobTitle: // may be merged with the company join detail case...
         {
             // person has a new job title
-            //triple info plus
-            GGSsgrfPanelTripleInfoPlus *thePanel = [GGSsgrfPanelTripleInfoPlus viewFromNibWithOwner:self];
             
-            // set panel
-            panel = thePanel;
+            if (_data.oldJobTitle.length <= 0)
+            {
+                //triple info plus
+                GGSsgrfPanelDoubleInfoPlus *thePanel = [GGSsgrfPanelDoubleInfoPlus viewFromNibWithOwner:self];
+                
+                // set panel
+                panel = thePanel;
+            }
+            else
+            {
+                //triple info plus
+                GGSsgrfPanelTripleInfoPlus *thePanel = [GGSsgrfPanelTripleInfoPlus viewFromNibWithOwner:self];
+                
+                // set panel
+                panel = thePanel;
+            }
+            
         }
             break;
             

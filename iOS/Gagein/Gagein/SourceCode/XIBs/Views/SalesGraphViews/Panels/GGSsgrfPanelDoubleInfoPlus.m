@@ -130,6 +130,19 @@
             }
                 break;
                 
+            case kGGHappeningPersonNewJobTitle:
+            {
+                // left - person
+                [self.viewLeftInfo updateWithPerson:_happening.person];
+                
+                // right - new title
+                [self setRightText:_happening.currentTitle];
+                [self setRightSubText:@"New Title"];
+                
+                // bottom - company
+                [self.viewBottomInfo updateWithCompany:_happening.company];
+            }
+                break;
                 
             default:
                 break;

@@ -279,6 +279,11 @@
     return _protocol != 2;
 }
 
+-(NSString *)currentTitle
+{
+    return _theNewJobTitle ? _theNewJobTitle : _jobTitle;
+}
+
 -(NSString *)sourceText
 {
     switch (self.source) {
