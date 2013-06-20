@@ -9,6 +9,7 @@
 #import "GGSsgrfPopPanelView.h"
 #import "GGSsgrfPopPanelCompany.h"
 #import "GGSsgrfPopPanelPerson.h"
+#import "GGCompany.h"
 
 #define ANIM_DURATION   .3f
 
@@ -139,6 +140,10 @@
 
 ///////////////////
 @implementation GGSsgrfPopPanelComInfoView
+{
+    long long   _companyID;
+    GGCompany   *_overview;
+}
 
 -(GGSsgrfPopPanelCompany *)panel
 {
@@ -159,7 +164,22 @@
 
 -(void)updateWithCompanyID:(NSNumber *)aCompanyID
 {
+    _companyID = [aCompanyID longLongValue];
     self.panel.btnMoreEmployees.tagNumber = aCompanyID;
+    
+    [self showLoadingHUD];
+    
+    [GGSharedAPI getCompanyOverviewWithID:_companyID needSocialProfile:YES callback:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        _overview = [parser parseGetCompanyOverview];
+        [self _doUpdate];
+    }];
+}
+
+-(void)_doUpdate
+{
+    [self.panel.btnLogo setBackgroundImageWithURL:[NSURL URLWithString:_overview.logoPath] forState:UIControlStateNormal placeholderImage:GGSharedImagePool.logoDefaultCompany];
 }
 
 @end
