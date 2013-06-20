@@ -390,10 +390,11 @@
 -(void)_enterPersonDetailAction:(UIButton *)aButton
 {
     GGHappening *data = self.updates[aButton.tag];
-    GGPersonDetailVC *vc = [[GGPersonDetailVC alloc] init];
-    vc.personID = data.person.ID;
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    [self enterPersonDetailWithID:data.person.ID];
 }
+
+
 
 -(float)_happeningIpadCellHeightForIndexPath:(NSIndexPath *)indexPath
 {

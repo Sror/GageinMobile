@@ -35,6 +35,9 @@
 -(void)hideBackButton;
 -(void)pushBackButtonFront;
 
+#pragma mark - screen migration
+-(void)enterPersonDetailWithID:(long long)aPersonID;
+
 // for overriding
 -(void)naviBackAction:(id)aSender;
 -(void)dismissAction:(id)aSender;

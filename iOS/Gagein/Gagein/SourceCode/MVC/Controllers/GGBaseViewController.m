@@ -369,6 +369,19 @@
     [self.view addSubview:iv];
 }
 
+#pragma mark - screen migration
+
+
+
+-(void)enterPersonDetailWithID:(long long)aPersonID
+{
+    GGPersonDetailVC *vc = [[GGPersonDetailVC alloc] init];
+    vc.personID = aPersonID;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
 #pragma mark - actions
 -(void)naviBackAction:(id)aSender
 {
@@ -772,9 +785,10 @@
 -(void)ssGraphShowPersonPanel:(NSNumber *)aPersonID
 {
     DLog(@"ssGraphShowPersonPanel:%@", aPersonID);
+#warning TODO: get person graph data
     //[GGSsgrfPopPanelPersonInfoView showInView:GGSharedDelegate.rootVC.view];
     GGSsgrfPopPanelPersonInfoView *popUp = [[GGSsgrfPopPanelPersonInfoView alloc] init];
-    
+    //popUp.panel.btnLogo addTarget:self action:@selector(enterPersonDetailWithID:) forControlEvents:<#(UIControlEvents)#>;
     
     [popUp showMeInView:GGSharedDelegate.rootVC.view];
 }
@@ -782,9 +796,8 @@
 -(void)ssGraphShowCompanyPanel:(NSNumber *)aCompanyID
 {
     DLog(@"ssGraphShowCompanyPanel:%@", aCompanyID);
+#warning TODO: get company graph data
 
-    //[GGSsgrfPopPanelComInfoView showInView:GGSharedDelegate.rootVC.view];
-    
     GGSsgrfPopPanelComInfoView *popUp = [[GGSsgrfPopPanelComInfoView alloc] init];
     
     
