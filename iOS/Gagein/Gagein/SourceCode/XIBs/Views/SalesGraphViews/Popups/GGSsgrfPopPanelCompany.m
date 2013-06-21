@@ -65,6 +65,11 @@
     = _lblFiscalYear.text = _lblEmail.text
     = _lblPhone.text = _lblFax.text = _lblAddress.text = @"";
     
+    
+    
+    //
+    [_lblSubTitle addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showWebSite:)]];
+    
     [_btnMoreEmployees addTarget:self action:@selector(showMoreEmployeesAction:) forControlEvents:UIControlEventTouchUpInside];
     
     _sourceButtons = [NSArray arrayWithObjects:_btnFacebook, _btnLinkedIn, _btnTwitter, _btnYoutube, _btnSlideShare, _btnHoover, _btnYahoo, _btnCB, nil];
