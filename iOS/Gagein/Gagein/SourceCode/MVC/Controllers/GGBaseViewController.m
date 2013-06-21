@@ -828,7 +828,7 @@
     GGSsgrfPopPanelPersonInfoView *popUp = [[GGSsgrfPopPanelPersonInfoView alloc] initWithView:GGSharedDelegate.rootVC.view];
     [popUp updateWithPersonID:aPersonID];
     
-    [popUp.panel.btnLogo addTarget:self action:@selector(enterPersonDetailWithSender:) forControlEvents:UIControlEventTouchUpInside];
+//    [popUp.panel.btnLogo addTarget:self action:@selector(enterPersonDetailWithSender:) forControlEvents:UIControlEventTouchUpInside];
     
     //
     [_viewPopup removeFromSuperview];
@@ -846,7 +846,6 @@
     [_viewPopup removeFromSuperview];
     _viewPopup = popUp;
     [_viewPopup showMe];
-    [popUp showMe];
 }
 
 -(void)ssGraphShowPersonLandingPage:(NSNumber *)aPersonID
@@ -869,9 +868,9 @@
     [self enterEmployeesListWithID:[aCompanyID longLongValue]];
 }
 
--(void)ssGraphShowCompanyListPage:(NSArray *)aCompanies
+-(void)ssGraphShowEmployerListPage:(NSArray *)aCompanies
 {
-    DLog(@"ssGraphShowCompanyListPage:%@", aCompanies);
+    DLog(@"ssGraphShowEmployerListPage:%@", aCompanies);
 }
 
 -(void)ssGraphShowWebPage:(NSString *)aURL

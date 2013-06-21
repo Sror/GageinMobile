@@ -136,7 +136,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    int section = indexPath.section;
+    //int section = indexPath.section;
     int row = indexPath.row;
     
     //if (section != 0)

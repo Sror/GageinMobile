@@ -9,9 +9,14 @@
 #import "GGSsgrfPopPanelPersonInfoView.h"
 
 #import "GGSsgrfPopPanelPerson.h"
+#import "GGPerson.h"
 
 ///////////////////
 @implementation GGSsgrfPopPanelPersonInfoView
+{
+    long long   _personID;
+    GGPerson    *_overview;
+}
 
 -(GGSsgrfPopPanelPerson *)panel
 {
@@ -32,8 +37,17 @@
 
 -(void)updateWithPersonID:(NSNumber *)aPersonID
 {
-    self.panel.btnLogo.tagNumber = aPersonID;
-    self.panel.btnMoreEmployers.tagNumber = aPersonID;
+    _personID = [aPersonID longLongValue];
+    
+    [self showLoadingHUD];
+    
+    [GGSharedAPI getPersonOverviewWithID:_personID callback:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        _overview = [parser parseGetPersonOverview];
+        [self.panel updateWithPerson:_overview];
+    }];
 }
 
 @end

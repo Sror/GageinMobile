@@ -96,7 +96,6 @@
     _data = aCompany;
     if (_data)
     {
-        _btnMoreEmployees.tagNumber = @(_data.ID);
         
         [_btnLogo setBackgroundImageWithURL:[NSURL URLWithString:_data.logoPath] forState:UIControlStateNormal placeholderImage:GGSharedImagePool.logoDefaultCompany];
         _lblTitle.text = _data.name;
@@ -197,7 +196,7 @@
 #pragma mark - action
 -(void)showMoreEmployeesAction:(id)sender
 {
-    [self postNotification:GG_NOTIFY_SSGRF_SHOW_EMPLOYEE_LIST_PAGE withObject:((UIView *)sender).tagNumber];
+    [self postNotification:GG_NOTIFY_SSGRF_SHOW_EMPLOYEE_LIST_PAGE withObject:@(_data.ID)];
 }
 
 -(void)showWebPage:(id)sender

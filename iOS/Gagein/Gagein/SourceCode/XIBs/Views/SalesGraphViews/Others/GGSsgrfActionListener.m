@@ -21,7 +21,8 @@ DEF_SINGLETON(GGSsgrfActionListener)
         [self observeNotification:GG_NOTIFY_SSGRF_SHOW_PERSON_LANDING_PAGE];
         [self observeNotification:GG_NOTIFY_SSGRF_SHOW_COMPANY_LANDING_PAGE];
         [self observeNotification:GG_NOTIFY_SSGRF_SHOW_EMPLOYEE_LIST_PAGE];
-        [self observeNotification:GG_NOTIFY_SSGRF_SHOW_COMPANY_LIST_PAGE];
+        [self observeNotification:GG_NOTIFY_SSGRF_SHOW_EMPLOYER_LIST_PAGE];
+        //[self observeNotification:GG_NOTIFY_SSGRF_SHOW_COMPANY_LIST_PAGE];
         [self observeNotification:GG_NOTIFY_SSGRF_SHOW_WEBPAGE];
         [self observeNotification:GG_NOTIFY_SSGRF_SHOW_IMAGE_URL];
         
@@ -63,9 +64,9 @@ DEF_SINGLETON(GGSsgrfActionListener)
         [_delegate ssGraphShowEmployeeListPage:notiObj];
     }
     
-    else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SHOW_COMPANY_LIST_PAGE])
+    else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SHOW_EMPLOYER_LIST_PAGE])
     {
-        [_delegate ssGraphShowCompanyListPage:notiObj];
+        [_delegate ssGraphShowEmployerListPage:notiObj];
     }
     
     else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SHOW_WEBPAGE])

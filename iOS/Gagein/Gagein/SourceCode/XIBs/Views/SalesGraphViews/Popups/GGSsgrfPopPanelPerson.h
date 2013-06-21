@@ -53,4 +53,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnClose;
 
+-(void)updateWithPerson:(GGPerson *)aPerson;
+
 @end

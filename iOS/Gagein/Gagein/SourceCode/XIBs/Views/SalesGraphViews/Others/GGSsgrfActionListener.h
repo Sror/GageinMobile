@@ -13,10 +13,14 @@
 @required
 -(void)ssGraphShowPersonPanel:(NSNumber *)aPersonID;
 -(void)ssGraphShowCompanyPanel:(NSNumber *)aCompanyID;
+
 -(void)ssGraphShowPersonLandingPage:(NSNumber *)aPersonID;
 -(void)ssGraphShowCompanyLandingPage:(NSNumber *)aCompanyID;
+
 -(void)ssGraphShowEmployeeListPage:(NSNumber *)aCompanyID;
--(void)ssGraphShowCompanyListPage:(NSArray *)aCompanies;
+-(void)ssGraphShowEmployerListPage:(NSNumber *)aPersonID;
+
+//-(void)ssGraphShowCompanyListPage:(NSArray *)aCompanies;
 
 -(void)ssGraphShowWebPage:(NSString *)aURL;
 -(void)ssGraphShowImageURL:(NSString *)aImageURL;
