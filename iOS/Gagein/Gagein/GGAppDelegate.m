@@ -82,8 +82,6 @@
     //
     [self enterLoginIfNeeded];
     
-    //[GGAlert showWarning:@"Network Error" message:@""];
-    
     return YES;
 }
 

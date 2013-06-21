@@ -81,6 +81,8 @@ typedef enum {
 #define GAGEIN_SLOGAN       @"a sales intelligence company"
 #define TEST_IMG_URL        @"http://content4.lovelytoday.com/cache/2012/09/29/12196.88920213.img-thumb1-198x198-128.jpg"
 
+#define GGString(key) NSLocalizedString((key), @"")
+
 //
 #undef	__INT
 #define __INT( __x )			[NSNumber numberWithInt:(NSInteger)(__x)]

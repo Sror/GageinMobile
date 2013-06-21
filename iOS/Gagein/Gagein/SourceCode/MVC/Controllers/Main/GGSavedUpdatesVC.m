@@ -132,6 +132,16 @@
     [self _setSwitchRect];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (ISIPADDEVICE)
+    {
+        [_tvUpdates centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH_FULL];
+    }
+}
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -400,8 +410,11 @@
 {
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
-    [_tvUpdates centerMeHorizontallyChangeMyWidth:_tvUpdates.superview.frame.size.width];
-    
+//#warning LAYOUT PROBLEM!!!
+    //_tvUpdates.backgroundColor = GGSharedColor.darkRed;
+    [_tvUpdates centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH_FULL];
+    //CGRect thisRc = self.view.frame;
+    //CGRect tvRc = _tvUpdates.frame;
     [self _setSwitchRect];
 }
 
