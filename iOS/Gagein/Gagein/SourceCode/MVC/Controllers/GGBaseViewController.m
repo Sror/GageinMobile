@@ -34,6 +34,8 @@
 #import "GGCompanyEmployeesVC.h"
 #import "GGConfigAgentFiltersVC.h"
 
+#import "GGWebVC.h"
+
 #define MAX_NAVI_TITLE_LENGTH           20
 #define MAX_NAVI_TITLE_LENGTH_IPAD      50
 
@@ -235,7 +237,7 @@
         [self viewWillAppearNotFirstTimeAction];
     }
     
-    
+    _viewPopup.hidden = NO;
 }
 
 -(void)viewWillAppearNotFirstTimeAction
@@ -250,8 +252,6 @@
     
     [self _adjustCustomNaviTitlePosition];
     [GGSsgrfActionListener sharedInstance].delegate = self;
-    
-    _viewPopup.hidden = NO;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -677,6 +677,8 @@
                                      , _ivGageinLogo.image.size.width
                                      , _ivGageinLogo.image.size.height);
     
+    [_viewPopup handleOrientChange:toInterfaceOrientation];
+    
     //
     if (self.presentingViewController == nil)
     {
@@ -876,6 +878,13 @@
 -(void)ssGraphShowWebPage:(NSString *)aURL
 {
     DLog(@"ssGraphShowWebPage:%@", aURL);
+    GGWebVC *vc = [[GGWebVC alloc] init];
+    vc.urlStr = aURL;
+    GGNavigationController *nc = [[GGNavigationController alloc] initWithRootViewController:vc];
+    
+    nc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    
+    [self presentViewController:nc animated:YES completion:nil];
 }
 
 -(void)ssGraphFollowPerson:(NSNumber *)aPersonID

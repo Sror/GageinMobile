@@ -128,15 +128,23 @@
     if ([notification.name isEqualToString:GG_NOTIFY_ORIENTATION_WILL_CHANGE])
     {
         UIInterfaceOrientation orient = ((UIInterfaceOrientation)([notification.object intValue]));
-        CGRect rc = [GGLayout frameWithOrientation:orient rect:self.superview.bounds];
-        rc.size.width += 20.f;
-        rc.size.height -= 20.f;
-        self.frame = rc;
-        self.viewContent.center = self.center;
+        [self handleOrientChange:orient];
     }
 }
 
+-(void)handleOrientChange:(UIInterfaceOrientation)aOrient
+{
+    
+    CGRect rc = [GGLayout frameWithOrientation:aOrient rect:self.superview.bounds];
+    rc.size.width += 20.f;
+    rc.size.height -= 20.f;
+    self.frame = rc;
+    self.viewContent.center = self.center;
+}
+
+
 @end
+
 
 
 ///////////////////

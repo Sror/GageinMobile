@@ -26,6 +26,9 @@
     return self;
 }
 
+#define WEB_PREFIX_HTTP     @"http://"
+#define WEB_PREFIX_HTTPS     @"https://"
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -37,8 +40,22 @@
     _webview.scalesPageToFit = YES;
     [self.view addSubview:_webview];
     
-    [_webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_urlStr]]];
+    if (_urlStr
+        && [_urlStr rangeOfString:WEB_PREFIX_HTTP].location == NSNotFound
+        && [_urlStr rangeOfString:WEB_PREFIX_HTTPS].location == NSNotFound)
+    {
+        _urlStr = [NSString stringWithFormat:@"%@%@", WEB_PREFIX_HTTP, _urlStr];
+    }
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_urlStr]];
+    [_webview loadRequest:request];
     DLog(@"webview loading: {%@}", _urlStr);
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self showBackButton];
 }
 
 -(void)dealloc

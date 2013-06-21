@@ -18,6 +18,9 @@
 
 -(void)showMe;
 -(void)hide;
+
+-(void)handleOrientChange:(UIInterfaceOrientation)aOrient;
+
 @end
 
 
