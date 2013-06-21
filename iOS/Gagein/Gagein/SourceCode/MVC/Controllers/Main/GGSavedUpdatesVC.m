@@ -323,6 +323,17 @@
     return height;
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (ISIPADDEVICE)
+    {
+        if (indexPath.row == _tvExpandHelper.expandingIndex)
+        {
+            [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+        }
+    }
+}
+
 #pragma mark - tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -349,7 +360,7 @@
         }
         
         // adjust tableview content offset
-        [_tvExpandHelper scrollToCenterFrom:oldIndex to:row oldIsExpanding:oldIsExpanding];
+        //[_tvExpandHelper scrollToCenterFrom:oldIndex to:row oldIsExpanding:oldIsExpanding];
         
         [tableView endUpdates];
     }

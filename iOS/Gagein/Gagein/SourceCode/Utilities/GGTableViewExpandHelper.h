@@ -25,6 +25,6 @@
 -(float)yForCellAt:(NSUInteger)aIndex;
 -(float)heightForCellAt:(NSUInteger)aIndex;
 
--(void)scrollToCenterFrom:(NSUInteger)anOldIndex to:(NSUInteger)aNewIndex oldIsExpanding:(BOOL)aOldIsExpanding;
+//-(void)scrollToCenterFrom:(NSUInteger)anOldIndex to:(NSUInteger)aNewIndex oldIsExpanding:(BOOL)aOldIsExpanding;
 
 @end

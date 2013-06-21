@@ -86,24 +86,27 @@
     return 0.f;
 }
 
--(void)scrollToCenterFrom:(NSUInteger)anOldIndex to:(NSUInteger)aNewIndex oldIsExpanding:(BOOL)aOldIsExpanding
-{
-    // adjust tableview content offset
-    if (_isExpanding)
-    {
-        float yPos = [self yForCellAt:aNewIndex];
-        float oldExpandCellHeight = [self heightForCellAt:anOldIndex];
-//        if (aOldIsExpanding && anOldIndex < aNewIndex)
-//        {
-//            yPos -= oldExpandCellHeight - 20;
-//        }
-        
-        float offsetAdjust = (_tableView.frame.size.height - oldExpandCellHeight) / 4;
-        yPos = UIInterfaceOrientationIsPortrait([GGLayout currentOrient]) ? yPos - offsetAdjust : yPos;
-        yPos = MAX(0, yPos);
-        
-        [_tableView setContentOffset:CGPointMake(0, yPos) animated:YES];
-    }
-}
+//#define PANEL_AVG_HEIGHT    360.f
+//-(void)scrollToCenterFrom:(NSUInteger)anOldIndex to:(NSUInteger)aNewIndex oldIsExpanding:(BOOL)aOldIsExpanding
+//{
+//    // adjust tableview content offset
+//    if (_isExpanding)
+//    {
+//        float yPos = [self yForCellAt:aNewIndex];
+//        yPos -= UIInterfaceOrientationIsPortrait([GGLayout currentOrient]) ? 100 : 50;
+//        float oldExpandCellHeight = [self heightForCellAt:anOldIndex];
+////        if (aOldIsExpanding && anOldIndex < aNewIndex)
+////        {
+////            yPos += PANEL_AVG_HEIGHT;
+////        }
+//        
+//        //float offsetAdjust = (_tableView.frame.size.height - oldExpandCellHeight) / 4;
+//        //yPos = UIInterfaceOrientationIsPortrait([GGLayout currentOrient]) ? yPos - offsetAdjust : yPos;
+//        yPos = MAX(0, yPos);
+//        
+//        DLog(@"y pos to scroll:%f", yPos);
+//        [_tableView setContentOffset:CGPointMake(0, yPos) animated:YES];
+//    }
+//}
 
 @end

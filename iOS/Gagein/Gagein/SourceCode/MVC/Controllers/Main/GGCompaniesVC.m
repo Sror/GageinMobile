@@ -1038,6 +1038,28 @@
     return 44;
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (ISIPADDEVICE)
+    {
+        if (tableView == _updatesTV)
+        {
+            if (indexPath.row == _updateTvExpandHelper.expandingIndex)
+            {
+                [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+            }
+        }
+        
+        else if (tableView == _happeningsTV)
+        {
+            if (indexPath.row == _happeningTvExpandHelper.expandingIndex)
+            {
+                [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+            }
+        }
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -1064,8 +1086,8 @@
                 [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
             }
             
-            // adjust tableview content offset
-            [_updateTvExpandHelper scrollToCenterFrom:oldIndex to:row oldIsExpanding:oldIsExpanding];
+            DLog(@"adjust tableview content offset");
+            //[_updateTvExpandHelper scrollToCenterFrom:oldIndex to:row oldIsExpanding:oldIsExpanding];
             
             [tableView endUpdates];
         }
@@ -1081,7 +1103,7 @@
         {
             //NSIndexPath *oldIdxPath = _expandIndexPathForHappeningTV;
             NSUInteger oldIndex = _happeningTvExpandHelper.expandingIndex;
-            BOOL oldIsExpanding = _happeningTvExpandHelper.isExpanding;
+            //BOOL oldIsExpanding = _happeningTvExpandHelper.isExpanding;
             
             [_happeningTvExpandHelper changeExpaningAt:row];
             
@@ -1098,7 +1120,7 @@
             }
             
             // adjust tableview content offset
-            [_happeningTvExpandHelper scrollToCenterFrom:oldIndex to:row oldIsExpanding:oldIsExpanding];
+            //[_happeningTvExpandHelper scrollToCenterFrom:oldIndex to:row oldIsExpanding:oldIsExpanding];
             
             [tableView endUpdates];
         }
