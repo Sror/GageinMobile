@@ -53,7 +53,7 @@
     
     _viewBg = [[UIView alloc] initWithFrame:self.bounds];
     _viewBg.backgroundColor = GGSharedColor.black;
-    _viewBg.alpha = 0.6f;
+    _viewBg.alpha = 0.4f;
     _viewBg.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self addSubview:_viewBg];
     

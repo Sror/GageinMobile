@@ -52,9 +52,9 @@
     
     self.viewFooter.layer.cornerRadius = 8.f;
     self.layer.shadowColor = GGSharedColor.black.CGColor;
-    self.layer.shadowOpacity = 1.f;
+    self.layer.shadowOpacity = .9f;
     self.layer.shadowOffset = CGSizeMake(3.f, 3.f);
-    self.layer.shadowRadius = 4.f;
+    self.layer.shadowRadius = 6.f;
     
     _lblTitle.text = _lblSubTitle.text
     = _lblEmp1Title.text = _lblEmp1SubTitle.text
@@ -74,6 +74,14 @@
     }
     _sourceBtnStartPt = _btnLinkedIn.frame.origin;
     _sourceVisibleButtons = [NSMutableArray arrayWithCapacity:8];
+    
+    //
+    [_viewEmployee1 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enterPeopleDetail:)]];
+    [_viewEmployee2 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enterPeopleDetail:)]];
+    [_viewEmployee3 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enterPeopleDetail:)]];
+    
+    //
+    [_btnFollow addTarget:self action:@selector(followAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)updateWithCompany:(GGCompany *)aCompany
@@ -92,6 +100,22 @@
             //DLog(@"%@", socialProfile.type);
             [self showSourceButtonWithProfile:socialProfile];
         }
+        
+#warning NEEDED: API to return the employees data
+        
+        //
+        _lblOwnership.text = _data.ownership;
+        _lblEmployees.text = _data.employeeSize;
+        _lblRevenue.text = _data.revenueSize;
+        _lblFortuneRank.text = _data.fortuneRank;
+        _lblFiscalYear.text = _data.fiscalYear;
+        //_lblEmail.text = _data.               // no email
+        _lblPhone.text = _data.telephone;
+        _lblFax.text = _data.faxNumber;
+        _lblAddress.text = _data.address;
+        
+        //
+        [self updateFollowButton];
     }
 }
 
@@ -172,6 +196,63 @@
 -(void)showWebPage:(id)sender
 {
     [self postNotification:GG_NOTIFY_SSGRF_SHOW_WEBPAGE withObject:((UIView *)sender).data];
+}
+
+-(void)enterCompanyDetail:(id)sender
+{
+    [self postNotification:GG_NOTIFY_SSGRF_SHOW_COMPANY_LANDING_PAGE withObject:@(_data.ID)];
+}
+
+-(void)showWebSite:(id)sender
+{
+    [self postNotification:GG_NOTIFY_SSGRF_SHOW_WEBPAGE withObject:_data.website];
+}
+
+-(void)enterPeopleDetail:(id)sender
+{
+    UITapGestureRecognizer *gest = sender;
+    DLog(@"enterPeopleDetail:%@", gest.view.tagNumber);
+    [self postNotification:GG_NOTIFY_SSGRF_SHOW_PERSON_LANDING_PAGE withObject:gest.view.tagNumber];
+}
+
+-(void)updateFollowButton
+{
+    if (_data.followed)
+    {
+        [_btnFollow setBackgroundImage:[UIImage imageNamed:@"ssgrf_bg_btn_unfollow"] forState:UIControlStateNormal];
+        [_btnFollow setTitle:@"- Unfollow" forState:UIControlStateNormal];
+    }
+    else
+    {
+        [_btnFollow setBackgroundImage:[UIImage imageNamed:@"ssgrf_bg_btn_follow"] forState:UIControlStateNormal];
+        [_btnFollow setTitle:@"+ Follow" forState:UIControlStateNormal];
+    }
+}
+
+-(void)followAction:(id)sender
+{
+    if (_data.followed)
+    {
+        [GGSharedAPI unfollowCompanyWithID:_data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                _data.followed = NO;
+                [self updateFollowButton];
+            }
+        }];
+    }
+    else
+    {
+        [GGSharedAPI followCompanyWithID:_data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                _data.followed = YES;
+                [self updateFollowButton];
+            }
+        }];
+    }
 }
 
 @end
