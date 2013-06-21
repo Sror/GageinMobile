@@ -32,6 +32,7 @@
 #import "GGSsgrfPopPanelComInfoView.h"
 #import "GGSsgrfPopPanelPersonInfoView.h"
 #import "GGCompanyEmployeesVC.h"
+#import "GGConfigAgentFiltersVC.h"
 
 #define MAX_NAVI_TITLE_LENGTH           20
 #define MAX_NAVI_TITLE_LENGTH_IPAD      50
@@ -593,7 +594,7 @@
 
 -(void)presentPageSelectAgents
 {
-    GGSelectAgentsVC *vc = [[GGSelectAgentsVC alloc] init];
+    GGConfigAgentFiltersVC *vc = [[GGConfigAgentFiltersVC alloc] init];
     
     //UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     if (ISIPADDEVICE)

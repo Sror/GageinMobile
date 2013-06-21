@@ -55,6 +55,7 @@
     _tv.separatorStyle = UITableViewCellSeparatorStyleNone;
     
 //    self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Edit" target:self selector:@selector(editCustomAgentAction:)];
+    self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(naviBackAction:)];
     
     //
     [self _createSwitchView];
@@ -73,30 +74,30 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {    
-    return 2;
+    return 1;
 }
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0)
-    {
-        return _headerView.frame.size.height;
-    }
+//    if (indexPath.section == 0)
+//    {
+//        return _headerView.frame.size.height;
+//    }
 
     return [GGTriggerChartCell HEIGHT];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 1;
-    } else if (section == 1) {
-        return _predefinedAgentFilters.count;
-    }
+//    if (section == 0) {
+//        return 1;
+//    } else if (section == 1) {
+//        return _predefinedAgentFilters.count;
+//    }
+//    
+//    return 0;
     
-    return 0;
-    
-    //return _predefinedAgentFilters.count;
+    return _predefinedAgentFilters.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,10 +105,10 @@
     int row = indexPath.row;
     int section = indexPath.section;
     
-    if (section == 0)
-    {
-        return _headerView;
-    }
+//    if (section == 0)
+//    {
+//        return _headerView;
+//    }
     
     static NSString *cellID = @"GGTriggerChartCell";
     GGTriggerChartCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -138,7 +139,7 @@
     int section = indexPath.section;
     int row = indexPath.row;
     
-    if (section != 0)
+    //if (section != 0)
     {
         GGAgentFilter *filter = _predefinedAgentFilters[row];
         id op = [GGSharedAPI selectAgentFilterWithID:filter.ID selected:!filter.checked callback:^(id operation, id aResultObject, NSError *anError) {

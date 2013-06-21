@@ -627,7 +627,8 @@
         [_slideSettingView hideSlide];
     }
     
-    [self presentPageConfigFilters];
+    [self presentPageSelectAgents];
+    //[self presentPageConfigFilters];
 }
 
 -(IBAction)_exploringTapped:(id)sender
