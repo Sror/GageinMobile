@@ -122,13 +122,13 @@
         case kGGMsgCodeNoEventForLessFollowedCompanies:
         case kGGMsgCodeNoEventForMoreFollowedCompanies:
         {
-            _lblSimpleMessage.text = @"No happenings found for your followed companies as of this new feature launch in May 2013.";
+            _lblSimpleMessage.text = @"No happenings found for your followed companies as of this new feature launch in July 2013.";
         }
             break;
             
         case kGGMsgCodeNoEventForTheCompany:
         {
-            _lblSimpleMessage.text = @"No happenings found for this company as of this new feature launch in May 2013.";
+            _lblSimpleMessage.text = @"No happenings found for this company as of this new feature launch in July 2013.";
         }
             break;
             
@@ -143,13 +143,13 @@
             
         case kGGMsgCodeNoEventForMoreFollowedContacts:
         {
-            _lblSimpleMessage.text = @"No updates found for your followed people as of this new feature launch in May 2013.";
+            _lblSimpleMessage.text = @"No updates found for your followed people as of this new feature launch in July 2013.";
         }
             break;
             
         case kGGMsgCodeNoEventForTheContact:
         {
-            _lblSimpleMessage.text = @"No updates found for this person as of this new feature launch in May 2013.";
+            _lblSimpleMessage.text = @"No updates found for this person as of this new feature launch in July 2013.";
         }
             break;
             

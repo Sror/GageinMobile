@@ -344,7 +344,7 @@
     {
         // snapshot old value...
         NSUInteger oldIndex = _tvExpandHelper.expandingIndex;
-        BOOL oldIsExpanding = _tvExpandHelper.isExpanding;
+        //BOOL oldIsExpanding = _tvExpandHelper.isExpanding;
         [_tvExpandHelper changeExpaningAt:row];
         
         // reload cells

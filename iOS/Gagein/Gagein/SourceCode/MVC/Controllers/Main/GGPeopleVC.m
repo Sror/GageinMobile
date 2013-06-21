@@ -531,7 +531,7 @@
         {
             //NSIndexPath *oldIdxPath = _expandIndexPathForHappeningTV;
             NSUInteger oldIndex = _happeningTvExpandHelper.expandingIndex;
-            BOOL oldIsExpanding = _happeningTvExpandHelper.isExpanding;
+            //BOOL oldIsExpanding = _happeningTvExpandHelper.isExpanding;
             
             [_happeningTvExpandHelper changeExpaningAt:row];
             

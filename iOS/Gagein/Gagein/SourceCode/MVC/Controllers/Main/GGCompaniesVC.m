@@ -1071,7 +1071,7 @@
         {
             // snapshot old value...
             NSUInteger oldIndex = _updateTvExpandHelper.expandingIndex;
-            BOOL oldIsExpanding = _updateTvExpandHelper.isExpanding;
+            //BOOL oldIsExpanding = _updateTvExpandHelper.isExpanding;
             [_updateTvExpandHelper changeExpaningAt:row];
             
             // reload cells
