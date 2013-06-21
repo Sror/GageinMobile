@@ -68,6 +68,8 @@
     
     
     //
+    [_btnLogo addTarget:self action:@selector(enterCompanyDetail:) forControlEvents:UIControlEventTouchUpInside];
+    [_lblTitle addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enterCompanyDetail:)]];
     [_lblSubTitle addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showWebSite:)]];
     
     [_btnMoreEmployees addTarget:self action:@selector(showMoreEmployeesAction:) forControlEvents:UIControlEventTouchUpInside];
