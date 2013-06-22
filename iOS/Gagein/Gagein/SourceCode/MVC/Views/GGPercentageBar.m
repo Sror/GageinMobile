@@ -12,16 +12,21 @@
 #define DENOMINATOR     6.f
 
 @implementation GGPercentageBar
-
-
--(void)setPercentage:(float)percentage
 {
-    [self setPercentage:percentage animated:NO];
+    BOOL        _isHot;
+    //float       _percentage;
 }
 
--(void)setPercentage:(float)percentage animated:(BOOL)aAnimated
+
+-(void)setPercentage:(float)percentage isHot:(BOOL)aIsHot
+{
+    [self setPercentage:percentage isHot:aIsHot animated:NO];
+}
+
+-(void)setPercentage:(float)percentage isHot:(BOOL)aIsHot animated:(BOOL)aAnimated
 {
     _percentage = percentage;
+    _isHot = aIsHot;
     
     if (aAnimated)
     {
@@ -43,7 +48,7 @@
     barRc.size.width = _percentage * _viewBarBg.frame.size.width;
     _viewBar.frame = barRc;
     
-    _viewBar.backgroundColor = (_percentage > .4f) ? [self colorBarHighPercentage] : [self colorBarLowPercentage];
+    _viewBar.backgroundColor = (_isHot) ? [self colorBarHighPercentage] : [self colorBarLowPercentage];
     _lblPercentage.text = [NSString stringWithFormat:@"%2d%%", ((int)(_percentage * 100))];
 }
 

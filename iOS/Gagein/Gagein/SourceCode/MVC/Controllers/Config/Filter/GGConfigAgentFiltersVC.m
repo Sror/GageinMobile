@@ -32,14 +32,14 @@
     GGConfigSwitchView  *_viewSwitch;
     UITableViewCell     *_headerView;
     
-    NSMutableArray      *_dummyPercentages;
+    NSMutableArray      *_topAgents;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _topAgents = [NSMutableArray array];
     }
     return self;
 }
@@ -61,14 +61,6 @@
     
     //
     [self _createSwitchView];
-    
-    //
-    _dummyPercentages = [NSMutableArray arrayWithCapacity:100];
-    for (int i = 0; i < 100; i++)
-    {
-        float percent = (arc4random() % 100) / 100.f;
-        [_dummyPercentages addObject:@(percent)];
-    }
     
     // at last
     [self _callApiGetConfigOptions];
@@ -131,14 +123,17 @@
     cell.lblTitle.text = data.name;
     [cell setChecked:data.checked];
     //float percent = (arc4random() % 100) / 100.f;
+    
+    BOOL isHot = ([_topAgents indexOfObject:data] != NSNotFound);
+    
     if (data.hasBeenAnimated)
     {
-        [cell setPercentage:[(_dummyPercentages[row]) floatValue]];
+        [cell setPercentage:data.percentage isHot:isHot];
     }
     else
     {
-        [cell setPercentage:0.f];
-        [cell setPercentage:[(_dummyPercentages[row]) floatValue] animated:YES];
+        [cell setPercentage:0.f isHot:isHot];
+        [cell setPercentage:data.percentage isHot:isHot animated:YES];
         data.hasBeenAnimated = YES;
     }
     
@@ -207,6 +202,7 @@
         
         for (GGAgentFilter *agentFilter in page.items)
         {
+            agentFilter.percentage = (arc4random() % 100) / 100.f;
             if (agentFilter.type == kGGAgentTypeCustom)
             {
                 [_customAgentFilters addObject:agentFilter];
@@ -215,6 +211,27 @@
             {
                 [_predefinedAgentFilters addObject:agentFilter];
             }
+        }
+        
+        [_predefinedAgentFilters sortUsingComparator:^NSComparisonResult(GGAgentFilter *obj1, GGAgentFilter *obj2) {
+            if (obj1.percentage > obj2.percentage)
+            {
+                return NSOrderedAscending;
+            }
+            else if (obj1.percentage < obj2.percentage)
+            {
+                return NSOrderedDescending;
+            }
+            
+            return NSOrderedSame;
+        }];
+        
+        //
+        int count = _predefinedAgentFilters.count;
+        float topCount = count > 5 ? 5 : count;
+        for (int i = 0; i < topCount; i++)
+        {
+            [_topAgents addObject:(_predefinedAgentFilters[i])];
         }
         
         [_tv reloadData];

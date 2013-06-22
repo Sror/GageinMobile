@@ -21,6 +21,7 @@
 @property (copy)    NSString        *keywords;
 @property (assign)  int             type;
 @property (assign)  BOOL            checked;
+@property (assign)  float           percentage;
 
 @property (assign, nonatomic)   BOOL    hasBeenAnimated;    // for UI convience
 

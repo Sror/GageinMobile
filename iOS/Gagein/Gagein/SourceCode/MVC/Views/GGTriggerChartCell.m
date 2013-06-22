@@ -36,14 +36,14 @@
 }
 
 
--(void)setPercentage:(float)aPercentage
+-(void)setPercentage:(float)aPercentage isHot:(BOOL)aIsHot
 {
-    [_viewPercentBar setPercentage:aPercentage];
+    [_viewPercentBar setPercentage:aPercentage isHot:aIsHot];
 }
 
--(void)setPercentage:(float)aPercentage animated:(BOOL)aAnimated
+-(void)setPercentage:(float)aPercentage isHot:(BOOL)aIsHot animated:(BOOL)aAnimated
 {
-    [_viewPercentBar setPercentage:aPercentage animated:aAnimated];
+    [_viewPercentBar setPercentage:aPercentage isHot:aIsHot animated:aAnimated];
 }
 
 -(void)setChecked:(BOOL)aChecked

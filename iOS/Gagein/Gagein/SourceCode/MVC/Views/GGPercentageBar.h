@@ -13,8 +13,9 @@
 @property (strong, nonatomic)   UIView      *viewBarBg;
 @property (strong, nonatomic)   UILabel     *lblPercentage;
 
-@property (assign, nonatomic)      float               percentage;
+@property (readonly, nonatomic)      float               percentage;
 
--(void)setPercentage:(float)percentage animated:(BOOL)aAnimated;
+-(void)setPercentage:(float)percentage isHot:(BOOL)aIsHot;
+-(void)setPercentage:(float)percentage isHot:(BOOL)aIsHot animated:(BOOL)aAnimated;
 
 @end
