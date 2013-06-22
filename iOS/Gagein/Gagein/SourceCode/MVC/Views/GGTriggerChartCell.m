@@ -38,7 +38,12 @@
 
 -(void)setPercentage:(float)aPercentage
 {
-    _viewPercentBar.percentage = aPercentage;
+    [_viewPercentBar setPercentage:aPercentage];
+}
+
+-(void)setPercentage:(float)aPercentage animated:(BOOL)aAnimated
+{
+    [_viewPercentBar setPercentage:aPercentage animated:aAnimated];
 }
 
 -(void)setChecked:(BOOL)aChecked

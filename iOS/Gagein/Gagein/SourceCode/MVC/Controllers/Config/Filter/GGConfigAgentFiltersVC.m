@@ -31,6 +31,8 @@
     
     GGConfigSwitchView  *_viewSwitch;
     UITableViewCell     *_headerView;
+    
+    NSMutableArray      *_dummyPercentages;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -59,6 +61,14 @@
     
     //
     [self _createSwitchView];
+    
+    //
+    _dummyPercentages = [NSMutableArray arrayWithCapacity:100];
+    for (int i = 0; i < 100; i++)
+    {
+        float percent = (arc4random() % 100) / 100.f;
+        [_dummyPercentages addObject:@(percent)];
+    }
     
     // at last
     [self _callApiGetConfigOptions];
@@ -103,7 +113,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = indexPath.row;
-    int section = indexPath.section;
+    //int section = indexPath.section;
     
 //    if (section == 0)
 //    {
@@ -120,8 +130,17 @@
     GGAgentFilter *data = _predefinedAgentFilters[row];
     cell.lblTitle.text = data.name;
     [cell setChecked:data.checked];
-    float percent = (arc4random() % 100) / 100.f;
-    [cell setPercentage:percent];
+    //float percent = (arc4random() % 100) / 100.f;
+    if (data.hasBeenAnimated)
+    {
+        [cell setPercentage:[(_dummyPercentages[row]) floatValue]];
+    }
+    else
+    {
+        [cell setPercentage:0.f];
+        [cell setPercentage:[(_dummyPercentages[row]) floatValue] animated:YES];
+        data.hasBeenAnimated = YES;
+    }
     
     cell.style = [GGUtils styleForArrayCount:_predefinedAgentFilters.count atIndex:row];
 

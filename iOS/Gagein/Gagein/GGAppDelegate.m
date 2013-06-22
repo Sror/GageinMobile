@@ -201,6 +201,16 @@ static BOOL s_isCustomed = NO;
                         withSession:[FBSession activeSession]];
 }
 
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    if (ISIPADDEVICE)
+    {
+        return UIInterfaceOrientationMaskAll;
+    }
+    
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 
 // Optional UITabBarControllerDelegate method.
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController

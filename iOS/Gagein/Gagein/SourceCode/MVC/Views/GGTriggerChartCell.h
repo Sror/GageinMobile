@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ivBg;
 
 -(void)setPercentage:(float)aPercentage;
+-(void)setPercentage:(float)aPercentage animated:(BOOL)aAnimated;
+
 -(void)setChecked:(BOOL)aChecked;
 -(void)setStyle:(EGGGroupedCellStyle)style;
 

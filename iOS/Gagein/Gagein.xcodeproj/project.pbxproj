@@ -309,6 +309,7 @@
 		EA7180D41715008900347EA4 /* FXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D31715008900347EA4 /* FXPageControl.m */; };
 		EA7180D917150AAF00347EA4 /* GGFollowCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */; };
 		EA7180E4171511B700347EA4 /* GGSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180E3171511B700347EA4 /* GGSearchBar.m */; };
+		EA77F14517754141007D30C6 /* UINavigationController+Autorotate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA77F14417754141007D30C6 /* UINavigationController+Autorotate.m */; };
 		EA79B8A51724D36200141E6D /* GGCustomBriefCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA79B8A41724D36200141E6D /* GGCustomBriefCell.xib */; };
 		EA79B8A81724D57A00141E6D /* GGCustomBriefCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8A71724D57A00141E6D /* GGCustomBriefCell.m */; };
 		EA79B8AE1724D98F00141E6D /* GGCompanyEmployeesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA79B8AD1724D98F00141E6D /* GGCompanyEmployeesVC.m */; };
@@ -1018,6 +1019,8 @@
 		EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GGFollowCompanyVC.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EA7180E2171511B700347EA4 /* GGSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSearchBar.h; sourceTree = "<group>"; };
 		EA7180E3171511B700347EA4 /* GGSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSearchBar.m; sourceTree = "<group>"; };
+		EA77F14317754141007D30C6 /* UINavigationController+Autorotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Autorotate.h"; sourceTree = "<group>"; };
+		EA77F14417754141007D30C6 /* UINavigationController+Autorotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Autorotate.m"; sourceTree = "<group>"; };
 		EA79B89E1724CEDF00141E6D /* GGBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GGBaseViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		EA79B8A41724D36200141E6D /* GGCustomBriefCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCustomBriefCell.xib; sourceTree = "<group>"; };
 		EA79B8A61724D57A00141E6D /* GGCustomBriefCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCustomBriefCell.h; sourceTree = "<group>"; };
@@ -2858,6 +2861,8 @@
 				EA99742B174EEB1500A125D5 /* UILabel+AddOn.m */,
 				EA57DAE1174FD83900BA742A /* NSString+GGAddOn.h */,
 				EA57DAE2174FD83900BA742A /* NSString+GGAddOn.m */,
+				EA77F14317754141007D30C6 /* UINavigationController+Autorotate.h */,
+				EA77F14417754141007D30C6 /* UINavigationController+Autorotate.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -3719,6 +3724,7 @@
 				EA95703D17737E8B006DDC25 /* GGHappeningCache.m in Sources */,
 				EA9570401773C913006DDC25 /* GGSsgrfPopPanelComInfoView.m in Sources */,
 				EA9570431773C9C3006DDC25 /* GGSsgrfPopPanelPersonInfoView.m in Sources */,
+				EA77F14517754141007D30C6 /* UINavigationController+Autorotate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

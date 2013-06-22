@@ -16,18 +16,34 @@
 
 -(void)setPercentage:(float)percentage
 {
+    [self setPercentage:percentage animated:NO];
+}
+
+-(void)setPercentage:(float)percentage animated:(BOOL)aAnimated
+{
     _percentage = percentage;
     
-    [UIView animateWithDuration:.5f animations:^{
-        
-        CGRect barRc = _viewBar.bounds;
-        barRc.size.width = _percentage * _viewBarBg.frame.size.width;
-        _viewBar.frame = barRc;
-        
-        _viewBar.backgroundColor = (_percentage > .4f) ? [self colorBarHighPercentage] : [self colorBarLowPercentage];
-        
-    }];
+    if (aAnimated)
+    {
+        [UIView animateWithDuration:.5f animations:^{
+            
+            [self _updatePercentage];
+            
+        }];
+    }
+    else
+    {
+        [self _updatePercentage];
+    }
+}
+
+-(void)_updatePercentage
+{
+    CGRect barRc = _viewBar.bounds;
+    barRc.size.width = _percentage * _viewBarBg.frame.size.width;
+    _viewBar.frame = barRc;
     
+    _viewBar.backgroundColor = (_percentage > .4f) ? [self colorBarHighPercentage] : [self colorBarLowPercentage];
     _lblPercentage.text = [NSString stringWithFormat:@"%2d%%", ((int)(_percentage * 100))];
 }
 

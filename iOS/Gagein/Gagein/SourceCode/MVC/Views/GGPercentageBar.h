@@ -15,4 +15,6 @@
 
 @property (assign, nonatomic)      float               percentage;
 
+-(void)setPercentage:(float)percentage animated:(BOOL)aAnimated;
+
 @end

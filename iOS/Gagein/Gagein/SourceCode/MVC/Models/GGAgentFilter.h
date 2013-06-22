@@ -22,6 +22,8 @@
 @property (assign)  int             type;
 @property (assign)  BOOL            checked;
 
+@property (assign, nonatomic)   BOOL    hasBeenAnimated;    // for UI convience
+
 -(GGAgent *)agent;
 @end
 
