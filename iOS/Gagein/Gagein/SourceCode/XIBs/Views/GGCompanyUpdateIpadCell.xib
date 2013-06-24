@@ -135,6 +135,7 @@
 										<string key="IBUIText">ReutersReutersReutersReuters</string>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
+										<int key="IBUINumberOfLines">2</int>
 										<object class="IBUIFontDescription" key="IBUIFontDescription">
 											<string key="name">Optima-Bold</string>
 											<string key="family">Optima</string>
@@ -147,6 +148,7 @@
 											<int key="NSfFlags">16</int>
 										</object>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+										<double key="preferredMaxLayoutWidth">573</double>
 									</object>
 									<object class="IBUIButton" id="861698896">
 										<reference key="NSNextResponder" ref="297775012"/>
@@ -184,7 +186,7 @@
 									</object>
 									<object class="IBUILabel" id="133733877">
 										<reference key="NSNextResponder" ref="297775012"/>
-										<int key="NSvFlags">290</int>
+										<int key="NSvFlags">-2147483358</int>
 										<string key="NSFrame">{{15, 47}, {620, 35}}</string>
 										<reference key="NSSuperview" ref="297775012"/>
 										<reference key="NSWindow"/>
@@ -225,7 +227,7 @@
 										</object>
 									</object>
 								</array>
-								<string key="NSFrame">{{83, 9}, {646, 84}}</string>
+								<string key="NSFrame">{{96, 9}, {646, 84}}</string>
 								<reference key="NSSuperview" ref="509386514"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="769331302"/>
@@ -239,18 +241,20 @@
 							<object class="IBUIImageView" id="257662399">
 								<reference key="NSNextResponder" ref="509386514"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{25, 9}, {50, 50}}</string>
+								<string key="NSFrame">{{17, 10}, {70, 70}}</string>
 								<reference key="NSSuperview" ref="509386514"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="9227842"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">2</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
 							<object class="IBUIButton" id="9227842">
 								<reference key="NSNextResponder" ref="509386514"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{25, 9}, {50, 50}}</string>
+								<int key="NSvFlags">-2147483356</int>
+								<string key="NSFrame">{{10, 9}, {78, 84}}</string>
 								<reference key="NSSuperview" ref="509386514"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="297775012"/>

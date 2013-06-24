@@ -117,14 +117,7 @@
     
     _titleLbl.text = [_titleLbl.text stringLimitedToLength:90];
     
-    if (SYSTEM_VERSION_LESS_THAN(@"6.0"))
-    {
-        [_titleLbl calculateSize];
-    }
-    else
-    {
-        [_titleLbl sizeToFitFixWidth];
-    }
+    [_titleLbl sizeToFitFixWidth];
     
 //    CGRect theRect = _titleLbl.frame;
 //    float titleMaxY = CGRectGetMaxY(theRect);

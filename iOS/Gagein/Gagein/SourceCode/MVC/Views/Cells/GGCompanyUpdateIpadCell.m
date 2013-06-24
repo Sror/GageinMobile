@@ -47,10 +47,15 @@
 #define MIN_CONTENT_HEIGHT      (80.f)
 -(void)adjustLayout
 {
-    [_lblDescription calculateSize];
+    //[_lblDescription sizeToFitFixWidth];
+    [_lblHeadline sizeToFitFixWidth];
+    //_lblHeadline.backgroundColor = GGSharedColor.random;
+    //_btnHeadline.backgroundColor = GGSharedColor.random;
+    _btnHeadline.alpha = .5f;
+    _btnHeadline.frame = _lblHeadline.frame;
     
     CGRect contentRc = _viewContent.frame;
-    float contentHeight = _expanded ? CGRectGetMaxY(_actionBar.frame) : CGRectGetMaxY(_lblDescription.frame) + 5;
+    float contentHeight = _expanded ? CGRectGetMaxY(_actionBar.frame) : CGRectGetMaxY(_lblHeadline.frame) + 5;
     contentHeight = MAX(MIN_CONTENT_HEIGHT, contentHeight);
     contentRc.size.height = contentHeight;
     _viewContent.frame = contentRc;

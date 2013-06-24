@@ -572,31 +572,55 @@
 
 +(NSString *)testImageURL
 {
-    int seed = arc4random() % 4;
+    int seed = arc4random() % 8;
     
     switch (seed)
     {
         case 0:
         {
-            return @"http://pandodaily.files.wordpress.com/2013/06/the-ascender3.png?w=305";
+            return @"http://consumermediallc.files.wordpress.com/2013/06/7455015422_65ec2f3f0b_m.jpg?w=610";
         }
             break;
             
         case 1:
         {
-            return @"http://static1.businessinsider.com/image/51c8a3f369bedd7f01000005/hps-new-215-inch-android-tablet-is-the-latest-example-of-its-love-affair-with-google.jpg";
+            return @"http://content.nasdaq.com/images/dreamit.jpg";
         }
             break;
             
         case 2:
         {
-            return @"http://images.wallstcheatsheet.com/wp-content/uploads/2013/06/AAPL46-e1372102498746.png";
+            return @"http://www.trbimg.com/img-51c88602/turbine/la-fi-tn-apple-stock-drops-below-400-amid-repo-001/600";
         }
             break;
             
         case 3:
         {
-            return @"http://cdn3.benzinga.com/files/imagecache/article_image_thumb/images/story/2012/shutterstock_124188334.jpg";
+            return @"http://www.proactiveinvestors.com/genera//img/companies/news/boeing_350_51c8859f9492d.jpg";
+        }
+            break;
+            
+        case 4:
+        {
+            return @"http://images.wallstcheatsheet.com/wp-content/uploads/2013/06/Boeing-787-planes...jpg";
+        }
+            break;
+            
+        case 5:
+        {
+            return @"http://images.wallstcheatsheet.com/wp-content/uploads/2013/05/courtroom..-e1370273223117.jpg";
+        }
+            break;
+            
+        case 6:
+        {
+            return @"http://i0.wp.com/allthingsd.com/files/2013/06/Build-San-Francisco-380x208.png?resize=380%2C208";
+        }
+            break;
+            
+        case 7:
+        {
+            return @"http://media.khou.com/images/394*264/166323776.jpg";
         }
             break;
             

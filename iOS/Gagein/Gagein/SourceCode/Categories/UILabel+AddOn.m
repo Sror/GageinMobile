@@ -42,12 +42,19 @@
 
 -(void)sizeToFitFixWidth
 {
-    float width = self.frame.size.width;
-    [self sizeToFit];
-    
-    CGRect rect = self.frame;
-    rect.size.width = width;
-    self.frame = rect;
+    if (SYSTEM_VERSION_LESS_THAN(@"6.0"))
+    {
+        [self calculateSize];
+    }
+    else
+    {
+        float width = self.frame.size.width;
+        [self sizeToFit];
+        
+        CGRect rect = self.frame;
+        rect.size.width = width;
+        self.frame = rect;
+    }
 }
 
 @end

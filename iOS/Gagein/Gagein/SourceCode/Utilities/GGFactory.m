@@ -94,11 +94,16 @@
         cell.btnLogo.tag = aDataIndex;
         cell.btnHeadline.tag = aDataIndex;
         
-        cell.lblHeadline.text = [aData headlineTruncated];
+        cell.lblHeadline.text = aData.headline;//[aData headlineTruncated];
         cell.lblSource.text = aData.fromSource;
         cell.lblDescription.text = aData.content;
         
-        [cell.ivLogo setImageWithURL:[NSURL URLWithString:aData.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+        cell.ivLogo.hidden = (aData.newsPicURL.length == 0);
+        if (!cell.ivLogo.hidden)
+        {
+            [cell.ivLogo setImageWithURL:[NSURL URLWithString:aData.newsPicURL/*aData.company.logoPath*/] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+        }
+        
         
         cell.lblInterval.text = [aData intervalStringWithDate:aData.date];
         cell.hasBeenRead = aData.hasBeenRead;
