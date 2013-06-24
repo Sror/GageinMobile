@@ -12,7 +12,8 @@
 
 typedef enum
 {
-    kGGCompanyUpdateRelevanceNormal     = 10
+    kGGCompanyUpdateRelevanceUnKnown = 0
+    , kGGCompanyUpdateRelevanceNormal     = 10
     , kGGCompanyUpdateRelevanceHigh     = 20
     , kGGCompanyUpdateRelevanceVeryHigh = 30
     , kGGCompanyUpdateRelevanceHighest  = 40

@@ -54,10 +54,10 @@
 
 @implementation GGCompaniesVC
 {
-    EGGCompanyUpdateRelevance           _relevance;
+    
     
     GGSlideSettingView                  *_slideSettingView;
-    GGRelevanceBar                      *_relevanceBar;
+    //GGRelevanceBar                      *_relevanceBar;
     
     GGEmptyActionView                   *_viewUpdateEmpty;
     GGEmptyActionView                   *_viewHappeningEmpty;
@@ -89,7 +89,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _relevance = kGGCompanyUpdateRelevanceHigh;
+        //_relevance = kGGCompanyUpdateRelevanceHigh;
         _updates = [NSMutableArray array];
         _happenings = [NSMutableArray array];
         _suggestedUpdates = [NSMutableArray array];
@@ -155,12 +155,12 @@
     _btnSwitchUpdate.frame = switchRc;
 }
 
--(CGRect)_relevanceFrameHided:(BOOL)aHided
-{
-    CGRect relevanceRc = _relevanceBar.frame;
-    float width = _updatesTV.frame.size.width;
-    return aHided ? CGRectMake(0, 5 - relevanceRc.size.height, width, relevanceRc.size.height) : CGRectMake(0, 5, width, relevanceRc.size.height);
-}
+//-(CGRect)_relevanceFrameHided:(BOOL)aHided
+//{
+//    CGRect relevanceRc = _relevanceBar.frame;
+//    float width = _updatesTV.frame.size.width;
+//    return aHided ? CGRectMake(0, 5 - relevanceRc.size.height, width, relevanceRc.size.height) : CGRectMake(0, 5, width, relevanceRc.size.height);
+//}
 
 - (void)viewDidLoad
 {
@@ -209,6 +209,7 @@
     
     [self.view addSubview:self.updatesTV];
 
+#if 0
     //
     _relevanceBar = [GGRelevanceBar viewFromNibWithOwner:self];
     //_relevanceRectShow = CGRectOffset(_relevanceBar.frame, 0, 5);
@@ -224,6 +225,7 @@
     _updateTvRect.origin.y = CGRectGetMaxY(_relevanceBar.frame) - 5;
     _updateTvRect.size.height = self.view.frame.size.height - _updateTvRect.origin.y;
     _updatesTV.frame = _updateTvRect;
+#endif
     
     //[self.view bringSubviewToFront:_relevanceBar];
     
@@ -322,17 +324,19 @@
     if (aSwitchButton == _btnSwitchUpdate)
     {
         _isShowingUpdate = aIsOn;
-        self.updatesTV.hidden = _relevanceBar.hidden = !_isShowingUpdate;
+        self.updatesTV.hidden = !_isShowingUpdate;
         _happeningsTV.hidden = _isShowingUpdate;
         //_isShowingUpdate ? [_updatesTV triggerPullToRefresh] : [_happeningsTV triggerPullToRefresh];
-    } else if (aSwitchButton == _relevanceBar.btnSwitch)
-    {
-        _relevance = (_relevanceBar.btnSwitch.isOn) ? kGGCompanyUpdateRelevanceHigh : kGGCompanyUpdateRelevanceNormal;
-        
-        [_updates removeAllObjects];
-        [self.updatesTV reloadData];
-        [self.updatesTV triggerPullToRefresh];
     }
+    
+//    else if (aSwitchButton == _relevanceBar.btnSwitch)
+//    {
+//        _relevance = (_relevanceBar.btnSwitch.isOn) ? kGGCompanyUpdateRelevanceHigh : kGGCompanyUpdateRelevanceNormal;
+//        
+//        [_updates removeAllObjects];
+//        [self.updatesTV reloadData];
+//        [self.updatesTV triggerPullToRefresh];
+//    }
 }
 
 #pragma mark -
@@ -1247,12 +1251,12 @@
     //CGRect thisRc = self.view.bounds;
     //[self.view centerMeHorizontally];
     
-    CGRect relevanceRc = _relevanceBar.frame;
-    relevanceRc.size.width = _relevanceBar.superview.frame.size.width;
-    _relevanceBar.frame = relevanceRc;
+//    CGRect relevanceRc = _relevanceBar.frame;
+//    relevanceRc.size.width = _relevanceBar.superview.frame.size.width;
+//    _relevanceBar.frame = relevanceRc;
     
     CGRect updateRc = _updatesTV.frame;
-    updateRc.origin.y = CGRectGetMaxY(_relevanceBar.frame);
+    //updateRc.origin.y = CGRectGetMaxY(_relevanceBar.frame);
     updateRc.size.width = self.view.bounds.size.width;
     updateRc.size.height = self.view.bounds.size.height - updateRc.origin.y;
     _updatesTV.frame = updateRc;
@@ -1301,7 +1305,7 @@
     if (aShow)
     {
         [UIView animateWithDuration:kAnimInterval delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        _relevanceBar.frame = [self _relevanceFrameHided:NO];
+        //_relevanceBar.frame = [self _relevanceFrameHided:NO];
            // _relevanceBar.alpha = 1.f;
             
         } completion:nil];
@@ -1309,7 +1313,7 @@
     else
     {
         [UIView animateWithDuration:kAnimInterval delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-           _relevanceBar.frame = [self _relevanceFrameHided:YES];
+          // _relevanceBar.frame = [self _relevanceFrameHided:YES];
             //_relevanceBar.alpha = 0.5f;
             
         } completion:nil];
@@ -1389,7 +1393,7 @@
 
 -(void)_getFirstPage
 {
-    [self _getDataWithNewsID:0 pageFlag:kGGPageFlagFirstPage pageTime:0 relevance:_relevance];
+    [self _getDataWithNewsID:0 pageFlag:kGGPageFlagFirstPage pageTime:0 relevance:GGSharedRuntimeData.relevance];
 }
 
 -(void)_getNextPage
@@ -1403,7 +1407,7 @@
             newsID = lastUpdate.ID;
             pageTime = lastUpdate.date;
             
-            [self _getDataWithNewsID:newsID pageFlag:kGGPageFlagMoveDown pageTime:pageTime relevance:_relevance];
+            [self _getDataWithNewsID:newsID pageFlag:kGGPageFlagMoveDown pageTime:pageTime relevance:GGSharedRuntimeData.relevance];
         }
     }
     else
@@ -1422,7 +1426,7 @@
         pageTime = firstUpdate.date;
     }
     
-    [self _getDataWithNewsID:newsID pageFlag:kGGPageFlagMoveUp pageTime:pageTime relevance:_relevance];
+    [self _getDataWithNewsID:newsID pageFlag:kGGPageFlagMoveUp pageTime:pageTime relevance:GGSharedRuntimeData.relevance];
 }
 
 -(void)_getDataWithNewsID:(long long)aNewsID pageFlag:(int)aPageFlag pageTime:(long long)aPageTime relevance:(int)aRelevance
@@ -1667,8 +1671,8 @@
     [_updatesTV reloadData];
     [_happeningsTV reloadData];
     
-    CGRect relevanceRc = [self _relevanceFrameHided:NO];
-    _relevanceBar.frame = relevanceRc;
+//    CGRect relevanceRc = [self _relevanceFrameHided:NO];
+//    _relevanceBar.frame = relevanceRc;
 }
 
 -(void)_adjustSelfFrameForIpadWithOrient:(UIInterfaceOrientation)anOrient

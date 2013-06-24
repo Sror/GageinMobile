@@ -14,10 +14,14 @@
 @interface GGRuntimeData : NSObject
 AS_SINGLETON(GGRuntimeData)
 
-@property (assign)  BOOL                runedBefore;  // has runed before
-@property (strong)  GGMember            *currentUser;    // current user
-@property (readonly, nonatomic)  NSMutableArray      *recentSearches;
-@property (strong) GGHappeningCache        *happeningCache;
+@property (assign)  BOOL                                    runedBefore;  // has runed before
+@property (strong)  GGMember                                *currentUser;    // current user
+@property (readonly, nonatomic)  NSMutableArray             *recentSearches;
+@property (strong) GGHappeningCache                         *happeningCache;
+@property (readonly, nonatomic)   EGGCompanyUpdateRelevance           relevance;
+
+
+-(void)setRelevance:(EGGCompanyUpdateRelevance)aRelevance;
 
 -(BOOL)isLoggedIn;
 -(BOOL)isFirstRun;

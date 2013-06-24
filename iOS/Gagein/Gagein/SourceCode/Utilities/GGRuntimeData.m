@@ -12,6 +12,7 @@
 
 #define kDataKeyCurrentUser @"kDataKeyCurrentUser"
 #define kDefaultKeyRunedBefore @"kDefaultKeyRunedBefore"
+#define kDefaultKeyRelevance @"kDefaultKeyRelevance"
 
 @implementation GGRuntimeData
 DEF_SINGLETON(GGRuntimeData)
@@ -24,8 +25,24 @@ DEF_SINGLETON(GGRuntimeData)
         [self _loadRunedBefore];
         [self _loadRecentSearches];
         _happeningCache = [[GGHappeningCache alloc] init];
+        
+        //
+        _relevance = [[NSUserDefaults standardUserDefaults] integerForKey:kDefaultKeyRelevance];
+        if (_relevance == kGGCompanyUpdateRelevanceUnKnown)
+        {
+            [self setRelevance:kGGCompanyUpdateRelevanceHigh];
+        }
     }
     return self;
+}
+
+-(void)setRelevance:(EGGCompanyUpdateRelevance)aRelevance
+{
+    if (_relevance != aRelevance)
+    {
+        _relevance = aRelevance;
+        [[NSUserDefaults standardUserDefaults] setInteger:_relevance forKey:kDefaultKeyRelevance];
+    }
 }
 
 -(BOOL)isLoggedIn
