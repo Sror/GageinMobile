@@ -33,6 +33,7 @@
     UITableViewCell     *_headerView;
     
     NSMutableArray      *_topAgents;
+    BOOL                _isSelectionChanged;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -58,13 +59,54 @@
     _tv.separatorStyle = UITableViewCellSeparatorStyleNone;
     
 //    self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Edit" target:self selector:@selector(editCustomAgentAction:)];
-    self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(naviBackAction:)];
+    self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(doneAction:)];
     
     //
     [self _createSwitchView];
     
     // at last
     [self _callApiGetConfigOptions];
+}
+
+
+#pragma mark - internal
+-(NSArray *)_selectedAgentIDs
+{
+    NSMutableArray *selectedAgentIDs = [NSMutableArray array];
+    
+    for (GGAgent *agent in _predefinedAgentFilters) {
+        if (agent.checked) {
+            [selectedAgentIDs addObject:[NSNumber numberWithLongLong:agent.ID]];
+        }
+    }
+    
+    return selectedAgentIDs;
+}
+
+-(IBAction)doneAction:(id)sender
+{
+    if (!_isSelectionChanged)
+    {
+        [self naviBackAction:nil];
+        return;
+    }
+    
+    id op = [GGSharedAPI selectAgents:[self _selectedAgentIDs] callback:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            //[GGAlert alertWithMessage:@"Succeeded!"];
+        }
+        else
+        {
+            [GGAlert alertWithApiParser:parser];
+        }
+        
+        [self naviBackAction:nil];
+    }];
+    
+    [self registerOperation:op];
+    
 }
 
 #pragma mark -
@@ -152,24 +194,30 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     int section = indexPath.section;
     int row = indexPath.row;
     
     if (section != 0)
     {
+        _isSelectionChanged = YES;
         GGAgentFilter *filter = _predefinedAgentFilters[row];
-        id op = [GGSharedAPI selectAgentFilterWithID:filter.ID selected:!filter.checked callback:^(id operation, id aResultObject, NSError *anError) {
-            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            if (parser.isOK)
-            {
-                //succeeded
-                filter.checked = !filter.checked;
-                [_tv reloadData];
-            }
-        }];
         
-        [self registerOperation:op];
+        filter.checked = !filter.checked;
+        [_tv reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+//        id op = [GGSharedAPI selectAgentFilterWithID:filter.ID selected:!filter.checked callback:^(id operation, id aResultObject, NSError *anError) {
+//            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//            if (parser.isOK)
+//            {
+//                //succeeded
+//                filter.checked = !filter.checked;
+//                [_tv reloadData];
+//            }
+//        }];
+//        
+//        [self registerOperation:op];
     }
 }
 
