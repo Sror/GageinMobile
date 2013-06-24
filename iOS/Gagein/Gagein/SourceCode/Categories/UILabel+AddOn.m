@@ -40,4 +40,14 @@
     return [self.text sizeWithFont:self.font constrainedToSize:constraint lineBreakMode:self.lineBreakMode];
 }
 
+-(void)sizeToFitFixWidth
+{
+    float width = self.frame.size.width;
+    [self sizeToFit];
+    
+    CGRect rect = self.frame;
+    rect.size.width = width;
+    self.frame = rect;
+}
+
 @end

@@ -24,5 +24,7 @@
 @property (assign, nonatomic)  BOOL         hasBeenRead;
 
 //+(float)HEIGHT;
+-(void)showPicture:(BOOL)aShow;
+
 -(float)adjustLayout;
 @end

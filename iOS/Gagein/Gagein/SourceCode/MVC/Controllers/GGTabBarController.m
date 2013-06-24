@@ -214,7 +214,7 @@
             
             
         } completion:^(BOOL finished){
-            DLog(@"show tabbar finished:%d", finished);
+            //DLog(@"show tabbar finished:%d", finished);
             
         }];
         
@@ -254,7 +254,7 @@
            moveTabbarDown();
             
         } completion:^(BOOL finished) {
-            DLog(@"hide tabbar finished:%d", finished);
+            //DLog(@"hide tabbar finished:%d", finished);
             
             
         }];

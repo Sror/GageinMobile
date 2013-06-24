@@ -224,7 +224,7 @@
     CALayer *layer = aView.layer;
     if (layer)
     {
-        layer.borderColor = GGSharedColor.lightGray.CGColor;
+        layer.borderColor = GGSharedColor.veryLightGray.CGColor;
         layer.borderWidth = 1;
         
         layer.shadowColor = GGSharedColor.lightGray.CGColor;
@@ -568,6 +568,41 @@
     }
     
     return kGGHappeningSourceUnKnown;
+}
+
++(NSString *)testImageURL
+{
+    int seed = arc4random() % 4;
+    
+    switch (seed)
+    {
+        case 0:
+        {
+            return @"http://content4.lovelytoday.com/cache/2012/09/29/12196.88920213.img-thumb1-198x198-128.jpg";
+        }
+            break;
+            
+        case 1:
+        {
+            return @"http://www.gannett-cdn.com/media/USATODAY/USATODAY/2013/06/22/1371935280000-AP-NSA-Surveillance-Snowden-1306221711_4_3_rx404_c534x401.jpg?87cc7ae5b5e3d133be9f113f907a13faa9f8741e";
+        }
+            break;
+            
+        case 2:
+        {
+            return @"http://i.telegraph.co.uk/multimedia/archive/02451/obama-sad_2451605b.jpg";
+        }
+            break;
+            
+        case 3:
+        {
+            return @"http://upload.appvv.com/2013/0130/1359528302270.jpg";
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end

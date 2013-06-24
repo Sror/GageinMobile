@@ -28,6 +28,7 @@ AS_SINGLETON(GGColor)
 -(UIColor *)silver;
 
 -(UIColor *)colorFromR:(int)aRed g:(int)aGreen b:(int)aBlue;
+-(UIColor *)random;
 
 @end
 

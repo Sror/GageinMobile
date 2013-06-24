@@ -15,4 +15,6 @@
 -(CGSize)calculatedSize;
 -(CGSize)calculatedSize:(float)aMaxHeight;
 
+-(void)sizeToFitFixWidth;
+
 @end

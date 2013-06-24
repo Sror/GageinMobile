@@ -809,9 +809,11 @@
     static NSString *updateCellId = @"GGCompanyUpdateCell";
     GGCompanyUpdateCell *cell = [_updatesTV dequeueReusableCellWithIdentifier:updateCellId];
     
+    GGCompanyUpdate *data = _updates[row];
+    
     GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(companyDetailFromUpdateAction:)];
     cell = [GGFactory cellOfComUpdate:cell
-                                 data:_updates[row]
+                                 data:data
                             dataIndex:row
                            logoAction:action];
     
@@ -1467,6 +1469,14 @@
                         break;
                 }
             }
+            
+            //
+            for (GGCompanyUpdate *update in _updates)
+            {
+#warning DUMMY
+                update.newsPicURL = (arc4random() % 3) ? [GGUtils testImageURL] : nil;
+            }
+            
         }
         else if (parser.status == kGGApiStatusUserOperationError)
         {

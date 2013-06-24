@@ -68,4 +68,6 @@
 +(NSString *)textForSourceType:(EGGHappeningSource)aSourceType;
 +(EGGHappeningSource)sourceTypeForText:(NSString *)aText;
 
++(NSString *)testImageURL;
+
 @end

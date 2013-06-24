@@ -34,6 +34,8 @@
 @property (copy)    NSString    *twitterTweets;
 @property (strong)  NSMutableArray  *mentionedCompanies;
 
+@property (copy)    NSString        *newsPicURL;
+
 -(NSString *)doubleReturnedText;
 -(NSString *)headlineTruncated;
 @end

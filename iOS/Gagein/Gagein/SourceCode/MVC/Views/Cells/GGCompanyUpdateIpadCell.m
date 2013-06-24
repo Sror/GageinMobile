@@ -117,7 +117,7 @@
             [imageURLs addObjectIfNotNil:company.logoPath];
         }
 #else
-        imageURLs = [NSMutableArray arrayWithObjects:TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, TEST_IMG_URL, nil];
+        imageURLs = [NSMutableArray arrayWithObjects:[GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], nil];
 #endif
         [_panel.viewScroll setTaget:self action:@selector(popupCompanyInfo:)];
         
@@ -139,14 +139,14 @@
 #else
     GGCompany *fakeCom = [GGCompany model];
     fakeCom.name = @"Apple Inc.";
-    fakeCom.logoPath = TEST_IMG_URL;
+    fakeCom.logoPath = [GGUtils testImageURL];
     
     NSMutableArray *competitors = [NSMutableArray array];
     for (int i = 0; i < 10; i++)
     {
         GGCompany *competitor = [GGCompany model];
         competitor.name = @"Google Inc.";
-        competitor.logoPath = TEST_IMG_URL;
+        competitor.logoPath = [GGUtils testImageURL];
         [competitors addObject:competitor];
     }
     fakeCom.competitors = competitors;
