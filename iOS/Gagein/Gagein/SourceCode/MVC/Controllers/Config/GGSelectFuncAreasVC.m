@@ -53,7 +53,7 @@
     //if (NO)
     if (!_isFromRegistration)
     {
-        self.naviTitle = @"Choose Functional Areas";
+        self.naviTitle = @"Choose Functional Roles";
         
         // add done button
         self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(doneAction:)];

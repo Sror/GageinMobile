@@ -8,6 +8,7 @@
 
 #import "GGCompanyUpdateCell.h"
 
+#define MINIMAL_HEIGHT      70
 
 @implementation GGCompanyUpdateCell
 
@@ -23,8 +24,6 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 -(void)awakeFromNib
@@ -74,14 +73,16 @@
     [_titleLbl calculateSize];
     //[_titleLbl sizeToFit];
     
-    CGRect theRect = _titleLbl.frame;
-    float titleMaxY = CGRectGetMaxY(theRect);
-    theRect = _descriptionLbl.frame;
-    theRect.origin.y = titleMaxY;
-    _descriptionLbl.frame = theRect;
+//    CGRect theRect = _titleLbl.frame;
+//    float titleMaxY = CGRectGetMaxY(theRect);
+//    theRect = _descriptionLbl.frame;
+//    theRect.origin.y = titleMaxY;
+//    _descriptionLbl.frame = theRect;
     
-    theRect = self.viewCellBg.frame;
-    theRect.size.height = CGRectGetMaxY(_descriptionLbl.frame);
+    CGRect theRect = self.viewCellBg.frame;
+    float height = CGRectGetMaxY(_titleLbl.frame) + 5;
+    height = height > MINIMAL_HEIGHT ? height : MINIMAL_HEIGHT;
+    theRect.size.height = height;
     self.viewCellBg.frame = theRect;
     
     theRect = self.frame;
