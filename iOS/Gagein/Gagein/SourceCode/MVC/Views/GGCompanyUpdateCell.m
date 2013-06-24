@@ -17,6 +17,7 @@
 //#define TITLE_WIDTH_SHORT   230.f
 //#define TITLE_WIDTH_LONG    305.f
 
+
 @implementation GGCompanyUpdateCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -115,15 +116,22 @@
     //self.clipsToBounds = YES;
     
     _titleLbl.text = [_titleLbl.text stringLimitedToLength:90];
-    //[_titleLbl calculateSize];
-    [_titleLbl sizeToFitFixWidth];
+    
+    if (SYSTEM_VERSION_LESS_THAN(@"6.0"))
+    {
+        [_titleLbl calculateSize];
+    }
+    else
+    {
+        [_titleLbl sizeToFitFixWidth];
+    }
     
 //    CGRect theRect = _titleLbl.frame;
 //    float titleMaxY = CGRectGetMaxY(theRect);
 //    theRect = _descriptionLbl.frame;
 //    theRect.origin.y = titleMaxY;
 //    _descriptionLbl.frame = theRect;
-    //[self printViewsTree];
+
     
     CGRect theRect = self.viewCellBg.frame;
     float height = CGRectGetMaxY(_titleLbl.frame) + 5;

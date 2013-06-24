@@ -56,7 +56,7 @@ typedef enum {
 #define GGN_STR_STAGING_SERVER_URL                  @"http://gageinstaging.dyndns.org"
 #define GGN_STR_ROSHEN_SERVER_URL                   @"http://192.168.137.1:8080"
 
-#define CURRENT_ENV 1
+#define CURRENT_ENV 4
 
 #undef CURRENT_SERVER_URL
 #if (CURRENT_ENV == 1)
@@ -140,6 +140,17 @@ return __singleton__; \
 
 #define IPAD_CONTENT_WIDTH          650
 #define IPAD_CONTENT_WIDTH_FULL     768
+
+
+// ios version
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
+
+
 
 //
 @interface GGDefine : NSObject
