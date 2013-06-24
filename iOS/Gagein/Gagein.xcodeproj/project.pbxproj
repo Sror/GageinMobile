@@ -388,6 +388,7 @@
 		EA9E00191770074E00127233 /* GGSsgrfPopPanelCompany.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9E00141770074E00127233 /* GGSsgrfPopPanelCompany.xib */; };
 		EA9E001A1770074E00127233 /* GGSsgrfPopPanelPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9E00161770074E00127233 /* GGSsgrfPopPanelPerson.m */; };
 		EA9E001B1770074E00127233 /* GGSsgrfPopPanelPerson.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9E00171770074E00127233 /* GGSsgrfPopPanelPerson.xib */; };
+		EAA055D917790C0600D04463 /* Reopsitory-Version2 in Resources */ = {isa = PBXBuildFile; fileRef = EAA055D817790C0600D04463 /* Reopsitory-Version2 */; };
 		EAA1880F175E7BB700580B00 /* GGSignupVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA1880E175E7BB700580B00 /* GGSignupVC_iPad.xib */; };
 		EAA18812175EA0E600580B00 /* GGCompanyUpdateIpadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA18811175EA0E600580B00 /* GGCompanyUpdateIpadCell.m */; };
 		EAA18814175EA11500580B00 /* GGCompanyUpdateIpadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA18813175EA11500580B00 /* GGCompanyUpdateIpadCell.xib */; };
@@ -1140,6 +1141,7 @@
 		EA9EFFFD1770068100127233 /* ssgrf_btn_linkedin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_linkedin@2x.png"; sourceTree = "<group>"; };
 		EA9EFFFE1770068100127233 /* ssgrf_btn_linkedin_gdnt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_linkedin_gdnt@2x.png"; sourceTree = "<group>"; };
 		EA9EFFFF1770068100127233 /* ssgrf_btn_slideshare@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_slideshare@2x.png"; sourceTree = "<group>"; };
+		EAA055D817790C0600D04463 /* Reopsitory-Version2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Reopsitory-Version2"; sourceTree = "<group>"; };
 		EAA1880E175E7BB700580B00 /* GGSignupVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSignupVC_iPad.xib; sourceTree = "<group>"; };
 		EAA18810175EA0E600580B00 /* GGCompanyUpdateIpadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GGCompanyUpdateIpadCell.h; path = Cells/GGCompanyUpdateIpadCell.h; sourceTree = "<group>"; };
 		EAA18811175EA0E600580B00 /* GGCompanyUpdateIpadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GGCompanyUpdateIpadCell.m; path = Cells/GGCompanyUpdateIpadCell.m; sourceTree = "<group>"; };
@@ -2391,6 +2393,7 @@
 		EACAE0671709486800E7088F = {
 			isa = PBXGroup;
 			children = (
+				EAA055D817790C0600D04463 /* Reopsitory-Version2 */,
 				EA9570441773F737006DDC25 /* Localizable.strings */,
 				EAAE074717169B2D007C4A30 /* Documentations */,
 				EACAE07C1709486800E7088F /* Gagein */,
@@ -3488,6 +3491,7 @@
 				EA9E00191770074E00127233 /* GGSsgrfPopPanelCompany.xib in Resources */,
 				EA9E001B1770074E00127233 /* GGSsgrfPopPanelPerson.xib in Resources */,
 				EA9570451773F738006DDC25 /* Localizable.strings in Resources */,
+				EAA055D917790C0600D04463 /* Reopsitory-Version2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

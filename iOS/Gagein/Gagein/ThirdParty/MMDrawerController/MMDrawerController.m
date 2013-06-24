@@ -669,10 +669,6 @@ static CAKeyframeAnimation * bounceKeyFrameAnimationForDistanceOnView(CGFloat di
     }
 }
 
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
-    return YES;
-}
-
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     for(UIViewController * childViewController in self.childViewControllers){
@@ -1143,6 +1139,39 @@ static inline CGFloat originXForDrawerOriginAndTargetOriginOffset(CGFloat origin
     return ((CGRectContainsPoint(leftBezelRect, point) ||
       CGRectContainsPoint(rightBezelRect, point)) &&
      [self isPointContainedWithinCenterViewContentRect:point]);
+}
+
+
+#pragma mark - orientation
+
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    if (ISIPADDEVICE)
+    {
+        return YES;
+    }
+    
+    return toInterfaceOrientation == UIInterfaceOrientationPortrait; // etc
+}
+
+- (BOOL)shouldAutorotate {
+    
+    if (ISIPADDEVICE)
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    
+    if (ISIPADDEVICE)
+    {
+        return UIInterfaceOrientationMaskAll;
+    }
+    
+    return UIInterfaceOrientationMaskPortrait; // etc
 }
 
 @end

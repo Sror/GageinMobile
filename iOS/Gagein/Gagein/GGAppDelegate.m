@@ -239,7 +239,7 @@ static BOOL s_isCustomed = NO;
         return UIInterfaceOrientationMaskAll;
     }
     
-    return UIInterfaceOrientationMaskPortrait;
+    return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 
