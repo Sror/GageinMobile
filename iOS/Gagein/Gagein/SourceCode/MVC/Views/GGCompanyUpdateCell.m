@@ -76,7 +76,7 @@
 
 -(void)showPicture:(BOOL)aShow
 {
-    _logoIV.hidden = _logoBtn.hidden = !aShow;
+    _logoIV.hidden = !aShow;
     
     //_titleLbl.backgroundColor = GGSharedColor.darkGray;
     //_sourceLbl.backgroundColor = GGSharedColor.darkRed;

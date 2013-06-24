@@ -578,31 +578,33 @@
     {
         case 0:
         {
-            return @"http://content4.lovelytoday.com/cache/2012/09/29/12196.88920213.img-thumb1-198x198-128.jpg";
+            return @"http://pandodaily.files.wordpress.com/2013/06/the-ascender3.png?w=305";
         }
             break;
             
         case 1:
         {
-            return @"http://www.gannett-cdn.com/media/USATODAY/USATODAY/2013/06/22/1371935280000-AP-NSA-Surveillance-Snowden-1306221711_4_3_rx404_c534x401.jpg?87cc7ae5b5e3d133be9f113f907a13faa9f8741e";
+            return @"http://static1.businessinsider.com/image/51c8a3f369bedd7f01000005/hps-new-215-inch-android-tablet-is-the-latest-example-of-its-love-affair-with-google.jpg";
         }
             break;
             
         case 2:
         {
-            return @"http://i.telegraph.co.uk/multimedia/archive/02451/obama-sad_2451605b.jpg";
+            return @"http://images.wallstcheatsheet.com/wp-content/uploads/2013/06/AAPL46-e1372102498746.png";
         }
             break;
             
         case 3:
         {
-            return @"http://upload.appvv.com/2013/0130/1359528302270.jpg";
+            return @"http://cdn3.benzinga.com/files/imagecache/article_image_thumb/images/story/2012/shutterstock_124188334.jpg";
         }
             break;
             
         default:
             break;
     }
+    
+    return @"http://upload.appvv.com/2013/0130/1359528302270.jpg";
 }
 
 @end

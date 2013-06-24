@@ -29,7 +29,7 @@
         
         if (anAction && anAction.action)
         {
-            [cell.logoBtn addTarget:anAction.target action:anAction.action forControlEvents:UIControlEventTouchUpInside];
+            //[cell.logoBtn addTarget:anAction.target action:anAction.action forControlEvents:UIControlEventTouchUpInside];
         }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -40,7 +40,7 @@
     if (aData)
     {
         cell.ID = aData.ID;
-        cell.logoBtn.tag = aDataIndex;
+        //cell.logoBtn.tag = aDataIndex;
         
         cell.titleLbl.text = [aData headlineTruncated];
         cell.sourceLbl.text = aData.fromSource;

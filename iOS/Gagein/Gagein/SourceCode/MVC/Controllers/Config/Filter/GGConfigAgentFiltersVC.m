@@ -51,6 +51,7 @@
     
     [super viewDidLoad];
     self.naviTitle = @"Trigger Filters";
+    
     self.view.backgroundColor = GGSharedColor.silver;
     self.tv.backgroundColor = GGSharedColor.silver;
     //_tv.rowHeight = [GGTriggerChartCell HEIGHT];
@@ -76,41 +77,43 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {    
-    return 1;
+    return 2;
 }
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (indexPath.section == 0)
-//    {
-//        return _headerView.frame.size.height;
-//    }
+    if (indexPath.section == 0)
+    {
+        //_headerView.backgroundColor = GGSharedColor.darkRed;
+        //tableView.backgroundColor = GGSharedColor.random;
+        return _headerView.frame.size.height;
+    }
 
     return [GGTriggerChartCell HEIGHT];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    if (section == 0) {
-//        return 1;
-//    } else if (section == 1) {
-//        return _predefinedAgentFilters.count;
-//    }
-//    
-//    return 0;
+    if (section == 0) {
+        return 1;
+    } else if (section == 1) {
+        return _predefinedAgentFilters.count;
+    }
     
-    return _predefinedAgentFilters.count;
+    return 0;
+    
+    //return _predefinedAgentFilters.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = indexPath.row;
-    //int section = indexPath.section;
+    int section = indexPath.section;
     
-//    if (section == 0)
-//    {
-//        return _headerView;
-//    }
+    if (section == 0)
+    {
+        return _headerView;
+    }
     
     static NSString *cellID = @"GGTriggerChartCell";
     GGTriggerChartCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -150,10 +153,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //int section = indexPath.section;
+    int section = indexPath.section;
     int row = indexPath.row;
     
-    //if (section != 0)
+    if (section != 0)
     {
         GGAgentFilter *filter = _predefinedAgentFilters[row];
         id op = [GGSharedAPI selectAgentFilterWithID:filter.ID selected:!filter.checked callback:^(id operation, id aResultObject, NSError *anError) {
@@ -246,10 +249,12 @@
     _viewSwitch = [GGConfigSwitchView viewFromNibWithOwner:self];
     
     _viewSwitch.backgroundColor = GGSharedColor.white;
-    _viewSwitch.lblTitle.text = @"Trigger Chart";
-    _viewSwitch.btnSwitch.isOn = YES;
-    _viewSwitch.btnSwitch.lblOn.text = @"Likes";
-    _viewSwitch.btnSwitch.lblOff.text = @"Clicks";
+    _viewSwitch.lblTitle.text = @"Relevance";
+    
+    EGGCompanyUpdateRelevance relevance = GGSharedRuntimeData.relevance;
+    _viewSwitch.btnSwitch.isOn = (relevance == kGGCompanyUpdateRelevanceHigh);
+    _viewSwitch.btnSwitch.lblOn.text = @"High";
+    _viewSwitch.btnSwitch.lblOff.text = @"Normal";
     _viewSwitch.btnSwitch.delegate = self;
     [GGUtils applyTableStyle1ToView:_viewSwitch];
     
@@ -272,6 +277,7 @@
 
 -(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
 {
+    [GGSharedRuntimeData setRelevance:aIsOn ? kGGCompanyUpdateRelevanceHigh : kGGCompanyUpdateRelevanceNormal];
     DLog(@"switch tapped:%d", aIsOn);
 }
 

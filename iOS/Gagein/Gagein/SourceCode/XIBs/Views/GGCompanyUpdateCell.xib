@@ -167,7 +167,6 @@ YWxsIFN0cmVldCBKb3VybmFsIAA</string>
 										<string key="NSFrame">{{62, 76}, {242, 41}}</string>
 										<reference key="NSSuperview" ref="165257857"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -218,7 +217,7 @@ bmFsIABUaGUgV2FsbCBTdHJlZXQgSm91cm5hbCAAA</string>
 									</object>
 									<object class="IBUIButton" id="953539528">
 										<reference key="NSNextResponder" ref="165257857"/>
-										<int key="NSvFlags">292</int>
+										<int key="NSvFlags">-2147483356</int>
 										<string key="NSFrame">{{8, 11}, {55, 55}}</string>
 										<reference key="NSSuperview" ref="165257857"/>
 										<reference key="NSWindow"/>
@@ -317,14 +316,6 @@ bmFsIABUaGUgV2FsbCBTdHJlZXQgSm91cm5hbCAAA</string>
 						<reference key="destination" ref="148463007"/>
 					</object>
 					<int key="connectionID">12</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">logoBtn</string>
-						<reference key="source" ref="754079548"/>
-						<reference key="destination" ref="953539528"/>
-					</object>
-					<int key="connectionID">14</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -467,7 +458,6 @@ bmFsIABUaGUgV2FsbCBTdHJlZXQgSm91cm5hbCAAA</string>
 						<string key="descriptionLbl">UILabel</string>
 						<string key="intervalLbl">UILabel</string>
 						<string key="ivCellBg">UIImageView</string>
-						<string key="logoBtn">UIButton</string>
 						<string key="logoIV">UIImageView</string>
 						<string key="sourceLbl">UILabel</string>
 						<string key="titleLbl">UILabel</string>
@@ -485,10 +475,6 @@ bmFsIABUaGUgV2FsbCBTdHJlZXQgSm91cm5hbCAAA</string>
 						<object class="IBToOneOutletInfo" key="ivCellBg">
 							<string key="name">ivCellBg</string>
 							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="logoBtn">
-							<string key="name">logoBtn</string>
-							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="logoIV">
 							<string key="name">logoIV</string>

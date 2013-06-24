@@ -42,6 +42,7 @@ DEF_SINGLETON(GGRuntimeData)
     {
         _relevance = aRelevance;
         [[NSUserDefaults standardUserDefaults] setInteger:_relevance forKey:kDefaultKeyRelevance];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
 
@@ -73,6 +74,7 @@ DEF_SINGLETON(GGRuntimeData)
 -(void)saveRunedBefore
 {
     [[NSUserDefaults standardUserDefaults] setBool:_runedBefore forKey:kDefaultKeyRunedBefore];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(void)saveCurrentUser
