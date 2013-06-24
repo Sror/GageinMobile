@@ -143,7 +143,7 @@
     _slideSettingView.viewTable.tableHeaderView = nil;
     [self _callApiGetMenu];
     
-    [GGSharedDelegate.rootVC enableSwipGesture:YES];
+    //[GGSharedDelegate.rootVC enableSwipGesture:YES];
     
     [_updatesTV reloadData];
 }
@@ -151,7 +151,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [GGSharedDelegate.rootVC enableSwipGesture:NO];
+    //[GGSharedDelegate.rootVC enableSwipGesture:NO];
 }
 
 - (void)viewDidUnload {
@@ -350,7 +350,7 @@
 -(void)optionMenuAction:(id)sender
 {
     DLog(@"option menu clicked");
-    if (!GGSharedDelegate.rootVC.isRevealed)
+    if (GGSharedDelegate.drawerVC.openSide == MMDrawerSideNone)
     {
         [_slideSettingView showSlide];
         [self _callApiGetMenu];
@@ -784,12 +784,12 @@
 {
     [super scrollViewWillBeginDragging:scrollView];
     
-    GGSharedDelegate.rootVC.canBeDragged = NO;
+    //GGSharedDelegate.rootVC.canBeDragged = NO;
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    GGSharedDelegate.rootVC.canBeDragged = YES;
+    //GGSharedDelegate.rootVC.canBeDragged = YES;
 }
 
 //-(void)_adjustTvFrames

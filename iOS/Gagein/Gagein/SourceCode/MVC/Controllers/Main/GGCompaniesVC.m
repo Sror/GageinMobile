@@ -283,7 +283,7 @@
     _slideSettingView.viewTable.tableHeaderView = _slideSettingView.searchBar;
     
     // enable gesture
-    [GGSharedDelegate.rootVC enableSwipGesture:YES];
+    //[GGSharedDelegate.rootVC enableSwipGesture:YES];
     
     [_updatesTV reloadData];
     [_happeningsTV reloadData];
@@ -299,8 +299,8 @@
     [super viewWillDisappear:animated];
     [_btnSwitchUpdate removeFromSuperview];
     
-    [GGSharedDelegate.rootVC enableSwipGesture:NO];
-    [GGSharedDelegate.rootVC enableTapGesture:NO];
+    //[GGSharedDelegate.rootVC enableSwipGesture:NO];
+    //[GGSharedDelegate.rootVC enableTapGesture:NO];
 }
 
 
@@ -530,11 +530,11 @@
     
     else if ([noteName isEqualToString:GG_NOTIFY_PAN_BEGIN])
     {
-        [self blockUI];
+        //[self blockUI];
     }
     else if ([noteName isEqualToString:GG_NOTIFY_PAN_END])
     {
-        [self unblockUI];
+        //[self unblockUI];
     }
     //
 }
@@ -695,7 +695,7 @@
 -(void)optionMenuAction:(id)sender
 {
     DLog(@"option menu clicked");
-    if (!GGSharedDelegate.rootVC.isRevealed)
+    if (GGSharedDelegate.drawerVC.openSide == MMDrawerSideNone)
     {
         [_slideSettingView showSlide];
         [self _callApiGetMenu];
@@ -1224,7 +1224,7 @@
     
     [super scrollViewWillBeginDragging:scrollView];
     
-    GGSharedDelegate.rootVC.canBeDragged = NO;
+    //GGSharedDelegate.rootVC.canBeDragged = NO;
 }
 
 //-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
@@ -1236,7 +1236,7 @@
 {
     //DLog(@"scrollView: %@ did End Dragging, is dragging:%d", NSStringFromClass([scrollView class]), scrollView.isDragging);
     
-    GGSharedDelegate.rootVC.canBeDragged = YES;
+    //GGSharedDelegate.rootVC.canBeDragged = YES;
 }
 
 

@@ -244,6 +244,51 @@ static CAKeyframeAnimation * bounceKeyFrameAnimationForDistanceOnView(CGFloat di
     [self openDrawerSide:drawerSide animated:animated velocity:self.animationVelocity animationOptions:UIViewAnimationOptionCurveEaseInOut completion:completion];
 }
 
+-(void)bareLeftDrawerCompletion:(void (^)(BOOL))completion
+{
+   // NSParameterAssert(drawerSide != MMDrawerSideNone);
+    
+    UIViewController * sideDrawerViewController = [self sideDrawerViewControllerForSide:MMDrawerSideLeft];
+    CGRect visibleRect = CGRectIntersection(self.view.bounds,sideDrawerViewController.view.frame);
+    BOOL drawerFullyCovered = (CGRectContainsRect(self.centerContainerView.frame, visibleRect) ||
+                               CGRectIsNull(visibleRect));
+    if(drawerFullyCovered){
+        [self prepareToPresentDrawer:MMDrawerSideLeft animated:YES];
+    }
+    
+    if(sideDrawerViewController){
+        CGRect newFrame;
+        CGRect oldFrame = self.centerContainerView.frame;
+        newFrame = self.centerContainerView.frame;
+        newFrame.origin.x = newFrame.size.width;
+        
+        CGFloat distance = ABS(CGRectGetMinX(oldFrame)-newFrame.origin.x);
+        NSTimeInterval duration = MAX(distance/ABS(self.animationVelocity),MMDrawerMinimumAnimationDuration);
+        
+        [UIView
+         animateWithDuration:duration
+         delay:0.0
+         options:UIViewAnimationOptionCurveEaseInOut
+         animations:^{
+             [self.centerContainerView setFrame:newFrame];
+             [self updateDrawerVisualStateForDrawerSide:MMDrawerSideLeft percentVisible:1.0];
+         }
+         completion:^(BOOL finished) {
+             //End the appearance transition if it already wasn't open.
+             if(MMDrawerSideLeft != self.openSide){
+                 [sideDrawerViewController endAppearanceTransition];
+             }
+             [self setOpenSide:MMDrawerSideLeft];
+             
+             [self resetDrawerVisualStateForDrawerSide:MMDrawerSideLeft];
+             
+             if(completion){
+                 completion(finished);
+             }
+         }];
+    }
+}
+
 -(void)openDrawerSide:(MMDrawerSide)drawerSide animated:(BOOL)animated velocity:(CGFloat)velocity animationOptions:(UIViewAnimationOptions)options completion:(void (^)(BOOL))completion{
     NSParameterAssert(drawerSide != MMDrawerSideNone);
     

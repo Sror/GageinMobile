@@ -253,6 +253,9 @@ typedef void (^MMDrawerControllerDrawerVisualStateBlock)(MMDrawerController * dr
  */
 -(void)closeDrawerAnimated:(BOOL)animated completion:(void(^)(BOOL finished))completion;
 
+///////Add by Daniel Dong
+-(void)bareLeftDrawerCompletion:(void (^)(BOOL))completion;
+
 /**
  Opens the `drawer` passed in.
  

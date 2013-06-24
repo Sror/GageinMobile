@@ -684,7 +684,7 @@
     {
         if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
         {
-            [GGSharedDelegate.rootVC cover];
+            [GGSharedDelegate.drawerVC closeDrawerAnimated:YES completion:nil];
         }
         else if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation))
         {
@@ -692,11 +692,11 @@
             
             if ([self doNeedMenu])
             {
-                [GGSharedDelegate.rootVC reveal];
+                [GGSharedDelegate.drawerVC openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
             }
             else
             {
-                [GGSharedDelegate.rootVC cover];
+                [GGSharedDelegate.drawerVC closeDrawerAnimated:YES completion:nil];
             }
         }
     }
@@ -708,7 +708,7 @@
     
     if ([self isPortrait])
     {
-        _isMenuShowingBeforeLeavePortrait = GGSharedDelegate.rootVC.isRevealed;
+        _isMenuShowingBeforeLeavePortrait = (GGSharedDelegate.drawerVC.openSide != MMDrawerSideNone);
     }
     
     [self layoutUIForIPadIfNeededWithOrientation:toInterfaceOrientation];
@@ -731,12 +731,13 @@
 
 -(void)setNeedMenu:(BOOL)aNeedMenu
 {
-    GGSharedDelegate.rootVC.needMenu = aNeedMenu;
+    //GGSharedDelegate.rootVC.needMenu = aNeedMenu;
 }
 
 -(BOOL)needMenu
 {
-    return GGSharedDelegate.rootVC.needMenu;
+    return NO;
+    //return GGSharedDelegate.rootVC.needMenu;
 }
 
 
@@ -827,7 +828,7 @@
 {
     DLog(@"ssGraphShowPersonPanel:%@", aPersonID);
 
-    GGSsgrfPopPanelPersonInfoView *popUp = [[GGSsgrfPopPanelPersonInfoView alloc] initWithView:GGSharedDelegate.rootVC.view];
+    GGSsgrfPopPanelPersonInfoView *popUp = [[GGSsgrfPopPanelPersonInfoView alloc] initWithView:GGSharedDelegate.drawerVC.view];
     [popUp updateWithPersonID:aPersonID];
     
 //    [popUp.panel.btnLogo addTarget:self action:@selector(enterPersonDetailWithSender:) forControlEvents:UIControlEventTouchUpInside];
@@ -842,7 +843,7 @@
 {
     DLog(@"ssGraphShowCompanyPanel:%@", aCompanyID);
 
-    GGSsgrfPopPanelComInfoView *popUp = [[GGSsgrfPopPanelComInfoView alloc] initWithView:GGSharedDelegate.rootVC.view];
+    GGSsgrfPopPanelComInfoView *popUp = [[GGSsgrfPopPanelComInfoView alloc] initWithView:GGSharedDelegate.drawerVC.view];
     [popUp updateWithCompanyID:aCompanyID];
     //
     [_viewPopup removeFromSuperview];

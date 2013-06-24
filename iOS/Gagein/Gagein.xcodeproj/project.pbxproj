@@ -367,6 +367,7 @@
 		EA9A9BA01777B15A00B6AE7E /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9A9B9A1777B15900B6AE7E /* MMDrawerController.m */; };
 		EA9A9BA11777B15A00B6AE7E /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9A9B9C1777B15900B6AE7E /* MMDrawerVisualState.m */; };
 		EA9A9BA21777B15A00B6AE7E /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9A9B9E1777B15A00B6AE7E /* UIViewController+MMDrawerController.m */; };
+		EA9A9BA51777B27900B6AE7E /* GGLeftDrawerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9A9BA41777B27800B6AE7E /* GGLeftDrawerVC.m */; };
 		EA9B3A0C1768E24E008C5709 /* GGTriggerChartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9B3A0B1768E24E008C5709 /* GGTriggerChartCell.m */; };
 		EA9B3A0E1768E280008C5709 /* GGTriggerChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9B3A0D1768E280008C5709 /* GGTriggerChartCell.xib */; };
 		EA9C7F94177110F7003217F7 /* GGSsgrfPopPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C7F93177110F7003217F7 /* GGSsgrfPopPanelView.m */; };
@@ -1113,6 +1114,8 @@
 		EA9A9B9C1777B15900B6AE7E /* MMDrawerVisualState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerVisualState.m; sourceTree = "<group>"; };
 		EA9A9B9D1777B15A00B6AE7E /* UIViewController+MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MMDrawerController.h"; sourceTree = "<group>"; };
 		EA9A9B9E1777B15A00B6AE7E /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
+		EA9A9BA31777B27800B6AE7E /* GGLeftDrawerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGLeftDrawerVC.h; sourceTree = "<group>"; };
+		EA9A9BA41777B27800B6AE7E /* GGLeftDrawerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGLeftDrawerVC.m; sourceTree = "<group>"; };
 		EA9B3A0A1768E24E008C5709 /* GGTriggerChartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTriggerChartCell.h; sourceTree = "<group>"; };
 		EA9B3A0B1768E24E008C5709 /* GGTriggerChartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGTriggerChartCell.m; sourceTree = "<group>"; };
 		EA9B3A0D1768E280008C5709 /* GGTriggerChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGTriggerChartCell.xib; sourceTree = "<group>"; };
@@ -2639,6 +2642,8 @@
 				EAEC1E411739CCCD0058130E /* GGRootNaviVC.m */,
 				EA9162611767F6EC000AB2FB /* GGNavigationController.h */,
 				EA9162621767F6EE000AB2FB /* GGNavigationController.m */,
+				EA9A9BA31777B27800B6AE7E /* GGLeftDrawerVC.h */,
+				EA9A9BA41777B27800B6AE7E /* GGLeftDrawerVC.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3757,6 +3762,7 @@
 				EA9A9BA01777B15A00B6AE7E /* MMDrawerController.m in Sources */,
 				EA9A9BA11777B15A00B6AE7E /* MMDrawerVisualState.m in Sources */,
 				EA9A9BA21777B15A00B6AE7E /* UIViewController+MMDrawerController.m in Sources */,
+				EA9A9BA51777B27900B6AE7E /* GGLeftDrawerVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

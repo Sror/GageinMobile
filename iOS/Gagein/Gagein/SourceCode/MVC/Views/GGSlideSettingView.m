@@ -91,7 +91,7 @@
     {
         if (!ISIPADDEVICE)
         {
-            [GGSharedDelegate.rootVC bare];
+            [GGSharedDelegate.drawerVC bareLeftDrawerCompletion:nil];
         }
         
         _viewDimmed.frame = [self _dimmedRect];
@@ -104,7 +104,7 @@
     {
         if (!ISIPADDEVICE)
         {
-            [GGSharedDelegate.rootVC reveal];
+            [GGSharedDelegate.drawerVC openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
         }
         
         [_viewDimmed removeFromSuperview];
@@ -133,9 +133,9 @@
 #pragma mark - actions
 -(void)showSlide
 {
-    if (!GGSharedDelegate.rootVC.isRevealed)
+    if (GGSharedDelegate.drawerVC.openSide == MMDrawerSideNone)
     {
-        [GGSharedDelegate.rootVC reveal:^{
+        [GGSharedDelegate.drawerVC openDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
             [_delegate slideview:self isShowed:YES];
         }];
     }
@@ -148,11 +148,11 @@
 
 -(void)hideSlideOnCompletion:(void(^)(void))completion
 {
-    if (GGSharedDelegate.rootVC.isRevealed)
+    if (GGSharedDelegate.drawerVC.openSide != MMDrawerSideNone)
     {
         [_searchBar.tfSearch resignFirstResponder];
         
-        [GGSharedDelegate.rootVC cover:^{
+        [GGSharedDelegate.drawerVC closeDrawerAnimated:YES completion:^(BOOL finished) {
             [_delegate slideview:self isShowed:NO];
             
             if (completion)
