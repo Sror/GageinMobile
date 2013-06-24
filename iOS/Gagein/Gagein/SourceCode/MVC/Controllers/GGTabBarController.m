@@ -231,7 +231,7 @@
 
 
 - (void)hideTabBarAnimated:(BOOL)aAnimated
-{
+{ 
     if (ISIPADDEVICE)   return;
     //[self.view.layer removeAllAnimations];
     
