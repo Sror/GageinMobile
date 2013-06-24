@@ -294,4 +294,35 @@
     return bottomLine - aView.frame.origin.y;
 }
 
+#pragma mark - orientation
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    if (ISIPADDEVICE)
+    {
+        return YES;
+    }
+    
+    return toInterfaceOrientation == UIInterfaceOrientationPortrait; // etc
+}
+
+- (BOOL)shouldAutorotate {
+    
+    if (ISIPADDEVICE)
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    
+    if (ISIPADDEVICE)
+    {
+        return UIInterfaceOrientationMaskAll;
+    }
+    
+    return UIInterfaceOrientationMaskPortrait; // etc
+}
+
 @end
