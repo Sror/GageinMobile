@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGSsgrfRndImgButton : UIButton
+@interface GGSsgrfRndImgButton : UIView
+
+-(void)setImageUrl:(NSString *)aImageURL placeholder:(UIImage *)aPlaceHolder;
 
 -(void)addTarget:(id)target action:(SEL)action;
 -(void)clearActions;

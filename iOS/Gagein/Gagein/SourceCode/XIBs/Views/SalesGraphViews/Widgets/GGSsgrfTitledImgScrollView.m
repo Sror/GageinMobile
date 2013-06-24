@@ -100,8 +100,8 @@
         button.tag = i;
         
         NSString *urlStr = _imageUrls[i];
-        [button setImageWithURL:[NSURL URLWithString:urlStr]
-                       forState:UIControlStateNormal placeholderImage:_placeholder];
+        
+        [button setImageUrl:urlStr placeholder:_placeholder];
         button.layer.cornerRadius = 4.f;
         
         [button addTarget:_imageBtnTarget action:_imageBtnAction];

@@ -10,6 +10,10 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation GGSsgrfRndImgButton
+{
+    UIButton    *_button;
+    UIImageView *_imageView;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -31,25 +35,47 @@
     return self;
 }
 
+-(void)setTag:(NSInteger)tag
+{
+    [super setTag:tag];
+    _button.tag = tag;
+}
+
 -(void)_doInit
 {
-    self.layer.cornerRadius = 8.f;
-    self.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.layer.borderWidth = 2.f;
-    self.clipsToBounds = YES;
+    _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+    [self addSubview:_imageView];
     
-    self.contentMode = UIViewContentModeScaleAspectFill;
+    _button = [UIButton buttonWithType:UIButtonTypeCustom];
+    _button.frame = self.bounds;
+    [self addSubview:_button];
+    
+    
+    float radius = _imageView.frame.size.width / 4;
+    radius = MIN(4, radius);
+    _imageView.layer.cornerRadius = radius;
+    _imageView.layer.borderColor = GGSharedColor.silver.CGColor;
+    _imageView.layer.borderWidth = 2.f;
+    _imageView.clipsToBounds = YES;
+    
+    _imageView.contentMode = UIViewContentModeScaleAspectFill;
 }
 
 -(void)clearActions
 {
-    [self removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
+    [_button removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)addTarget:(id)target action:(SEL)action
 {
     //
-    [self addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    [_button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+}
+
+
+-(void)setImageUrl:(NSString *)aImageURL placeholder:(UIImage *)aPlaceHolder
+{
+    [_imageView setImageWithURL:[NSURL URLWithString:aImageURL] placeholderImage:aPlaceHolder];
 }
 
 @end

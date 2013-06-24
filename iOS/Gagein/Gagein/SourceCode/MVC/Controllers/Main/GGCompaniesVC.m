@@ -1051,7 +1051,7 @@
     {
         if (tableView == _updatesTV)
         {
-            if (indexPath.row == _updateTvExpandHelper.expandingIndex)
+            if (_updateTvExpandHelper.isExpanding && indexPath.row == _updateTvExpandHelper.expandingIndex)
             {
                 [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
             }
@@ -1059,7 +1059,7 @@
         
         else if (tableView == _happeningsTV)
         {
-            if (indexPath.row == _happeningTvExpandHelper.expandingIndex)
+            if (_happeningTvExpandHelper.isExpanding && indexPath.row == _happeningTvExpandHelper.expandingIndex)
             {
                 [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
             }
