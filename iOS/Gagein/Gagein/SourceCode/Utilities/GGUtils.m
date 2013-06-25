@@ -631,4 +631,26 @@
     return @"http://upload.appvv.com/2013/0130/1359528302270.jpg";
 }
 
++(BOOL)hasLinkedSnType:(EGGSnType)aSnType
+{
+    NSArray *snTypes = GGSharedRuntimeData.snTypes;
+    for (NSString *type in snTypes)
+    {
+        if (type.longLongValue == aSnType)
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
++(void)addSnType:(EGGSnType)aSnType
+{
+    NSMutableArray *snTypes = GGSharedRuntimeData.snTypes;
+    if (![self hasLinkedSnType:aSnType]) {
+        [snTypes addObject:[NSString stringWithFormat:@"%d", aSnType]];
+    }
+}
+
 @end

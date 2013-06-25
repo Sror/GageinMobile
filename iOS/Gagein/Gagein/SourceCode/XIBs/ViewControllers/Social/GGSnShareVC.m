@@ -10,9 +10,17 @@
 #import "GGCompanyUpdate.h"
 #import "GGHappening.h"
 
+#import "GGLinkedInOAuthVC.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import "SFOAuthCredentials.h"
+#import "OAToken.h"
+
 #define MAX_MESSAGE_LENGTH              (400)
 #define MAX_MESSAGE_LENGTH_TWITTER      (140)
 #define MAX_SUMMARY_LENGTH              (250)
+
+#define TAG_ALERT_SALESFORCE_OAUTH_FAILED   1000
+
 
 @interface GGSnShareVC ()
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -20,6 +28,9 @@
 @end
 
 @implementation GGSnShareVC
+{
+    //BOOL        _isLinking;
+}
 
 -(NSUInteger)maxLenghForMessageType:(EGGSnType)aSnType
 {
@@ -73,7 +84,12 @@
 
 - (void)viewDidLoad
 {
+    [self observeNotification:OA_NOTIFY_FACEBOOK_AUTH_OK];
+    [self observeNotification:OA_NOTIFY_SALESFORCE_AUTH_OK];
+    [self observeNotification:OA_NOTIFY_TWITTER_OAUTH_OK];
+    
     [super viewDidLoad];
+    
     self.naviTitle = [self snNameFromType:_snType];
     self.view.backgroundColor = GGSharedColor.white;
     self.textView.text = [self _messageToShare];
@@ -86,17 +102,158 @@
     //
     self.navigationItem.leftBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Cancel" target:self selector:@selector(naviBackAction:)];
     self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Share" target:self selector:@selector(shareAction:)];
+    
+    [self _checkIfHasLinked];
 }
+
+-(BOOL)_checkIfHasLinked
+{
+    BOOL hasLinked = [GGUtils hasLinkedSnType:_snType];
+    if (!hasLinked)
+    {
+        switch (_snType)
+        {
+            case kGGSnTypeFacebook:
+                [self connectFacebookReadAndPublish];
+                break;
+                
+            case kGGSnTypeSalesforce:
+                [self connectSalesForce];
+                break;
+                
+            case kGGSnTypeLinkedIn:
+                [self connectLinkedIn];
+                break;
+                
+            case kGGSnTypeTwitter:
+                [self connectTwitter];
+                break;
+                
+            default:
+                break;
+        }
+        
+        //_isLinking = YES;
+    }
+    
+    return hasLinked;
+}
+
+- (void)handleNotification:(NSNotification *)notification
+{
+    NSString *notiName = notification.name;
+    if ([notiName isEqualToString:OA_NOTIFY_LINKEDIN_AUTH_OK])
+    {
+        [self unobserveNotification:OA_NOTIFY_LINKEDIN_AUTH_OK];
+        
+        [self showLoadingHUD];
+        id op = [GGSharedAPI snSaveLinedInWithToken:self.linkedInAuthView.accessToken.key secret:self.linkedInAuthView.accessToken.secret callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [GGUtils addSnType:kGGSnTypeLinkedIn];
+                //_isLinking = NO;
+            }
+        }];
+        
+        [self registerOperation:op];
+        
+    }
+    else if ([notiName isEqualToString:OA_NOTIFY_FACEBOOK_AUTH_OK])
+    {
+        FBSession *session = notification.object;
+        NSString *accessToken = session.accessTokenData.accessToken;//[GGFacebookOAuth sharedInstance].session.accessTokenData.accessToken;
+        
+        [self showLoadingHUD];
+        id op = [GGSharedAPI snSaveFacebookWithToken:accessToken callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [GGUtils addSnType:kGGSnTypeFacebook];
+                //_isLinking = NO;
+            }
+        }];
+        
+        [self registerOperation:op];
+    }
+    else if ([notiName isEqualToString:OA_NOTIFY_SALESFORCE_AUTH_OK]) // salesforce ok
+    {
+        SFOAuthCredentials *credencial = notification.object;
+        
+        [self showLoadingHUD];
+        id op = [GGSharedAPI snSaveSalesforceWithToken:credencial.accessToken accountID:credencial.userId refreshToken:credencial.refreshToken instanceURL:credencial.instanceUrl.absoluteString callback:^(id operation, id aResultObject, NSError *anError) {
+            
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            
+            if (parser.isOK)
+            {
+                [GGUtils addSnType:kGGSnTypeSalesforce];
+                //_isLinking = NO;
+            }
+            else if (parser.messageCode == kGGMsgCodeSnSaleforceCantAuth)
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[GGStringPool stringWithMessageCode:kGGMsgCodeSnSaleforceCantAuth] delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:@"Learn more", nil];
+                alert.tag = TAG_ALERT_SALESFORCE_OAUTH_FAILED;
+                [alert show];
+            }
+            
+        }];
+        
+        [self registerOperation:op];
+    }
+    else if ([notiName isEqualToString:OA_NOTIFY_TWITTER_OAUTH_OK]) // twitter oauth ok
+    {
+        OAToken *token = notification.object;
+        
+        [self showLoadingHUD];
+        id op = [GGSharedAPI snSaveTwitterWithToken:token.key secret:token.secret callback:^(id operation, id aResultObject, NSError *anError) {
+            
+            [self hideLoadingHUD];
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [GGUtils addSnType:kGGSnTypeTwitter];
+                //_isLinking = NO;
+            }
+            
+        }];
+        
+        [self registerOperation:op];
+    }
+}
+
+#pragma mark - ui alertview delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == TAG_ALERT_SALESFORCE_OAUTH_FAILED)
+    {
+        if (buttonIndex == 1)
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.salesforce.com/crm/editions-pricing.jsp"]];
+        }
+    }
+}
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self hideBackButton];
+    
+    [_textView becomeFirstResponder];
 }
 
 #pragma mark - actions
 -(void)shareAction:(id)sender
 {
+    if (![self _checkIfHasLinked])
+    {
+        return;
+    }
+    
     NSString *summary, *message, *picURL;
     
     //

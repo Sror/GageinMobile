@@ -30,6 +30,8 @@ DEF_SINGLETON(GGRuntimeData)
         _competitorsCache = [GGCompetitorCache new];
         _updateDetailCache = [GGUpdateCache new];
         
+        _snTypes = [NSMutableArray array];
+        
         //
         _relevance = [[NSUserDefaults standardUserDefaults] integerForKey:kDefaultKeyRelevance];
         if (_relevance == kGGCompanyUpdateRelevanceUnKnown)

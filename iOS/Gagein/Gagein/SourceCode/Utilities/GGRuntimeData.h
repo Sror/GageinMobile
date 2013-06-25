@@ -26,6 +26,7 @@ AS_SINGLETON(GGRuntimeData)
 @property (strong) GGUpdateCache                                    *updateDetailCache;
 
 @property (readonly, nonatomic)   EGGCompanyUpdateRelevance           relevance;
+@property (strong)     NSMutableArray                      *snTypes;
 
 
 -(void)setRelevance:(EGGCompanyUpdateRelevance)aRelevance;
@@ -42,6 +43,9 @@ AS_SINGLETON(GGRuntimeData)
 
 //-(void)saveRecentSearches;
 -(void)saveKeyword:(NSString *)aKeyword;
+
+
+
 @end
 
 #define GGSharedRuntimeData [GGRuntimeData sharedInstance]

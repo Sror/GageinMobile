@@ -32,6 +32,7 @@ DEF_SINGLETON(GGSsgrfActionListener)
         [self observeNotification:GG_NOTIFY_SSGRF_UNFOLLOW_PERSON];
         [self observeNotification:GG_NOTIFY_SSGRF_FOLLOW_COMPANY];
         [self observeNotification:GG_NOTIFY_SSGRF_UNFOLLOW_COMPANY];
+        
     }
     return self;
 }

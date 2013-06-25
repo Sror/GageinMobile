@@ -55,7 +55,7 @@
 //#warning XXX: this two boolean value should be replaced by real judgement for salesforce and linkedIn account.
     BOOL                _needImportFromSalesforce;
     BOOL                _needImportFromLinkedIn;
-    NSMutableArray      *_snTypes;
+    //NSMutableArray      *_snTypes;
     
     NSUInteger          _pageNumberFollowedCompanies;
     NSUInteger          _pageNumberSuggestedCompanies;
@@ -72,7 +72,7 @@
         _searchedCompanies = [NSMutableArray array];
         _followedCompanies = [NSMutableArray array];
         _suggestedCompanies = [NSMutableArray array];
-        _snTypes = [NSMutableArray array];
+        //_snTypes = [NSMutableArray array];
         
         _pageNumberFollowedCompanies = 1;
         _pageNumberSuggestedCompanies = 1;
@@ -182,25 +182,7 @@
 }
 
 #pragma mark - internal
--(BOOL)_hasLinkedSnType:(EGGSnType)aSnType
-{
-    for (NSString *type in _snTypes)
-    {
-        if (type.longLongValue == aSnType)
-        {
-            return YES;
-        }
-    }
-    
-    return NO;
-}
 
--(void)_addSnType:(EGGSnType)aSnType
-{
-    if (![self _hasLinkedSnType:aSnType]) {
-        [_snTypes addObject:[NSString stringWithFormat:@"%d", aSnType]];
-    }
-}
 
 -(void)_showDoneBtn:(BOOL)aShow
 {
@@ -326,7 +308,7 @@
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {
-                [self _addSnType:kGGSnTypeLinkedIn];
+                [GGUtils addSnType:kGGSnTypeLinkedIn];
                 [self _callImportCompaniesWithSnType:kGGSnTypeLinkedIn];
             }
         }];
@@ -344,7 +326,7 @@
 
 -(void)importFromLinkedInAction:(id)sender
 {
-    if ([self _hasLinkedSnType:kGGSnTypeLinkedIn])
+    if ([GGUtils hasLinkedSnType:kGGSnTypeLinkedIn])
     {
         [self _callImportCompaniesWithSnType:kGGSnTypeLinkedIn];
     }
@@ -870,10 +852,10 @@
         if (parser.isOK)
         {
             NSArray *snTypes = [parser parseSnGetList];
-            [_snTypes removeAllObjects];
-            [_snTypes addObjectsFromArray:snTypes];
+            [GGSharedRuntimeData.snTypes removeAllObjects];
+            [GGSharedRuntimeData.snTypes addObjectsFromArray:snTypes];
             
-            _needImportFromLinkedIn = (![self _hasLinkedSnType:kGGSnTypeLinkedIn]);
+            _needImportFromLinkedIn = (![GGUtils hasLinkedSnType:kGGSnTypeLinkedIn]);
             [self _adjustStyleForSuggestedHeaderView];
         }
     }];

@@ -128,7 +128,8 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
 - (void)viewDidLoad
 {
     self.navigationController.navigationBarHidden = NO;
-    //self.navigationItem.hidesBackButton = YES;
+    self.navigationItem.hidesBackButton = YES;
+    self.navigationItem.leftBarButtonItem = nil;
     
     [super viewDidLoad];
     self.naviTitle = @"Salesforce OAuth";
@@ -143,6 +144,14 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
     
     [self.oauthCoordinator authenticate];
     [self showLoadingHUD];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self showBackButton];
+    //self.navigationItem.leftBarButtonItem = nil;
 }
 
 -(void)dealloc

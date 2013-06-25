@@ -342,6 +342,13 @@
     [addressBar setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self showBackButton];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];

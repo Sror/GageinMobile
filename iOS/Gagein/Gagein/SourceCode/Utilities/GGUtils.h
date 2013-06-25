@@ -70,4 +70,7 @@
 
 +(NSString *)testImageURL;
 
++(BOOL)hasLinkedSnType:(EGGSnType)aSnType;
++(void)addSnType:(EGGSnType)aSnType;
+
 @end

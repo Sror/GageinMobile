@@ -61,6 +61,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self getSnTypes];
+    
+    //
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [self _initTabbar];
@@ -83,6 +86,19 @@
     [self enterLoginIfNeeded];
     
     return YES;
+}
+
+-(void)getSnTypes
+{
+    [GGSharedAPI snGetList:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            NSArray *snTypes = [parser parseSnGetList];
+            [GGSharedRuntimeData.snTypes removeAllObjects];
+            [GGSharedRuntimeData.snTypes addObjectsFromArray:snTypes];
+        }
+    }];
 }
 
 -(void)checkForUpgrade

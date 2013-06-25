@@ -37,6 +37,10 @@
 #import "GGWebVC.h"
 #import "CMActionSheet.h"
 #import "GGCompanyUpdate.h"
+#import "GGSnShareVC.h"
+#import "GGHappening.h"
+
+#import <FacebookSDK/FacebookSDK.h>
 
 #define MAX_NAVI_TITLE_LENGTH           20
 #define MAX_NAVI_TITLE_LENGTH_IPAD      50
@@ -64,6 +68,8 @@
     GGSsgrfPopPanelView         *_viewPopup;
     
     GGCompanyUpdate                          *_dataForSignal;
+    GGCompanyUpdate                          *_updateForSharing;
+    GGHappening                              *_happeningForSharing;
 }
 
 #pragma mark - api operation management
@@ -533,14 +539,15 @@
 {
     //[GGAlert alert:@"Connect to Salesforce (TODO)"];
     GGSalesforceOAuthVC *vc = [[GGSalesforceOAuthVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self popSheetInNaviForVC:vc];
 }
 
 -(void)connectLinkedIn
 {
     _oAuthLoginView = [[GGLinkedInOAuthVC alloc] initWithNibName:nil bundle:nil];
     [self observeNotification:OA_NOTIFY_LINKEDIN_AUTH_OK];
-    [self.navigationController pushViewController:_oAuthLoginView animated:YES];
+    [self popSheetInNaviForVC:_oAuthLoginView];
+    //[self.navigationController pushViewController:_oAuthLoginView animated:YES];
 }
 
 -(void)connectFacebookRead
@@ -561,7 +568,7 @@
 -(void)connectTwitter
 {
     GGTwitterOAuthVC *vc = [[GGTwitterOAuthVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self popSheetInNaviForVC:vc];
 }
 
 -(GGLinkedInOAuthVC *)linkedInAuthView
@@ -928,6 +935,18 @@
 -(void)ssGraphShare:(id)aData
 {
     DLog(@"ssGraphShare:%@", aData);
+    if ([aData isKindOfClass:[GGCompanyUpdate class]])
+    {
+        _updateForSharing = aData;
+        _happeningForSharing = nil;
+        [self _showSheetToShare:YES];
+    }
+    else if ([aData isKindOfClass:[GGHappening class]])
+    {
+        _happeningForSharing = aData;
+        _updateForSharing = nil;
+        [self _showSheetToShare:NO];
+    }
 }
 
 -(void)ssGraphShowImageURL:(NSString *)aImageURL
@@ -969,6 +988,257 @@
     
     // Present
     [actionSheet present];
+}
+
+
+
+//-(void)handleFaceBookAuthOK:(id)anObject
+//{
+//    FBSession *session = anObject;
+//    NSString *accessToken = session.accessTokenData.accessToken;//[GGFacebookOAuth sharedInstance].session.accessTokenData.accessToken;
+//    
+//    [self showLoadingHUD];
+//    id op = [GGSharedAPI snSaveFacebookWithToken:accessToken callback:^(id operation, id aResultObject, NSError *anError) {
+//        [self hideLoadingHUD];
+//        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//        if (parser.isOK)
+//        {
+//            [GGUtils addSnType:kGGSnTypeFacebook];
+//            
+//            if (_updateForSharing)
+//            {
+//                [self _shareUpdateWithType:kGGSnTypeFacebook];
+//            }
+//            else if (_happeningForSharing)
+//            {
+//                [self _shareHappeningWithType:kGGSnTypeFacebook];
+//            }
+//        }
+//    }];
+//    
+//    [self registerOperation:op];
+//}
+//
+//-(void)handleSalesforceAuthOK:(id)anObject
+//{
+//    
+//}
+//
+//-(void)handleTwitterAuthOK:(id)anObject
+//{
+//    
+//}
+
+-(void)_shareUpdateWithType:(EGGSnType)aType
+{
+    GGSnShareVC *vc = [[GGSnShareVC alloc] init];
+    vc.comUpdateDetail = _updateForSharing;
+    vc.shareType = kGGSnShareTypeUpdate;
+    vc.snType = aType;
+    vc.snTypesRef = GGSharedRuntimeData.snTypes;
+    
+    [self.navigationController pushViewController:vc animated:NO];
+}
+
+-(void)_shareHappeningWithType:(EGGSnType)aType
+{
+    GGSnShareVC *vc = [[GGSnShareVC alloc] init];
+    vc.happening = _happeningForSharing;
+    vc.shareType = kGGSnShareTypeUpdate;
+    vc.snType = aType;
+    vc.snTypesRef = GGSharedRuntimeData.snTypes;
+    
+    [self.navigationController pushViewController:vc animated:NO];
+}
+
+
+-(void)_showSheetToShare:(BOOL)aShareUpdate
+{
+    CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
+    
+    UIImage *bgImg = nil;
+    
+    //if ([self _hasLinkedSnType:kGGSnTypeSalesforce])
+    {
+        // lightGrayBtnBg
+        bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"chatterLongBtnBg"];
+        [actionSheet addButtonWithTitle:@"Chatter" bgImage:bgImg block:^{
+            
+            DLog(@"Shared to chatter.");
+            aShareUpdate ? [self _shareUpdateWithType:kGGSnTypeSalesforce] : [self _shareHappeningWithType:kGGSnTypeSalesforce];            
+        }];
+    }
+    
+    
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"LinkedIn" bgImage:bgImg block:^{
+        
+        aShareUpdate ? [self _shareUpdateWithType:kGGSnTypeLinkedIn] : [self _shareHappeningWithType:kGGSnTypeLinkedIn];
+    
+    }];
+    
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"twitterLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"Twitter" bgImage:bgImg block:^{
+        DLog(@"Shared to Twitter.");
+        
+        aShareUpdate ? [self _shareUpdateWithType:kGGSnTypeTwitter] : [self _shareHappeningWithType:kGGSnTypeTwitter];
+        
+    }];
+    
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"Facebook" bgImage:bgImg block:^{
+        DLog(@"Shared to facebook.");
+        
+        aShareUpdate ? [self _shareUpdateWithType:kGGSnTypeFacebook] : [self _shareHappeningWithType:kGGSnTypeFacebook];
+        
+    }];
+    
+    
+    if ([GGUtils hasLinkedSnType:kGGSnTypeYammer])
+    {
+        bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"chatterLongBtnBg"];
+        [actionSheet addButtonWithTitle:@"Yammer" bgImage:bgImg block:^{
+            DLog(@"Shared to Yammer.");
+            aShareUpdate ? [self _shareUpdateWithType:kGGSnTypeYammer] : [self _shareHappeningWithType:kGGSnTypeYammer];
+        }];
+    }
+    
+    [actionSheet addSeparator];
+    
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"Email" bgImage:bgImg block:^{
+        aShareUpdate ? [self sendMailForUpdate] : [self sendMailForHappening];
+    }];
+    
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"SMS" bgImage:bgImg block:^{
+        aShareUpdate ? [self sendSMSForUpdate] : [self sendSMSForHappening];
+    }];
+    
+    [actionSheet addSeparator];
+    
+    bgImg = [UIImage imageNamed:@"grayBtnBg"];
+    UIButton *cancelBtn = [actionSheet addButtonWithTitle:@"Cancel" bgImage:bgImg block:^{
+        
+    }];
+    [cancelBtn setTitleColor:GGSharedColor.white forState:UIControlStateNormal];
+    [cancelBtn setTitleShadowColor:GGSharedColor.black forState:UIControlStateNormal];
+    
+    
+    //    [actionSheet addSeparator];
+    //    [actionSheet addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:^{
+    //        NSLog(@"Dismiss action sheet with \"Close Button\"");
+    //    }];
+    
+    // Present
+    [actionSheet present];
+}
+
+-(void)sendSMSForUpdate
+{
+    NSString *body = [NSString stringWithFormat:@"%@\n\n%@\n\nvia Gagein at www.gagein.com", _updateForSharing.headline, _updateForSharing.url];
+    [GGUtils sendSmsTo:nil body:body vcDelegate:self];
+    [GGSharedDelegate makeNaviBarCustomed:NO];
+}
+
+-(void)sendSMSForHappening
+{
+    NSString *body = [NSString stringWithFormat:@"%@\n\nvia Gagein at www.gagein.com", [_happeningForSharing headLineText]];
+    [GGUtils sendSmsTo:nil body:body vcDelegate:self];
+    [GGSharedDelegate makeNaviBarCustomed:NO];
+}
+
+
+-(void)sendMailForUpdate
+{
+    if (![MFMailComposeViewController canSendMail])
+    {
+        [GGAlert alertWithMessage:@"Sorry, You can't send email on this device."];
+        return;
+    }
+    
+    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    [controller setSubject:_updateForSharing.headline];
+    
+    NSString *contentBody = [NSString stringWithFormat:@"<div><p>I want to share this update with you.</p> \
+                             <p><a href=\"%@\">%@</a></p> \
+                             <p><strong>%@</strong></p> \
+                             <p><em>%@</em></p> \
+                             Shared from <a href=\"www.gagein.com\">GageIn</a>, %@ </div>"
+                             , _updateForSharing.url, _updateForSharing.url
+                             , _updateForSharing.headline
+                             , _updateForSharing.contentInDetail, GAGEIN_SLOGAN];
+    
+    
+    [controller setMessageBody:contentBody isHTML:YES];
+    
+    [GGSharedDelegate makeNaviBarCustomed:NO];
+    [self presentViewController:controller animated:YES completion:nil];
+    
+}
+
+-(void)sendMailForHappening
+{
+    if (![MFMailComposeViewController canSendMail])
+    {
+        [GGAlert alertWithMessage:@"Sorry, You can't send email on this device."];
+        return;
+    }
+    
+    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    [controller setSubject:[_happeningForSharing headLineText]];
+    
+    NSString *contentBody = [NSString stringWithFormat:@"<div><p>I want to share this update with you.</p> \
+                             <p><strong>%@</strong></p> \
+                             Shared from <a href=\"www.gagein.com\">GageIn</a>, %@ </div>"
+                             
+                             , [_happeningForSharing headLineText], GAGEIN_SLOGAN];
+    
+    
+    [controller setMessageBody:contentBody isHTML:YES];
+    
+    [GGSharedDelegate makeNaviBarCustomed:NO];
+    [self presentViewController:controller animated:YES completion:nil];
+    
+}
+
+#pragma mark - message delegate
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller
+                 didFinishWithResult:(MessageComposeResult)result
+{
+    switch (result)
+    {
+        case MessageComposeResultCancelled:
+            DLog(@"Cancelled");
+            break;
+        case MessageComposeResultFailed:
+            DLog(@"Failed");
+            break;
+        case MessageComposeResultSent:
+            [self showCheckMarkHUDWithText:@"Sent OK!"];
+            break;
+        default:
+            break;
+    }
+    
+    [GGSharedDelegate makeNaviBarCustomed:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+#pragma mark - MFMailComposeViewControllerDelegate
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError*)error;
+{
+    if (result == MFMailComposeResultSent) {
+        NSLog(@"It's away!");
+    }
+    
+    [GGSharedDelegate makeNaviBarCustomed:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

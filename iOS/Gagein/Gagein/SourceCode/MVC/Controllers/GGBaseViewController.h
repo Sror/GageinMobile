@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import <MessageUI/MessageUI.h>
 
 @class GGLinkedInOAuthVC;
 
-@interface GGBaseViewController : UIViewController
+@interface GGBaseViewController : UIViewController <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 
 @property (strong, nonatomic)  UILabel                     *customNaviTitle;
 @property (copy, nonatomic)    NSString                    *naviTitle;
@@ -25,7 +26,7 @@
 -(void)showLoadingHUD;
 -(void)hideLoadingHUD;
 -(void)showCheckMarkHUDWithText:(NSString *)aText;
-- (void)showHUDWithCustomView:(UIView*)aCustomView text:(NSString *)aText;
+//- (void)showHUDWithCustomView:(UIView*)aCustomView text:(NSString *)aText;
 
 -(void)installGageinLogo;
 -(void)installGageinLogoTo:(UIView *)aView;

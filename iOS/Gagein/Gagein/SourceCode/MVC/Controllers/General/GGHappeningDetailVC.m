@@ -64,7 +64,7 @@
     UITapGestureRecognizer *_tapGestEnterOldCompanyDetail;
     UITapGestureRecognizer *_tapGestEnterPersonDetail;
     
-    NSMutableArray          *_snTypes;
+    //NSMutableArray          *_snTypes;
     BOOL                    _isTabbarHiddenWhenLoaded;
 }
 
@@ -73,7 +73,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _cellDatas = [NSMutableArray array];
-        _snTypes = [NSMutableArray array];
+        //_snTypes = [NSMutableArray array];
     }
     return self;
 }
@@ -108,10 +108,6 @@
 #pragma mark -
 - (void)viewDidLoad
 {
-    [self observeNotification:OA_NOTIFY_FACEBOOK_AUTH_OK];
-    [self observeNotification:OA_NOTIFY_SALESFORCE_AUTH_OK];
-    [self observeNotification:OA_NOTIFY_TWITTER_OAUTH_OK];
-    
     [super viewDidLoad];
     
     _isTabbarHiddenWhenLoaded = GGSharedDelegate.tabBarController.isTabbarHidden;
@@ -266,17 +262,7 @@
         bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"chatterLongBtnBg"];
         [actionSheet addButtonWithTitle:@"Chatter" bgImage:bgImg block:^{
             
-            DLog(@"Shared to chatter.");
-            //[self _shareWithType:kGGSnTypeSalesforce];
-            
-            if ([self _hasLinkedSnType:kGGSnTypeSalesforce])
-            {
-                [self _shareWithType:kGGSnTypeSalesforce];
-            }
-            else
-            {
-                [self connectSalesForce];
-            }
+            [self _shareWithType:kGGSnTypeSalesforce];
             
         }];
     }
@@ -284,50 +270,27 @@
     
     bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
     [actionSheet addButtonWithTitle:@"LinkedIn" bgImage:bgImg block:^{
-        DLog(@"Shared to LinkedIn.");
-        if ([self _hasLinkedSnType:kGGSnTypeLinkedIn])
-        {
-            //#warning TODO: Enter a page to change message and share
-            [self _shareWithType:kGGSnTypeLinkedIn];
-        }
-        else
-        {
-            [self connectLinkedIn];
-        }
+        
+        [self _shareWithType:kGGSnTypeLinkedIn];
+        
     }];
     
     bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"twitterLongBtnBg"];
     [actionSheet addButtonWithTitle:@"Twitter" bgImage:bgImg block:^{
-        DLog(@"Shared to Twitter.");
         
-        if ([self _hasLinkedSnType:kGGSnTypeTwitter])
-        {
-            [self _shareWithType:kGGSnTypeTwitter];
-        }
-        else
-        {
-            [self connectTwitter];
-        }
+        [self _shareWithType:kGGSnTypeTwitter];
         
     }];
     
     bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
     [actionSheet addButtonWithTitle:@"Facebook" bgImage:bgImg block:^{
-        DLog(@"Shared to facebook.");
         
-        if ([self _hasLinkedSnType:kGGSnTypeFacebook])
-        {
-            [self _shareWithType:kGGSnTypeFacebook];
-        }
-        else
-        {
-            [self connectFacebookReadAndPublish];
-        }
+        [self _shareWithType:kGGSnTypeFacebook];
         
     }];
     
     
-    if ([self _hasLinkedSnType:kGGSnTypeYammer])
+    if ([GGUtils hasLinkedSnType:kGGSnTypeYammer])
     {
         bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"chatterLongBtnBg"];
         [actionSheet addButtonWithTitle:@"Yammer" bgImage:bgImg block:^{
@@ -367,25 +330,6 @@
     [actionSheet present];
 }
 
--(BOOL)_hasLinkedSnType:(EGGSnType)aSnType
-{
-    for (NSString *type in _snTypes)
-    {
-        if (type.longLongValue == aSnType)
-        {
-            return YES;
-        }
-    }
-    
-    return NO;
-}
-
--(void)_addSnType:(EGGSnType)aSnType
-{
-    if (![self _hasLinkedSnType:aSnType]) {
-        [_snTypes addObject:[NSString stringWithFormat:@"%d", aSnType]];
-    }
-}
 
 
 -(void)_shareWithType:(EGGSnType)aType
@@ -393,7 +337,7 @@
     GGSnShareVC *vc = [[GGSnShareVC alloc] init];
     vc.happening = _currentDetail;
     vc.snType = aType;
-    vc.snTypesRef = _snTypes;
+    vc.snTypesRef = GGSharedRuntimeData.snTypes;
     vc.shareType = _isPeopleHappening ? kGGSnShareTypeHappeningPerson : kGGSnShareTypeHappeningCompany;
     
     [self.navigationController pushViewController:vc animated:YES];
@@ -852,113 +796,113 @@
         if (parser.isOK)
         {
             NSArray *snTypes = [parser parseSnGetList];
-            [_snTypes removeAllObjects];
-            [_snTypes addObjectsFromArray:snTypes];
+            [GGSharedRuntimeData.snTypes removeAllObjects];
+            [GGSharedRuntimeData.snTypes addObjectsFromArray:snTypes];
         }
     }];
     
     [self registerOperation:op];
 }
 
-#pragma mark - notification
-- (void)handleNotification:(NSNotification *)notification
-{
-    NSString *notiName = notification.name;
-    if ([notiName isEqualToString:OA_NOTIFY_LINKEDIN_AUTH_OK])
-    {
-        [self unobserveNotification:OA_NOTIFY_LINKEDIN_AUTH_OK];
-        
-        [self showLoadingHUD];
-        id op = [GGSharedAPI snSaveLinedInWithToken:self.linkedInAuthView.accessToken.key secret:self.linkedInAuthView.accessToken.secret callback:^(id operation, id aResultObject, NSError *anError) {
-            [self hideLoadingHUD];
-            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            if (parser.isOK)
-            {
-                [self _addSnType:kGGSnTypeLinkedIn];
-                [self _shareWithType:kGGSnTypeLinkedIn];
-                //#warning TODO: Enter a page to change message and share
-            }
-        }];
-        
-        [self registerOperation:op];
-        
-    }
-    else if ([notiName isEqualToString:OA_NOTIFY_FACEBOOK_AUTH_OK])
-    {
-        FBSession *session = notification.object;
-        NSString *accessToken = session.accessTokenData.accessToken;//[GGFacebookOAuth sharedInstance].session.accessTokenData.accessToken;
-        
-        [self showLoadingHUD];
-        id op = [GGSharedAPI snSaveFacebookWithToken:accessToken callback:^(id operation, id aResultObject, NSError *anError) {
-            [self hideLoadingHUD];
-            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            if (parser.isOK)
-            {
-                [self _addSnType:kGGSnTypeFacebook];
-                [self _shareWithType:kGGSnTypeFacebook];
-            }
-        }];
-        
-        [self registerOperation:op];
-    }
-    else if ([notiName isEqualToString:OA_NOTIFY_SALESFORCE_AUTH_OK]) // salesforce ok
-    {
-        SFOAuthCredentials *credencial = notification.object;
-        
-        [self showLoadingHUD];
-        id op = [GGSharedAPI snSaveSalesforceWithToken:credencial.accessToken accountID:credencial.userId refreshToken:credencial.refreshToken instanceURL:credencial.instanceUrl.absoluteString callback:^(id operation, id aResultObject, NSError *anError) {
-            
-            [self hideLoadingHUD];
-            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            
-            if (parser.isOK)
-            {
-                [self _addSnType:kGGSnTypeSalesforce];
-                [self _shareWithType:kGGSnTypeSalesforce];
-            }
-            else if (parser.messageCode == kGGMsgCodeSnSaleforceCantAuth)
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[GGStringPool stringWithMessageCode:kGGMsgCodeSnSaleforceCantAuth] delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:@"Learn more", nil];
-                alert.tag = TAG_ALERT_SALESFORCE_OAUTH_FAILED;
-                [alert show];
-            }
-            
-        }];
-        
-        [self registerOperation:op];
-    }
-    else if ([notiName isEqualToString:OA_NOTIFY_TWITTER_OAUTH_OK]) // twitter oauth ok
-    {
-        OAToken *token = notification.object;
-        
-        [self showLoadingHUD];
-        id op = [GGSharedAPI snSaveTwitterWithToken:token.key secret:token.secret callback:^(id operation, id aResultObject, NSError *anError) {
-            
-            [self hideLoadingHUD];
-            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            if (parser.isOK)
-            {
-                [self _addSnType:kGGSnTypeTwitter];
-                [self _shareWithType:kGGSnTypeTwitter];
-            }
-            
-        }];
-        
-        [self registerOperation:op];
-    }
-}
+//#pragma mark - notification
+//- (void)handleNotification:(NSNotification *)notification
+//{
+//    NSString *notiName = notification.name;
+//    if ([notiName isEqualToString:OA_NOTIFY_LINKEDIN_AUTH_OK])
+//    {
+//        [self unobserveNotification:OA_NOTIFY_LINKEDIN_AUTH_OK];
+//        
+//        [self showLoadingHUD];
+//        id op = [GGSharedAPI snSaveLinedInWithToken:self.linkedInAuthView.accessToken.key secret:self.linkedInAuthView.accessToken.secret callback:^(id operation, id aResultObject, NSError *anError) {
+//            [self hideLoadingHUD];
+//            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//            if (parser.isOK)
+//            {
+//                [GGUtils addSnType:kGGSnTypeLinkedIn];
+//                [self _shareWithType:kGGSnTypeLinkedIn];
+//                //#warning TODO: Enter a page to change message and share
+//            }
+//        }];
+//        
+//        [self registerOperation:op];
+//        
+//    }
+//    else if ([notiName isEqualToString:OA_NOTIFY_FACEBOOK_AUTH_OK])
+//    {
+//        FBSession *session = notification.object;
+//        NSString *accessToken = session.accessTokenData.accessToken;//[GGFacebookOAuth sharedInstance].session.accessTokenData.accessToken;
+//        
+//        [self showLoadingHUD];
+//        id op = [GGSharedAPI snSaveFacebookWithToken:accessToken callback:^(id operation, id aResultObject, NSError *anError) {
+//            [self hideLoadingHUD];
+//            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//            if (parser.isOK)
+//            {
+//                [GGUtils addSnType:kGGSnTypeFacebook];
+//                [self _shareWithType:kGGSnTypeFacebook];
+//            }
+//        }];
+//        
+//        [self registerOperation:op];
+//    }
+//    else if ([notiName isEqualToString:OA_NOTIFY_SALESFORCE_AUTH_OK]) // salesforce ok
+//    {
+//        SFOAuthCredentials *credencial = notification.object;
+//        
+//        [self showLoadingHUD];
+//        id op = [GGSharedAPI snSaveSalesforceWithToken:credencial.accessToken accountID:credencial.userId refreshToken:credencial.refreshToken instanceURL:credencial.instanceUrl.absoluteString callback:^(id operation, id aResultObject, NSError *anError) {
+//            
+//            [self hideLoadingHUD];
+//            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//            
+//            if (parser.isOK)
+//            {
+//                [GGUtils addSnType:kGGSnTypeSalesforce];
+//                [self _shareWithType:kGGSnTypeSalesforce];
+//            }
+//            else if (parser.messageCode == kGGMsgCodeSnSaleforceCantAuth)
+//            {
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[GGStringPool stringWithMessageCode:kGGMsgCodeSnSaleforceCantAuth] delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:@"Learn more", nil];
+//                alert.tag = TAG_ALERT_SALESFORCE_OAUTH_FAILED;
+//                [alert show];
+//            }
+//            
+//        }];
+//        
+//        [self registerOperation:op];
+//    }
+//    else if ([notiName isEqualToString:OA_NOTIFY_TWITTER_OAUTH_OK]) // twitter oauth ok
+//    {
+//        OAToken *token = notification.object;
+//        
+//        [self showLoadingHUD];
+//        id op = [GGSharedAPI snSaveTwitterWithToken:token.key secret:token.secret callback:^(id operation, id aResultObject, NSError *anError) {
+//            
+//            [self hideLoadingHUD];
+//            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//            if (parser.isOK)
+//            {
+//                [GGUtils addSnType:kGGSnTypeTwitter];
+//                [self _shareWithType:kGGSnTypeTwitter];
+//            }
+//            
+//        }];
+//        
+//        [self registerOperation:op];
+//    }
+//}
 
-#pragma mark - ui alertview delegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (alertView.tag == TAG_ALERT_SALESFORCE_OAUTH_FAILED)
-    {
-        if (buttonIndex == 1)
-        {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.salesforce.com/crm/editions-pricing.jsp"]];
-        }
-    }
-}
+//#pragma mark - ui alertview delegate
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    if (alertView.tag == TAG_ALERT_SALESFORCE_OAUTH_FAILED)
+//    {
+//        if (buttonIndex == 1)
+//        {
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.salesforce.com/crm/editions-pricing.jsp"]];
+//        }
+//    }
+//}
 
 #pragma mark - 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
