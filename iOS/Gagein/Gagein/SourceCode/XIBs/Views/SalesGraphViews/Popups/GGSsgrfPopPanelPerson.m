@@ -231,6 +231,9 @@
             if (parser.isOK)
             {
                 _data.followed = NO;
+                
+                [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
+                
                 [self updateFollowButton];
             }
         }];
@@ -242,6 +245,9 @@
             if (parser.isOK)
             {
                 _data.followed = YES;
+                
+                [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
+                
                 [self updateFollowButton];
             }
         }];

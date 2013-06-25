@@ -279,8 +279,12 @@
     {
         id op = [GGSharedAPI followPersonWithID:_personID callback:^(id operation, id aResultObject, NSError *anError) {
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            if (parser.status == 1) {
+            if (parser.isOK)
+            {
                 _personOverview.followed = YES;
+                
+                [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
+                
                 [self _updateUiBtnFollow];
             }
             else
@@ -301,8 +305,12 @@
     {
         id op = [GGSharedAPI unfollowPersonWithID:_personID callback:^(id operation, id aResultObject, NSError *anError) {
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            if (parser.status == 1) {
+            if (parser.isOK)
+            {
                 _personOverview.followed = NO;
+                
+                [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
+                
                 [self _updateUiBtnFollow];
             }
         }];

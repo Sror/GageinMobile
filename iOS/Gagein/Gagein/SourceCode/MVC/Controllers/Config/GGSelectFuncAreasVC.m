@@ -101,6 +101,8 @@
             [GGSharedDelegate popNaviToRoot];
             [GGSharedDelegate showTabIndex:0];
             [self postNotification:GG_NOTIFY_LOG_IN]; // step is done,and notify for the completion
+            
+            [self postNotification:GG_NOTIFY_FUNC_ROLE_CHANGED];
         }
         else
         {
@@ -123,7 +125,8 @@
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
-            [GGAlert alertWithMessage:@"Succeeded!"];
+            //[GGAlert alertWithMessage:@"Succeeded!"];
+            [self postNotification:GG_NOTIFY_FUNC_ROLE_CHANGED];
         }
         else
         {

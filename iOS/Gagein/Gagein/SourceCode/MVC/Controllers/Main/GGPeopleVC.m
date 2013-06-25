@@ -91,6 +91,8 @@
     [self observeNotification:GG_NOTIFY_LOG_IN];
     [self observeNotification:GG_NOTIFY_MENU_REVEAL];
     [self observeNotification:GG_NOTIFY_MENU_COVER];
+    [self observeNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
+    [self observeNotification:GG_NOTIFY_FUNC_ROLE_CHANGED];
     
     [super viewDidLoad];
     
@@ -125,6 +127,7 @@
     
     //[self.updatesTV triggerPullToRefresh];
     [self _getInitData];
+    [self _callApiGetMenu];
 }
 
 -(BOOL)doNeedMenu
@@ -141,7 +144,7 @@
     // change menu to people type
     [_slideSettingView changeDelegate:self];
     _slideSettingView.viewTable.tableHeaderView = nil;
-    [self _callApiGetMenu];
+    
     
     [GGSharedDelegate.rootVC enableSwipGesture:YES];
     
@@ -223,6 +226,12 @@
         //self.view.userInteractionEnabled = YES;
         [self freezeMe:NO];
         [_slideSettingView.searchBar resignFirstResponder];
+    }
+    
+    else if ([noteName isEqualToString:GG_NOTIFY_PERSON_FOLLOW_CHANGED]
+             || [noteName isEqualToString:GG_NOTIFY_FUNC_ROLE_CHANGED])
+    {
+        [self _callApiGetMenu];
     }
 }
 
@@ -353,7 +362,7 @@
     if (!GGSharedDelegate.rootVC.isRevealed)
     {
         [_slideSettingView showSlide];
-        [self _callApiGetMenu];
+        //[self _callApiGetMenu];
     }
     else
     {
@@ -813,7 +822,7 @@
     }
     else
     {
-        [self _callApiGetMenu];
+        //[self _callApiGetMenu];
     }
     
     [self _adjustSelfFrameForIpadWithOrient:toInterfaceOrientation];

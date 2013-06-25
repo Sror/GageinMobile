@@ -397,7 +397,6 @@
             
             if (data.followed)  // unfollow him
             {
-//#warning TODO: No follow/unfollow person API
                 [self showLoadingHUD];
                 id op = [GGSharedAPI unfollowPersonWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
                     [self hideLoadingHUD];
@@ -405,6 +404,9 @@
                     if (parser.isOK)
                     {
                         data.followed = NO;
+                        
+                        [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
+                        
                         [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                     }
                     else
@@ -424,6 +426,9 @@
                     if (parser.isOK)
                     {
                         data.followed = YES;
+                        
+                        [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
+                        
                         [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                     }
                     else
@@ -454,6 +459,8 @@
                 GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
                 if (parser.isOK)
                 {
+                    [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
+                    
                     int indexInFollowedList = [self _indexInFollowedListWithPersonID:data.ID];
                     if (indexInFollowedList != NSNotFound)
                     {
