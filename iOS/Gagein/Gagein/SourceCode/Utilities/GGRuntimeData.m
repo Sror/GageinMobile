@@ -10,6 +10,7 @@
 #import "GGMember.h"
 #import "GGPath.h"
 
+
 #define kDataKeyCurrentUser @"kDataKeyCurrentUser"
 #define kDefaultKeyRunedBefore @"kDefaultKeyRunedBefore"
 #define kDefaultKeyRelevance @"kDefaultKeyRelevance"
@@ -24,7 +25,10 @@ DEF_SINGLETON(GGRuntimeData)
         [self loadCurrentUser];
         [self _loadRunedBefore];
         [self _loadRecentSearches];
+        
         _happeningCache = [[GGHappeningCache alloc] init];
+        _competitorsCache = [GGCompetitorCache new];
+        _updateDetailCache = [GGUpdateCache new];
         
         //
         _relevance = [[NSUserDefaults standardUserDefaults] integerForKey:kDefaultKeyRelevance];

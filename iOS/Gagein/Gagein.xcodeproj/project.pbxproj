@@ -383,6 +383,8 @@
 		EA9E00191770074E00127233 /* GGSsgrfPopPanelCompany.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9E00141770074E00127233 /* GGSsgrfPopPanelCompany.xib */; };
 		EA9E001A1770074E00127233 /* GGSsgrfPopPanelPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9E00161770074E00127233 /* GGSsgrfPopPanelPerson.m */; };
 		EA9E001B1770074E00127233 /* GGSsgrfPopPanelPerson.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9E00171770074E00127233 /* GGSsgrfPopPanelPerson.xib */; };
+		EAA055DF17792FEC00D04463 /* GGUpdateCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA055DE17792FEB00D04463 /* GGUpdateCache.m */; };
+		EAA055E21779312F00D04463 /* GGCompetitorCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA055E11779312F00D04463 /* GGCompetitorCache.m */; };
 		EAA1880F175E7BB700580B00 /* GGSignupVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA1880E175E7BB700580B00 /* GGSignupVC_iPad.xib */; };
 		EAA18812175EA0E600580B00 /* GGCompanyUpdateIpadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA18811175EA0E600580B00 /* GGCompanyUpdateIpadCell.m */; };
 		EAA18814175EA11500580B00 /* GGCompanyUpdateIpadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA18813175EA11500580B00 /* GGCompanyUpdateIpadCell.xib */; };
@@ -1125,6 +1127,10 @@
 		EA9EFFFD1770068100127233 /* ssgrf_btn_linkedin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_linkedin@2x.png"; sourceTree = "<group>"; };
 		EA9EFFFE1770068100127233 /* ssgrf_btn_linkedin_gdnt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_linkedin_gdnt@2x.png"; sourceTree = "<group>"; };
 		EA9EFFFF1770068100127233 /* ssgrf_btn_slideshare@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_slideshare@2x.png"; sourceTree = "<group>"; };
+		EAA055DD17792FEB00D04463 /* GGUpdateCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGUpdateCache.h; sourceTree = "<group>"; };
+		EAA055DE17792FEB00D04463 /* GGUpdateCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUpdateCache.m; sourceTree = "<group>"; };
+		EAA055E01779312E00D04463 /* GGCompetitorCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompetitorCache.h; sourceTree = "<group>"; };
+		EAA055E11779312F00D04463 /* GGCompetitorCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompetitorCache.m; sourceTree = "<group>"; };
 		EAA1880E175E7BB700580B00 /* GGSignupVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSignupVC_iPad.xib; sourceTree = "<group>"; };
 		EAA18810175EA0E600580B00 /* GGCompanyUpdateIpadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GGCompanyUpdateIpadCell.h; path = Cells/GGCompanyUpdateIpadCell.h; sourceTree = "<group>"; };
 		EAA18811175EA0E600580B00 /* GGCompanyUpdateIpadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GGCompanyUpdateIpadCell.m; path = Cells/GGCompanyUpdateIpadCell.m; sourceTree = "<group>"; };
@@ -2098,6 +2104,10 @@
 				EA957039177377C1006DDC25 /* GGCache.m */,
 				EA95703B17737E8B006DDC25 /* GGHappeningCache.h */,
 				EA95703C17737E8B006DDC25 /* GGHappeningCache.m */,
+				EAA055DD17792FEB00D04463 /* GGUpdateCache.h */,
+				EAA055DE17792FEB00D04463 /* GGUpdateCache.m */,
+				EAA055E01779312E00D04463 /* GGCompetitorCache.h */,
+				EAA055E11779312F00D04463 /* GGCompetitorCache.m */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -3725,6 +3735,8 @@
 				EA9570401773C913006DDC25 /* GGSsgrfPopPanelComInfoView.m in Sources */,
 				EA9570431773C9C3006DDC25 /* GGSsgrfPopPanelPersonInfoView.m in Sources */,
 				EA77F14517754141007D30C6 /* UINavigationController+Autorotate.m in Sources */,
+				EAA055DF17792FEC00D04463 /* GGUpdateCache.m in Sources */,
+				EAA055E21779312F00D04463 /* GGCompetitorCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
