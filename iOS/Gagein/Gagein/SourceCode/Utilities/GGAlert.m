@@ -122,4 +122,22 @@
     }
 }
 
++(void)showCheckMarkHUDWithText:(NSString *)aText inView:(UIView *)aView
+{
+    UIImageView *iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark"]];
+    [self showHUDWithCustomView:iv text:aText inView:aView];
+}
+
++ (void)showHUDWithCustomView:(UIView*)aCustomView text:(NSString *)aText inView:(UIView *)aView
+{
+	MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:aView];
+	[aView addSubview:HUD];
+    HUD.customView = aCustomView;
+    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.labelText = aText;
+    
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1];
+}
+
 @end

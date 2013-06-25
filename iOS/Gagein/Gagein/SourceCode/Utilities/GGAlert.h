@@ -24,6 +24,9 @@
 #pragma mark - warnings
 +(void)showWarning:(NSString *)aTitle message:(NSString *)aMessage;
 
++(void)showCheckMarkHUDWithText:(NSString *)aText inView:(UIView *)aView;
++ (void)showHUDWithCustomView:(UIView*)aCustomView text:(NSString *)aText inView:(UIView *)aView;
+
 @end
 
 typedef enum {

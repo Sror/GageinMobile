@@ -511,20 +511,7 @@
 
 -(void)showCheckMarkHUDWithText:(NSString *)aText
 {
-    UIImageView *iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark"]];
-    [self showHUDWithCustomView:iv text:aText];
-}
-
-- (void)showHUDWithCustomView:(UIView*)aCustomView text:(NSString *)aText
-{
-	MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
-	[self.view addSubview:HUD];
-    HUD.customView = aCustomView;
-    HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = aText;
-    
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:1];
+    [GGAlert showCheckMarkHUDWithText:aText inView:self.view];
 }
 
 -(void)blockUI

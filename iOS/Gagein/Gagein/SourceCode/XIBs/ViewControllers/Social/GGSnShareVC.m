@@ -119,7 +119,7 @@
         if (parser.isOK)
         {
             [_textView resignFirstResponder];
-            [self showCheckMarkHUDWithText:@"Share sent"];
+            [self showCheckMarkHUDWithText:GGString(@"Share sent")];
             
             [self performSelector:@selector(naviBackAction:) withObject:nil afterDelay:1.f];
             //[self naviBackAction:nil];

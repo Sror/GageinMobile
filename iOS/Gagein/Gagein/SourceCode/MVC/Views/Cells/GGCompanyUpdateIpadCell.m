@@ -113,6 +113,7 @@
         [_actionBar setPos:CGPointMake(positionX, actionOriginY)];
         //CGRect actionBarRc = _actionBar.frame;
         [self.viewContent addSubview:_actionBar];
+        [self _updateLikedButton];
         
         NSMutableArray *imageURLs = [NSMutableArray array];
         
@@ -161,6 +162,11 @@
 #endif
 }
 
+-(void)_updateLikedButton
+{
+    [_actionBar.btnLike setImage:(_data.liked ? [UIImage imageNamed:@"btnLiked"] : [UIImage imageNamed:@"btnLike"]) forState:UIControlStateNormal];
+}
+
 -(void)signalAction:(id)sender
 {
     DLog(@"signalAction");
@@ -170,11 +176,53 @@
 -(void)likeAction:(id)sender
 {
     DLog(@"likeAction");
+    _data.liked = !_data.liked;
+    [self _updateLikedButton];
+}
+
+-(void)_updateSaveBtnSaved:(BOOL)aSaved
+{
+    [_actionBar.btnSave setImage:(aSaved ? [UIImage imageNamed:@"btnSaved"] : [UIImage imageNamed:@"btnSave"]) forState:UIControlStateNormal];
 }
 
 -(void)saveAction:(id)sender
 {
     DLog(@"saveAction");
+    
+    if (_data.saved)
+    {
+        [GGSharedAPI unsaveUpdateWithID:_data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                _data.saved = NO;
+                [self _updateSaveBtnSaved:NO];
+            }
+            else
+            {
+                [GGAlert alertWithApiParser:parser];
+            }
+        }];
+    }
+    else
+    {
+        [GGSharedAPI saveUpdateWithID:_data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                _data.saved = YES;
+                //[GGAlert alert:@"saved!"];
+                
+                [GGAlert showCheckMarkHUDWithText:@"Saved" inView:self];
+                
+                [self _updateSaveBtnSaved:YES];
+            }
+            else
+            {
+                [GGAlert alertWithApiParser:parser];
+            }
+        }];
+    }
 }
 
 -(void)shareAction:(id)sender
