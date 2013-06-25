@@ -38,16 +38,16 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb158281777525249</string>
+				<string>fb159696740721866</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1000</string>
 	<key>FacebookAppID</key>
-	<string>158281777525249</string>
+	<string>159696740721866</string>
 	<key>FacebookDisplayName</key>
-	<string>GageInApp.staging</string>
+	<string>GageIn</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
