@@ -20,6 +20,8 @@
 #define IMAGE_SIZE_WIDTH    31
 #define IMAGE_SIZE_HEIGHT   31
 
+
+
 #define SCROLL_VIEW_CAP_WIDTH   20
 
 @implementation GGSsgrfTitledImgScrollView
@@ -34,7 +36,10 @@
     SEL                         _imageBtnAction;
 }
 
-
+-(CGSize)imageSize
+{
+    return CGSizeMake(IMAGE_SIZE_WIDTH, IMAGE_SIZE_HEIGHT);
+}
 
 -(void)_doInit
 {
@@ -95,7 +100,7 @@
     int count = _imageUrls.count;
     for (int i = 0; i < count; i++)
     {
-        GGSsgrfRndImgButton *button = [[GGSsgrfRndImgButton alloc] initWithFrame:CGRectMake(offsetX, ([self scrollViewHeight] - IMAGE_SIZE_HEIGHT) / 2, IMAGE_SIZE_WIDTH, IMAGE_SIZE_HEIGHT)];
+        GGSsgrfRndImgButton *button = [[GGSsgrfRndImgButton alloc] initWithFrame:CGRectMake(offsetX, ([self scrollViewHeight] - [self imageSize].height) / 2, [self imageSize].width, [self imageSize].height)];
         
         button.tag = i;
         
@@ -111,7 +116,7 @@
         offsetX = CGRectGetMaxX(button.frame) + _gap;
     }
     
-    _viewScroll.contentSize = CGSizeMake(offsetX - _gap, IMAGE_SIZE_HEIGHT);
+    _viewScroll.contentSize = CGSizeMake(offsetX - _gap, [self imageSize].height);
 }
 
 
@@ -126,7 +131,7 @@
         offsetX = CGRectGetMaxX(btn.frame) + _gap;
     }
     
-    _viewScroll.contentSize = CGSizeMake(offsetX - _gap, IMAGE_SIZE_HEIGHT);
+    _viewScroll.contentSize = CGSizeMake(offsetX - _gap, [self imageSize].height);
 }
 
 
@@ -163,6 +168,11 @@
 {
     float                       _pushGap;
     
+}
+
+-(CGSize)imageSize
+{
+    return CGSizeMake(50, 50);
 }
 
 -(void)_doInit
@@ -236,10 +246,10 @@
                 
                 float distance = (i == index - 1) ? (_gap + _pushGap) : _gap;
                 
-                rectsPtr[i] = CGRectMake((targetRc.origin.x - distance - IMAGE_SIZE_WIDTH)
+                rectsPtr[i] = CGRectMake((targetRc.origin.x - distance - [self imageSize].width)
                                              , targetRc.origin.y
-                                             , IMAGE_SIZE_WIDTH
-                                             , IMAGE_SIZE_HEIGHT);
+                                             , [self imageSize].width
+                                             , [self imageSize].height);
             }
         }
         
@@ -252,10 +262,10 @@
                 
                 float distance = (i == index + 1) ? (_gap + _pushGap) : _gap;
                 
-                rectsPtr[i] = CGRectMake((targetRc.origin.x + IMAGE_SIZE_WIDTH + distance)
+                rectsPtr[i] = CGRectMake((targetRc.origin.x + [self imageSize].width + distance)
                                              , targetRc.origin.y
-                                             , IMAGE_SIZE_WIDTH
-                                             , IMAGE_SIZE_HEIGHT);
+                                             , [self imageSize].width
+                                             , [self imageSize].height);
             }
         }
         

@@ -24,6 +24,8 @@
 -(void)setImageUrls:(NSArray *)imageUrls placeholder:(UIImage *)aPlaceholder;
 -(void)setGap:(float)aGap;
 
+-(CGSize)imageSize;
+
 -(void)reArrangeImagePos;
 
 -(float)scrollViewHeight;
