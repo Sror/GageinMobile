@@ -49,7 +49,7 @@
 #define MIN_CONTENT_HEIGHT      (60.f)
 -(void)adjustLayout
 {
-    [_lblHeadline sizeToFit];
+    [_lblHeadline sizeToFitFixWidth];
     
     //
     CGRect contentRc = _viewContent.frame;
