@@ -164,6 +164,7 @@
 -(void)signalAction:(id)sender
 {
     DLog(@"signalAction");
+    [self postNotification:GG_NOTIFY_SSGRF_SIGNAL withObject:_data];
 }
 
 -(void)likeAction:(id)sender
@@ -179,6 +180,7 @@
 -(void)shareAction:(id)sender
 {
     DLog(@"shareAction");
+    [self postNotification:GG_NOTIFY_SSGRF_SHARE withObject:_data];
 }
 
 @end

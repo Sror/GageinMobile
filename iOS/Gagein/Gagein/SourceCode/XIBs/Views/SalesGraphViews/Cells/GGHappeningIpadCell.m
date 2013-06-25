@@ -309,6 +309,7 @@
 -(void)shareAction:(id)sender
 {
     DLog(@"shareAction");
+    [self postNotification:GG_NOTIFY_SSGRF_SHARE withObject:_data];
 }
 
 @end

@@ -907,9 +907,9 @@
     DLog(@"ssGraphUnfollowCompany:%@", aCompanyID);
 }
 
--(void)ssGraphSignal:(NSNumber *)aUpdateID
+-(void)ssGraphSignal:(id)aData
 {
-    DLog(@"ssGraphSignal:%@", aUpdateID);
+    DLog(@"ssGraphSignal:%@", aData);
 }
 
 -(void)ssGraphLike:(NSNumber *)aUpdateID
@@ -932,9 +932,9 @@
     DLog(@"ssGraphUnSave:%@", aUpdateID);
 }
 
--(void)ssGraphShare:(NSNumber *)aUpdateID
+-(void)ssGraphShare:(id)aData
 {
-    DLog(@"ssGraphShare:%@", aUpdateID);
+    DLog(@"ssGraphShare:%@", aData);
 }
 
 -(void)ssGraphShowImageURL:(NSString *)aImageURL

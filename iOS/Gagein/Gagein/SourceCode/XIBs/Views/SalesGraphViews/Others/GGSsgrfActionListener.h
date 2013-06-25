@@ -30,12 +30,12 @@
 -(void)ssGraphFollowCompany:(NSNumber *)aCompanyID;
 -(void)ssGraphUnfollowCompany:(NSNumber *)aCompanyID;
 
--(void)ssGraphSignal:(NSNumber *)aUpdateID;
+-(void)ssGraphSignal:(id)aData;
 -(void)ssGraphLike:(NSNumber *)aUpdateID;
 -(void)ssGraphUnLike:(NSNumber *)aUpdateID;
 -(void)ssGraphSave:(NSNumber *)aUpdateID;
 -(void)ssGraphUnSave:(NSNumber *)aUpdateID;
--(void)ssGraphShare:(NSNumber *)aUpdateID;
+-(void)ssGraphShare:(id)aData;
 @end
 
 
