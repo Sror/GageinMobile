@@ -42,6 +42,8 @@
 #import "GGHappeningIpadCell.h"
 
 #import "GGTableViewExpandHelper.h"
+#import "GGLeftDrawerVC.h"
+#import "MMDrawerController.h"
 
 #define SWITCH_WIDTH 90
 #define SWITCH_HEIGHT 20
@@ -109,14 +111,17 @@
 
 -(void)_initSlideSettingView
 {
-    _slideSettingView = GGSharedDelegate.slideSettingView;
-    _slideSettingView.delegate = self;
+    _slideSettingView = [[GGSlideSettingView alloc] initWithFrame:GGSharedDelegate.leftDrawer.viewContent.bounds];
+    //_slideSettingView = GGSharedDelegate.slideSettingView;
+    //_slideSettingView.delegate = self;
     _slideSettingView.viewTable.rowHeight = [GGSettingMenuCell HEIGHT];
     _slideSettingView.searchBar.tfSearch.placeholder = @"Search for updates";
     
     [_slideSettingView.searchBar.btnFilter addTarget:self action:@selector(_exploringConfigTapped:) forControlEvents:UIControlEventTouchUpInside];
     
+    // change menu to company type
     [_slideSettingView changeDelegate:self];
+    _slideSettingView.viewTable.tableHeaderView = _slideSettingView.searchBar;
 }
 
 -(void)_installMenuButton
@@ -211,8 +216,6 @@
 
     //
     _relevanceBar = [GGRelevanceBar viewFromNibWithOwner:self];
-    //_relevanceRectShow = CGRectOffset(_relevanceBar.frame, 0, 5);
-    //_relevanceRectHide = CGRectOffset(_relevanceRectShow, 0, -_relevanceBar.frame.size.height);
     _relevanceBar.frame = [self _relevanceFrameHided:NO];
     [self.view addSubview:_relevanceBar];
     _relevanceBar.btnSwitch.delegate = self;
@@ -278,10 +281,6 @@
     [self.navigationController.navigationBar addSubview:_btnSwitchUpdate];
     _btnSwitchUpdate.hidden = (_menuType == kGGMenuTypeAgent);
     
-    // change menu to company type
-    [_slideSettingView changeDelegate:self];
-    _slideSettingView.viewTable.tableHeaderView = _slideSettingView.searchBar;
-    
     // enable gesture
     //[GGSharedDelegate.rootVC enableSwipGesture:YES];
     
@@ -292,12 +291,16 @@
     //[_btnSwitchUpdate goTop];
     
     [self _callApiGetMenu];
+    
+    [GGSharedDelegate.leftDrawer.viewContent addSubview:_slideSettingView];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [_btnSwitchUpdate removeFromSuperview];
+    
+    [_slideSettingView removeFromSuperview];
     
     //[GGSharedDelegate.rootVC enableSwipGesture:NO];
     //[GGSharedDelegate.rootVC enableTapGesture:NO];
@@ -389,7 +392,6 @@
 {
     [_searchTimer invalidate];
     _searchTimer = nil;
-    //_slideSettingView.tvSuggestedUpdates.hidden = YES;
     
     [self _showRecentSearches:YES];
     [_slideSettingView.tvSuggestedUpdates reloadData];
@@ -400,14 +402,6 @@
 -(void)_showRecentSearches:(BOOL)aIsShow
 {
     _isShowingRecentSearches = aIsShow;
-    
-//    if (_isShowingRecentSearches)
-//    {
-//        [_suggestedUpdates removeAllObjects];
-//        [_suggestedUpdates addObjectsFromArray:GGSharedRuntimeData.recentSearches];
-//    }
-    
-    //[_slideSettingView.tvSuggestedUpdates reloadData];
 }
 
 - (BOOL)searchBarShouldSearch:(GGBaseSearchBar *)searchBar
@@ -460,7 +454,7 @@
     NSString *keyword = _slideSettingView.searchBar.tfSearch.text;
     if (keyword.length)
     {
-        CGSize loadingOffset = ISIPADDEVICE ? CGSizeMake(-(_slideSettingView.frame.size.width - SLIDE_SETTING_VIEW_WIDTH) / 2, -250) : CGSizeMake(0, -50);
+        CGSize loadingOffset = ISIPADDEVICE ? CGSizeMake(-(_slideSettingView.frame.size.width - LEFT_DRAWER_WIDTH) / 2, -250) : CGSizeMake(0, -50);
         [_slideSettingView showLoadingHUDWithOffset:loadingOffset];
         id op = [GGSharedAPI getUpdateSuggestionWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
             [_slideSettingView hideLoadingHUD];
@@ -484,14 +478,14 @@
 }
 
 
-#pragma mark - slide setting view delegate
--(void)slideview:(GGSlideSettingView *)aSlideView isShowed:(BOOL)aIsShowed
-{
-    if (![self isIPadLandscape])
-    {
-        [self freezeMe:aIsShowed];
-    }
-}
+//#pragma mark - slide setting view delegate
+//-(void)slideview:(GGSlideSettingView *)aSlideView isShowed:(BOOL)aIsShowed
+//{
+//    if (![self isIPadLandscape])
+//    {
+//        [self freezeMe:aIsShowed];
+//    }
+//}
 
 #pragma mark - notification handling
 -(void)handleNotification:(NSNotification *)notification
@@ -948,21 +942,12 @@
 #pragma mark - tableView delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-//    if (tableView == _slideSettingView.tvSuggestedUpdates)
-//    {
-//        return _keywordExampleView.frame.size.height;
-//    }
     
     return 0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-//    if (tableView == _slideSettingView.tvSuggestedUpdates)
-//    {
-//        return _keywordExampleView;
-//    }
-    
     return nil;
 }
 
@@ -1669,7 +1654,7 @@
         theFrame.size.height -= [GGLayout statusHeight] + [GGLayout navibarFrame].size.height + [GGLayout tabbarFrame].size.height;
         if (UIInterfaceOrientationIsLandscape(anOrient))
         {
-            theFrame.size.width -= SLIDE_SETTING_VIEW_WIDTH;
+            theFrame.size.width -= LEFT_DRAWER_WIDTH;
         }
         
         self.view.frame = theFrame;

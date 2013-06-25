@@ -35,6 +35,7 @@
 #import "GGConfigAgentFiltersVC.h"
 
 #import "GGWebVC.h"
+#import "MMDrawerController.h"
 
 #define MAX_NAVI_TITLE_LENGTH           20
 #define MAX_NAVI_TITLE_LENGTH_IPAD      50

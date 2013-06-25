@@ -11,11 +11,11 @@
 #import "GGRootVC.h"
 #import "GGRootNaviVC.h"
 
-#import "MMDrawerController.h"
-#import "GGLeftDrawerVC.h"
 
 @class GGSlideSettingView;
 @class GGSignupPortalVC;
+@class GGLeftDrawerVC;
+@class MMDrawerController;
 
 @interface GGAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate>
 
@@ -23,11 +23,14 @@
 
 @property (strong, nonatomic) GGTabBarController *tabBarController;
 @property (strong, nonatomic) GGRootNaviVC *naviController;
-@property (readonly) GGSlideSettingView *slideSettingView;
+//@property (readonly) GGSlideSettingView *slideSettingView;
 //@property (strong, nonatomic) GGRootVC *rootVC;
 @property (strong, nonatomic)   GGSignupPortalVC *signPortalVC;
 
 @property (strong, nonatomic)   MMDrawerController *drawerVC;
+
+
+-(GGLeftDrawerVC *)leftDrawer;
 
 -(void)enterLoginIfNeeded;
 -(void)popNaviToRoot;

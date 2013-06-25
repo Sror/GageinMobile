@@ -196,7 +196,7 @@
         else
         {
             DLog(@"Detected a pan end");
-            if (_panGest.view.center.x < (_viewCover.frame.size.width + SLIDE_SETTING_VIEW_WIDTH) / 2)
+            if (_panGest.view.center.x < (_viewCover.frame.size.width + LEFT_DRAWER_WIDTH) / 2)
             {
                 [self cover:nil];
             }
@@ -260,7 +260,7 @@
     [UIView animateWithDuration:SLIDE_TIMING delay:0 options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          //CGRect orientRc = [self frameOrientated];
-                         CGRect coverRc = CGRectMake(SLIDE_SETTING_VIEW_WIDTH, 0, _viewCover.frame.size.width, _viewCover.frame.size.height);
+                         CGRect coverRc = CGRectMake(LEFT_DRAWER_WIDTH, 0, _viewCover.frame.size.width, _viewCover.frame.size.height);
                          _viewCover.frame = coverRc;
                      }
                      completion:^(BOOL finished) {

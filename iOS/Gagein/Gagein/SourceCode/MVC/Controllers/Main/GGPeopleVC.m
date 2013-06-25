@@ -27,6 +27,8 @@
 #import "GGTableViewExpandHelper.h"
 #import "GGHappeningIpadCell.h"
 
+#import "MMDrawerController.h"
+
 @interface GGPeopleVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
 @end
@@ -61,8 +63,8 @@
 
 -(void)_initSlideSettingView
 {
-    _slideSettingView = GGSharedDelegate.slideSettingView;
-    _slideSettingView.delegate = self;
+//    _slideSettingView = GGSharedDelegate.slideSettingView;
+//    _slideSettingView.delegate = self;
     
     _slideSettingView.searchBar.tfSearch.placeholder = @"Search for updates";
     [_slideSettingView changeDelegate:self];
@@ -831,7 +833,7 @@
         theFrame.size.height -= [GGLayout statusHeight] + [GGLayout navibarFrame].size.height + [GGLayout tabbarFrame].size.height;
         if (UIInterfaceOrientationIsLandscape(anOrient))
         {
-            theFrame.size.width -= SLIDE_SETTING_VIEW_WIDTH;
+            theFrame.size.width -= LEFT_DRAWER_WIDTH;
         }
         
         self.view.frame = theFrame;

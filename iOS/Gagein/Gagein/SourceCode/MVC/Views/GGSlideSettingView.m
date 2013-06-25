@@ -10,6 +10,8 @@
 #import "GGAppDelegate.h"
 #import "GGSearchBar.h"
 #import "GGRootVC.h"
+#import "MMDrawerController.h"
+
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -53,8 +55,15 @@
         
         //
         [self _switchSearhBarMode:NO];
+        
+        [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(endEditing:)]];
     }
     return self;
+}
+
+-(void)endEditing:(id)sender
+{
+    [_searchBar endEditing:YES];
 }
 
 -(void)_dimmedViewTapped:(id)sender
@@ -64,12 +73,12 @@
 
 -(CGRect)_tvMenuBarRect:(BOOL)isLong
 {
-    return isLong ? CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) : CGRectMake(0, 0, SLIDE_SETTING_VIEW_WIDTH, self.frame.size.height);
+    return isLong ? CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) : CGRectMake(0, 0, LEFT_DRAWER_WIDTH, self.frame.size.height);
 }
 
 -(CGRect)_searchBarRect:(BOOL)isLong
 {
-    return isLong ? CGRectMake(0, 0, self.frame.size.width, 40) : CGRectMake(0, 0, SLIDE_SETTING_VIEW_WIDTH, 40);
+    return isLong ? CGRectMake(0, 0, self.frame.size.width, 40) : CGRectMake(0, 0, LEFT_DRAWER_WIDTH, 40);
 }
 
 -(CGRect)_tvSuggestedRect
@@ -81,7 +90,7 @@
 
 -(CGRect)_dimmedRect
 {
-    float width = (ISIPADDEVICE ? SLIDE_SETTING_VIEW_WIDTH : self.frame.size.width);
+    float width = (ISIPADDEVICE ? LEFT_DRAWER_WIDTH : self.frame.size.width);
     return CGRectMake(0, (CGRectGetMaxY(_searchBar.frame)), width, self.frame.size.height);
 }
 
@@ -136,7 +145,7 @@
     if (GGSharedDelegate.drawerVC.openSide == MMDrawerSideNone)
     {
         [GGSharedDelegate.drawerVC openDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
-            [_delegate slideview:self isShowed:YES];
+            //[_delegate slideview:self isShowed:YES];
         }];
     }
 }
@@ -153,7 +162,7 @@
         [_searchBar.tfSearch resignFirstResponder];
         
         [GGSharedDelegate.drawerVC closeDrawerAnimated:YES completion:^(BOOL finished) {
-            [_delegate slideview:self isShowed:NO];
+            //[_delegate slideview:self isShowed:NO];
             
             if (completion)
             {

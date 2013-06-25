@@ -25,6 +25,8 @@
 #import "MMDrawerVisualState.h"
 #import "GGLeftDrawerVC.h"
 
+#import "MMDrawerController.h"
+#import "GGLeftDrawerVC.h"
 
 #define TAG_UPGRADE_ALERT   1000
 
@@ -82,7 +84,7 @@
     
     _drawerVC = [[MMDrawerController alloc] initWithCenterViewController:_tabbarVC leftDrawerViewController:leftDrawerVC];
     
-    [_drawerVC setMaximumLeftDrawerWidth:150];
+    [_drawerVC setMaximumLeftDrawerWidth:LEFT_DRAWER_WIDTH];
     [_drawerVC setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [_drawerVC setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     _drawerVC.shouldStretchDrawer = NO;
@@ -184,11 +186,11 @@ static BOOL s_isCustomed = NO;
     //[_tabBarController doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
 }
 
--(GGSlideSettingView *)slideSettingView
-{
-    GGLeftDrawerVC *leftDrawerVC = (GGLeftDrawerVC *)(_drawerVC.leftDrawerViewController);
-    return leftDrawerVC.viewMenu;
-}
+//-(GGSlideSettingView *)slideSettingView
+//{
+//    GGLeftDrawerVC *leftDrawerVC = (GGLeftDrawerVC *)(_drawerVC.leftDrawerViewController);
+//    return leftDrawerVC.viewMenu;
+//}
 
 -(void)_alertEnv
 {
@@ -295,6 +297,11 @@ static BOOL s_isCustomed = NO;
 -(void)showTabIndex:(NSUInteger)aIndex
 {
     self.tabBarController.selectedIndex = aIndex;
+}
+
+-(GGLeftDrawerVC *)leftDrawer
+{
+    return (GGLeftDrawerVC *)(_drawerVC.leftDrawerViewController);
 }
 
 @end
