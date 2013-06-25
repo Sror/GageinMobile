@@ -22,6 +22,8 @@
 {
     GGSsgrfPanelUpdate  *_panel;
     GGUpdateActionBar   *_actionBar;
+    
+    GGCompanyUpdate     *_detailData;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -86,6 +88,62 @@
     [self _doExpand];
 }
 
+-(void)updateWithData:(GGCompanyUpdate *)aData
+{
+    _data = aData;
+    [self doUpdateUI];
+}
+
+-(void)_getDetail
+{
+    if (_data.ID)
+    {
+        GGCompanyUpdate *cachedUpdateDetail = [GGSharedRuntimeData.updateDetailCache updateWithID:_data.ID];
+        if (cachedUpdateDetail == nil)
+        {
+            [self showLoadingHUD];
+            [GGSharedAPI getCompanyUpdateDetailWithNewsID:_data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                [self hideLoadingHUD];
+                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                if (parser.isOK)
+                {
+                    _detailData = [parser parseGetCompanyUpdateDetail];
+                    _data.hasBeenRead = _detailData.hasBeenRead = YES;
+                    [GGSharedRuntimeData.updateDetailCache add:_detailData];
+                    
+                    [self doUpdateUI];
+                }
+                
+            }];
+        }
+        else
+        {
+            _detailData = cachedUpdateDetail;
+            [self doUpdateUI];
+        }
+    }
+}
+
+-(void)doUpdateUI
+{
+    if (_data)
+    {
+        self.lblHeadline.text = _data.headline;//[aData headlineTruncated];
+        self.lblSource.text = _data.fromSource;
+        self.lblDescription.text = _data.content;
+        
+        self.ivLogo.hidden = (_data.newsPicURL.length == 0);
+        if (!self.ivLogo.hidden)
+        {
+            [self.ivLogo setImageWithURL:[NSURL URLWithString:_data.newsPicURL/*aData.company.logoPath*/] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+        }
+        
+        
+        self.lblInterval.text = [_data intervalStringWithDate:_data.date];
+        self.hasBeenRead = _data.hasBeenRead;
+    }
+}
+
 -(void)_doExpand
 {
     [_panel removeFromSuperview];
@@ -130,6 +188,8 @@
         [_panel.viewScroll setImageUrls:imageURLs placeholder:GGSharedImagePool.logoDefaultCompany];
         
         [self adjustLayout];
+        
+        [self _getDetail];
     }
 }
 
@@ -170,7 +230,7 @@
 -(void)signalAction:(id)sender
 {
     DLog(@"signalAction");
-    [self postNotification:GG_NOTIFY_SSGRF_SIGNAL withObject:_data];
+    [self postNotification:GG_NOTIFY_SSGRF_SIGNAL withObject:_detailData];
 }
 
 -(void)likeAction:(id)sender
@@ -228,7 +288,7 @@
 -(void)shareAction:(id)sender
 {
     DLog(@"shareAction");
-    [self postNotification:GG_NOTIFY_SSGRF_SHARE withObject:_data];
+    [self postNotification:GG_NOTIFY_SSGRF_SHARE withObject:_detailData];
 }
 
 @end

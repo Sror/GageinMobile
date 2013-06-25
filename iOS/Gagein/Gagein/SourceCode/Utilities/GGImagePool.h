@@ -17,6 +17,7 @@ AS_SINGLETON(GGImagePool)
 @property (strong, nonatomic) UIImage  *logoDefaultCompany;
 @property (strong, nonatomic) UIImage  *logoDefaultPerson;
 @property (strong, nonatomic) UIImage  *bgBtnOrange;
+@property (strong, nonatomic) UIImage  *bgBtnOrangeDarkEdge;
 
 @property (strong, nonatomic) UIImage  *tableCellBottomBg;
 @property (strong, nonatomic) UIImage  *tableCellMiddleBg;

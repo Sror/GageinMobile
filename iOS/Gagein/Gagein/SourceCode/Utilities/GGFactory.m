@@ -88,35 +88,17 @@
     
     NSAssert([cell isKindOfClass:[GGCompanyUpdateIpadCell class]], @"cell should be GGCompanyUpdateIpadCell");
     
-    if (aData)
+    cell.btnLogo.tag = aDataIndex;
+    cell.btnHeadline.tag = aDataIndex;
+    [cell updateWithData:aData];
+    
+    if (aDataIndex == aExpandIndex)
     {
-        cell.data = aData;
-        cell.btnLogo.tag = aDataIndex;
-        cell.btnHeadline.tag = aDataIndex;
-        
-        cell.lblHeadline.text = aData.headline;//[aData headlineTruncated];
-        cell.lblSource.text = aData.fromSource;
-        cell.lblDescription.text = aData.content;
-        
-        cell.ivLogo.hidden = (aData.newsPicURL.length == 0);
-        if (!cell.ivLogo.hidden)
-        {
-            [cell.ivLogo setImageWithURL:[NSURL URLWithString:aData.newsPicURL/*aData.company.logoPath*/] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-        }
-        
-        
-        cell.lblInterval.text = [aData intervalStringWithDate:aData.date];
-        cell.hasBeenRead = aData.hasBeenRead;
-        
-        if (aDataIndex == aExpandIndex)
-        {
-            cell.expanded = aIsTvExpanding;
-        }
-        else
-        {
-            cell.expanded = NO;
-        }
-
+        cell.expanded = aIsTvExpanding;
+    }
+    else
+    {
+        cell.expanded = NO;
     }
     
     return cell;

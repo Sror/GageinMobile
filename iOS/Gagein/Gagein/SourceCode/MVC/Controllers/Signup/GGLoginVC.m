@@ -145,7 +145,7 @@
             [self hideLoadingHUD];
             
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            if (parser.status == 1)
+            if (parser.isOK)
             {
                 DLog(@"Login OK");
                 //id data = parser.data;

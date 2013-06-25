@@ -16,7 +16,8 @@
     {
         case kGGMsgCodeAuthError:
         {
-            return @"Sorry, our server was unable to process your sign in. Please try again.";
+            return @"The email address or password you provided does not match our records. Please try again.";
+            //return @"Sorry, our server was unable to process your sign in. Please try again.";
         }
             break;
             

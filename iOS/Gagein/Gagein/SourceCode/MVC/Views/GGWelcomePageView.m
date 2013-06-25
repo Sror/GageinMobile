@@ -22,7 +22,7 @@
 -(void)awakeFromNib
 {
     self.frame = [UIScreen mainScreen].applicationFrame;
-    [_getStartedBtn setBackgroundImage:GGSharedImagePool.bgBtnOrange forState:UIControlStateNormal];
+    [_getStartedBtn setBackgroundImage:GGSharedImagePool.bgBtnOrangeDarkEdge forState:UIControlStateNormal];
 }
 
 -(void)showPageWithIndex:(NSUInteger)aIndex

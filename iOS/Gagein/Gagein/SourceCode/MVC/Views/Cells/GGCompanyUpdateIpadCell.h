@@ -31,4 +31,5 @@
 @property (strong, nonatomic)   GGCompanyUpdate     *data;
 
 -(void)adjustLayout;
+-(void)updateWithData:(GGCompanyUpdate *)aData;
 @end

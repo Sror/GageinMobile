@@ -35,6 +35,8 @@
 #import "GGConfigAgentFiltersVC.h"
 
 #import "GGWebVC.h"
+#import "CMActionSheet.h"
+#import "GGCompanyUpdate.h"
 
 #define MAX_NAVI_TITLE_LENGTH           20
 #define MAX_NAVI_TITLE_LENGTH_IPAD      50
@@ -60,6 +62,8 @@
     WEPopoverController         *_popoverController;
     
     GGSsgrfPopPanelView         *_viewPopup;
+    
+    GGCompanyUpdate                          *_dataForSignal;
 }
 
 #pragma mark - api operation management
@@ -897,6 +901,8 @@
 -(void)ssGraphSignal:(id)aData
 {
     DLog(@"ssGraphSignal:%@", aData);
+    _dataForSignal = aData;
+    [self _showSheetToSignal];
 }
 
 -(void)ssGraphLike:(NSNumber *)aUpdateID
@@ -927,6 +933,42 @@
 -(void)ssGraphShowImageURL:(NSString *)aImageURL
 {
     DLog(@"ssGraphShowImageURL:%@", aImageURL);
+}
+
+#pragma mark - 
+-(void)_showSheetToSignal
+{
+    CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
+    
+    UIImage *bgImg = nil;
+    
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];
+    [actionSheet addButtonWithTitle:@"Twitter" bgImage:bgImg block:^{
+        //DLog(@"Signal to Twitter.");
+        [self ssGraphShowWebPage:_dataForSignal.twitterTweets];
+    }];
+    
+    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];
+    [actionSheet addButtonWithTitle:@"LinkedIn" bgImage:bgImg block:^{
+        //DLog(@"Signal to LinkedIn.");
+        [self ssGraphShowWebPage:_dataForSignal.linkedInSignal];
+    }];
+    
+    bgImg = [UIImage imageNamed:@"grayBtnBg"];
+    UIButton *cancelBtn = [actionSheet addButtonWithTitle:@"Cancel" bgImage:bgImg block:^{
+        
+    }];
+    [cancelBtn setTitleColor:GGSharedColor.white forState:UIControlStateNormal];
+    [cancelBtn setTitleShadowColor:GGSharedColor.black forState:UIControlStateNormal];
+    
+    
+    //    [actionSheet addSeparator];
+    //    [actionSheet addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:^{
+    //        NSLog(@"Dismiss action sheet with \"Close Button\"");
+    //    }];
+    
+    // Present
+    [actionSheet present];
 }
 
 @end
