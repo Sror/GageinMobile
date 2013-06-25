@@ -504,6 +504,7 @@
                 if (parser.isOK)
                 {
                     company.followed = NO;
+                    [self postNotification:GG_NOTIFY_COMPANY_FOLLOW_CHANGED];
                     [tableView reloadData];
                 }
                 else
@@ -521,6 +522,7 @@
                 if (parser.isOK)
                 {
                     company.followed = YES;
+                    [self postNotification:GG_NOTIFY_COMPANY_FOLLOW_CHANGED];
                     
                     if (![self _isExistsInFollowedCompanies:company])
                     {
@@ -557,6 +559,8 @@
                 GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
                 if (parser.isOK)
                 {
+                    [self postNotification:GG_NOTIFY_COMPANY_FOLLOW_CHANGED];
+                    
                     int indexInFollowedList = [self _indexInFollowedListWithCompanyID:company.ID];
                     if (indexInFollowedList != NSNotFound)
                     {

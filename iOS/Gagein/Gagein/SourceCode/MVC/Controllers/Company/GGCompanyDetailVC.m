@@ -513,8 +513,12 @@ typedef enum
         id op = [GGSharedAPI followCompanyWithID:_companyOverview.ID callback:^(id operation, id aResultObject, NSError *anError) {
             
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            if (parser.status == 1) {
-                _companyOverview.followed = 1;
+            if (parser.isOK)
+            {
+                _companyOverview.followed = YES;
+                
+                [self postNotification:GG_NOTIFY_COMPANY_FOLLOW_CHANGED];
+                
                 [self _updateUiBtnFollow];
             }
             else
@@ -537,8 +541,12 @@ typedef enum
         id op = [GGSharedAPI unfollowCompanyWithID:_companyOverview.ID callback:^(id operation, id aResultObject, NSError *anError) {
             
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            if (parser.status == 1) {
-                _companyOverview.followed = 0;
+            if (parser.isOK)
+            {
+                _companyOverview.followed = NO;
+                
+                [self postNotification:GG_NOTIFY_COMPANY_FOLLOW_CHANGED];
+                
                 [self _updateUiBtnFollow];
             }
         }];

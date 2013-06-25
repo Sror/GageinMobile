@@ -170,6 +170,8 @@
     [self observeNotification:GG_NOTIFY_MENU_COVER];
     [self observeNotification:GG_NOTIFY_PAN_BEGIN];
     [self observeNotification:GG_NOTIFY_PAN_END];
+    [self observeNotification:GG_NOTIFY_COMPANY_FOLLOW_CHANGED];
+    [self observeNotification:GG_NOTIFY_TRIGGER_CHANGED];
     
     [super viewDidLoad];
     
@@ -251,7 +253,7 @@
     
     //[UIView setAnimationsEnabled:NO];
     [self _getInitData];
-    
+    [self _callApiGetMenu];
     
     [self addScrollToHide:_updatesTV];
     [self addScrollToHide:_happeningsTV];
@@ -292,8 +294,6 @@
     
     // this line to solve that when view appear again, update switch doesnt get touch event
     //[_btnSwitchUpdate goTop];
-    
-    [self _callApiGetMenu];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -540,6 +540,12 @@
     {
         [self unblockUI];
     }
+    
+    else if ([noteName isEqualToString:GG_NOTIFY_COMPANY_FOLLOW_CHANGED]
+             || [noteName isEqualToString:GG_NOTIFY_TRIGGER_CHANGED])
+    {
+        [self _callApiGetMenu];
+    }
     //
 }
 
@@ -702,7 +708,7 @@
     if (!GGSharedDelegate.rootVC.isRevealed)
     {
         [_slideSettingView showSlide];
-        [self _callApiGetMenu];
+        //[self _callApiGetMenu];
     }
     else
     {
@@ -1661,7 +1667,7 @@
     }
     else
     {
-        [self _callApiGetMenu];
+        //[self _callApiGetMenu];
     }
     
     [self _adjustSelfFrameForIpadWithOrient:toInterfaceOrientation];

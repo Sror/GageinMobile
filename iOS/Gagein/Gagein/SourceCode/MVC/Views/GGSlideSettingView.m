@@ -54,6 +54,7 @@
         //
         [self _switchSearhBarMode:NO];
     }
+    
     return self;
 }
 

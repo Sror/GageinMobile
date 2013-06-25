@@ -96,6 +96,7 @@
         if (parser.isOK)
         {
             //[GGAlert alertWithMessage:@"Succeeded!"];
+            [self postNotification:GG_NOTIFY_TRIGGER_CHANGED];
         }
         else
         {
