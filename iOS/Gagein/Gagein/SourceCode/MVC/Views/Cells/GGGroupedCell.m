@@ -69,12 +69,14 @@
         {
             _ivBg.image = GGSharedImagePool.tableCellTopBg;
             _seperator.hidden = YES;
+            //_lblTitle.textColor = GGSharedColor.orange;
         }
             break;
             
         case kGGGroupCellMiddle:
         {
             _ivBg.image = GGSharedImagePool.tableCellMiddleBg;
+            //_lblTitle.textColor = GGSharedColor.darkRed;
         }
             break;
             

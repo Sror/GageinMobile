@@ -474,7 +474,15 @@
                         data.followed = YES;
                         [_followedPeople insertObject:data atIndex:0];
                         
-                        [self.tvPeople insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                        NSArray *updateIndexs = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+                        
+                        [self.tvPeople insertRowsAtIndexPaths:updateIndexs withRowAnimation:UITableViewRowAnimationAutomatic];
+                        
+                        if (_followedPeople.count > 1)
+                        {
+                            [self.tvPeople reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                        }
+                        
                     }
                     
                     //[self _cancelSearch];
