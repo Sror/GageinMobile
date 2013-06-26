@@ -1044,11 +1044,11 @@
 {
     GGSnShareVC *vc = [[GGSnShareVC alloc] init];
     vc.happening = _happeningForSharing;
-    vc.shareType = kGGSnShareTypeUpdate;
     vc.snType = aType;
     vc.snTypesRef = GGSharedRuntimeData.snTypes;
+    vc.shareType = _happeningForSharing.isPersonEvent ? kGGSnShareTypeHappeningPerson : kGGSnShareTypeHappeningCompany;
     
-    [self.navigationController pushViewController:vc animated:NO];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
