@@ -54,7 +54,7 @@
     //_lblHeadline.backgroundColor = GGSharedColor.random;
     //_btnHeadline.backgroundColor = GGSharedColor.random;
     _btnHeadline.alpha = .5f;
-    _btnHeadline.frame = _lblHeadline.frame;
+    //_btnHeadline.frame = _lblHeadline.frame;
     
     CGRect contentRc = _viewContent.frame;
     float contentHeight = _expanded ? CGRectGetMaxY(_actionBar.frame) : CGRectGetMaxY(_lblHeadline.frame) + 5;
@@ -141,6 +141,21 @@
         
         self.lblInterval.text = [_data intervalStringWithDate:_data.date];
         self.hasBeenRead = _data.hasBeenRead;
+        
+        if (_expanded)
+        {
+            NSMutableArray *imageURLs = [NSMutableArray array];
+            
+#if SALES_GRAPH_API_READY
+            for (GGCompany *company in _data.mentionedCompanies)
+            {
+                [imageURLs addObjectIfNotNil:company.logoPath];
+            }
+#else
+            imageURLs = [NSMutableArray arrayWithObjects:[GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], nil];
+#endif
+            [_panel.viewScroll setImageUrls:imageURLs placeholder:GGSharedImagePool.logoDefaultCompany];
+        }
     }
 }
 
@@ -173,19 +188,7 @@
         [self.viewContent addSubview:_actionBar];
         [self _updateLikedButton];
         
-        NSMutableArray *imageURLs = [NSMutableArray array];
-        
-#if SALES_GRAPH_API_READY
-        for (GGCompany *company in _data.mentionedCompanies)
-        {
-            [imageURLs addObjectIfNotNil:company.logoPath];
-        }
-#else
-        imageURLs = [NSMutableArray arrayWithObjects:[GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], nil];
-#endif
         [_panel.viewScroll setTaget:self action:@selector(popupCompanyInfo:)];
-        
-        [_panel.viewScroll setImageUrls:imageURLs placeholder:GGSharedImagePool.logoDefaultCompany];
         
         [self adjustLayout];
         
@@ -199,7 +202,7 @@
     UIButton *btn = sender;
     DLog(@"pop company index:%d", btn.tag);
     
-#if SALES_GRAPH_API_READY
+#if 0
     GGCompany *company = _data.mentionedCompanies[btn.tag];
     [_panel.viewScroll.infoWidget updateWithCompany:company];
 #else

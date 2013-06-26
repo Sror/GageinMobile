@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnLogo;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnHeadline;
+//@property (weak, nonatomic) IBOutlet UIButton *btnExpand;
 
 
 @property (assign, nonatomic)  BOOL             hasBeenRead;
