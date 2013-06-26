@@ -48,8 +48,10 @@
     self.naviTitle = @"My Profile";
     self.view.backgroundColor = GGSharedColor.silver;
     self.tvProfile.backgroundColor = GGSharedColor.silver;
+    //_tvProfile.backgroundColor = GGSharedColor.random;
     _tvProfile.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tvProfile.rowHeight = [GGGroupedCell HEIGHT];
+    _tvProfile.showsVerticalScrollIndicator = NO;
+    //_tvProfile.rowHeight = [GGGroupedCell HEIGHT];
     
     _viewHeader = [GGProfileHeaderView viewFromNibWithOwner:self];
     _viewFooter = [GGProfileFooterView viewFromNibWithOwner:self];
@@ -82,13 +84,61 @@
 }
 
 #pragma mark - table view datasource
+-(int)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 3;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    if (section == 1)
+    {
+        return 5;
+    }
+    
+    return 1;
+}
+
+-(UITableViewCell *)_cellForHeader
+{
+    static UITableViewCell *cell = nil;
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        [cell.contentView addSubview:_viewHeader];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    return cell;
+}
+
+-(UITableViewCell *)_cellForFooter
+{
+    static UITableViewCell *cell = nil;
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        [cell.contentView addSubview:_viewFooter];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    return cell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    int row = indexPath.row;
+    int section = indexPath.section;
+    
+    if (section == 0) // header
+    {
+        return [self _cellForHeader];
+    }
+    else if (section == 2)  // foooter
+    {
+        _viewFooter.lblCurrentPlan.text = [NSString stringWithFormat:@"Current Plan: %@", _userProfile.planName];
+        return [self _cellForFooter];
+    }
     
     static NSString *cellID = @"GGGroupedCell";
     GGGroupedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -98,10 +148,6 @@
         [cell showDisclosure];
         [cell showSubTitle:YES];
     }
-
-    
-    int row = indexPath.row;
-    //int section = indexPath.section;
     
     if (row == 0) {
         
@@ -143,31 +189,55 @@
 }
 
 #pragma mark - table view delegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [GGProfileHeaderView HEIGHT];
+    int section = indexPath.section;
+    
+    if (section == 0)
+    {
+        return [GGProfileHeaderView HEIGHT];
+    }
+    else if (section == 1)
+    {
+        return [GGGroupedCell HEIGHT];
+    }
+    else if (section == 2)
+    {
+        return [GGProfileFooterView HEIGHT];
+    }
+    
+    return 0.f;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return [GGProfileFooterView HEIGHT];
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return [GGProfileHeaderView HEIGHT];
+//}
+//
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    return [GGProfileFooterView HEIGHT];
+//}
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return _viewHeader;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    _viewFooter.lblCurrentPlan.text = [NSString stringWithFormat:@"Current Plan: %@", _userProfile.planName];
-    return _viewFooter;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    
+//}
+//
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    
+//    return _viewFooter;
+//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section != 1)
+    {
+        return;
+    }
     
     int row = indexPath.row;
     
