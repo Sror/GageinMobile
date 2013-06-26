@@ -90,6 +90,11 @@
     
     CGRect thisRc = [GGLayout frameWithOrientation:toInterfaceOrientation rect:self.view.frame];
     
+    self.ivGageinLogo.frame = CGRectMake((thisRc.size.width - self.ivGageinLogo.image.size.width) / 2
+                                     , 100
+                                     , self.ivGageinLogo.image.size.width
+                                     , self.ivGageinLogo.image.size.height);
+    
     float offsetY = CGRectGetMaxY(self.ivGageinLogo.frame) + 50;
     _lblConnect.frame = CGRectMake((thisRc.size.width - _lblConnect.frame.size.width) / 2
                                    , offsetY, _lblConnect.frame.size.width, _lblConnect.frame.size.height);
