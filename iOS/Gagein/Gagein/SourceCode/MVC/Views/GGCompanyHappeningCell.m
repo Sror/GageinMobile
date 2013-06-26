@@ -45,7 +45,7 @@
 {
     if (hasRead)
     {
-        _lblDescription.textColor = GGSharedColor.black;
+        _lblDescription.textColor = GGSharedColor.gray;
     }
     else
     {

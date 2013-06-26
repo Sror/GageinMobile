@@ -79,7 +79,8 @@
     
     if (_expanded)
     {
-        //[self printViewsTree];
+        _data.hasBeenRead = YES;
+        
         float positionX = 2;
         
         _panel = [self panelForHappening];
@@ -115,11 +116,11 @@
 {
     if (hasRead)
     {
-        _lblHeadline.textColor = GGSharedColor.black;
+        _lblHeadline.textColor = GGSharedColor.gray;
     }
     else
     {
-        _lblHeadline.textColor = GGSharedColor.orangeGageinDark;
+        _lblHeadline.textColor = GGSharedColor.black;
     }
 }
 

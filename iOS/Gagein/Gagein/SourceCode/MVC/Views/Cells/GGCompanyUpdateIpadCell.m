@@ -74,7 +74,7 @@
 {
     if (hasRead)
     {
-        _lblHeadline.textColor = GGSharedColor.black;
+        _lblHeadline.textColor = GGSharedColor.gray;
     }
     else
     {

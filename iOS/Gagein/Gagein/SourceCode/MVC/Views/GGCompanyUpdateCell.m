@@ -66,7 +66,7 @@
 {
     if (hasRead)
     {
-        _titleLbl.textColor = GGSharedColor.black;
+        _titleLbl.textColor = GGSharedColor.gray;
     }
     else
     {
