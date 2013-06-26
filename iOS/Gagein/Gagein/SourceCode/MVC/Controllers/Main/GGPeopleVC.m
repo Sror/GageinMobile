@@ -97,7 +97,7 @@
     [super viewDidLoad];
     
     [self _installMenuButton];
-    self.naviTitle = @"People";
+    self.naviTitle = @"Exploring";
     
     [self _initSlideSettingView];
     
@@ -302,6 +302,11 @@
 
 -(IBAction)_exploringConfigTapped:(id)sender
 {
+    if (![self isIPadLandscape])
+    {
+        [_slideSettingView hideSlide];
+    }
+    
     [self presentPageSelectFuncArea];
 }
 
