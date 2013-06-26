@@ -53,6 +53,7 @@
     [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aPageTime] forKey:@"pagetime"];
     
     [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aCompanyID] forKey:@"orgid"];
+    [parameters setObjectIfNotNil:@"text" forKey:@"msg_format"];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
@@ -74,6 +75,7 @@
     [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aPageTime] forKey:@"pagetime"];
     
     [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aPersonID] forKey:@"contactid"];
+    [parameters setObjectIfNotNil:@"text" forKey:@"msg_format"];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
@@ -95,6 +97,7 @@
     [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aPageTime] forKey:@"pagetime"];
     
     [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:anAreaID] forKey:@"functional_areaid"];
+    [parameters setObjectIfNotNil:@"text" forKey:@"msg_format"];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
@@ -109,6 +112,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:@"text" forKey:@"msg_format"];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
@@ -123,6 +127,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:@"text" forKey:@"msg_format"];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }

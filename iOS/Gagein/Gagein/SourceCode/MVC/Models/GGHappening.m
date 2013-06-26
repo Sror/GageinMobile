@@ -313,6 +313,11 @@
 
 -(NSString *)headLineText
 {
+    if (_messageStr.length)
+    {
+        return _messageStr;
+    }
+    
     switch (self.type)
     {
         case kGGHappeningCompanyPersonJion:
