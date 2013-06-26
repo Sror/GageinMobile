@@ -707,6 +707,8 @@
     [self _callGetAllFollowedPeople];
 }
 
+
+#pragma mark - 递归调用
 -(void)_callGetAllFollowedPeople
 {
     //#warning TODO: Currently no API for followed people list
@@ -740,27 +742,26 @@
     [self registerOperation:op];
 }
 
--(void)_callGetFollowedPeople
-{
-//#warning TODO: Currently no API for followed people list
-    [self showLoadingHUD];
-    id op = [GGSharedAPI getFollowedPeopleWithPage:0 callback:^(id operation, id aResultObject, NSError *anError) {
-        [self hideLoadingHUD];
-        
-        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-        if (parser.isOK)
-        {
-            GGDataPage *page = [parser parseGetFollowedPeople];
-            [_followedPeople removeAllObjects];
-            [_followedPeople addObjectsFromArray:page.items];
-        }
-        
-        [_tvPeople reloadData];
-        
-    }];
-    
-    [self registerOperation:op];
-}
+//-(void)_callGetFollowedPeople
+//{
+//    [self showLoadingHUD];
+//    id op = [GGSharedAPI getFollowedPeopleWithPage:0 callback:^(id operation, id aResultObject, NSError *anError) {
+//        [self hideLoadingHUD];
+//        
+//        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//        if (parser.isOK)
+//        {
+//            GGDataPage *page = [parser parseGetFollowedPeople];
+//            [_followedPeople removeAllObjects];
+//            [_followedPeople addObjectsFromArray:page.items];
+//        }
+//        
+//        [_tvPeople reloadData];
+//        
+//    }];
+//    
+//    [self registerOperation:op];
+//}
 
 -(void)_getAllSuggestedPeople
 {
@@ -768,6 +769,7 @@
     [self _callGetAllRecommendedPeople];
 }
 
+#pragma mark - 递归调用
 -(void)_callGetAllRecommendedPeople
 {
     [self showLoadingHUD];
@@ -779,10 +781,10 @@
             
             if (_pageNumberSuggestedPeople == 1)
             {
-                [_followedPeople removeAllObjects];
+                [_suggestedPeople removeAllObjects];
             }
             
-            [_followedPeople addObjectsFromArray:page.items];
+            [_suggestedPeople addObjectsFromArray:page.items];
             
             if (page.hasMore)
             {
@@ -797,22 +799,22 @@
     [self registerOperation:op];
 }
 
--(void)_callGetRecommendedPeople
-{
-    [self showLoadingHUD];
-    id op = [GGSharedAPI getRecommendedPeopleWithPage:0 callback:^(id operation, id aResultObject, NSError *anError) {
-        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-        if (parser.isOK)
-        {
-            GGDataPage *page = [parser parseGetRecommendedPeople];
-            [_followedPeople removeAllObjects];
-            [_followedPeople addObjectsFromArray:page.items];
-        }
-        
-        [_tvPeople reloadData];
-    }];
-    
-    [self registerOperation:op];
-}
+//-(void)_callGetRecommendedPeople
+//{
+//    [self showLoadingHUD];
+//    id op = [GGSharedAPI getRecommendedPeopleWithPage:0 callback:^(id operation, id aResultObject, NSError *anError) {
+//        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//        if (parser.isOK)
+//        {
+//            GGDataPage *page = [parser parseGetRecommendedPeople];
+//            [_suggestedPeople removeAllObjects];
+//            [_suggestedPeople addObjectsFromArray:page.items];
+//        }
+//        
+//        [_tvPeople reloadData];
+//    }];
+//    
+//    [self registerOperation:op];
+//}
 
 @end
