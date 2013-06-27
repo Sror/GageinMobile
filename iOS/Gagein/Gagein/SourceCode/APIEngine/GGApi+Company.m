@@ -184,6 +184,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:@"true" forKey:@"include_competitors"];
     //[parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aNewsID] forKey:@"newsid"];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];

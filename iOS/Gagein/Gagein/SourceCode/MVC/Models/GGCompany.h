@@ -45,7 +45,7 @@ typedef enum {
 @property (copy) NSString       *zipcode;
 @property (copy) NSString       *address;
 
-@property (strong) NSMutableArray   *competitors;
+@property (strong) GGDataPage   *competitors;
 
 -(NSString *)addressCityStateCountry;
 //+(GGCompanyDigest *)instanceFromCompany:(GGCompany *)aCompany;

@@ -114,6 +114,11 @@
 }
 
 #pragma mark - internal
+-(GGDataPage *)parsePageforClass:(Class)aClass
+{
+    return [self _parsePageforClass:aClass];
+}
+
 -(GGDataPage *)_parsePageforClass:(Class)aClass
 {
     GG_ASSERT_API_DATA_IS_DIC;

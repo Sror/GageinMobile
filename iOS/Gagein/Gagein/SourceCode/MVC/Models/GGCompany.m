@@ -52,6 +52,8 @@
     self.zipcode = [aData objectForKey:@"zipcode"];
     self.address = [aData objectForKey:@"address"];
     
+    GGApiParser *parser = [GGApiParser parserWithApiData:[aData objectForKey:@"competitors"]];
+    _competitors = [parser parsePageforClass:[GGCompany class]];
 }
 
 -(NSString *)addressCityStateCountry

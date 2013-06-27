@@ -51,6 +51,8 @@ typedef enum
 #pragma mark - signup
 -(GGMember*)parseLogin;
 
+-(GGDataPage *)parsePageforClass:(Class)aClass;
+
 #pragma mark - companies
 -(GGDataPage *)parseGetCompanyUpdates;
 -(GGDataPage *)parseGetSavedUpdates;
