@@ -45,6 +45,10 @@ typedef enum {
 @property (copy) NSString       *zipcode;
 @property (copy) NSString       *address;
 
+@property (copy) NSString       *orgEmail;
+@property (copy) NSString       *linkedInSearchUrl;
+
+
 @property (strong) GGDataPage   *competitors;
 
 -(NSString *)addressCityStateCountry;

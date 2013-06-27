@@ -42,6 +42,12 @@ typedef enum
                            callback:(GGApiBlock)aCallback;
 
 //Get Company OverviewBack to top
+//  3.4 Add parameter contactid, used to filter company contacts
+-(AFHTTPRequestOperation *)getCompanyOverviewWithID:(long long)anOrgID
+                                  needSocialProfile:(BOOL)aNeedSP
+                                          contactID:(long long)aContactID
+                                           callback:(GGApiBlock)aCallback;
+
 -(AFHTTPRequestOperation *)getCompanyOverviewWithID:(long long)anOrgID
               needSocialProfile:(BOOL)aNeedSP
                        callback:(GGApiBlock)aCallback;

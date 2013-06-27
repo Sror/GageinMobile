@@ -52,6 +52,9 @@
     self.zipcode = [aData objectForKey:@"zipcode"];
     self.address = [aData objectForKey:@"address"];
     
+    _orgEmail = [aData objectForKey:@"org_email"];
+    _linkedInSearchUrl = [aData objectForKey:@"linkedin_search_url"];
+    
     GGApiParser *parser = [GGApiParser parserWithApiData:[aData objectForKey:@"competitors"]];
     _competitors = [parser parsePageforClass:[GGCompany class]];
 }

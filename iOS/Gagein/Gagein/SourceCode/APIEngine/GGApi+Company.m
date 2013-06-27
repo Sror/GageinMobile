@@ -78,6 +78,29 @@
 
 //Get Company OverviewBack to top
 -(AFHTTPRequestOperation *)getCompanyOverviewWithID:(long long)anOrgID
+                                  needSocialProfile:(BOOL)aNeedSP
+                                          contactID:(long long)aContactID
+                                           callback:(GGApiBlock)aCallback
+{
+    //GET
+    NSString *path = [NSString stringWithFormat:@"company/%lld/overview", anOrgID];
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:(aNeedSP ? @"true" : @"false") forKey:@"include_sp"];
+    
+    //include_contacts
+    [parameters setObjectIfNotNil:@"true" forKey:@"include_contacts"];
+    if (aContactID > 0)
+    {
+        [parameters setObjectIfNotNil:@(aContactID) forKey:@"contactid"];
+    }
+    
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
+}
+
+-(AFHTTPRequestOperation *)getCompanyOverviewWithID:(long long)anOrgID
               needSocialProfile:(BOOL)aNeedSP
                        callback:(GGApiBlock)aCallback
 {

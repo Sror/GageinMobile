@@ -55,6 +55,9 @@
     [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aCompanyID] forKey:@"orgid"];
     [parameters setObjectIfNotNil:@"text" forKey:@"msg_format"];
     
+    //include_competitors=true
+    [parameters setObjectIfNotNil:@"true" forKey:@"include_competitors"];
+    
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 

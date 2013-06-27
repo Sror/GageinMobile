@@ -23,7 +23,10 @@
 @property (copy)    NSString *address;
 
 @property (strong)  GGCompany *company;
+
 @property (strong)  NSMutableArray  *socialProfiles;    // each element is a GGSocialProfile
+@property (strong)  NSMutableArray  *schools;
+@property (strong)  NSMutableArray  *prevCompanies;
 
 @property (assign) BOOL     followed;
 @end
