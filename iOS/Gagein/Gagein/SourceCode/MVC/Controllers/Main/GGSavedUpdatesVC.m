@@ -81,6 +81,7 @@
     if (aVisible)
     {
         [self.navigationController.navigationBar addSubview:[self _subNaviLabel]];
+        [[self _subNaviLabel] centerMeHorizontally];
         [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:0.f forBarMetrics:UIBarMetricsDefault];
     }
     else
@@ -176,8 +177,6 @@
     [super viewWillAppear:animated];
     
     [self _makeSubNaviTitleVisible:YES];
-//    [self.navigationController.navigationBar addSubview:_roundSwitch];
-//    [self _setSwitchRect];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -463,9 +462,8 @@
 //#warning LAYOUT PROBLEM!!!
     //_tvUpdates.backgroundColor = GGSharedColor.darkRed;
     [_tvUpdates centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH_FULL];
-    //CGRect thisRc = self.view.frame;
-    //CGRect tvRc = _tvUpdates.frame;
-    //[self _setSwitchRect];
+    
+    [[self _subNaviLabel] centerMeHorizontally];
 }
 
 @end

@@ -139,6 +139,7 @@
     if (aVisible)
     {
         [self.navigationController.navigationBar addSubview:[self _subNaviLabel]];
+        [[self _subNaviLabel] centerMeHorizontally];
         [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:0.f forBarMetrics:UIBarMetricsDefault];
     }
     else
@@ -325,8 +326,7 @@
     [_updatesTV reloadData];
     [_happeningsTV reloadData];
     
-    // this line to solve that when view appear again, update switch doesnt get touch event
-    //[_btnSwitchUpdate goTop];
+    [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:0.f forBarMetrics:UIBarMetricsDefault];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -1693,7 +1693,8 @@
     
     //CGRect orientRc = [GGUtils frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
     self.navigationItem.leftBarButtonItem = nil;
-    //static BOOL isMenuShowingBeforeChangeToLandscape = NO;
+    
+    [[self _subNaviLabel] centerMeHorizontally];
     
     if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
     {
@@ -1711,8 +1712,6 @@
     [_updatesTV reloadData];
     [_happeningsTV reloadData];
     
-//    CGRect relevanceRc = [self _relevanceFrameHided:NO];
-//    _relevanceBar.frame = relevanceRc;
 }
 
 -(void)_adjustSelfFrameForIpadWithOrient:(UIInterfaceOrientation)anOrient

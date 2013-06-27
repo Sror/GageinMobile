@@ -374,6 +374,7 @@
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
     [_updatesTV centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH_FULL];
+    
 }
 
 @end
