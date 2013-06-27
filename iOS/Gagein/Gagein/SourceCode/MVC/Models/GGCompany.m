@@ -56,7 +56,7 @@
     _linkedInSearchUrl = [aData objectForKey:@"linkedin_search_url"];
     
     GGApiParser *parser = [GGApiParser parserWithApiData:[aData objectForKey:@"competitors"]];
-    _competitors = [parser parsePageforClass:[GGCompany class]];
+    _competitors = [parser parsePageforClass:[GGCompanyDigest class]];
 }
 
 -(NSString *)addressCityStateCountry

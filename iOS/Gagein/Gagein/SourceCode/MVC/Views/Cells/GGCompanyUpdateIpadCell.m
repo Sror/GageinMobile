@@ -15,6 +15,7 @@
 #import "GGCompanyUpdate.h"
 #import "GGCompany.h"
 #import "GGSsgrfInfoWidgetView.h"
+#import "GGDataPage.h"
 
 #define SALES_GRAPH_API_READY       0
 
@@ -210,6 +211,7 @@
     fakeCom.name = @"Apple Inc.";
     fakeCom.logoPath = [GGUtils testImageURL];
     
+    GGDataPage  *competitorPage = [[GGDataPage alloc] init];
     NSMutableArray *competitors = [NSMutableArray array];
     for (int i = 0; i < 10; i++)
     {
@@ -218,7 +220,8 @@
         competitor.logoPath = [GGUtils testImageURL];
         [competitors addObject:competitor];
     }
-    fakeCom.competitors = competitors;
+    competitorPage.items = competitors;
+    fakeCom.competitors = competitorPage;
     
     //GGCompanyDigest *happeningCom = [GGCompanyDigest instanceFromCompany:fakeCom];
     [_panel.viewScroll.infoWidget updateWithCompany:fakeCom];

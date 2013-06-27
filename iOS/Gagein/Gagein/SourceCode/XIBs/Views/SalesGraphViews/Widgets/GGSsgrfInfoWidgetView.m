@@ -13,6 +13,7 @@
 
 #import "GGCompany.h"
 #import "GGPerson.h"
+#import "GGDataPage.h"
 
 @interface GGSsgrfInfoWidgetView ()
 @property (strong, nonatomic)   GGSsgrfTitledImageBtnView   *viewTitledImage;
@@ -138,7 +139,7 @@
 
 -(NSArray *)_competitors
 {
-    return [self _company].competitors;
+    return [self _company].competitors.items;
 }
 
 -(void)updateWithCompany:(GGCompanyDigest *)aCompany
@@ -154,7 +155,7 @@
         [self setMainImageUrl:aCompany.logoPath placeholder:GGSharedImagePool.logoDefaultCompany];
         [self setMainTaget:self action:@selector(companyLogoTapped:)];
         
-        NSArray *competitors = aCompany.competitors;
+        NSArray *competitors = aCompany.competitors.items;
         NSMutableArray *imageURLs = [NSMutableArray array];
         for (GGCompanyDigest *com in competitors)
         {
