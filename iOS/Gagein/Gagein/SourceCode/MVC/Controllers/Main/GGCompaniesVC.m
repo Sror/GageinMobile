@@ -121,39 +121,46 @@
 
 -(void)_installMenuButton
 {
-    UIImage *menuBtnImg = [UIImage imageNamed:@"menuBtn"];
-    UIView *containingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, menuBtnImg.size.width, menuBtnImg.size.height)];
-    UIButton *menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [menuBtn setImage:menuBtnImg forState:UIControlStateNormal];
-    menuBtn.frame = CGRectMake(0, 3, menuBtnImg.size.width
-                               , menuBtnImg.size.height);
-    [menuBtn addTarget:self action:@selector(optionMenuAction:) forControlEvents:UIControlEventTouchUpInside];
-    [containingView addSubview:menuBtn];
+//    UIImage *menuBtnImg = [UIImage imageNamed:@"menuBtn"];
+//    UIView *containingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, menuBtnImg.size.width, menuBtnImg.size.height)];
+//    UIButton *menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [menuBtn setImage:menuBtnImg forState:UIControlStateNormal];
+//    menuBtn.frame = CGRectMake(0, 3, menuBtnImg.size.width
+//                               , menuBtnImg.size.height);
+//    [menuBtn addTarget:self action:@selector(optionMenuAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [containingView addSubview:menuBtn];
     
-    UIBarButtonItem *menuBtnItem = [[UIBarButtonItem alloc] initWithCustomView:containingView];
+    CGPoint offset = CGPointMake(0, 3);
+    GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(optionMenuAction:)];
+    UIBarButtonItem *menuBtnItem = [GGUtils barButtonWithImageName:@"menuBtn" offset:offset action:action];//[[UIBarButtonItem alloc] initWithCustomView:containingView];
     self.navigationItem.leftBarButtonItem = menuBtnItem;
-}
-
--(void)_initRoundSwitch
-{
-    _btnSwitchUpdate = [GGSwitchButton viewFromNibWithOwner:self];
-    _btnSwitchUpdate.delegate = self;
-    _btnSwitchUpdate.lblOn.text = @"Updates";
-    _btnSwitchUpdate.lblOff.text = @"Happenings";
-    _btnSwitchUpdate.isOn = _isShowingUpdate;
     
-    [self _setSwitchUpdateRect];
+    // switch bar button
+    action = [GGTagetActionPair pairWithTaget:self action:@selector(switchBtweenUpdateAndHappening:)];
+    UIBarButtonItem *switchBtn = [GGUtils barButtonWithImageName:@"btnSwitchArrow" offset:offset action:action];
+    self.navigationItem.rightBarButtonItem = switchBtn;
 }
 
--(void)_setSwitchUpdateRect
-{
-    CGRect naviRc = self.navigationController.navigationBar.frame;
-    CGRect switchRc = CGRectMake(naviRc.size.width - SWITCH_WIDTH - 5
-                                 , (naviRc.size.height - [GGSwitchButton HEIGHT]) / 2 + 5
-                                 , SWITCH_WIDTH
-                                 , [GGSwitchButton HEIGHT]);
-    _btnSwitchUpdate.frame = switchRc;
-}
+//-(void)_initRoundSwitch
+//{
+//    _btnSwitchUpdate = [GGSwitchButton viewFromNibWithOwner:self];
+//    _btnSwitchUpdate.delegate = self;
+//    _btnSwitchUpdate.lblOn.text = @"Updates";
+//    _btnSwitchUpdate.lblOff.text = @"Happenings";
+//    _btnSwitchUpdate.isOn = _isShowingUpdate;
+//    
+//    [self _setSwitchUpdateRect];
+//}
+//
+//-(void)_setSwitchUpdateRect
+//{
+//    CGRect naviRc = self.navigationController.navigationBar.frame;
+//    CGRect switchRc = CGRectMake(naviRc.size.width - SWITCH_WIDTH - 5
+//                                 , (naviRc.size.height - [GGSwitchButton HEIGHT]) / 2 + 5
+//                                 , SWITCH_WIDTH
+//                                 , [GGSwitchButton HEIGHT]);
+//    _btnSwitchUpdate.frame = switchRc;
+//}
 
 //-(CGRect)_relevanceFrameHided:(BOOL)aHided
 //{
@@ -180,7 +187,7 @@
     self.view.backgroundColor = GGSharedColor.silver;
     self.naviTitle = @"EXPLORING";
     
-    [self _initRoundSwitch];
+    //[self _initRoundSwitch];
 
     [self _initSlideSettingView];
 
@@ -278,7 +285,7 @@
     
     
     // show/hide switch button
-    [self _setSwitchUpdateRect];
+    //[self _setSwitchUpdateRect];
     [self.navigationController.navigationBar addSubview:_btnSwitchUpdate];
     _btnSwitchUpdate.hidden = (_menuType == kGGMenuTypeAgent);
     
@@ -319,25 +326,21 @@
 }
 
 #pragma mark - switch button delegate
--(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
+-(IBAction)switchBtweenUpdateAndHappening:(id)sender
 {
-    if (aSwitchButton == _btnSwitchUpdate)
-    {
-        _isShowingUpdate = aIsOn;
-        self.updatesTV.hidden = !_isShowingUpdate;
-        _happeningsTV.hidden = _isShowingUpdate;
-        //_isShowingUpdate ? [_updatesTV triggerPullToRefresh] : [_happeningsTV triggerPullToRefresh];
-    }
-    
-//    else if (aSwitchButton == _relevanceBar.btnSwitch)
-//    {
-//        _relevance = (_relevanceBar.btnSwitch.isOn) ? kGGCompanyUpdateRelevanceHigh : kGGCompanyUpdateRelevanceNormal;
-//        
-//        [_updates removeAllObjects];
-//        [self.updatesTV reloadData];
-//        [self.updatesTV triggerPullToRefresh];
-//    }
+    _isShowingUpdate = !_isShowingUpdate;
+    _updatesTV.hidden = !_isShowingUpdate;
+    _happeningsTV.hidden = _isShowingUpdate;
 }
+//-(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
+//{
+//    if (aSwitchButton == _btnSwitchUpdate)
+//    {
+//        _isShowingUpdate = aIsOn;
+//        self.updatesTV.hidden = !_isShowingUpdate;
+//        _happeningsTV.hidden = _isShowingUpdate;
+//    }
+//}
 
 #pragma mark -
 -(void)_refreshTimer

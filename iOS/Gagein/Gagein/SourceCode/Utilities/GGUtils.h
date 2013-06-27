@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <MessageUI/MessageUI.h>
 
+@class GGTagetActionPair;
+
 @interface GGUtils : NSObject
 +(CGRect)setX:(float)aX rect:(CGRect)aRect;
 +(CGRect)setY:(float)aY rect:(CGRect)aRect;
@@ -21,6 +23,7 @@
 +(NSString *)envString;
 +(UIButton *)darkGrayButtonWithTitle:(NSString *)aTitle frame:(CGRect)aFrame;
 +(UIBarButtonItem *)naviButtonItemWithTitle:(NSString *)aTitle target:(id)aTarget selector:(SEL)aSelector;
++(UIBarButtonItem *)barButtonWithImageName:(NSString *)anImageName offset:(CGPoint)anOffset action:(GGTagetActionPair *)anAction;
 
 +(void)sendSmsTo:(NSArray *)aRecipients
             body:(NSString *)aBody

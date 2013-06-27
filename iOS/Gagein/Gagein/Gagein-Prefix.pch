@@ -43,6 +43,7 @@
     #import "GGNavigationController.h"
     #import "GGFactory.h"
     #import "GGTagetActionPair.h"
+    #import "UIButton+GGAddOn.h"
 #endif
 
 #include "GGBackLog.h"

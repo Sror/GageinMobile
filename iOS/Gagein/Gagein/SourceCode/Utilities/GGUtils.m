@@ -653,4 +653,20 @@
     }
 }
 
++(UIBarButtonItem *)barButtonWithImageName:(NSString *)anImageName offset:(CGPoint)anOffset action:(GGTagetActionPair *)anAction
+{
+    UIImage *menuBtnImg = [UIImage imageNamed:anImageName];
+    UIView *containingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, menuBtnImg.size.width, menuBtnImg.size.height)];
+    UIButton *menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [menuBtn setImage:menuBtnImg forState:UIControlStateNormal];
+    menuBtn.frame = CGRectMake(anOffset.x, anOffset.y, menuBtnImg.size.width
+                               , menuBtnImg.size.height);
+    
+    [menuBtn addAction:anAction];
+    
+    [containingView addSubview:menuBtn];
+    
+    return [[UIBarButtonItem alloc] initWithCustomView:containingView];
+}
+
 @end
