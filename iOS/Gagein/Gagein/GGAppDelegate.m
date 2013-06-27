@@ -134,13 +134,9 @@ static BOOL s_isCustomed = NO;
         CGSize navBgSize = naviBgImg.size;
         CGSize neededSize = CGSizeMake([UIScreen mainScreen].applicationFrame.size.width, navBgSize.height);
         neededNaviBgImg = [GGUtils imageFor:naviBgImg size:neededSize];
-        
-        [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.f forBarMetrics:UIBarMetricsDefault];
     }
-    else
-    {
-        [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.f forBarMetrics:UIBarMetricsDefault];
-    }
+    
+    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:5.f forBarMetrics:UIBarMetricsDefault];
     
     [[UINavigationBar appearance] setBackgroundImage:neededNaviBgImg forBarMetrics:UIBarMetricsDefault];
     

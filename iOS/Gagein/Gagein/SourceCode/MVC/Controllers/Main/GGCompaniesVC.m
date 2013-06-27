@@ -121,14 +121,6 @@
 
 -(void)_installMenuButton
 {
-//    UIImage *menuBtnImg = [UIImage imageNamed:@"menuBtn"];
-//    UIView *containingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, menuBtnImg.size.width, menuBtnImg.size.height)];
-//    UIButton *menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [menuBtn setImage:menuBtnImg forState:UIControlStateNormal];
-//    menuBtn.frame = CGRectMake(0, 3, menuBtnImg.size.width
-//                               , menuBtnImg.size.height);
-//    [menuBtn addTarget:self action:@selector(optionMenuAction:) forControlEvents:UIControlEventTouchUpInside];
-//    [containingView addSubview:menuBtn];
     
     CGPoint offset = CGPointMake(0, 3);
     GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(optionMenuAction:)];
@@ -139,6 +131,39 @@
     action = [GGTagetActionPair pairWithTaget:self action:@selector(switchBtweenUpdateAndHappening:)];
     UIBarButtonItem *switchBtn = [GGUtils barButtonWithImageName:@"btnSwitchArrow" offset:offset action:action];
     self.navigationItem.rightBarButtonItem = switchBtn;
+    
+}
+
+-(void)_makeSubNaviTitleVisible:(BOOL)aVisible
+{
+    if (aVisible)
+    {
+        [self.navigationController.navigationBar addSubview:[self _subNaviLabel]];
+        [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:0.f forBarMetrics:UIBarMetricsDefault];
+    }
+    else
+    {
+        [[self _subNaviLabel] removeFromSuperview];
+        [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:5.f forBarMetrics:UIBarMetricsDefault];
+    }
+}
+
+-(UILabel *)_subNaviLabel
+{
+    static UILabel *_subNaviLabel = nil;
+    if (_subNaviLabel == nil)
+    {
+        CGRect naviRc = [GGLayout navibarFrame];
+        CGRect subNaviRc = CGRectMake(naviRc.size.width / 4, 28, naviRc.size.width / 2, 15);
+        _subNaviLabel = [[UILabel alloc] initWithFrame:subNaviRc];
+        _subNaviLabel.font = [UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE_LIGHT size:12.f];
+        _subNaviLabel.textColor = GGSharedColor.white;
+        _subNaviLabel.backgroundColor = GGSharedColor.clear;
+        _subNaviLabel.textAlignment = NSTextAlignmentCenter;
+        _subNaviLabel.text = _isShowingUpdate ? GGString(@"Updates") : GGString(@"Happenings");
+    }
+    
+    return _subNaviLabel;
 }
 
 //-(void)_initRoundSwitch
@@ -276,6 +301,7 @@
     [super viewWillAppear:animated];
 
     [self _adjustTvFrames];
+    [self _makeSubNaviTitleVisible:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -306,7 +332,9 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
     [_btnSwitchUpdate removeFromSuperview];
+    [self _makeSubNaviTitleVisible:NO];
     
     [GGSharedDelegate.rootVC enableSwipGesture:NO];
     [GGSharedDelegate.rootVC enableTapGesture:NO];
@@ -329,8 +357,11 @@
 -(IBAction)switchBtweenUpdateAndHappening:(id)sender
 {
     _isShowingUpdate = !_isShowingUpdate;
+    
+    [self _subNaviLabel].text = _isShowingUpdate ? GGString(@"Updates") : GGString(@"Happenings");
     _updatesTV.hidden = !_isShowingUpdate;
     _happeningsTV.hidden = _isShowingUpdate;
+    
 }
 //-(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
 //{
