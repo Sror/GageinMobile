@@ -466,7 +466,7 @@
             [_happeningDetailCell showChangeLeftImage:YES];
             [_happeningDetailCell showChangeRightImage:YES];
             
-            NSString *leftPhotoPath = [_currentDetail isJoin] ? _currentDetail.person.photoPath : _currentDetail.company.logoPath;
+            NSString *leftPhotoPath = [_currentDetail isJoin] ? _currentDetail.person.photoPath : _currentDetail.oldCompany.logoPath;
             NSString *rightPhotoPath = [_currentDetail isJoin] ? _currentDetail.company.logoPath : _currentDetail.person.photoPath;
             
             [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:leftPhotoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];

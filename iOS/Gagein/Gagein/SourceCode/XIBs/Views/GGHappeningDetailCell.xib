@@ -275,6 +275,7 @@
 													<int key="NSColorSpace">3</int>
 													<bytes key="NSWhite">MC44NDQ0NDMwNDQ0AA</bytes>
 												</object>
+												<int key="IBUIContentMode">2</int>
 												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 											</object>
 											<object class="IBUIView" id="382176070">
@@ -353,6 +354,7 @@
 													<int key="NSColorSpace">3</int>
 													<bytes key="NSWhite">MC44NAA</bytes>
 												</object>
+												<int key="IBUIContentMode">2</int>
 												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 											</object>
 											<object class="IBUIImageView" id="97390357">
