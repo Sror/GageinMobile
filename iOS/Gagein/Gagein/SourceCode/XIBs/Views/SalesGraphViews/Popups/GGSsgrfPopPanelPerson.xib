@@ -46,7 +46,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{20, 20}, {70, 70}}</string>
 								<reference key="NSSuperview" ref="372787674"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="16163734"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -84,7 +83,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{110, 12}, {500, 24}}</string>
 								<reference key="NSSuperview" ref="372787674"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="77913357"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -100,13 +98,13 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<string key="name">Optima-Bold</string>
-									<string key="family">Optima</string>
-									<int key="traits">2</int>
+									<string key="name">HelveticaNeue</string>
+									<string key="family">Helvetica Neue</string>
+									<int key="traits">0</int>
 									<double key="pointSize">20</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Optima-ExtraBlack</string>
+									<string key="NSName">HelveticaNeue-Medium</string>
 									<double key="NSSize">20</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -117,7 +115,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{110, 38}, {500, 21}}</string>
 								<reference key="NSSuperview" ref="372787674"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="50350939"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -133,11 +130,13 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">1</int>
+									<string key="name">HelveticaNeue-Light</string>
+									<string key="family">Helvetica Neue</string>
+									<int key="traits">0</int>
 									<double key="pointSize">17</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
+									<string key="NSName">HelveticaNeue-Medium</string>
 									<double key="NSSize">17</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -148,7 +147,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{110, 67}, {25, 25}}</string>
 								<reference key="NSSuperview" ref="372787674"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="345819766"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -173,7 +171,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{151, 67}, {25, 25}}</string>
 								<reference key="NSSuperview" ref="372787674"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="469336695"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -198,7 +195,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{192, 67}, {25, 25}}</string>
 								<reference key="NSSuperview" ref="372787674"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="168036944"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -223,7 +219,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{234, 67}, {25, 25}}</string>
 								<reference key="NSSuperview" ref="372787674"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1016664987"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -248,7 +243,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{275, 67}, {25, 25}}</string>
 								<reference key="NSSuperview" ref="372787674"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="592431847"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -273,7 +267,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{317, 67}, {25, 25}}</string>
 								<reference key="NSSuperview" ref="372787674"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="71981401"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -298,7 +291,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{358, 67}, {25, 25}}</string>
 								<reference key="NSSuperview" ref="372787674"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="336372817"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -323,7 +315,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{400, 67}, {25, 25}}</string>
 								<reference key="NSSuperview" ref="372787674"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="228222137"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -346,7 +337,6 @@
 						</array>
 						<string key="NSFrameSize">{690, 107}</string>
 						<reference key="NSSuperview" ref="796411502"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="339288273"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="534318755">
@@ -368,7 +358,6 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{59, 8}, {140, 19}}</string>
 										<reference key="NSSuperview" ref="1002267969"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="830348401"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
@@ -383,14 +372,14 @@
 										</object>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
-										<object class="IBUIFontDescription" key="IBUIFontDescription" id="226805642">
-											<string key="name">Optima-Regular</string>
-											<string key="family">Optima</string>
+										<object class="IBUIFontDescription" key="IBUIFontDescription" id="263240520">
+											<string key="name">HelveticaNeue</string>
+											<string key="family">Helvetica Neue</string>
 											<int key="traits">0</int>
 											<double key="pointSize">16</double>
 										</object>
-										<object class="NSFont" key="IBUIFont" id="470730018">
-											<string key="NSName">Optima-Regular</string>
+										<object class="NSFont" key="IBUIFont" id="890122391">
+											<string key="NSName">HelveticaNeue-Medium</string>
 											<double key="NSSize">16</double>
 											<int key="NSfFlags">16</int>
 										</object>
@@ -401,7 +390,6 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{15, 9}, {36, 36}}</string>
 										<reference key="NSSuperview" ref="1002267969"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="598603142"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -412,7 +400,6 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{59, 25}, {140, 20}}</string>
 										<reference key="NSSuperview" ref="1002267969"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="175881117"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
@@ -427,14 +414,14 @@
 										</object>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
-										<object class="IBUIFontDescription" key="IBUIFontDescription" id="197269764">
-											<string key="name">Optima-Regular</string>
-											<string key="family">Optima</string>
+										<object class="IBUIFontDescription" key="IBUIFontDescription" id="1069999200">
+											<string key="name">HelveticaNeue-Light</string>
+											<string key="family">Helvetica Neue</string>
 											<int key="traits">0</int>
 											<double key="pointSize">15</double>
 										</object>
-										<object class="NSFont" key="IBUIFont" id="489654376">
-											<string key="NSName">Optima-Regular</string>
+										<object class="NSFont" key="IBUIFont" id="854145300">
+											<string key="NSName">HelveticaNeue-Medium</string>
 											<double key="NSSize">15</double>
 											<int key="NSfFlags">16</int>
 										</object>
@@ -443,7 +430,6 @@
 								</array>
 								<string key="NSFrame">{{0, 5}, {211, 55}}</string>
 								<reference key="NSSuperview" ref="699588443"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="778207024"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="534318755"/>
@@ -458,7 +444,6 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{59, 8}, {140, 19}}</string>
 										<reference key="NSSuperview" ref="175881117"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="143242494"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
@@ -473,8 +458,8 @@
 										</object>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
-										<reference key="IBUIFontDescription" ref="226805642"/>
-										<reference key="IBUIFont" ref="470730018"/>
+										<reference key="IBUIFontDescription" ref="263240520"/>
+										<reference key="IBUIFont" ref="890122391"/>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 									</object>
 									<object class="IBUIImageView" id="550222125">
@@ -482,7 +467,6 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{15, 9}, {36, 36}}</string>
 										<reference key="NSSuperview" ref="175881117"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="766986696"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -493,7 +477,6 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{59, 25}, {140, 20}}</string>
 										<reference key="NSSuperview" ref="175881117"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="177435451"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
@@ -508,14 +491,13 @@
 										</object>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
-										<reference key="IBUIFontDescription" ref="197269764"/>
-										<reference key="IBUIFont" ref="489654376"/>
+										<reference key="IBUIFontDescription" ref="1069999200"/>
+										<reference key="IBUIFont" ref="854145300"/>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 									</object>
 								</array>
 								<string key="NSFrame">{{213, 5}, {211, 55}}</string>
 								<reference key="NSSuperview" ref="699588443"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="550222125"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="534318755"/>
@@ -530,7 +512,6 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{59, 8}, {140, 19}}</string>
 										<reference key="NSSuperview" ref="177435451"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="505817110"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
@@ -545,8 +526,8 @@
 										</object>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
-										<reference key="IBUIFontDescription" ref="226805642"/>
-										<reference key="IBUIFont" ref="470730018"/>
+										<reference key="IBUIFontDescription" ref="263240520"/>
+										<reference key="IBUIFont" ref="890122391"/>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 									</object>
 									<object class="IBUIImageView" id="851633878">
@@ -554,7 +535,6 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{15, 9}, {36, 36}}</string>
 										<reference key="NSSuperview" ref="177435451"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="628132485"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -565,7 +545,6 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{59, 25}, {140, 20}}</string>
 										<reference key="NSSuperview" ref="177435451"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="326670086"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
@@ -580,14 +559,13 @@
 										</object>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
-										<reference key="IBUIFontDescription" ref="197269764"/>
-										<reference key="IBUIFont" ref="489654376"/>
+										<reference key="IBUIFontDescription" ref="1069999200"/>
+										<reference key="IBUIFont" ref="854145300"/>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 									</object>
 								</array>
 								<string key="NSFrame">{{426, 5}, {211, 55}}</string>
 								<reference key="NSSuperview" ref="699588443"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="851633878"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="534318755"/>
@@ -598,7 +576,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{648, 23}, {24, 21}}</string>
 								<reference key="NSSuperview" ref="699588443"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="184071260"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -621,7 +598,6 @@
 						</array>
 						<string key="NSFrame">{{0, 105}, {690, 65}}</string>
 						<reference key="NSSuperview" ref="796411502"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1002267969"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="534318755"/>
@@ -636,7 +612,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{20, 10}, {650, 21}}</string>
 								<reference key="NSSuperview" ref="184071260"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="731736695"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -651,14 +626,18 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="226805642"/>
-								<reference key="IBUIFont" ref="470730018"/>
+								<object class="IBUIFontDescription" key="IBUIFontDescription">
+									<string key="name">HelveticaNeue-Light</string>
+									<string key="family">Helvetica Neue</string>
+									<int key="traits">0</int>
+									<double key="pointSize">16</double>
+								</object>
+								<reference key="IBUIFont" ref="890122391"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 						</array>
 						<string key="NSFrame">{{0, 170}, {690, 40}}</string>
 						<reference key="NSSuperview" ref="796411502"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1036211908"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="534318755"/>
@@ -673,8 +652,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{18, 14}, {109, 32}}</string>
 								<reference key="NSSuperview" ref="731736695"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -688,13 +665,17 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">ssgrf_bg_btn_follow@2x.png</string>
 								</object>
-								<reference key="IBUIFontDescription" ref="953846640"/>
-								<reference key="IBUIFont" ref="852141648"/>
+								<object class="IBUIFontDescription" key="IBUIFontDescription">
+									<string key="name">HelveticaNeue-Medium</string>
+									<string key="family">Helvetica Neue</string>
+									<int key="traits">0</int>
+									<double key="pointSize">15</double>
+								</object>
+								<reference key="IBUIFont" ref="854145300"/>
 							</object>
 						</array>
 						<string key="NSFrame">{{0, 210}, {690, 65}}</string>
 						<reference key="NSSuperview" ref="796411502"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="979133073"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -708,7 +689,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{658, 17}, {13, 13}}</string>
 						<reference key="NSSuperview" ref="796411502"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="699588443"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -731,7 +711,6 @@
 				</array>
 				<string key="NSFrameSize">{690, 275}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="372787674"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
@@ -1318,177 +1297,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">193</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">GGSsgrfPopPanelPerson</string>
-					<string key="superclassName">UIView</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="btnCB">UIButton</string>
-						<string key="btnClose">UIButton</string>
-						<string key="btnFacebook">UIButton</string>
-						<string key="btnFollow">UIButton</string>
-						<string key="btnHoover">UIButton</string>
-						<string key="btnLinkedIn">UIButton</string>
-						<string key="btnLogo">UIButton</string>
-						<string key="btnMoreEmployers">UIButton</string>
-						<string key="btnSlideShare">UIButton</string>
-						<string key="btnTwitter">UIButton</string>
-						<string key="btnYahoo">UIButton</string>
-						<string key="btnYoutube">UIButton</string>
-						<string key="ivEmp1Logo">UIImageView</string>
-						<string key="ivEmp2Logo">UIImageView</string>
-						<string key="ivEmp3Logo">UIImageView</string>
-						<string key="lblEmp1SubTitle">UILabel</string>
-						<string key="lblEmp1Title">UILabel</string>
-						<string key="lblEmp2SubTitle">UILabel</string>
-						<string key="lblEmp2Title">UILabel</string>
-						<string key="lblEmp3SubTitle">UILabel</string>
-						<string key="lblEmp3Title">UILabel</string>
-						<string key="lblOwnership">UILabel</string>
-						<string key="lblSubTitle">UILabel</string>
-						<string key="lblTitle">UILabel</string>
-						<string key="viewEmployer1">UIView</string>
-						<string key="viewEmployer2">UIView</string>
-						<string key="viewEmployer3">UIView</string>
-						<string key="viewEmployers">UIView</string>
-						<string key="viewExtraInfo">UIView</string>
-						<string key="viewFooter">UIView</string>
-						<string key="viewHeader">UIView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="btnCB">
-							<string key="name">btnCB</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnClose">
-							<string key="name">btnClose</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnFacebook">
-							<string key="name">btnFacebook</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnFollow">
-							<string key="name">btnFollow</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnHoover">
-							<string key="name">btnHoover</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnLinkedIn">
-							<string key="name">btnLinkedIn</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnLogo">
-							<string key="name">btnLogo</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnMoreEmployers">
-							<string key="name">btnMoreEmployers</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnSlideShare">
-							<string key="name">btnSlideShare</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnTwitter">
-							<string key="name">btnTwitter</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnYahoo">
-							<string key="name">btnYahoo</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnYoutube">
-							<string key="name">btnYoutube</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="ivEmp1Logo">
-							<string key="name">ivEmp1Logo</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="ivEmp2Logo">
-							<string key="name">ivEmp2Logo</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="ivEmp3Logo">
-							<string key="name">ivEmp3Logo</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblEmp1SubTitle">
-							<string key="name">lblEmp1SubTitle</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblEmp1Title">
-							<string key="name">lblEmp1Title</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblEmp2SubTitle">
-							<string key="name">lblEmp2SubTitle</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblEmp2Title">
-							<string key="name">lblEmp2Title</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblEmp3SubTitle">
-							<string key="name">lblEmp3SubTitle</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblEmp3Title">
-							<string key="name">lblEmp3Title</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblOwnership">
-							<string key="name">lblOwnership</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblSubTitle">
-							<string key="name">lblSubTitle</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblTitle">
-							<string key="name">lblTitle</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewEmployer1">
-							<string key="name">viewEmployer1</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewEmployer2">
-							<string key="name">viewEmployer2</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewEmployer3">
-							<string key="name">viewEmployer3</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewEmployers">
-							<string key="name">viewEmployers</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewExtraInfo">
-							<string key="name">viewExtraInfo</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewFooter">
-							<string key="name">viewFooter</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewHeader">
-							<string key="name">viewHeader</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/GGSsgrfPopPanelPerson.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

@@ -78,14 +78,14 @@
 										</object>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
-										<object class="IBUIFontDescription" key="IBUIFontDescription" id="930485154">
-											<string key="name">Optima-Regular</string>
-											<string key="family">Optima</string>
+										<object class="IBUIFontDescription" key="IBUIFontDescription" id="507283733">
+											<string key="name">HelveticaNeue-Light</string>
+											<string key="family">Helvetica Neue</string>
 											<int key="traits">0</int>
 											<double key="pointSize">14</double>
 										</object>
-										<object class="NSFont" key="IBUIFont" id="569312788">
-											<string key="NSName">Optima-Regular</string>
+										<object class="NSFont" key="IBUIFont" id="693581452">
+											<string key="NSName">HelveticaNeue-Medium</string>
 											<double key="NSSize">14</double>
 											<int key="NSfFlags">16</int>
 										</object>
@@ -112,8 +112,8 @@
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
 										<int key="IBUITextAlignment">2</int>
-										<reference key="IBUIFontDescription" ref="930485154"/>
-										<reference key="IBUIFont" ref="569312788"/>
+										<reference key="IBUIFontDescription" ref="507283733"/>
+										<reference key="IBUIFont" ref="693581452"/>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 									</object>
 									<object class="IBUILabel" id="975862396">
@@ -133,13 +133,13 @@
 										<int key="IBUIBaselineAdjustment">0</int>
 										<int key="IBUINumberOfLines">3</int>
 										<object class="IBUIFontDescription" key="IBUIFontDescription">
-											<string key="name">Optima-Bold</string>
-											<string key="family">Optima</string>
-											<int key="traits">2</int>
+											<string key="name">HelveticaNeue</string>
+											<string key="family">Helvetica Neue</string>
+											<int key="traits">0</int>
 											<double key="pointSize">16</double>
 										</object>
 										<object class="NSFont" key="IBUIFont">
-											<string key="NSName">Optima-ExtraBlack</string>
+											<string key="NSName">HelveticaNeue-Medium</string>
 											<double key="NSSize">16</double>
 											<int key="NSfFlags">16</int>
 										</object>
@@ -451,67 +451,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">65</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">GGHappeningIpadCell</string>
-					<string key="superclassName">UITableViewCell</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="btnHeadline">UIButton</string>
-						<string key="btnLogo">UIButton</string>
-						<string key="ivContentBg">UIImageView</string>
-						<string key="ivDblArrow">UIImageView</string>
-						<string key="ivLogo">UIImageView</string>
-						<string key="lblHeadline">UILabel</string>
-						<string key="lblInterval">UILabel</string>
-						<string key="lblSource">UILabel</string>
-						<string key="viewContent">UIView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="btnHeadline">
-							<string key="name">btnHeadline</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnLogo">
-							<string key="name">btnLogo</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="ivContentBg">
-							<string key="name">ivContentBg</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="ivDblArrow">
-							<string key="name">ivDblArrow</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="ivLogo">
-							<string key="name">ivLogo</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblHeadline">
-							<string key="name">lblHeadline</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblInterval">
-							<string key="name">lblInterval</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblSource">
-							<string key="name">lblSource</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewContent">
-							<string key="name">viewContent</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/GGHappeningIpadCell.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

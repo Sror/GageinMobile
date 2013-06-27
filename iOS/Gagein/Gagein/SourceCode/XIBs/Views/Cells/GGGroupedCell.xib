@@ -50,7 +50,6 @@
 										<int key="NSvFlags">274</int>
 										<string key="NSFrameSize">{289.5, 45}</string>
 										<reference key="NSSuperview" ref="336047485"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="631502946"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -66,7 +65,6 @@
 										<int key="NSvFlags">290</int>
 										<string key="NSFrame">{{11, 12}, {212, 21}}</string>
 										<reference key="NSSuperview" ref="336047485"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="745211805"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
@@ -78,13 +76,13 @@
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
 										<object class="IBUIFontDescription" key="IBUIFontDescription">
-											<string key="name">Optima-Regular</string>
-											<string key="family">Optima</string>
+											<string key="name">HelveticaNeue</string>
+											<string key="family">Helvetica Neue</string>
 											<int key="traits">0</int>
 											<double key="pointSize">17</double>
 										</object>
 										<object class="NSFont" key="IBUIFont">
-											<string key="NSName">Optima-Regular</string>
+											<string key="NSName">HelveticaNeue-Medium</string>
 											<double key="NSSize">17</double>
 											<int key="NSfFlags">16</int>
 										</object>
@@ -95,7 +93,6 @@
 										<int key="NSvFlags">297</int>
 										<string key="NSFrame">{{266, 17}, {10, 10}}</string>
 										<reference key="NSSuperview" ref="336047485"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="12385042"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -111,7 +108,6 @@
 										<int key="NSvFlags">-2147483351</int>
 										<string key="NSFrame">{{270, 18}, {5, 7}}</string>
 										<reference key="NSSuperview" ref="336047485"/>
-										<reference key="NSWindow"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -126,7 +122,6 @@
 										<int key="NSvFlags">-2147483358</int>
 										<string key="NSFrame">{{12, 24}, {233, 21}}</string>
 										<reference key="NSSuperview" ref="336047485"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="844097043"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
@@ -142,13 +137,13 @@
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
 										<object class="IBUIFontDescription" key="IBUIFontDescription">
-											<string key="name">Optima-Regular</string>
-											<string key="family">Optima</string>
+											<string key="name">HelveticaNeue-Light</string>
+											<string key="family">Helvetica Neue</string>
 											<int key="traits">0</int>
 											<double key="pointSize">12</double>
 										</object>
 										<object class="NSFont" key="IBUIFont">
-											<string key="NSName">Optima-Regular</string>
+											<string key="NSName">HelveticaNeue-Medium</string>
 											<double key="NSSize">12</double>
 											<int key="NSfFlags">16</int>
 										</object>
@@ -157,7 +152,6 @@
 								</array>
 								<string key="NSFrame">{{15, 0}, {290, 45}}</string>
 								<reference key="NSSuperview" ref="807007872"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="285375915"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="749007580">
@@ -169,7 +163,6 @@
 						</array>
 						<string key="NSFrameSize">{320, 44}</string>
 						<reference key="NSSuperview" ref="1053568700"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="336047485"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<reference key="IBUIBackgroundColor" ref="749007580"/>
@@ -182,7 +175,6 @@
 				</array>
 				<string key="NSFrameSize">{320, 45}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="807007872"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -332,52 +324,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">19</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">GGGroupedCell</string>
-					<string key="superclassName">UITableViewCell</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="ivBg">UIImageView</string>
-						<string key="ivDisclosure">UIImageView</string>
-						<string key="ivDot">UIImageView</string>
-						<string key="lblSubTitle">UILabel</string>
-						<string key="lblTitle">UILabel</string>
-						<string key="viewContent">UIView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="ivBg">
-							<string key="name">ivBg</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="ivDisclosure">
-							<string key="name">ivDisclosure</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="ivDot">
-							<string key="name">ivDot</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblSubTitle">
-							<string key="name">lblSubTitle</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lblTitle">
-							<string key="name">lblTitle</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewContent">
-							<string key="name">viewContent</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/GGGroupedCell.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
@@ -385,7 +332,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="discolsureArrowRight@2x.png">{10, 14}</string>
 			<string key="tableCellBottomBg@2x.png">{579, 90}</string>
-			<string key="tableSelectedDot@2x.png">{10, 10}</string>
+			<string key="tableSelectedDot@2x.png">{20, 20}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

@@ -46,7 +46,6 @@
 								<int key="NSvFlags">274</int>
 								<string key="NSFrame">{{7, 7}, {234, 32}}</string>
 								<reference key="NSSuperview" ref="513291406"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="814732057"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -62,7 +61,6 @@
 								<int key="NSvFlags">300</int>
 								<string key="NSFrame">{{18, 12}, {21, 21}}</string>
 								<reference key="NSSuperview" ref="513291406"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="799058881"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -78,7 +76,6 @@
 								<int key="NSvFlags">274</int>
 								<string key="NSFrame">{{47, 8}, {183, 30}}</string>
 								<reference key="NSSuperview" ref="513291406"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="900255333"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -99,13 +96,13 @@
 								</object>
 								<int key="IBUIClearButtonMode">3</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<string key="name">Optima-Regular</string>
-									<string key="family">Optima</string>
+									<string key="name">HelveticaNeue-Light</string>
+									<string key="family">Helvetica Neue</string>
 									<int key="traits">0</int>
 									<double key="pointSize">14</double>
 								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Optima-Regular</string>
+								<object class="NSFont" key="IBUIFont" id="355082689">
+									<string key="NSName">HelveticaNeue-Medium</string>
 									<double key="NSSize">14</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -113,7 +110,6 @@
 						</array>
 						<string key="NSFrameSize">{250, 44}</string>
 						<reference key="NSSuperview" ref="463053303"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="142824361"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="9255331">
@@ -127,8 +123,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{250, 8}, {65, 29}}</string>
 						<reference key="NSSuperview" ref="463053303"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -153,23 +147,18 @@
 							<string key="NSResourceName">darkBtnBg@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
-							<string key="name">Marion-Bold</string>
-							<string key="family">Marion</string>
-							<int key="traits">2</int>
+							<string key="name">HelveticaNeue-Medium</string>
+							<string key="family">Helvetica Neue</string>
+							<int key="traits">0</int>
 							<double key="pointSize">14</double>
 						</object>
-						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Marion-Bold</string>
-							<double key="NSSize">14</double>
-							<int key="NSfFlags">16</int>
-						</object>
+						<reference key="IBUIFont" ref="355082689"/>
 					</object>
 					<object class="IBUIButton" id="900255333">
 						<reference key="NSNextResponder" ref="463053303"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{225, 9}, {25, 23}}</string>
 						<reference key="NSSuperview" ref="463053303"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="386770471"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -200,7 +189,6 @@
 				</array>
 				<string key="NSFrameSize">{320, 44}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="513291406"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="9255331"/>
@@ -361,60 +349,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">18</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">GGBaseSearchBar</string>
-					<string key="superclassName">UIView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/GGBaseSearchBar.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">GGBlackSearchBar</string>
-					<string key="superclassName">GGBaseSearchBar</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="btnCancel">UIButton</string>
-						<string key="btnFilter">UIButton</string>
-						<string key="ivSearchBg">UIImageView</string>
-						<string key="ivSearchGlass">UIImageView</string>
-						<string key="tfSearch">UITextField</string>
-						<string key="viewSearchField">UIView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="btnCancel">
-							<string key="name">btnCancel</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btnFilter">
-							<string key="name">btnFilter</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="ivSearchBg">
-							<string key="name">ivSearchBg</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="ivSearchGlass">
-							<string key="name">ivSearchGlass</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="tfSearch">
-							<string key="name">tfSearch</string>
-							<string key="candidateClassName">UITextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="viewSearchField">
-							<string key="name">viewSearchField</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/GGBlackSearchBar.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
