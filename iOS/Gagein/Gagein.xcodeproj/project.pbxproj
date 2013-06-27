@@ -343,6 +343,7 @@
 		EA959D7717157102005B06F6 /* topOrangeLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA959D7617157102005B06F6 /* topOrangeLine@2x.png */; };
 		EA95B8B0177CCEA0002868A4 /* btnSwitchArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA95B8AF177CCEA0002868A4 /* btnSwitchArrow@2x.png */; };
 		EA95B8B3177CD1AA002868A4 /* UIButton+GGAddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA95B8B2177CD1AA002868A4 /* UIButton+GGAddOn.m */; };
+		EA95B8B5177CF393002868A4 /* logoNewsDefault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA95B8B4177CF393002868A4 /* logoNewsDefault@2x.png */; };
 		EA964951176104A600739F73 /* GGLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EA964950176104A600739F73 /* GGLayout.m */; };
 		EA96495717613D4D00739F73 /* bg-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = EA96495317613D4D00739F73 /* bg-yellow.png */; };
 		EA96495817613D4D00739F73 /* bg-yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA96495417613D4D00739F73 /* bg-yellow@2x.png */; };
@@ -1079,6 +1080,7 @@
 		EA95B8AF177CCEA0002868A4 /* btnSwitchArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnSwitchArrow@2x.png"; sourceTree = "<group>"; };
 		EA95B8B1177CD1AA002868A4 /* UIButton+GGAddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+GGAddOn.h"; sourceTree = "<group>"; };
 		EA95B8B2177CD1AA002868A4 /* UIButton+GGAddOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+GGAddOn.m"; sourceTree = "<group>"; };
+		EA95B8B4177CF393002868A4 /* logoNewsDefault@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logoNewsDefault@2x.png"; sourceTree = "<group>"; };
 		EA96494F176104A600739F73 /* GGLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGLayout.h; sourceTree = "<group>"; };
 		EA964950176104A600739F73 /* GGLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGLayout.m; sourceTree = "<group>"; };
 		EA96495317613D4D00739F73 /* bg-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-yellow.png"; sourceTree = "<group>"; };
@@ -2499,6 +2501,7 @@
 		EACAE0B117094A3100E7088F /* 2X */ = {
 			isa = PBXGroup;
 			children = (
+				EA95B8B4177CF393002868A4 /* logoNewsDefault@2x.png */,
 				EA9EFFF61770068100127233 /* ssgrf_button */,
 				EA96DDBF176D01C6007355DB /* dblDownArrow@2x.png */,
 				EA96DDC0176D01C6007355DB /* dblUpArrow@2x.png */,
@@ -3490,6 +3493,7 @@
 				EA95340F177B69030022D872 /* welcome03Big@2x.png in Resources */,
 				EA953410177B69030022D872 /* welcome04Big@2x.png in Resources */,
 				EA95B8B0177CCEA0002868A4 /* btnSwitchArrow@2x.png in Resources */,
+				EA95B8B5177CF393002868A4 /* logoNewsDefault@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

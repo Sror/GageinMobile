@@ -25,6 +25,8 @@ DEF_SINGLETON(GGImagePool)
         
         _logoDefaultPerson = [UIImage imageNamed:@"logoDefaultPerson"];
         
+        _logoDefaultNews = [UIImage imageNamed:@"logoNewsDefault"];
+        
         _bgBtnOrange = [[UIImage imageNamed:@"orangeBtnBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 10, 30, 10)];
         
         _bgBtnOrangeDarkEdge = [[UIImage imageNamed:@"btnYellowBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 10, 30, 10)];

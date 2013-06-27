@@ -14,8 +14,11 @@ AS_SINGLETON(GGImagePool)
 @property (strong, nonatomic) UIImage *placeholder;
 @property (strong, nonatomic) UIImage  *stretchShadowBgWite;
 @property (strong, nonatomic) UIImage  *bgNavibar;
+
 @property (strong, nonatomic) UIImage  *logoDefaultCompany;
 @property (strong, nonatomic) UIImage  *logoDefaultPerson;
+@property (strong, nonatomic) UIImage  *logoDefaultNews;
+
 @property (strong, nonatomic) UIImage  *bgBtnOrange;
 @property (strong, nonatomic) UIImage  *bgBtnOrangeDarkEdge;
 

@@ -132,10 +132,10 @@
         self.lblSource.text = _data.fromSource;
         self.lblDescription.text = _data.content;
         
-        self.ivLogo.hidden = (_data.newsPicURL.length == 0);
-        if (!self.ivLogo.hidden)
+        //self.ivLogo.hidden = (_data.newsPicURL.length == 0);
+        //if (!self.ivLogo.hidden)
         {
-            [self.ivLogo setImageWithURL:[NSURL URLWithString:_data.newsPicURL/*aData.company.logoPath*/] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+            [self.ivLogo setImageWithURL:[NSURL URLWithString:_data.newsPicURL/*aData.company.logoPath*/] placeholderImage:GGSharedImagePool.logoDefaultNews];
         }
         
         
