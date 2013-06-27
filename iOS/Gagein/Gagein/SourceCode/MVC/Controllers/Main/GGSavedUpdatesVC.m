@@ -35,7 +35,7 @@
 
 @implementation GGSavedUpdatesVC
 {
-    GGSwitchButton   *_roundSwitch;
+    //GGSwitchButton   *_roundSwitch;
     NSUInteger      _currentPageIndex;
     BOOL            _hasMore;
     NSMutableArray  *_updates;
@@ -58,27 +58,67 @@
     return self;
 }
 
--(void)_initRoundSwitch
+-(UILabel *)_subNaviLabel
 {
-    _roundSwitch = [GGSwitchButton viewFromNibWithOwner:self];
-    _roundSwitch.delegate = self;
-    _roundSwitch.lblOn.text = @"Unread";
-    _roundSwitch.lblOff.text = @"All";
-    _roundSwitch.isOn = _isUnread;
+    static UILabel *_subNaviLabel = nil;
+    if (_subNaviLabel == nil)
+    {
+        CGRect naviRc = [GGLayout navibarFrame];
+        CGRect subNaviRc = CGRectMake(naviRc.size.width / 4, 30, naviRc.size.width / 2, 15);
+        _subNaviLabel = [[UILabel alloc] initWithFrame:subNaviRc];
+        _subNaviLabel.font = [UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE_LIGHT size:12.f];
+        _subNaviLabel.textColor = GGSharedColor.white;
+        _subNaviLabel.backgroundColor = GGSharedColor.clear;
+        _subNaviLabel.textAlignment = NSTextAlignmentCenter;
+        _subNaviLabel.text = _isUnread ? GGString(@"Unread") : GGString(@"All");
+    }
     
-    [self _setSwitchRect];
+    return _subNaviLabel;
 }
 
--(void)_setSwitchRect
+-(void)_makeSubNaviTitleVisible:(BOOL)aVisible
 {
-    CGRect naviRc = self.navigationController.navigationBar.frame;
-    
-    CGRect switchRc = CGRectMake(naviRc.size.width - SWITCH_WIDTH - 5
-                                 , (naviRc.size.height - [GGSwitchButton HEIGHT]) / 2 + 5
-                                 , SWITCH_WIDTH
-                                 , [GGSwitchButton HEIGHT]);
-    _roundSwitch.frame = switchRc;
+    if (aVisible)
+    {
+        [self.navigationController.navigationBar addSubview:[self _subNaviLabel]];
+        [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:0.f forBarMetrics:UIBarMetricsDefault];
+    }
+    else
+    {
+        [[self _subNaviLabel] removeFromSuperview];
+        [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:5.f forBarMetrics:UIBarMetricsDefault];
+    }
 }
+
+-(IBAction)switchBtweenUpdateAndHappening:(id)sender
+{
+    _isUnread = !_isUnread;
+    [self _subNaviLabel].text = _isUnread ? GGString(@"Unread") : GGString(@"All");
+    
+    [_tvUpdates triggerPullToRefresh];
+}
+
+//-(void)_initRoundSwitch
+//{
+//    _roundSwitch = [GGSwitchButton viewFromNibWithOwner:self];
+//    _roundSwitch.delegate = self;
+//    _roundSwitch.lblOn.text = @"Unread";
+//    _roundSwitch.lblOff.text = @"All";
+//    _roundSwitch.isOn = _isUnread;
+//    
+//    [self _setSwitchRect];
+//}
+//
+//-(void)_setSwitchRect
+//{
+//    CGRect naviRc = self.navigationController.navigationBar.frame;
+//    
+//    CGRect switchRc = CGRectMake(naviRc.size.width - SWITCH_WIDTH - 5
+//                                 , (naviRc.size.height - [GGSwitchButton HEIGHT]) / 2 + 5
+//                                 , SWITCH_WIDTH
+//                                 , [GGSwitchButton HEIGHT]);
+//    _roundSwitch.frame = switchRc;
+//}
 
 - (void)viewDidLoad
 {
@@ -89,8 +129,14 @@
     self.view.backgroundColor = GGSharedColor.silver;
     self.naviTitle = @"Saved Updates";
     
-    [self _initRoundSwitch];
-    [self.navigationController.navigationBar addSubview:_roundSwitch];
+    //[self _initRoundSwitch];
+    //[self.navigationController.navigationBar addSubview:_roundSwitch];
+    
+    // switch bar button
+    CGPoint offset = CGPointMake(0, 3);
+    GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(switchBtweenUpdateAndHappening:)];
+    UIBarButtonItem *switchBtn = [GGUtils barButtonWithImageName:@"btnSwitchArrow" offset:offset action:action];
+    self.navigationItem.rightBarButtonItem = switchBtn;
     
     //
     _tvUpdates = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
@@ -128,13 +174,16 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:_roundSwitch];
-    [self _setSwitchRect];
+    
+    [self _makeSubNaviTitleVisible:YES];
+//    [self.navigationController.navigationBar addSubview:_roundSwitch];
+//    [self _setSwitchRect];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
     
     if (ISIPADDEVICE)
     {
@@ -145,7 +194,8 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [_roundSwitch removeFromSuperview];
+    
+    [self _makeSubNaviTitleVisible:NO];
 }
 
 -(void)dealloc
@@ -170,11 +220,11 @@
 }
 
 #pragma mark - actions
--(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
-{
-    _isUnread = aIsOn;
-    [_tvUpdates triggerPullToRefresh];
-}
+//-(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
+//{
+//    _isUnread = aIsOn;
+//    [_tvUpdates triggerPullToRefresh];
+//}
 
 -(void)companyDetailAction:(id)sender
 {
@@ -211,7 +261,7 @@
 
 -(void)_callGetSavedUpdates
 {
-    _roundSwitch.btnSwitch.enabled = NO;
+    //_roundSwitch.btnSwitch.enabled = NO;
     id op = [GGSharedAPI getSaveUpdatesWithPageIndex:_currentPageIndex isUnread:_isUnread callback:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
@@ -242,7 +292,7 @@
     [weakSelf.tvUpdates.pullToRefreshView stopAnimating];
     [weakSelf.tvUpdates.infiniteScrollingView stopAnimating];
     
-    _roundSwitch.btnSwitch.enabled = YES;
+    //_roundSwitch.btnSwitch.enabled = YES;
 }
 
 -(void)_delayedStopInfiniteAnimating
@@ -251,7 +301,7 @@
     
     [weakSelf.tvUpdates.infiniteScrollingView stopAnimating];
     
-    _roundSwitch.btnSwitch.enabled = YES;
+    //_roundSwitch.btnSwitch.enabled = YES;
 }
 
 #pragma mark - tableView datasource
@@ -390,7 +440,7 @@
 {
     GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
     
-    vc.naviTitleString = self.customNaviTitle.text;
+    vc.naviTitleString = @"Saved Updates";
     vc.updates = _updates;
     vc.updateIndex = aIndex;
     GGCompanyUpdate *data = _updates[aIndex];
@@ -415,7 +465,7 @@
     [_tvUpdates centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH_FULL];
     //CGRect thisRc = self.view.frame;
     //CGRect tvRc = _tvUpdates.frame;
-    [self _setSwitchRect];
+    //[self _setSwitchRect];
 }
 
 @end
