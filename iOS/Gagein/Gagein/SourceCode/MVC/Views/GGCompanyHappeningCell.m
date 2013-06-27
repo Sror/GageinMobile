@@ -34,6 +34,9 @@
     _ivLogo.layer.borderWidth = 1;
     
     [GGUtils applyLogoStyleToView:_ivLogo];
+    
+    _lblInterval.textColor = GGSharedColor.grayTopText;
+    _lblName.textColor = GGSharedColor.grayTopText;
 }
 
 +(float)HEIGHT

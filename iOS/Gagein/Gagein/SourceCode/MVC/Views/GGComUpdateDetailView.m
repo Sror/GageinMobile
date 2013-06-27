@@ -27,6 +27,7 @@
 {
     self.ivUpdateBg.image = GGSharedImagePool.stretchShadowBgWite;
     _lblTitle.lineBreakMode = UILineBreakModeWordWrap;
+    _lblSource.textColor = _lblDate.textColor = GGSharedColor.grayTopText;
 }
 
 -(float)height

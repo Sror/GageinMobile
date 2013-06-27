@@ -83,15 +83,15 @@
 										</object>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
-										<object class="IBUIFontDescription" key="IBUIFontDescription" id="465228887">
-											<string key="name">Optima-Regular</string>
-											<string key="family">Optima</string>
+										<object class="IBUIFontDescription" key="IBUIFontDescription" id="970413042">
+											<string key="name">HelveticaNeue-Light</string>
+											<string key="family">Helvetica Neue</string>
 											<int key="traits">0</int>
-											<double key="pointSize">15</double>
+											<double key="pointSize">12</double>
 										</object>
-										<object class="NSFont" key="IBUIFont" id="900574456">
-											<string key="NSName">Optima-Regular</string>
-											<double key="NSSize">15</double>
+										<object class="NSFont" key="IBUIFont" id="354287030">
+											<string key="NSName">HelveticaNeue-Medium</string>
+											<double key="NSSize">12</double>
 											<int key="NSfFlags">16</int>
 										</object>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -118,8 +118,8 @@
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
 										<int key="IBUITextAlignment">2</int>
-										<reference key="IBUIFontDescription" ref="465228887"/>
-										<reference key="IBUIFont" ref="900574456"/>
+										<reference key="IBUIFontDescription" ref="970413042"/>
+										<reference key="IBUIFont" ref="354287030"/>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 									</object>
 									<object class="IBUILabel" id="256062034">
@@ -144,14 +144,14 @@
 										<int key="IBUIBaselineAdjustment">0</int>
 										<int key="IBUINumberOfLines">2</int>
 										<object class="IBUIFontDescription" key="IBUIFontDescription">
-											<string key="name">Optima-Regular</string>
-											<string key="family">Optima</string>
+											<string key="name">HelveticaNeue</string>
+											<string key="family">Helvetica Neue</string>
 											<int key="traits">0</int>
-											<double key="pointSize">17</double>
+											<double key="pointSize">14</double>
 										</object>
 										<object class="NSFont" key="IBUIFont">
-											<string key="NSName">Optima-Regular</string>
-											<double key="NSSize">17</double>
+											<string key="NSName">HelveticaNeue-Medium</string>
+											<double key="NSSize">14</double>
 											<int key="NSfFlags">16</int>
 										</object>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>

@@ -83,25 +83,22 @@
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<string key="IBUIText">Yahoo</string>
 										<object class="NSColor" key="IBUITextColor">
-											<int key="NSColorSpace">3</int>
-											<bytes key="NSWhite">MC41AA</bytes>
-											<object class="NSColorSpace" key="NSCustomColorSpace" id="618183770">
-												<int key="NSID">2</int>
-											</object>
+											<int key="NSColorSpace">1</int>
+											<bytes key="NSRGB">MC42NTkwNTIzMDk4IDAuNjU5MDUyMzA5OCAwLjY1OTA1MjMwOTgAA</bytes>
 										</object>
 										<object class="NSColor" key="IBUIHighlightedColor" id="160849043">
 											<int key="NSColorSpace">3</int>
 											<bytes key="NSWhite">MQA</bytes>
 										</object>
 										<int key="IBUIBaselineAdjustment">0</int>
-										<object class="IBUIFontDescription" key="IBUIFontDescription" id="594157258">
-											<string key="name">Optima-Regular</string>
-											<string key="family">Optima</string>
+										<object class="IBUIFontDescription" key="IBUIFontDescription" id="179824179">
+											<string key="name">HelveticaNeue-Light</string>
+											<string key="family">Helvetica Neue</string>
 											<int key="traits">0</int>
 											<double key="pointSize">12</double>
 										</object>
-										<object class="NSFont" key="IBUIFont" id="264143973">
-											<string key="NSName">Optima-Regular</string>
+										<object class="NSFont" key="IBUIFont" id="529292208">
+											<string key="NSName">HelveticaNeue-Medium</string>
 											<double key="NSSize">12</double>
 											<int key="NSfFlags">16</int>
 										</object>
@@ -113,7 +110,6 @@
 										<string key="NSFrame">{{231, 5}, {68, 20}}</string>
 										<reference key="NSSuperview" ref="184684847"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -124,13 +120,15 @@
 										<object class="NSColor" key="IBUITextColor">
 											<int key="NSColorSpace">3</int>
 											<bytes key="NSWhite">MC41AA</bytes>
-											<reference key="NSCustomColorSpace" ref="618183770"/>
+											<object class="NSColorSpace" key="NSCustomColorSpace">
+												<int key="NSID">2</int>
+											</object>
 										</object>
 										<reference key="IBUIHighlightedColor" ref="160849043"/>
 										<int key="IBUIBaselineAdjustment">0</int>
 										<int key="IBUITextAlignment">2</int>
-										<reference key="IBUIFontDescription" ref="594157258"/>
-										<reference key="IBUIFont" ref="264143973"/>
+										<reference key="IBUIFontDescription" ref="179824179"/>
+										<reference key="IBUIFont" ref="529292208"/>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 									</object>
 									<object class="IBUILabel" id="1041328760">
@@ -156,14 +154,14 @@
 										<int key="IBUIBaselineAdjustment">0</int>
 										<int key="IBUINumberOfLines">3</int>
 										<object class="IBUIFontDescription" key="IBUIFontDescription">
-											<string key="name">Marion-Bold</string>
-											<string key="family">Marion</string>
-											<int key="traits">2</int>
-											<double key="pointSize">15</double>
+											<string key="name">HelveticaNeue</string>
+											<string key="family">Helvetica Neue</string>
+											<int key="traits">0</int>
+											<double key="pointSize">14</double>
 										</object>
 										<object class="NSFont" key="IBUIFont">
-											<string key="NSName">Marion-Bold</string>
-											<double key="NSSize">15</double>
+											<string key="NSName">HelveticaNeue-Medium</string>
+											<double key="NSSize">14</double>
 											<int key="NSfFlags">16</int>
 										</object>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>

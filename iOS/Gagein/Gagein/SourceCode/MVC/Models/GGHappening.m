@@ -190,6 +190,7 @@
     self.address = [[aData objectForKey:@"address"] objectForKey:@"address"];
     
     self.addressMap = [aData objectForKey:@"address_map"];
+    _oldAddressMap = [aData objectForKey:@"old_address_map"];
     
     
     _percentage = [aData objectForKey:@"percentage"];

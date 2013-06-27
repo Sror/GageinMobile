@@ -29,6 +29,8 @@
 -(void)awakeFromNib
 {
     self.viewCellBg.backgroundColor = GGSharedColor.silver;
+    
+    _lblSource.textColor = _lblInterval.textColor = GGSharedColor.grayTopText;
 }
 
 +(float)HEIGHT

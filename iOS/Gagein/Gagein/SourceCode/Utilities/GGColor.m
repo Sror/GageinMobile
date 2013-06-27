@@ -81,6 +81,11 @@ DEF_SINGLETON(GGColor)
     return UIColorFromRGB(0x343434);
 }
 
+-(UIColor *)grayTopText
+{
+    return [UIColor colorWithWhite:.7f alpha:1.f];
+}
+
 -(UIColor *)graySettingBg
 {
     return UIColorFromRGB(0x313131);

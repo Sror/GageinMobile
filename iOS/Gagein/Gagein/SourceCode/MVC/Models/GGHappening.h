@@ -99,7 +99,7 @@ typedef enum {
 @property (copy) NSString                       *addressPersonOld;
 
 @property (copy) NSString                       *addressMap;
-//@property (copy) NSString                       *oldAddress;
+@property (copy) NSString                       *oldAddressMap;
 
 @property (copy) NSString                       *photoPath;
 @property (copy) NSString                       *profilePic;

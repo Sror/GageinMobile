@@ -40,9 +40,9 @@
 {
     self.ivCellBg.image = GGSharedImagePool.stretchShadowBgWite;
     _titleLbl.text = @"";
-    CGRect titleRc = _titleLbl.frame;
-    UILabel * newTitleLbl = [GGCompanyUpdateCell labelForUpdateCellWithFrame:titleRc];
-    _titleLbl = [GGUtils replaceView:_titleLbl inPlaceWithNewView:newTitleLbl];
+//    CGRect titleRc = _titleLbl.frame;
+//    UILabel * newTitleLbl = [GGCompanyUpdateCell labelForUpdateCellWithFrame:titleRc];
+//    _titleLbl = [GGUtils replaceView:_titleLbl inPlaceWithNewView:newTitleLbl];
     
     _intervalLbl.text = @"";
     
@@ -50,17 +50,19 @@
     
     _titleLbl.numberOfLines = 3;
     _descriptionLbl.numberOfLines = 2;
+    
+    _sourceLbl.textColor = _intervalLbl.textColor = GGSharedColor.grayTopText;
 }
 
-+(UILabel*)labelForUpdateCellWithFrame:(CGRect)aRect
-{
-    UILabel *label = [[UILabel alloc] initWithFrame:aRect];
-    label.backgroundColor = GGSharedColor.clear;
-    label.font = [UIFont fontWithName:GG_FONT_NAME_OPTIMA_BOLD size:15.f];
-    label.textColor = GGSharedColor.black;
-    
-    return label;
-}
+//+(UILabel*)labelForUpdateCellWithFrame:(CGRect)aRect
+//{
+//    UILabel *label = [[UILabel alloc] initWithFrame:aRect];
+//    label.backgroundColor = GGSharedColor.clear;
+//    label.font = [UIFont fontWithName:GG_FONT_NAME_OPTIMA_BOLD size:15.f];
+//    label.textColor = GGSharedColor.black;
+//    
+//    return label;
+//}
 
 -(void)setHasBeenRead:(BOOL)hasRead
 {
