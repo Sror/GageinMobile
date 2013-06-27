@@ -101,9 +101,9 @@
         GGCompanyUpdate *cachedUpdateDetail = [GGSharedRuntimeData.updateDetailCache updateWithID:_data.ID];
         if (cachedUpdateDetail == nil)
         {
-            [self showLoadingHUD];
+            [self.viewContent showLoadingHUD];
             [GGSharedAPI getCompanyUpdateDetailWithNewsID:_data.ID callback:^(id operation, id aResultObject, NSError *anError) {
-                [self hideLoadingHUD];
+                [self.viewContent hideLoadingHUD];
                 GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
                 if (parser.isOK)
                 {

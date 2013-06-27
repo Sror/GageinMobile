@@ -147,7 +147,7 @@ static BOOL s_isCustomed = NO;
     
     // common apperance
     NSMutableDictionary *titleBarAttributes = [NSMutableDictionary dictionaryWithDictionary: [[UINavigationBar appearance] titleTextAttributes]];
-    [titleBarAttributes setValue:[UIFont fontWithName:GG_FONT_NAME_OPTIMA_BOLD size:16] forKey:UITextAttributeFont];
+    [titleBarAttributes setValue:[UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE_MEDIUM size:16] forKey:UITextAttributeFont];
     [titleBarAttributes setValue:GGSharedColor.white forKey:UITextAttributeTextColor];
     [[UINavigationBar appearance] setTitleTextAttributes:titleBarAttributes];
     
