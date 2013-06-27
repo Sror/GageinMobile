@@ -80,12 +80,14 @@
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="503680176">
-									<int key="type">2</int>
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="399792587">
+									<string key="name">HelveticaNeue-Medium</string>
+									<string key="family">Helvetica Neue</string>
+									<int key="traits">0</int>
 									<double key="pointSize">15</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="209008581">
-									<string key="NSName">Helvetica-Bold</string>
+								<object class="NSFont" key="IBUIFont" id="146112962">
+									<string key="NSName">HelveticaNeue-Medium</string>
 									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -118,12 +120,14 @@
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
 								<int key="IBUIClearButtonMode">1</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="875349158">
-									<int key="type">1</int>
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="415743932">
+									<string key="name">HelveticaNeue-Light</string>
+									<string key="family">Helvetica Neue</string>
+									<int key="traits">0</int>
 									<double key="pointSize">18</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="444556967">
-									<string key="NSName">Helvetica</string>
+								<object class="NSFont" key="IBUIFont" id="70965566">
+									<string key="NSName">HelveticaNeue-Medium</string>
 									<double key="NSSize">18</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -155,8 +159,8 @@
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
 								<int key="IBUIClearButtonMode">1</int>
-								<reference key="IBUIFontDescription" ref="875349158"/>
-								<reference key="IBUIFont" ref="444556967"/>
+								<reference key="IBUIFontDescription" ref="415743932"/>
+								<reference key="IBUIFont" ref="70965566"/>
 							</object>
 							<object class="IBUIView" id="185674388">
 								<reference key="NSNextResponder" ref="406343190"/>
@@ -195,8 +199,8 @@
 											<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 										</object>
 										<reference key="IBUINormalTitleShadowColor" ref="512576073"/>
-										<reference key="IBUIFontDescription" ref="503680176"/>
-										<reference key="IBUIFont" ref="209008581"/>
+										<reference key="IBUIFontDescription" ref="399792587"/>
+										<reference key="IBUIFont" ref="146112962"/>
 									</object>
 								</array>
 								<string key="NSFrame">{{334, 407}, {134, 30}}</string>
@@ -457,20 +461,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">GGLoginVC</string>
 					<string key="superclassName">GGBaseViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="goSignupAction:">id</string>
-						<string key="loginAction:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="goSignupAction:">
-							<string key="name">goSignupAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="loginAction:">
-							<string key="name">loginAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="btnLogin">UIButton</string>
 						<string key="ivLoginFieldBg">UIImageView</string>
