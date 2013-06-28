@@ -117,6 +117,9 @@
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObjectIfNotNil:@"text" forKey:@"msg_format"];
     
+    //include_competitors=true
+    [parameters setObjectIfNotNil:@"true" forKey:@"include_competitors"];
+    
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }
 
@@ -131,6 +134,9 @@
     [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
     [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
     [parameters setObjectIfNotNil:@"text" forKey:@"msg_format"];
+    
+    //include_competitors=true
+    [parameters setObjectIfNotNil:@"true" forKey:@"include_competitors"];
     
     return [self _execGetWithPath:path params:parameters callback:aCallback];
 }

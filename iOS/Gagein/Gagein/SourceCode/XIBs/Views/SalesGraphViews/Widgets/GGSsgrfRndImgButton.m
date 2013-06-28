@@ -9,10 +9,15 @@
 #import "GGSsgrfRndImgButton.h"
 #import <QuartzCore/QuartzCore.h>
 
+@interface GGSsgrfRndImgButton ()
+@property (strong, nonatomic) UIActivityIndicatorView     *viewLoading;
+@end
+
 @implementation GGSsgrfRndImgButton
 {
-    UIButton    *_button;
-    UIImageView *_imageView;
+    UIButton                    *_button;
+    UIImageView                 *_imageView;
+    
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -59,6 +64,9 @@
     _imageView.clipsToBounds = YES;
     
     _imageView.contentMode = UIViewContentModeScaleAspectFill;
+    
+    _viewLoading = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    _viewLoading.hidesWhenStopped = YES;
 }
 
 -(void)clearActions
@@ -75,7 +83,27 @@
 
 -(void)setImageUrl:(NSString *)aImageURL placeholder:(UIImage *)aPlaceHolder
 {
-    [_imageView setImageWithURL:[NSURL URLWithString:aImageURL] placeholderImage:aPlaceHolder];
+    [_imageView addSubview:_viewLoading];
+    _viewLoading.center = _imageView.center;
+    [_viewLoading startAnimating];
+    
+    __weak typeof(self) weakSelf = self;
+    NSURL *url = [NSURL URLWithString:aImageURL];
+    if (url)
+    {
+        [_imageView setImageWithURL:url placeholderImage:aPlaceHolder completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+            
+            [weakSelf.viewLoading stopAnimating];
+            [weakSelf.viewLoading removeFromSuperview];
+            
+        }];
+    }
+    else
+    {
+        _imageView.image = aPlaceHolder;
+        [weakSelf.viewLoading stopAnimating];
+        [weakSelf.viewLoading removeFromSuperview];
+    }
 }
 
 @end
