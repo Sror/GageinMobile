@@ -37,7 +37,7 @@
 
 -(CGSize)imageSize;
 
--(void)reArrangeImagePos;
+//-(void)reArrangeImagePos;
 
 -(float)scrollViewHeight;
 @end

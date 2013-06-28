@@ -128,11 +128,11 @@
     }
     [_imageButtons removeAllObjects];
     
-    int offsetX = 0;
+    //int offsetX = 0;
     int count = _imageUrls.count;
     for (int i = 0; i < count; i++)
     {
-        GGSsgrfRndImgButton *button = [[GGSsgrfRndImgButton alloc] initWithFrame:CGRectMake(offsetX, ([self scrollViewHeight] - [self imageSize].height) / 2, [self imageSize].width, [self imageSize].height)];
+        GGSsgrfRndImgButton *button = [[GGSsgrfRndImgButton alloc] initWithFrame:CGRectMake(0, ([self scrollViewHeight] - [self imageSize].height) / 2, [self imageSize].width, [self imageSize].height)];
         
         button.tag = i;
         
@@ -145,25 +145,44 @@
         [_viewScroll addSubview:button];
         [_imageButtons addObject:button];
         
-        offsetX = CGRectGetMaxX(button.frame) + _gap;
+        //offsetX = CGRectGetMaxX(button.frame) + _gap;
     }
     
-    _viewScroll.contentSize = CGSizeMake(offsetX - _gap, [self imageSize].height);
+    [self reArrangeImagePos];
+     //[self _setContentWidth:offsetX - _gap];
 }
 
 
 -(void)reArrangeImagePos
 {
+    [self _reArrangeImagePosWithOffsetX:0];
+    float contentWidth = _viewScroll.contentSize.width;
+    float scrollWidth = _viewScroll.frame.size.width;
+    if (contentWidth < scrollWidth)
+    {
+        float offsetX = (scrollWidth - contentWidth) / 2;
+        [self _reArrangeImagePosWithOffsetX:offsetX];
+    }
+}
+
+-(void)_reArrangeImagePosWithOffsetX:(float)aOffsetX
+{
     int count = _imageButtons.count;
-    int offsetX = 0;
     for (int i = 0; i < count; i++)
     {
         GGSsgrfRndImgButton *btn = _imageButtons[i];
-        btn.frame = CGRectMake(offsetX, btn.frame.origin.y, btn.frame.size.width, btn.frame.size.height);
-        offsetX = CGRectGetMaxX(btn.frame) + _gap;
+        btn.frame = CGRectMake(aOffsetX, btn.frame.origin.y, btn.frame.size.width, btn.frame.size.height);
+        aOffsetX = CGRectGetMaxX(btn.frame) + _gap;
     }
     
-    _viewScroll.contentSize = CGSizeMake(offsetX - _gap, [self imageSize].height);
+    [self _setContentWidth:aOffsetX - _gap];
+    
+}
+
+-(void)_setContentWidth:(float)aWidth
+{
+    //aWidth = MAX(_viewScroll.frame.size.width, aWidth);
+    _viewScroll.contentSize = CGSizeMake(aWidth, [self imageSize].height);
 }
 
 
@@ -242,6 +261,57 @@
 
 #define THIS_ANIM_DURATION  .4f
 
+- (void)showInfoWidgetAnimatedWithPushButton:(UIButton *)pushedButton
+{
+    _infoWidget.hidden = NO;
+    _infoWidget.viewTitledScroll.viewScroll.contentOffset = CGPointZero;
+    _infoWidget.center = pushedButton.center;
+    [self.viewScroll addSubview:_infoWidget];
+    
+    CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    opacityAnimation.fromValue = @(0);
+    opacityAnimation.toValue = @(1);
+    opacityAnimation.duration = THIS_ANIM_DURATION / 2;
+    [_infoWidget.layer addAnimation:opacityAnimation forKey:@"opacityAnimation"];
+    
+    CAKeyframeAnimation *alertScaleAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    
+    CATransform3D startingScale = CATransform3DScale(_infoWidget.layer.transform, 0, 0, 0);
+    CATransform3D overshootScale = CATransform3DScale(_infoWidget.layer.transform, 1.05, 1.05, 1.0);
+    CATransform3D undershootScale = CATransform3DScale(_infoWidget.layer.transform, 0.95, 0.95, 1.0);
+    CATransform3D endingScale = _infoWidget.layer.transform;
+    
+    alertScaleAnimation.values = @[
+                                   [NSValue valueWithCATransform3D:startingScale],
+                                   [NSValue valueWithCATransform3D:overshootScale],
+                                   [NSValue valueWithCATransform3D:undershootScale],
+                                   [NSValue valueWithCATransform3D:endingScale]
+                                   ];
+    
+    alertScaleAnimation.keyTimes = @[
+                                     @(0.0f),
+                                     @(0.3f),
+                                     @(0.85f),
+                                     @(1.0f)
+                                     ];
+    
+    alertScaleAnimation.timingFunctions = @[
+                                            [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut],
+                                            [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+                                            [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]
+                                            ];
+    alertScaleAnimation.fillMode = kCAFillModeForwards;
+    alertScaleAnimation.removedOnCompletion = NO;
+    
+    CAAnimationGroup *alertAnimation = [CAAnimationGroup animation];
+    alertAnimation.animations = @[
+                                  alertScaleAnimation,
+                                  opacityAnimation
+                                  ];
+    alertAnimation.duration = THIS_ANIM_DURATION;
+    [_infoWidget.layer addAnimation:alertAnimation forKey:@"alertAnimation"];
+}
+
 -(void)pushAwayFromIndex:(UIButton *)aButton
 {
     int index = aButton.tag;
@@ -251,11 +321,13 @@
     
     if (count <= 1)
     {
-        _infoWidget.hidden = NO;
-        _infoWidget.viewTitledScroll.viewScroll.contentOffset = CGPointZero;
-        _infoWidget.center = pushedButton.center;
-        [self.viewScroll addSubview:_infoWidget];
-        
+//        _infoWidget.hidden = NO;
+//        _infoWidget.viewTitledScroll.viewScroll.contentOffset = CGPointZero;
+//        _infoWidget.center = pushedButton.center;
+//        [self.viewScroll addSubview:_infoWidget];
+//        //self.viewScroll.backgroundColor = GGSharedColor.random;
+
+        [self showInfoWidgetAnimatedWithPushButton:pushedButton];
         return; // dont need
     }
     
@@ -343,55 +415,7 @@
         
     } completion:^(BOOL finished) {
         
-        _infoWidget.hidden = NO;
-        _infoWidget.viewTitledScroll.viewScroll.contentOffset = CGPointZero;
-        CGPoint center = pushedButton.center;
-        center.y -= 0;
-        _infoWidget.center = center;
-        [self.viewScroll addSubview:_infoWidget];
-        
-        CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-        opacityAnimation.fromValue = @(0);
-        opacityAnimation.toValue = @(1);
-        opacityAnimation.duration = THIS_ANIM_DURATION / 2;
-        [_infoWidget.layer addAnimation:opacityAnimation forKey:@"opacityAnimation"];
-        
-        CAKeyframeAnimation *alertScaleAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-        
-        CATransform3D startingScale = CATransform3DScale(_infoWidget.layer.transform, 0, 0, 0);
-        CATransform3D overshootScale = CATransform3DScale(_infoWidget.layer.transform, 1.05, 1.05, 1.0);
-        CATransform3D undershootScale = CATransform3DScale(_infoWidget.layer.transform, 0.95, 0.95, 1.0);
-        CATransform3D endingScale = _infoWidget.layer.transform;
-        
-        alertScaleAnimation.values = @[
-                                       [NSValue valueWithCATransform3D:startingScale],
-                                       [NSValue valueWithCATransform3D:overshootScale],
-                                       [NSValue valueWithCATransform3D:undershootScale],
-                                       [NSValue valueWithCATransform3D:endingScale]
-                                       ];
-        
-        alertScaleAnimation.keyTimes = @[
-                                         @(0.0f),
-                                         @(0.3f),
-                                         @(0.85f),
-                                         @(1.0f)
-                                         ];
-        
-        alertScaleAnimation.timingFunctions = @[
-                                                [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut],
-                                                [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
-                                                [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]
-                                                ];
-        alertScaleAnimation.fillMode = kCAFillModeForwards;
-        alertScaleAnimation.removedOnCompletion = NO;
-        
-        CAAnimationGroup *alertAnimation = [CAAnimationGroup animation];
-        alertAnimation.animations = @[
-                                      alertScaleAnimation,
-                                      opacityAnimation
-                                      ];
-        alertAnimation.duration = THIS_ANIM_DURATION;
-        [_infoWidget.layer addAnimation:alertAnimation forKey:@"alertAnimation"];
+        [self showInfoWidgetAnimatedWithPushButton:pushedButton];
     }];
     
 }

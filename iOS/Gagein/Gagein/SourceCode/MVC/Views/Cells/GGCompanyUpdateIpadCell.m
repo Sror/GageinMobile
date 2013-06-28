@@ -147,14 +147,14 @@
         {
             NSMutableArray *imageURLs = [NSMutableArray array];
             
-#if 1
+//#if 1
             for (GGCompany *company in _detailData.mentionedCompanies)
             {
                 [imageURLs addObjectIfNotNil:company.logoPath];
             }
-#else
-            imageURLs = [NSMutableArray arrayWithObjects:[GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], nil];
-#endif
+//#else
+//            imageURLs = [NSMutableArray arrayWithObjects:[GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], nil];
+//#endif
             [_panel.viewScroll setImageUrls:imageURLs placeholder:GGSharedImagePool.logoDefaultCompany];
         }
     }
@@ -203,29 +203,29 @@
     UIButton *btn = sender;
     DLog(@"pop company index:%d", btn.tag);
     
-#if 1
+//#if 1
     GGCompany *company = _detailData.mentionedCompanies[btn.tag];
     [_panel.viewScroll.infoWidget updateWithCompany:company];
-#else
-    GGCompany *fakeCom = [GGCompany model];
-    fakeCom.name = @"Apple Inc.";
-    fakeCom.logoPath = [GGUtils testImageURL];
-    
-    GGDataPage  *competitorPage = [[GGDataPage alloc] init];
-    NSMutableArray *competitors = [NSMutableArray array];
-    for (int i = 0; i < 10; i++)
-    {
-        GGCompany *competitor = [GGCompany model];
-        competitor.name = @"Google Inc.";
-        competitor.logoPath = [GGUtils testImageURL];
-        [competitors addObject:competitor];
-    }
-    competitorPage.items = competitors;
-    fakeCom.competitors = competitorPage;
-    
-    //GGCompanyDigest *happeningCom = [GGCompanyDigest instanceFromCompany:fakeCom];
-    [_panel.viewScroll.infoWidget updateWithCompany:fakeCom];
-#endif
+//#else
+//    GGCompany *fakeCom = [GGCompany model];
+//    fakeCom.name = @"Apple Inc.";
+//    fakeCom.logoPath = [GGUtils testImageURL];
+//    
+//    GGDataPage  *competitorPage = [[GGDataPage alloc] init];
+//    NSMutableArray *competitors = [NSMutableArray array];
+//    for (int i = 0; i < 10; i++)
+//    {
+//        GGCompany *competitor = [GGCompany model];
+//        competitor.name = @"Google Inc.";
+//        competitor.logoPath = [GGUtils testImageURL];
+//        [competitors addObject:competitor];
+//    }
+//    competitorPage.items = competitors;
+//    fakeCom.competitors = competitorPage;
+//    
+//    //GGCompanyDigest *happeningCom = [GGCompanyDigest instanceFromCompany:fakeCom];
+//    [_panel.viewScroll.infoWidget updateWithCompany:fakeCom];
+//#endif
 }
 
 -(void)_updateLikedButton
