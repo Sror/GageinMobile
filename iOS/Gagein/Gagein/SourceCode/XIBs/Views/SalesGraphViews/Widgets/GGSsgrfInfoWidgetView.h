@@ -16,7 +16,12 @@ typedef enum {
     , kGGSsGrfInfoWidgetAddress
 } EGGSsGrfInfoWidgetType;
 
+
+@class GGSsgrfTitledImgScrollView;
+
 @interface GGSsgrfInfoWidgetView : GGSsgrfBaseWidget
+@property (strong, nonatomic)   GGSsgrfTitledImgScrollView   *viewTitledScroll;
+
 @property (nonatomic, strong)   id      data;
 @property (nonatomic, copy) NSString    *mapURL;
 

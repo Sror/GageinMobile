@@ -24,6 +24,39 @@
 
 #define SCROLL_VIEW_CAP_WIDTH   20
 
+//
+@implementation GGTouchScrollView
+
+//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    [super touchesBegan:touches withEvent:event];
+//    _touching = YES;
+//    DLog(@"touches began");
+//}
+//
+//-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    [super touchesCancelled:touches withEvent:event];
+//    _touching = NO;
+//    DLog(@"touches cancelled");
+//}
+//
+//-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    [super touchesEnded:touches withEvent:event];
+//    _touching = NO;
+//    DLog(@"touches ended");
+//}
+//
+//-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    [super touchesMoved:touches withEvent:event];
+//    DLog(@"touches moved");
+//}
+
+@end
+
+//
 @implementation GGSsgrfTitledImgScrollView
 {
     GGAutosizingLabel           *_lblTitle;
@@ -59,12 +92,11 @@
     
     [self addSubview:_lblTitle];
     
-    //_lblTitle.text = @"Competitor";
-    
     //
     CGRect scrollRc = CGRectMake(SCROLL_VIEW_CAP_WIDTH, CGRectGetMaxY(_lblTitle.frame) + 15, thisSize.width - SCROLL_VIEW_CAP_WIDTH * 2, [self scrollViewHeight]);
-    _viewScroll = [[UIScrollView alloc] initWithFrame:scrollRc];
+    _viewScroll = [[GGTouchScrollView alloc] initWithFrame:scrollRc];
     _viewScroll.showsHorizontalScrollIndicator = NO;
+    _viewScroll.alwaysBounceHorizontal = YES;
     _viewScroll.delegate = self;
     //_viewScroll.backgroundColor = [UIColor blackColor];
     [self addSubview:_viewScroll];
@@ -159,6 +191,11 @@
     [self _reinstallImages];
 }
 
+#pragma mark -
+//-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+//{
+//    DLog(@"Beign dragging");
+//}
 
 
 @end
@@ -215,8 +252,9 @@
     if (count <= 1)
     {
         _infoWidget.hidden = NO;
+        _infoWidget.viewTitledScroll.viewScroll.contentOffset = CGPointZero;
         _infoWidget.center = pushedButton.center;
-        [_viewScroll addSubview:_infoWidget];
+        [self.viewScroll addSubview:_infoWidget];
         
         return; // dont need
     }
@@ -233,7 +271,7 @@
     //
     
     CGRect pushedRc = pushedButton.frame;
-    float posRelative = pushedRc.origin.x - _viewScroll.contentOffset.x;
+    float posRelative = pushedRc.origin.x - self.viewScroll.contentOffset.x;
 
     [UIView animateWithDuration:THIS_ANIM_DURATION / 4 animations:^{
         
@@ -292,24 +330,25 @@
         
         // set scroll content size
         float contentWidth = CGRectGetMaxX(rectsPtr[count - 1]) - (rectsPtr[0]).origin.x;
-        _viewScroll.contentSize = CGSizeMake(contentWidth, _viewScroll.contentSize.height);
+        self.viewScroll.contentSize = CGSizeMake(contentWidth, self.viewScroll.contentSize.height);
 
         float contentOffsetX = pushedButton.frame.origin.x - posRelative;
         float widgetOriginX = pushedButton.frame.origin.x + (pushedButton.frame.size.width - _infoWidget.frame.size.width) / 2;
         float widgetMaxX = widgetOriginX + _infoWidget.frame.size.width;
         contentOffsetX = MIN(contentOffsetX, widgetOriginX);
-        contentOffsetX = MAX(contentOffsetX, widgetMaxX - _viewScroll.frame.size.width);
-        _viewScroll.contentOffset = CGPointMake(contentOffsetX, _viewScroll.contentOffset.y);
+        contentOffsetX = MAX(contentOffsetX, widgetMaxX - self.viewScroll.frame.size.width);
+        self.viewScroll.contentOffset = CGPointMake(contentOffsetX, self.viewScroll.contentOffset.y);
 
-        _viewScroll.contentOffset = CGPointMake(contentOffsetX, _viewScroll.contentOffset.y);
+        self.viewScroll.contentOffset = CGPointMake(contentOffsetX, self.viewScroll.contentOffset.y);
         
     } completion:^(BOOL finished) {
         
         _infoWidget.hidden = NO;
+        _infoWidget.viewTitledScroll.viewScroll.contentOffset = CGPointZero;
         CGPoint center = pushedButton.center;
         center.y -= 0;
         _infoWidget.center = center;
-        [_viewScroll addSubview:_infoWidget];
+        [self.viewScroll addSubview:_infoWidget];
         
         CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
         opacityAnimation.fromValue = @(0);
@@ -353,13 +392,12 @@
                                       ];
         alertAnimation.duration = THIS_ANIM_DURATION;
         [_infoWidget.layer addAnimation:alertAnimation forKey:@"alertAnimation"];
-        
     }];
     
 }
 
 #pragma mark - 
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+-(void)hideInfoWidget
 {
     CATransform3D transform = CATransform3DScale(_infoWidget.layer.transform, 0, 0, 0);
     CATransform3D endingScale = _infoWidget.layer.transform;
@@ -374,7 +412,7 @@
                           delay:0
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-
+                         
                          _infoWidget.layer.transform = transform;
                          
                          [self reArrangeImagePos];
@@ -385,10 +423,16 @@
                          [_infoWidget removeFromSuperview];
                          
                          _infoWidget.hidden = YES;
+                         
                          _infoWidget.layer.transform = endingScale;
                          
-
+                         
                      }];
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self hideInfoWidget];
 }
 
 @end

@@ -17,23 +17,12 @@
 
 @interface GGSsgrfInfoWidgetView ()
 @property (strong, nonatomic)   GGSsgrfTitledImageBtnView   *viewTitledImage;
-@property (strong, nonatomic)   GGSsgrfTitledImgScrollView   *viewTitledScroll;
+
 
 @end
 
 @implementation GGSsgrfInfoWidgetView
-{
-    //NSArray *competitors;
-}
 
-//- (id)initWithFrame:(CGRect)frame
-//{
-//    self = [super initWithFrame:frame];
-//    if (self) {
-//        [self _doInit];
-//    }
-//    return self;
-//}
 
 -(void)_doInit
 {
