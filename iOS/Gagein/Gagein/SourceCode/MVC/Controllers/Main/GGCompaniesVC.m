@@ -220,19 +220,7 @@
     //
      _updateTvRect = [self viewportAdjsted];
     
-    self.happeningsTV = [[UITableView alloc] initWithFrame:_updateTvRect style:UITableViewStylePlain];
-    self.happeningsTV.dataSource = self;
-    self.happeningsTV.delegate = self;
-    self.happeningsTV.backgroundColor = GGSharedColor.silver;
-    self.happeningsTV.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.happeningsTV.hidden = YES;
-    _happeningsTV.showsVerticalScrollIndicator = NO;
-    _happeningTvExpandHelper.tableView = _happeningsTV;
-    //_happeningsTV.scrollsToTop = YES;
-    
-    [self.view addSubview:self.happeningsTV];
-    
-    //
+    /////////////////////////
     self.updatesTV = [[UITableView alloc] initWithFrame:_updateTvRect style:UITableViewStylePlain];
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
@@ -243,24 +231,24 @@
     //_updatesTV.scrollsToTop = YES;
     
     [self.view addSubview:self.updatesTV];
-
-#if 0
-    //
-    _relevanceBar = [GGRelevanceBar viewFromNibWithOwner:self];
-    //_relevanceRectShow = CGRectOffset(_relevanceBar.frame, 0, 5);
-    //_relevanceRectHide = CGRectOffset(_relevanceRectShow, 0, -_relevanceBar.frame.size.height);
-    _relevanceBar.frame = [self _relevanceFrameHided:NO];
-    [self.view addSubview:_relevanceBar];
-    _relevanceBar.btnSwitch.delegate = self;
-    _relevanceBar.btnSwitch.lblOn.text = @"High";
-    _relevanceBar.btnSwitch.lblOff.text = @"Medium";
-    _relevanceBar.btnSwitch.isOn = YES;
-    //_isRelevanceBarShowing = YES;
     
-    _updateTvRect.origin.y = CGRectGetMaxY(_relevanceBar.frame) - 5;
-    _updateTvRect.size.height = self.view.frame.size.height - _updateTvRect.origin.y;
-    _updatesTV.frame = _updateTvRect;
-#endif
+    
+    /////////////////////////////
+    self.happeningsTV = [[UITableView alloc] initWithFrame:_updateTvRect style:UITableViewStylePlain];
+    self.happeningsTV.dataSource = self;
+    self.happeningsTV.delegate = self;
+    self.happeningsTV.backgroundColor = GGSharedColor.silver;
+    self.happeningsTV.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //self.happeningsTV.hidden = YES;
+    _happeningsTV.showsVerticalScrollIndicator = NO;
+    _happeningTvExpandHelper.tableView = _happeningsTV;
+    //_happeningsTV.scrollsToTop = YES;
+    
+    [self.view addSubview:self.happeningsTV];
+    
+    float maxUpdateTvX = CGRectGetMaxX(_updatesTV.frame);
+    _happeningsTV.frame = CGRectMake(maxUpdateTvX, _happeningsTV.frame.origin.y, _happeningsTV.frame.size.width, _happeningsTV.frame.size.height);
+
     
     //[self.view bringSubviewToFront:_relevanceBar];
     
@@ -359,9 +347,27 @@
     _isShowingUpdate = !_isShowingUpdate;
     
     [self _subNaviLabel].text = _isShowingUpdate ? GGString(@"Updates") : GGString(@"Happenings");
-    _updatesTV.hidden = !_isShowingUpdate;
-    _happeningsTV.hidden = _isShowingUpdate;
+    //_updatesTV.hidden = !_isShowingUpdate;
+    //_happeningsTV.hidden = _isShowingUpdate;
     
+    float offsetX = _isShowingUpdate ? 0 : -self.view.frame.size.width;
+    [UIView animateWithDuration:.3f animations:^{
+        
+        _updatesTV.frame = CGRectMake(offsetX, _updatesTV.frame.origin.y, _updatesTV.frame.size.width, _updatesTV.frame.size.height);
+        DLog(@"%@", NSStringFromCGRect(_updatesTV.frame));
+        float maxUpdateTvX = CGRectGetMaxX(_updatesTV.frame);
+        _happeningsTV.frame = CGRectMake(maxUpdateTvX, _happeningsTV.frame.origin.y, _happeningsTV.frame.size.width, _happeningsTV.frame.size.height);
+        //_happeningsTV.backgroundColor = GGSharedColor.random;
+        DLog(@"%@", NSStringFromCGRect(_happeningsTV.frame));
+        
+        _updatesTV.alpha = _isShowingUpdate;
+        _happeningsTV.alpha = !_isShowingUpdate;
+        
+    } completion:^(BOOL finished) {
+        
+        
+        
+    }];
 }
 //-(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
 //{
