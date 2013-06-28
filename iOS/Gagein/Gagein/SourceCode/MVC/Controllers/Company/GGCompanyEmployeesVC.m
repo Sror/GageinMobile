@@ -58,6 +58,7 @@
     [self.view addSubview:self.tvEmployees];
     self.tvEmployees.backgroundColor = GGSharedColor.silver;
     _tvEmployees.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _tvEmployees.showsVerticalScrollIndicator = NO;
     
     __weak GGCompanyEmployeesVC *weakSelf = self;
     

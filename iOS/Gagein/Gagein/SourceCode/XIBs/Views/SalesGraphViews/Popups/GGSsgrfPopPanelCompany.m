@@ -10,6 +10,7 @@
 #import "GGSocialProfile.h"
 #import "GGCompany.h"
 #import "GGDataPage.h"
+#import "GGPerson.h"
 
 #define SOURCE_BTN_WIDTH    25
 #define SOURCE_BTN_HEIGHT    25
@@ -110,8 +111,46 @@
             [self showSourceButtonWithProfile:socialProfile];
         }
         
-#warning NEEDED: API to return the employees data
+        // employees data
         DLog(@"%@", aCompany.emplorees.items);
+        _btnMoreEmployees.hidden = !aCompany.emplorees.hasMore;
+        _viewEmployee1.hidden = _viewEmployee2.hidden = _viewEmployee3.hidden = YES;
+        int count = aCompany.emplorees.items.count;
+        for (int i = 0; i < count; i++)
+        {
+            GGPerson *person = aCompany.emplorees.items[i];
+            
+            UIView *employeeView = nil;
+            UILabel *lblEmpTitle = nil, *lblSubTitle = nil;
+            UIImageView *ivLogo = nil;
+            if (i == 0)
+            {
+                employeeView = _viewEmployee1;
+                lblEmpTitle = _lblEmp1Title;
+                ivLogo = _ivEmp1Logo;
+                lblSubTitle = _lblEmp1SubTitle;
+            }
+            else if (i == 1)
+            {
+                employeeView = _viewEmployee2;
+                lblEmpTitle = _lblEmp2Title;
+                ivLogo = _ivEmp2Logo;
+                lblSubTitle = _lblEmp2SubTitle;
+            }
+            else if (i == 2)
+            {
+                employeeView = _viewEmployee3;
+                lblEmpTitle = _lblEmp3Title;
+                ivLogo = _ivEmp3Logo;
+                lblSubTitle = _lblEmp3SubTitle;
+            }
+            
+            employeeView.hidden = NO;
+            employeeView.tagNumber = @(person.ID);
+            lblEmpTitle.text = person.name;
+            [ivLogo setImageWithURL:[NSURL URLWithString:person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+            lblSubTitle.text = person.orgTitle;
+        }
         
         //
         _lblOwnership.text = _data.ownership;
