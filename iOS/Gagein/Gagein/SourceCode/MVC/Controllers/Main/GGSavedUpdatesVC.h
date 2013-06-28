@@ -11,5 +11,9 @@
 #import "GGScrollToHideVC.h"
 
 @interface GGSavedUpdatesVC : GGScrollToHideVC
-<UITableViewDelegate, UITableViewDataSource, GGSwitchButtonDelegate>
+<
+UITableViewDelegate
+, UITableViewDataSource
+//, GGSwitchButtonDelegate
+>
 @end

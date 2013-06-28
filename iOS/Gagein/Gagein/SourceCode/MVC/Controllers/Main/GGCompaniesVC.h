@@ -16,7 +16,7 @@
 <UITableViewDelegate
 , UITableViewDataSource
 , GGStyledSearchBarDelegate
-, GGSwitchButtonDelegate
+//, GGSwitchButtonDelegate
 , GGSlideSettingViewDelegate>
 
 @property (strong)   NSMutableArray              *updates;

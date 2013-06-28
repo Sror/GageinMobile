@@ -239,7 +239,7 @@
     self.happeningsTV.delegate = self;
     self.happeningsTV.backgroundColor = GGSharedColor.silver;
     self.happeningsTV.separatorStyle = UITableViewCellSeparatorStyleNone;
-    //self.happeningsTV.hidden = YES;
+    _happeningsTV.alpha = 0;
     _happeningsTV.showsVerticalScrollIndicator = NO;
     _happeningTvExpandHelper.tableView = _happeningsTV;
     //_happeningsTV.scrollsToTop = YES;
@@ -354,11 +354,11 @@
     [UIView animateWithDuration:.3f animations:^{
         
         _updatesTV.frame = CGRectMake(offsetX, _updatesTV.frame.origin.y, _updatesTV.frame.size.width, _updatesTV.frame.size.height);
-        DLog(@"%@", NSStringFromCGRect(_updatesTV.frame));
+        //DLog(@"%@", NSStringFromCGRect(_updatesTV.frame));
         float maxUpdateTvX = CGRectGetMaxX(_updatesTV.frame);
         _happeningsTV.frame = CGRectMake(maxUpdateTvX, _happeningsTV.frame.origin.y, _happeningsTV.frame.size.width, _happeningsTV.frame.size.height);
         //_happeningsTV.backgroundColor = GGSharedColor.random;
-        DLog(@"%@", NSStringFromCGRect(_happeningsTV.frame));
+        //DLog(@"%@", NSStringFromCGRect(_happeningsTV.frame));
         
         _updatesTV.alpha = _isShowingUpdate;
         _happeningsTV.alpha = !_isShowingUpdate;
