@@ -156,6 +156,8 @@
     //
     
     [self _callApiGetHappeningDetail];
+    _svContent.hidden = YES;
+    
     [self _callApiGetSnList];
 }
 
@@ -721,7 +723,7 @@
 {
     GGApiBlock callback = ^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
-        
+        _svContent.hidden = NO;
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
