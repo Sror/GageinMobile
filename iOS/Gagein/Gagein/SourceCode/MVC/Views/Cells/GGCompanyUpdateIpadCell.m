@@ -241,9 +241,28 @@
 
 -(void)likeAction:(id)sender
 {
-    DLog(@"likeAction");
-    _data.liked = !_data.liked;
-    [self _updateLikedButton];
+    if (_detailData.liked)
+    {
+        [GGSharedAPI unlikeUpdateWithID:_detailData.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                _detailData.liked = NO;
+                [self _updateLikedButton];
+            }
+        }];
+    }
+    else
+    {
+        [GGSharedAPI likeUpdateWithID:_detailData.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                _detailData.liked = YES;
+                [self _updateLikedButton];
+            }
+        }];
+    }
 }
 
 -(void)_updateSaveBtnSaved:(BOOL)aSaved

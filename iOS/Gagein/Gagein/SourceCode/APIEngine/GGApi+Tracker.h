@@ -73,4 +73,10 @@
 -(AFHTTPRequestOperation *)getUpdateSuggestionWithKeyword:(NSString *)aKeyword
                              callback:(GGApiBlock)aCallback;
 
+//Like
+-(AFHTTPRequestOperation *)likeUpdateWithID:(long long)anUpdateID callback:(GGApiBlock)aCallback;
+
+// unlike
+-(AFHTTPRequestOperation *)unlikeUpdateWithID:(long long)anUpdateID callback:(GGApiBlock)aCallback;
+
 @end

@@ -345,9 +345,29 @@
 
 -(IBAction)likeAction:(id)sender
 {
-#warning TODO: implementation needed, dummy logic
-    _companyUpdateDetail.liked = !_companyUpdateDetail.liked;
-    [self _updateLikedButton];
+    if (_companyUpdateDetail.liked)
+    {
+        [GGSharedAPI unlikeUpdateWithID:_companyUpdateDetail.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                _companyUpdateDetail.liked = NO;
+                [self _updateLikedButton];
+            }
+        }];
+    }
+    else
+    {
+        [GGSharedAPI likeUpdateWithID:_companyUpdateDetail.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                _companyUpdateDetail.liked = YES;
+                [self _updateLikedButton];
+            }
+        }];
+    }
+    
 }
 
 -(IBAction)sendMailAction:(id)sender

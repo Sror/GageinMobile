@@ -234,4 +234,41 @@
     return [self _execPostWithPath:path params:parameters callback:aCallback];
 }
 
+//Like
+//Parameters:access_token=b4790223c67f68b744d6ac3bb9b830e6&newsid=2116482
+//POST: https://localhost:8443/svc/member/me/update/like
+//{"status":"1","msg":"ok"}
+//
+-(AFHTTPRequestOperation *)likeUpdateWithID:(long long)anUpdateID callback:(GGApiBlock)aCallback
+{
+    //POST
+    NSString *path = @"member/me/update/like";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:@(anUpdateID) forKey:@"newsid"];
+    
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
+}
+
+
+//Unlike
+//Parameters:access_token=b4790223c67f68b744d6ac3bb9b830e6&newsid=2116482
+//POST: https://localhost:8443/svc/member/me/update/unlike
+//{"status":"1","msg":"ok"}
+-(AFHTTPRequestOperation *)unlikeUpdateWithID:(long long)anUpdateID callback:(GGApiBlock)aCallback
+{
+    //POST
+    NSString *path = @"member/me/update/unlike";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:@(anUpdateID) forKey:@"newsid"];
+    
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
+}
+
+
 @end

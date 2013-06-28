@@ -41,6 +41,11 @@
     self.linkedInSignal = [aData objectForKey:@"linkedin_signal"];
     self.twitterTweets = [aData objectForKey:@"tweet_tweets"];
     
+    _liked = [[aData objectForKey:@"liked"] boolValue];
+    _newsSimilarID = [[aData objectForKey:@"news_similarid"] longLongValue];
+    _newsSimilarCount = [[aData objectForKey:@"news_similar_count"] intValue];
+    
+    //////////
     NSArray *mentionedCompanies = [aData objectForKey:@"mentioned_companies"];
     
     for (id companyDic in mentionedCompanies)
