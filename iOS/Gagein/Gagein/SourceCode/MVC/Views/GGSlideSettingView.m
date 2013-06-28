@@ -73,12 +73,12 @@
 
 -(CGRect)_tvMenuBarRect:(BOOL)isLong
 {
-    return isLong ? CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) : CGRectMake(0, 0, LEFT_DRAWER_WIDTH, self.frame.size.height);
+    return isLong ? CGRectMake(0, 0, LEFT_DRAWER_WIDTH_LONG, self.frame.size.height) : CGRectMake(0, 0, LEFT_DRAWER_WIDTH, self.frame.size.height);
 }
 
 -(CGRect)_searchBarRect:(BOOL)isLong
 {
-    return isLong ? CGRectMake(0, 0, self.frame.size.width, 40) : CGRectMake(0, 0, LEFT_DRAWER_WIDTH, 40);
+    return isLong ? CGRectMake(0, 0, LEFT_DRAWER_WIDTH_LONG, 40) : CGRectMake(0, 0, LEFT_DRAWER_WIDTH, 40);
 }
 
 -(CGRect)_tvSuggestedRect
@@ -90,7 +90,7 @@
 
 -(CGRect)_dimmedRect
 {
-    float width = (ISIPADDEVICE ? LEFT_DRAWER_WIDTH : self.frame.size.width);
+    float width = LEFT_DRAWER_WIDTH_LONG;//(ISIPADDEVICE ? LEFT_DRAWER_WIDTH : self.frame.size.width);
     return CGRectMake(0, (CGRectGetMaxY(_searchBar.frame)), width, self.frame.size.height);
 }
 
@@ -98,9 +98,9 @@
 {
     if (aUsingSearchMode)
     {
-        if (!ISIPADDEVICE)
+        //if (!ISIPADDEVICE)
         {
-            [GGSharedDelegate.drawerVC bareLeftDrawerCompletion:nil];
+            GGSharedDelegate.drawerVC.maximumLeftDrawerWidth = LEFT_DRAWER_WIDTH_LONG;
         }
         
         _viewDimmed.frame = [self _dimmedRect];
@@ -111,9 +111,9 @@
     }
     else
     {
-        if (!ISIPADDEVICE)
+        //if (!ISIPADDEVICE)
         {
-            [GGSharedDelegate.drawerVC openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+            GGSharedDelegate.drawerVC.maximumLeftDrawerWidth = LEFT_DRAWER_WIDTH;
         }
         
         [_viewDimmed removeFromSuperview];
@@ -130,7 +130,7 @@
 
 -(void)_switchSearhBarMode:(BOOL)aUsingSearchMode
 {
-    CGRect searchRc = [self _searchBarRect:(ISIPADDEVICE ? NO : aUsingSearchMode)];
+    CGRect searchRc = [self _searchBarRect:aUsingSearchMode];
     _searchBar.frame = searchRc;
     [_searchBar showCancelButton:aUsingSearchMode animated:YES];
 }

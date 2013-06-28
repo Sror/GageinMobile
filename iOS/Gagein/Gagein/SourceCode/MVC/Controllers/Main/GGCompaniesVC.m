@@ -111,7 +111,7 @@
 
 -(void)_initSlideSettingView
 {
-    _slideSettingView = [[GGSlideSettingView alloc] initWithFrame:GGSharedDelegate.leftDrawer.viewContent.bounds];
+    _slideSettingView = GGSharedDelegate.leftDrawer.viewMenu;
     //_slideSettingView = GGSharedDelegate.slideSettingView;
     //_slideSettingView.delegate = self;
     _slideSettingView.viewTable.rowHeight = [GGSettingMenuCell HEIGHT];
@@ -122,6 +122,8 @@
     // change menu to company type
     [_slideSettingView changeDelegate:self];
     _slideSettingView.viewTable.tableHeaderView = _slideSettingView.searchBar;
+    //_slideSettingView.viewTable.delegate = GGSharedDelegate.leftDrawer;
+    //GGSharedDelegate.leftDrawer.tableViewDelegate = self;
 }
 
 -(void)_installMenuButton
@@ -292,7 +294,7 @@
     
     [self _callApiGetMenu];
     
-    [GGSharedDelegate.leftDrawer.viewContent addSubview:_slideSettingView];
+    //[GGSharedDelegate.leftDrawer.view addSubview:_slideSettingView];
 }
 
 -(void)viewWillDisappear:(BOOL)animated

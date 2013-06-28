@@ -118,8 +118,8 @@ return __singleton__; \
 }
 
 //LOG
-#ifdef DEBUG
-//#ifdef NEVER_DEFINED
+//#ifdef DEBUG
+#ifdef NEVER_DEFINED
 #define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 #else
 #define DLog(...)
@@ -137,7 +137,8 @@ return __singleton__; \
 #define GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT 216.f
 #define GG_KEY_BOARD_HEIGHT_IPHONE_LANDSCAPE 162.f
 
-#define LEFT_DRAWER_WIDTH    260
+#define LEFT_DRAWER_WIDTH           260
+#define LEFT_DRAWER_WIDTH_LONG      320
 
 #define IPAD_CONTENT_WIDTH          650
 #define IPAD_CONTENT_WIDTH_FULL     768

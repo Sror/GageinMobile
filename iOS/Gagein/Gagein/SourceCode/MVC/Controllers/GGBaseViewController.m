@@ -660,6 +660,7 @@
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
+    return;
     if (self.presentingViewController == nil)
     {
         [self setNeedMenu:[self doNeedMenu]];
@@ -705,6 +706,7 @@
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
+    //return;
     DLog(@"will change orientation to: %d", toInterfaceOrientation);
     
     if ([self isPortrait])

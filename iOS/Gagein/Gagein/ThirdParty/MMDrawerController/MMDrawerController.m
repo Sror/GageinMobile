@@ -755,7 +755,7 @@ static CAKeyframeAnimation * bounceKeyFrameAnimationForDistanceOnView(CGFloat di
 }
 
 -(void)setMaximumLeftDrawerWidth:(CGFloat)maximumLeftDrawerWidth{
-    [self setMaximumLeftDrawerWidth:maximumLeftDrawerWidth animated:NO completion:nil];
+    [self setMaximumLeftDrawerWidth:maximumLeftDrawerWidth animated:YES completion:nil];
 }
 
 -(void)setMaximumRightDrawerWidth:(CGFloat)maximumRightDrawerWidth{

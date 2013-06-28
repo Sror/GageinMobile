@@ -10,7 +10,8 @@
 
 #import "GGSlideSettingView.h"
 
-@interface GGLeftDrawerVC : GGBaseViewController
-//@property (strong ,nonatomic) GGSlideSettingView    *viewMenu;
-@property (strong, nonatomic) UIView                *viewContent;
+@interface GGLeftDrawerVC : GGBaseViewController <UITableViewDataSource, UITableViewDelegate>
+@property (strong ,nonatomic) GGSlideSettingView    *viewMenu;
+@property (strong, nonatomic) UIView                                    *viewContent;
+
 @end

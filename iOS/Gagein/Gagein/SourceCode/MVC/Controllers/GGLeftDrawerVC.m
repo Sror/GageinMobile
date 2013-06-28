@@ -27,11 +27,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     _viewContent = [[UIView alloc] initWithFrame:self.view.bounds];
     _viewContent.backgroundColor = GGSharedColor.darkRed;
     [self.view addSubview:_viewContent];
 	
-    //_viewMenu = [[GGSlideSettingView alloc] initWithFrame:self.view.bounds];
+    _viewMenu = [[GGSlideSettingView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:_viewMenu];
+    _viewMenu.viewTable.delegate = self;
+    _viewMenu.viewTable.dataSource = self;
+    
+//    UITableView *_tv = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+//    _tv.delegate = self;
+//    _tv.dataSource = self;
+//    [self.view addSubview:_tv];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    cell.textLabel.text = @"aaa";
+    return cell;
+}
+
+-(int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 10;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"selected");
 }
 
 

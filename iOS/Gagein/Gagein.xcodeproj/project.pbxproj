@@ -3820,7 +3820,7 @@
 				GCC_PREFIX_HEADER = "Gagein/Gagein-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "Gagein/Gagein-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Gagein/ThirdParty/Twitter+OAuth/Libraries & Headers\"",
@@ -3898,7 +3898,7 @@
 				GCC_PREFIX_HEADER = "Gagein/Gagein-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "Gagein/Gagein-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Gagein/ThirdParty/Twitter+OAuth/Libraries & Headers\"",
@@ -3924,7 +3924,7 @@
 				GCC_PREFIX_HEADER = "Gagein/Gagein-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "Gagein/Gagein-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Gagein/ThirdParty/Twitter+OAuth/Libraries & Headers\"",

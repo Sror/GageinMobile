@@ -18,12 +18,14 @@
 //
 //@end
 
-@interface GGSlideSettingView : UIView
+@interface GGSlideSettingView : UIView <UITableViewDelegate, UITableViewDataSource>
 //@property (nonatomic, assign) BOOL              isShowing;
 @property (nonatomic, strong) UITableView           *viewTable;
 @property (nonatomic, strong) UITableView           *tvSuggestedUpdates;
 @property (nonatomic, strong) GGBlackSearchBar      *searchBar;
 @property (nonatomic, strong) UIView                *viewDimmed;
+
+@property (weak, nonatomic) id<UITableViewDelegate, UITableViewDataSource>  tableDelegate;
 
 //@property (weak) id<GGSlideSettingViewDelegate>     delegate;
 -(void)showSlide;
