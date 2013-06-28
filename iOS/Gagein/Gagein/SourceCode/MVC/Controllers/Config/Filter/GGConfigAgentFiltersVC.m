@@ -303,7 +303,7 @@
     EGGCompanyUpdateRelevance relevance = GGSharedRuntimeData.relevance;
     _viewSwitch.btnSwitch.isOn = (relevance == kGGCompanyUpdateRelevanceHigh);
     _viewSwitch.btnSwitch.lblOn.text = @"High";
-    _viewSwitch.btnSwitch.lblOff.text = @"Normal";
+    _viewSwitch.btnSwitch.lblOff.text = @"Medium";
     _viewSwitch.btnSwitch.delegate = self;
     [GGUtils applyTableStyle1ToView:_viewSwitch];
     
