@@ -47,6 +47,7 @@ typedef enum
 -(BOOL)dataHasMore;
 -(long long)dataTimestamp;
 -(NSArray *)dataInfos;
+-(BOOL)dataCharEnabled;
 
 #pragma mark - signup
 -(GGMember*)parseLogin;

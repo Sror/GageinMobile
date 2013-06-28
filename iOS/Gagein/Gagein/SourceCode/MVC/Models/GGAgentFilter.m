@@ -20,7 +20,7 @@
     self.keywords = [aData objectForKey:@"agent_keywords"];
     self.type = [[aData objectForKey:@"type"] intValue];
     self.checked = [[aData objectForKey:@"checked"] boolValue];
-    
+    _chartPercentage = [[aData objectForKey:@"chart_percentage"] floatValue];
 }
 
 -(GGAgent *)agent

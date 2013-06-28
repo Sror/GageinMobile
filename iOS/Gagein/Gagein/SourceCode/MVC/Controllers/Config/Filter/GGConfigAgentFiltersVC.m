@@ -57,8 +57,8 @@
     self.tv.backgroundColor = GGSharedColor.silver;
     //_tv.rowHeight = [GGTriggerChartCell HEIGHT];
     _tv.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tv.showsVerticalScrollIndicator = NO;
     
-//    self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Edit" target:self selector:@selector(editCustomAgentAction:)];
     self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(doneAction:)];
     
     //
@@ -174,12 +174,12 @@
     
     if (data.hasBeenAnimated)
     {
-        [cell setPercentage:data.percentage isHot:isHot];
+        [cell setPercentage:data.chartPercentage isHot:isHot];
     }
     else
     {
         [cell setPercentage:0.f isHot:isHot];
-        [cell setPercentage:data.percentage isHot:isHot animated:YES];
+        [cell setPercentage:data.chartPercentage isHot:isHot animated:YES];
         data.hasBeenAnimated = YES;
     }
     
@@ -254,7 +254,7 @@
         
         for (GGAgentFilter *agentFilter in page.items)
         {
-            agentFilter.percentage = (arc4random() % 100) / 100.f;
+            //agentFilter.chartPercentage = (arc4random() % 100) / 100.f;
             if (agentFilter.type == kGGAgentTypeCustom)
             {
                 [_customAgentFilters addObject:agentFilter];
@@ -265,18 +265,22 @@
             }
         }
         
-        [_predefinedAgentFilters sortUsingComparator:^NSComparisonResult(GGAgentFilter *obj1, GGAgentFilter *obj2) {
-            if (obj1.percentage > obj2.percentage)
-            {
-                return NSOrderedAscending;
-            }
-            else if (obj1.percentage < obj2.percentage)
-            {
-                return NSOrderedDescending;
-            }
-            
-            return NSOrderedSame;
-        }];
+        // if chart is enabled, sort agents order by chart percentage desc
+        if (page.chartEnabled)
+        {
+            [_predefinedAgentFilters sortUsingComparator:^NSComparisonResult(GGAgentFilter *obj1, GGAgentFilter *obj2) {
+                if (obj1.chartPercentage > obj2.chartPercentage)
+                {
+                    return NSOrderedAscending;
+                }
+                else if (obj1.chartPercentage < obj2.chartPercentage)
+                {
+                    return NSOrderedDescending;
+                }
+                
+                return NSOrderedSame;
+            }];
+        }
         
         //
         int count = _predefinedAgentFilters.count;

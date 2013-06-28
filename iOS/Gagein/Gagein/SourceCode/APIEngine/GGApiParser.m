@@ -113,6 +113,15 @@
     return nil;
 }
 
+-(BOOL)dataCharEnabled // for trigger chart only
+{
+    if ([self.data isKindOfClass:[NSDictionary class]]) {
+        return [self.data objectForKey:@"chart_enabled"];
+    }
+    
+    return NO;
+}
+
 #pragma mark - internal
 -(GGDataPage *)parsePageforClass:(Class)aClass
 {
@@ -129,6 +138,7 @@
     GGDataPage *page = [GGDataPage model];
     page.hasMore = self.dataHasMore;
     page.timestamp = self.dataTimestamp;
+    page.chartEnabled = self.dataCharEnabled;
     
     NSArray *dataInfos = self.dataInfos;
     if (dataInfos)

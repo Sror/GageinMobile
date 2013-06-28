@@ -12,5 +12,6 @@
 @interface GGDataPage : GGDataModel
 @property (assign) BOOL             hasMore;
 @property (assign) long long        timestamp;
+@property (assign) BOOL             chartEnabled;
 @property (strong) NSMutableArray   *items;
 @end
