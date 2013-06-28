@@ -66,6 +66,7 @@
     self.updatesTV.backgroundColor = GGSharedColor.silver;
     self.updatesTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     _updatesTV.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    _updatesTV.showsVerticalScrollIndicator = NO;
     _tvExpandHelper = [[GGTableViewExpandHelper alloc] initWithTableView:_updatesTV];
     
     __weak GGUpdatesVC *weakSelf = self;
@@ -349,7 +350,7 @@
         [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:.5f];
     };
     
-    id op = [GGSharedAPI getCompanyUpdatesWithCompanyID:_companyID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:callback];
+    id op = [GGSharedAPI getCompanyUpdatesNoFilteWithCompanyID:_companyID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:callback];
     
     [self registerOperation:op];
 }

@@ -586,7 +586,7 @@ typedef enum
         [_tvDetail reloadSections:[NSIndexSet indexSetWithIndex:kGGSectionUpdates] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
     
-    id op = [GGSharedAPI getCompanyUpdatesWithCompanyID:_companyID newsID:0 pageFlag:kGGPageFlagFirstPage pageTime:0 relevance:kGGCompanyUpdateRelevanceNormal callback:callback];
+    id op = [GGSharedAPI getCompanyUpdatesNoFilteWithCompanyID:_companyID newsID:0 pageFlag:kGGPageFlagFirstPage pageTime:0 relevance:kGGCompanyUpdateRelevanceNormal callback:callback];
     [self registerOperation:op];
 
 }

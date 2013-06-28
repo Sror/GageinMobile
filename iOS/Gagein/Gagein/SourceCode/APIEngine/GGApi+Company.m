@@ -20,6 +20,59 @@
 //    [self getCompanyUpdatesWithCompanyID:GG_ALL_RESULT_ID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:aCallback];
 //}
 
+
+//OU01:Get Company UpdatesBack to top
+//GET
+//
+///svc/company/<orgid>/updates, e,g, /svc/company/1399794/updates
+//Get company updates in the past 90 days.
+//Sample Url:
+//https://www.gagein.com/svc/company/1399794/updates?appcode=09ad5d624c0294d1&access_token=96cb45c990fff4d5c4c369173505d761&relevance=10&newsid=0&pageflag=0&pagetime=0
+
+// Get Company UpdatesBack to top
+-(AFHTTPRequestOperation *)getCompanyUpdatesNoFilteWithCompanyID:(long long)aCompanyID
+                                                   newsID:(long long)aNewsID
+                                                 pageFlag:(EGGPageFlag)aPageFlag
+                                                 pageTime:(long long)aPageTime
+                                                relevance:(EGGCompanyUpdateRelevance)aRelevance
+                                                 callback:(GGApiBlock)aCallback
+{
+    if (GGSharedRuntimeData.accessToken == nil) {
+        return nil;
+    }
+    //GET
+    NSString *path = [NSString stringWithFormat:@"company/%lld/updates", aCompanyID];
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aNewsID] forKey:@"newsid"];
+    [parameters setObjectIfNotNil:[NSNumber numberWithInt:aPageFlag] forKey:@"pageflag"];
+    [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aPageTime] forKey:@"pagetime"];
+    [parameters setObjectIfNotNil:[NSNumber numberWithLongLong:aCompanyID] forKey:@"orgid"];
+    [parameters setObjectIfNotNil:[NSNumber numberWithInt:aRelevance] forKey:@"relevance"];
+    
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
+}
+
+// get similar updates
+-(AFHTTPRequestOperation *)getSimilarUpdatesWithID:(long long)aSimilarID
+                                          callback:(GGApiBlock)aCallback
+{
+    if (GGSharedRuntimeData.accessToken == nil) {
+        return nil;
+    }
+    //GET
+    NSString *path = @"member/me/update/tracker";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:@(aSimilarID) forKey:@"storyline"];
+    
+    return [self _execGetWithPath:path params:parameters callback:aCallback];
+}
+
 // get company updates by company id
 -(AFHTTPRequestOperation *)getCompanyUpdatesWithCompanyID:(long long)aCompanyID
                             newsID:(long long)aNewsID

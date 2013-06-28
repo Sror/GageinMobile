@@ -25,6 +25,19 @@ typedef enum
 
 #pragma mark - company APIs
 
+// Get Company UpdatesBack to top
+-(AFHTTPRequestOperation *)getCompanyUpdatesNoFilteWithCompanyID:(long long)aCompanyID
+                                                          newsID:(long long)aNewsID
+                                                        pageFlag:(EGGPageFlag)aPageFlag
+                                                        pageTime:(long long)aPageTime
+                                                       relevance:(EGGCompanyUpdateRelevance)aRelevance
+                                                        callback:(GGApiBlock)aCallback;
+
+// get similar updates
+-(AFHTTPRequestOperation *)getSimilarUpdatesWithID:(long long)aSimilarID
+                                          callback:(GGApiBlock)aCallback;
+
+
 // get company updates by company id
 -(AFHTTPRequestOperation *)getCompanyUpdatesWithCompanyID:(long long)aCompanyID
                                newsID:(long long)aNewsID
