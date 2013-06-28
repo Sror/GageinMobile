@@ -9,6 +9,7 @@
 #import "GGCompany.h"
 #import "GGTicker.h"
 #import "GGSocialProfile.h"
+#import "GGDataPage.h"
 
 @implementation GGCompanyBrief
 
@@ -55,8 +56,22 @@
     _orgEmail = [aData objectForKey:@"org_email"];
     _linkedInSearchUrl = [aData objectForKey:@"linkedin_search_url"];
     
-    GGApiParser *parser = [GGApiParser parserWithApiData:[aData objectForKey:@"competitors"]];
-    _competitors = [parser parsePageforClass:[GGCompanyDigest class]];
+    id competitors = [aData objectForKey:@"competitors"];
+    if (competitors)
+    {
+        _competitors = [[GGDataPage alloc] init];
+        _competitors.hasMore = [[competitors objectForKey:@"hasMore"] boolValue];
+        
+        NSArray *infoArr = [competitors objectForKey:@"info"];
+        for (id comData in infoArr)
+        {
+            GGCompany *company = [GGCompany model];
+            [company parseWithData:comData];
+            [_competitors.items addObject:company];
+        }
+    }
+    
+    //DLog(@"competitors:%@", _competitors);
 }
 
 -(NSString *)addressCityStateCountry

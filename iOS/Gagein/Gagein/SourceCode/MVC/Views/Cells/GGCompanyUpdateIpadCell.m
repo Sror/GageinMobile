@@ -147,8 +147,8 @@
         {
             NSMutableArray *imageURLs = [NSMutableArray array];
             
-#if SALES_GRAPH_API_READY
-            for (GGCompany *company in _data.mentionedCompanies)
+#if 1
+            for (GGCompany *company in _detailData.mentionedCompanies)
             {
                 [imageURLs addObjectIfNotNil:company.logoPath];
             }
@@ -203,8 +203,8 @@
     UIButton *btn = sender;
     DLog(@"pop company index:%d", btn.tag);
     
-#if 0
-    GGCompany *company = _data.mentionedCompanies[btn.tag];
+#if 1
+    GGCompany *company = _detailData.mentionedCompanies[btn.tag];
     [_panel.viewScroll.infoWidget updateWithCompany:company];
 #else
     GGCompany *fakeCom = [GGCompany model];
