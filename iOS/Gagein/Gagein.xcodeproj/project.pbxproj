@@ -327,6 +327,8 @@
 		EA844A33171FBE2200658015 /* DCRoundSwitchOutlineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2E171FBE2200658015 /* DCRoundSwitchOutlineLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA844A34171FBE2200658015 /* DCRoundSwitchToggleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A30171FBE2200658015 /* DCRoundSwitchToggleLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA844A36171FD29C00658015 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA844A35171FD29B00658015 /* MessageUI.framework */; };
+		EA9104FD177E3DC000E28FA3 /* GGEmployerComsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9104FB177E3DBF00E28FA3 /* GGEmployerComsVC.m */; };
+		EA9104FE177E3DC000E28FA3 /* GGEmployerComsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9104FC177E3DC000E28FA3 /* GGEmployerComsVC.xib */; };
 		EA916216176792B4000AB2FB /* GGScrollToHideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA916215176792B4000AB2FB /* GGScrollToHideVC.m */; };
 		EA9162631767F6F1000AB2FB /* GGNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9162621767F6EE000AB2FB /* GGNavigationController.m */; };
 		EA95340D177B69030022D872 /* welcome01Big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA953409177B69030022D872 /* welcome01Big@2x.png */; };
@@ -1056,6 +1058,9 @@
 		EA844A2F171FBE2200658015 /* DCRoundSwitchToggleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitchToggleLayer.h; sourceTree = "<group>"; };
 		EA844A30171FBE2200658015 /* DCRoundSwitchToggleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitchToggleLayer.m; sourceTree = "<group>"; };
 		EA844A35171FD29B00658015 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		EA9104FA177E3DBF00E28FA3 /* GGEmployerComsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGEmployerComsVC.h; sourceTree = "<group>"; };
+		EA9104FB177E3DBF00E28FA3 /* GGEmployerComsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGEmployerComsVC.m; sourceTree = "<group>"; };
+		EA9104FC177E3DC000E28FA3 /* GGEmployerComsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGEmployerComsVC.xib; sourceTree = "<group>"; };
 		EA916214176792B4000AB2FB /* GGScrollToHideVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGScrollToHideVC.h; sourceTree = "<group>"; };
 		EA916215176792B4000AB2FB /* GGScrollToHideVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGScrollToHideVC.m; sourceTree = "<group>"; };
 		EA9162611767F6EC000AB2FB /* GGNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGNavigationController.h; sourceTree = "<group>"; };
@@ -1514,6 +1519,9 @@
 				EAF0F08617276BA90065C39A /* GGComUpdateSearchVC.xib */,
 				EAF0F0961727A8830065C39A /* GGComUpdateSearchResultVC.h */,
 				EAF0F0971727A8830065C39A /* GGComUpdateSearchResultVC.m */,
+				EA9104FA177E3DBF00E28FA3 /* GGEmployerComsVC.h */,
+				EA9104FB177E3DBF00E28FA3 /* GGEmployerComsVC.m */,
+				EA9104FC177E3DC000E28FA3 /* GGEmployerComsVC.xib */,
 			);
 			path = Company;
 			sourceTree = "<group>";
@@ -3494,6 +3502,7 @@
 				EA953410177B69030022D872 /* welcome04Big@2x.png in Resources */,
 				EA95B8B0177CCEA0002868A4 /* btnSwitchArrow@2x.png in Resources */,
 				EA95B8B5177CF393002868A4 /* logoNewsDefault@2x.png in Resources */,
+				EA9104FE177E3DC000E28FA3 /* GGEmployerComsVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3767,6 +3776,7 @@
 				EAA055DF17792FEC00D04463 /* GGUpdateCache.m in Sources */,
 				EAA055E21779312F00D04463 /* GGCompetitorCache.m in Sources */,
 				EA95B8B3177CD1AA002868A4 /* UIButton+GGAddOn.m in Sources */,
+				EA9104FD177E3DC000E28FA3 /* GGEmployerComsVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

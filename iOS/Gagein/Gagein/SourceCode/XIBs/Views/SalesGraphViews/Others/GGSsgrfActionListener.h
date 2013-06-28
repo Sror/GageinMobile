@@ -18,7 +18,7 @@
 -(void)ssGraphShowCompanyLandingPage:(NSNumber *)aCompanyID;
 
 -(void)ssGraphShowEmployeeListPage:(NSNumber *)aCompanyID;
--(void)ssGraphShowEmployerListPage:(NSNumber *)aPersonID;
+-(void)ssGraphShowEmployerListPage:(GGPerson *)aPerson;
 
 //-(void)ssGraphShowCompanyListPage:(NSArray *)aCompanies;
 

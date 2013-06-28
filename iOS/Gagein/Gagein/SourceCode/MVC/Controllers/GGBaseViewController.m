@@ -40,6 +40,9 @@
 #import "GGSnShareVC.h"
 #import "GGHappening.h"
 
+#import "GGEmployerComsVC.h"
+#import "GGPerson.h"
+
 #import <FacebookSDK/FacebookSDK.h>
 
 #define MAX_NAVI_TITLE_LENGTH           20
@@ -868,9 +871,13 @@
     [self enterEmployeesListWithID:[aCompanyID longLongValue]];
 }
 
--(void)ssGraphShowEmployerListPage:(NSArray *)aCompanies
+-(void)ssGraphShowEmployerListPage:(GGPerson *)aPerson
 {
-    DLog(@"ssGraphShowEmployerListPage:%@", aCompanies);
+    DLog(@"ssGraphShowEmployerListPage:%@", aPerson);
+    GGEmployerComsVC *vc = [[GGEmployerComsVC alloc] init];
+    vc.companies = aPerson.prevCompanies;
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)ssGraphShowWebPage:(NSString *)aURL

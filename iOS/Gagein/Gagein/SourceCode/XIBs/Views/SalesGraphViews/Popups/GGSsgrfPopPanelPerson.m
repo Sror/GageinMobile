@@ -10,6 +10,7 @@
 
 #import "GGPerson.h"
 #import "GGSocialProfile.h"
+#import "GGCompany.h"
 
 #define SOURCE_BTN_WIDTH    25
 #define SOURCE_BTN_HEIGHT    25
@@ -105,7 +106,59 @@
             [self showSourceButtonWithProfile:socialProfile];
         }
         
-#warning NEEDED: API to return the employers data
+        // employers data
+        DLog(@"%@", aPerson.prevCompanies);
+        
+        int count = aPerson.prevCompanies.count;
+        
+        NSMutableArray *enabledCompanies = [NSMutableArray arrayWithCapacity:count];
+        for (GGCompany *company in aPerson.prevCompanies)
+        {
+            if (company.enabled)
+            {
+                [enabledCompanies addObject:company];
+            }
+        }
+        
+        int enabledCount = enabledCompanies.count;
+        _btnMoreEmployers.hidden = (enabledCount < 4);
+        _viewEmployer1.hidden = _viewEmployer2.hidden = _viewEmployer3.hidden = YES;
+        
+        for (int i = 0; i < enabledCount; i++)
+        {
+            GGCompany *company = enabledCompanies[i];
+            
+            UIView *employeeView = nil;
+            UILabel *lblEmpTitle = nil, *lblSubTitle = nil;
+            UIImageView *ivLogo = nil;
+            if (i == 0)
+            {
+                employeeView = _viewEmployer1;
+                lblEmpTitle = _lblEmp1Title;
+                ivLogo = _ivEmp1Logo;
+                lblSubTitle = _lblEmp1SubTitle;
+            }
+            else if (i == 1)
+            {
+                employeeView = _viewEmployer2;
+                lblEmpTitle = _lblEmp2Title;
+                ivLogo = _ivEmp2Logo;
+                lblSubTitle = _lblEmp2SubTitle;
+            }
+            else if (i == 2)
+            {
+                employeeView = _viewEmployer3;
+                lblEmpTitle = _lblEmp3Title;
+                ivLogo = _ivEmp3Logo;
+                lblSubTitle = _lblEmp3SubTitle;
+            }
+            
+            employeeView.hidden = NO;
+            employeeView.tagNumber = @(company.ID);
+            lblEmpTitle.text = company.name;
+            [ivLogo setImageWithURL:[NSURL URLWithString:company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+            lblSubTitle.text = company.website;
+        }
         
         //
         _lblOwnership.text = _data.address;
@@ -188,7 +241,7 @@
 #pragma mark - action
 -(void)showMoreEmployersAction:(id)sender
 {
-    [self postNotification:GG_NOTIFY_SSGRF_SHOW_EMPLOYER_LIST_PAGE withObject:@(_data.ID)];
+    [self postNotification:GG_NOTIFY_SSGRF_SHOW_EMPLOYER_LIST_PAGE withObject:_data];
 }
 
 -(void)showWebPage:(id)sender
@@ -236,6 +289,10 @@
                 
                 [self updateFollowButton];
             }
+            else
+            {
+                [GGAlert alertWithApiParser:parser];
+            }
         }];
     }
     else
@@ -249,6 +306,10 @@
                 [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
                 
                 [self updateFollowButton];
+            }
+            else
+            {
+                [GGAlert alertWithApiParser:parser];
             }
         }];
     }

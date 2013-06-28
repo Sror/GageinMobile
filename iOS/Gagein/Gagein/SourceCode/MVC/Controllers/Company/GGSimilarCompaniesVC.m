@@ -57,6 +57,7 @@
     self.tvSimilarCompanies.delegate = self;
     [self.view addSubview:self.tvSimilarCompanies];
     self.tvSimilarCompanies.backgroundColor = GGSharedColor.silver;
+    _tvSimilarCompanies.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tvSimilarCompanies.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
     __weak GGSimilarCompaniesVC *weakSelf = self;
@@ -73,10 +74,6 @@
     [self addScrollToHide:_tvSimilarCompanies];
 }
 
--(void)dealloc
-{
-    [self unobserveAllNotifications];
-}
 
 #pragma mark - notification handling
 -(void)handleNotification:(NSNotification *)notification
@@ -202,7 +199,7 @@
 {
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
-    [_tvSimilarCompanies centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
+    [_tvSimilarCompanies centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH_FULL];
 }
 
 @end
