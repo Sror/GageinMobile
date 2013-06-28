@@ -160,6 +160,7 @@
     [super parseWithData:aData];
     
     self.protocol = [[aData objectForKey:@"protocol"] longLongValue];   // IMPORTANT: parse this first
+    self.type = [[aData objectForKey:@"type"] intValue];
     
     self.change = [aData objectForKey:@"change"];
     self.timestamp = [[[aData objectForKey:@"timestamp"] objectForKey:@"timestamp"] longLongValue];
@@ -175,7 +176,7 @@
     
     
     self.ID = [[aData objectForKey:@"eventid"] longLongValue];
-    self.type = [[aData objectForKey:@"type"] intValue];
+    
     self.source = [[aData objectForKey:@"source"] intValue];
     self.sourceName = [aData objectForKey:@"source_name"];
     self.messageStr = [aData objectForKey:@"msg_str"];
@@ -212,6 +213,12 @@
         [self _parseNewProtocolWithData:aData];
     }
     
+    //
+    if ([self isPersonEvent])
+    {
+        _company.relevancePersonID = _person.ID;
+        _oldCompany.relevancePersonID = _person.ID;
+    }
 }
 
 -(void)_parseOldProtocolWithData:(NSDictionary *)aData

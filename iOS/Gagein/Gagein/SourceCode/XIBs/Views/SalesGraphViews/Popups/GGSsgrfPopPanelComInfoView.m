@@ -16,6 +16,7 @@
 @implementation GGSsgrfPopPanelComInfoView
 {
     long long   _companyID;
+    long long   _relevancePersonID;
     GGCompany   *_overview;
 }
 
@@ -36,18 +37,26 @@
     [content.btnClose addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
 }
 
--(void)updateWithCompanyID:(NSNumber *)aCompanyID
+-(void)updateWithCompany:(GGCompany *)aCompany
 {
-    _companyID = [aCompanyID longLongValue];
+    _companyID = aCompany.ID;
+    _relevancePersonID = aCompany.relevancePersonID;
     
     [self showLoadingHUD];
     
-    [GGSharedAPI getCompanyOverviewWithID:_companyID needSocialProfile:YES callback:^(id operation, id aResultObject, NSError *anError) {
+    [GGSharedAPI getCompanyOverviewWithID:_companyID needSocialProfile:YES contactID:_relevancePersonID callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         _overview = [parser parseGetCompanyOverview];
         [self.panel updateWithCompany:_overview];
     }];
+    
+//    [GGSharedAPI getCompanyOverviewWithID:_companyID needSocialProfile:YES callback:^(id operation, id aResultObject, NSError *anError) {
+//        [self hideLoadingHUD];
+//        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//        _overview = [parser parseGetCompanyOverview];
+//        [self.panel updateWithCompany:_overview];
+//    }];
 }
 
 @end

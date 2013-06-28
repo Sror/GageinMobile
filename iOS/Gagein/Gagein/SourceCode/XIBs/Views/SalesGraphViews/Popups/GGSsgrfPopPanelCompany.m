@@ -9,6 +9,7 @@
 #import "GGSsgrfPopPanelCompany.h"
 #import "GGSocialProfile.h"
 #import "GGCompany.h"
+#import "GGDataPage.h"
 
 #define SOURCE_BTN_WIDTH    25
 #define SOURCE_BTN_HEIGHT    25
@@ -87,8 +88,10 @@
     [_viewEmployee2 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enterPeopleDetail:)]];
     [_viewEmployee3 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enterPeopleDetail:)]];
     
-    //
+    // footer
     [_btnFollow addTarget:self action:@selector(followAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_btnLinkedInFooter addTarget:self action:@selector(showWebPage:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)updateWithCompany:(GGCompany *)aCompany
@@ -108,6 +111,7 @@
         }
         
 #warning NEEDED: API to return the employees data
+        DLog(@"%@", aCompany.emplorees.items);
         
         //
         _lblOwnership.text = _data.ownership;
@@ -115,13 +119,16 @@
         _lblRevenue.text = _data.revenueSize;
         _lblFortuneRank.text = _data.fortuneRank;
         _lblFiscalYear.text = _data.fiscalYear;
-        //_lblEmail.text = _data.               // no email
+        _lblEmail.text = _data.orgEmail;              // no email
         _lblPhone.text = _data.telephone;
         _lblFax.text = _data.faxNumber;
         _lblAddress.text = _data.address;
         
         //
         [self updateFollowButton];
+        
+        //
+        _btnLinkedInFooter.data = _data.linkedInSearchUrl;
     }
 }
 

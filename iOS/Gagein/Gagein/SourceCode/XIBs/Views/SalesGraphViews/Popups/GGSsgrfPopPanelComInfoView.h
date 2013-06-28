@@ -12,5 +12,5 @@
 
 @interface GGSsgrfPopPanelComInfoView : GGSsgrfPopPanelView
 -(GGSsgrfPopPanelCompany *)panel;
--(void)updateWithCompanyID:(NSNumber *)aCompanyID;
+-(void)updateWithCompany:(GGCompany *)aCompany;
 @end

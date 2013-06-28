@@ -836,12 +836,12 @@
     [_viewPopup showMe];
 }
 
--(void)ssGraphShowCompanyPanel:(NSNumber *)aCompanyID
+-(void)ssGraphShowCompanyPanel:(GGCompany *)aCompany
 {
-    DLog(@"ssGraphShowCompanyPanel:%@", aCompanyID);
+    DLog(@"ssGraphShowCompanyPanel:%@", aCompany);
 
     GGSsgrfPopPanelComInfoView *popUp = [[GGSsgrfPopPanelComInfoView alloc] initWithView:GGSharedDelegate.rootVC.view];
-    [popUp updateWithCompanyID:aCompanyID];
+    [popUp updateWithCompany:aCompany];
     //
     [_viewPopup removeFromSuperview];
     _viewPopup = popUp;

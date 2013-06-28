@@ -10,6 +10,7 @@
 #import "GGTicker.h"
 #import "GGSocialProfile.h"
 #import "GGDataPage.h"
+#import "GGPerson.h"
 
 @implementation GGCompanyBrief
 
@@ -71,7 +72,22 @@
         }
     }
     
-    //DLog(@"competitors:%@", _competitors);
+    
+    ///
+    id employees = [aData objectForKey:@"contacts"];
+    if (employees)
+    {
+        _emplorees = [[GGDataPage alloc] init];
+        _emplorees.hasMore = [[employees objectForKey:@"hasMore"] boolValue];
+        
+        NSArray *infoArr = [employees objectForKey:@"info"];
+        for (id personData in infoArr)
+        {
+            GGPerson *person = [GGPerson model];
+            [person parseWithData:personData];
+            [_emplorees.items addObject:person];
+        }
+    }
 }
 
 -(NSString *)addressCityStateCountry

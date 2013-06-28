@@ -203,7 +203,17 @@
 {
     //UIButton * btn = (UIButton *)sender;
     //DLog(@"companyLogoTapped: %d", btn.tag);
-    [self postNotification:GG_NOTIFY_SSGRF_SHOW_COMPANY_PANEL withObject:@([self _company].ID)];
+//    NSArray *params = nil;
+//    if ([_data isKindOfClass:[GGCompany class]])
+//    {
+//        params = [NSArray arrayWithObjects:@([self _company].ID), @(0), nil];
+//    }
+//    else if ([_data isKindOfClass:[GGPerson class]])
+//    {
+//        params = [NSArray arrayWithObjects:@([self _company].ID), @(0), nil];
+//    }
+    
+    [self postNotification:GG_NOTIFY_SSGRF_SHOW_COMPANY_PANEL withObject:[self _company]];
 }
 
 -(void)personLogoTapped:(id)sender
@@ -221,7 +231,7 @@
     UIButton * btn = (UIButton *)sender;
     DLog(@"competitorTapped: %d", btn.tag);
     GGCompany *competitor = [self _competitors][btn.tag];
-    [self postNotification:GG_NOTIFY_SSGRF_SHOW_COMPANY_PANEL withObject:@(competitor.ID)];
+    [self postNotification:GG_NOTIFY_SSGRF_SHOW_COMPANY_PANEL withObject:competitor];
 }
 
 @end

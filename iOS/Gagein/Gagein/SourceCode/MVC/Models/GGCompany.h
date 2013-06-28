@@ -48,8 +48,10 @@ typedef enum {
 @property (copy) NSString       *orgEmail;
 @property (copy) NSString       *linkedInSearchUrl;
 
-
 @property (strong) GGDataPage   *competitors;
+@property (strong) GGDataPage   *emplorees;
+
+@property (assign) long long     *relevancePersonID;    // for sales graph display
 
 -(NSString *)addressCityStateCountry;
 //+(GGCompanyDigest *)instanceFromCompany:(GGCompany *)aCompany;

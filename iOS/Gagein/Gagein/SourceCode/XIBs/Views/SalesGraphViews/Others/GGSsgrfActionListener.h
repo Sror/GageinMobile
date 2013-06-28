@@ -12,7 +12,7 @@
 @protocol GGSsgrfActionDelegate
 @required
 -(void)ssGraphShowPersonPanel:(NSNumber *)aPersonID;
--(void)ssGraphShowCompanyPanel:(NSNumber *)aCompanyID;
+-(void)ssGraphShowCompanyPanel:(GGCompany *)aCompany;
 
 -(void)ssGraphShowPersonLandingPage:(NSNumber *)aPersonID;
 -(void)ssGraphShowCompanyLandingPage:(NSNumber *)aCompanyID;
