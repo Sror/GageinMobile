@@ -58,9 +58,9 @@
     nc3 = [[UINavigationController alloc] initWithRootViewController:viewController3];
     nc4 = [[UINavigationController alloc] initWithRootViewController:viewController4];
     
-    _tabbarVC = [[GGTabBarController alloc] initWithViewControllers:@[nc1, nc2, nc3, nc4]];
-    _tabbarVC.delegate = self;
-    [_tabbarVC.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbarBg"]];
+    _tabBarController = [[GGTabBarController alloc] initWithViewControllers:@[nc1, nc2, nc3, nc4]];
+    _tabBarController.delegate = self;
+    [_tabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbarBg"]];
     //_tabbarVC.viewControllers = @[nc1, nc2, nc3, nc4];
     
 }
@@ -76,7 +76,7 @@
     
     GGLeftDrawerVC *leftDrawerVC = [GGLeftDrawerVC new];
     
-    _drawerVC = [[MMDrawerController alloc] initWithCenterViewController:_tabbarVC leftDrawerViewController:leftDrawerVC];
+    _drawerVC = [[MMDrawerController alloc] initWithCenterViewController:_tabBarController leftDrawerViewController:leftDrawerVC];
     
     [_drawerVC setMaximumLeftDrawerWidth:LEFT_DRAWER_WIDTH];
     [_drawerVC setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
@@ -86,6 +86,7 @@
     [_drawerVC
      setDrawerVisualStateBlock:^(MMDrawerController *drawerController, MMDrawerSide drawerSide, CGFloat percentVisible) {
          MMDrawerControllerDrawerVisualStateBlock block;
+         //block = [MMDrawerVisualState slideAndScaleVisualStateBlock];
          block = [MMDrawerVisualState parallaxVisualStateBlockWithParallaxFactor:2.f];
          if(block){
              block(drawerController, drawerSide, percentVisible);

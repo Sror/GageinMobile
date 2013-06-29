@@ -1262,21 +1262,6 @@
 }
 
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    
-    [super scrollViewWillBeginDragging:scrollView];
-    
-    //GGSharedDelegate.rootVC.canBeDragged = NO;
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    //DLog(@"scrollView: %@ did End Dragging, is dragging:%d", NSStringFromClass([scrollView class]), scrollView.isDragging);
-    
-    //GGSharedDelegate.rootVC.canBeDragged = YES;
-}
-
-
 -(void)_adjustTvFrames
 {    
     CGRect updateRc = _updatesTV.frame;
@@ -1291,58 +1276,58 @@
     _happeningsTV.frame = happeningRc;
 }
 
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
-    
-    if (!ISIPADDEVICE && scrollView.contentSize.height > scrollView.frame.size.height)
-    {
-        if (self.offsetWhenStartDragging.y < scrollView.contentOffset.y)
-        {
-            //DLog(@"moved up");
-            
-            if (scrollView == _updatesTV)
-            {
-                [self _showRelevanceBar:NO];
-            }
-            
-            [GGUtils hideTabBar];
-        }
-        else
-        {
-            //DLog(@"moved down");
-            
-            if (scrollView == _updatesTV)
-            {
-                [self _showRelevanceBar:YES];
-            }
-            
-            [GGUtils showTabBar];
-        }
-        
-        [self _adjustTvFrames];
-    }
-}
+//- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+//    
+//    if (!ISIPADDEVICE && scrollView.contentSize.height > scrollView.frame.size.height)
+//    {
+//        if (self.offsetWhenStartDragging.y < scrollView.contentOffset.y)
+//        {
+//            //DLog(@"moved up");
+//            
+//            if (scrollView == _updatesTV)
+//            {
+//                [self _showRelevanceBar:NO];
+//            }
+//            
+//            [GGUtils hideTabBar];
+//        }
+//        else
+//        {
+//            //DLog(@"moved down");
+//            
+//            if (scrollView == _updatesTV)
+//            {
+//                [self _showRelevanceBar:YES];
+//            }
+//            
+//            [GGUtils showTabBar];
+//        }
+//        
+//        [self _adjustTvFrames];
+//    }
+//}
 
--(void)_showRelevanceBar:(BOOL)aShow
-{
-    //_isRelevanceBarShowing = aShow;
-    float kAnimInterval = .3f;
-    if (aShow)
-    {
-        [UIView animateWithDuration:kAnimInterval delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        //_relevanceBar.frame = [self _relevanceFrameHided:NO];
-           // _relevanceBar.alpha = 1.f;
-            
-        } completion:nil];
-    }
-    else
-    {
-        [UIView animateWithDuration:kAnimInterval delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-          // _relevanceBar.frame = [self _relevanceFrameHided:YES];
-            //_relevanceBar.alpha = 0.5f;
-            
-        } completion:nil];
-    }
-}
+//-(void)_showRelevanceBar:(BOOL)aShow
+//{
+//    //_isRelevanceBarShowing = aShow;
+//    float kAnimInterval = .3f;
+//    if (aShow)
+//    {
+//        [UIView animateWithDuration:kAnimInterval delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+//        //_relevanceBar.frame = [self _relevanceFrameHided:NO];
+//           // _relevanceBar.alpha = 1.f;
+//            
+//        } completion:nil];
+//    }
+//    else
+//    {
+//        [UIView animateWithDuration:kAnimInterval delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+//          // _relevanceBar.frame = [self _relevanceFrameHided:YES];
+//            //_relevanceBar.alpha = 0.5f;
+//            
+//        } completion:nil];
+//    }
+//}
 
 
 #pragma mark - data handling

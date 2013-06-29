@@ -29,7 +29,7 @@
     [super viewDidLoad];
     
     _viewContent = [[UIView alloc] initWithFrame:self.view.bounds];
-    _viewContent.backgroundColor = GGSharedColor.darkRed;
+    _viewContent.backgroundColor = GGSharedColor.black;
     [self.view addSubview:_viewContent];
 	
     _viewMenu = [[GGSlideSettingView alloc] initWithFrame:self.view.bounds];
