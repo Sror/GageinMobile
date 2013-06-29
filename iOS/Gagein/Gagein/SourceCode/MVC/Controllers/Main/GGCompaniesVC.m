@@ -347,28 +347,21 @@
     _isShowingUpdate = !_isShowingUpdate;
     
     [self _subNaviLabel].text = _isShowingUpdate ? GGString(@"Updates") : GGString(@"Happenings");
-    //_updatesTV.hidden = !_isShowingUpdate;
-    //_happeningsTV.hidden = _isShowingUpdate;
     
     float offsetX = _isShowingUpdate ? 0 : -self.view.frame.size.width;
     [UIView animateWithDuration:.3f animations:^{
         
         _updatesTV.frame = CGRectMake(offsetX, _updatesTV.frame.origin.y, _updatesTV.frame.size.width, _updatesTV.frame.size.height);
-        //DLog(@"%@", NSStringFromCGRect(_updatesTV.frame));
+
         float maxUpdateTvX = CGRectGetMaxX(_updatesTV.frame);
         _happeningsTV.frame = CGRectMake(maxUpdateTvX, _happeningsTV.frame.origin.y, _happeningsTV.frame.size.width, _happeningsTV.frame.size.height);
-        //_happeningsTV.backgroundColor = GGSharedColor.random;
-        //DLog(@"%@", NSStringFromCGRect(_happeningsTV.frame));
         
         _updatesTV.alpha = _isShowingUpdate;
         _happeningsTV.alpha = !_isShowingUpdate;
         
-    } completion:^(BOOL finished) {
-        
-        
-        
-    }];
+    } completion:nil];
 }
+
 //-(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
 //{
 //    if (aSwitchButton == _btnSwitchUpdate)
@@ -1255,12 +1248,6 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-//#pragma mark - scrolling view delegate
-//-(void)scrollingView:(GGScrollingView *)aScrollingView didScrollToIndex:(NSUInteger)aPageIndex;
-//{
-//    DLog(@"scrolling to index:%d", aPageIndex);
-//}
-
 #pragma mark - scrollView delegate
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -1279,11 +1266,6 @@
     GGSharedDelegate.rootVC.canBeDragged = NO;
 }
 
-//-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
-//{
-//    //DLog(@"scrollView: %@ Will End Dragging, is dragging:%d", NSStringFromClass([scrollView class]), scrollView.isDragging);
-//}
-
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     //DLog(@"scrollView: %@ did End Dragging, is dragging:%d", NSStringFromClass([scrollView class]), scrollView.isDragging);
@@ -1293,16 +1275,9 @@
 
 
 -(void)_adjustTvFrames
-{
-    //CGRect thisRc = self.view.bounds;
-    //[self.view centerMeHorizontally];
-    
-//    CGRect relevanceRc = _relevanceBar.frame;
-//    relevanceRc.size.width = _relevanceBar.superview.frame.size.width;
-//    _relevanceBar.frame = relevanceRc;
-    
+{    
     CGRect updateRc = _updatesTV.frame;
-    //updateRc.origin.y = CGRectGetMaxY(_relevanceBar.frame);
+ 
     updateRc.size.width = self.view.bounds.size.width;
     updateRc.size.height = self.view.bounds.size.height - updateRc.origin.y;
     _updatesTV.frame = updateRc;

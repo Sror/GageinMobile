@@ -172,4 +172,17 @@ static MBProgressHUD * hud;
     self.frame = thisRc;
 }
 
+-(UIImage *)myPicture
+{
+    UIGraphicsBeginImageContext(self.bounds.size);
+    
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return viewImage;
+}
+
 @end

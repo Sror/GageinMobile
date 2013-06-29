@@ -41,4 +41,6 @@
 
 -(void)setHeight:(float)aNewHeight;
 
+-(UIImage *)myPicture;
+
 @end

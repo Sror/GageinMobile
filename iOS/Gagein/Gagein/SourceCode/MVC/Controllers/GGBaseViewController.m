@@ -342,11 +342,12 @@
     }
     self.navigationItem.title = aNaviTitle;
     self.customNaviTitle.text = aNaviTitle;
+    _naviStringRecord = aNaviTitle;
 }
 
 -(NSString *)naviTitle
 {
-    return self.navigationItem.title;//self.customNaviTitle.text;
+    return _naviStringRecord; //self.navigationItem.title;//self.customNaviTitle.text;
 }
 
 -(void)hideBackButton

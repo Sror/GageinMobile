@@ -35,7 +35,6 @@
 
 @implementation GGSavedUpdatesVC
 {
-    //GGSwitchButton   *_roundSwitch;
     NSUInteger      _currentPageIndex;
     BOOL            _hasMore;
     NSMutableArray  *_updates;
@@ -43,6 +42,7 @@
     BOOL            _isUnread;
     
     GGTableViewExpandHelper             *_tvExpandHelper;
+    UIImageView                         *_tvPictureView;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -93,33 +93,37 @@
 
 -(IBAction)switchBtweenUpdateAndHappening:(id)sender
 {
+    [_updates removeAllObjects];
+    [_tvUpdates reloadData];
+    
     _isUnread = !_isUnread;
     [self _subNaviLabel].text = _isUnread ? GGString(@"Unread") : GGString(@"All");
+
     
-    [_tvUpdates triggerPullToRefresh];
+    _tvPictureView.image = [_tvUpdates myPicture];
+    _tvPictureView.frame = _tvUpdates.frame;
+    _tvPictureView.alpha = 1.f;
+    
+    float offsetX = _isUnread ? self.view.frame.size.width : -self.view.frame.size.width;
+    _tvUpdates.frame = CGRectMake(offsetX, _tvUpdates.frame.origin.y, _tvUpdates.frame.size.width, _tvUpdates.frame.size.height);
+    _tvUpdates.alpha = 0.f;
+    
+    [UIView animateWithDuration:.3f animations:^{
+        
+        _tvUpdates.frame = CGRectMake(0, _tvUpdates.frame.origin.y, _tvUpdates.frame.size.width, _tvUpdates.frame.size.height);
+        _tvUpdates.alpha = 1.f;
+        
+        _tvPictureView.frame = CGRectOffset(_tvUpdates.frame, -offsetX, 0);
+        _tvPictureView.alpha = 0.f;
+        
+    } completion:^(BOOL finished) {
+        
+        [_tvUpdates triggerPullToRefresh];
+        
+    }];
+    
 }
 
-//-(void)_initRoundSwitch
-//{
-//    _roundSwitch = [GGSwitchButton viewFromNibWithOwner:self];
-//    _roundSwitch.delegate = self;
-//    _roundSwitch.lblOn.text = @"Unread";
-//    _roundSwitch.lblOff.text = @"All";
-//    _roundSwitch.isOn = _isUnread;
-//    
-//    [self _setSwitchRect];
-//}
-//
-//-(void)_setSwitchRect
-//{
-//    CGRect naviRc = self.navigationController.navigationBar.frame;
-//    
-//    CGRect switchRc = CGRectMake(naviRc.size.width - SWITCH_WIDTH - 5
-//                                 , (naviRc.size.height - [GGSwitchButton HEIGHT]) / 2 + 5
-//                                 , SWITCH_WIDTH
-//                                 , [GGSwitchButton HEIGHT]);
-//    _roundSwitch.frame = switchRc;
-//}
 
 - (void)viewDidLoad
 {
@@ -150,6 +154,10 @@
     _tvUpdates.autoresizingMask = UIViewAutoresizingFlexibleWidth |UIViewAutoresizingFlexibleHeight;
     _tvExpandHelper = [[GGTableViewExpandHelper alloc] initWithTableView:_tvUpdates];
     [self.view addSubview:_tvUpdates];
+    //
+    _tvPictureView = [[UIImageView alloc] initWithFrame:_tvUpdates.frame];
+    _tvPictureView.alpha = 0;
+    [self.view addSubview:_tvPictureView];
     
     _viewEmpty = [GGEmptyView viewFromNibWithOwner:self];
     _viewEmpty.lblMessage.text = EMPTY_TEXT_ALL;
@@ -261,6 +269,7 @@
 -(void)_callGetSavedUpdates
 {
     //_roundSwitch.btnSwitch.enabled = NO;
+    _viewEmpty.hidden = YES;
     id op = [GGSharedAPI getSaveUpdatesWithPageIndex:_currentPageIndex isUnread:_isUnread callback:^(id operation, id aResultObject, NSError *anError) {
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)

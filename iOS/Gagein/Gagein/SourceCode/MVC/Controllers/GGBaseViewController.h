@@ -13,6 +13,10 @@
 @class GGLinkedInOAuthVC;
 
 @interface GGBaseViewController : UIViewController <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
+{
+ @protected
+    NSString *_naviStringRecord;
+}
 
 @property (strong, nonatomic)  UILabel                     *customNaviTitle;
 @property (copy, nonatomic)    NSString                    *naviTitle;
