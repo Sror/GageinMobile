@@ -12,7 +12,7 @@
 #import "GGRootVC.h"
 #import <QuartzCore/QuartzCore.h>
 
-
+#import "MMDrawerController.h"
 
 @implementation GGSlideSettingView
 {
@@ -90,10 +90,7 @@
 {
     if (aUsingSearchMode)
     {
-        if (!ISIPADDEVICE)
-        {
-            [GGSharedDelegate.rootVC bare];
-        }
+        GGSharedDelegate.drawerVC.maximumLeftDrawerWidth = LEFT_DRAWER_WIDTH_LONG;
         
         _viewDimmed.frame = [self _dimmedRect];
         [self addSubview:_viewDimmed];
@@ -103,10 +100,7 @@
     }
     else
     {
-        if (!ISIPADDEVICE)
-        {
-            [GGSharedDelegate.rootVC reveal];
-        }
+        GGSharedDelegate.drawerVC.maximumLeftDrawerWidth = LEFT_DRAWER_WIDTH;
         
         [_viewDimmed removeFromSuperview];
         [_tvSuggestedUpdates removeFromSuperview];
@@ -134,10 +128,10 @@
 #pragma mark - actions
 -(void)showSlide
 {
-    if (!GGSharedDelegate.rootVC.isRevealed)
+    if (GGSharedDelegate.drawerVC.openSide == MMDrawerSideNone)
     {
-        [GGSharedDelegate.rootVC reveal:^{
-            [_delegate slideview:self isShowed:YES];
+        [GGSharedDelegate.drawerVC openDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
+            //[_delegate slideview:self isShowed:YES];
         }];
     }
 }
@@ -149,12 +143,12 @@
 
 -(void)hideSlideOnCompletion:(void(^)(void))completion
 {
-    if (GGSharedDelegate.rootVC.isRevealed)
+    if (GGSharedDelegate.drawerVC.openSide != MMDrawerSideNone)
     {
         [_searchBar.tfSearch resignFirstResponder];
         
-        [GGSharedDelegate.rootVC cover:^{
-            [_delegate slideview:self isShowed:NO];
+        [GGSharedDelegate.drawerVC closeDrawerAnimated:YES completion:^(BOOL finished) {
+            //[_delegate slideview:self isShowed:NO];
             
             if (completion)
             {

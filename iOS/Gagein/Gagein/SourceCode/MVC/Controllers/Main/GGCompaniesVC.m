@@ -43,6 +43,9 @@
 
 #import "GGTableViewExpandHelper.h"
 
+#import "MMDrawerController.h"
+#import "GGLeftDrawerVC.h"
+
 #define SWITCH_WIDTH 90
 #define SWITCH_HEIGHT 20
 
@@ -109,7 +112,7 @@
 
 -(void)_initSlideSettingView
 {
-    _slideSettingView = GGSharedDelegate.slideSettingView;
+    _slideSettingView = nil;//GGSharedDelegate.slideSettingView;
     _slideSettingView.delegate = self;
     _slideSettingView.viewTable.rowHeight = [GGSettingMenuCell HEIGHT];
     _slideSettingView.searchBar.tfSearch.placeholder = @"Search for updates";
@@ -309,7 +312,7 @@
     _slideSettingView.viewTable.tableHeaderView = _slideSettingView.searchBar;
     
     // enable gesture
-    [GGSharedDelegate.rootVC enableSwipGesture:YES];
+    //[GGSharedDelegate.rootVC enableSwipGesture:YES];
     
     [_updatesTV reloadData];
     [_happeningsTV reloadData];
@@ -324,8 +327,8 @@
     [_btnSwitchUpdate removeFromSuperview];
     [self _makeSubNaviTitleVisible:NO];
     
-    [GGSharedDelegate.rootVC enableSwipGesture:NO];
-    [GGSharedDelegate.rootVC enableTapGesture:NO];
+    //[GGSharedDelegate.rootVC enableSwipGesture:NO];
+    //[GGSharedDelegate.rootVC enableTapGesture:NO];
 }
 
 
@@ -738,10 +741,10 @@
 -(void)optionMenuAction:(id)sender
 {
     DLog(@"option menu clicked");
-    if (!GGSharedDelegate.rootVC.isRevealed)
+    if (GGSharedDelegate.drawerVC.openSide == MMDrawerSideNone)
     {
         [_slideSettingView showSlide];
-        //[self _callApiGetMenu];
+        [self _callApiGetMenu];
     }
     else
     {
@@ -1263,14 +1266,14 @@
     
     [super scrollViewWillBeginDragging:scrollView];
     
-    GGSharedDelegate.rootVC.canBeDragged = NO;
+    //GGSharedDelegate.rootVC.canBeDragged = NO;
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     //DLog(@"scrollView: %@ did End Dragging, is dragging:%d", NSStringFromClass([scrollView class]), scrollView.isDragging);
     
-    GGSharedDelegate.rootVC.canBeDragged = YES;
+    //GGSharedDelegate.rootVC.canBeDragged = YES;
 }
 
 

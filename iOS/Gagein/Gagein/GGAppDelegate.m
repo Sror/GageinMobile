@@ -21,6 +21,11 @@
 #import "GGFacebookOAuth.h"
 #import "GGUpgradeInfo.h"
 
+#import "MMDrawerVisualState.h"
+
+#import "MMDrawerController.h"
+#import "GGLeftDrawerVC.h"
+
 
 #define TAG_UPGRADE_ALERT   1000
 
@@ -28,6 +33,7 @@
 @implementation GGAppDelegate
 {
     GGUpgradeInfo *_upgradeInfo;
+    UITabBarController *_tabbarVC;
 }
 
 -(void)_initTabbar
@@ -53,9 +59,8 @@
     nc3 = [[UINavigationController alloc] initWithRootViewController:viewController3];
     nc4 = [[UINavigationController alloc] initWithRootViewController:viewController4];
     
-    self.tabBarController = [[GGTabBarController alloc] initWithViewControllers:@[nc1, nc2, nc3, nc4]];
-    self.tabBarController.delegate = self;
-    [self.tabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbarBg"]];
+    _tabbarVC = [[UITabBarController alloc] init];
+    _tabbarVC.viewControllers = @[nc1, nc2, nc3, nc4];
     
 }
 
@@ -68,8 +73,25 @@
     
     [self _initTabbar];
     
-    _rootVC = [[GGRootVC alloc] init];
-    self.window.rootViewController = _rootVC;
+    GGLeftDrawerVC *leftDrawerVC = [GGLeftDrawerVC new];
+    
+    _drawerVC = [[MMDrawerController alloc] initWithCenterViewController:_tabbarVC leftDrawerViewController:leftDrawerVC];
+    
+    [_drawerVC setMaximumLeftDrawerWidth:LEFT_DRAWER_WIDTH];
+    [_drawerVC setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    [_drawerVC setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    _drawerVC.shouldStretchDrawer = NO;
+    
+    [_drawerVC
+     setDrawerVisualStateBlock:^(MMDrawerController *drawerController, MMDrawerSide drawerSide, CGFloat percentVisible) {
+         MMDrawerControllerDrawerVisualStateBlock block;
+         block = [MMDrawerVisualState parallaxVisualStateBlockWithParallaxFactor:2.f];
+         if(block){
+             block(drawerController, drawerSide, percentVisible);
+         }
+     }];
+    
+    self.window.rootViewController = _drawerVC;
     
     //
     _signPortalVC = [[GGSignupPortalVC alloc] init];
@@ -161,15 +183,12 @@ static BOOL s_isCustomed = NO;
         neededNaviBgImg = [GGUtils imageFor:naviBgImg size:neededSize];
         [[UINavigationBar appearance] setBackgroundImage:neededNaviBgImg forBarMetrics:UIBarMetricsDefault];
     }
-    
-    [_rootVC doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
-    //[_tabBarController doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
 }
 
--(GGSlideSettingView *)slideSettingView
-{
-    return _rootVC.viewSetting;
-}
+//-(GGSlideSettingView *)slideSettingView
+//{
+//    return _rootVC.viewSetting;
+//}
 
 -(void)_alertEnv
 {
@@ -261,7 +280,7 @@ static BOOL s_isCustomed = NO;
     if (![GGRuntimeData sharedInstance].isLoggedIn)
     {
         [self.naviController.view.layer addAnimation:[GGAnimation animationFade] forKey:nil];
-        [_rootVC presentViewController:_naviController animated:NO completion:nil];
+        [_drawerVC presentViewController:_naviController animated:NO completion:nil];
         //[self.window addSubview:self.naviController.view];
     }
 }
@@ -270,7 +289,7 @@ static BOOL s_isCustomed = NO;
 {
     [self.naviController.view.layer addAnimation:[GGAnimation animationFade] forKey:nil];
     //[self.naviController.view removeFromSuperview];
-    [_rootVC dismissViewControllerAnimated:NO completion:nil];
+    [_drawerVC dismissViewControllerAnimated:NO completion:nil];
 }
 
 -(void)showTabIndex:(NSUInteger)aIndex

@@ -181,16 +181,16 @@
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    CGRect coverRc = GGSharedDelegate.rootVC.viewCover.bounds;
-    self.view.frame = coverRc;
-    
-    //[self.view printViewsTree];
-    
-    for (UIViewController *vc in self.viewControllers)
-    {
-        CGRect superRc = vc.view.superview.bounds;
-        vc.view.frame = superRc;
-    }
+//    CGRect coverRc = GGSharedDelegate.rootVC.viewCover.bounds;
+//    self.view.frame = coverRc;
+//    
+//    //[self.view printViewsTree];
+//    
+//    for (UIViewController *vc in self.viewControllers)
+//    {
+//        CGRect superRc = vc.view.superview.bounds;
+//        vc.view.frame = superRc;
+//    }
 }
 
 #pragma mark - show/hide tabbar

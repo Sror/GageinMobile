@@ -141,6 +141,9 @@ return __singleton__; \
 #define IPAD_CONTENT_WIDTH          650
 #define IPAD_CONTENT_WIDTH_FULL     768
 
+#define LEFT_DRAWER_WIDTH           260
+#define LEFT_DRAWER_WIDTH_LONG      320
+
 
 // ios version
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)

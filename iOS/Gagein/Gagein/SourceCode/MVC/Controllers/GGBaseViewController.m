@@ -43,6 +43,8 @@
 #import "GGEmployerComsVC.h"
 #import "GGPerson.h"
 
+#import "MMDrawerController.h"
+
 #import <FacebookSDK/FacebookSDK.h>
 
 #define MAX_NAVI_TITLE_LENGTH           20
@@ -686,7 +688,7 @@
     {
         if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
         {
-            [GGSharedDelegate.rootVC cover];
+            [GGSharedDelegate.drawerVC closeDrawerAnimated:YES completion:nil];
         }
         else if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation))
         {
@@ -694,11 +696,11 @@
             
             if ([self doNeedMenu])
             {
-                [GGSharedDelegate.rootVC reveal];
+                [GGSharedDelegate.drawerVC openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
             }
             else
             {
-                [GGSharedDelegate.rootVC cover];
+                [GGSharedDelegate.drawerVC closeDrawerAnimated:YES completion:nil];
             }
         }
     }
@@ -710,7 +712,7 @@
     
     if ([self isPortrait])
     {
-        _isMenuShowingBeforeLeavePortrait = GGSharedDelegate.rootVC.isRevealed;
+        _isMenuShowingBeforeLeavePortrait = (GGSharedDelegate.drawerVC.openSide != MMDrawerSideNone);
     }
     
     [self layoutUIForIPadIfNeededWithOrientation:toInterfaceOrientation];
@@ -733,12 +735,13 @@
 
 -(void)setNeedMenu:(BOOL)aNeedMenu
 {
-    GGSharedDelegate.rootVC.needMenu = aNeedMenu;
+    //GGSharedDelegate.rootVC.needMenu = aNeedMenu;
 }
 
 -(BOOL)needMenu
 {
-    return GGSharedDelegate.rootVC.needMenu;
+    //return GGSharedDelegate.rootVC.needMenu;
+    return NO;
 }
 
 
@@ -828,11 +831,9 @@
 -(void)ssGraphShowPersonPanel:(NSNumber *)aPersonID
 {
     DLog(@"ssGraphShowPersonPanel:%@", aPersonID);
-
-    GGSsgrfPopPanelPersonInfoView *popUp = [[GGSsgrfPopPanelPersonInfoView alloc] initWithView:GGSharedDelegate.rootVC.view];
-    [popUp updateWithPersonID:aPersonID];
     
-//    [popUp.panel.btnLogo addTarget:self action:@selector(enterPersonDetailWithSender:) forControlEvents:UIControlEventTouchUpInside];
+    GGSsgrfPopPanelPersonInfoView *popUp = [[GGSsgrfPopPanelPersonInfoView alloc] initWithView:GGSharedDelegate.drawerVC.view];
+    [popUp updateWithPersonID:aPersonID];
     
     //
     [_viewPopup removeFromSuperview];
@@ -844,7 +845,7 @@
 {
     DLog(@"ssGraphShowCompanyPanel:%@", aCompany);
 
-    GGSsgrfPopPanelComInfoView *popUp = [[GGSsgrfPopPanelComInfoView alloc] initWithView:GGSharedDelegate.rootVC.view];
+    GGSsgrfPopPanelComInfoView *popUp = [[GGSsgrfPopPanelComInfoView alloc] initWithView:GGSharedDelegate.drawerVC.view];
     [popUp updateWithCompany:aCompany];
     //
     [_viewPopup removeFromSuperview];
