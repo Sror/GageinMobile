@@ -36,6 +36,9 @@
     [self.view addSubview:_viewMenu];
     _viewMenu.viewTable.delegate = self;
     _viewMenu.viewTable.dataSource = self;
+    _viewMenu.viewTable.backgroundColor = GGSharedColor.orange;
+    [self.view addSubview:_viewMenu.viewTable];
+    //[_viewMenu addSubview:_viewMenu.viewTable];
     
 //    UITableView *_tv = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
 //    _tv.delegate = self;

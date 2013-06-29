@@ -104,10 +104,10 @@
         }
         
         _viewDimmed.frame = [self _dimmedRect];
-        [self addSubview:_viewDimmed];
+        [self.viewTable addSubview:_viewDimmed];
         
         _tvSuggestedUpdates.frame = [self _tvSuggestedRect];
-        [self addSubview:_tvSuggestedUpdates];
+        [self.viewTable addSubview:_tvSuggestedUpdates];
     }
     else
     {

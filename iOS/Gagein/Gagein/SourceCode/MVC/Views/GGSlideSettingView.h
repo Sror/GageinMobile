@@ -18,7 +18,7 @@
 //
 //@end
 
-@interface GGSlideSettingView : UIView <UITableViewDelegate, UITableViewDataSource>
+@interface GGSlideSettingView : UIView
 //@property (nonatomic, assign) BOOL              isShowing;
 @property (nonatomic, strong) UITableView           *viewTable;
 @property (nonatomic, strong) UITableView           *tvSuggestedUpdates;
