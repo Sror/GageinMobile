@@ -34,16 +34,10 @@
 	
     _viewMenu = [[GGSlideSettingView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:_viewMenu];
-    _viewMenu.viewTable.delegate = self;
-    _viewMenu.viewTable.dataSource = self;
-    _viewMenu.viewTable.backgroundColor = GGSharedColor.orange;
-    [self.view addSubview:_viewMenu.viewTable];
-    //[_viewMenu addSubview:_viewMenu.viewTable];
     
-//    UITableView *_tv = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-//    _tv.delegate = self;
-//    _tv.dataSource = self;
-//    [self.view addSubview:_tv];
+    //_viewMenu.viewTable.backgroundColor = GGSharedColor.orange;
+    //[self.view addSubview:_viewMenu.viewTable];
+
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

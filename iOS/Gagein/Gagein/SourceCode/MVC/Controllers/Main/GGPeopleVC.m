@@ -64,7 +64,7 @@
 
 -(void)_initSlideSettingView
 {
-    _slideSettingView = nil;//GGSharedDelegate.slideSettingView;
+    _slideSettingView = GGSharedDelegate.leftDrawer.viewMenu;;//GGSharedDelegate.slideSettingView;
     _slideSettingView.delegate = self;
     
     _slideSettingView.searchBar.tfSearch.placeholder = @"Search for updates";
@@ -148,10 +148,12 @@
     [_slideSettingView changeDelegate:self];
     _slideSettingView.viewTable.tableHeaderView = nil;
     
-    
-    //[GGSharedDelegate.rootVC enableSwipGesture:YES];
-    
     [_updatesTV reloadData];
+    
+    if (_menuDatas == nil)
+    {
+        [self _callApiGetMenu];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -650,9 +652,9 @@
 
 -(void)_callApiGetMenu
 {
-    //[_slideSettingView showLoadingHUD];
+    [_slideSettingView.viewTable showLoadingHUD];
     id op = [GGSharedAPI getMenuByType:kGGStrMenuTypePeople callback:^(id operation, id aResultObject, NSError *anError) {
-        //[_slideSettingView hideLoadingHUD];
+        [_slideSettingView.viewTable hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {

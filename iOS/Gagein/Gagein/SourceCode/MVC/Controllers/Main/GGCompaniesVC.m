@@ -112,7 +112,7 @@
 
 -(void)_initSlideSettingView
 {
-    _slideSettingView = nil;//GGSharedDelegate.slideSettingView;
+    _slideSettingView = GGSharedDelegate.leftDrawer.viewMenu;
     _slideSettingView.delegate = self;
     _slideSettingView.viewTable.rowHeight = [GGSettingMenuCell HEIGHT];
     _slideSettingView.searchBar.tfSearch.placeholder = @"Search for updates";
@@ -744,7 +744,7 @@
     if (GGSharedDelegate.drawerVC.openSide == MMDrawerSideNone)
     {
         [_slideSettingView showSlide];
-        [self _callApiGetMenu];
+        //[self _callApiGetMenu];
     }
     else
     {
@@ -1377,9 +1377,9 @@
 
 -(void)_callApiGetMenu
 {
-    [_slideSettingView showLoadingHUD];
+    [_slideSettingView.viewTable showLoadingHUD];
     id op = [GGSharedAPI getMenuByType:kGGStrMenuTypeCompanies callback:^(id operation, id aResultObject, NSError *anError) {
-        [_slideSettingView hideLoadingHUD];
+        [_slideSettingView.viewTable hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {

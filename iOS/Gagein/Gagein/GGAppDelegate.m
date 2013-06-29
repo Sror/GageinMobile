@@ -298,4 +298,9 @@ static BOOL s_isCustomed = NO;
     self.tabBarController.selectedIndex = aIndex;
 }
 
+-(GGLeftDrawerVC *)leftDrawer
+{
+    return (GGLeftDrawerVC *)(_drawerVC.leftDrawerViewController);
+}
+
 @end
