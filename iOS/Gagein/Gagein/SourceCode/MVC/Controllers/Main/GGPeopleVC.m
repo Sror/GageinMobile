@@ -149,11 +149,6 @@
     _slideSettingView.viewTable.tableHeaderView = nil;
     
     [_updatesTV reloadData];
-    
-    if (_menuDatas == nil)
-    {
-        [self _callApiGetMenu];
-    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -372,7 +367,11 @@
     if (GGSharedDelegate.drawerVC.openSide == MMDrawerSideNone)
     {
         [_slideSettingView showSlide];
-        //[self _callApiGetMenu];
+        
+        if (_menuDatas == nil)
+        {
+            [self _callApiGetMenu];
+        }
     }
     else
     {

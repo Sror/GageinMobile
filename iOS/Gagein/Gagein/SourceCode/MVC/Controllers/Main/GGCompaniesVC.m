@@ -66,7 +66,7 @@
     GGEmptyActionView                   *_viewHappeningEmpty;
     GGKeywordExampleCell                *_keywordExampleView;
     
-    GGSwitchButton                      *_btnSwitchUpdate;
+    //GGSwitchButton                      *_btnSwitchUpdate;
     BOOL                                _isShowingUpdate;
     
     NSArray                             *_menuDatas;
@@ -122,6 +122,18 @@
     [_slideSettingView changeDelegate:self];
 }
 
+-(UIBarButtonItem *)_switchBarButton
+{
+    CGPoint offset = CGPointMake(0, 3);
+    GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(switchBtweenUpdateAndHappening:)];
+    return [GGUtils barButtonWithImageName:@"btnSwitchArrow" offset:offset action:action];
+}
+
+-(void)_decideSwitchButtonAppearOrNot
+{
+    self.navigationItem.rightBarButtonItem = (_menuType == kGGMenuTypeAgent) ? nil : [self _switchBarButton];
+}
+
 -(void)_installMenuButton
 {
     
@@ -131,9 +143,7 @@
     self.navigationItem.leftBarButtonItem = menuBtnItem;
     
     // switch bar button
-    action = [GGTagetActionPair pairWithTaget:self action:@selector(switchBtweenUpdateAndHappening:)];
-    UIBarButtonItem *switchBtn = [GGUtils barButtonWithImageName:@"btnSwitchArrow" offset:offset action:action];
-    self.navigationItem.rightBarButtonItem = switchBtn;
+    [self _decideSwitchButtonAppearOrNot];
     
 }
 
@@ -304,8 +314,9 @@
     
     // show/hide switch button
     //[self _setSwitchUpdateRect];
-    [self.navigationController.navigationBar addSubview:_btnSwitchUpdate];
-    _btnSwitchUpdate.hidden = (_menuType == kGGMenuTypeAgent);
+    //[self.navigationController.navigationBar addSubview:_btnSwitchUpdate];
+    //_btnSwitchUpdate.hidden = (_menuType == kGGMenuTypeAgent);
+    [self _decideSwitchButtonAppearOrNot];
     
     // change menu to company type
     [_slideSettingView changeDelegate:self];
@@ -324,7 +335,7 @@
 {
     [super viewWillDisappear:animated];
     
-    [_btnSwitchUpdate removeFromSuperview];
+    //[_btnSwitchUpdate removeFromSuperview];
     //[self _makeSubNaviTitleVisible:NO];
     
     //[GGSharedDelegate.rootVC enableSwipGesture:NO];
@@ -679,7 +690,7 @@
 
 -(IBAction)_exploringTapped:(id)sender
 {
-    [_btnSwitchUpdate switchOn:YES];
+    //[_btnSwitchUpdate switchOn:YES];
     
     [self _doExploringHideSlide:![self isIPadLandscape]];
 }
@@ -714,8 +725,8 @@
     [self.happeningsTV reloadData];
     [self.happeningsTV triggerPullToRefresh];
     
-    _btnSwitchUpdate.hidden = (_menuType == kGGMenuTypeAgent);
-    //[self _showRelevanceBar:YES];
+    //_btnSwitchUpdate.hidden = (_menuType == kGGMenuTypeAgent);
+    [self _decideSwitchButtonAppearOrNot];
 }
 
 -(void)_unselectAllMenuItem
@@ -744,7 +755,11 @@
     if (GGSharedDelegate.drawerVC.openSide == MMDrawerSideNone)
     {
         [_slideSettingView showSlide];
-        //[self _callApiGetMenu];
+        
+        if (_menuDatas == nil)
+        {
+            [self _callApiGetMenu];
+        }
     }
     else
     {
@@ -1120,7 +1135,7 @@
         {
             // snapshot old value...
             NSUInteger oldIndex = _updateTvExpandHelper.expandingIndex;
-            //BOOL oldIsExpanding = _updateTvExpandHelper.isExpanding;
+
             [_updateTvExpandHelper changeExpaningAt:row];
             
             // reload cells
@@ -1200,10 +1215,10 @@
         _menuType = theData.type;
         _menuID = theData.ID;
         
-        if (theData.type == kGGMenuTypeAgent)
-        {
-            [_btnSwitchUpdate switchOn:YES];
-        }
+//        if (theData.type == kGGMenuTypeAgent)
+//        {
+//            [_btnSwitchUpdate switchOn:YES];
+//        }
         
         [self _refreshWithMenuId:theData.ID type:theData.type hideSlide:![self isIPadLandscape]];
     }
