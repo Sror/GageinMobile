@@ -154,13 +154,13 @@
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0)
-    {
-        [_happeningTvExpandHelper resetCellHeights];
-    }
+//    if (indexPath.row == 0)
+//    {
+//        [_happeningTvExpandHelper resetCellHeights];
+//    }
     
     float height = ISIPADDEVICE ? [self _happeningIpadCellHeightForIndexPath:indexPath] : [GGCompanyHappeningCell HEIGHT];
-    [_happeningTvExpandHelper recordCellHeight:height];
+    //[_happeningTvExpandHelper recordCellHeight:height];
     return height;
 }
 

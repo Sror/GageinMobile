@@ -20,11 +20,10 @@
 
 //
 -(void)changeExpaningAt:(NSUInteger)aIndex;
--(void)resetCellHeights;
--(void)recordCellHeight:(float)aCellHeight;
--(float)yForCellAt:(NSUInteger)aIndex;
--(float)heightForCellAt:(NSUInteger)aIndex;
 
-//-(void)scrollToCenterFrom:(NSUInteger)anOldIndex to:(NSUInteger)aNewIndex oldIsExpanding:(BOOL)aOldIsExpanding;
+//-(void)resetCellHeights;
+//-(void)recordCellHeight:(float)aCellHeight;
+//-(float)yForCellAt:(NSUInteger)aIndex;
+//-(float)heightForCellAt:(NSUInteger)aIndex;
 
 @end

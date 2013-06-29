@@ -248,12 +248,12 @@
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0)
-    {
-        [_tvExpandHelper resetCellHeights];
-    }
+//    if (indexPath.row == 0)
+//    {
+//        [_tvExpandHelper resetCellHeights];
+//    }
     float height = ISIPADDEVICE ? [self _updateIpadCellHeightForIndexPath:indexPath] : [self _updateCellHeightForIndexPath:indexPath];
-    [_tvExpandHelper recordCellHeight:height];
+    //[_tvExpandHelper recordCellHeight:height];
     return height;
 }
 
