@@ -306,6 +306,7 @@
         }
         
         [_webviewSignal loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:aURL]]];
+        //[_webviewSignal showLoadingHUD];
         _webviewSignal.delegate = self;
     }
     else
@@ -771,17 +772,19 @@
 #pragma mark - webview delegate
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [webView showLoadingHUD];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [webView hideLoadingHUD];
+    //[webView hideLoadingHUD];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    [webView hideLoadingHUD];
+    //[webView hideLoadingHUD];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 #pragma mark - tableview datasource

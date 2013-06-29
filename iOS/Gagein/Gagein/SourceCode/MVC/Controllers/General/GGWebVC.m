@@ -49,6 +49,7 @@
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_urlStr]];
     [_webview loadRequest:request];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     DLog(@"webview loading: {%@}", _urlStr);
 }
 
@@ -66,17 +67,19 @@
 #pragma mark - web view delegate
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [self showLoadingHUD];
+    
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [self hideLoadingHUD];
+    //[self hideLoadingHUD];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    [self hideLoadingHUD];
+    //[self hideLoadingHUD];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 @end

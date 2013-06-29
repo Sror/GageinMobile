@@ -93,9 +93,6 @@
 
 -(IBAction)switchBtweenUpdateAndHappening:(id)sender
 {
-    [_updates removeAllObjects];
-    [_tvUpdates reloadData];
-    
     _isUnread = !_isUnread;
     [self _subNaviLabel].text = _isUnread ? GGString(@"Unread") : GGString(@"All");
 
@@ -117,7 +114,8 @@
         _tvPictureView.alpha = 0.f;
         
     } completion:^(BOOL finished) {
-        
+        [_updates removeAllObjects];
+        [_tvUpdates reloadData];
         [_tvUpdates triggerPullToRefresh];
         
     }];
