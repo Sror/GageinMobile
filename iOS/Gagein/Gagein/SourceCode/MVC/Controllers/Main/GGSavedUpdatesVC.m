@@ -136,10 +136,10 @@
     //[self.navigationController.navigationBar addSubview:_roundSwitch];
     
     // switch bar button
-    CGPoint offset = CGPointMake(0, 3);
-    GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(switchBtweenUpdateAndHappening:)];
-    UIBarButtonItem *switchBtn = [GGUtils barButtonWithImageName:@"btnSwitchArrow" offset:offset action:action];
-    self.navigationItem.rightBarButtonItem = switchBtn;
+//    CGPoint offset = CGPointMake(0, 3);
+//    GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(switchBtweenUpdateAndHappening:)];
+//    UIBarButtonItem *switchBtn = [GGUtils barButtonWithImageName:@"btnSwitchArrow" offset:offset action:action];
+//    self.navigationItem.rightBarButtonItem = switchBtn;
     
     //
     _tvUpdates = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
@@ -150,6 +150,7 @@
     _tvUpdates.showsVerticalScrollIndicator = NO;
     _tvUpdates.autoresizingMask = UIViewAutoresizingFlexibleWidth |UIViewAutoresizingFlexibleHeight;
     _tvExpandHelper = [[GGTableViewExpandHelper alloc] initWithTableView:_tvUpdates];
+    //_tvUpdates.backgroundColor = GGSharedColor.random;
     [self.view addSubview:_tvUpdates];
     //
     _tvPictureView = [[UIImageView alloc] initWithFrame:_tvUpdates.frame];
@@ -181,7 +182,7 @@
 {
     [super viewWillAppear:animated];
     
-    [self _makeSubNaviTitleVisible:YES];
+    //[self _makeSubNaviTitleVisible:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -199,7 +200,7 @@
 {
     [super viewWillDisappear:animated];
     
-    [self _makeSubNaviTitleVisible:NO];
+    //[self _makeSubNaviTitleVisible:NO];
 }
 
 -(void)dealloc

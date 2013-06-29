@@ -137,38 +137,38 @@
     
 }
 
--(void)_makeSubNaviTitleVisible:(BOOL)aVisible
-{
-    if (aVisible)
-    {
-        [self.navigationController.navigationBar addSubview:[self _subNaviLabel]];
-        [[self _subNaviLabel] centerMeHorizontally];
-        [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:0.f forBarMetrics:UIBarMetricsDefault];
-    }
-    else
-    {
-        [[self _subNaviLabel] removeFromSuperview];
-        [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:5.f forBarMetrics:UIBarMetricsDefault];
-    }
-}
-
--(UILabel *)_subNaviLabel
-{
-    static UILabel *_subNaviLabel = nil;
-    if (_subNaviLabel == nil)
-    {
-        CGRect naviRc = [GGLayout navibarFrame];
-        CGRect subNaviRc = CGRectMake(naviRc.size.width / 4, 28, naviRc.size.width / 2, 15);
-        _subNaviLabel = [[UILabel alloc] initWithFrame:subNaviRc];
-        _subNaviLabel.font = [UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE_LIGHT size:12.f];
-        _subNaviLabel.textColor = GGSharedColor.white;
-        _subNaviLabel.backgroundColor = GGSharedColor.clear;
-        _subNaviLabel.textAlignment = NSTextAlignmentCenter;
-        _subNaviLabel.text = _isShowingUpdate ? GGString(@"Updates") : GGString(@"Happenings");
-    }
-    
-    return _subNaviLabel;
-}
+//-(void)_makeSubNaviTitleVisible:(BOOL)aVisible
+//{
+//    if (aVisible)
+//    {
+//        [self.navigationController.navigationBar addSubview:[self _subNaviLabel]];
+//        [[self _subNaviLabel] centerMeHorizontally];
+//        [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:0.f forBarMetrics:UIBarMetricsDefault];
+//    }
+//    else
+//    {
+//        [[self _subNaviLabel] removeFromSuperview];
+//        [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:5.f forBarMetrics:UIBarMetricsDefault];
+//    }
+//}
+//
+//-(UILabel *)_subNaviLabel
+//{
+//    static UILabel *_subNaviLabel = nil;
+//    if (_subNaviLabel == nil)
+//    {
+//        CGRect naviRc = [GGLayout navibarFrame];
+//        CGRect subNaviRc = CGRectMake(naviRc.size.width / 4, 28, naviRc.size.width / 2, 15);
+//        _subNaviLabel = [[UILabel alloc] initWithFrame:subNaviRc];
+//        _subNaviLabel.font = [UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE_LIGHT size:12.f];
+//        _subNaviLabel.textColor = GGSharedColor.white;
+//        _subNaviLabel.backgroundColor = GGSharedColor.clear;
+//        _subNaviLabel.textAlignment = NSTextAlignmentCenter;
+//        _subNaviLabel.text = _isShowingUpdate ? GGString(@"Updates") : GGString(@"Happenings");
+//    }
+//    
+//    return _subNaviLabel;
+//}
 
 //-(void)_initRoundSwitch
 //{
@@ -293,7 +293,7 @@
     [super viewWillAppear:animated];
 
     [self _adjustTvFrames];
-    [self _makeSubNaviTitleVisible:YES];
+    //[self _makeSubNaviTitleVisible:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -317,7 +317,7 @@
     [_updatesTV reloadData];
     [_happeningsTV reloadData];
     
-    [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:0.f forBarMetrics:UIBarMetricsDefault];
+    //[self.navigationController.navigationBar setTitleVerticalPositionAdjustment:0.f forBarMetrics:UIBarMetricsDefault];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -325,7 +325,7 @@
     [super viewWillDisappear:animated];
     
     [_btnSwitchUpdate removeFromSuperview];
-    [self _makeSubNaviTitleVisible:NO];
+    //[self _makeSubNaviTitleVisible:NO];
     
     //[GGSharedDelegate.rootVC enableSwipGesture:NO];
     //[GGSharedDelegate.rootVC enableTapGesture:NO];
@@ -349,7 +349,7 @@
 {
     _isShowingUpdate = !_isShowingUpdate;
     
-    [self _subNaviLabel].text = _isShowingUpdate ? GGString(@"Updates") : GGString(@"Happenings");
+    //[self _subNaviLabel].text = _isShowingUpdate ? GGString(@"Updates") : GGString(@"Happenings");
     
     float offsetX = _isShowingUpdate ? 0 : -self.view.frame.size.width;
     [UIView animateWithDuration:.3f animations:^{
@@ -1663,7 +1663,7 @@
     //CGRect orientRc = [GGUtils frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
     self.navigationItem.leftBarButtonItem = nil;
     
-    [[self _subNaviLabel] centerMeHorizontally];
+    //[[self _subNaviLabel] centerMeHorizontally];
     
     if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
     {

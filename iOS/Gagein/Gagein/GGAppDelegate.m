@@ -165,10 +165,15 @@ static BOOL s_isCustomed = NO;
     [[UINavigationBar appearance] setBackgroundImage:neededNaviBgImg forBarMetrics:UIBarMetricsDefault];
     
     
+    
+    
     // common apperance
     NSMutableDictionary *titleBarAttributes = [NSMutableDictionary dictionaryWithDictionary: [[UINavigationBar appearance] titleTextAttributes]];
-    [titleBarAttributes setValue:[UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE_MEDIUM size:16] forKey:UITextAttributeFont];
+    
+    [titleBarAttributes setValue:[UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE_LIGHT size:16] forKey:UITextAttributeFont];
     [titleBarAttributes setValue:GGSharedColor.white forKey:UITextAttributeTextColor];
+    //[titleBarAttributes setValue:GGSharedColor.lightGray forKey:UITextAttributeTextShadowColor];
+    //[titleBarAttributes setValue:[NSValue valueWithUIOffset:UIOffsetMake(0, -1)] forKey:UITextAttributeTextShadowOffset];
     [[UINavigationBar appearance] setTitleTextAttributes:titleBarAttributes];
     
 }
