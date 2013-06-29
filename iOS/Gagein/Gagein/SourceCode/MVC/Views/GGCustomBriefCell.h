@@ -24,4 +24,7 @@ typedef enum {
 @property (assign, nonatomic) EGGCustomBriefCellType    type;
 
 +(float)HEIGHT;
+
+-(void)loadLogoWithImageUrl:(NSString *)aImageUrl placeholder:(UIImage *)aPlaceHolder;
+
 @end

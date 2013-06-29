@@ -672,8 +672,7 @@
         cell.lblTitle.text = data.title;
         cell.lblAddress.text = data.address;
         cell.type = data.type;
-        [cell.ivPhoto setImageWithURL:[NSURL URLWithString:data.picUrl] placeholderImage:
-         (data.type == kGGCustomBriefCellCompany ? GGSharedImagePool.logoDefaultCompany : GGSharedImagePool.logoDefaultPerson)];
+        [cell loadLogoWithImageUrl:data.picUrl placeholder:(data.type == kGGCustomBriefCellCompany ? GGSharedImagePool.logoDefaultCompany : GGSharedImagePool.logoDefaultPerson)];
         
         return cell;
         

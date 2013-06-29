@@ -115,7 +115,7 @@
     cell.lblName.text = data.name;
     cell.lblTitle.text = data.orgTitle;
     cell.lblAddress.text = data.address;
-    [cell.ivPhoto setImageWithURL:[NSURL URLWithString:data.photoPath] placeholderImage:GGSharedImagePool.placeholder];
+    [cell loadLogoWithImageUrl:data.photoPath placeholder:GGSharedImagePool.logoDefaultPerson];
     
     return cell;
 }

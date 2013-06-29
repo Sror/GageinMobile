@@ -9,6 +9,9 @@
 #import "GGCustomBriefCell.h"
 
 @implementation GGCustomBriefCell
+{
+    UIActivityIndicatorView         *_viewLoading;
+}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -29,11 +32,36 @@
 -(void)awakeFromNib
 {
     self.ivCellBg.image = GGSharedImagePool.stretchShadowBgWite;
+    _viewLoading = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    _viewLoading.hidesWhenStopped = YES;
 }
 
 +(float)HEIGHT
 {
     return 70;
+}
+
+-(void)loadLogoWithImageUrl:(NSString *)aImageUrl placeholder:(UIImage *)aPlaceHolder
+{
+    NSURL *url = [NSURL URLWithString:aImageUrl];
+    
+    if (url)
+    {
+        [_ivPhoto addSubview:_viewLoading];
+        _viewLoading.center = _ivPhoto.center;
+        [_viewLoading startAnimating];
+        [_ivPhoto setImageWithURL:url placeholderImage:aPlaceHolder completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+            
+            [_viewLoading stopAnimating];
+            [_viewLoading removeFromSuperview];
+            
+        }];
+    }
+    else
+    {
+        _ivPhoto.image = aPlaceHolder;
+    }
+    
 }
 
 @end
