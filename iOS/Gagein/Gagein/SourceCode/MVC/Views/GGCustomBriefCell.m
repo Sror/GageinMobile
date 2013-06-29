@@ -34,6 +34,12 @@
     self.ivCellBg.image = GGSharedImagePool.stretchShadowBgWite;
     _viewLoading = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     _viewLoading.hidesWhenStopped = YES;
+    //_viewLoading.backgroundColor = GGSharedColor.random;
+    
+    [_ivPhoto addSubview:_viewLoading];
+    _viewLoading.frame = CGRectMake((_ivPhoto.frame.size.width - _viewLoading.frame.size.width) / 2
+                                    , (_ivPhoto.frame.size.height - _viewLoading.frame.size.height) / 2
+                                    , _viewLoading.frame.size.width, _viewLoading.frame.size.height);
 }
 
 +(float)HEIGHT
@@ -47,13 +53,15 @@
     
     if (url)
     {
-        [_ivPhoto addSubview:_viewLoading];
-        _viewLoading.center = _ivPhoto.center;
+        //[_ivPhoto addSubview:_viewLoading];
+        //_viewLoading.center = _ivPhoto.center;
+        _viewLoading.hidden = NO;
         [_viewLoading startAnimating];
+        
         [_ivPhoto setImageWithURL:url placeholderImage:aPlaceHolder completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             
-            [_viewLoading stopAnimating];
-            [_viewLoading removeFromSuperview];
+            _viewLoading.hidden = YES;
+            //[_viewLoading removeFromSuperview];
             
         }];
     }
