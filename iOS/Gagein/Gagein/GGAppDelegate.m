@@ -33,7 +33,6 @@
 @implementation GGAppDelegate
 {
     GGUpgradeInfo *_upgradeInfo;
-    UITabBarController *_tabbarVC;
 }
 
 -(void)_initTabbar
@@ -59,8 +58,10 @@
     nc3 = [[UINavigationController alloc] initWithRootViewController:viewController3];
     nc4 = [[UINavigationController alloc] initWithRootViewController:viewController4];
     
-    _tabbarVC = [[UITabBarController alloc] init];
-    _tabbarVC.viewControllers = @[nc1, nc2, nc3, nc4];
+    _tabbarVC = [[GGTabBarController alloc] initWithViewControllers:@[nc1, nc2, nc3, nc4]];
+    _tabbarVC.delegate = self;
+    [_tabbarVC.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbarBg"]];
+    //_tabbarVC.viewControllers = @[nc1, nc2, nc3, nc4];
     
 }
 

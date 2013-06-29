@@ -28,6 +28,7 @@
 //@property (readonly) GGSlideSettingView *slideSettingView;
 //@property (strong, nonatomic) GGRootVC *rootVC;
 @property (strong, nonatomic)   GGSignupPortalVC *signPortalVC;
+@property (strong, nonatomic)   GGTabBarController *tabbarVC;
 
 @property (strong, nonatomic)   MMDrawerController *drawerVC;
 
