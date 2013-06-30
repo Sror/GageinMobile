@@ -719,7 +719,7 @@
 
 -(void)_decideCanPanToOpenDrawerWithOrient:(UIInterfaceOrientation)anOrient
 {
-    if (UIInterfaceOrientationIsPortrait(anOrient))
+    if (UIInterfaceOrientationIsPortrait(anOrient) && self.doNeedMenu)
     {
         GGSharedDelegate.drawerVC.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
         GGSharedDelegate.drawerVC.closeDrawerGestureModeMask = MMCloseDrawerGestureModeAll;
