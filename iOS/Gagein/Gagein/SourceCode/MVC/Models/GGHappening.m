@@ -152,7 +152,12 @@
 
 -(BOOL)isPersonEvent
 {
-    return _type >= kGGHappeningPersonUpdateProfilePic && _type <= kGGHappeningPersonNewJobTitle;
+    return [GGHappening isPersonEvent:_type];
+}
+
++(BOOL)isPersonEvent:(EGGHappeningType)aType
+{
+    return aType >= kGGHappeningPersonUpdateProfilePic && aType <= kGGHappeningPersonNewJobTitle;
 }
 
 -(void)parseWithData:(NSDictionary *)aData

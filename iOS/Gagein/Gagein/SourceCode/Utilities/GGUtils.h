@@ -76,4 +76,6 @@
 +(BOOL)hasLinkedSnType:(EGGSnType)aSnType;
 +(void)addSnType:(EGGSnType)aSnType;
 
++(void)applyCircleEffectToView:(UIView *)aView;
+
 @end

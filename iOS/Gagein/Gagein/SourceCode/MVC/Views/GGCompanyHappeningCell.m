@@ -44,6 +44,11 @@
     return 85;
 }
 
+-(void)applyCircleLogo
+{
+    [GGUtils applyCircleEffectToView:_ivLogo];
+}
+
 -(void)setHasBeenRead:(BOOL)hasRead
 {
     if (hasRead)

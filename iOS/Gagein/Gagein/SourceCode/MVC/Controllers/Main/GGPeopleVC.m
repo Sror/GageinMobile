@@ -463,6 +463,8 @@
         GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(_enterPersonDetailAction:)];
         cell = [GGFactory cellOfHappening:cell data:_updates[row] dataIndex:row logoAction:action isCompanyHappening:NO];
         
+        [cell applyCircleLogo];
+        
         return cell;
     }
     

@@ -19,4 +19,7 @@
 @property (assign, nonatomic)  BOOL         hasBeenRead;
 
 +(float)HEIGHT;
+
+-(void)applyCircleLogo;
+
 @end

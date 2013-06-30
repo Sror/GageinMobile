@@ -127,6 +127,7 @@ typedef enum {
 
 -(BOOL)isJoin;
 -(BOOL)isPersonEvent;
++(BOOL)isPersonEvent:(EGGHappeningType)aType;
 
 -(NSString *)chartUrlWithSize:(CGSize)aSize;
 

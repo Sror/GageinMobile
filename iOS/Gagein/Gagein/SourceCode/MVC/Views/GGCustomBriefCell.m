@@ -53,8 +53,6 @@
     
     if (url)
     {
-        //[_ivPhoto addSubview:_viewLoading];
-        //_viewLoading.center = _ivPhoto.center;
         _viewLoading.hidden = NO;
         [_viewLoading startAnimating];
         

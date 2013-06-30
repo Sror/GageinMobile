@@ -460,6 +460,9 @@
     _happeningDetailCell.lblHeadline.text = _currentDetail.headLineText;
     _happeningDetailCell.lblInterval.text = [_currentDetail intervalStringWithDate:_currentDetail.timestamp];
     
+    [_happeningDetailCell applyNormalEffectToView:_happeningDetailCell.ivChangeLeft];
+    [_happeningDetailCell applyNormalEffectToView:_happeningDetailCell.ivChangeRight];
+    
     switch (_currentDetail.type)
     {
         case kGGHappeningCompanyPersonJion:
@@ -468,8 +471,24 @@
             [_happeningDetailCell showChangeLeftImage:YES];
             [_happeningDetailCell showChangeRightImage:YES];
             
-            NSString *leftPhotoPath = [_currentDetail isJoin] ? _currentDetail.person.photoPath : _currentDetail.oldCompany.logoPath;
-            NSString *rightPhotoPath = [_currentDetail isJoin] ? _currentDetail.company.logoPath : _currentDetail.person.photoPath;
+            NSString *leftPhotoPath, *rightPhotoPath;
+            if ([_currentDetail isJoin])
+            {
+                leftPhotoPath = _currentDetail.person.photoPath;
+                [GGUtils applyCircleEffectToView:_happeningDetailCell.ivChangeLeft];
+                
+                rightPhotoPath = _currentDetail.company.logoPath;
+            }
+            else
+            {
+                leftPhotoPath = _currentDetail.oldCompany.logoPath;
+                
+                rightPhotoPath = _currentDetail.person.photoPath;
+                [GGUtils applyCircleEffectToView:_happeningDetailCell.ivChangeRight];
+            }
+            
+//            NSString *leftPhotoPath = [_currentDetail isJoin] ? _currentDetail.person.photoPath : _currentDetail.oldCompany.logoPath;
+//            NSString *rightPhotoPath = [_currentDetail isJoin] ? _currentDetail.company.logoPath : _currentDetail.person.photoPath;
             
             [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:leftPhotoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
             [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
@@ -487,6 +506,8 @@
             [_happeningDetailCell showChangeRightImage:YES];
             
             [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+            [GGUtils applyCircleEffectToView:_happeningDetailCell.ivChangeLeft];
+            
             [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
             
             [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
@@ -579,9 +600,11 @@
             [_happeningDetailCell showChangeRightImage:YES];
             
             [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.oldProfilePic] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+            [GGUtils applyCircleEffectToView:_happeningDetailCell.ivChangeLeft];
             [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
             
             [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.profilePic] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+            [GGUtils applyCircleEffectToView:_happeningDetailCell.ivChangeRight];
             [_happeningDetailCell.ivChangeRight addGestureRecognizer:_tapGestEnterPersonDetail];
         }
             break;
@@ -593,6 +616,7 @@
             [_happeningDetailCell showChangeRightImage:YES];
             
             [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+            [GGUtils applyCircleEffectToView:_happeningDetailCell.ivChangeLeft];
             [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
             
             [_happeningDetailCell.ivChangeRight setImageWithURL:[NSURL URLWithString:_currentDetail.company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
@@ -608,6 +632,7 @@
             [_happeningDetailCell showChangeRightImage:YES];
             
             [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+            [GGUtils applyCircleEffectToView:_happeningDetailCell.ivChangeLeft];
             [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
             
             NSString *mapUrl = [GGUtils stringWithMapUrl:_currentDetail.addressMap width:70 height:70];
@@ -626,6 +651,7 @@
             
             //
             [_happeningDetailCell.ivChangeLeft setImageWithURL:[NSURL URLWithString:_currentDetail.person.photoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+            [GGUtils applyCircleEffectToView:_happeningDetailCell.ivChangeLeft];
             [_happeningDetailCell.ivChangeLeft addGestureRecognizer:_tapGestEnterPersonDetail];
             
             //
@@ -672,6 +698,7 @@
         cell.lblTitle.text = data.title;
         cell.lblAddress.text = data.address;
         cell.type = data.type;
+        
         [cell loadLogoWithImageUrl:data.picUrl placeholder:(data.type == kGGCustomBriefCellCompany ? GGSharedImagePool.logoDefaultCompany : GGSharedImagePool.logoDefaultPerson)];
         
         return cell;

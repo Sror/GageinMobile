@@ -669,4 +669,15 @@
     return [[UIBarButtonItem alloc] initWithCustomView:containingView];
 }
 
++(void)applyCircleEffectToView:(UIView *)aView
+{
+    if (aView)
+    {
+        aView.layer.cornerRadius = aView.frame.size.width / 2;
+        aView.layer.borderColor = GGSharedColor.silver.CGColor;
+        aView.layer.borderWidth = 1.f;
+        aView.layer.masksToBounds = YES;
+    }
+}
+
 @end
