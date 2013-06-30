@@ -628,6 +628,13 @@ static CAKeyframeAnimation * bounceKeyFrameAnimationForDistanceOnView(CGFloat di
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    
+    CGRect coverRc = [GGLayout rootCoverFrameForWithOrient:toInterfaceOrientation];
+    
+    _centerContainerView.frame = CGRectMake(_centerContainerView.frame.origin.x, _centerContainerView.frame.origin.y, coverRc.size.width, coverRc.size.height);
+    
+    //[GGSharedDelegate.tabBarController doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
     //If a rotation begins, we are going to cancel the current gesture and reset transform and anchor points so everything works correctly
     for(UIGestureRecognizer * gesture in self.view.gestureRecognizers){
         if(gesture.state == UIGestureRecognizerStateChanged){
@@ -1062,8 +1069,10 @@ static inline CGFloat originXForDrawerOriginAndTargetOriginOffset(CGFloat origin
     }
     else{
         MMCloseDrawerGestureMode possibleCloseGestureModes = [self possibleCloseGestureModesForGestureRecognizer:gestureRecognizer
-                                                                                                  withTouchPoint:point];
-        return ((self.closeDrawerGestureModeMask & possibleCloseGestureModes)>0);
+                                                                                    withTouchPoint:point];
+        
+        BOOL shouldRecv = ((self.closeDrawerGestureModeMask & possibleCloseGestureModes)>0);
+        return shouldRecv;
     }
 }
 

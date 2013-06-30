@@ -166,6 +166,8 @@
 //    }
 //    
     self.navigationItem.hidesBackButton = YES;
+    
+    [self _decideCanPanToOpenDrawerWithOrient:self.interfaceOrientation];
 }
 
 -(void)_customizeNaviTitleView
@@ -688,12 +690,10 @@
     {
         if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
         {
-            GGSharedDelegate.drawerVC.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
             [GGSharedDelegate.drawerVC closeDrawerAnimated:NO completion:nil];
         }
-        else if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation))
+        else //if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation))
         {
-            GGSharedDelegate.drawerVC.openDrawerGestureModeMask = MMOpenDrawerGestureModeNone;
             
             [self freezeMe:NO];
             
@@ -706,6 +706,22 @@
                 [GGSharedDelegate.drawerVC closeDrawerAnimated:NO completion:nil];
             }
         }
+    }
+    
+    [self _decideCanPanToOpenDrawerWithOrient:toInterfaceOrientation];
+}
+
+-(void)_decideCanPanToOpenDrawerWithOrient:(UIInterfaceOrientation)anOrient
+{
+    if (UIInterfaceOrientationIsPortrait(anOrient))
+    {
+        GGSharedDelegate.drawerVC.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
+        GGSharedDelegate.drawerVC.closeDrawerGestureModeMask = MMCloseDrawerGestureModeAll;
+    }
+    else
+    {
+        GGSharedDelegate.drawerVC.openDrawerGestureModeMask = MMOpenDrawerGestureModeNone;
+        GGSharedDelegate.drawerVC.closeDrawerGestureModeMask = MMCloseDrawerGestureModeNone;
     }
 }
 

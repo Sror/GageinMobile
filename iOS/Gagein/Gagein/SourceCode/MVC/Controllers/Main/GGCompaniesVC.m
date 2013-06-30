@@ -514,7 +514,7 @@
     NSString *keyword = _slideSettingView.searchBar.tfSearch.text;
     if (keyword.length)
     {
-        CGSize loadingOffset = ISIPADDEVICE ? CGSizeMake(-(_slideSettingView.frame.size.width - SLIDE_SETTING_VIEW_WIDTH) / 2, -250) : CGSizeMake(0, -50);
+        CGSize loadingOffset = ISIPADDEVICE ? CGSizeMake(-(_slideSettingView.frame.size.width - IPAD_CONTENT_WIDTH) / 2, -250) : CGSizeMake(0, -50);
         [_slideSettingView showLoadingHUDWithOffset:loadingOffset];
         id op = [GGSharedAPI getUpdateSuggestionWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
             [_slideSettingView hideLoadingHUD];
@@ -1700,7 +1700,7 @@
         theFrame.size.height -= [GGLayout statusHeight] + [GGLayout navibarFrame].size.height + [GGLayout tabbarFrame].size.height;
         if (UIInterfaceOrientationIsLandscape(anOrient))
         {
-            theFrame.size.width -= SLIDE_SETTING_VIEW_WIDTH;
+            theFrame.size.width -= IPAD_CONTENT_WIDTH;
         }
         
         self.view.frame = theFrame;

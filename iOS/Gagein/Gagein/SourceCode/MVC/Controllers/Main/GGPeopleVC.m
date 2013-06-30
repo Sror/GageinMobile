@@ -849,7 +849,7 @@
         theFrame.size.height -= [GGLayout statusHeight] + [GGLayout navibarFrame].size.height + [GGLayout tabbarFrame].size.height;
         if (UIInterfaceOrientationIsLandscape(anOrient))
         {
-            theFrame.size.width -= SLIDE_SETTING_VIEW_WIDTH;
+            theFrame.size.width -= IPAD_CONTENT_WIDTH;
         }
         
         self.view.frame = theFrame;

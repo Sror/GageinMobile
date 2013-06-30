@@ -65,12 +65,12 @@
 
 -(CGRect)_tvMenuBarRect:(BOOL)isLong
 {
-    return isLong ? CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) : CGRectMake(0, 0, SLIDE_SETTING_VIEW_WIDTH, self.frame.size.height);
+    return isLong ? CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) : CGRectMake(0, 0, IPAD_CONTENT_WIDTH, self.frame.size.height);
 }
 
 -(CGRect)_searchBarRect:(BOOL)isLong
 {
-    return isLong ? CGRectMake(0, 0, self.frame.size.width, 40) : CGRectMake(0, 0, SLIDE_SETTING_VIEW_WIDTH, 40);
+    return isLong ? CGRectMake(0, 0, self.frame.size.width, 40) : CGRectMake(0, 0, IPAD_CONTENT_WIDTH, 40);
 }
 
 -(CGRect)_tvSuggestedRect
@@ -82,7 +82,7 @@
 
 -(CGRect)_dimmedRect
 {
-    float width = (ISIPADDEVICE ? SLIDE_SETTING_VIEW_WIDTH : self.frame.size.width);
+    float width = (ISIPADDEVICE ? IPAD_CONTENT_WIDTH : self.frame.size.width);
     return CGRectMake(0, (CGRectGetMaxY(_searchBar.frame)), width, self.frame.size.height);
 }
 
