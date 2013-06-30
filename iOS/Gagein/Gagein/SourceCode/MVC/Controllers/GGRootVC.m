@@ -327,7 +327,7 @@
 {
     // never call super class's 'doLayoutUIForIPadWithOrientation' method here, or u'll get into trouble. -- Daniel Dong
     
-    CGRect coverRc = [GGLayout rootCoverFrameForWithOrient:toInterfaceOrientation];
+    CGRect coverRc = [GGLayout contentRectWithOrient:toInterfaceOrientation];
     _viewCover.frame = CGRectMake(_viewCover.frame.origin.x, _viewCover.frame.origin.y, coverRc.size.width, coverRc.size.height);
     
     [GGSharedDelegate.tabBarController doLayoutUIForIPadWithOrientation:toInterfaceOrientation];

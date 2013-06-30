@@ -21,5 +21,5 @@
 
 
 +(CGRect)frameWithOrientation:(UIInterfaceOrientation)anOrientation rect:(CGRect)aRect;
-+(CGRect)rootCoverFrameForWithOrient:(UIInterfaceOrientation)anOrient;
++(CGRect)contentRectWithOrient:(UIInterfaceOrientation)anOrient;
 @end

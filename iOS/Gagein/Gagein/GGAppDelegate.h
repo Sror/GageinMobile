@@ -32,6 +32,7 @@
 @property (strong, nonatomic)   MMDrawerController *drawerVC;
 
 -(GGLeftDrawerVC *)leftDrawer;
+-(GGBaseViewController *)topMostVC;
 
 -(void)enterLoginIfNeeded;
 -(void)popNaviToRoot;

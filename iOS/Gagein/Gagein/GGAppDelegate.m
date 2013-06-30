@@ -65,12 +65,19 @@
     
 }
 
+-(GGBaseViewController *)topMostVC
+{
+    UINavigationController *selectedNC = (UINavigationController *)_tabBarController.selectedViewController;
+    return (GGBaseViewController *)selectedNC.topViewController;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self getSnTypes];
     
     //
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    //self.window.backgroundColor = GGSharedColor.darkRed;
     
     [self _initTabbar];
     

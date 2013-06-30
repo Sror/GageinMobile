@@ -21,6 +21,8 @@
 
 #import "MMDrawerController.h"
 #import "UIViewController+MMDrawerController.h"
+#import "GGTabBarController.h"
+#import "GGAppDelegate.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -348,6 +350,7 @@ static CAKeyframeAnimation * bounceKeyFrameAnimationForDistanceOnView(CGFloat di
         [self.centerContainerView setOpenSide:self.openSide];
         [self.centerContainerView setCenterInteractionMode:self.centerHiddenInteractionMode];
         [self.view addSubview:self.centerContainerView];
+        //_centerContainerView.backgroundColor = GGSharedColor.random;
     }
     
     UIViewController * oldCenterViewController = self.centerViewController;
@@ -368,7 +371,8 @@ static CAKeyframeAnimation * bounceKeyFrameAnimationForDistanceOnView(CGFloat di
     [self.centerViewController.view setFrame:self.view.bounds];
     [self.centerContainerView addSubview:self.centerViewController.view];
     [self.view bringSubviewToFront:self.centerContainerView];
-    [self.centerViewController.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    //[self.centerViewController.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    self.centerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     [self updateShadowForCenterView];
     
     if(animated == NO){
@@ -605,6 +609,7 @@ static CAKeyframeAnimation * bounceKeyFrameAnimationForDistanceOnView(CGFloat di
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self adjustCenterRect];
     [self.centerViewController beginAppearanceTransition:YES animated:animated];
 }
 
@@ -625,14 +630,31 @@ static CAKeyframeAnimation * bounceKeyFrameAnimationForDistanceOnView(CGFloat di
 }
 
 #pragma mark Rotation
+-(void)adjustCenterRect
+{
+    [self _adjustCenterRectWithOrient:self.interfaceOrientation];
+}
+
+-(void)_adjustCenterRectWithOrient:(UIInterfaceOrientation)anOrient
+{
+    CGRect coverRc = [GGLayout contentRectWithOrient:anOrient];
+    
+    
+    BOOL needMenu = GGSharedDelegate.topMostVC.doNeedMenu;
+    if (UIInterfaceOrientationIsLandscape(anOrient) && needMenu)
+    {
+        coverRc.size.width -= LEFT_DRAWER_WIDTH;
+    }
+    
+    UIView *centerView = GGSharedDelegate.tabBarController.view;
+    centerView.frame = CGRectMake(centerView.frame.origin.x, centerView.frame.origin.y, coverRc.size.width, coverRc.size.height);
+    DLog(@"center view rect set:%@", NSStringFromCGRect(centerView.frame));
+}
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
     
-    CGRect coverRc = [GGLayout rootCoverFrameForWithOrient:toInterfaceOrientation];
-    
-    _centerContainerView.frame = CGRectMake(_centerContainerView.frame.origin.x, _centerContainerView.frame.origin.y, coverRc.size.width, coverRc.size.height);
-    
+    [self _adjustCenterRectWithOrient:toInterfaceOrientation];
     //[GGSharedDelegate.tabBarController doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
     //If a rotation begins, we are going to cancel the current gesture and reset transform and anchor points so everything works correctly

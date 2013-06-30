@@ -7,7 +7,7 @@
 //
 
 #import "GGLeftDrawerVC.h"
-
+#import "GGAppDelegate.h"
 
 @interface GGLeftDrawerVC ()
 
@@ -30,6 +30,7 @@
     
     _viewContent = [[UIView alloc] initWithFrame:self.view.bounds];
     _viewContent.backgroundColor = GGSharedColor.black;
+    //_viewContent.backgroundColor = GGSharedColor.random;
     [self.view addSubview:_viewContent];
 	
     _viewMenu = [[GGSlideSettingView alloc] initWithFrame:self.view.bounds];
@@ -40,22 +41,28 @@
 
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(BOOL)doNeedMenu
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    cell.textLabel.text = @"aaa";
-    return cell;
+    //DLog(@"%@ need menu.", NSStringFromClass([self class]));
+    return GGSharedDelegate.topMostVC.doNeedMenu;
 }
 
--(int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 10;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"selected");
-}
+//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+//    cell.textLabel.text = @"aaa";
+//    return cell;
+//}
+//
+//-(int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return 10;
+//}
+//
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSLog(@"selected");
+//}
 
 
 @end

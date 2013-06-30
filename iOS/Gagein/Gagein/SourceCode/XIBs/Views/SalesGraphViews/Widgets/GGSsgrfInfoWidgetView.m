@@ -41,7 +41,7 @@
     self.frame = thisRc;
     
     //
-    [self setScrollTitle:@"Competitors"];
+    [self setScrollTitle:@"Similar"];
 }
 
 #pragma mark - interface

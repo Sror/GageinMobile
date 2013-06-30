@@ -27,7 +27,7 @@ AS_SINGLETON(GGRuntimeData)
 
 @property (readonly, nonatomic)   EGGCompanyUpdateRelevance           relevance;
 @property (strong)     NSMutableArray                      *snTypes;
-@property (assign, nonatomic)       BOOL                    isLandscapeNeedMenu;
+//@property (assign, nonatomic)       BOOL                    isLandscapeNeedMenu;
 
 
 -(void)setRelevance:(EGGCompanyUpdateRelevance)aRelevance;

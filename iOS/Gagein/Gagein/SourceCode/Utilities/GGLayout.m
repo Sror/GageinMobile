@@ -71,16 +71,10 @@
 
 
 #pragma mark - for iPad layout
-+(CGRect)rootCoverFrameForWithOrient:(UIInterfaceOrientation)anOrient
++(CGRect)contentRectWithOrient:(UIInterfaceOrientation)anOrient
 {
     CGRect rect = [self frameWithOrientation:anOrient rect:[self screenFrame]];
     rect.size.height -= [self statusHeight];
-    
-    BOOL needMenu = GGSharedRuntimeData.isLandscapeNeedMenu;
-    if (UIInterfaceOrientationIsLandscape(anOrient) && needMenu)
-    {
-        rect.size.width -= LEFT_DRAWER_WIDTH;
-    }
    
     return rect;
 }

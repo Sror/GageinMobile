@@ -209,6 +209,7 @@
 
 -(BOOL)doNeedMenu
 {
+    DLog(@"%@ need menu.", NSStringFromClass([self class]));
     return NO;
 }
 
@@ -255,6 +256,11 @@
     }
     
     _viewPopup.hidden = NO;
+    
+    if (ISIPADDEVICE && self.presentedViewController == nil)
+    {
+        [GGSharedDelegate.drawerVC adjustCenterRect];
+    }
 }
 
 -(void)viewWillAppearNotFirstTimeAction
@@ -667,7 +673,7 @@
 {
     if (self.presentingViewController == nil)
     {
-        //[self setNeedMenu:[self doNeedMenu]];
+        //GGSharedRuntimeData.isLandscapeNeedMenu = self.doNeedMenu;
         
         [GGSharedDelegate doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     }
