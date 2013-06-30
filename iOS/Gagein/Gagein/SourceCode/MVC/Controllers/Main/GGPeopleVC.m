@@ -147,7 +147,14 @@
     // change menu to people type
     [_slideSettingView changeDelegate:self];
     _slideSettingView.viewTable.tableHeaderView = nil;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
+    [self adjustScrollViewFrames];
+    DLog(@"%@ 's rect:%@, \ntv rect:%@", self.className, self.view.frameString, _updatesTV.frameString);
     [_updatesTV reloadData];
 }
 

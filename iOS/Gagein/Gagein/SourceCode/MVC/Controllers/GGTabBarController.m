@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CoreFoundation/CoreFoundation.h>
 #import "GGAppDelegate.h"
+#import "MMDrawerController.h"
 
 #define ICON_WIDTH      76
 #define ICON_HEIGHT     48
@@ -160,6 +161,7 @@
 //                [((GGBaseViewController *)subVC) layoutUIForIPadIfNeeded];
 //            }
 //        }
+        [GGSharedDelegate.drawerVC adjustCenterRect];
         
         _currentIndex = index;
     }

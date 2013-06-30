@@ -54,6 +54,8 @@
 - (BOOL)postNotification:(NSString *)name;                                  // 发送通知
 - (BOOL)postNotification:(NSString *)name withObject:(NSObject *)object;    // 发送通知 with 对象
 
+-(NSString *)className;
+
 @end
 
 #define GG_NOTIFY_GET_STARTED   @"GG_NOTIFY_GET_STARTED"

@@ -43,4 +43,6 @@
 
 -(UIImage *)myPicture;
 
+-(NSString *)frameString;
+
 @end

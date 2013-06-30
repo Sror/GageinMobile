@@ -257,10 +257,10 @@
     
     _viewPopup.hidden = NO;
     
-    if (ISIPADDEVICE && self.presentedViewController == nil)
-    {
-        [GGSharedDelegate.drawerVC adjustCenterRect];
-    }
+//    if (ISIPADDEVICE && self.presentedViewController == nil)
+//    {
+//        [GGSharedDelegate.drawerVC adjustCenterRect];
+//    }
 }
 
 -(void)viewWillAppearNotFirstTimeAction

@@ -185,4 +185,9 @@ static MBProgressHUD * hud;
     return viewImage;
 }
 
+-(NSString *)frameString
+{
+    return NSStringFromCGRect(self.frame);
+}
+
 @end
