@@ -717,11 +717,13 @@
     {
         GGSharedDelegate.drawerVC.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
         GGSharedDelegate.drawerVC.closeDrawerGestureModeMask = MMCloseDrawerGestureModeAll;
+        GGSharedDelegate.drawerVC.centerHiddenInteractionMode = MMDrawerOpenCenterInteractionModeNavigationBarOnly;
     }
     else
     {
         GGSharedDelegate.drawerVC.openDrawerGestureModeMask = MMOpenDrawerGestureModeNone;
         GGSharedDelegate.drawerVC.closeDrawerGestureModeMask = MMCloseDrawerGestureModeNone;
+        GGSharedDelegate.drawerVC.centerHiddenInteractionMode = MMDrawerOpenCenterInteractionModeFull;
     }
 }
 
