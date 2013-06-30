@@ -1683,7 +1683,7 @@
     
     //[[self _subNaviLabel] centerMeHorizontally];
     
-    [self _adjustSelfFrameForIpadWithOrient:toInterfaceOrientation];
+   // [self _adjustSelfFrameForIpadWithOrient:toInterfaceOrientation];
     
     [self _adjustTvFrames];
     
@@ -1692,20 +1692,20 @@
     
 }
 
--(void)_adjustSelfFrameForIpadWithOrient:(UIInterfaceOrientation)anOrient
-{
-    if (ISIPADDEVICE)
-    {
-        CGRect theFrame = [GGLayout frameWithOrientation:anOrient rect:[GGLayout screenFrame]];
-        theFrame.size.height -= [GGLayout statusHeight] + [GGLayout navibarFrame].size.height + [GGLayout tabbarFrame].size.height;
-        if (UIInterfaceOrientationIsLandscape(anOrient))
-        {
-            theFrame.size.width -= IPAD_CONTENT_WIDTH;
-        }
-        
-        self.view.frame = theFrame;
-        [self.view centerMeHorizontally];
-    }
-}
+//-(void)_adjustSelfFrameForIpadWithOrient:(UIInterfaceOrientation)anOrient
+//{
+//    if (ISIPADDEVICE)
+//    {
+//        CGRect theFrame = [GGLayout frameWithOrientation:anOrient rect:[GGLayout screenFrame]];
+//        theFrame.size.height -= [GGLayout statusHeight] + [GGLayout navibarFrame].size.height + [GGLayout tabbarFrame].size.height;
+//        if (UIInterfaceOrientationIsLandscape(anOrient))
+//        {
+//            theFrame.size.width -= IPAD_CONTENT_WIDTH;
+//        }
+//        
+//        self.view.frame = theFrame;
+//        [self.view centerMeHorizontally];
+//    }
+//}
 
 @end

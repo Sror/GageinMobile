@@ -531,7 +531,7 @@
 {
     if (ISIPADDEVICE)
     {
-        if (indexPath.row == _happeningTvExpandHelper.expandingIndex)
+        if (_happeningTvExpandHelper.isExpanding && indexPath.row == _happeningTvExpandHelper.expandingIndex)
         {
             [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
         }
@@ -834,26 +834,26 @@
         //[self _callApiGetMenu];
     }
     
-    [self _adjustSelfFrameForIpadWithOrient:toInterfaceOrientation];
+    //[self _adjustSelfFrameForIpadWithOrient:toInterfaceOrientation];
     
     [self adjustScrollViewFrames];
     
     [_updatesTV reloadData];
 }
 
--(void)_adjustSelfFrameForIpadWithOrient:(UIInterfaceOrientation)anOrient
-{
-    if (ISIPADDEVICE)
-    {
-        CGRect theFrame = [GGLayout frameWithOrientation:anOrient rect:[GGLayout screenFrame]];
-        theFrame.size.height -= [GGLayout statusHeight] + [GGLayout navibarFrame].size.height + [GGLayout tabbarFrame].size.height;
-        if (UIInterfaceOrientationIsLandscape(anOrient))
-        {
-            theFrame.size.width -= IPAD_CONTENT_WIDTH;
-        }
-        
-        self.view.frame = theFrame;
-    }
-}
+//-(void)_adjustSelfFrameForIpadWithOrient:(UIInterfaceOrientation)anOrient
+//{
+//    if (ISIPADDEVICE)
+//    {
+//        CGRect theFrame = [GGLayout frameWithOrientation:anOrient rect:[GGLayout screenFrame]];
+//        theFrame.size.height -= [GGLayout statusHeight] + [GGLayout navibarFrame].size.height + [GGLayout tabbarFrame].size.height;
+//        if (UIInterfaceOrientationIsLandscape(anOrient))
+//        {
+//            theFrame.size.width -= IPAD_CONTENT_WIDTH;
+//        }
+//        
+//        self.view.frame = theFrame;
+//    }
+//}
 
 @end
