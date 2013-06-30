@@ -53,13 +53,13 @@
     
     if (url)
     {
-        _viewLoading.hidden = NO;
+        [_ivPhoto addSubview:_viewLoading];
         [_viewLoading startAnimating];
         
         [_ivPhoto setImageWithURL:url placeholderImage:aPlaceHolder completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             
-            _viewLoading.hidden = YES;
-            //[_viewLoading removeFromSuperview];
+            //_viewLoading.hidden = YES;
+            [_viewLoading removeFromSuperview];
             
         }];
     }

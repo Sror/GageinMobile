@@ -680,4 +680,15 @@
     }
 }
 
++(void)applyNormalEffectToView:(UIView *)aView
+{
+    if (aView)
+    {
+        aView.layer.cornerRadius = 5;
+        aView.layer.borderColor = GGSharedColor.silver.CGColor;
+        aView.layer.borderWidth = 1;
+        aView.layer.masksToBounds = YES;
+    }
+}
+
 @end

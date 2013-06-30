@@ -32,20 +32,11 @@
     self.ivCellBg.image = GGSharedImagePool.stretchShadowBgWite;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    [self applyNormalEffectToView:_ivChangeLeft];
-    [self applyNormalEffectToView:_ivChangeRight];
+    [GGUtils applyNormalEffectToView:_ivChangeLeft];
+    [GGUtils applyNormalEffectToView:_ivChangeRight];
 }
 
--(void)applyNormalEffectToView:(UIView *)aView
-{
-    if (aView)
-    {
-        aView.layer.cornerRadius = 5;
-        aView.layer.borderColor = GGSharedColor.silver.CGColor;
-        aView.layer.borderWidth = 2;
-        aView.layer.masksToBounds = YES;
-    }
-}
+
 
 -(void)showChangeLeftImage:(BOOL)aShow
 {

@@ -50,6 +50,6 @@
 
 -(void)adjustLayout;
 
--(void)applyNormalEffectToView:(UIView *)aView;
+//-(void)applyNormalEffectToView:(UIView *)aView;
 
 @end

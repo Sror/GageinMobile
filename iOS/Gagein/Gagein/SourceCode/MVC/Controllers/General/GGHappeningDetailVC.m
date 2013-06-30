@@ -460,8 +460,8 @@
     _happeningDetailCell.lblHeadline.text = _currentDetail.headLineText;
     _happeningDetailCell.lblInterval.text = [_currentDetail intervalStringWithDate:_currentDetail.timestamp];
     
-    [_happeningDetailCell applyNormalEffectToView:_happeningDetailCell.ivChangeLeft];
-    [_happeningDetailCell applyNormalEffectToView:_happeningDetailCell.ivChangeRight];
+    [GGUtils applyNormalEffectToView:_happeningDetailCell.ivChangeLeft];
+    [GGUtils applyNormalEffectToView:_happeningDetailCell.ivChangeRight];
     
     switch (_currentDetail.type)
     {
@@ -698,6 +698,8 @@
         cell.lblTitle.text = data.title;
         cell.lblAddress.text = data.address;
         cell.type = data.type;
+        
+        data.type == kGGCustomBriefCellPerson ? [GGUtils applyCircleEffectToView:cell.ivPhoto] : [GGUtils applyNormalEffectToView:cell.ivPhoto];
         
         [cell loadLogoWithImageUrl:data.picUrl placeholder:(data.type == kGGCustomBriefCellCompany ? GGSharedImagePool.logoDefaultCompany : GGSharedImagePool.logoDefaultPerson)];
         

@@ -77,5 +77,6 @@
 +(void)addSnType:(EGGSnType)aSnType;
 
 +(void)applyCircleEffectToView:(UIView *)aView;
++(void)applyNormalEffectToView:(UIView *)aView;
 
 @end
