@@ -212,7 +212,7 @@
 
 -(void)_checkNeedMenuAndLayout
 {
-    [self setNeedMenu:[self doNeedMenu]];
+    //[self setNeedMenu:[self doNeedMenu]];
     
     [self layoutUIForIPadIfNeeded];
 }
@@ -665,7 +665,7 @@
 {
     if (self.presentingViewController == nil)
     {
-        [self setNeedMenu:[self doNeedMenu]];
+        //[self setNeedMenu:[self doNeedMenu]];
         
         [GGSharedDelegate doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     }
@@ -688,19 +688,22 @@
     {
         if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
         {
-            [GGSharedDelegate.drawerVC closeDrawerAnimated:YES completion:nil];
+            GGSharedDelegate.drawerVC.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
+            [GGSharedDelegate.drawerVC closeDrawerAnimated:NO completion:nil];
         }
         else if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation))
         {
+            GGSharedDelegate.drawerVC.openDrawerGestureModeMask = MMOpenDrawerGestureModeNone;
+            
             [self freezeMe:NO];
             
             if ([self doNeedMenu])
             {
-                [GGSharedDelegate.drawerVC openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+                [GGSharedDelegate.drawerVC openDrawerSide:MMDrawerSideLeft animated:NO completion:nil];
             }
             else
             {
-                [GGSharedDelegate.drawerVC closeDrawerAnimated:YES completion:nil];
+                [GGSharedDelegate.drawerVC closeDrawerAnimated:NO completion:nil];
             }
         }
     }
@@ -733,10 +736,11 @@
     self.view.userInteractionEnabled = !aFreeze;
 }
 
--(void)setNeedMenu:(BOOL)aNeedMenu
-{
-    //GGSharedDelegate.rootVC.needMenu = aNeedMenu;
-}
+//-(void)setNeedMenu:(BOOL)aNeedMenu
+//{
+//    //GGSharedDelegate.rootVC.needMenu = aNeedMenu;
+//    
+//}
 
 -(BOOL)needMenu
 {

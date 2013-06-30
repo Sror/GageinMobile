@@ -828,7 +828,9 @@ static CAKeyframeAnimation * bounceKeyFrameAnimationForDistanceOnView(CGFloat di
                 visibleSide = MMDrawerSideRight;
                 percentVisible = ABS(xOffset)/self.maximumRightDrawerWidth;
             }
-            UIViewController * visibleSideDrawerViewController = [self sideDrawerViewControllerForSide:visibleSide];
+            
+            // OPENSOURCE CODE MODIFIED --- BY D.D.
+            //UIViewController * visibleSideDrawerViewController = [self sideDrawerViewControllerForSide:visibleSide];
             
             if(self.openSide != visibleSide){
                 //Handle disappearing the visible drawer
@@ -838,7 +840,7 @@ static CAKeyframeAnimation * bounceKeyFrameAnimationForDistanceOnView(CGFloat di
 
                 //Drawer is about to become visible
                 [self prepareToPresentDrawer:visibleSide animated:NO];
-                [visibleSideDrawerViewController endAppearanceTransition];
+                //[visibleSideDrawerViewController endAppearanceTransition];
                 [self setOpenSide:visibleSide];
             }
             else if(visibleSide == MMDrawerSideNone){
@@ -1017,7 +1019,7 @@ static inline CGFloat originXForDrawerOriginAndTargetOriginOffset(CGFloat origin
     [self resetDrawerVisualStateForDrawerSide:drawer];
     [sideDrawerViewControllerToPresent.view setFrame:sideDrawerViewControllerToPresent.mm_visibleDrawerFrame];
     [self updateDrawerVisualStateForDrawerSide:drawer percentVisible:0.0];
-    [sideDrawerViewControllerToPresent beginAppearanceTransition:YES animated:animated];
+    //[sideDrawerViewControllerToPresent beginAppearanceTransition:YES animated:animated];
 }
 
 -(void)updateShadowForCenterView{

@@ -134,13 +134,16 @@
     self.navigationItem.rightBarButtonItem = (_menuType == kGGMenuTypeAgent) ? nil : [self _switchBarButton];
 }
 
--(void)_installMenuButton
+-(UIBarButtonItem *)_menuBarButton
 {
-    
     CGPoint offset = CGPointMake(0, 3);
     GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(optionMenuAction:)];
-    UIBarButtonItem *menuBtnItem = [GGUtils barButtonWithImageName:@"menuBtn" offset:offset action:action];//[[UIBarButtonItem alloc] initWithCustomView:containingView];
-    self.navigationItem.leftBarButtonItem = menuBtnItem;
+    return [GGUtils barButtonWithImageName:@"menuBtn" offset:offset action:action];
+}
+
+-(void)_installMenuButton
+{
+    self.navigationItem.leftBarButtonItem = [self _menuBarButton];
     
     // switch bar button
     [self _decideSwitchButtonAppearOrNot];
@@ -1676,18 +1679,9 @@
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
     //CGRect orientRc = [GGUtils frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
-    self.navigationItem.leftBarButtonItem = nil;
+    self.navigationItem.leftBarButtonItem = (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) ? [self _menuBarButton] : nil;
     
     //[[self _subNaviLabel] centerMeHorizontally];
-    
-    if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation))
-    {
-        [self _installMenuButton];
-    }
-    else
-    {
-        //[self _callApiGetMenu];
-    }
     
     [self _adjustSelfFrameForIpadWithOrient:toInterfaceOrientation];
     
@@ -1710,6 +1704,7 @@
         }
         
         self.view.frame = theFrame;
+        [self.view centerMeHorizontally];
     }
 }
 
