@@ -156,7 +156,7 @@
             employeeView.hidden = NO;
             employeeView.tagNumber = @(company.ID);
             lblEmpTitle.text = company.name;
-            [ivLogo setImageWithURL:[NSURL URLWithString:company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultPerson];
+            [ivLogo setImageWithURL:[NSURL URLWithString:company.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
             lblSubTitle.text = company.website;
         }
         

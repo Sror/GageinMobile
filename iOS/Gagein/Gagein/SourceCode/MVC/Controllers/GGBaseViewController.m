@@ -257,10 +257,10 @@
     
     _viewPopup.hidden = NO;
     
-//    if (ISIPADDEVICE && self.presentedViewController == nil)
-//    {
-//        [GGSharedDelegate.drawerVC adjustCenterRect];
-//    }
+    if (ISIPADDEVICE && self.presentedViewController == nil)
+    {
+        [GGSharedDelegate.drawerVC adjustCenterRect];
+    }
 }
 
 -(void)viewWillAppearNotFirstTimeAction
@@ -274,6 +274,7 @@
     [self pushBackButtonFront];
     
     [self _adjustCustomNaviTitlePosition];
+    DLog(@"%@: viewDidAppear", self.className);
     [GGSsgrfActionListener sharedInstance].delegate = self;
 }
 
@@ -281,6 +282,7 @@
 {
     [super viewWillDisappear:animated];
     
+    DLog(@"%@: viewWillDisappear", self.className);
     [GGSsgrfActionListener sharedInstance].delegate = nil;
 }
 
@@ -715,6 +717,7 @@
     }
     
     [self _decideCanPanToOpenDrawerWithOrient:toInterfaceOrientation];
+    [GGSsgrfActionListener sharedInstance].delegate = GGSharedDelegate.topMostVC;
 }
 
 -(void)_decideCanPanToOpenDrawerWithOrient:(UIInterfaceOrientation)anOrient
