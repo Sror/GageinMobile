@@ -65,6 +65,11 @@
     rc.size.height = CGRectGetMaxY(_viewContent.frame);
     self.frame = rc;
     
+    float arrowAreaHeight = CGRectGetMaxY(_lblHeadline.frame);
+    //arrowAreaHeight = MAX(MIN_CONTENT_HEIGHT, arrowAreaHeight);
+    float arrowPosY = (arrowAreaHeight - CGRectGetMaxY(_lblInterval.frame) - _ivDblArrow.frame.size.height) / 2 + CGRectGetMaxY(_lblInterval.frame);
+    _ivDblArrow.frame = CGRectMake(_ivDblArrow.frame.origin.x, arrowPosY, _ivDblArrow.frame.size.width, _ivDblArrow.frame.size.height);
+    
     [self setNeedsLayout];
 }
 
