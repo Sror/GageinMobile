@@ -385,6 +385,7 @@
 		EA9D2F4517820F15004CA4BC /* GGUpdateInfoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9D2F4417820F15004CA4BC /* GGUpdateInfoHeaderView.xib */; };
 		EA9D2F4817822B15004CA4BC /* GGUpdateInfoRelatedArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D2F4717822B14004CA4BC /* GGUpdateInfoRelatedArticleCell.m */; };
 		EA9D2F4A17822B27004CA4BC /* GGUpdateInfoRelatedArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9D2F4917822B26004CA4BC /* GGUpdateInfoRelatedArticleCell.xib */; };
+		EA9D2F5017823BF7004CA4BC /* GGRelatedArticlesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D2F4F17823BF6004CA4BC /* GGRelatedArticlesVC.m */; };
 		EA9E00041770068100127233 /* ssgrf_bg_btn_follow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9EFFF71770068100127233 /* ssgrf_bg_btn_follow@2x.png */; };
 		EA9E00051770068100127233 /* ssgrf_bg_btn_unfollow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9EFFF81770068100127233 /* ssgrf_bg_btn_unfollow@2x.png */; };
 		EA9E00061770068100127233 /* ssgrf_btn_cb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9EFFF91770068100127233 /* ssgrf_btn_cb@2x.png */; };
@@ -1155,6 +1156,8 @@
 		EA9D2F4617822B14004CA4BC /* GGUpdateInfoRelatedArticleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGUpdateInfoRelatedArticleCell.h; sourceTree = "<group>"; };
 		EA9D2F4717822B14004CA4BC /* GGUpdateInfoRelatedArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUpdateInfoRelatedArticleCell.m; sourceTree = "<group>"; };
 		EA9D2F4917822B26004CA4BC /* GGUpdateInfoRelatedArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGUpdateInfoRelatedArticleCell.xib; sourceTree = "<group>"; };
+		EA9D2F4E17823BF5004CA4BC /* GGRelatedArticlesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGRelatedArticlesVC.h; sourceTree = "<group>"; };
+		EA9D2F4F17823BF6004CA4BC /* GGRelatedArticlesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGRelatedArticlesVC.m; sourceTree = "<group>"; };
 		EA9E00001770068100127233 /* ssgrf_btn_twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_twitter@2x.png"; sourceTree = "<group>"; };
 		EA9E00011770068100127233 /* ssgrf_btn_yahoo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_yahoo@2x.png"; sourceTree = "<group>"; };
 		EA9E00021770068100127233 /* ssgrf_btn_youtube@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_youtube@2x.png"; sourceTree = "<group>"; };
@@ -3055,6 +3058,8 @@
 				EAC9F90C17568124006FA45F /* GGImageVC.xib */,
 				EA449696175FC8C700F514F0 /* GGFacebookAuthVC.h */,
 				EA449697175FC8C700F514F0 /* GGFacebookAuthVC.m */,
+				EA9D2F4E17823BF5004CA4BC /* GGRelatedArticlesVC.h */,
+				EA9D2F4F17823BF6004CA4BC /* GGRelatedArticlesVC.m */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -3839,6 +3844,7 @@
 				EA945CC1177EB14900523A2F /* GGLeftDrawerVC.m in Sources */,
 				EA9D2F4317820E66004CA4BC /* GGUpdateInfoHeaderView.m in Sources */,
 				EA9D2F4817822B15004CA4BC /* GGUpdateInfoRelatedArticleCell.m in Sources */,
+				EA9D2F5017823BF7004CA4BC /* GGRelatedArticlesVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

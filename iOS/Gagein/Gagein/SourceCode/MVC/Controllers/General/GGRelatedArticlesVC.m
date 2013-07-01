@@ -1,33 +1,28 @@
 //
-//  GGUpdatesVC.m
+//  GGRelatedArticlesVC.m
 //  Gagein
 //
-//  Created by dong yiming on 13-4-21.
-//  Copyright (c) 2013年 gagein. All rights reserved.
+//  Created by Dong Yiming on 7/1/13.
+//  Copyright (c) 2013 gagein. All rights reserved.
 //
 
-#import "GGUpdatesVC.h"
-
-#import "GGDataPage.h"
-#import "GGCompanyUpdate.h"
-#import "GGCompanyUpdateCell.h"
-#import "SVPullToRefresh.h"
-#import "GGCompany.h"
-#import "GGCompanyDetailVC.h"
-#import "GGCompanyUpdateDetailVC.h"
-#import "GGCompanyUpdateIpadCell.h"
+#import "GGRelatedArticlesVC.h"
 
 #import "GGTableViewExpandHelper.h"
+#import "GGCompanyUpdateCell.h"
+#import "GGCompanyUpdateIpadCell.h"
+#import "GGCompanyUpdateDetailVC.h"
 
-@interface GGUpdatesVC ()
+#import "GGCompanyUpdate.h"
+#import "GGDataPage.h"
+
+@interface GGRelatedArticlesVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
 @end
 
-@implementation GGUpdatesVC
+@implementation GGRelatedArticlesVC
 {
-    //EGGCompanyUpdateRelevance   _relevance;
-    BOOL                                _hasMore;
-    
+    NSMutableArray  *_articles;
     GGTableViewExpandHelper             *_tvExpandHelper;
 }
 
@@ -35,88 +30,40 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _articles = [NSMutableArray array];
     }
     return self;
 }
 
--(void)_prevViewLoaded
-{
-    //_relevance = kGGCompanyUpdateRelevanceNormal;
-    _updates = [NSMutableArray array];
-    
-    [self observeNotification:GG_NOTIFY_LOG_OUT];
-    [self observeNotification:GG_NOTIFY_LOG_IN];
-}
-
 - (void)viewDidLoad
 {
-    [self _prevViewLoaded];
-    
     [super viewDidLoad];
-    self.view.backgroundColor = GGSharedColor.silver;
     
-    self.naviTitle = @"Updates";
-    
+    self.naviTitle = @"Update";
+	
     self.updatesTV = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
-    //self.updatesTV.rowHeight = [GGCompanyUpdateCell HEIGHT];
+
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
     [self.view addSubview:self.updatesTV];
+    
     self.updatesTV.backgroundColor = GGSharedColor.silver;
     self.updatesTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     _updatesTV.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _updatesTV.showsVerticalScrollIndicator = NO;
     _tvExpandHelper = [[GGTableViewExpandHelper alloc] initWithTableView:_updatesTV];
     
-    __weak GGUpdatesVC *weakSelf = self;
-    
-    [self.updatesTV addPullToRefreshWithActionHandler:^{
-        [weakSelf _getFirstPage];
-    }];
-    
-    [self.updatesTV addInfiniteScrollingWithActionHandler:^{
-        [weakSelf _getNextPage];
-    }];
-
-    [self.updatesTV triggerPullToRefresh];
     [self addScrollToHide:_updatesTV];
-}
-
-
-
-#pragma mark - notification handling
--(void)handleNotification:(NSNotification *)notification
-{
-    [super handleNotification:notification];
     
-    if ([notification.name isEqualToString:GG_NOTIFY_LOG_OUT])
-    {
-        [_updates removeAllObjects];
-        [self.updatesTV reloadData];
-    }
-    else if ([notification.name isEqualToString:GG_NOTIFY_LOG_IN])
-    {
-        [self.updatesTV triggerPullToRefresh];
-    }
+    [self _getData];
 }
 
-#pragma mark - actions
--(void)companyDetailAction:(id)sender
-{
-    //GGCompanyUpdateCell *cell = (GGCompanyUpdateCell *)((UIButton*)sender).superview.superview;
-    int index = ((UIButton*)sender).tag;
-    GGCompanyUpdate *update = [_updates objectAtIndex:index];
-    
-    GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-    vc.companyID = update.company.ID;
-    [self.navigationController pushViewController:vc animated:YES];
-}
+
 
 #pragma mark - table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.updates.count;
+    return _articles.count;
 }
 
 -(float)_updateCellHeightForIndexPath:(NSIndexPath *)indexPath
@@ -129,10 +76,10 @@
     int row = indexPath.row;
     static NSString *updateCellId = @"GGCompanyUpdateCell";
     GGCompanyUpdateCell *cell = [_updatesTV dequeueReusableCellWithIdentifier:updateCellId];
-   
+    
     GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(companyDetailAction:)];
     cell = [GGFactory cellOfComUpdate:cell
-                                 data:_updates[row]
+                                 data:_articles[row]
                             dataIndex:row
                            logoAction:action];
     
@@ -155,7 +102,7 @@
     GGTagetActionPair *headlineAction = [GGTagetActionPair pairWithTaget:self action:@selector(_enterUpdateDetailAction:)];
     
     cell = [GGFactory cellOfComUpdateIpad:cell
-                                     data:_updates[row]
+                                     data:_articles[row]
                                 dataIndex:row
                               expandIndex:_tvExpandHelper.expandingIndex
                             isTvExpanding:_tvExpandHelper.isExpanding
@@ -235,9 +182,9 @@
     GGCompanyUpdateDetailVC *vc = [[GGCompanyUpdateDetailVC alloc] init];
     
     vc.naviTitleString = self.customNaviTitle.text;
-    vc.updates = self.updates;
+    vc.updates = _articles;
     vc.updateIndex = aIndex;
-    GGCompanyUpdate *data = _updates[aIndex];
+    GGCompanyUpdate *data = _articles[aIndex];
     data.hasBeenRead = YES;
     
     [self.navigationController pushViewController:vc animated:YES];
@@ -245,55 +192,18 @@
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (indexPath.row == 0)
-//    {
-//        [_tvExpandHelper resetCellHeights];
-//    }
+    //    if (indexPath.row == 0)
+    //    {
+    //        [_tvExpandHelper resetCellHeights];
+    //    }
     float height = ISIPADDEVICE ? [self _updateIpadCellHeightForIndexPath:indexPath] : [self _updateCellHeightForIndexPath:indexPath];
     //[_tvExpandHelper recordCellHeight:height];
     return height;
 }
 
-#pragma mark - 
--(void)_getFirstPage
-{
-    [self _getDataWithNewsID:0 pageFlag:kGGPageFlagFirstPage pageTime:0 relevance:GGSharedRuntimeData.relevance];
-}
 
--(void)_getNextPage
-{
-    if (_hasMore)
-    {
-        long long newsID = 0, pageTime = 0;
-        GGCompanyUpdate *lastUpdate = [_updates lastObject];
-        if (lastUpdate)
-        {
-            newsID = lastUpdate.ID;
-            pageTime = lastUpdate.date;
-        }
-        
-        [self _getDataWithNewsID:newsID pageFlag:kGGPageFlagMoveDown pageTime:pageTime relevance:GGSharedRuntimeData.relevance];
-    }
-    else
-    {
-        [self _delayedStopInfiniteAnimating];
-    }
-}
-
--(void)_getPrevPage
-{
-    long long newsID = 0, pageTime = 0;
-    GGCompanyUpdate *firstUpdate = _updates.count > 0 ? [_updates objectAtIndex:0] : nil;
-    if (firstUpdate)
-    {
-        newsID = firstUpdate.ID;
-        pageTime = firstUpdate.date;
-    }
-    
-    [self _getDataWithNewsID:newsID pageFlag:kGGPageFlagMoveUp pageTime:pageTime relevance:GGSharedRuntimeData.relevance];
-}
-
--(void)_getDataWithNewsID:(long long)aNewsID pageFlag:(int)aPageFlag pageTime:(long long)aPageTime relevance:(int)aRelevance
+#pragma mark - get data
+-(void)_getData
 {
     GGApiBlock callback = ^(id operation, id aResultObject, NSError* anError) {
         //DLog(@"%@", aResultObject);
@@ -305,74 +215,22 @@
         
         if (parser.isOK)
         {
-            _hasMore = page.hasMore;
+            //_hasMore = page.hasMore;
             
             if (page.items.count)
             {
-                switch (aPageFlag)
-                {
-                    case kGGPageFlagFirstPage:
-                    {
-                        [_updates removeAllObjects];
-                        [_updates addObjectsFromArray:page.items];
-                    }
-                        break;
-                        
-                    case kGGPageFlagMoveDown:
-                    {
-                        [_updates addObjectsFromArray:page.items];
-                        
-                        
-                    }
-                        break;
-                        
-                    case kGGPageFlagMoveUp:
-                    {
-                        NSMutableArray *newUpdates = [NSMutableArray arrayWithArray:page.items];
-                        [newUpdates addObjectsFromArray:_updates];
-                        self.updates = newUpdates;
-                    }
-                        break;
-                        
-                    default:
-                        break;
-                }
+                [_articles removeAllObjects];
+                [_articles addObjectsFromArray:page.items];
             }
-
+            
         }
         
         [self.updatesTV reloadData];
-        
-        // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
-        [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:.5f];
     };
     
-    id op = [GGSharedAPI getCompanyUpdatesNoFilteWithCompanyID:_companyID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:callback];
+    id op = [GGSharedAPI getSimilarUpdatesWithID:_similarID callback:callback];
     
     [self registerOperation:op];
-}
-
--(void)_delayedStopAnimating
-{
-    __weak GGUpdatesVC *weakSelf = self;
-    [weakSelf.updatesTV.pullToRefreshView stopAnimating];
-    [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
-}
-
--(void)_delayedStopInfiniteAnimating
-{
-    __weak GGUpdatesVC *weakSelf = self;
-    
-    [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
-}
-
-#pragma mark - 
--(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
-    
-    [_updatesTV centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH_FULL];
-    
 }
 
 @end

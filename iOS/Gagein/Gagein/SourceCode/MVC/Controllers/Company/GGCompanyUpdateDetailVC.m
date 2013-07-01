@@ -25,6 +25,7 @@
 
 #import "GGUpdateInfoHeaderView.h"
 #import "GGUpdateInfoRelatedArticleCell.h"
+#import "GGRelatedArticlesVC.h"
 
 
 @interface GGCompanyUpdateDetailVC () <MFMessageComposeViewControllerDelegate>
@@ -698,6 +699,16 @@
 #pragma mark - UI
 -(void)_updateUIWithUpdateDetail
 {
+    //
+    GGCompanyUpdate *data = _updates[_updateIndex];
+    [self _infoHeaderView].lblInterval.text = [data monthDayWithDate:data.date];
+    [self _infoHeaderView].lblSource.text = data.fromSource;
+    [self _infoHeaderView].lblTitle.text = _companyUpdateDetail.headline;
+    
+    //
+    [self _relatedArticleCell].lblCount.text = [NSString stringWithFormat:@"%d", data.newsSimilarCount];
+    
+    //
     if (_companyUpdateDetail.textview.length <= 0)
     {
         NSURL *url = [NSURL URLWithString:_companyUpdateDetail.url];
@@ -712,10 +723,9 @@
 
         _comUpdateDetailCell.tvContent.text = [_companyUpdateDetail doubleReturnedText];
         
-        _comUpdateDetailCell.lblSource.text = ((GGCompanyUpdate *)(_updates[_updateIndex])).fromSource;
+        _comUpdateDetailCell.lblSource.text = data.fromSource;
         
-        GGCompanyUpdate *data = _updates[_updateIndex];
-        _comUpdateDetailCell.lblDate.text = [_companyUpdateDetail monthDayWithDate:data.date];
+        _comUpdateDetailCell.lblDate.text = [data monthDayWithDate:data.date];
         
         [self _updateSaveBtnSaved:_companyUpdateDetail.saved];
         [self _updateLikedButton];
@@ -977,7 +987,10 @@
     {
         if (section == 0)
         {
-            
+            GGRelatedArticlesVC *vc = [[GGRelatedArticlesVC alloc] init];
+            vc.similarID = _companyUpdateDetail.newsSimilarID;
+            [self.navigationController pushViewController:vc animated:YES];
+            self.navigationController.navigationBarHidden = NO;
         }
         else if (section == 1)
         {
