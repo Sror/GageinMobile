@@ -11,6 +11,9 @@
 
 @interface GGSsgrfTitledImageBtnView : GGSsgrfBaseWidget
 
+#warning WORK STOP HERE...
+-(void)applyCircleEffect:(BOOL)aApplyCircleEffect;
+
 -(void)setTitle:(NSString *)aTitle;
 -(void)setSubTitle:(NSString *)aTitle;
 -(void)setImageURL:(NSString *)aImageURL placeholder:(UIImage *)aPlaceholder;

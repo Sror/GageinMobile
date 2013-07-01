@@ -143,15 +143,22 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
     self.oauthCoordinator.delegate = self;
     
     [self.oauthCoordinator authenticate];
-    [self showLoadingHUD];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [self showBackButton];
+    //[self showBackButton];
     //self.navigationItem.leftBarButtonItem = nil;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    DLog(@"%@:%@", self.className, self.view.frameString);
+    [self showBackButton];
 }
 
 -(void)dealloc
@@ -193,6 +200,10 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
 #pragma mark - SFOAuthCoordinatorDelegate
 
 - (void)oauthCoordinator:(SFOAuthCoordinator *)manager willBeginAuthenticationWithView:(UIWebView *)webView {
+    //webView.scalesPageToFit = YES;
+    DLog(@"%@ - %@", self.view.frameString, webView.frameString);
+    //webView.frame = self.view.bounds;
+    //webView.backgroundColor = GGSharedColor.random;
 }
 
 - (void)oauthCoordinator:(SFOAuthCoordinator *)manager didBeginAuthenticationWithView:(UIWebView *)webView {
@@ -202,7 +213,7 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
 
 - (void)oauthCoordinatorDidAuthenticate:(SFOAuthCoordinator *)coordinator authInfo:(SFOAuthInfo *)info
 {
-    [self hideLoadingHUD];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
     NSLog(@"SalesforceOAuthTestViewController:oauthCoordinatorDidAuthenticate:authInfo: info: %@ credentials: %@", info, coordinator.credentials);
     
@@ -227,7 +238,7 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
 
 - (void)oauthCoordinator:(SFOAuthCoordinator *)coordinator didFailWithError:(NSError *)error authInfo:(SFOAuthInfo *)info
 {
-    [self hideLoadingHUD];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
     NSLog(@"SalesforceOAuthTestViewController:oauthCoordinator:didFailWithError:authInfo: info: %@ error: %@", info, error);
     self.authInfo = info;
@@ -264,7 +275,7 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
-    
+    DLog(@"%@:%@", self.className, self.view.frameString);
     [self.oauthCoordinator doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
 }
 

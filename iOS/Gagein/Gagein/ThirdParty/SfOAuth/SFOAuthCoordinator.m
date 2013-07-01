@@ -220,8 +220,12 @@ static NSString * const kHttpPostContentType                    = @"application/
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    CGRect orientRc = [GGLayout frameWithOrientation:toInterfaceOrientation rect:[UIScreen mainScreen].bounds];
-    _view.frame = orientRc;
+    //CGRect orientRc = _view.frame;
+    DLog(@"%@", _view.superview.frameString);
+    if (_view.superview)
+    {
+        _view.frame = _view.superview.bounds;
+    }
 }
 
 - (void)beginUserAgentFlow {
@@ -563,6 +567,7 @@ static NSString * const kHttpPostContentType                    = @"application/
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     NSURL *url = webView.request.URL;
+    _view.frame = _view.superview.bounds;
     
     if (self.credentials.logLevel < kSFOAuthLogLevelWarning) {
         NSLog(@"SFOAuthCoordinator:webViewDidStartLoad: host=%@ : path=%@", url.host, url.path);

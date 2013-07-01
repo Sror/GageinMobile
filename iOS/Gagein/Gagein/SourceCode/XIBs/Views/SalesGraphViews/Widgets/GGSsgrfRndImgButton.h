@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface GGSsgrfRndImgButton : UIView
+@property (strong, nonatomic) UIImageView                 *imageView;
 
 -(void)setImageUrl:(NSString *)aImageURL placeholder:(UIImage *)aPlaceHolder;
 

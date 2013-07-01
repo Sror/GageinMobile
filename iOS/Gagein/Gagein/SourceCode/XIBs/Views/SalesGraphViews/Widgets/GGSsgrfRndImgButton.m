@@ -16,7 +16,6 @@
 @implementation GGSsgrfRndImgButton
 {
     UIButton                    *_button;
-    UIImageView                 *_imageView;
     
 }
 

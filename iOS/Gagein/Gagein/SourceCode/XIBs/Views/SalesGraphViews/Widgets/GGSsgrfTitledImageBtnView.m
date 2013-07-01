@@ -25,14 +25,17 @@
     GGSsgrfRndImgButton     *_viewRndImgBtn;
 }
 
-//- (id)initWithFrame:(CGRect)frame
-//{
-//    self = [super initWithFrame:frame];
-//    if (self) {
-//        [self _doInit];
-//    }
-//    return self;
-//}
+-(void)applyCircleEffect:(BOOL)aApplyCircleEffect
+{
+    if (aApplyCircleEffect)
+    {
+        [GGUtils applyCircleEffectToView:_viewRndImgBtn.imageView];
+    }
+    else
+    {
+        [GGUtils applyNormalEffectToView:_viewRndImgBtn.imageView];
+    }
+}
 
 -(void)_doInit
 {
