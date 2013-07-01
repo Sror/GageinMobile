@@ -381,6 +381,8 @@
 		EA9B3A0E1768E280008C5709 /* GGTriggerChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9B3A0D1768E280008C5709 /* GGTriggerChartCell.xib */; };
 		EA9C7F94177110F7003217F7 /* GGSsgrfPopPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C7F93177110F7003217F7 /* GGSsgrfPopPanelView.m */; };
 		EA9D2F401781FEC2004CA4BC /* btnUpdateInfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9D2F3F1781FEC2004CA4BC /* btnUpdateInfo@2x.png */; };
+		EA9D2F4317820E66004CA4BC /* GGUpdateInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D2F4217820E66004CA4BC /* GGUpdateInfoHeaderView.m */; };
+		EA9D2F4517820F15004CA4BC /* GGUpdateInfoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9D2F4417820F15004CA4BC /* GGUpdateInfoHeaderView.xib */; };
 		EA9E00041770068100127233 /* ssgrf_bg_btn_follow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9EFFF71770068100127233 /* ssgrf_bg_btn_follow@2x.png */; };
 		EA9E00051770068100127233 /* ssgrf_bg_btn_unfollow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9EFFF81770068100127233 /* ssgrf_bg_btn_unfollow@2x.png */; };
 		EA9E00061770068100127233 /* ssgrf_btn_cb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9EFFF91770068100127233 /* ssgrf_btn_cb@2x.png */; };
@@ -1145,6 +1147,9 @@
 		EA9C7F92177110F7003217F7 /* GGSsgrfPopPanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfPopPanelView.h; sourceTree = "<group>"; };
 		EA9C7F93177110F7003217F7 /* GGSsgrfPopPanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfPopPanelView.m; sourceTree = "<group>"; };
 		EA9D2F3F1781FEC2004CA4BC /* btnUpdateInfo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnUpdateInfo@2x.png"; sourceTree = "<group>"; };
+		EA9D2F4117820E66004CA4BC /* GGUpdateInfoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGUpdateInfoHeaderView.h; sourceTree = "<group>"; };
+		EA9D2F4217820E66004CA4BC /* GGUpdateInfoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUpdateInfoHeaderView.m; sourceTree = "<group>"; };
+		EA9D2F4417820F15004CA4BC /* GGUpdateInfoHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGUpdateInfoHeaderView.xib; sourceTree = "<group>"; };
 		EA9E00001770068100127233 /* ssgrf_btn_twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_twitter@2x.png"; sourceTree = "<group>"; };
 		EA9E00011770068100127233 /* ssgrf_btn_yahoo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_yahoo@2x.png"; sourceTree = "<group>"; };
 		EA9E00021770068100127233 /* ssgrf_btn_youtube@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_youtube@2x.png"; sourceTree = "<group>"; };
@@ -2787,6 +2792,9 @@
 				EAB60D2C1741650D008EEEAE /* GGAutosizingLabel.m */,
 				EAA18810175EA0E600580B00 /* GGCompanyUpdateIpadCell.h */,
 				EAA18811175EA0E600580B00 /* GGCompanyUpdateIpadCell.m */,
+				EA9D2F4117820E66004CA4BC /* GGUpdateInfoHeaderView.h */,
+				EA9D2F4217820E66004CA4BC /* GGUpdateInfoHeaderView.m */,
+				EA9D2F4417820F15004CA4BC /* GGUpdateInfoHeaderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3540,6 +3548,7 @@
 				EA95B8B5177CF393002868A4 /* logoNewsDefault@2x.png in Resources */,
 				EA9104FE177E3DC000E28FA3 /* GGEmployerComsVC.xib in Resources */,
 				EA9D2F401781FEC2004CA4BC /* btnUpdateInfo@2x.png in Resources */,
+				EA9D2F4517820F15004CA4BC /* GGUpdateInfoHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3819,6 +3828,7 @@
 				EA945CBD177EB10C00523A2F /* MMDrawerVisualState.m in Sources */,
 				EA945CBE177EB10C00523A2F /* UIViewController+MMDrawerController.m in Sources */,
 				EA945CC1177EB14900523A2F /* GGLeftDrawerVC.m in Sources */,
+				EA9D2F4317820E66004CA4BC /* GGUpdateInfoHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,6 +23,7 @@
 #import "GGCompany.h"
 #import "GGCompanyDetailVC.h"
 
+#import "GGUpdateInfoHeaderView.h"
 
 
 @interface GGCompanyUpdateDetailVC () <MFMessageComposeViewControllerDelegate>
@@ -116,8 +117,7 @@
     self.scrollView.backgroundColor = GGSharedColor.silver;
 
     _webviewSignal.hidden = YES;
-    _tvInfo.hidden = YES;
-    _tvInfo.backgroundColor = GGSharedColor.random;
+    
     
     //
     _comUpdateDetailCell = [GGComUpdateDetailView viewFromNibWithOwner:self];
@@ -169,8 +169,24 @@
     
     _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] ;
     
+    // info table view init
+    _tvInfo.tableHeaderView = [self _infoHeaderView];
+    _tvInfo.hidden = YES;
+    _tvInfo.backgroundColor = GGSharedColor.silver;
+    
     [self _callApiGetCompanyUpdateDetail];
     [self _callApiGetSnList];
+}
+
+-(GGUpdateInfoHeaderView *)_infoHeaderView
+{
+    static GGUpdateInfoHeaderView *headerView = nil;
+    if (headerView == nil)
+    {
+        headerView = [GGUpdateInfoHeaderView viewFromNibWithOwner:self];
+    }
+    
+    return headerView;
 }
 
 -(void)_updateMentionedCompanyTV
