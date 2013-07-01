@@ -24,6 +24,7 @@
 #import "GGCompanyDetailVC.h"
 
 #import "GGUpdateInfoHeaderView.h"
+#import "GGUpdateInfoRelatedArticleCell.h"
 
 
 @interface GGCompanyUpdateDetailVC () <MFMessageComposeViewControllerDelegate>
@@ -191,6 +192,17 @@
     [headerView doLayout];
     
     return headerView;
+}
+
+-(GGUpdateInfoRelatedArticleCell *)_relatedArticleCell
+{
+    static GGUpdateInfoRelatedArticleCell *cell = nil;
+    if (cell == nil)
+    {
+        cell = [GGUpdateInfoRelatedArticleCell viewFromNibWithOwner:self];
+    }
+    
+    return cell;
 }
 
 -(void)_updateMentionedCompanyTV
@@ -840,6 +852,13 @@
     {
         return _companyUpdateDetail.mentionedCompanies.count;
     }
+    else if (tableView == _tvInfo)
+    {
+        if (section == 0)
+        {
+            return 1;
+        }
+    }
     
     return 0;
 }
@@ -868,6 +887,13 @@
         
         return cell;
     }
+    else if (tableView == _tvInfo)
+    {
+        if (section == 0)
+        {
+            return [self _relatedArticleCell];
+        }
+    }
     
     return nil;
 }
@@ -875,9 +901,19 @@
 #pragma mark - tableview delegate
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    int row = indexPath.row;
+    int section = indexPath.section;
+    
     if (tableView == _tvMentionedCompanies)
     {
         return [GGComDetailEmployeeCell HEIGHT];
+    }
+    else if (tableView == _tvInfo)
+    {
+        if (section == 0)
+        {
+            return [GGUpdateInfoRelatedArticleCell HEIGHT];
+        }
     }
     
     return 0;

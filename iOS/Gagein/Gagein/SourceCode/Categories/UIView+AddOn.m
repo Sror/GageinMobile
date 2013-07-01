@@ -197,4 +197,9 @@ static MBProgressHUD * hud;
     return NSStringFromCGRect(self.frame);
 }
 
++(float)HEIGHT
+{
+    return 0.f;
+}
+
 @end
