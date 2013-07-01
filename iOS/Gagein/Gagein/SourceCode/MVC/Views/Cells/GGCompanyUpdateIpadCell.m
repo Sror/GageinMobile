@@ -85,7 +85,7 @@
     }
     else
     {
-        _lblHeadline.textColor = GGSharedColor.orangeGageinDark;
+        _lblHeadline.textColor = GGSharedColor.black;
     }
 }
 

@@ -30,6 +30,8 @@
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @property (strong, nonatomic) IBOutlet UIWebView *webviewSignal;
+@property (weak, nonatomic) IBOutlet UITableView *tvInfo;
+
 @property (weak, nonatomic) IBOutlet UIView *viewContent;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnSwitchBack;
@@ -114,6 +116,8 @@
     self.scrollView.backgroundColor = GGSharedColor.silver;
 
     _webviewSignal.hidden = YES;
+    _tvInfo.hidden = YES;
+    _tvInfo.backgroundColor = GGSharedColor.random;
     
     //
     _comUpdateDetailCell = [GGComUpdateDetailView viewFromNibWithOwner:self];
@@ -239,6 +243,7 @@
     [self setBtnSignal:nil];
     [self setBtnLike:nil];
     [self setBtnInfo:nil];
+    [self setTvInfo:nil];
     [super viewDidUnload];
 }
 
@@ -296,6 +301,7 @@
 {
     BOOL needAnimation = (_webviewSignal.hidden == aShow);
     _webviewSignal.hidden = !aShow;
+    
     self.navigationController.navigationBarHidden = aShow;
     
     [self _showSwitchButton:aShow];
@@ -797,47 +803,66 @@
 #pragma mark - tableview datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _companyUpdateDetail.mentionedCompanies.count;
+    if (tableView == _tvMentionedCompanies)
+    {
+        return _companyUpdateDetail.mentionedCompanies.count;
+    }
+    
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = indexPath.row;
+    int section = indexPath.section;
     
-    static NSString *cellID = @"GGComDetailEmployeeCell";
-    GGComDetailEmployeeCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (cell == nil)
+    if (tableView == _tvMentionedCompanies)
     {
-        cell = [GGComDetailEmployeeCell viewFromNibWithOwner:self];
+        static NSString *cellID = @"GGComDetailEmployeeCell";
+        GGComDetailEmployeeCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if (cell == nil)
+        {
+            cell = [GGComDetailEmployeeCell viewFromNibWithOwner:self];
+        }
+        
+        GGCompany *data = _companyUpdateDetail.mentionedCompanies[row];
+        cell.lblTitle.text = data.name;
+        cell.lblSubTitle.text = data.website;
+        cell.lblThirdLine.text = [NSString stringWithFormat:@"%@,%@,%@", data.city, data.state, data.country];
+        [cell.ivPhoto setImageWithURL:[NSURL URLWithString:data.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+        
+        cell.tag = row;
+        
+        return cell;
     }
     
-    GGCompany *data = _companyUpdateDetail.mentionedCompanies[row];
-    cell.lblTitle.text = data.name;
-    cell.lblSubTitle.text = data.website;
-    cell.lblThirdLine.text = [NSString stringWithFormat:@"%@,%@,%@", data.city, data.state, data.country];
-    [cell.ivPhoto setImageWithURL:[NSURL URLWithString:data.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-    
-    cell.tag = row;
-    
-    return cell;
+    return nil;
 }
 
 #pragma mark - tableview delegate
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [GGComDetailEmployeeCell HEIGHT];
+    if (tableView == _tvMentionedCompanies)
+    {
+        return [GGComDetailEmployeeCell HEIGHT];
+    }
+    
+    return 0;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    GGCompany *data = _companyUpdateDetail.mentionedCompanies[indexPath.row];
-    if (data.ID)
+    if (tableView == _tvMentionedCompanies)
     {
-        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-        vc.companyID = data.ID;
-        [self.navigationController pushViewController:vc animated:YES];
+        GGCompany *data = _companyUpdateDetail.mentionedCompanies[indexPath.row];
+        if (data.ID)
+        {
+            GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+            vc.companyID = data.ID;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 
