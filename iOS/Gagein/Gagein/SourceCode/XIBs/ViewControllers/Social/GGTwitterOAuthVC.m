@@ -146,8 +146,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    [self showBackButton];
 }
 
 - (void) viewDidAppear: (BOOL)animated {
@@ -169,13 +167,15 @@
         //[self.view addSubview:_twitterOAuthVC.view];
         //controller.hidesBottomBarWhenPushed = YES;
         //[self presentViewController:controller animated:NO completion:nil];
-		[self.navigationController pushViewController:_twitterOAuthVC animated:NO];
+        [self.view addSubview:_twitterOAuthVC.view];
+		//[self.navigationController pushViewController:_twitterOAuthVC animated:NO];
     }
 	else
     {
 		[_engine sendUpdate: [NSString stringWithFormat: @"Already Updated. %@", [NSDate date]]];
 	}
 
+    [self showBackButton];
 }
 
 

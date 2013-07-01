@@ -165,8 +165,12 @@
 	return YES;
 }
 
--(void)webViewDidStartLoad:(UIWebView *)webView
+-(void)webViewDidStartLoad:(UIWebView *)aWebView
 {
+    //self.view.frame = self.view.superview.bounds;
+    DLog("%@", webView.frameString);
+    webView.frame = webView.superview.bounds;
+    
     [self showLoadingHUD];
 }
 
@@ -345,8 +349,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    DLog(@"%@", self.view.frameString);
     
-    [self showBackButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -369,6 +373,7 @@
     }
 
     [self requestTokenFromProvider];
+    [self showBackButton];
 }
 
 -(void)viewWillDisappear:(BOOL)animated

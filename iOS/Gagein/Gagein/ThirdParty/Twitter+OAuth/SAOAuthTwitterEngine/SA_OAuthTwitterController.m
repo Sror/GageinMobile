@@ -257,7 +257,7 @@ static NSString* const kGGTwitterLoadingBackgroundImage = @"twitter_load.png";
 	[_blockerView addSubview: label];
 	
 	UIActivityIndicatorView				*spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleWhite] autorelease];
-	
+	spinner.tag = 999;
 	spinner.center = CGPointMake(_blockerView.bounds.size.width / 2, _blockerView.bounds.size.height / 2 + 10);
 	[_blockerView addSubview: spinner];
 	[self.view addSubview: _blockerView];
@@ -313,6 +313,7 @@ static NSString* const kGGTwitterLoadingBackgroundImage = @"twitter_load.png";
 
 //=============================================================================================================================
 #pragma mark Webview Delegate stuff
+
 - (void) webViewDidFinishLoad: (UIWebView *) webView {
 	_loading = NO;
 	//[self performInjection];
@@ -429,6 +430,12 @@ Ugly. I apologize for its inelegance. Bleah.
 
 - (void) webViewDidStartLoad: (UIWebView *) webView {
 	//[_activityIndicator startAnimating];
+    self.view.frame = self.view.superview.bounds;
+    _webView.frame = _webView.superview.bounds;
+    _blockerView.frame = _blockerView.superview.frame;
+    UIView *spinner = [_blockerView viewWithTag:999];
+    spinner.center = _blockerView.center;
+    
 	_loading = YES;
 	[UIView beginAnimations: nil context: nil];
 	_blockerView.alpha = 1.0;

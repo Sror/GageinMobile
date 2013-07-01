@@ -111,6 +111,8 @@
     BOOL hasLinked = [GGUtils hasLinkedSnType:_snType];
     if (!hasLinked)
     {
+        [_textView resignFirstResponder];
+        
         switch (_snType)
         {
             case kGGSnTypeFacebook:
@@ -134,6 +136,10 @@
         }
         
         //_isLinking = YES;
+    }
+    else
+    {
+         [_textView becomeFirstResponder];
     }
     
     return hasLinked;
@@ -243,7 +249,6 @@
     [super viewWillAppear:animated];
     [self hideBackButton];
     
-    [_textView becomeFirstResponder];
 }
 
 #pragma mark - actions
