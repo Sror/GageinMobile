@@ -206,7 +206,7 @@
 -(void)_getData
 {
     GGApiBlock callback = ^(id operation, id aResultObject, NSError* anError) {
-        //DLog(@"%@", aResultObject);
+        [self hideLoadingHUD];
         
         //[self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
@@ -228,9 +228,17 @@
         [self.updatesTV reloadData];
     };
     
+    [self showLoadingHUD];
     id op = [GGSharedAPI getSimilarUpdatesWithID:_similarID callback:callback];
     
     [self registerOperation:op];
+}
+
+-(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
+    
+    [_updatesTV centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH_FULL];
 }
 
 @end

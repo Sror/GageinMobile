@@ -115,6 +115,7 @@
     
     self.naviTitle = _naviTitleString;
     self.view.backgroundColor = GGSharedColor.silver;
+    self.viewContent.backgroundColor = GGSharedColor.silver;
     self.scrollView.alwaysBounceVertical = YES;
     self.scrollView.backgroundColor = GGSharedColor.silver;
 
@@ -191,7 +192,7 @@
     
     [headerView setWidth:_tvInfo.frame.size.width];
     [headerView doLayout];
-    
+    //headerView.backgroundColor = GGSharedColor.random;
     return headerView;
 }
 
@@ -289,6 +290,7 @@
     [self.navigationController.navigationBar addSubview:_btnNextUpdate];
     [self _updateNaviBtnState];
     
+    [_tvInfo reloadData];
     //[[self _infoHeaderView] setWidth:_tvInfo.frame.size.width];
 }
 
@@ -336,6 +338,8 @@
 {
     //BOOL needAnimation = (_webviewSignal.hidden == aShow);
     _webviewSignal.hidden = !aShow;
+    _scrollView.hidden = _webView.hidden = aShow;
+    
     if (!aShow)
     {
         _tvInfo.hidden = YES;
@@ -343,7 +347,7 @@
     
     self.navigationController.navigationBarHidden = aShow;
     
-    [self _showSwitchButton:aShow];
+    
     
     if (aShow)
     {
@@ -358,13 +362,15 @@
     }
     else
     {
-        //if (needAnimation)
+        if (!_btnSwitchBack.hidden)
         {
             [self.viewContent.layer addAnimation:[GGAnimation animationFlipFromLeft] forKey:nil];
         }
         
         [_webviewSignal stopLoading];
     }
+    
+    [self _showSwitchButton:aShow];
 }
 
 -(void)_showSwitchButton:(BOOL)aShow
@@ -388,6 +394,7 @@
 -(IBAction)showInfoAction:(id)sender
 {
     //BOOL needAnimation = (_webviewSignal.hidden == aShow);
+    _scrollView.hidden = _webView.hidden = YES;
     _tvInfo.hidden = NO;
     
     self.navigationController.navigationBarHidden = YES;
@@ -856,11 +863,23 @@
 }
 
 #pragma mark - tableview datasource
+-(BOOL)_hasRelatedArticles
+{
+    return _companyUpdateDetail.newsSimilarCount > 1;
+}
+
 -(int)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (tableView == _tvInfo)
     {
-        return 2;
+        if ([self _hasRelatedArticles])
+        {
+            return 2;
+        }
+        else
+        {
+            return 1;
+        }
     }
     
     return 0;
@@ -868,16 +887,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    BOOL hasRelated = [self _hasRelatedArticles];
+    
     if (tableView == _tvInfo)
     {
-        if (section == 0)
+        if (hasRelated && section == 0)
         {
             return 1;
         }
-        else if (section == 1)
+        else if ((hasRelated && section == 1) || (!hasRelated && section == 0))
         {
-            int count = _companyUpdateDetail.mentionedCompanies.count;
-            return count;
+            return _companyUpdateDetail.mentionedCompanies.count;
         }
     }
 
@@ -888,34 +908,15 @@
 {
     int row = indexPath.row;
     int section = indexPath.section;
-    
-//    if (tableView == _tvMentionedCompanies)
-//    {
-//        static NSString *cellID = @"GGComDetailEmployeeCell";
-//        GGComDetailEmployeeCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-//        if (cell == nil)
-//        {
-//            cell = [GGComDetailEmployeeCell viewFromNibWithOwner:self];
-//        }
-//        
-//        GGCompany *data = _companyUpdateDetail.mentionedCompanies[row];
-//        cell.lblTitle.text = data.name;
-//        cell.lblSubTitle.text = data.website;
-//        cell.lblThirdLine.text = [NSString stringWithFormat:@"%@,%@,%@", data.city, data.state, data.country];
-//        [cell.ivPhoto setImageWithURL:[NSURL URLWithString:data.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-//        
-//        cell.tag = row;
-//        
-//        return cell;
-//    }
-//    else
-        if (tableView == _tvInfo)
+    BOOL hasRelated = [self _hasRelatedArticles];
+
+    if (tableView == _tvInfo)
     {
-        if (section == 0)
+        if (hasRelated && section == 0)
         {
             return [self _relatedArticleCell];
         }
-        else if (section == 1)
+        else if ((hasRelated && section == 1) || (!hasRelated && section == 0))
         {
             static NSString *cellID = @"GGComDetailEmployeeCell";
             GGComDetailEmployeeCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -944,19 +945,15 @@
 {
     //int row = indexPath.row;
     int section = indexPath.section;
+    BOOL hasRelated = [self _hasRelatedArticles];
     
-//    if (tableView == _tvMentionedCompanies)
-//    {
-//        return [GGComDetailEmployeeCell HEIGHT];
-//    }
-//    else
-        if (tableView == _tvInfo)
+    if (tableView == _tvInfo)
     {
-        if (section == 0)
+        if (hasRelated && section == 0)
         {
             return [GGUpdateInfoRelatedArticleCell HEIGHT];
         }
-        else if (section == 1)
+        else if ((hasRelated && section == 1) || (!hasRelated && section == 0))
         {
             return [GGComDetailEmployeeCell HEIGHT];
         }
@@ -969,30 +966,20 @@
 {
     //int row = indexPath.row;
     int section = indexPath.section;
+    BOOL hasRelated = [self _hasRelatedArticles];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-//    if (tableView == _tvMentionedCompanies)
-//    {
-//        GGCompany *data = _companyUpdateDetail.mentionedCompanies[indexPath.row];
-//        if (data.ID)
-//        {
-//            GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-//            vc.companyID = data.ID;
-//            [self.navigationController pushViewController:vc animated:YES];
-//        }
-//    }
-//    else
-        if (tableView == _tvInfo)
+    if (tableView == _tvInfo)
     {
-        if (section == 0)
+        if (hasRelated && section == 0)
         {
             GGRelatedArticlesVC *vc = [[GGRelatedArticlesVC alloc] init];
             vc.similarID = _companyUpdateDetail.newsSimilarID;
             [self.navigationController pushViewController:vc animated:YES];
             self.navigationController.navigationBarHidden = NO;
         }
-        else if (section == 1)
+        else if ((hasRelated && section == 1) || (!hasRelated && section == 0))
         {
             GGCompany *data = _companyUpdateDetail.mentionedCompanies[indexPath.row];
             if (data.ID)
