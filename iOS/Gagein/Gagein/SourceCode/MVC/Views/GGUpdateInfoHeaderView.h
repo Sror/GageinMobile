@@ -15,4 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblSource;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
+
+-(void)doLayout;
+
 @end

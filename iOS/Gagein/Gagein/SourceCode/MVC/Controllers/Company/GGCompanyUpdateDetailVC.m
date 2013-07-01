@@ -172,6 +172,7 @@
     // info table view init
     _tvInfo.tableHeaderView = [self _infoHeaderView];
     _tvInfo.hidden = YES;
+    _tvInfo.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tvInfo.backgroundColor = GGSharedColor.silver;
     
     [self _callApiGetCompanyUpdateDetail];
@@ -185,6 +186,9 @@
     {
         headerView = [GGUpdateInfoHeaderView viewFromNibWithOwner:self];
     }
+    
+    [headerView setWidth:_tvInfo.frame.size.width];
+    [headerView doLayout];
     
     return headerView;
 }

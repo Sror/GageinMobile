@@ -38,8 +38,8 @@
 -(void)adjustHeightToFitContent;
 
 -(void)setPos:(CGPoint)aNewPos;
-
 -(void)setHeight:(float)aNewHeight;
+-(void)setWidth:(float)aNewWidth;
 
 -(UIImage *)myPicture;
 

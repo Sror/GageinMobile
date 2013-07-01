@@ -172,6 +172,13 @@ static MBProgressHUD * hud;
     self.frame = thisRc;
 }
 
+-(void)setWidth:(float)aNewWidth
+{
+    CGRect thisRc = self.frame;
+    thisRc.size.width = aNewWidth;
+    self.frame = thisRc;
+}
+
 -(UIImage *)myPicture
 {
     UIGraphicsBeginImageContext(self.bounds.size);
