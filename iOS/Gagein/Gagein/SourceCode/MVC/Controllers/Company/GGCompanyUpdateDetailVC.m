@@ -43,6 +43,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnTwitter;
 @property (weak, nonatomic) IBOutlet UIButton *btnSms;
 @property (weak, nonatomic) IBOutlet UIButton *btnLinkedIn;
+@property (weak, nonatomic) IBOutlet UIButton *btnInfo;
 
 @end
 
@@ -237,6 +238,7 @@
     [self setBtnLinkedIn:nil];
     [self setBtnSignal:nil];
     [self setBtnLike:nil];
+    [self setBtnInfo:nil];
     [super viewDidUnload];
 }
 
@@ -331,13 +333,18 @@
     //_btnLinkedIn.hidden =
     _btnSignal.hidden =
     _btnLike.hidden =
-    //_btnEmail.hidden =
+    _btnInfo.hidden =
     aShow;
 }
 
 #pragma mark - notification
 
 #pragma mark - Actions
+-(IBAction)showInfoAction:(id)sender
+{
+    
+}
+
 -(IBAction)signalAction:(id)sender
 {
 //#warning TODO: implementation needed

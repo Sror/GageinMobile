@@ -380,6 +380,7 @@
 		EA9B3A0C1768E24E008C5709 /* GGTriggerChartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9B3A0B1768E24E008C5709 /* GGTriggerChartCell.m */; };
 		EA9B3A0E1768E280008C5709 /* GGTriggerChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9B3A0D1768E280008C5709 /* GGTriggerChartCell.xib */; };
 		EA9C7F94177110F7003217F7 /* GGSsgrfPopPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C7F93177110F7003217F7 /* GGSsgrfPopPanelView.m */; };
+		EA9D2F401781FEC2004CA4BC /* btnUpdateInfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9D2F3F1781FEC2004CA4BC /* btnUpdateInfo@2x.png */; };
 		EA9E00041770068100127233 /* ssgrf_bg_btn_follow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9EFFF71770068100127233 /* ssgrf_bg_btn_follow@2x.png */; };
 		EA9E00051770068100127233 /* ssgrf_bg_btn_unfollow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9EFFF81770068100127233 /* ssgrf_bg_btn_unfollow@2x.png */; };
 		EA9E00061770068100127233 /* ssgrf_btn_cb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9EFFF91770068100127233 /* ssgrf_btn_cb@2x.png */; };
@@ -1143,6 +1144,7 @@
 		EA9B3A0D1768E280008C5709 /* GGTriggerChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGTriggerChartCell.xib; sourceTree = "<group>"; };
 		EA9C7F92177110F7003217F7 /* GGSsgrfPopPanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfPopPanelView.h; sourceTree = "<group>"; };
 		EA9C7F93177110F7003217F7 /* GGSsgrfPopPanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfPopPanelView.m; sourceTree = "<group>"; };
+		EA9D2F3F1781FEC2004CA4BC /* btnUpdateInfo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnUpdateInfo@2x.png"; sourceTree = "<group>"; };
 		EA9E00001770068100127233 /* ssgrf_btn_twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_twitter@2x.png"; sourceTree = "<group>"; };
 		EA9E00011770068100127233 /* ssgrf_btn_yahoo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_yahoo@2x.png"; sourceTree = "<group>"; };
 		EA9E00021770068100127233 /* ssgrf_btn_youtube@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_youtube@2x.png"; sourceTree = "<group>"; };
@@ -2539,6 +2541,7 @@
 		EACAE0B117094A3100E7088F /* 2X */ = {
 			isa = PBXGroup;
 			children = (
+				EA9D2F3F1781FEC2004CA4BC /* btnUpdateInfo@2x.png */,
 				EA95B8B4177CF393002868A4 /* logoNewsDefault@2x.png */,
 				EA9EFFF61770068100127233 /* ssgrf_button */,
 				EA96DDBF176D01C6007355DB /* dblDownArrow@2x.png */,
@@ -3536,6 +3539,7 @@
 				EA95B8B0177CCEA0002868A4 /* btnSwitchArrow@2x.png in Resources */,
 				EA95B8B5177CF393002868A4 /* logoNewsDefault@2x.png in Resources */,
 				EA9104FE177E3DC000E28FA3 /* GGEmployerComsVC.xib in Resources */,
+				EA9D2F401781FEC2004CA4BC /* btnUpdateInfo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
