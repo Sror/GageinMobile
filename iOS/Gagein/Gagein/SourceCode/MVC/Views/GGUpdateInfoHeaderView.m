@@ -29,11 +29,11 @@
     float thisWidth = self.frame.size.width;
     [_viewCellBg setWidth:(thisWidth - 10)];
     [_ivCellBg setWidth:_viewCellBg.frame.size.width];
-    [_lblSource setWidth:_viewCellBg.frame.size.width - 20];
+    [_lblTitle setWidth:_viewCellBg.frame.size.width - 20];
     [_lblSource setWidth:_viewCellBg.frame.size.width - 20 - _lblInterval.frame.size.width];
     
     [_lblTitle sizeToFitFixWidth];
-    _lblTitle.backgroundColor = GGSharedColor.random;
+    //_lblTitle.backgroundColor = GGSharedColor.random;
     
     [_viewCellBg setHeight:(CGRectGetMaxY(_lblTitle.frame) + 5)];
     [_ivCellBg setHeight:_viewCellBg.frame.size.height];

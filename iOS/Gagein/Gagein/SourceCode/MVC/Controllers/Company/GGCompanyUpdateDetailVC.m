@@ -173,7 +173,7 @@
     _tvInfo.tableHeaderView = [self _infoHeaderView];
     _tvInfo.hidden = YES;
     _tvInfo.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tvInfo.backgroundColor = GGSharedColor.silver;
+    _tvInfo.backgroundColor = GGSharedColor.random;
     
     [self _callApiGetCompanyUpdateDetail];
     [self _callApiGetSnList];
@@ -275,6 +275,8 @@
     [self.navigationController.navigationBar addSubview:_btnPrevUpdate];
     [self.navigationController.navigationBar addSubview:_btnNextUpdate];
     [self _updateNaviBtnState];
+    
+    //[[self _infoHeaderView] setWidth:_tvInfo.frame.size.width];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -932,6 +934,9 @@
     [self _setPrevBtnRect];
     
     [self _adjustScrollviewContentSize];
+    
+    [_tvInfo centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH_FULL];
+    [[self _infoHeaderView] setWidth:_tvInfo.frame.size.width];
 }
 
 @end
