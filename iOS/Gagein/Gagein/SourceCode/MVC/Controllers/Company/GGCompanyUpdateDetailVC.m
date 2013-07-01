@@ -299,8 +299,12 @@
 
 -(void)_showWebSignal:(BOOL)aShow url:(NSString *)aURL
 {
-    BOOL needAnimation = (_webviewSignal.hidden == aShow);
+    //BOOL needAnimation = (_webviewSignal.hidden == aShow);
     _webviewSignal.hidden = !aShow;
+    if (!aShow)
+    {
+        _tvInfo.hidden = YES;
+    }
     
     self.navigationController.navigationBarHidden = aShow;
     
@@ -308,7 +312,7 @@
     
     if (aShow)
     {
-        if (needAnimation)
+        //if (needAnimation)
         {
             [self.viewContent.layer addAnimation:[GGAnimation animationFlipFromRight] forKey:nil];
         }
@@ -319,7 +323,7 @@
     }
     else
     {
-        if (needAnimation)
+        //if (needAnimation)
         {
             [self.viewContent.layer addAnimation:[GGAnimation animationFlipFromLeft] forKey:nil];
         }
@@ -348,6 +352,13 @@
 #pragma mark - Actions
 -(IBAction)showInfoAction:(id)sender
 {
+    //BOOL needAnimation = (_webviewSignal.hidden == aShow);
+    _tvInfo.hidden = NO;
+    
+    self.navigationController.navigationBarHidden = YES;
+    
+    [self _showSwitchButton:YES];
+    [self.viewContent.layer addAnimation:[GGAnimation animationFlipFromRight] forKey:nil];
     
 }
 
