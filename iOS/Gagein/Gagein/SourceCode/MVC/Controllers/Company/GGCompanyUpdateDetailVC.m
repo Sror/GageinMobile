@@ -64,7 +64,7 @@
     UIActivityIndicatorView *_activityIndicator;
     
     
-    UITableView             *_tvMentionedCompanies;
+    //UITableView             *_tvMentionedCompanies;
     
     BOOL                    _isTabbarHiddenWhenLoaded;
 }
@@ -156,10 +156,10 @@
     [self _setPrevBtnRect];
     
     // mentioned companies table view
-    _tvMentionedCompanies = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    _tvMentionedCompanies.delegate = self;
-    _tvMentionedCompanies.dataSource = self;
-    _tvMentionedCompanies.rowHeight = [GGComDetailEmployeeCell HEIGHT];
+//    _tvMentionedCompanies = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+//    _tvMentionedCompanies.delegate = self;
+//    _tvMentionedCompanies.dataSource = self;
+//    _tvMentionedCompanies.rowHeight = [GGComDetailEmployeeCell HEIGHT];
     
     //
     //_originalTextViewFrame = self.wvTextView.frame;
@@ -174,7 +174,7 @@
     _tvInfo.tableHeaderView = [self _infoHeaderView];
     _tvInfo.hidden = YES;
     _tvInfo.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tvInfo.backgroundColor = GGSharedColor.random;
+    _tvInfo.backgroundColor = GGSharedColor.silver;
     
     [self _callApiGetCompanyUpdateDetail];
     [self _callApiGetSnList];
@@ -215,41 +215,41 @@
         _comUpdateDetailCell.frame = detailRc;
     }
     
-    _tvMentionedCompanies.hidden = (_companyUpdateDetail.mentionedCompanies.count <= 0);
-    if (!_tvMentionedCompanies.hidden)
-    {
-        [_scrollView addSubview:_tvMentionedCompanies];
-        
-        CGRect mentionedComRc = _tvMentionedCompanies.frame;
-        
-        if (ISIPADDEVICE)
-        {
-            mentionedComRc.size.width = IPAD_CONTENT_WIDTH;
-            mentionedComRc.origin.x = (_tvMentionedCompanies.superview.frame.size.width - IPAD_CONTENT_WIDTH) / 2 - 5;
-        }
-        
-        mentionedComRc.size.height = _companyUpdateDetail.mentionedCompanies.count * _tvMentionedCompanies.rowHeight;
-        mentionedComRc.origin.y = CGRectGetMaxY(_comUpdateDetailCell.frame) + 5;
-        _tvMentionedCompanies.frame = mentionedComRc;
-        
-    }
-    else
-    {
-        [_tvMentionedCompanies removeFromSuperview];
-    }
+//    _tvMentionedCompanies.hidden = (_companyUpdateDetail.mentionedCompanies.count <= 0);
+//    if (!_tvMentionedCompanies.hidden)
+//    {
+//        [_scrollView addSubview:_tvMentionedCompanies];
+//        
+//        CGRect mentionedComRc = _tvMentionedCompanies.frame;
+//        
+//        if (ISIPADDEVICE)
+//        {
+//            mentionedComRc.size.width = IPAD_CONTENT_WIDTH;
+//            mentionedComRc.origin.x = (_tvMentionedCompanies.superview.frame.size.width - IPAD_CONTENT_WIDTH) / 2 - 5;
+//        }
+//        
+//        mentionedComRc.size.height = _companyUpdateDetail.mentionedCompanies.count * _tvMentionedCompanies.rowHeight;
+//        mentionedComRc.origin.y = CGRectGetMaxY(_comUpdateDetailCell.frame) + 5;
+//        _tvMentionedCompanies.frame = mentionedComRc;
+//        
+//    }
+//    else
+//    {
+//        [_tvMentionedCompanies removeFromSuperview];
+//    }
 }
 
 -(void)_adjustScrollviewContentSize
 {
     [self _updateMentionedCompanyTV];
     
-    float tvMentionedComHeight = _tvMentionedCompanies.hidden ? 0 : _tvMentionedCompanies.frame.size.height;
-    if (_scrollView.frame.size.height - tvMentionedComHeight > _comUpdateDetailCell.height)
-    {
-        _comUpdateDetailCell.height = _scrollView.frame.size.height - tvMentionedComHeight;
-    }
+//    float tvMentionedComHeight = _tvMentionedCompanies.hidden ? 0 : _tvMentionedCompanies.frame.size.height;
+//    if (_scrollView.frame.size.height - tvMentionedComHeight > _comUpdateDetailCell.height)
+//    {
+//        _comUpdateDetailCell.height = _scrollView.frame.size.height - tvMentionedComHeight;
+//    }
     
-    float realContentHeight = _comUpdateDetailCell.height + tvMentionedComHeight;
+    float realContentHeight = _comUpdateDetailCell.height; //+ tvMentionedComHeight;
     
     CGSize contentSize = self.scrollView.contentSize;
     contentSize.height = realContentHeight + 10;
@@ -283,7 +283,7 @@
 {
     [super viewWillAppear:animated];
     
-    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBarHidden = !_btnSwitchBack.hidden;
     [self.navigationController.navigationBar addSubview:_btnPrevUpdate];
     [self.navigationController.navigationBar addSubview:_btnNextUpdate];
     [self _updateNaviBtnState];
@@ -802,7 +802,7 @@
             _companyUpdateDetail = [parser parseGetCompanyUpdateDetail];
             
             [self _updateUIWithUpdateDetail];
-            //[_tvContent reloadData];
+            [_tvInfo reloadData];
         }
         
     }];
@@ -846,20 +846,31 @@
 }
 
 #pragma mark - tableview datasource
+-(int)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (tableView == _tvInfo)
+    {
+        return 2;
+    }
+    
+    return 0;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == _tvMentionedCompanies)
-    {
-        return _companyUpdateDetail.mentionedCompanies.count;
-    }
-    else if (tableView == _tvInfo)
+    if (tableView == _tvInfo)
     {
         if (section == 0)
         {
             return 1;
         }
+        else if (section == 1)
+        {
+            int count = _companyUpdateDetail.mentionedCompanies.count;
+            return count;
+        }
     }
-    
+
     return 0;
 }
 
@@ -868,30 +879,50 @@
     int row = indexPath.row;
     int section = indexPath.section;
     
-    if (tableView == _tvMentionedCompanies)
-    {
-        static NSString *cellID = @"GGComDetailEmployeeCell";
-        GGComDetailEmployeeCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        if (cell == nil)
-        {
-            cell = [GGComDetailEmployeeCell viewFromNibWithOwner:self];
-        }
-        
-        GGCompany *data = _companyUpdateDetail.mentionedCompanies[row];
-        cell.lblTitle.text = data.name;
-        cell.lblSubTitle.text = data.website;
-        cell.lblThirdLine.text = [NSString stringWithFormat:@"%@,%@,%@", data.city, data.state, data.country];
-        [cell.ivPhoto setImageWithURL:[NSURL URLWithString:data.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
-        
-        cell.tag = row;
-        
-        return cell;
-    }
-    else if (tableView == _tvInfo)
+//    if (tableView == _tvMentionedCompanies)
+//    {
+//        static NSString *cellID = @"GGComDetailEmployeeCell";
+//        GGComDetailEmployeeCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+//        if (cell == nil)
+//        {
+//            cell = [GGComDetailEmployeeCell viewFromNibWithOwner:self];
+//        }
+//        
+//        GGCompany *data = _companyUpdateDetail.mentionedCompanies[row];
+//        cell.lblTitle.text = data.name;
+//        cell.lblSubTitle.text = data.website;
+//        cell.lblThirdLine.text = [NSString stringWithFormat:@"%@,%@,%@", data.city, data.state, data.country];
+//        [cell.ivPhoto setImageWithURL:[NSURL URLWithString:data.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+//        
+//        cell.tag = row;
+//        
+//        return cell;
+//    }
+//    else
+        if (tableView == _tvInfo)
     {
         if (section == 0)
         {
             return [self _relatedArticleCell];
+        }
+        else if (section == 1)
+        {
+            static NSString *cellID = @"GGComDetailEmployeeCell";
+            GGComDetailEmployeeCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+            if (cell == nil)
+            {
+                cell = [GGComDetailEmployeeCell viewFromNibWithOwner:self];
+            }
+            
+            GGCompany *data = _companyUpdateDetail.mentionedCompanies[row];
+            cell.lblTitle.text = data.name;
+            cell.lblSubTitle.text = data.website;
+            cell.lblThirdLine.text = [NSString stringWithFormat:@"%@,%@,%@", data.city, data.state, data.country];
+            [cell.ivPhoto setImageWithURL:[NSURL URLWithString:data.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+            
+            cell.tag = row;
+            
+            return cell;
         }
     }
     
@@ -901,18 +932,23 @@
 #pragma mark - tableview delegate
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int row = indexPath.row;
+    //int row = indexPath.row;
     int section = indexPath.section;
     
-    if (tableView == _tvMentionedCompanies)
-    {
-        return [GGComDetailEmployeeCell HEIGHT];
-    }
-    else if (tableView == _tvInfo)
+//    if (tableView == _tvMentionedCompanies)
+//    {
+//        return [GGComDetailEmployeeCell HEIGHT];
+//    }
+//    else
+        if (tableView == _tvInfo)
     {
         if (section == 0)
         {
             return [GGUpdateInfoRelatedArticleCell HEIGHT];
+        }
+        else if (section == 1)
+        {
+            return [GGComDetailEmployeeCell HEIGHT];
         }
     }
     
@@ -921,16 +957,38 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //int row = indexPath.row;
+    int section = indexPath.section;
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (tableView == _tvMentionedCompanies)
+//    if (tableView == _tvMentionedCompanies)
+//    {
+//        GGCompany *data = _companyUpdateDetail.mentionedCompanies[indexPath.row];
+//        if (data.ID)
+//        {
+//            GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+//            vc.companyID = data.ID;
+//            [self.navigationController pushViewController:vc animated:YES];
+//        }
+//    }
+//    else
+        if (tableView == _tvInfo)
     {
-        GGCompany *data = _companyUpdateDetail.mentionedCompanies[indexPath.row];
-        if (data.ID)
+        if (section == 0)
         {
-            GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-            vc.companyID = data.ID;
-            [self.navigationController pushViewController:vc animated:YES];
+            
+        }
+        else if (section == 1)
+        {
+            GGCompany *data = _companyUpdateDetail.mentionedCompanies[indexPath.row];
+            if (data.ID)
+            {
+                GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+                vc.companyID = data.ID;
+                [self.navigationController pushViewController:vc animated:YES];
+                self.navigationController.navigationBarHidden = NO;
+            }
         }
     }
 }

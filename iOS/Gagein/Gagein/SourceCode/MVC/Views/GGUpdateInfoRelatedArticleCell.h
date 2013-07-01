@@ -11,5 +11,6 @@
 @interface GGUpdateInfoRelatedArticleCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblCount;
+@property (weak, nonatomic) IBOutlet UIView *viewBg;
 
 @end

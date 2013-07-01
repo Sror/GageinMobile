@@ -29,7 +29,7 @@
 -(void)awakeFromNib
 {
     _lblTitle.text = _lblSubTitle.text = _lblThirdLine.text = @"";
-    self.viewCellBg.backgroundColor = GGSharedColor.silver;
+    //self.viewCellBg.backgroundColor = GGSharedColor.silver;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [GGUtils applyLogoStyleToView:_ivPhoto];
@@ -37,7 +37,7 @@
 
 +(float)HEIGHT
 {
-    return 65.f;
+    return 75.f;
 }
 
 @end

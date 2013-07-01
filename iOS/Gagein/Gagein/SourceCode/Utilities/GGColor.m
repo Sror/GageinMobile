@@ -66,6 +66,11 @@ DEF_SINGLETON(GGColor)
     return UIColorFromRGB(0xE5E5E5);
 }
 
+-(UIColor *)silverLight
+{
+    return UIColorFromRGB(0xEFEFEF);
+}
+
 -(UIColor *)darkGray
 {
     return UIColorFromRGB(0x333333);

@@ -27,6 +27,7 @@ AS_SINGLETON(GGColor)
 -(UIColor *)grayTopText;
 -(UIColor *)graySettingBg;
 -(UIColor *)silver;
+-(UIColor *)silverLight;
 
 -(UIColor *)colorFromR:(int)aRed g:(int)aGreen b:(int)aBlue;
 -(UIColor *)random;
