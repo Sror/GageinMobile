@@ -11,5 +11,6 @@
 
 @interface GGRelatedArticlesVC : GGScrollToHideVC
 <UITableViewDelegate, UITableViewDataSource>
+@property (assign) long long                      updateID;
 @property (assign) long long                      similarID;
 @end

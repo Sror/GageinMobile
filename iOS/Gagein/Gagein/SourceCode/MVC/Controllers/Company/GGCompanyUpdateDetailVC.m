@@ -339,7 +339,8 @@
 {
     //BOOL needAnimation = (_webviewSignal.hidden == aShow);
     _webviewSignal.hidden = !aShow;
-    _scrollView.hidden = _webView.hidden = aShow;
+    _scrollView.hidden = aShow;
+    _webView.hidden = ([self _hasTextView] ? YES : aShow);
     
     if (!aShow)
     {
@@ -704,6 +705,11 @@
     [self showCheckMarkHUDWithText:@"Saved"];
 }
 
+-(BOOL)_hasTextView
+{
+    return _companyUpdateDetail.textview.length > 0;
+}
+
 #pragma mark - UI
 -(void)_updateUIWithUpdateDetail
 {
@@ -717,7 +723,7 @@
     [self _relatedArticleCell].lblCount.text = [NSString stringWithFormat:@"%d", _companyUpdateDetail.newsSimilarCount];
     
     //
-    if (_companyUpdateDetail.textview.length <= 0)
+    if (![self _hasTextView])
     {
         NSURL *url = [NSURL URLWithString:_companyUpdateDetail.url];
         [_webView loadRequest:[NSURLRequest requestWithURL:url]];
@@ -1003,6 +1009,7 @@
         {
             GGRelatedArticlesVC *vc = [[GGRelatedArticlesVC alloc] init];
             vc.similarID = _companyUpdateDetail.newsSimilarID;
+            vc.updateID = _companyUpdateDetail.ID;
             [self.navigationController pushViewController:vc animated:YES];
             self.navigationController.navigationBarHidden = NO;
         }

@@ -220,6 +220,16 @@
             if (page.items.count)
             {
                 [_articles removeAllObjects];
+                
+//                for (GGCompanyUpdate *update in page.items)
+//                {
+//                    DLog(@"related id: %lld, origin id:%lld, similar id:%lld", update.ID, _updateID, _similarID);
+//                    if (update.ID != _updateID)
+//                    {
+//                        [_articles addObject:update];
+//                    }
+//                }
+                
                 [_articles addObjectsFromArray:page.items];
             }
             
