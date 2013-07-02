@@ -12,6 +12,7 @@
 
 @interface GGWelcomeVC ()
 @property (weak, nonatomic) IBOutlet UIImageView *ivTopLogo;
+@property (weak, nonatomic) IBOutlet UIButton *btnGetStarted;
 
 @end
 
@@ -37,6 +38,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = GGSharedColor.bgGray;
+    [_btnGetStarted setBackgroundImage:GGSharedImagePool.bgBtnOrangeDarkEdge forState:UIControlStateNormal];
     
     int pageCount = 4;
     for (int i = 0; i < pageCount; i++)
@@ -102,12 +104,15 @@
     CGSize contentSize = CGSizeMake(orientRc.size.width * _welcomePages.count, orientRc.size.height);
     self.scrollView.contentSize = contentSize;
     
+    //[_btnGetStarted centerMeHorizontally];
+    
 }
 
 - (void)viewDidUnload {
     [self setPageControl:nil];
     [self setScrollView:nil];
     [self setIvTopLogo:nil];
+    [self setBtnGetStarted:nil];
     [super viewDidUnload];
 }
 
@@ -155,6 +160,12 @@
 //{
 //    return _imgPageDotSelected;
 //}
+
+-(IBAction)getStartedAction:(id)sender
+{
+    DLog(@"show sign up screen");
+    [self postNotification:GG_NOTIFY_GET_STARTED];
+}
 
 
 @end
