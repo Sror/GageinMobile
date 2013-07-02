@@ -145,10 +145,10 @@
 
 -(float)_updateIpadCellHeightForIndexPath:(NSIndexPath *)indexPath
 {
-    return [self _updateIpadCellForIndexPath:indexPath].frame.size.height;
+    return [self _updateIpadCellForIndexPath:indexPath needDetail:NO].frame.size.height;
 }
 
--(GGCompanyUpdateIpadCell *)_updateIpadCellForIndexPath:(NSIndexPath *)indexPath
+-(GGCompanyUpdateIpadCell *)_updateIpadCellForIndexPath:(NSIndexPath *)indexPath needDetail:(BOOL)aNeedDetail
 {
     int row = indexPath.row;
     
@@ -164,7 +164,7 @@
                               expandIndex:_tvExpandHelper.expandingIndex
                             isTvExpanding:_tvExpandHelper.isExpanding
                                logoAction:logoAction
-                           headlineAction:headlineAction];
+                           headlineAction:headlineAction needDetail:aNeedDetail];
     
     return cell;
 }
@@ -173,7 +173,7 @@
 {
     if (ISIPADDEVICE)
     {
-        return [self _updateIpadCellForIndexPath:indexPath];
+        return [self _updateIpadCellForIndexPath:indexPath needDetail:YES];
     }
     else
     {

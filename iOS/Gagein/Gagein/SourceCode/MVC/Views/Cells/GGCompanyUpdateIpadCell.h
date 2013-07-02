@@ -33,4 +33,6 @@
 
 -(void)adjustLayout;
 -(void)updateWithData:(GGCompanyUpdate *)aData;
+
+-(void)setExpanded:(BOOL)expanded needDetail:(BOOL)aNeedDetail;
 @end

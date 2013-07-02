@@ -91,8 +91,13 @@
 
 -(void)setExpanded:(BOOL)expanded
 {
+    [self setExpanded:expanded needDetail:YES];
+}
+
+-(void)setExpanded:(BOOL)expanded needDetail:(BOOL)aNeedDetail
+{
     _expanded = expanded;
-    [self _doExpand];
+    [self _doExpandNeedGetDetail:aNeedDetail];
 }
 
 -(void)updateWithData:(GGCompanyUpdate *)aData
@@ -170,6 +175,11 @@
 
 -(void)_doExpand
 {
+    [self _doExpandNeedGetDetail:YES];
+}
+
+-(void)_doExpandNeedGetDetail:(BOOL)aNeedGetDetail
+{
     [_panel removeFromSuperview];
     [_actionBar removeFromSuperview];
     
@@ -203,7 +213,10 @@
         
         [self adjustLayout];
         
-        [self _getDetail];
+        if (aNeedGetDetail)
+        {
+            [self _getDetail];
+        }
     }
 }
 

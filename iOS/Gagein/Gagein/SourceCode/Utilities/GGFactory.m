@@ -67,6 +67,7 @@
                                   isTvExpanding:(BOOL)aIsTvExpanding
                                      logoAction:(GGTagetActionPair *)aLogoAction
                                  headlineAction:(GGTagetActionPair *)aHeadlineAction
+                                     needDetail:(BOOL)aNeedDetail
 {
     GGCompanyUpdateIpadCell *cell = aDequeuedCell;
     
@@ -94,11 +95,11 @@
     
     if (aDataIndex == aExpandIndex)
     {
-        cell.expanded = aIsTvExpanding;
+        [cell setExpanded:aIsTvExpanding needDetail:aNeedDetail];
     }
     else
     {
-        cell.expanded = NO;
+        [cell setExpanded:NO needDetail:aNeedDetail];
     }
     
     return cell;

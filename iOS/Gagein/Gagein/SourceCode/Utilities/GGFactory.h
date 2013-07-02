@@ -29,7 +29,8 @@
                                     expandIndex:(NSUInteger)aExpandIndex
                                   isTvExpanding:(BOOL)aIsTvExpanding
                                      logoAction:(GGTagetActionPair *)aLogoAction
-                                 headlineAction:(GGTagetActionPair *)aHeadlineAction;
+                                 headlineAction:(GGTagetActionPair *)aHeadlineAction
+                                     needDetail:(BOOL)aNeedDetail;
 
 +(GGCompanyHappeningCell *)cellOfHappening:(id)aDequeuedCell
                                       data:(GGHappening *)aData
