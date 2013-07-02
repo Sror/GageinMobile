@@ -50,6 +50,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnLinkedIn;
 @property (weak, nonatomic) IBOutlet UIButton *btnInfo;
 
+@property (weak, nonatomic) IBOutlet UITableView *tvContent;
+
 @end
 
 
@@ -68,6 +70,8 @@
     //UITableView             *_tvMentionedCompanies;
     
     BOOL                    _isTabbarHiddenWhenLoaded;
+    
+    //UITableView             *_tvContent;
 }
 
 
@@ -278,6 +282,7 @@
     [self setBtnLike:nil];
     [self setBtnInfo:nil];
     [self setTvInfo:nil];
+    [self setTvContent:nil];
     [super viewDidUnload];
 }
 

@@ -167,7 +167,6 @@
 //    
     self.navigationItem.hidesBackButton = YES;
     
-    [self _decideCanPanToOpenDrawerWithOrient:self.interfaceOrientation];
 }
 
 -(void)_customizeNaviTitleView
@@ -260,6 +259,11 @@
     if (ISIPADDEVICE && self.presentedViewController == nil)
     {
         [GGSharedDelegate.drawerVC adjustCenterRect];
+    }
+    
+    if (self.presentingViewController == nil)
+    {
+        [self _decideCanPanToOpenDrawerWithOrient:self.interfaceOrientation];
     }
 }
 
@@ -714,9 +718,10 @@
                 [GGSharedDelegate.drawerVC closeDrawerAnimated:NO completion:nil];
             }
         }
+        
+        [self _decideCanPanToOpenDrawerWithOrient:toInterfaceOrientation];
     }
     
-    [self _decideCanPanToOpenDrawerWithOrient:toInterfaceOrientation];
     [GGSsgrfActionListener sharedInstance].delegate = GGSharedDelegate.topMostVC;
 }
 
