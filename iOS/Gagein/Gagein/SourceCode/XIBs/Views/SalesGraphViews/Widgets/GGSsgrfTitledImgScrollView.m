@@ -13,7 +13,7 @@
 #import "GGSsgrfRndImgButton.h"
 #import <QuartzCore/QuartzCore.h>
 
-
+#import "GGCompanyUpdate.h"
 
 //#define IMAGE_GAP   5
 
@@ -255,8 +255,19 @@
     
     for (GGSsgrfRndImgButton *button in _imageButtons)
     {
-        [button addTarget:self action:@selector(pushAwayFromIndex:)];
+        [button addTarget:self action:@selector(pushAwayFromButton:)];
     }
+    
+    int popIndex = 0;//_imageButtons.count / 2;
+    
+    if (_imageButtons.count > 0)
+    {
+        [self showInfoWidgetAnimatedWithPushButton:_imageButtons[popIndex]];
+        GGCompany *company = self.data.mentionedCompanies[popIndex];
+        [_infoWidget updateWithCompany:company];
+        [self pushAwayFromIndex:popIndex];
+    }
+    
 }
 
 #define THIS_ANIM_DURATION  .4f
@@ -312,11 +323,17 @@
     [_infoWidget.layer addAnimation:alertAnimation forKey:@"alertAnimation"];
 }
 
--(void)pushAwayFromIndex:(UIButton *)aButton
+-(void)pushAwayFromButton:(UIButton *)aButton
 {
     int index = aButton.tag;
+    [self pushAwayFromIndex:index];
+}
+
+-(void)pushAwayFromIndex:(NSUInteger)aIndex
+{
+    //int index = aButton.tag;
     int count = _imageButtons.count;
-    UIButton *pushedButton = _imageButtons[index];
+    UIButton *pushedButton = _imageButtons[aIndex];
     _infoWidget.hidden = YES;
     
     if (count <= 1)
@@ -348,13 +365,13 @@
     [UIView animateWithDuration:THIS_ANIM_DURATION / 4 animations:^{
         
         // push buttons before
-        if (index > 0)
+        if (aIndex > 0)
         {
-            for (int i = index - 1; i >= 0; i--)
+            for (int i = aIndex - 1; i >= 0; i--)
             {
                 CGRect targetRc = rectsPtr[i + 1];
                 
-                float distance = (i == index - 1) ? (_gap + _pushGap) : _gap;
+                float distance = (i == aIndex - 1) ? (_gap + _pushGap) : _gap;
                 
                 rectsPtr[i] = CGRectMake((targetRc.origin.x - distance - [self imageSize].width)
                                              , targetRc.origin.y
@@ -364,13 +381,13 @@
         }
         
         // push buttons after
-        if (index < count - 1)
+        if (aIndex < count - 1)
         {
-            for (int i = index + 1; i < count; i++)
+            for (int i = aIndex + 1; i < count; i++)
             {
                 CGRect targetRc = rectsPtr[i - 1];
                 
-                float distance = (i == index + 1) ? (_gap + _pushGap) : _gap;
+                float distance = (i == aIndex + 1) ? (_gap + _pushGap) : _gap;
                 
                 rectsPtr[i] = CGRectMake((targetRc.origin.x + [self imageSize].width + distance)
                                              , targetRc.origin.y

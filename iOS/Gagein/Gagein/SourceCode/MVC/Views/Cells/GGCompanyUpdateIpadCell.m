@@ -115,6 +115,7 @@
                 if (parser.isOK)
                 {
                     _detailData = [parser parseGetCompanyUpdateDetail];
+                    _panel.data = _detailData;
                     _data.hasBeenRead = _detailData.hasBeenRead = YES;
                     [GGSharedRuntimeData.updateDetailCache add:_detailData];
                     
@@ -126,6 +127,7 @@
         else
         {
             _detailData = cachedUpdateDetail;
+            _panel.data = _detailData;
             [self doUpdateUI];
         }
     }
@@ -179,6 +181,8 @@
     {
         float positionX = 2;//self.viewContent.frame.origin.x + 2;
         _panel = [GGSsgrfPanelUpdate viewFromNibWithOwner:self];
+        _panel.data = _detailData;
+        
         float thisH =  CGRectGetMaxY(_lblDescription.frame) + 5;//self.frame.size.height;
         [_panel setPos:CGPointMake(positionX, thisH)];
         [self.viewContent addSubview:_panel];
