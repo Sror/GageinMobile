@@ -388,6 +388,9 @@
 		EA9D2F5017823BF7004CA4BC /* GGRelatedArticlesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D2F4F17823BF6004CA4BC /* GGRelatedArticlesVC.m */; };
 		EA9D2F5317827ACC004CA4BC /* btnCompanyHappeing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9D2F5117827ACC004CA4BC /* btnCompanyHappeing@2x.png */; };
 		EA9D2F5417827ACC004CA4BC /* btnCompanyUpdate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9D2F5217827ACC004CA4BC /* btnCompanyUpdate@2x.png */; };
+		EA9D2F5817828077004CA4BC /* logoCompanyDefaultV2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9D2F5517828075004CA4BC /* logoCompanyDefaultV2@2x.png */; };
+		EA9D2F5917828077004CA4BC /* logoNewsDefaultV2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9D2F5617828076004CA4BC /* logoNewsDefaultV2@2x.png */; };
+		EA9D2F5A17828077004CA4BC /* logoPersonDefaultV2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9D2F5717828076004CA4BC /* logoPersonDefaultV2@2x.png */; };
 		EA9E00041770068100127233 /* ssgrf_bg_btn_follow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9EFFF71770068100127233 /* ssgrf_bg_btn_follow@2x.png */; };
 		EA9E00051770068100127233 /* ssgrf_bg_btn_unfollow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9EFFF81770068100127233 /* ssgrf_bg_btn_unfollow@2x.png */; };
 		EA9E00061770068100127233 /* ssgrf_btn_cb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9EFFF91770068100127233 /* ssgrf_btn_cb@2x.png */; };
@@ -1162,6 +1165,9 @@
 		EA9D2F4F17823BF6004CA4BC /* GGRelatedArticlesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGRelatedArticlesVC.m; sourceTree = "<group>"; };
 		EA9D2F5117827ACC004CA4BC /* btnCompanyHappeing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnCompanyHappeing@2x.png"; sourceTree = "<group>"; };
 		EA9D2F5217827ACC004CA4BC /* btnCompanyUpdate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnCompanyUpdate@2x.png"; sourceTree = "<group>"; };
+		EA9D2F5517828075004CA4BC /* logoCompanyDefaultV2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logoCompanyDefaultV2@2x.png"; sourceTree = "<group>"; };
+		EA9D2F5617828076004CA4BC /* logoNewsDefaultV2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logoNewsDefaultV2@2x.png"; sourceTree = "<group>"; };
+		EA9D2F5717828076004CA4BC /* logoPersonDefaultV2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logoPersonDefaultV2@2x.png"; sourceTree = "<group>"; };
 		EA9E00001770068100127233 /* ssgrf_btn_twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_twitter@2x.png"; sourceTree = "<group>"; };
 		EA9E00011770068100127233 /* ssgrf_btn_yahoo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_yahoo@2x.png"; sourceTree = "<group>"; };
 		EA9E00021770068100127233 /* ssgrf_btn_youtube@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_youtube@2x.png"; sourceTree = "<group>"; };
@@ -2558,6 +2564,9 @@
 		EACAE0B117094A3100E7088F /* 2X */ = {
 			isa = PBXGroup;
 			children = (
+				EA9D2F5517828075004CA4BC /* logoCompanyDefaultV2@2x.png */,
+				EA9D2F5617828076004CA4BC /* logoNewsDefaultV2@2x.png */,
+				EA9D2F5717828076004CA4BC /* logoPersonDefaultV2@2x.png */,
 				EA9D2F5117827ACC004CA4BC /* btnCompanyHappeing@2x.png */,
 				EA9D2F5217827ACC004CA4BC /* btnCompanyUpdate@2x.png */,
 				EA9D2F3F1781FEC2004CA4BC /* btnUpdateInfo@2x.png */,
@@ -3571,6 +3580,9 @@
 				EA9D2F4A17822B27004CA4BC /* GGUpdateInfoRelatedArticleCell.xib in Resources */,
 				EA9D2F5317827ACC004CA4BC /* btnCompanyHappeing@2x.png in Resources */,
 				EA9D2F5417827ACC004CA4BC /* btnCompanyUpdate@2x.png in Resources */,
+				EA9D2F5817828077004CA4BC /* logoCompanyDefaultV2@2x.png in Resources */,
+				EA9D2F5917828077004CA4BC /* logoNewsDefaultV2@2x.png in Resources */,
+				EA9D2F5A17828077004CA4BC /* logoPersonDefaultV2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

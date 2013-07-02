@@ -21,11 +21,11 @@ DEF_SINGLETON(GGImagePool)
         
         _bgNavibar = [[UIImage imageNamed:@"bgNavibar"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
         
-        _logoDefaultCompany = [UIImage imageNamed:@"logoDefaultCompany"];
+        _logoDefaultCompany = [UIImage imageNamed:@"logoCompanyDefaultV2"];//[UIImage imageNamed:@"logoDefaultCompany"];
         
-        _logoDefaultPerson = [UIImage imageNamed:@"logoDefaultPerson"];
+        _logoDefaultPerson = [UIImage imageNamed:@"logoPersonDefaultV2"]; //[UIImage imageNamed:@"logoDefaultPerson"];
         
-        _logoDefaultNews = [UIImage imageNamed:@"logoNewsDefault"];
+        _logoDefaultNews = [UIImage imageNamed:@"logoNewsDefaultV2"];//[UIImage imageNamed:@"logoNewsDefault"];
         
         _bgBtnOrange = [[UIImage imageNamed:@"orangeBtnBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 10, 30, 10)];
         
