@@ -241,7 +241,6 @@
     _infoWidget = [[GGSsgrfInfoWidgetView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
 
     _infoWidget.hidden = YES;
-    
 }
 
 -(float)scrollViewHeight
@@ -331,6 +330,7 @@
 
 -(void)pushAwayFromIndex:(NSUInteger)aIndex
 {
+    //self.viewScroll.backgroundColor = GGSharedColor.random;
     //int index = aButton.tag;
     int count = _imageButtons.count;
     UIButton *pushedButton = _imageButtons[aIndex];
@@ -338,12 +338,6 @@
     
     if (count <= 1)
     {
-//        _infoWidget.hidden = NO;
-//        _infoWidget.viewTitledScroll.viewScroll.contentOffset = CGPointZero;
-//        _infoWidget.center = pushedButton.center;
-//        [self.viewScroll addSubview:_infoWidget];
-//        //self.viewScroll.backgroundColor = GGSharedColor.random;
-
         [self showInfoWidgetAnimatedWithPushButton:pushedButton];
         return; // dont need
     }
@@ -398,17 +392,28 @@
         
         CGRect firstRc = rectsPtr[0];
         
-        // adjust the offset
-        if (ABS(firstRc.origin.x) > 0.001f )
+        float minOffsetX = ([GGSsgrfInfoWidgetView WIDTH] - self.imageSize.width) / 2;
+        if (firstRc.origin.x < minOffsetX)
         {
-            float offsetX = -firstRc.origin.x;
-            
+            float offsetX = minOffsetX - firstRc.origin.x;
             for (int i = 0; i < count; i++)
             {
                 //CGRect theRc = rectsPtr[i];
                 rectsPtr[i] = CGRectOffset(rectsPtr[i], offsetX, 0);
             }
         }
+        
+//        // adjust the offset
+//        if (ABS(firstRc.origin.x) > 0.001f )
+//        {
+//            float offsetX = -firstRc.origin.x;
+//            
+//            for (int i = 0; i < count; i++)
+//            {
+//                //CGRect theRc = rectsPtr[i];
+//                rectsPtr[i] = CGRectOffset(rectsPtr[i], offsetX, 0);
+//            }
+//        }
         
         for (int i = 0; i < count; i++)
         {
@@ -418,7 +423,7 @@
         }
         
         // set scroll content size
-        float contentWidth = CGRectGetMaxX(rectsPtr[count - 1]) - (rectsPtr[0]).origin.x;
+        float contentWidth = CGRectGetMaxX(rectsPtr[count - 1]) - (rectsPtr[0]).origin.x + [GGSsgrfInfoWidgetView WIDTH];
         self.viewScroll.contentSize = CGSizeMake(contentWidth, self.viewScroll.contentSize.height);
 
         float contentOffsetX = pushedButton.frame.origin.x - posRelative;
@@ -473,7 +478,7 @@
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    [self hideInfoWidget];
+    //[self hideInfoWidget];
 }
 
 @end

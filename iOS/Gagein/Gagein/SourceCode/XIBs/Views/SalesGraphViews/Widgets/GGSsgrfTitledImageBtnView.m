@@ -37,6 +37,11 @@
     }
 }
 
++(float)WIDTH
+{
+    return THIS_WIDTH;
+}
+
 -(void)_doInit
 {
     CGRect thisRc = self.frame;

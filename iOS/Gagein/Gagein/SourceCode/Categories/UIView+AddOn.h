@@ -46,5 +46,6 @@
 -(NSString *)frameString;
 
 +(float)HEIGHT;
++(float)WIDTH;
 
 @end

@@ -44,6 +44,11 @@
     [self setScrollTitle:@"Similar"];
 }
 
++(float)WIDTH
+{
+    return [GGSsgrfTitledImageBtnView WIDTH];
+}
+
 #pragma mark - interface
 -(void)setTitle:(NSString *)aTitle
 {

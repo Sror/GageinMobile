@@ -202,4 +202,9 @@ static MBProgressHUD * hud;
     return 0.f;
 }
 
++(float)WIDTH
+{
+    return 0.f;
+}
+
 @end

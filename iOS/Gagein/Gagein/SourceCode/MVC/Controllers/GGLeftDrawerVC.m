@@ -64,5 +64,9 @@
 //    NSLog(@"selected");
 //}
 
+-(BOOL)canHearAction
+{
+    return NO;
+}
 
 @end

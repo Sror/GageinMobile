@@ -37,6 +37,11 @@ DEF_SINGLETON(GGSsgrfActionListener)
     return self;
 }
 
+-(void)setDelegate:(id<GGSsgrfActionDelegate>)delegate
+{
+    _delegate = delegate;
+}
+
 -(void)handleNotification:(NSNotification *)notification
 {
     NSString *notiName = notification.name;

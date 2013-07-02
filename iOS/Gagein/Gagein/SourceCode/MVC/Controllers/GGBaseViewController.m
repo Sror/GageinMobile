@@ -279,7 +279,10 @@
     
     [self _adjustCustomNaviTitlePosition];
     DLog(@"%@: viewDidAppear", self.className);
-    [GGSsgrfActionListener sharedInstance].delegate = self;
+    if ([self canHearAction])
+    {
+        [GGSsgrfActionListener sharedInstance].delegate = self;
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -287,7 +290,16 @@
     [super viewWillDisappear:animated];
     
     DLog(@"%@: viewWillDisappear", self.className);
-    [GGSsgrfActionListener sharedInstance].delegate = nil;
+    if ([self canHearAction])
+    {
+        [GGSsgrfActionListener sharedInstance].delegate = nil;
+    }
+}
+
+-(BOOL)canHearAction
+{
+    DLog(@"%@", self.className);
+    return YES;
 }
 
 -(void)viewDidDisappear:(BOOL)animated
