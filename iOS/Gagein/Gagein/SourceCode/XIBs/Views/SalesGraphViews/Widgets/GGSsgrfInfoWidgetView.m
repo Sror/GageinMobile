@@ -85,6 +85,11 @@
     [_viewTitledImage setImageURL:aImageUrl placeholder:aPlaceholder];
 }
 
+-(void)applyCircleEffect:(BOOL)aApplyCircle
+{
+    [_viewTitledImage applyCircleEffect:aApplyCircle];
+}
+
 -(void)setMainTaget:(id)aTarget action:(SEL)aAction
 {
     [_viewTitledImage resetTarget:aTarget action:aAction];
@@ -184,6 +189,8 @@
         {
             [self setMainImageUrl:aPerson.photoPath placeholder:GGSharedImagePool.logoDefaultPerson];
         }
+        
+        [self applyCircleEffect:YES];
         
         [self makeMeSimple];
     }
