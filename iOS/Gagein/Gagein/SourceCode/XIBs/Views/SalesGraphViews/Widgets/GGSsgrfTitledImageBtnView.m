@@ -11,7 +11,7 @@
 #import "GGSsgrfDblTitleView.h"
 #import "GGSsgrfRndImgButton.h"
 
-#define THIS_WIDTH   180.f
+#define THIS_WIDTH   200.f
 #define THIS_HEIGHT  180.f
 
 #define MAIN_IMAGE_WIDTH    90.f

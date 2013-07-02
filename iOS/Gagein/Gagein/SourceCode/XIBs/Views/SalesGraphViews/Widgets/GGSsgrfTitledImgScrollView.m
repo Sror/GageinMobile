@@ -24,37 +24,6 @@
 
 #define SCROLL_VIEW_CAP_WIDTH   20
 
-//
-@implementation GGTouchScrollView
-
-//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    [super touchesBegan:touches withEvent:event];
-//    _touching = YES;
-//    DLog(@"touches began");
-//}
-//
-//-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    [super touchesCancelled:touches withEvent:event];
-//    _touching = NO;
-//    DLog(@"touches cancelled");
-//}
-//
-//-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    [super touchesEnded:touches withEvent:event];
-//    _touching = NO;
-//    DLog(@"touches ended");
-//}
-//
-//-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    [super touchesMoved:touches withEvent:event];
-//    DLog(@"touches moved");
-//}
-
-@end
 
 //
 @implementation GGSsgrfTitledImgScrollView
@@ -76,7 +45,7 @@
 
 -(void)_doInit
 {
-    _gap = 5.f;
+    _gap = 10.f;
     
     CGSize thisSize = self.bounds.size;
     _imageButtons = [NSMutableArray array];
@@ -94,7 +63,7 @@
     
     //
     CGRect scrollRc = CGRectMake(SCROLL_VIEW_CAP_WIDTH, CGRectGetMaxY(_lblTitle.frame) + 15, thisSize.width - SCROLL_VIEW_CAP_WIDTH * 2, [self scrollViewHeight]);
-    _viewScroll = [[GGTouchScrollView alloc] initWithFrame:scrollRc];
+    _viewScroll = [[UIScrollView alloc] initWithFrame:scrollRc];
     _viewScroll.showsHorizontalScrollIndicator = NO;
     _viewScroll.alwaysBounceHorizontal = YES;
     _viewScroll.delegate = self;
@@ -144,12 +113,9 @@
         [button addTarget:_imageBtnTarget action:_imageBtnAction];
         [_viewScroll addSubview:button];
         [_imageButtons addObject:button];
-        
-        //offsetX = CGRectGetMaxX(button.frame) + _gap;
     }
     
     [self reArrangeImagePos];
-     //[self _setContentWidth:offsetX - _gap];
 }
 
 

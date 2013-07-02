@@ -10,11 +10,6 @@
 #import "GGSsgrfBaseWidget.h"
 
 
-//
-@interface GGTouchScrollView : UIScrollView
-@property (readonly)    BOOL    touching;
-@end
-
 
 //
 @class GGSsgrfInfoWidgetView;
@@ -28,7 +23,7 @@
     float                       _gap;
     
 }
-@property (strong, nonatomic) GGTouchScrollView           *viewScroll;
+@property (strong, nonatomic) UIScrollView           *viewScroll;
 
 -(void)setTitle:(NSString *)aTitle;
 -(void)setTaget:(id)aTarget action:(SEL)aAction;
