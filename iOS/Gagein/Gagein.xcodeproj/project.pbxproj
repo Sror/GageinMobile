@@ -386,7 +386,7 @@
 		EA9D2F4817822B15004CA4BC /* GGUpdateInfoRelatedArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D2F4717822B14004CA4BC /* GGUpdateInfoRelatedArticleCell.m */; };
 		EA9D2F4A17822B27004CA4BC /* GGUpdateInfoRelatedArticleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9D2F4917822B26004CA4BC /* GGUpdateInfoRelatedArticleCell.xib */; };
 		EA9D2F5017823BF7004CA4BC /* GGRelatedArticlesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D2F4F17823BF6004CA4BC /* GGRelatedArticlesVC.m */; };
-		EA9D2F5317827ACC004CA4BC /* btnCompanyHappeing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9D2F5117827ACC004CA4BC /* btnCompanyHappeing@2x.png */; };
+		EA9D2F5317827ACC004CA4BC /* btnCompanyHappening@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9D2F5117827ACC004CA4BC /* btnCompanyHappening@2x.png */; };
 		EA9D2F5417827ACC004CA4BC /* btnCompanyUpdate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9D2F5217827ACC004CA4BC /* btnCompanyUpdate@2x.png */; };
 		EA9D2F5817828077004CA4BC /* logoCompanyDefaultV2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9D2F5517828075004CA4BC /* logoCompanyDefaultV2@2x.png */; };
 		EA9D2F5917828077004CA4BC /* logoNewsDefaultV2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9D2F5617828076004CA4BC /* logoNewsDefaultV2@2x.png */; };
@@ -1163,7 +1163,7 @@
 		EA9D2F4917822B26004CA4BC /* GGUpdateInfoRelatedArticleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGUpdateInfoRelatedArticleCell.xib; sourceTree = "<group>"; };
 		EA9D2F4E17823BF5004CA4BC /* GGRelatedArticlesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGRelatedArticlesVC.h; sourceTree = "<group>"; };
 		EA9D2F4F17823BF6004CA4BC /* GGRelatedArticlesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGRelatedArticlesVC.m; sourceTree = "<group>"; };
-		EA9D2F5117827ACC004CA4BC /* btnCompanyHappeing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnCompanyHappeing@2x.png"; sourceTree = "<group>"; };
+		EA9D2F5117827ACC004CA4BC /* btnCompanyHappening@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnCompanyHappening@2x.png"; sourceTree = "<group>"; };
 		EA9D2F5217827ACC004CA4BC /* btnCompanyUpdate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnCompanyUpdate@2x.png"; sourceTree = "<group>"; };
 		EA9D2F5517828075004CA4BC /* logoCompanyDefaultV2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logoCompanyDefaultV2@2x.png"; sourceTree = "<group>"; };
 		EA9D2F5617828076004CA4BC /* logoNewsDefaultV2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logoNewsDefaultV2@2x.png"; sourceTree = "<group>"; };
@@ -2567,7 +2567,7 @@
 				EA9D2F5517828075004CA4BC /* logoCompanyDefaultV2@2x.png */,
 				EA9D2F5617828076004CA4BC /* logoNewsDefaultV2@2x.png */,
 				EA9D2F5717828076004CA4BC /* logoPersonDefaultV2@2x.png */,
-				EA9D2F5117827ACC004CA4BC /* btnCompanyHappeing@2x.png */,
+				EA9D2F5117827ACC004CA4BC /* btnCompanyHappening@2x.png */,
 				EA9D2F5217827ACC004CA4BC /* btnCompanyUpdate@2x.png */,
 				EA9D2F3F1781FEC2004CA4BC /* btnUpdateInfo@2x.png */,
 				EA95B8B4177CF393002868A4 /* logoNewsDefault@2x.png */,
@@ -3578,7 +3578,7 @@
 				EA9D2F401781FEC2004CA4BC /* btnUpdateInfo@2x.png in Resources */,
 				EA9D2F4517820F15004CA4BC /* GGUpdateInfoHeaderView.xib in Resources */,
 				EA9D2F4A17822B27004CA4BC /* GGUpdateInfoRelatedArticleCell.xib in Resources */,
-				EA9D2F5317827ACC004CA4BC /* btnCompanyHappeing@2x.png in Resources */,
+				EA9D2F5317827ACC004CA4BC /* btnCompanyHappening@2x.png in Resources */,
 				EA9D2F5417827ACC004CA4BC /* btnCompanyUpdate@2x.png in Resources */,
 				EA9D2F5817828077004CA4BC /* logoCompanyDefaultV2@2x.png in Resources */,
 				EA9D2F5917828077004CA4BC /* logoNewsDefaultV2@2x.png in Resources */,

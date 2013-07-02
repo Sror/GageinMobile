@@ -184,6 +184,7 @@
     vc.naviTitleString = self.customNaviTitle.text;
     vc.updates = _articles;
     vc.updateIndex = aIndex;
+    vc.naviTitleString = @"Related Articles";
     GGCompanyUpdate *data = _articles[aIndex];
     data.hasBeenRead = YES;
     

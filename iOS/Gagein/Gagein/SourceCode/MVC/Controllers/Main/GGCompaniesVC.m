@@ -124,9 +124,20 @@
 
 -(UIBarButtonItem *)_switchBarButton
 {
-    CGPoint offset = CGPointMake(0, 3);
-    GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(switchBtweenUpdateAndHappening:)];
-    return [GGUtils barButtonWithImageName:@"btnSwitchArrow" offset:offset action:action];
+    static UIBarButtonItem *barBtn = nil;
+    if (barBtn == nil)
+    {
+        CGPoint offset = CGPointMake(0, 3);
+        GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(switchBtweenUpdateAndHappening:)];
+        barBtn = [GGUtils barButtonWithImageName:@"btnSwitchArrow" offset:offset action:action];
+    }
+    
+    return barBtn;
+}
+
+-(UIButton *)_switchButton
+{
+    return ((UIButton *)([self _switchBarButton].customView.subviews.lastObject));
 }
 
 -(void)_decideSwitchButtonAppearOrNot
@@ -294,6 +305,8 @@
     
     [self addScrollToHide:_updatesTV];
     [self addScrollToHide:_happeningsTV];
+    
+    [self _updateSwitchButton];
 }
 
 -(BOOL)doNeedMenu
@@ -359,9 +372,17 @@
 }
 
 #pragma mark - switch button delegate
+-(void)_updateSwitchButton
+{
+    UIImage *switchImg = _isShowingUpdate ? [UIImage imageNamed:@"btnCompanyUpdate"] : [UIImage imageNamed:@"btnCompanyHappening"];
+    [[self _switchButton] setImage:switchImg forState:UIControlStateNormal];
+}
+
 -(IBAction)switchBtweenUpdateAndHappening:(id)sender
 {
     _isShowingUpdate = !_isShowingUpdate;
+    
+    [self _updateSwitchButton];
     
     //[self _subNaviLabel].text = _isShowingUpdate ? GGString(@"Updates") : GGString(@"Happenings");
     
