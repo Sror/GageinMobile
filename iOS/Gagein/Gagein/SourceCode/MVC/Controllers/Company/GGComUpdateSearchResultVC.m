@@ -110,9 +110,11 @@
     int index = ((UIButton*)sender).tag;
     GGCompanyUpdate *update = [_updates objectAtIndex:index];
     
-    GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-    vc.companyID = update.company.ID;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self enterCompanyDetailWithID:update.company.ID];
+    
+//    GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+//    vc.companyID = update.company.ID;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - table view delegate

@@ -297,16 +297,21 @@ typedef enum
     } else if (section == kGGSectionSubsidaries) {
         
         GGCompanyBrief *comBrief = _overview.subsidiaries[row];
-        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-        vc.companyID = comBrief.ID;
-        [self.navigationController pushViewController:vc animated:YES];
+        
+        [self enterCompanyDetailWithID:comBrief.ID];
+//        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+//        vc.companyID = comBrief.ID;
+//        [self.navigationController pushViewController:vc animated:YES];
         
     } else if (section == kGGSectionDivisions) {
         
         GGCompanyBrief *comBrief = _overview.divisions[row];
-        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-        vc.companyID = comBrief.ID;
-        [self.navigationController pushViewController:vc animated:YES];
+        
+        [self enterCompanyDetailWithID:comBrief.ID];
+        
+//        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+//        vc.companyID = comBrief.ID;
+//        [self.navigationController pushViewController:vc animated:YES];
         
     }  else if (section == kGGSectionContact) {
         

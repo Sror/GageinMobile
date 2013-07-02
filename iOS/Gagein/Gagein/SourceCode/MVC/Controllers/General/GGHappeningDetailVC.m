@@ -394,20 +394,23 @@
 {
    // DLog(@"enter company detail");
     
-    GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-    vc.companyID = _currentDetail.company.ID;
+    [self enterCompanyDetailWithID:_currentDetail.company.ID];
     
-    [self.navigationController pushViewController:vc animated:YES];
+//    GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+//    vc.companyID = _currentDetail.company.ID;
+//    
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)enterOldCompanyDetailAction:(id)sender
 {
    // DLog(@"enter old company's detail");
+    [self enterCompanyDetailWithID:_currentDetail.oldCompany.ID];
     
-    GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-    vc.companyID = _currentDetail.oldCompany.ID;
-    
-    [self.navigationController pushViewController:vc animated:YES];
+//    GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+//    vc.companyID = _currentDetail.oldCompany.ID;
+//    
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)enterPersonDetailAction:(id)sender
@@ -732,9 +735,11 @@
         GGCellData *data = _cellDatas[row - 1];
         if (data.type == kGGCustomBriefCellCompany)
         {
-            GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-            vc.companyID = data.ID;
-            [self.navigationController pushViewController:vc animated:YES];
+            [self enterCompanyDetailWithID:data.ID];
+            
+//            GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+//            vc.companyID = data.ID;
+//            [self.navigationController pushViewController:vc animated:YES];
         }
         else
         {

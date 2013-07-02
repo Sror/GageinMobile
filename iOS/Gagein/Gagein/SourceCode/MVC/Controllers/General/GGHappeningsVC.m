@@ -220,10 +220,12 @@
     
     if (data.company.orgID > 0)
     {
-        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-        vc.companyID = data.company.orgID;
+        [self enterCompanyDetailWithID:data.company.ID];
         
-        [self.navigationController pushViewController:vc animated:YES];
+//        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+//        vc.companyID = data.company.orgID;
+//        
+//        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

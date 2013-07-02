@@ -308,9 +308,12 @@ typedef enum
     } else if (section == kGGSectionSimilarCompanies) {
         
         GGCompany *data = _similarCompanies[row];
-        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-        vc.companyID = data.ID;
-        [self.navigationController pushViewController:vc animated:YES];
+        
+        [self enterCompanyDetailWithID:data.ID];
+        
+//        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+//        vc.companyID = data.ID;
+//        [self.navigationController pushViewController:vc animated:YES];
         
     } else if (section == kGGSectionLinkedProfiles) {
         

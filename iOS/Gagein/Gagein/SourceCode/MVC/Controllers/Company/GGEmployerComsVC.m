@@ -74,10 +74,13 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     GGCompany *data = _companies[indexPath.row];
-    GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-    vc.companyID = data.ID;
     
-    [self.navigationController pushViewController:vc animated:YES];
+    [self enterCompanyDetailWithID:data.ID];
+    
+//    GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+//    vc.companyID = data.ID;
+//    
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation

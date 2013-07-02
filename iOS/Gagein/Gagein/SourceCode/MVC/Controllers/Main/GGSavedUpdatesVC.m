@@ -236,9 +236,11 @@
     UIButton *button = sender;
     GGCompanyUpdate *update = [_updates objectAtIndex:button.tag];
     
-    GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-    vc.companyID = update.company.ID;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self enterCompanyDetailWithID:update.company.ID];
+    
+//    GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+//    vc.companyID = update.company.ID;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - API calls

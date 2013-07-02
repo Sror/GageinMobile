@@ -436,10 +436,13 @@
 
 -(void)enterCompanyDetailWithID:(long long)aCompanyID
 {
-    GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-    vc.companyID = aCompanyID;
-    
-    [self.navigationController pushViewController:vc animated:YES];
+    if (aCompanyID > 0)
+    {
+        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+        vc.companyID = aCompanyID;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 -(void)enterEmployeesListWithID:(long long)aCompanyID

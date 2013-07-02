@@ -1023,9 +1023,12 @@
             GGCompany *data = _companyUpdateDetail.mentionedCompanies[indexPath.row];
             if (data.ID)
             {
-                GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
-                vc.companyID = data.ID;
-                [self.navigationController pushViewController:vc animated:YES];
+                [self enterCompanyDetailWithID:data.ID];
+                
+//                GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
+//                vc.companyID = data.ID;
+//                [self.navigationController pushViewController:vc animated:YES];
+                
                 self.navigationController.navigationBarHidden = NO;
             }
         }
