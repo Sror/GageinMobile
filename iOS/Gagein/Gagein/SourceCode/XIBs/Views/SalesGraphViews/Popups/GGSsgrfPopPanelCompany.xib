@@ -324,7 +324,7 @@
 								<string key="NSFrame">{{400, 67}, {25, 25}}</string>
 								<reference key="NSSuperview" ref="241764065"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="735683275"/>
+								<reference key="NSNextKeyView" ref="13037848"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -1010,6 +1010,7 @@
 								<string key="NSFrame">{{206, 21}, {347, 21}}</string>
 								<reference key="NSSuperview" ref="817559897"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -1039,10 +1040,27 @@
 						</object>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
+					<object class="IBUIImageView" id="13037848">
+						<reference key="NSNextResponder" ref="971753041"/>
+						<int key="NSvFlags">256</int>
+						<string key="NSFrame">{{656, 18}, {13, 13}}</string>
+						<reference key="NSSuperview" ref="971753041"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="735683275"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">1</int>
+						<bool key="IBUIMultipleTouchEnabled">YES</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">ssgrf_btn_gray_cross@2x.png</string>
+						</object>
+					</object>
 					<object class="IBUIButton" id="735683275">
 						<reference key="NSNextResponder" ref="971753041"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{658, 17}, {13, 13}}</string>
+						<string key="NSFrame">{{648, 10}, {30, 30}}</string>
 						<reference key="NSSuperview" ref="971753041"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="224421860"/>
@@ -1057,10 +1075,6 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="854967877"/>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">ssgrf_btn_gray_cross@2x.png</string>
-						</object>
 						<reference key="IBUIFontDescription" ref="772106096"/>
 						<reference key="IBUIFont" ref="609452323"/>
 					</object>
@@ -1431,6 +1445,7 @@
 							<reference ref="917580113"/>
 							<reference ref="224421860"/>
 							<reference ref="241764065"/>
+							<reference ref="13037848"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">viewCompanyInfo</string>
@@ -1791,6 +1806,11 @@
 						<reference key="parent" ref="817559897"/>
 						<string key="objectName">btnFollow</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">255</int>
+						<reference key="object" ref="13037848"/>
+						<reference key="parent" ref="971753041"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1815,6 +1835,7 @@
 				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="25.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="255.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="28.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1850,7 +1871,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">254</int>
+			<int key="maxID">255</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
