@@ -72,7 +72,7 @@
     }
     else
     {
-        _titleLbl.textColor = GGSharedColor.orangeGageinDark;
+        _titleLbl.textColor = GGSharedColor.black;
     }
 }
 

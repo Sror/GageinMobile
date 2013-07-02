@@ -39,7 +39,7 @@
 {
     [super viewDidLoad];
     
-    self.naviTitle = @"Update";
+    self.naviTitle = @"Related Articles";
 	
     self.updatesTV = [[UITableView alloc] initWithFrame:[self viewportAdjsted] style:UITableViewStylePlain];
 

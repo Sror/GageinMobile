@@ -41,7 +41,7 @@
 
 +(float)HEIGHT
 {
-    return 85;
+    return 95.f;
 }
 
 -(void)applyCircleLogo
@@ -57,7 +57,7 @@
     }
     else
     {
-        _lblDescription.textColor = GGSharedColor.orangeGageinDark;
+        _lblDescription.textColor = GGSharedColor.black;
     }
 }
 

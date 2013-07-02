@@ -173,7 +173,7 @@
     _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] ;
     
     // info table view init
-    _tvInfo.tableHeaderView = [self _infoHeaderView];
+    //_tvInfo.tableHeaderView = [self _infoHeaderView];
     _tvInfo.hidden = YES;
     _tvInfo.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tvInfo.backgroundColor = GGSharedColor.silver;
@@ -291,6 +291,7 @@
     [self _updateNaviBtnState];
     
     [_tvInfo reloadData];
+    //[_webView reload];
     //[[self _infoHeaderView] setWidth:_tvInfo.frame.size.width];
 }
 
@@ -713,7 +714,7 @@
     [self _infoHeaderView].lblTitle.text = _companyUpdateDetail.headline;
     
     //
-    [self _relatedArticleCell].lblCount.text = [NSString stringWithFormat:@"%d", data.newsSimilarCount];
+    [self _relatedArticleCell].lblCount.text = [NSString stringWithFormat:@"%d", _companyUpdateDetail.newsSimilarCount];
     
     //
     if (_companyUpdateDetail.textview.length <= 0)
@@ -902,6 +903,32 @@
     }
 
     return 0;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (tableView == _tvInfo)
+    {
+        if (section == 0)
+        {
+            return [self _infoHeaderView];
+        }
+    }
+    
+    return nil;
+}
+
+-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (tableView == _tvInfo)
+    {
+        if (section == 0)
+        {
+            return [self _infoHeaderView].frame.size.height;
+        }
+    }
+    
+    return 0.f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

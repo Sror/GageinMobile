@@ -49,7 +49,7 @@
 									<object class="IBUIImageView" id="243917607">
 										<reference key="NSNextResponder" ref="184684847"/>
 										<int key="NSvFlags">274</int>
-										<string key="NSFrameSize">{310, 80}</string>
+										<string key="NSFrameSize">{310, 85}</string>
 										<reference key="NSSuperview" ref="184684847"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="953208786"/>
@@ -154,7 +154,7 @@
 										<int key="IBUIBaselineAdjustment">0</int>
 										<int key="IBUINumberOfLines">3</int>
 										<object class="IBUIFontDescription" key="IBUIFontDescription">
-											<string key="name">HelveticaNeue</string>
+											<string key="name">HelveticaNeue-Medium</string>
 											<string key="family">Helvetica Neue</string>
 											<int key="traits">0</int>
 											<double key="pointSize">14</double>
@@ -199,7 +199,7 @@
 										</object>
 									</object>
 								</array>
-								<string key="NSFrame">{{5, 3}, {310, 80}}</string>
+								<string key="NSFrame">{{5, 5}, {310, 85}}</string>
 								<reference key="NSSuperview" ref="940241093"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="243917607"/>
@@ -211,7 +211,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</array>
-						<string key="NSFrameSize">{320, 84}</string>
+						<string key="NSFrameSize">{320, 94}</string>
 						<reference key="NSSuperview" ref="564576545"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="184684847"/>
@@ -224,7 +224,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 85}</string>
+				<string key="NSFrameSize">{320, 95}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="940241093"/>
