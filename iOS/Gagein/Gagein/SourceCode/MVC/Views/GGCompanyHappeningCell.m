@@ -33,7 +33,7 @@
     _ivLogo.layer.borderColor = GGSharedColor.silver.CGColor;
     _ivLogo.layer.borderWidth = 1;
     
-    [GGUtils applyLogoStyleToView:_ivLogo];
+    [_ivLogo applyEffectShadowAndBorder];
     
     _lblInterval.textColor = GGSharedColor.grayTopText;
     _lblName.textColor = GGSharedColor.grayTopText;
@@ -46,7 +46,7 @@
 
 -(void)applyCircleLogo
 {
-    [GGUtils applyCircleEffectToView:_ivLogo];
+    [_ivLogo applyEffectCircleSilverBorder];
 }
 
 -(void)setHasBeenRead:(BOOL)hasRead

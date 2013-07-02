@@ -32,7 +32,7 @@
     //self.viewCellBg.backgroundColor = GGSharedColor.silver;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    [GGUtils applyLogoStyleToView:_ivPhoto];
+    [_ivPhoto applyEffectShadowAndBorder];
 }
 
 +(float)HEIGHT

@@ -45,27 +45,6 @@
     _tv.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tv.rowHeight = [GGGroupedCell HEIGHT];
     
-//    _viewConfigSwitch = [GGUtils replaceFromNibForView:_viewConfigSwitch];
-//    
-//    _viewConfigSwitch.backgroundColor = GGSharedColor.white;
-//    _viewConfigSwitch.lblTitle.text = @"Category Filters";
-//    _viewConfigSwitch.btnSwitch.isOn = YES;
-//    _viewConfigSwitch.btnSwitch.lblOn.text = @"On";
-//    _viewConfigSwitch.btnSwitch.lblOff.text = @"Off";
-//    _viewConfigSwitch.btnSwitch.delegate = self;
-//    [GGUtils applyTableStyle1ToView:_viewConfigSwitch];
-    
-//    _tv.layer.cornerRadius = 8;
-//    [GGUtils applyTableStyle1ToView:_viewTvContainer];
-    
-//    _configOffTipView = [GGConfigLabel viewFromNibWithOwner:self];
-//    _configOffTipView.lblText.text = @"Filter your update feed by agents.";
-//    CGRect configOffRc = _configOffTipView.frame;
-//    configOffRc.origin.y = _viewTvContainer.frame.origin.y;
-//    _configOffTipView.frame = configOffRc;
-//    [self.view addSubview:_configOffTipView];
-//    _configOffTipView.hidden = _viewConfigSwitch.btnSwitch.isOn;
-    
     [self _callApiGetConfigOptions];
 }
 

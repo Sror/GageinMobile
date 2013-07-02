@@ -190,7 +190,7 @@
         {
             [cell.ivLogo setImageWithURL:[NSURL URLWithString:aData.person.photoPath]
                         placeholderImage:GGSharedImagePool.logoDefaultPerson];
-            [GGUtils applyCircleEffectToView:cell.ivLogo];
+            [cell.ivLogo applyEffectCircleSilverBorder];
             cell.ivLogo.layer.borderColor = GGSharedColor.white.CGColor;
         }
         

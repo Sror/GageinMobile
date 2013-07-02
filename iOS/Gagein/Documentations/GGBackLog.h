@@ -10,8 +10,8 @@
 #define Gagein_GGBackLog_h
 
 #warning TODO: company detail data && overview detail data
-#warning TODO: agents analysis graph  (API not ready)
-#warning TODO: update landing page, related articles (API not ready)
+//#warning TODO: agents analysis graph  (API not ready)
+//#warning TODO: update landing page, related articles (API not ready)
 #warning TODO: grade data of company  (API not ready)
 //#warning TODO: connection timeout handling (low)
 
@@ -24,12 +24,12 @@
 #warning BACKLOG: protocol buffer investigation
 
 
-#warning OPTIMISE: profile UI for 3.5 inch screen
+//#warning OPTIMISE: profile UI for 3.5 inch screen
 
 
 
 //iPad
-#warning XXX: welcome page problem while change orientation
+//#warning XXX: welcome page problem while change orientation
 
 
 #endif

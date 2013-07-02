@@ -29,11 +29,11 @@
 {
     if (aApplyCircleEffect)
     {
-        [GGUtils applyCircleEffectToView:_viewRndImgBtn.imageView];
+        [_viewRndImgBtn.imageView applyEffectCircleSilverBorder];
     }
     else
     {
-        [GGUtils applyNormalEffectToView:_viewRndImgBtn.imageView];
+        [_viewRndImgBtn.imageView applyEffectRoundRectSilverBorder];
     }
 }
 

@@ -93,6 +93,11 @@
     [_btnFollow addTarget:self action:@selector(followAction:) forControlEvents:UIControlEventTouchUpInside];
     
     [_btnLinkedInFooter addTarget:self action:@selector(showWebPage:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //
+    [_ivEmp1Logo applyEffectCircleSilverBorder];
+    [_ivEmp2Logo applyEffectCircleSilverBorder];
+    [_ivEmp3Logo applyEffectCircleSilverBorder];
 }
 
 -(void)updateWithCompany:(GGCompany *)aCompany

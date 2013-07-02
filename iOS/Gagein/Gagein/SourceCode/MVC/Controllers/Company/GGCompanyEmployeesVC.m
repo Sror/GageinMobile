@@ -116,6 +116,7 @@
     cell.lblTitle.text = data.orgTitle;
     cell.lblAddress.text = data.address;
     [cell loadLogoWithImageUrl:data.photoPath placeholder:GGSharedImagePool.logoDefaultPerson];
+    [cell.ivPhoto applyEffectCircleSilverBorder];
     
     return cell;
 }

@@ -309,7 +309,7 @@
     _viewSwitch.btnSwitch.lblOn.text = @"High";
     _viewSwitch.btnSwitch.lblOff.text = @"Medium";
     _viewSwitch.btnSwitch.delegate = self;
-    [GGUtils applyTableStyle1ToView:_viewSwitch];
+    [_viewSwitch applyEffectRoundRectShadow];
     
     CGRect containerRc = CGRectMake(0, 0, _tv.frame.size.width, _viewSwitch.frame.size.height + 30);
     _headerView = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];

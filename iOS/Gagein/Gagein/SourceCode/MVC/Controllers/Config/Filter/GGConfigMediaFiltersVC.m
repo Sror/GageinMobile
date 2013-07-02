@@ -55,10 +55,10 @@
     _viewConfigSwitch.btnSwitch.lblOn.text = @"On";
     _viewConfigSwitch.btnSwitch.lblOff.text = @"Off";
     _viewConfigSwitch.btnSwitch.delegate = self;
-    [GGUtils applyTableStyle1ToView:_viewConfigSwitch];
+    [_viewConfigSwitch applyEffectRoundRectShadow];
     
     _tvMediaSources.layer.cornerRadius = 8;
-    [GGUtils applyTableStyle1ToView:_viewTvBg];
+    [_viewTvBg applyEffectRoundRectShadow];
     _tvMediaSources.editing = YES;
     //_tvOriginalRc = _viewTvBg.frame;
     

@@ -53,7 +53,7 @@
     self.naviTitle = @"";
     self.lblTitle.text = @"";
     self.lblAddress.text = @"";
-    [GGUtils applyCircleEffectToView:_ivPhoto];
+    [_ivPhoto applyEffectCircleSilverBorder];
     
     [self.btnFollow setBackgroundImage:[[UIImage imageNamed:@"btnYellowBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 10, 20, 10)] forState:UIControlStateNormal];
     

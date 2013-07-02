@@ -205,34 +205,7 @@
     return nil;
 }
 
-+(void)applyTableStyle1ToView:(UIView *)aView
-{
-    CALayer *layer = aView.layer;
-    if (layer)
-    {
-        layer.cornerRadius = 8;
-        layer.shadowColor = GGSharedColor.darkGray.CGColor;
-        layer.shadowOffset = CGSizeMake(2, 2);
-        layer.shadowRadius = 4;
-        layer.shadowOpacity = .1f;
-        layer.masksToBounds = NO;
-    }
-}
 
-+(void)applyLogoStyleToView:(UIView *)aView
-{
-    CALayer *layer = aView.layer;
-    if (layer)
-    {
-        layer.borderColor = GGSharedColor.veryLightGray.CGColor;
-        layer.borderWidth = 1;
-        
-        layer.shadowColor = GGSharedColor.lightGray.CGColor;
-        layer.shadowOpacity = .5f;
-        layer.shadowOffset = CGSizeMake(-1, 1);
-        layer.shadowRadius = 1;
-    }
-}
 
 
 +(EGGGroupedCellStyle)styleForArrayCount:(NSUInteger)aArrayCount atIndex:(NSUInteger)anIndex
@@ -669,26 +642,6 @@
     return [[UIBarButtonItem alloc] initWithCustomView:containingView];
 }
 
-+(void)applyCircleEffectToView:(UIView *)aView
-{
-    if (aView)
-    {
-        aView.layer.cornerRadius = aView.frame.size.width / 2;
-        aView.layer.borderColor = GGSharedColor.silver.CGColor;
-        aView.layer.borderWidth = 1.f;
-        aView.layer.masksToBounds = YES;
-    }
-}
 
-+(void)applyNormalEffectToView:(UIView *)aView
-{
-    if (aView)
-    {
-        aView.layer.cornerRadius = 5;
-        aView.layer.borderColor = GGSharedColor.silver.CGColor;
-        aView.layer.borderWidth = 1;
-        aView.layer.masksToBounds = YES;
-    }
-}
 
 @end

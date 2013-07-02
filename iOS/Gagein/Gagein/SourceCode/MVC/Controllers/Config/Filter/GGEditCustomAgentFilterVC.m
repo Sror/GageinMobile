@@ -46,7 +46,7 @@
     _tvFilters.editing = YES;
     _tvFilters.layer.cornerRadius = 8;
     //[GGUtils applyTableStyle1ToLayer:_tvFilters.layer];
-    [GGUtils applyTableStyle1ToView:_viewTvContainer];
+    [_viewTvContainer applyEffectRoundRectShadow];
     
     _tvFilters.rowHeight = [GGEditStyleCell HEIGHT];
     

@@ -207,4 +207,42 @@ static MBProgressHUD * hud;
     return 0.f;
 }
 
+#pragma mark - effect
+-(void)applyEffectCircleSilverBorder
+{
+    self.layer.cornerRadius = self.frame.size.width / 2;
+    self.layer.borderColor = GGSharedColor.silver.CGColor;
+    self.layer.borderWidth = 1.f;
+    self.layer.masksToBounds = YES;
+}
+
+-(void)applyEffectRoundRectSilverBorder
+{
+    self.layer.cornerRadius = 5;
+    self.layer.borderColor = GGSharedColor.silver.CGColor;
+    self.layer.borderWidth = 1;
+    self.layer.masksToBounds = YES;
+}
+
+-(void)applyEffectRoundRectShadow
+{
+    self.layer.cornerRadius = 8;
+    self.layer.shadowColor = GGSharedColor.darkGray.CGColor;
+    self.layer.shadowOffset = CGSizeMake(2, 2);
+    self.layer.shadowRadius = 4;
+    self.layer.shadowOpacity = .1f;
+    self.layer.masksToBounds = NO;
+}
+
+-(void)applyEffectShadowAndBorder
+{
+    self.layer.borderColor = GGSharedColor.veryLightGray.CGColor;
+    self.layer.borderWidth = 1;
+    
+    self.layer.shadowColor = GGSharedColor.lightGray.CGColor;
+    self.layer.shadowOpacity = .5f;
+    self.layer.shadowOffset = CGSizeMake(-1, 1);
+    self.layer.shadowRadius = 1;
+}
+
 @end

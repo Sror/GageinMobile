@@ -44,7 +44,7 @@
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    [GGUtils applyLogoStyleToView:_ivLogo];
+    [_ivLogo applyEffectShadowAndBorder];
 }
 
 #define MIN_CONTENT_HEIGHT      (80.f)

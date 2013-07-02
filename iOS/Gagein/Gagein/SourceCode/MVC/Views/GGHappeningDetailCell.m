@@ -32,8 +32,8 @@
     self.ivCellBg.image = GGSharedImagePool.stretchShadowBgWite;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    [GGUtils applyNormalEffectToView:_ivChangeLeft];
-    [GGUtils applyNormalEffectToView:_ivChangeRight];
+    [_ivChangeLeft applyEffectRoundRectSilverBorder];
+    [_ivChangeRight applyEffectRoundRectSilverBorder];
 }
 
 

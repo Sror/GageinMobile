@@ -43,7 +43,7 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     //self.contentView.autoresizingMask = UIViewAutoresizingNone;
     
-    [GGUtils applyLogoStyleToView:_ivLogo];
+    [_ivLogo applyEffectShadowAndBorder];
 }
 
 #define MIN_CONTENT_HEIGHT      (60.f)

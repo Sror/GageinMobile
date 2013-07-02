@@ -87,6 +87,9 @@
     
     //
     [_btnFollow addTarget:self action:@selector(followAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //
+    [_btnLogo applyEffectCircleSilverBorder];
 }
 
 -(void)updateWithPerson:(GGPerson *)aPerson

@@ -31,10 +31,6 @@
 
 
 
-
-+(void)applyTableStyle1ToView:(UIView *)aView;
-+(void)applyLogoStyleToView:(UIView *)aView;
-
 +(EGGGroupedCellStyle)styleForArrayCount:(NSUInteger)aArrayCount atIndex:(NSUInteger)anIndex;
 
 +(NSData *)dataFromBundleForFileName:(NSString *)aFileName type:(NSString *)aType;
@@ -75,8 +71,5 @@
 
 +(BOOL)hasLinkedSnType:(EGGSnType)aSnType;
 +(void)addSnType:(EGGSnType)aSnType;
-
-+(void)applyCircleEffectToView:(UIView *)aView;
-+(void)applyNormalEffectToView:(UIView *)aView;
 
 @end

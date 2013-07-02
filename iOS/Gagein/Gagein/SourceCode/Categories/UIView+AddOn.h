@@ -48,4 +48,10 @@
 +(float)HEIGHT;
 +(float)WIDTH;
 
+
+-(void)applyEffectCircleSilverBorder;
+-(void)applyEffectRoundRectSilverBorder;
+-(void)applyEffectRoundRectShadow;
+-(void)applyEffectShadowAndBorder;
+
 @end

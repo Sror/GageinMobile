@@ -46,7 +46,7 @@
     
     _intervalLbl.text = @"";
     
-    [GGUtils applyLogoStyleToView:_logoIV];
+    [_logoIV applyEffectShadowAndBorder];
     
     _titleLbl.numberOfLines = 3;
     _descriptionLbl.numberOfLines = 2;
