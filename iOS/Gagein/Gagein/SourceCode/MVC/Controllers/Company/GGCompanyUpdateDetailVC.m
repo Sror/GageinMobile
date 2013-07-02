@@ -364,7 +364,7 @@
         }
         
         [_webviewSignal loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:aURL]]];
-        //[_webviewSignal showLoadingHUD];
+        [_webviewSignal showLoadingHUD];
         _webviewSignal.delegate = self;
     }
     else
@@ -732,6 +732,7 @@
     {
         NSURL *url = [NSURL URLWithString:_companyUpdateDetail.url];
         [_webView loadRequest:[NSURLRequest requestWithURL:url]];
+        [_webView showLoadingHUD];
         _webView.hidden = NO;
     }
     else
@@ -864,7 +865,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    //[webView hideLoadingHUD];
+    [webView hideLoadingHUD];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
