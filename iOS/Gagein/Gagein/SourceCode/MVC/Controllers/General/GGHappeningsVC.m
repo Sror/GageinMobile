@@ -111,10 +111,10 @@
 
 -(float)_happeningIpadCellHeightForIndexPath:(NSIndexPath *)indexPath
 {
-    return [self _happeningCellForIPadWithIndexPath:indexPath].frame.size.height;
+    return [self _happeningCellForIPadWithIndexPath:indexPath needDetail:NO].frame.size.height;
 }
 
--(GGHappeningIpadCell *)_happeningCellForIPadWithIndexPath:(NSIndexPath *)aIndexPath
+-(GGHappeningIpadCell *)_happeningCellForIPadWithIndexPath:(NSIndexPath *)aIndexPath needDetail:(BOOL)aNeedDetail
 {
     int row = aIndexPath.row;
     
@@ -129,7 +129,7 @@
                               expandIndex:_happeningTvExpandHelper.expandingIndex
                             isTvExpanding:_happeningTvExpandHelper.isExpanding
                                logoAction:action
-                       isCompanyHappening:YES];
+                       isCompanyHappening:YES needDetail:aNeedDetail];
     
     return cell;
 }
@@ -140,7 +140,7 @@
     
     if (ISIPADDEVICE)
     {
-        return [self _happeningCellForIPadWithIndexPath:indexPath];
+        return [self _happeningCellForIPadWithIndexPath:indexPath needDetail:YES];
     }
     
     static NSString *updateCellId = @"GGCompanyHappeningCell";

@@ -75,6 +75,11 @@
 
 -(void)_doExpand
 {
+    [self _doExpandNeedDetail:YES];
+}
+
+-(void)_doExpandNeedDetail:(BOOL)aNeedDetail
+{
     [_panel removeFromSuperview];
     [_actionBar removeFromSuperview];
     
@@ -88,7 +93,7 @@
         
         float positionX = 2;
         
-        _panel = [self panelForHappening];
+        _panel = [self panelForHappeningNeedDetail:aNeedDetail];
         float thisH = CGRectGetMaxY(_lblHeadline.frame) + 5;
         [_panel setPos:CGPointMake(positionX, thisH)];
         [self.viewContent addSubview:_panel];
@@ -131,11 +136,21 @@
 
 -(void)setExpanded:(BOOL)expanded
 {
+    [self setExpanded:expanded needDetail:YES];
+}
+
+-(void)setExpanded:(BOOL)expanded needDetail:(BOOL)aNeedDetail
+{
     _expanded = expanded;
-    [self _doExpand];
+    [self _doExpandNeedDetail:aNeedDetail];
 }
 
 -(GGSsgrfPanelHappeningBase *)panelForHappening
+{
+    return [self panelForHappeningNeedDetail:YES];
+}
+
+-(GGSsgrfPanelHappeningBase *)panelForHappeningNeedDetail:(BOOL)aNeedDetail
 {
     EGGHappeningType happeningType = _data.type;
     GGSsgrfPanelHappeningBase *panel = nil;
@@ -306,7 +321,11 @@
             break;
     }
     
-    [panel updateWithHappening:_data];
+    if (aNeedDetail)
+    {
+        [panel updateWithHappening:_data];
+    }
+    
     return panel;
 }
 

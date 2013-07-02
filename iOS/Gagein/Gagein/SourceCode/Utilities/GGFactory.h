@@ -18,6 +18,8 @@
 
 @interface GGFactory : NSObject
 
+
+//// update cell
 +(GGCompanyUpdateCell *)cellOfComUpdate:(id)aDequeuedCell
                                    data:(GGCompanyUpdate *)aData
                               dataIndex:(NSUInteger)aDataIndex
@@ -32,6 +34,8 @@
                                  headlineAction:(GGTagetActionPair *)aHeadlineAction
                                      needDetail:(BOOL)aNeedDetail;
 
+
+/// happening cell
 +(GGCompanyHappeningCell *)cellOfHappening:(id)aDequeuedCell
                                       data:(GGHappening *)aData
                                  dataIndex:(NSUInteger)aDataIndex
@@ -44,6 +48,7 @@
                                 expandIndex:(NSUInteger)aExpandIndex
                               isTvExpanding:(BOOL)aIsTvExpanding
                                  logoAction:(GGTagetActionPair *)aLogoAction
-                         isCompanyHappening:(BOOL)aIsComHappening;
+                         isCompanyHappening:(BOOL)aIsComHappening
+                                 needDetail:(BOOL)aNeedDetail;
 
 @end

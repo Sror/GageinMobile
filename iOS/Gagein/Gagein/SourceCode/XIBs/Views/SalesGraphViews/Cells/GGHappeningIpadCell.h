@@ -29,4 +29,8 @@
 @property (strong, nonatomic)   GGHappening     *data;
 
 -(void)adjustLayout;
+
+-(void)setExpanded:(BOOL)expanded needDetail:(BOOL)aNeedDetail;
+
+
 @end

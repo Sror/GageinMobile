@@ -157,6 +157,7 @@
                               isTvExpanding:(BOOL)aIsTvExpanding
                                  logoAction:(GGTagetActionPair *)aLogoAction
                          isCompanyHappening:(BOOL)aIsComHappening
+                                 needDetail:(BOOL)aNeedDetail
 {
     GGHappeningIpadCell *cell = aDequeuedCell;
     if (cell == nil)
@@ -200,11 +201,13 @@
         
         if (aDataIndex == aExpandIndex)
         {
-            cell.expanded = aIsTvExpanding;
+            //cell.expanded = aIsTvExpanding;
+            [cell setExpanded:aIsTvExpanding needDetail:aNeedDetail];
         }
         else
         {
-            cell.expanded = NO;
+            //cell.expanded = NO;
+            [cell setExpanded:NO needDetail:aNeedDetail];
         }
     }
     
