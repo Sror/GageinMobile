@@ -79,10 +79,7 @@
 #pragma mark - actions
 -(IBAction)logoutAction:(id)sender
 {
-    [GGSharedRuntimeData resetCurrentUser];
-    [GGSharedDelegate enterLoginIfNeeded];
-    
-    [self postNotification:GG_NOTIFY_LOG_OUT];
+    [GGSharedDelegate logout];
 }
 
 -(IBAction)apiTestAction:(id)sender
@@ -278,14 +275,14 @@
         } else if (row == 1) {
 
             GGWebVC *vc = [[GGWebVC alloc] init];
-            vc.urlStr = [NSString stringWithFormat:@"%@/privacy", CURRENT_SERVER_URL];
+            vc.urlStr = [NSString stringWithFormat:@"%@/privacy", GGSharedEnvSwicher.currentPath];
             vc.naviTitleString = @"Privacy";
             [self.navigationController pushViewController:vc animated:YES];
             
         } else if (row == 2) {
 
             GGWebVC *vc = [[GGWebVC alloc] init];
-            vc.urlStr = [NSString stringWithFormat:@"%@/tou", CURRENT_SERVER_URL];
+            vc.urlStr = [NSString stringWithFormat:@"%@/tou", GGSharedEnvSwicher.currentPath];
             vc.naviTitleString = @"Terms";
             [self.navigationController pushViewController:vc animated:YES];
             

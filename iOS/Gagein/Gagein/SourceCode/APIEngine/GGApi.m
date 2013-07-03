@@ -15,7 +15,7 @@
 
 +(NSString *)apiBaseUrl
 {
-    return [NSString stringWithFormat:@"%@/svc/", CURRENT_SERVER_URL];
+    return [NSString stringWithFormat:@"%@/svc/", GGSharedEnvSwicher.currentPath];
 }
 
 + (GGApi *)sharedApi

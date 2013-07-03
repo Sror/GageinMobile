@@ -41,7 +41,7 @@
 {
     GGTwitterParam *param = [[GGTwitterParam alloc] init];
     
-    switch (CURRENT_ENV)
+    switch (GGSharedEnvSwicher.currentEnv)
     {
         case kGGServerProduction:
         {

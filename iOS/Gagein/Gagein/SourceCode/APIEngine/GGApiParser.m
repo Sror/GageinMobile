@@ -22,6 +22,7 @@
 #import "GGMediaFilter.h"
 #import "GGSnUserInfo.h"
 #import "GGUpgradeInfo.h"
+#import "GGAppDelegate.h"
 
 #define GG_ASSERT_API_DATA_IS_DIC   NSAssert([_apiData isKindOfClass:[NSDictionary class]], @"Api Data should be a NSDictionary");
 
@@ -43,6 +44,11 @@
     self = [super init];
     if (self) {
         _apiData = anApiData;
+        
+//        if (self.status == kGGApiStatusVerificationFailed)
+//        {
+//            GGSharedRuntimeData.mustLogOut = YES;
+//        }
     }
     
     return self;
