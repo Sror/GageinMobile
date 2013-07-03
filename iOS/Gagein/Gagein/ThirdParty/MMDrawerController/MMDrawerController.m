@@ -351,6 +351,7 @@ static CAKeyframeAnimation * bounceKeyFrameAnimationForDistanceOnView(CGFloat di
         [self.centerContainerView setCenterInteractionMode:self.centerHiddenInteractionMode];
         [self.view addSubview:self.centerContainerView];
         //_centerContainerView.backgroundColor = GGSharedColor.random;
+        //_centerContainerView.alpha = .2f;
     }
     
     UIViewController * oldCenterViewController = self.centerViewController;

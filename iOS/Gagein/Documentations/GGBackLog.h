@@ -9,7 +9,7 @@
 #ifndef Gagein_GGBackLog_h
 #define Gagein_GGBackLog_h
 
-#warning TODO: company detail data && overview detail data
+//#warning TODO: company detail data && overview detail data
 //#warning TODO: agents analysis graph  (API not ready)
 //#warning TODO: update landing page, related articles (API not ready)
 #warning TODO: grade data of company  (API not ready)
