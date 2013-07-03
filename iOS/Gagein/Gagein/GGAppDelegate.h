@@ -44,8 +44,6 @@
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation;
 
--(void)logout;
-
 @end
 
 #define GGSharedDelegate  ((GGAppDelegate*)[UIApplication sharedApplication].delegate)

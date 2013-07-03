@@ -44,7 +44,6 @@
     #import "GGFactory.h"
     #import "GGTagetActionPair.h"
     #import "UIButton+GGAddOn.h"
-    #import "GGEnvSwicher.h"
 #endif
 
 #include "GGBackLog.h"

@@ -63,7 +63,7 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
 {
     GGSalesForceParam * _param = [[GGSalesForceParam alloc] init];
     
-    switch (GGSharedEnvSwicher.currentEnv)
+    switch (CURRENT_ENV)
     {
         case kGGServerProduction:
         {

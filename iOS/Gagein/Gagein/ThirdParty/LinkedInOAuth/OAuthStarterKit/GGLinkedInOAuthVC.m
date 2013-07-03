@@ -232,7 +232,7 @@
 
 -(NSString *)_apiKey
 {
-    switch (GGSharedEnvSwicher.currentEnv)
+    switch (CURRENT_ENV)
     {
         case kGGServerProduction:
         {
@@ -273,7 +273,7 @@
 
 -(NSString *)_secretKey
 {
-    switch (GGSharedEnvSwicher.currentEnv)
+    switch (CURRENT_ENV)
     {
         case kGGServerProduction:
         {
