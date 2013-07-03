@@ -44,6 +44,7 @@
     _liked = [[aData objectForKey:@"liked"] boolValue];
     _newsSimilarID = [[aData objectForKey:@"news_similarid"] longLongValue];
     _newsSimilarCount = [[aData objectForKey:@"news_similar_count"] intValue];
+    _newsPicURL = [aData objectForKey:@"news_pic_url"];
     
     //////////
     NSArray *mentionedCompanies = [aData objectForKey:@"mentioned_companies"];
