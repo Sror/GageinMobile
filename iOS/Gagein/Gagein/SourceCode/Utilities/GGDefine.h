@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+
+/////////////////////////// enums ////////////////////////////////////////
 typedef enum
 {
     kGGServerProduction = 1
@@ -38,18 +40,15 @@ typedef enum {
     , kGGHappeningSourceUnKnown = 99999
 }EGGHappeningSource;
 
-#define SOURCE_TEXT_LINKEDIN        @"Linkedin"
-#define SOURCE_TEXT_FACEBOOK        @"Facebook"
-#define SOURCE_TEXT_TWITTER         @"Twitter"
-#define SOURCE_TEXT_YOUTUBE         @"Youtube"
-#define SOURCE_TEXT_SLIDE_SHARE     @"Slideshare"
-#define SOURCE_TEXT_HOOVERS         @"Hoovers"
-#define SOURCE_TEXT_YAHOO           @"Yahoo"
-#define SOURCE_TEXT_CRUNCHBASE      @"CrunchBase"
 
 
 
-//
+/////////////////////////////////// defines ///////////////////////////////////////
+
+
+
+
+//////////////////////////// server environment /////////////////////////////////////////
 #define GGN_STR_PRODUCTION_SERVER_URL               @"https://www.gagein.com"
 #define GGN_STR_DEMO_SERVER_URL                     @"http://gageindemo.dyndns.org"
 #define GGN_STR_CN_SERVER_URL                       @"http://gageincn.dyndns.org:3031"
@@ -70,8 +69,21 @@ typedef enum {
 #elif (CURRENT_ENV == 5)
 #define CURRENT_SERVER_URL         GGN_STR_ROSHEN_SERVER_URL
 #endif
-//
 
+
+////////////////////////// literals //////////////////////////////////////////////
+// --- social network
+#define SOURCE_TEXT_LINKEDIN        @"Linkedin"
+#define SOURCE_TEXT_FACEBOOK        @"Facebook"
+#define SOURCE_TEXT_TWITTER         @"Twitter"
+#define SOURCE_TEXT_YOUTUBE         @"Youtube"
+#define SOURCE_TEXT_SLIDE_SHARE     @"Slideshare"
+#define SOURCE_TEXT_HOOVERS         @"Hoovers"
+#define SOURCE_TEXT_YAHOO           @"Yahoo"
+#define SOURCE_TEXT_CRUNCHBASE      @"CrunchBase"
+
+
+// --- app code
 #define APP_CODE_VALUE      @"09ad5d624c0294d1"
 #define APP_CODE_IPHONE     @"78cfc17502a1e05a"
 #define APP_CODE_IPAD       @"c0d67d02e7c74d36"
@@ -79,6 +91,23 @@ typedef enum {
 #define SAMPLE_TEXT         @"This is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing, this is a sample text for testing"
 
 #define GAGEIN_SLOGAN       @"a sales intelligence company"
+
+/////////////////////// constants ////////////////////////////////////////////
+//
+#define GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT 216.f
+#define GG_KEY_BOARD_HEIGHT_IPHONE_LANDSCAPE 162.f
+
+
+#define IPAD_CONTENT_WIDTH          650
+#define IPAD_CONTENT_WIDTH_FULL     768
+
+#define LEFT_DRAWER_WIDTH           260
+#define LEFT_DRAWER_WIDTH_LONG      320
+
+#define MENU_REFRESH_INTERVAL       (30 * 60)       // seconds
+
+
+/////////////////////// functions ////////////////////////////////////////
 
 #define GGString(key) NSLocalizedString((key), @"")
 
@@ -131,18 +160,6 @@ return __singleton__; \
 #else
 #define DALog(...)
 #endif
-
-//
-#define GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT 216.f
-#define GG_KEY_BOARD_HEIGHT_IPHONE_LANDSCAPE 162.f
-
-//#define SLIDE_SETTING_VIEW_WIDTH    260
-
-#define IPAD_CONTENT_WIDTH          650
-#define IPAD_CONTENT_WIDTH_FULL     768
-
-#define LEFT_DRAWER_WIDTH           260
-#define LEFT_DRAWER_WIDTH_LONG      320
 
 
 // ios version
