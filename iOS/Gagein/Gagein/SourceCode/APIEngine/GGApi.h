@@ -30,6 +30,12 @@ typedef enum
 // singleton method to get a shared api all over the app
 + (GGApi *)sharedApi;
 
+-(EGGServerEnvironment)currentEnv;
+-(NSString *)currentPath;
+#if DEBUG
+-(void)switchToEnvironment:(EGGServerEnvironment)aEnvironment;
+#endif
+
 -(void)canceAllOperations;
 
 -(AFHTTPRequestOperation *)_execPostWithPath:(NSString *)aPath params:(NSDictionary *)aParams callback:(GGApiBlock)aCallback;

@@ -344,7 +344,6 @@
     [_updatesTV reloadData];
     [_happeningsTV reloadData];
     
-    //[self.navigationController.navigationBar setTitleVerticalPositionAdjustment:0.f forBarMetrics:UIBarMetricsDefault];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
