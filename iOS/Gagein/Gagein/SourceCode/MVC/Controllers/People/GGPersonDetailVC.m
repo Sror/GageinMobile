@@ -19,6 +19,19 @@
 #import "GGDataPage.h"
 #import "GGHappeningDetailVC.h"
 
+
+
+//
+typedef enum
+{
+    kGGSectionUpdates = 0
+    , kGGSectionSocialProfiles
+    , kGGSectionCount
+}EGGPersonDetailSection;
+
+
+
+//
 @interface GGPersonDetailVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *svContent;
 @property (weak, nonatomic) IBOutlet UIView *viewBaseInfo;
@@ -95,14 +108,16 @@
 #pragma mark - table view datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return kGGSectionCount;
 }
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if (section == kGGSectionUpdates) {
         return _updates.count;
-    } else if (section == 1) {
+    } else if (section == kGGSectionSocialProfiles) {
         return _personOverview.socialProfiles.count;
     }
     
@@ -115,7 +130,7 @@
     int section = indexPath.section;
     int row = indexPath.row;
     
-    if (section == 0) {
+    if (section == kGGSectionUpdates) {
         GGCompanyDetailUpdateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGCompanyDetailUpdateCell"];
         if (!cell) {
             cell = [GGCompanyDetailUpdateCell viewFromNibWithOwner:self];
@@ -130,7 +145,7 @@
         
         return cell;
         
-    } else if (section == 1) {
+    } else if (section == kGGSectionSocialProfiles) {
         
         GGComDetailProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGComDetailProfileCell"];
         if (!cell) {
@@ -155,7 +170,7 @@
     int section = indexPath.section;
     int row = indexPath.row;
     
-    if (section == 0) {
+    if (section == kGGSectionUpdates) {
         
         GGHappeningDetailVC *vc = [[GGHappeningDetailVC alloc] init];
         vc.happenings = _updates;
@@ -163,7 +178,7 @@
         
         [self.navigationController pushViewController:vc animated:YES];
         
-    } else if (section == 1) {
+    } else if (section == kGGSectionSocialProfiles) {
         
         GGSocialProfile *data = _personOverview.socialProfiles[row];
         GGWebVC *vc = [[GGWebVC alloc] init];
@@ -178,11 +193,11 @@
 {
     int section = indexPath.section;
     
-    if (section == 0) {
+    if (section == kGGSectionUpdates) {
         
         return [GGCompanyDetailUpdateCell HEIGHT];
         
-    } else if (section == 1) {
+    } else if (section == kGGSectionSocialProfiles) {
         
         return [GGComDetailProfileCell HEIGHT];
         
@@ -193,11 +208,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 0 && _updates.count <= 0) {
+    if (section == kGGSectionUpdates && _updates.count <= 0) {
         
         return 0.f;
         
-    } else if (section == 1 && _personOverview.socialProfiles.count <= 0) {
+    } else if (section == kGGSectionSocialProfiles && _personOverview.socialProfiles.count <= 0) {
         
         return 0.f;
         
@@ -210,12 +225,12 @@
 {
     GGCompanyDetailHeaderView *header = [GGCompanyDetailHeaderView viewFromNibWithOwner:self];
     
-    if (section == 0) {
+    if (section == kGGSectionUpdates) {
         
         header.lblTitle.text = @"UPDATES";
         [header.lblAction addTarget:self action:@selector(_seeAllHappeningsAction:) forControlEvents:UIControlEventTouchUpInside];
         
-    } else if (section == 1) {
+    } else if (section == kGGSectionSocialProfiles) {
         
         header.lblTitle.text = @"LINKED PROFILES";
         header.lblAction.hidden = YES;
@@ -224,6 +239,7 @@
     
     return header;
 }
+#pragma mark table callback END -
 
 -(void)_seeAllHappeningsAction:(id)sender
 {
@@ -325,6 +341,12 @@
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         _personOverview = [parser parseGetPersonOverview];
+        
+        DLog(@"%@", _personOverview.prevCompanies);
+        for (GGCompany *company in _personOverview.prevCompanies) {
+            DLog(@"%@", company);
+        }
+        
         [self _updateUiOverview];
     }];
     
