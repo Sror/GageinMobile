@@ -48,6 +48,8 @@
     BOOL                                _hasMore;
     
     GGTableViewExpandHelper             *_happeningTvExpandHelper;
+    
+    __weak NSTimer                      *_timerMenuUpdate;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -133,6 +135,12 @@
     [self _callApiGetMenu];
 }
 
+-(void)resetMenuUpdateTimer
+{
+    [_timerMenuUpdate invalidate];
+    _timerMenuUpdate = [NSTimer scheduledTimerWithTimeInterval:MENU_REFRESH_INTERVAL target:self selector:@selector(_callApiGetMenu) userInfo:nil repeats:NO];
+}
+
 -(BOOL)doNeedMenu
 {
     return YES;
@@ -171,7 +179,7 @@
 
 -(void)dealloc
 {
-    [self unobserveAllNotifications];
+    [_timerMenuUpdate invalidate];
 }
 
 #pragma mark - UISearchBar delegate
@@ -694,6 +702,8 @@
     }];
     
     [self registerOperation:op];
+    
+    [self resetMenuUpdateTimer];
 }
 
 -(void)_getFirstPage
