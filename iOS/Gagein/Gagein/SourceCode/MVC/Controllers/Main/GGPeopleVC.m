@@ -637,7 +637,7 @@
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
-            _menuDatas = [parser parseGetMenu:YES];
+            _menuDatas = [parser parseGetMenu:NO];
             GGDataPage *page = _menuDatas[0];   //following
             if (page.items.count)
             {
