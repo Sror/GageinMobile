@@ -22,6 +22,9 @@
 @end
 
 @implementation GGSsgrfInfoWidgetView
+{
+    BOOL                        _canReportLoading;
+}
 
 
 -(void)_doInit
@@ -34,6 +37,7 @@
     CGRect scrollRc = CGRectMake(0, CGRectGetMaxY(_viewTitledImage.frame), _viewTitledImage.frame.size.width, 0);
     _viewTitledScroll = [[GGSsgrfTitledImgScrollView alloc] initWithFrame:scrollRc];
     [self addSubview:_viewTitledScroll];
+    _viewTitledScroll.viewScroll.delegate = self;
     
     CGRect thisRc = self.frame;
     thisRc.size.width = _viewTitledImage.frame.size.width;
@@ -42,6 +46,8 @@
     
     //
     [self setScrollTitle:@"Similar"];
+    
+    _canReportLoading = YES;
 }
 
 +(float)WIDTH
@@ -244,6 +250,32 @@
     DLog(@"competitorTapped: %d", btn.tag);
     GGCompany *competitor = [self _competitors][btn.tag];
     [self postNotification:GG_NOTIFY_SSGRF_SHOW_COMPANY_PANEL withObject:competitor];
+}
+
+
+#pragma mark - 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (_canReportLoading && scrollView == _viewTitledScroll.viewScroll)
+    {
+        if (scrollView.contentOffset.x + scrollView.frame.size.width == scrollView.contentSize.width)
+        {
+            DLog(@"\noffset:%@, content size:%@, scroll view frame:%@", NSStringFromCGPoint(scrollView.contentOffset), NSStringFromCGSize(scrollView.contentSize), NSStringFromCGRect(scrollView.frame));
+            if (_loadingAction.action)
+            {
+                SuppressPerformSelectorLeakWarning([_loadingAction.target performSelector:_loadingAction.action]);
+            }
+            _canReportLoading = NO;
+        }
+    }
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (scrollView == _viewTitledScroll.viewScroll)
+    {
+        _canReportLoading = YES;
+    }
 }
 
 @end

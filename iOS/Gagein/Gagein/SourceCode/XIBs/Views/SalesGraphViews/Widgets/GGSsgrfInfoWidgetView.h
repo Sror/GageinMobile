@@ -19,13 +19,14 @@ typedef enum {
 
 @class GGSsgrfTitledImgScrollView;
 
-@interface GGSsgrfInfoWidgetView : GGSsgrfBaseWidget
+@interface GGSsgrfInfoWidgetView : GGSsgrfBaseWidget <UIScrollViewDelegate>
 @property (strong, nonatomic)   GGSsgrfTitledImgScrollView   *viewTitledScroll;
 
 @property (nonatomic, strong)   id      data;
 @property (nonatomic, copy) NSString    *mapURL;
 
 @property (assign, nonatomic) EGGSsGrfInfoWidgetType    type;
+@property (strong, nonatomic) GGTagetActionPair           *loadingAction;
 
 -(void)setTitle:(NSString *)aTitle;
 -(void)setSubTitle:(NSString *)aTitle;

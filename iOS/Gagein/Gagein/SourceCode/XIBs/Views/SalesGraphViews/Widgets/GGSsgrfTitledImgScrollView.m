@@ -176,20 +176,14 @@
     [self _reinstallImages];
 }
 
-#pragma mark -
-//-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-//{
-//    DLog(@"Beign dragging");
-//}
-
-
 @end
 
+
+#pragma mark - GGSsgrfPushAwayScrollView
 //////////////////////// GGSsgrfPushAwayScrollView/////////////////////////
 @implementation GGSsgrfPushAwayScrollView
 {
     float                       _pushGap;
-    
 }
 
 -(CGSize)imageSize
@@ -207,6 +201,7 @@
     _infoWidget = [[GGSsgrfInfoWidgetView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
 
     _infoWidget.hidden = YES;
+    
 }
 
 -(float)scrollViewHeight
@@ -230,6 +225,7 @@
         [self showInfoWidgetAnimatedWithPushButton:_imageButtons[popIndex]];
         GGCompany *company = self.data.mentionedCompanies[popIndex];
         [_infoWidget updateWithCompany:company];
+        
         [self pushAwayFromIndex:popIndex];
     }
     
@@ -446,6 +442,8 @@
 {
     //[self hideInfoWidget];
 }
+
+
 
 @end
 
