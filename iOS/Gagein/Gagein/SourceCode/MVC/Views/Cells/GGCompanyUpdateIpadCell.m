@@ -270,7 +270,7 @@
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {
-                _detailData.liked = NO;
+                _data.liked = _detailData.liked = NO;
                 [self _updateLikedButton];
             }
         }];
@@ -281,8 +281,9 @@
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {
-                _detailData.liked = YES;
+                _data.liked = _detailData.liked = YES;
                 [self _updateLikedButton];
+                [GGAlert showCheckMarkHUDWithText:@"liked" inView:self.viewContent];
             }
         }];
     }

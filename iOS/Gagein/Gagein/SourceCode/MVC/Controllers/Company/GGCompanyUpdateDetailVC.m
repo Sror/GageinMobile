@@ -438,6 +438,7 @@
             {
                 _companyUpdateDetail.liked = YES;
                 [self _updateLikedButton];
+                [self showCheckMarkHUDWithText:@"liked"];
             }
         }];
     }
