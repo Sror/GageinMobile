@@ -14,4 +14,5 @@
 @property (assign) long long        timestamp;
 @property (assign) BOOL             chartEnabled;
 @property (strong) NSMutableArray   *items;
+@property (assign) NSUInteger       pageIndex; // start from 1
 @end

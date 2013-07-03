@@ -260,11 +260,23 @@
     {
         if (scrollView.contentOffset.x + scrollView.frame.size.width == scrollView.contentSize.width)
         {
-            DLog(@"\noffset:%@, content size:%@, scroll view frame:%@", NSStringFromCGPoint(scrollView.contentOffset), NSStringFromCGSize(scrollView.contentSize), NSStringFromCGRect(scrollView.frame));
-            if (_loadingAction.action)
+            //DLog(@"\noffset:%@, content size:%@, scroll view frame:%@", NSStringFromCGPoint(scrollView.contentOffset), NSStringFromCGSize(scrollView.contentSize), NSStringFromCGRect(scrollView.frame));
+            
+            if (_loadingResponder && [_data isKindOfClass:[GGCompanyDigest class]])
             {
-                SuppressPerformSelectorLeakWarning([_loadingAction.target performSelector:_loadingAction.action]);
+                GGCompanyDigest *company = _data;
+                if (company.competitors.hasMore)
+                {
+                    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                                         _loadingResponder, @"responder"
+                                         , company, @"company", nil];
+                    
+                    [self postNotification:GG_NOTIFY_INFO_WIDGET_SCROLL_TO_END withObject:dic];
+                }
             }
+            
+            
+            
             _canReportLoading = NO;
         }
     }

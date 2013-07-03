@@ -14,4 +14,7 @@
 @interface GGSsgrfPanelUpdate : GGSsgrfPanelBase
 @property (weak, nonatomic) IBOutlet GGSsgrfPushAwayScrollView *viewScroll;
 @property (strong, nonatomic) GGCompanyUpdate   *data;
+
+-(void)setLoadingResponder:(id)aResponder;
+
 @end

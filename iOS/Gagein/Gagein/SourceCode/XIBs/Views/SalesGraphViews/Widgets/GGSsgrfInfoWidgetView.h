@@ -26,7 +26,7 @@ typedef enum {
 @property (nonatomic, copy) NSString    *mapURL;
 
 @property (assign, nonatomic) EGGSsGrfInfoWidgetType    type;
-@property (strong, nonatomic) GGTagetActionPair           *loadingAction;
+@property (strong, nonatomic) id                        loadingResponder;
 
 -(void)setTitle:(NSString *)aTitle;
 -(void)setSubTitle:(NSString *)aTitle;

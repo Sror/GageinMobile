@@ -39,12 +39,71 @@
 
 -(void)awakeFromNib
 {
+    [self observeNotification:GG_NOTIFY_INFO_WIDGET_SCROLL_TO_END];
+    
     _lblDescription.text = _lblHeadline.text = _lblInterval.text = _lblSource.text = @"";
     _ivContentBg.image = GGSharedImagePool.stretchShadowBgWite;
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [_ivLogo applyEffectShadowAndBorder];
+}
+
+-(void)handleNotification:(NSNotification *)notification
+{
+    id loadResponder = [notification.object objectForKey:@"responder"];
+    GGCompanyDigest *company = [notification.object objectForKey:@"company"];
+    if ([notification.name isEqualToString:GG_NOTIFY_INFO_WIDGET_SCROLL_TO_END] && loadResponder == self)
+    {
+//#warning load more competitors
+        DLog(@"load more competitors");
+        [self loadMoreCompetitorsForCompany:company];
+//        -(AFHTTPRequestOperation *)getSimilarCompaniesWithOrgID:(long long)anOrgID
+//    pageNumber:(NSUInteger)aPageNumber
+//    callback:(GGApiBlock)aCallback;
+        
+    }
+}
+
+-(void)loadMoreCompetitorsForCompany:(GGCompanyDigest *)aCompany
+{    
+    if (aCompany)
+    {
+        int index = [_detailData.mentionedCompanies indexOfObject:aCompany];
+        if (index != NSNotFound)
+        {
+            GGDataPage *competitorsPage = aCompany.competitors;
+            if (competitorsPage && competitorsPage.hasMore)
+            {
+                int pageIndex = competitorsPage.pageIndex + 1;
+                
+                [self.viewContent showLoadingHUD];
+                [GGSharedAPI getSimilarCompaniesWithOrgID:aCompany.ID pageNumber:pageIndex callback:^(id operation, id aResultObject, NSError *anError) {
+                    [self.viewContent hideLoadingHUD];
+                    
+                    GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                    if (parser.isOK)
+                    {
+                        GGDataPage *newPage = [parser parseGetSimilarCompanies];
+                        NSMutableArray *totalCompetitors = [NSMutableArray arrayWithArray:aCompany.competitors.items];
+                        [totalCompetitors addObjectsFromArray:newPage.items];
+                        
+                        competitorsPage.items = totalCompetitors;
+                        competitorsPage.pageIndex = pageIndex;
+                        competitorsPage.hasMore = newPage.hasMore;
+                        aCompany.competitors = competitorsPage;
+                        
+                        [self doUpdateUI];
+                    }
+                }];
+            }
+        }
+    }
+}
+
+-(void)dealloc
+{
+    [self unobserveAllNotifications];
 }
 
 #define MIN_CONTENT_HEIGHT      (80.f)
@@ -192,6 +251,7 @@
         float positionX = 2;//self.viewContent.frame.origin.x + 2;
         _panel = [GGSsgrfPanelUpdate viewFromNibWithOwner:self];
         _panel.data = _detailData;
+        [_panel setLoadingResponder:self];
         
         float thisH =  CGRectGetMaxY(_lblDescription.frame) + 5;//self.frame.size.height;
         [_panel setPos:CGPointMake(positionX, thisH)];

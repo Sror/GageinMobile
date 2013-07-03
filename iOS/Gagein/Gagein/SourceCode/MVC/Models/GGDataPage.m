@@ -15,6 +15,7 @@
     self = [super init];
     if (self) {
         _items = [NSMutableArray array];
+        _pageIndex = 1;
     }
     return self;
 }

@@ -8,6 +8,7 @@
 
 #import "GGSsgrfPanelUpdate.h"
 #import "GGSsgrfTitledImgScrollView.h"
+#import "GGSsgrfInfoWidgetView.h"
 
 @implementation GGSsgrfPanelUpdate
 
@@ -34,6 +35,11 @@
 {
     _data = data;
     _viewScroll.data = data;
+}
+
+-(void)setLoadingResponder:(id)aResponder
+{
+    _viewScroll.infoWidget.loadingResponder = aResponder;
 }
 
 @end
