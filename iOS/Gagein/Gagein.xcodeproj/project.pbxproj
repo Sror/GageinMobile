@@ -351,7 +351,6 @@
 		EA95B8B0177CCEA0002868A4 /* btnSwitchArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA95B8AF177CCEA0002868A4 /* btnSwitchArrow@2x.png */; };
 		EA95B8B3177CD1AA002868A4 /* UIButton+GGAddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA95B8B2177CD1AA002868A4 /* UIButton+GGAddOn.m */; };
 		EA95B8B5177CF393002868A4 /* logoNewsDefault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA95B8B4177CF393002868A4 /* logoNewsDefault@2x.png */; };
-		EA963D161783A0E700DE737D /* GGEnvSwicher.m in Sources */ = {isa = PBXBuildFile; fileRef = EA963D151783A0E600DE737D /* GGEnvSwicher.m */; };
 		EA964951176104A600739F73 /* GGLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EA964950176104A600739F73 /* GGLayout.m */; };
 		EA96495717613D4D00739F73 /* bg-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = EA96495317613D4D00739F73 /* bg-yellow.png */; };
 		EA96495817613D4D00739F73 /* bg-yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA96495417613D4D00739F73 /* bg-yellow@2x.png */; };
@@ -1113,8 +1112,6 @@
 		EA95B8B1177CD1AA002868A4 /* UIButton+GGAddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+GGAddOn.h"; sourceTree = "<group>"; };
 		EA95B8B2177CD1AA002868A4 /* UIButton+GGAddOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+GGAddOn.m"; sourceTree = "<group>"; };
 		EA95B8B4177CF393002868A4 /* logoNewsDefault@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logoNewsDefault@2x.png"; sourceTree = "<group>"; };
-		EA963D141783A0E500DE737D /* GGEnvSwicher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGEnvSwicher.h; sourceTree = "<group>"; };
-		EA963D151783A0E600DE737D /* GGEnvSwicher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGEnvSwicher.m; sourceTree = "<group>"; };
 		EA96494F176104A600739F73 /* GGLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGLayout.h; sourceTree = "<group>"; };
 		EA964950176104A600739F73 /* GGLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGLayout.m; sourceTree = "<group>"; };
 		EA96495317613D4D00739F73 /* bg-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-yellow.png"; sourceTree = "<group>"; };
@@ -2924,8 +2921,6 @@
 				EA23FCB41772298400E3DBB9 /* GGTagetActionPair.m */,
 				EA23FCB61772338E00E3DBB9 /* GGTableViewExpandHelper.h */,
 				EA23FCB71772338F00E3DBB9 /* GGTableViewExpandHelper.m */,
-				EA963D141783A0E500DE737D /* GGEnvSwicher.h */,
-				EA963D151783A0E600DE737D /* GGEnvSwicher.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -3870,7 +3865,6 @@
 				EA9D2F4317820E66004CA4BC /* GGUpdateInfoHeaderView.m in Sources */,
 				EA9D2F4817822B15004CA4BC /* GGUpdateInfoRelatedArticleCell.m in Sources */,
 				EA9D2F5017823BF7004CA4BC /* GGRelatedArticlesVC.m in Sources */,
-				EA963D161783A0E700DE737D /* GGEnvSwicher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

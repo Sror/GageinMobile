@@ -14,10 +14,12 @@
     #import <SystemConfiguration/SystemConfiguration.h>
     #import <MobileCoreServices/MobileCoreServices.h>
 
+    #import "GGDefine.h"
+
     #import "AFNetworking.h"
     #import "GGApi.h"
     #import "GGApiParser.h"
-    #import "GGDefine.h"
+    
     #import "UIView+LoadFromNib.h"
     #import "NSObject+BeeNotification.h"
     #import "GGAlert.h"
@@ -44,7 +46,6 @@
     #import "GGFactory.h"
     #import "GGTagetActionPair.h"
     #import "UIButton+GGAddOn.h"
-    #import "GGEnvSwicher.h"
 #endif
 
 #include "GGBackLog.h"

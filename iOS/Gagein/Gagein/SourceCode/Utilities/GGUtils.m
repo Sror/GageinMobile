@@ -114,14 +114,14 @@
 +(NSString *)envString
 {
     NSString *envAlertStr = nil;
-    if (GGSharedEnvSwicher.currentEnv == kGGServerProduction) {
-        envAlertStr = [NSString stringWithFormat:ENV_STRING_FORMAT, @"Production", GGSharedEnvSwicher.currentPath];
-    } else if (GGSharedEnvSwicher.currentEnv == kGGServerDemo) {
-        envAlertStr = [NSString stringWithFormat:ENV_STRING_FORMAT, @"Demo", GGSharedEnvSwicher.currentPath];
-    } else if (GGSharedEnvSwicher.currentEnv == kGGServerCN) {
-        envAlertStr = [NSString stringWithFormat:ENV_STRING_FORMAT, @"CN", GGSharedEnvSwicher.currentPath];
-    } else if (GGSharedEnvSwicher.currentEnv == kGGServerStaging) {
-        envAlertStr = [NSString stringWithFormat:ENV_STRING_FORMAT, @"Staging", GGSharedEnvSwicher.currentPath];
+    if (GGSharedAPI.currentEnv == kGGServerProduction) {
+        envAlertStr = [NSString stringWithFormat:ENV_STRING_FORMAT, @"Production", GGSharedAPI.currentPath];
+    } else if (GGSharedAPI.currentEnv == kGGServerDemo) {
+        envAlertStr = [NSString stringWithFormat:ENV_STRING_FORMAT, @"Demo", GGSharedAPI.currentPath];
+    } else if (GGSharedAPI.currentEnv == kGGServerCN) {
+        envAlertStr = [NSString stringWithFormat:ENV_STRING_FORMAT, @"CN", GGSharedAPI.currentPath];
+    } else if (GGSharedAPI.currentEnv == kGGServerStaging) {
+        envAlertStr = [NSString stringWithFormat:ENV_STRING_FORMAT, @"Staging", GGSharedAPI.currentPath];
     }
     return envAlertStr;
 }

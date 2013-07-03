@@ -8,15 +8,87 @@
 
 #import "GGApi.h"
 #import "YRDropdownView.h"
+#import "GGAppDelegate.h"
 
 //static AFNetworkReachabilityStatus s_netStatus = AFNetworkReachabilityStatusUnknown;
+
+static EGGServerEnvironment s_currentEnv = kGGServerProduction;
 
 @implementation GGApi
 
 +(NSString *)apiBaseUrl
 {
-    return [NSString stringWithFormat:@"%@/svc/", GGSharedEnvSwicher.currentPath];
+    return [NSString stringWithFormat:@"%@/svc/", [self pathForEnv:s_currentEnv]];
 }
+
++(NSString *)pathForEnv:(EGGServerEnvironment)aEnvironment
+{
+    switch (aEnvironment)
+    {
+        case kGGServerProduction:
+        {
+            return GGN_STR_PRODUCTION_SERVER_URL;
+        }
+            break;
+            
+        case kGGServerDemo:
+        {
+            return GGN_STR_DEMO_SERVER_URL;
+        }
+            break;
+            
+        case kGGServerCN:
+        {
+            return GGN_STR_CN_SERVER_URL;
+        }
+            break;
+            
+        case kGGServerStaging:
+        {
+            return GGN_STR_STAGING_SERVER_URL;
+        }
+            break;
+            
+        case kGGServerRoshen:
+        {
+            return GGN_STR_ROSHEN_SERVER_URL;
+        }
+            break;
+            
+        default:
+            break;
+    }
+
+    return nil;
+}
+
+-(void)setCurrentPathWithEnv:(EGGServerEnvironment)aEnvironment
+{
+    s_currentEnv = aEnvironment;
+    
+    self.baseURL = [NSURL URLWithString:[GGApi pathForEnv:aEnvironment]];
+    [self startMonitoringNetworkReachability];
+}
+
+-(NSString *)currentPath
+{
+    return self.baseURL.absoluteString;
+}
+
+-(EGGServerEnvironment)currentEnv
+{
+    return s_currentEnv;
+}
+
+#if DEBUG
+-(void)switchToEnvironment:(EGGServerEnvironment)aEnvironment
+{
+    [self setCurrentPathWithEnv:aEnvironment];
+    
+    [GGSharedDelegate logout];
+}
+#endif
+
 
 + (GGApi *)sharedApi
 {

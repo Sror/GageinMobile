@@ -16,6 +16,7 @@
 #import "GGProfileVC.h"
 #import "GGGroupedCell.h"
 #import "GGConfigLabel.h"
+#import "CMActionSheet.h"
 
 #define FOOTER_HEIGHT   80
 
@@ -98,17 +99,17 @@
 //}
 
 #pragma mark - table view datasource
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0)
     {
+#if DEBUG
+        return 2;
+#else
         return 1;
+#endif
     }
-    
-//    else if (section == 1)
-//    {
-//        return 2;
-//    }
     
     else if (section == 1)
     {
@@ -141,21 +142,21 @@
     
     if (section == 0) {
         
-        cell.lblTitle.text = @"My Profile";
-        cell.style = kGGGroupCellRound;
+        if (row == 0)
+        {
+            cell.lblTitle.text = @"My Profile";
+#if DEBUG
+            cell.style = kGGGroupCellFirst;
+#else
+            cell.style = kGGGroupCellRound;
+#endif
+        }
+        else
+        {
+            cell.lblTitle.text = @"Change Server (DEBUG)";
+            cell.style = kGGGroupCellLast;
+        }
     }
-    
-//    else if (section == 1)
-//    {
-//        
-//        if (row == 0) {
-//            cell.textLabel.text = @"People Updates";
-//        } else {
-//            cell.textLabel.text = @"Company Updates";
-//        }
-//        cell.detailTextLabel.text = @"";
-//        
-//    }
     
     else if (section == 1) {
         
@@ -187,7 +188,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //return 3;
     return 2;
 }
 
@@ -196,10 +196,6 @@
     if (section == 0) {
         return [GGUtils envString];
     }
-    
-//    else if (section == 1) {
-//        return @"NOTIFICATIONS";
-//    }
     
     else if (section == 1) {
         return @"ABOUT";
@@ -226,10 +222,6 @@
         configLabel.lblText.text = [GGUtils envString];
     }
     
-    //    else if (section == 1) {
-    //        return @"NOTIFICATIONS";
-    //    }
-    
     else if (section == 1) {
         configLabel.lblText.text = @"ABOUT";
     }
@@ -250,20 +242,48 @@
     
     if (section == 0) {
         
-        GGProfileVC *vc = [[GGProfileVC alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        if (row == 0)
+        {
+            GGProfileVC *vc = [[GGProfileVC alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
+#if DEBUG
+        else
+        {
+            CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
+            
+            [actionSheet addButtonWithTitle:@"Production" type:CMActionSheetButtonTypeWhite block:^{
+                [GGSharedAPI switchToEnvironment:kGGServerProduction];
+            }];
+            
+            [actionSheet addButtonWithTitle:@"Staging" type:CMActionSheetButtonTypeWhite block:^{
+                [GGSharedAPI switchToEnvironment:kGGServerStaging];
+            }];
+            
+            [actionSheet addButtonWithTitle:@"DEMO" type:CMActionSheetButtonTypeWhite block:^{
+                [GGSharedAPI switchToEnvironment:kGGServerDemo];
+            }];
+
+            
+            [actionSheet addButtonWithTitle:@"CN DEMO" type:CMActionSheetButtonTypeWhite block:^{
+                [GGSharedAPI switchToEnvironment:kGGServerCN];
+            }];
+
+            [actionSheet addButtonWithTitle:@"Roshen" type:CMActionSheetButtonTypeWhite block:^{
+                [GGSharedAPI switchToEnvironment:kGGServerRoshen];
+            }];
+            
+            [actionSheet addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:^{
+                
+            }];
+            
+            [actionSheet present];
+
+        }
+#endif
         
     }
-    
-//    else if (section == 1) {
-//        
-//        if (row == 0) {
-//            //@"People Updates";
-//        } else {
-//            //@"Company Updates";
-//        }
-//        
-//    }
     
     else if (section == 1) {
         
@@ -275,14 +295,14 @@
         } else if (row == 1) {
 
             GGWebVC *vc = [[GGWebVC alloc] init];
-            vc.urlStr = [NSString stringWithFormat:@"%@/privacy", GGSharedEnvSwicher.currentPath];
+            vc.urlStr = [NSString stringWithFormat:@"%@/privacy", GGSharedAPI.baseURL.absoluteString];
             vc.naviTitleString = @"Privacy";
             [self.navigationController pushViewController:vc animated:YES];
             
         } else if (row == 2) {
 
             GGWebVC *vc = [[GGWebVC alloc] init];
-            vc.urlStr = [NSString stringWithFormat:@"%@/tou", GGSharedEnvSwicher.currentPath];
+            vc.urlStr = [NSString stringWithFormat:@"%@/tou", GGSharedAPI.baseURL.absoluteString];
             vc.naviTitleString = @"Terms";
             [self.navigationController pushViewController:vc animated:YES];
             
