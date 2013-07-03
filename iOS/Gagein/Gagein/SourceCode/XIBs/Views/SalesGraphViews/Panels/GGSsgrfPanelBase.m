@@ -95,4 +95,9 @@
     // leave for sub class to update UI
 }
 
+-(void)update
+{
+    [self _doUpdate];
+}
+
 @end

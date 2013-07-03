@@ -55,13 +55,8 @@
     GGCompanyDigest *company = [notification.object objectForKey:@"company"];
     if ([notification.name isEqualToString:GG_NOTIFY_INFO_WIDGET_SCROLL_TO_END] && loadResponder == self)
     {
-//#warning load more competitors
-        DLog(@"load more competitors");
+        //DLog(@"load more competitors");
         [self loadMoreCompetitorsForCompany:company];
-//        -(AFHTTPRequestOperation *)getSimilarCompaniesWithOrgID:(long long)anOrgID
-//    pageNumber:(NSUInteger)aPageNumber
-//    callback:(GGApiBlock)aCallback;
-        
     }
 }
 

@@ -17,6 +17,7 @@
 #import "GGSsgrfPanelTripleInfoPlus.h"
 #import "GGSsgrfInfoWidgetView.h"
 #import "GGUpdateActionBar.h"
+#import "GGDataPage.h"
 
 //#define EXPAND_PANEL_OFFSET_X       110
 
@@ -37,6 +38,8 @@
 
 -(void)awakeFromNib
 {
+    [self observeNotification:GG_NOTIFY_INFO_WIDGET_SCROLL_TO_END];
+    
     _lblHeadline.text = _lblInterval.text = _lblSource.text = @"";
     _ivContentBg.image = GGSharedImagePool.stretchShadowBgWite;
     
@@ -44,6 +47,54 @@
     //self.contentView.autoresizingMask = UIViewAutoresizingNone;
     
     [_ivLogo applyEffectShadowAndBorder];
+}
+
+-(void)handleNotification:(NSNotification *)notification
+{
+    id loadResponder = [notification.object objectForKey:@"responder"];
+    GGCompanyDigest *company = [notification.object objectForKey:@"company"];
+    if ([notification.name isEqualToString:GG_NOTIFY_INFO_WIDGET_SCROLL_TO_END] && loadResponder == self)
+    {
+        //DLog(@"load more competitors");
+        [self loadMoreCompetitorsForCompany:company];
+    }
+}
+
+-(void)loadMoreCompetitorsForCompany:(GGCompanyDigest *)aCompany
+{
+    if (aCompany)
+    {
+        GGDataPage *competitorsPage = aCompany.competitors;
+        if (competitorsPage && competitorsPage.hasMore)
+        {
+            int pageIndex = competitorsPage.pageIndex + 1;
+            
+            [self.viewContent showLoadingHUD];
+            [GGSharedAPI getSimilarCompaniesWithOrgID:aCompany.ID pageNumber:pageIndex callback:^(id operation, id aResultObject, NSError *anError) {
+                [self.viewContent hideLoadingHUD];
+                
+                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                if (parser.isOK)
+                {
+                    GGDataPage *newPage = [parser parseGetSimilarCompanies];
+                    NSMutableArray *totalCompetitors = [NSMutableArray arrayWithArray:aCompany.competitors.items];
+                    [totalCompetitors addObjectsFromArray:newPage.items];
+                    
+                    competitorsPage.items = totalCompetitors;
+                    competitorsPage.pageIndex = pageIndex;
+                    competitorsPage.hasMore = newPage.hasMore;
+                    aCompany.competitors = competitorsPage;
+                    
+                    [_panel update];
+                }
+            }];
+        }
+    }
+}
+
+-(void)dealloc
+{
+    [self unobserveAllNotifications];
 }
 
 #define MIN_CONTENT_HEIGHT      (60.f)

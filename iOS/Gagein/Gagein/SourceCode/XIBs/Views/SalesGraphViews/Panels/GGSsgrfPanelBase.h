@@ -23,6 +23,8 @@
     GGHappening         *_happening;
 }
 -(void)updateWithHappening:(GGHappening *)aHappening;
+-(void)update;
+
 @end
 
 #define PANEL_COLOR     [UIColor colorWithRed:39.f/255 green:39.f/255 blue:39.f/255 alpha:1]

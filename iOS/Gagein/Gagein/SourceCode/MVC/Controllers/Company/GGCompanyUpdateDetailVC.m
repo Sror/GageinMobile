@@ -291,6 +291,10 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBarHidden = !_btnSwitchBack.hidden;
+    
+    [self _setNextBtnRect];
+    [self _setPrevBtnRect];
+    
     [self.navigationController.navigationBar addSubview:_btnPrevUpdate];
     [self.navigationController.navigationBar addSubview:_btnNextUpdate];
     [self _updateNaviBtnState];
