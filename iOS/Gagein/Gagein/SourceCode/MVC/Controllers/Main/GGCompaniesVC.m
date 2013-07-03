@@ -1526,11 +1526,12 @@
             }
             
             //
-            for (GGCompanyUpdate *update in _updates)
-            {
-#warning DUMMY
-                update.newsPicURL = (arc4random() % 3) ? [GGUtils testImageURL] : nil;
-            }
+//            for (GGCompanyUpdate *update in _updates)
+//            {
+////#warning DUMMY
+//                DLog(@"%@", update.newsPicURL);
+//                //update.newsPicURL = (arc4random() % 3) ? [GGUtils testImageURL] : nil;
+//            }
             
         }
         else if (parser.status == kGGApiStatusUserOperationError)

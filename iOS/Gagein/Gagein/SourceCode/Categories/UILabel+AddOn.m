@@ -57,4 +57,16 @@
     }
 }
 
+-(void)applyEffectEmboss
+{
+//    self.layer.shadowColor = GGSharedColor.white.CGColor;
+//    self.layer.shadowOffset = CGSizeMake(0, 5);
+//    self.layer.shadowRadius = 5.f;
+    self.shadowOffset = CGSizeMake(0, 1);
+    self.shadowColor = GGSharedColor.white;
+    //self.layer.masksToBounds = NO;
+    
+    //self.textColor = GGSharedColor.random;
+}
+
 @end

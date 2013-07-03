@@ -24,6 +24,9 @@
     self.backgroundColor = GGSharedColor.silver;
     [_btnAction setBackgroundImage:GGSharedImagePool.bgBtnOrange forState:UIControlStateNormal];
     //self.hidden = YES;
+    
+    [_lblMessage applyEffectEmboss];
+    [_lblSimpleMessage applyEffectEmboss];
 }
 
 -(void)setMessageCode:(GGApiParser *)anApiParser vc:(GGBaseViewController *)aVc

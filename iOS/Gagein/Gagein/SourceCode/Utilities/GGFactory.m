@@ -47,7 +47,7 @@
         
         cell.descriptionLbl.text = aData.content;
         
-        [cell.logoIV setImageWithURL:[NSURL URLWithString:aData.newsPicURL/*aData.company.logoPath*/] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+        [cell.logoIV setImageWithURL:[NSURL URLWithString:aData.newsPicURL/*aData.company.logoPath*/] placeholderImage:GGSharedImagePool.logoDefaultNews];
         
         cell.intervalLbl.text = [aData intervalStringWithDate:aData.date];
         cell.hasBeenRead = aData.hasBeenRead;

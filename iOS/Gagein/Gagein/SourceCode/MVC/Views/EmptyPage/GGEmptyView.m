@@ -23,6 +23,8 @@
 {
     self.backgroundColor = GGSharedColor.silver;
     self.hidden = YES;
+    
+    [_lblMessage applyEffectEmboss];
 }
 
 @end
