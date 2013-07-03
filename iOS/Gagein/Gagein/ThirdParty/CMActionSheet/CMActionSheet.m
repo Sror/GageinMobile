@@ -81,7 +81,7 @@
     
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     button.titleLabel.font = [UIFont boldSystemFontOfSize:20];
     button.titleLabel.adjustsFontSizeToFitWidth = NO;
     
@@ -173,7 +173,145 @@
     [self.items addObject:separator];
 }
 
-- (void)present {
+- (void)present
+{
+    ISIPADDEVICE ? [self presentIPad] : [self presentIPhone];
+}
+
+#define IPAD_SHIT_WIDTH    650
+- (void)presentIPad
+{
+    if (self.items && self.items.count > 0) {
+        self.mainWindow = [UIApplication sharedApplication].keyWindow;
+        CMRotatableModalViewController *viewController = [[CMRotatableModalViewController new] autorelease];
+        viewController.rootViewController = mainWindow.rootViewController;
+        
+        // Build action sheet view
+        UIView* actionSheet = [[[UIView alloc] initWithFrame:CGRectMake(0, viewController.view.frame.size.height, viewController.view.frame.size.width, 0)] autorelease];
+        actionSheet.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+        [viewController.view addSubview:actionSheet];
+        
+        // Add background
+        if (ISIPADDEVICE)
+        {
+//            UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, actionSheet.frame.size.width, actionSheet.frame.size.height)];
+//            bgView.backgroundColor = GGSharedColor.darkGray;
+//            bgView.layer.opacity = .8f;
+//            bgView.layer.cornerRadius = 8.f;
+//            bgView.layer.borderColor = GGSharedColor.lightGray.CGColor;
+//            bgView.layer.borderWidth = 1.f;
+//            
+//            [actionSheet addSubview:bgView];
+        }
+        //else
+        {
+            self.backgroundActionView.frame = CGRectMake(0, 0, actionSheet.frame.size.width, actionSheet.frame.size.height);
+            self.backgroundActionView.image = nil;
+            self.backgroundActionView.backgroundColor = GGSharedColor.darkGray;
+            self.backgroundActionView.layer.cornerRadius = 8.f;
+            //self.backgroundActionView.layer.borderWidth = 2.f;
+            //self.backgroundActionView.layer.borderColor = GGSharedColor.lightGray.CGColor;
+            self.backgroundActionView.layer.opacity = .9f;
+            [actionSheet addSubview:self.backgroundActionView];
+            
+            UIView *borderView = [[UIView alloc] initWithFrame:self.backgroundActionView.frame];
+            borderView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            borderView.backgroundColor = GGSharedColor.clear;
+            borderView.layer.cornerRadius = 8.f;
+            borderView.layer.borderWidth = 1.f;
+            borderView.layer.opacity = .7f;
+            borderView.layer.borderColor = GGSharedColor.lightGray.CGColor;
+            [actionSheet addSubview:borderView];
+        }
+        
+        CGFloat offset = 15;
+        
+        // Add Title
+        if (self.title) {
+            CGSize size = [title sizeWithFont:[UIFont systemFontOfSize:18]
+                            constrainedToSize:CGSizeMake(actionSheet.frame.size.width-10*2, 1000)
+                                lineBreakMode:UILineBreakModeWordWrap];
+            
+            UILabel *labelView = [[[UILabel alloc] initWithFrame:CGRectMake(10, offset, actionSheet.frame.size.width-10*2, size.height)] autorelease];
+            labelView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            labelView.font = [UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE_LIGHT size:13.f];
+            labelView.numberOfLines = 0;
+            labelView.lineBreakMode = UILineBreakModeWordWrap;
+            labelView.textColor = GGSharedColor.silverLight;
+            labelView.backgroundColor = [UIColor clearColor];
+            labelView.textAlignment = UITextAlignmentCenter;
+            labelView.shadowColor = [UIColor blackColor];
+            labelView.shadowOffset = CGSizeMake(0, -1);
+            labelView.text = title;
+            [actionSheet addSubview:labelView];
+            
+            offset += size.height + 10;
+        }
+        
+        // Add action sheet items
+        NSUInteger tag = 100;
+        
+        for (UIView *item in self.items) {
+            if ([item isKindOfClass:[UIImageView class]]) {
+                item.frame = CGRectMake(0, offset, actionSheet.frame.size.width, 2);
+                [actionSheet addSubview:item];
+                [actionSheet insertSubview:item aboveSubview:self.backgroundActionView];
+                
+                offset += item.frame.size.height + 10;
+            } else {
+                
+                BOOL isButton = [item isKindOfClass:[UIButton class]];
+                if (_isBgCustomized && isButton)
+                {
+                    item.frame = CGRectMake((actionSheet.frame.size.width - _buttonSize.width) / 2, offset, _buttonSize.width, _buttonSize.height);
+                }
+                else
+                {
+                    item.frame = CGRectMake(10, offset, actionSheet.frame.size.width - 10*2, 35);
+                }
+                
+                item.tag = tag++;
+                [actionSheet addSubview:item];
+                
+                offset += item.frame.size.height + 10;
+            }
+        }
+        
+        //float width = viewController.view.frame.size.width - IPAD_GAP * 2;
+        actionSheet.frame = CGRectMake((viewController.view.frame.size.width - IPAD_SHIT_WIDTH) / 2, viewController.view.frame.size.height, IPAD_SHIT_WIDTH, offset + 10);
+        
+        CGPoint center = actionSheet.center;
+        DLog(@"vc rect:%@, action sheet rect:%@", viewController.view.frameString, actionSheet.frameString);
+        center.y -= actionSheet.frame.size.height + (viewController.view.frame.size.height - actionSheet.frame.size.height) / 2;
+        actionSheet.center = center;
+        
+        for (UIView *item in self.items)
+        {
+            item.frame = CGRectMake((actionSheet.frame.size.width - item.frame.size.width) / 2
+                                    , item.frame.origin.y
+                                    , item.frame.size.width
+                                    , item.frame.size.height);
+        }
+        
+        // Present window and action sheet
+        self.overlayWindow.rootViewController = viewController;
+        self.overlayWindow.alpha = 0.0f;
+        self.overlayWindow.hidden = NO;
+        [self.overlayWindow makeKeyWindow];
+        
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationCurveEaseOut animations:^{
+            self.overlayWindow.alpha = 1;
+            
+        } completion:^(BOOL finished) {
+            // we retain self until with dismiss action sheet
+            [self retain];
+        }];
+    }
+
+}
+
+- (void)presentIPhone
+{
     if (self.items && self.items.count > 0) {
         self.mainWindow = [UIApplication sharedApplication].keyWindow;
         CMRotatableModalViewController *viewController = [[CMRotatableModalViewController new] autorelease];
@@ -198,10 +336,10 @@
             
             UILabel *labelView = [[[UILabel alloc] initWithFrame:CGRectMake(10, offset, actionSheet.frame.size.width-10*2, size.height)] autorelease];
             labelView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-            labelView.font = [UIFont systemFontOfSize:18];
+            labelView.font = [UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE_LIGHT size:13.f];
             labelView.numberOfLines = 0;
             labelView.lineBreakMode = UILineBreakModeWordWrap;
-            labelView.textColor = [UIColor whiteColor];
+            labelView.textColor = GGSharedColor.silverLight;
             labelView.backgroundColor = [UIColor clearColor];
             labelView.textAlignment = UITextAlignmentCenter;
             labelView.shadowColor = [UIColor blackColor];
@@ -265,9 +403,14 @@
     
     [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationCurveEaseOut animations:^{
         self.overlayWindow.alpha = 0;
-        CGPoint center = actionSheet.center;
-        center.y += actionSheet.frame.size.height;
-        actionSheet.center = center;
+        
+        if (!ISIPADDEVICE)
+        {
+            CGPoint center = actionSheet.center;
+            center.y += actionSheet.frame.size.height;
+            actionSheet.center = center;
+        }
+        
     } completion:^(BOOL finished) {
         self.overlayWindow.hidden = YES;
         [self.mainWindow makeKeyWindow];

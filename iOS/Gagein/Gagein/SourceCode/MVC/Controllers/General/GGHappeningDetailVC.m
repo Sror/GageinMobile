@@ -255,6 +255,7 @@
 -(void)_showSheetToShare
 {
     CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
+    actionSheet.title = @"Share";
     
     UIImage *bgImg = nil;
     

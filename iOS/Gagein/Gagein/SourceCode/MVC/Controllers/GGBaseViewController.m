@@ -1018,6 +1018,7 @@
 -(void)_showSheetToSignal
 {
     CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
+    actionSheet.title = @"Signal";
     
     UIImage *bgImg = nil;
     
@@ -1115,6 +1116,7 @@
 -(void)_showSheetToShare:(BOOL)aShareUpdate
 {
     CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
+    actionSheet.title = @"Share";
     
     UIImage *bgImg = nil;
     

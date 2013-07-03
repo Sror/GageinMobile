@@ -18,11 +18,31 @@
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    if (interfaceOrientation == self.rootViewController.interfaceOrientation) {
+    if (interfaceOrientation == self.rootViewController.interfaceOrientation && ISIPADDEVICE) {
         return YES;
     } else {
         return NO;
     }
+}
+
+- (BOOL)shouldAutorotate {
+    
+    if (ISIPADDEVICE)
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    
+    if (ISIPADDEVICE)
+    {
+        return UIInterfaceOrientationMaskAll;
+    }
+    
+    return UIInterfaceOrientationMaskPortrait; // etc
 }
 
 @end
