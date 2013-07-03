@@ -316,12 +316,4 @@ static BOOL s_isCustomed = NO;
     return (GGLeftDrawerVC *)(_drawerVC.leftDrawerViewController);
 }
 
--(void)logout
-{
-    [GGSharedRuntimeData resetCurrentUser];
-    [self enterLoginIfNeeded];
-    
-    [self postNotification:GG_NOTIFY_LOG_OUT];
-}
-
 @end
