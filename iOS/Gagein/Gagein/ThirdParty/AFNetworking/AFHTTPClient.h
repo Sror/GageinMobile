@@ -109,11 +109,7 @@ typedef enum {
 /**
  The url used as the base for paths specified in methods such as `getPath:parameters:success:failure`
  */
-#if !(DEBUG)
 @property (readonly, nonatomic, strong) NSURL *baseURL;
-#else
-@property (nonatomic, strong) NSURL *baseURL;   // MODIFIED BY D.D.
-#endif
 
 /**
  The string encoding used in constructing url requests. This is `NSUTF8StringEncoding` by default.
@@ -164,8 +160,6 @@ typedef enum {
  @return The newly-initialized HTTP client
  */
 - (id)initWithBaseURL:(NSURL *)url;
-
-- (void)startMonitoringNetworkReachability;
 
 ///-----------------------------------
 /// @name Managing Reachability Status

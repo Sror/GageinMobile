@@ -11,8 +11,8 @@
 @interface GGEnvSwicher : NSObject
 AS_SINGLETON(GGEnvSwicher)
 @property (readonly) NSString               *currentPath;
-
-
+@property (readonly) EGGServerEnvironment   currentEnv;
+-(void)switchToEnvironment:(EGGServerEnvironment)aEnvironment;
 
 @end
 

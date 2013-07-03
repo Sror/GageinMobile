@@ -26,15 +26,8 @@ typedef enum
 
 @interface GGApi : AFHTTPClient
 
-
 // singleton method to get a shared api all over the app
 + (GGApi *)sharedApi;
-
--(EGGServerEnvironment)currentEnv;
--(NSString *)currentPath;
-#if DEBUG
--(void)switchToEnvironment:(EGGServerEnvironment)aEnvironment;
-#endif
 
 -(void)canceAllOperations;
 
