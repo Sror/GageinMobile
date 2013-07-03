@@ -278,7 +278,7 @@
     [self pushBackButtonFront];
     
     [self _adjustCustomNaviTitlePosition];
-    DLog(@"%@: viewDidAppear", self.className);
+    //DLog(@"%@: viewDidAppear", self.className);
     if ([self canHearAction])
     {
         [GGSsgrfActionListener sharedInstance].delegate = self;
@@ -289,7 +289,7 @@
 {
     [super viewWillDisappear:animated];
     
-    DLog(@"%@: viewWillDisappear", self.className);
+    //DLog(@"%@: viewWillDisappear", self.className);
     if ([self canHearAction])
     {
         [GGSsgrfActionListener sharedInstance].delegate = nil;
@@ -298,7 +298,7 @@
 
 -(BOOL)canHearAction
 {
-    DLog(@"%@", self.className);
+    //DLog(@"%@", self.className);
     return YES;
 }
 

@@ -648,7 +648,7 @@ static CAKeyframeAnimation * bounceKeyFrameAnimationForDistanceOnView(CGFloat di
     
     UIView *centerView = GGSharedDelegate.tabBarController.view;
     centerView.frame = CGRectMake(centerView.frame.origin.x, centerView.frame.origin.y, coverRc.size.width, coverRc.size.height);
-    DLog(@"center view rect set:%@", NSStringFromCGRect(centerView.frame));
+    //DLog(@"center view rect set:%@", NSStringFromCGRect(centerView.frame));
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{

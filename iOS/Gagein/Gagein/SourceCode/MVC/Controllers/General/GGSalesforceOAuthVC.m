@@ -157,7 +157,7 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    DLog(@"%@:%@", self.className, self.view.frameString);
+    //DLog(@"%@:%@", self.className, self.view.frameString);
     [self showBackButton];
 }
 
@@ -275,7 +275,7 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
-    DLog(@"%@:%@", self.className, self.view.frameString);
+    //DLog(@"%@:%@", self.className, self.view.frameString);
     [self.oauthCoordinator doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
 }
 

@@ -154,7 +154,7 @@
     [super viewDidAppear:animated];
     
     [self adjustScrollViewFrames];
-    DLog(@"%@ 's rect:%@, \ntv rect:%@", self.className, self.view.frameString, _updatesTV.frameString);
+    //DLog(@"%@ 's rect:%@, \ntv rect:%@", self.className, self.view.frameString, _updatesTV.frameString);
     [_updatesTV reloadData];
 }
 
