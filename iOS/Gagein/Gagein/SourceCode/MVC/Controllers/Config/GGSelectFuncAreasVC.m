@@ -209,8 +209,8 @@
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
-    
-    [_viewTable centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
+    DLog(@"%@", self.view.frameString);
+    [_viewTable centerMeHorizontallyChangeMyWidth:self.view.frame.size.width];
 }
 
 @end
