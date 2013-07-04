@@ -408,7 +408,6 @@
 		EA9E00191770074E00127233 /* GGSsgrfPopPanelCompany.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9E00141770074E00127233 /* GGSsgrfPopPanelCompany.xib */; };
 		EA9E001A1770074E00127233 /* GGSsgrfPopPanelPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9E00161770074E00127233 /* GGSsgrfPopPanelPerson.m */; };
 		EA9E001B1770074E00127233 /* GGSsgrfPopPanelPerson.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9E00171770074E00127233 /* GGSsgrfPopPanelPerson.xib */; };
-		EA9E8E9D178510640080AE0C /* GGDummyDrawerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9E8E9C178510620080AE0C /* GGDummyDrawerVC.m */; };
 		EAA055DF17792FEC00D04463 /* GGUpdateCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA055DE17792FEB00D04463 /* GGUpdateCache.m */; };
 		EAA055E21779312F00D04463 /* GGCompetitorCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA055E11779312F00D04463 /* GGCompetitorCache.m */; };
 		EAA1880F175E7BB700580B00 /* GGSignupVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA1880E175E7BB700580B00 /* GGSignupVC_iPad.xib */; };
@@ -439,11 +438,6 @@
 		EAB8D51C1739784700D033FC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB8D51B1739784700D033FC /* Security.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EAB8D52417397CA100D033FC /* Bee_Thread.mm in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D52317397CA100D033FC /* Bee_Thread.mm */; };
 		EAB8D52B1739882F00D033FC /* GGUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D52A1739882F00D033FC /* GGUserProfile.m */; };
-		EAB8D5471739AF7900D033FC /* NGTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D53A1739AF7900D033FC /* NGTabBar.m */; };
-		EAB8D5481739AF7900D033FC /* NGTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D53C1739AF7900D033FC /* NGTabBarController.m */; };
-		EAB8D5491739AF7900D033FC /* NGTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D5401739AF7900D033FC /* NGTabBarItem.m */; };
-		EAB8D54A1739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D5441739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.m */; };
-		EAB8D54B1739AF7900D033FC /* UIViewController+NGTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB8D5461739AF7900D033FC /* UIViewController+NGTabBarItem.m */; };
 		EAC6F8C11759158F00BC0B97 /* btnLike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC6F8BA1759158F00BC0B97 /* btnLike@2x.png */; };
 		EAC6F8C21759158F00BC0B97 /* btnLiked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC6F8BB1759158F00BC0B97 /* btnLiked@2x.png */; };
 		EAC6F8C31759158F00BC0B97 /* btnSave@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAC6F8BC1759158F00BC0B97 /* btnSave@2x.png */; };
@@ -1181,8 +1175,6 @@
 		EA9E00151770074E00127233 /* GGSsgrfPopPanelPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfPopPanelPerson.h; sourceTree = "<group>"; };
 		EA9E00161770074E00127233 /* GGSsgrfPopPanelPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfPopPanelPerson.m; sourceTree = "<group>"; };
 		EA9E00171770074E00127233 /* GGSsgrfPopPanelPerson.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSsgrfPopPanelPerson.xib; sourceTree = "<group>"; };
-		EA9E8E9B178510600080AE0C /* GGDummyDrawerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGDummyDrawerVC.h; sourceTree = "<group>"; };
-		EA9E8E9C178510620080AE0C /* GGDummyDrawerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGDummyDrawerVC.m; sourceTree = "<group>"; };
 		EA9EFFF71770068100127233 /* ssgrf_bg_btn_follow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_bg_btn_follow@2x.png"; sourceTree = "<group>"; };
 		EA9EFFF81770068100127233 /* ssgrf_bg_btn_unfollow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_bg_btn_unfollow@2x.png"; sourceTree = "<group>"; };
 		EA9EFFF91770068100127233 /* ssgrf_btn_cb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_cb@2x.png"; sourceTree = "<group>"; };
@@ -1250,19 +1242,6 @@
 		EAB8D52317397CA100D033FC /* Bee_Thread.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Bee_Thread.mm; sourceTree = "<group>"; };
 		EAB8D5291739882F00D033FC /* GGUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGUserProfile.h; sourceTree = "<group>"; };
 		EAB8D52A1739882F00D033FC /* GGUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUserProfile.m; sourceTree = "<group>"; };
-		EAB8D5391739AF7900D033FC /* NGTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTabBar.h; sourceTree = "<group>"; };
-		EAB8D53A1739AF7900D033FC /* NGTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGTabBar.m; sourceTree = "<group>"; };
-		EAB8D53B1739AF7900D033FC /* NGTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTabBarController.h; sourceTree = "<group>"; };
-		EAB8D53C1739AF7900D033FC /* NGTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGTabBarController.m; sourceTree = "<group>"; };
-		EAB8D53D1739AF7900D033FC /* NGTabBarControllerAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTabBarControllerAnimation.h; sourceTree = "<group>"; };
-		EAB8D53E1739AF7900D033FC /* NGTabBarControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTabBarControllerDelegate.h; sourceTree = "<group>"; };
-		EAB8D53F1739AF7900D033FC /* NGTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTabBarItem.h; sourceTree = "<group>"; };
-		EAB8D5401739AF7900D033FC /* NGTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGTabBarItem.m; sourceTree = "<group>"; };
-		EAB8D5411739AF7900D033FC /* NGTabBarPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGTabBarPosition.h; sourceTree = "<group>"; };
-		EAB8D5431739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+NGTabBarNavigationDelegate.h"; sourceTree = "<group>"; };
-		EAB8D5441739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+NGTabBarNavigationDelegate.m"; sourceTree = "<group>"; };
-		EAB8D5451739AF7900D033FC /* UIViewController+NGTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NGTabBarItem.h"; sourceTree = "<group>"; };
-		EAB8D5461739AF7900D033FC /* UIViewController+NGTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NGTabBarItem.m"; sourceTree = "<group>"; };
 		EAC6F8BA1759158F00BC0B97 /* btnLike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnLike@2x.png"; sourceTree = "<group>"; };
 		EAC6F8BB1759158F00BC0B97 /* btnLiked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnLiked@2x.png"; sourceTree = "<group>"; };
 		EAC6F8BC1759158F00BC0B97 /* btnSave@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnSave@2x.png"; sourceTree = "<group>"; };
@@ -2368,26 +2347,6 @@
 			path = BeeFramework;
 			sourceTree = "<group>";
 		};
-		EAB8D5381739AF7900D033FC /* NGTabBarController */ = {
-			isa = PBXGroup;
-			children = (
-				EAB8D5391739AF7900D033FC /* NGTabBar.h */,
-				EAB8D53A1739AF7900D033FC /* NGTabBar.m */,
-				EAB8D53B1739AF7900D033FC /* NGTabBarController.h */,
-				EAB8D53C1739AF7900D033FC /* NGTabBarController.m */,
-				EAB8D53D1739AF7900D033FC /* NGTabBarControllerAnimation.h */,
-				EAB8D53E1739AF7900D033FC /* NGTabBarControllerDelegate.h */,
-				EAB8D53F1739AF7900D033FC /* NGTabBarItem.h */,
-				EAB8D5401739AF7900D033FC /* NGTabBarItem.m */,
-				EAB8D5411739AF7900D033FC /* NGTabBarPosition.h */,
-				EAB8D5431739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.h */,
-				EAB8D5441739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.m */,
-				EAB8D5451739AF7900D033FC /* UIViewController+NGTabBarItem.h */,
-				EAB8D5461739AF7900D033FC /* UIViewController+NGTabBarItem.m */,
-			);
-			path = NGTabBarController;
-			sourceTree = "<group>";
-		};
 		EAC96C2617098313003FAFAA /* Signup */ = {
 			isa = PBXGroup;
 			children = (
@@ -2723,8 +2682,6 @@
 				EAEC1E411739CCCD0058130E /* GGRootNaviVC.m */,
 				EA9162611767F6EC000AB2FB /* GGNavigationController.h */,
 				EA9162621767F6EE000AB2FB /* GGNavigationController.m */,
-				EA9E8E9B178510600080AE0C /* GGDummyDrawerVC.h */,
-				EA9E8E9C178510620080AE0C /* GGDummyDrawerVC.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2846,7 +2803,6 @@
 				EA96495217613D4D00739F73 /* YRDropdownView */,
 				EA62C67F174BFCD90031BF42 /* Twitter+OAuth */,
 				EA2F006F1746BFA700E191BD /* CMActionSheet */,
-				EAB8D5381739AF7900D033FC /* NGTabBarController */,
 				EAB8D52117397CA100D033FC /* BeeFramework */,
 				EAB8D5001739756200D033FC /* SfOAuth */,
 				EAF675FB1734B57600CE9F7D /* LinkedInOAuth */,
@@ -3777,11 +3733,6 @@
 				EAB8D51A1739762200D033FC /* GGSalesforceOAuthVC.m in Sources */,
 				EAB8D52417397CA100D033FC /* Bee_Thread.mm in Sources */,
 				EAB8D52B1739882F00D033FC /* GGUserProfile.m in Sources */,
-				EAB8D5471739AF7900D033FC /* NGTabBar.m in Sources */,
-				EAB8D5481739AF7900D033FC /* NGTabBarController.m in Sources */,
-				EAB8D5491739AF7900D033FC /* NGTabBarItem.m in Sources */,
-				EAB8D54A1739AF7900D033FC /* UINavigationController+NGTabBarNavigationDelegate.m in Sources */,
-				EAB8D54B1739AF7900D033FC /* UIViewController+NGTabBarItem.m in Sources */,
 				EAEC1E421739CCCD0058130E /* GGRootNaviVC.m in Sources */,
 				EAD16176173AE2050092C11B /* GGComUpdateDetailView.m in Sources */,
 				EAD1618B173B3BB50092C11B /* GGFacebookOAuth.m in Sources */,
@@ -3880,7 +3831,6 @@
 				EA9D2F4317820E66004CA4BC /* GGUpdateInfoHeaderView.m in Sources */,
 				EA9D2F4817822B15004CA4BC /* GGUpdateInfoRelatedArticleCell.m in Sources */,
 				EA9D2F5017823BF7004CA4BC /* GGRelatedArticlesVC.m in Sources */,
-				EA9E8E9D178510640080AE0C /* GGDummyDrawerVC.m in Sources */,
 				EAA3AEC61785FC070045E448 /* GGWhiteBackgroundImageView.m in Sources */,
 				EAA3AEC917860B800045E448 /* GGOrientation.m in Sources */,
 			);
