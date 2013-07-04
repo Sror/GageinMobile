@@ -16,6 +16,7 @@
 {
     CGPoint                 _offsetWhenStartDragging;
     NSMutableSet            *_scrolls;
+    NSMutableArray            *_excludeScrolls;
 }
 
 -(void)viewDidLoad
@@ -24,6 +25,12 @@
     self.view.backgroundColor = GGSharedColor.silver;
     
     _scrolls = [NSMutableSet set];
+    _excludeScrolls = [NSMutableArray array];
+}
+
+-(void)excludeScrollView:(UIScrollView *)aScrollView
+{
+    [_excludeScrolls addObject:aScrollView];
 }
 
 -(void)addScrollToHide:(UIScrollView *)aScrollView
@@ -65,7 +72,8 @@
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
 {
-    if (!ISIPADDEVICE /*&& scrollView.contentSize.height > scrollView.frame.size.height*/)
+    int index = [_excludeScrolls indexOfObject:scrollView];
+    if (!ISIPADDEVICE && index == NSNotFound /*&& scrollView.contentSize.height > scrollView.frame.size.height*/)
     {
         if (_offsetWhenStartDragging.y < scrollView.contentOffset.y)
         {

@@ -15,6 +15,8 @@
 -(void)addScrollToHide:(UIScrollView *)aScrollView;
 -(void)removeScrollToHide:(UIScrollView *)aScrollView;
 
+-(void)excludeScrollView:(UIScrollView *)aScrollView;
+
 -(void)adjustScrollViewFrames;
 
 @end

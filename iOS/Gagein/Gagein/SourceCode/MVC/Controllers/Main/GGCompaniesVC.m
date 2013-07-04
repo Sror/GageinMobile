@@ -122,6 +122,7 @@
     [_slideSettingView.searchBar.btnFilter addTarget:self action:@selector(_exploringConfigTapped:) forControlEvents:UIControlEventTouchUpInside];
     
     [_slideSettingView changeDelegate:self];
+    [self excludeScrollView:_slideSettingView.viewTable];
 }
 
 -(UIBarButtonItem *)_switchBarButton
