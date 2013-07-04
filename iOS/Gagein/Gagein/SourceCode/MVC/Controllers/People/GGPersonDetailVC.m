@@ -18,13 +18,15 @@
 #import "GGHappeningsVC.h"
 #import "GGDataPage.h"
 #import "GGHappeningDetailVC.h"
-
-
+#import "GGComDetailEmployeeCell.h"
+#import "GGCompanyDetailVC.h"
+#import "GGEmployerComsVC.h"
 
 //
 typedef enum
 {
     kGGSectionUpdates = 0
+    , kGGSectionPrevCompanies
     , kGGSectionSocialProfiles
     , kGGSectionCount
 }EGGPersonDetailSection;
@@ -89,6 +91,8 @@ typedef enum
     tvBgView.backgroundColor = GGSharedColor.silver;
     _tvDetail.backgroundView = tvBgView;
     
+    _tvDetail.showsVerticalScrollIndicator = NO;
+    
     [self _callApiGetPersonOverview];
     [self _callApiGetHappenings];
 }
@@ -111,13 +115,15 @@ typedef enum
     return kGGSectionCount;
 }
 
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == kGGSectionUpdates) {
         return _updates.count;
-    } else if (section == kGGSectionSocialProfiles) {
+    }
+    else if (section == kGGSectionPrevCompanies) {
+        return _personOverview.prevCompanies.count;
+    }
+    else if (section == kGGSectionSocialProfiles) {
         return _personOverview.socialProfiles.count;
     }
     
@@ -145,7 +151,25 @@ typedef enum
         
         return cell;
         
-    } else if (section == kGGSectionSocialProfiles) {
+    }
+    else if (section == kGGSectionPrevCompanies) {
+        
+        GGComDetailEmployeeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGComDetailEmployeeCell"];
+        if (!cell) {
+            cell = [GGComDetailEmployeeCell viewFromNibWithOwner:self];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        GGCompany *data = _personOverview.prevCompanies[row];
+        
+        cell.lblTitle.text = data.name;
+        cell.lblSubTitle.text = data.website;
+        [cell.ivPhoto setImageWithURL:[NSURL URLWithString:data.logoPath] placeholderImage:GGSharedImagePool.placeholder];
+        
+        return cell;
+        
+    }
+    else if (section == kGGSectionSocialProfiles) {
         
         GGComDetailProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GGComDetailProfileCell"];
         if (!cell) {
@@ -178,7 +202,13 @@ typedef enum
         
         [self.navigationController pushViewController:vc animated:YES];
         
-    } else if (section == kGGSectionSocialProfiles) {
+    }
+    else if (section == kGGSectionPrevCompanies) {
+        
+        GGCompany *data = _personOverview.prevCompanies[row];
+        [self enterCompanyDetailWithID:data.ID];
+    }
+    else if (section == kGGSectionSocialProfiles) {
         
         GGSocialProfile *data = _personOverview.socialProfiles[row];
         GGWebVC *vc = [[GGWebVC alloc] init];
@@ -197,7 +227,11 @@ typedef enum
         
         return [GGCompanyDetailUpdateCell HEIGHT];
         
-    } else if (section == kGGSectionSocialProfiles) {
+    }
+    else if (section == kGGSectionPrevCompanies) {
+        return [GGComDetailEmployeeCell HEIGHT];
+    }
+    else if (section == kGGSectionSocialProfiles) {
         
         return [GGComDetailProfileCell HEIGHT];
         
@@ -212,7 +246,12 @@ typedef enum
         
         return 0.f;
         
-    } else if (section == kGGSectionSocialProfiles && _personOverview.socialProfiles.count <= 0) {
+    }
+    else if (section == kGGSectionPrevCompanies && _personOverview.prevCompanies.count <= 0)
+    {
+        return 0.f;
+    }
+    else if (section == kGGSectionSocialProfiles && _personOverview.socialProfiles.count <= 0) {
         
         return 0.f;
         
@@ -230,7 +269,12 @@ typedef enum
         header.lblTitle.text = @"UPDATES";
         [header.lblAction addTarget:self action:@selector(_seeAllHappeningsAction:) forControlEvents:UIControlEventTouchUpInside];
         
-    } else if (section == kGGSectionSocialProfiles) {
+    }
+    else if (section == kGGSectionPrevCompanies) {
+        header.lblTitle.text = @"PREVIOUS COMPANIES";
+        [header.lblAction addTarget:self action:@selector(_seeAllPrevCompaniesAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    else if (section == kGGSectionSocialProfiles) {
         
         header.lblTitle.text = @"LINKED PROFILES";
         header.lblAction.hidden = YES;
@@ -247,6 +291,14 @@ typedef enum
     vc.happenings = _updates;
     vc.isPersonHappenings = YES;
     vc.personID = _personID;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)_seeAllPrevCompaniesAction:(id)sender
+{
+    GGEmployerComsVC *vc = [[GGEmployerComsVC alloc] init];
+    vc.companies = _personOverview.prevCompanies;
     
     [self.navigationController pushViewController:vc animated:YES];
 }

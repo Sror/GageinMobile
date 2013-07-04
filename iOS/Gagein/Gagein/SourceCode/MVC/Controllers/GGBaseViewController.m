@@ -208,7 +208,7 @@
 
 -(BOOL)doNeedMenu
 {
-    DLog(@"%@ need menu.", NSStringFromClass([self class]));
+    //DLog(@"%@ need menu.", NSStringFromClass([self class]));
     return NO;
 }
 
