@@ -408,6 +408,7 @@
 		EA9E00191770074E00127233 /* GGSsgrfPopPanelCompany.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9E00141770074E00127233 /* GGSsgrfPopPanelCompany.xib */; };
 		EA9E001A1770074E00127233 /* GGSsgrfPopPanelPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9E00161770074E00127233 /* GGSsgrfPopPanelPerson.m */; };
 		EA9E001B1770074E00127233 /* GGSsgrfPopPanelPerson.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9E00171770074E00127233 /* GGSsgrfPopPanelPerson.xib */; };
+		EA9E8E9D178510640080AE0C /* GGDummyDrawerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9E8E9C178510620080AE0C /* GGDummyDrawerVC.m */; };
 		EAA055DF17792FEC00D04463 /* GGUpdateCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA055DE17792FEB00D04463 /* GGUpdateCache.m */; };
 		EAA055E21779312F00D04463 /* GGCompetitorCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA055E11779312F00D04463 /* GGCompetitorCache.m */; };
 		EAA1880F175E7BB700580B00 /* GGSignupVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA1880E175E7BB700580B00 /* GGSignupVC_iPad.xib */; };
@@ -1178,6 +1179,8 @@
 		EA9E00151770074E00127233 /* GGSsgrfPopPanelPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSsgrfPopPanelPerson.h; sourceTree = "<group>"; };
 		EA9E00161770074E00127233 /* GGSsgrfPopPanelPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSsgrfPopPanelPerson.m; sourceTree = "<group>"; };
 		EA9E00171770074E00127233 /* GGSsgrfPopPanelPerson.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSsgrfPopPanelPerson.xib; sourceTree = "<group>"; };
+		EA9E8E9B178510600080AE0C /* GGDummyDrawerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGDummyDrawerVC.h; sourceTree = "<group>"; };
+		EA9E8E9C178510620080AE0C /* GGDummyDrawerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGDummyDrawerVC.m; sourceTree = "<group>"; };
 		EA9EFFF71770068100127233 /* ssgrf_bg_btn_follow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_bg_btn_follow@2x.png"; sourceTree = "<group>"; };
 		EA9EFFF81770068100127233 /* ssgrf_bg_btn_unfollow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_bg_btn_unfollow@2x.png"; sourceTree = "<group>"; };
 		EA9EFFF91770068100127233 /* ssgrf_btn_cb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_cb@2x.png"; sourceTree = "<group>"; };
@@ -2714,6 +2717,8 @@
 				EAEC1E411739CCCD0058130E /* GGRootNaviVC.m */,
 				EA9162611767F6EC000AB2FB /* GGNavigationController.h */,
 				EA9162621767F6EE000AB2FB /* GGNavigationController.m */,
+				EA9E8E9B178510600080AE0C /* GGDummyDrawerVC.h */,
+				EA9E8E9C178510620080AE0C /* GGDummyDrawerVC.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3865,6 +3870,7 @@
 				EA9D2F4317820E66004CA4BC /* GGUpdateInfoHeaderView.m in Sources */,
 				EA9D2F4817822B15004CA4BC /* GGUpdateInfoRelatedArticleCell.m in Sources */,
 				EA9D2F5017823BF7004CA4BC /* GGRelatedArticlesVC.m in Sources */,
+				EA9E8E9D178510640080AE0C /* GGDummyDrawerVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

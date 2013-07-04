@@ -193,10 +193,6 @@ typedef void (^MMDrawerControllerDrawerVisualStateBlock)(MMDrawerController * dr
  */
 @property (nonatomic, assign) BOOL showsShadow;
 
-
-// ADDED BY D.D.
--(void)adjustCenterRect;
-
 ///---------------------------------------
 /// @name Initializing a `MMDrawerController`
 ///---------------------------------------
@@ -256,9 +252,6 @@ typedef void (^MMDrawerControllerDrawerVisualStateBlock)(MMDrawerController * dr
  
  */
 -(void)closeDrawerAnimated:(BOOL)animated completion:(void(^)(BOOL finished))completion;
-
-///////Add by Daniel Dong
--(void)bareLeftDrawerCompletion:(void (^)(BOOL))completion;
 
 /**
  Opens the `drawer` passed in.

@@ -25,6 +25,7 @@
 
 #import "MMDrawerController.h"
 #import "GGLeftDrawerVC.h"
+#import "GGDummyDrawerVC.h"
 
 
 #define TAG_UPGRADE_ALERT   1000
@@ -82,6 +83,7 @@
     [self _initTabbar];
     
     GGLeftDrawerVC *leftDrawerVC = [GGLeftDrawerVC new];
+    //GGDummyDrawerVC *leftDrawerVC = [GGDummyDrawerVC new];
     
     _drawerVC = [[MMDrawerController alloc] initWithCenterViewController:_tabBarController leftDrawerViewController:leftDrawerVC];
     
@@ -93,8 +95,9 @@
     [_drawerVC
      setDrawerVisualStateBlock:^(MMDrawerController *drawerController, MMDrawerSide drawerSide, CGFloat percentVisible) {
          MMDrawerControllerDrawerVisualStateBlock block;
-         //block = [MMDrawerVisualState slideAndScaleVisualStateBlock];
+         //block = [MMDrawerVisualState slideVisualStateBlock];
          block = [MMDrawerVisualState parallaxVisualStateBlockWithParallaxFactor:2.f];
+         //block = [MMDrawerVisualState swingingDoorVisualStateBlock];
          if(block){
              block(drawerController, drawerSide, percentVisible);
          }

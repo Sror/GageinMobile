@@ -35,6 +35,7 @@
         _viewTable.showsVerticalScrollIndicator = NO;
         _viewTable.backgroundColor = GGSharedColor.clear;
         _viewTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _viewTable.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin;
         [self addSubview:_viewTable];
         
         _searchBar = [GGBlackSearchBar viewFromNibWithOwner:self];
