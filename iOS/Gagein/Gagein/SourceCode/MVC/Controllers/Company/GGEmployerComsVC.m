@@ -66,6 +66,8 @@
     cell.lblAddress.text = data.address;
     [cell loadLogoWithImageUrl:data.logoPath placeholder:GGSharedImagePool.logoDefaultCompany];
     
+    [cell grayoutTitle:!data.enabled];
+    
     return cell;
 }
 
@@ -75,7 +77,10 @@
     
     GGCompany *data = _companies[indexPath.row];
     
-    [self enterCompanyDetailWithID:data.ID];
+    if (data.enabled)
+    {
+        [self enterCompanyDetailWithID:data.ID];
+    }
     
 //    GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
 //    vc.companyID = data.ID;

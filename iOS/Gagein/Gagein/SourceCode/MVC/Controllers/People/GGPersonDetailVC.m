@@ -166,6 +166,8 @@ typedef enum
         cell.lblSubTitle.text = data.website;
         [cell.ivPhoto setImageWithURL:[NSURL URLWithString:data.logoPath] placeholderImage:GGSharedImagePool.placeholder];
         
+        [cell grayoutTitle:!data.enabled];
+        
         return cell;
         
     }
@@ -206,7 +208,10 @@ typedef enum
     else if (section == kGGSectionPrevCompanies) {
         
         GGCompany *data = _personOverview.prevCompanies[row];
-        [self enterCompanyDetailWithID:data.ID];
+        if (data.enabled)
+        {
+            [self enterCompanyDetailWithID:data.ID];
+        }
     }
     else if (section == kGGSectionSocialProfiles) {
         

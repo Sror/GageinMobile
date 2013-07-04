@@ -18,4 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblThirdLine;
 
 +(float)HEIGHT;
+
+-(void)grayoutTitle:(BOOL)aGrayoutTitle;
+
 @end

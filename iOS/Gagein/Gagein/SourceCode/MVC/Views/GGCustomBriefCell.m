@@ -47,6 +47,11 @@
     return 70;
 }
 
+-(void)grayoutTitle:(BOOL)aGrayout
+{
+    _lblTitle.textColor = aGrayout ? GGSharedColor.lightGray : GGSharedColor.black;
+}
+
 -(void)loadLogoWithImageUrl:(NSString *)aImageUrl placeholder:(UIImage *)aPlaceHolder
 {
     NSURL *url = [NSURL URLWithString:aImageUrl];

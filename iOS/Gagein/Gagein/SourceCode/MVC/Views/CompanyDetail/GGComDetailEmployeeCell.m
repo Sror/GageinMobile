@@ -35,6 +35,11 @@
     [_ivPhoto applyEffectShadowAndBorder];
 }
 
+-(void)grayoutTitle:(BOOL)aGrayoutTitle
+{
+    _lblTitle.textColor = aGrayoutTitle ? GGSharedColor.lightGray : GGSharedColor.black;
+}
+
 +(float)HEIGHT
 {
     return 75.f;

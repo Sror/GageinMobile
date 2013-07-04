@@ -27,4 +27,6 @@ typedef enum {
 
 -(void)loadLogoWithImageUrl:(NSString *)aImageUrl placeholder:(UIImage *)aPlaceHolder;
 
+-(void)grayoutTitle:(BOOL)aGrayout;
+
 @end
