@@ -184,7 +184,7 @@
     _tvInfo.hidden = YES;
     _tvInfo.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tvInfo.backgroundColor = GGSharedColor.silver;
-    _tvInfo.tableHeaderView = [self _infoHeaderView];
+    //_tvInfo.tableHeaderView = [self _infoHeaderView];
     
     [self _callApiGetCompanyUpdateDetail];
     [self _callApiGetSnList];
@@ -200,7 +200,7 @@
     
     [headerView setWidth:_tvInfo.frame.size.width];
     [headerView doLayout];
-    //headerView.backgroundColor = GGSharedColor.random;
+    headerView.backgroundColor = GGSharedColor.lightGray;
     return headerView;
 }
 
@@ -741,7 +741,7 @@
     [self _infoHeaderView].lblTitle.text = _companyUpdateDetail.headline;
     
     //
-    [self _relatedArticleCell].lblCount.text = [NSString stringWithFormat:@"%d", _companyUpdateDetail.newsSimilarCount];
+    [self _relatedArticleCell].lblCount.text = [NSString stringWithFormat:@"(%d)", _companyUpdateDetail.newsSimilarCount];
     
     //
     if (![self _hasTextView])
@@ -936,19 +936,20 @@
     {
         if (section == 0)
         {
-            if (![self _hasRelatedArticles]) return nil;
-            
-            GGCompanyDetailHeaderView *header = [GGCompanyDetailHeaderView viewFromNibWithOwner:self];
-            header.lblTitle.text = @"Related Articles";
-            header.lblAction.hidden = YES;
-            return header; //[self _infoHeaderView];
+            return [self _infoHeaderView];
+//            if (![self _hasRelatedArticles]) return nil;
+//            
+//            GGCompanyDetailHeaderView *header = [GGCompanyDetailHeaderView viewFromNibWithOwner:self];
+//            header.lblTitle.text = @"Related Articles";
+//            header.lblAction.hidden = YES;
+//            return header; //[self _infoHeaderView];
         }
         else if (section == 1)
         {
             if (_companyUpdateDetail.mentionedCompanies.count <= 0) return nil;
             
             GGCompanyDetailHeaderView *header = [GGCompanyDetailHeaderView viewFromNibWithOwner:self];
-            header.lblTitle.text = @"Mentioned Companies";
+            header.lblTitle.text = @"Some mentioned companies";
             header.lblAction.hidden = YES;
             return header;
         }
@@ -957,7 +958,7 @@
             if ([self _recommendedTriggers].count <= 0) return nil;
             
             GGCompanyDetailHeaderView *header = [GGCompanyDetailHeaderView viewFromNibWithOwner:self];
-            header.lblTitle.text = @"Recommended Triggers";
+            header.lblTitle.text = @"Triggers";
             header.lblAction.hidden = YES;
             return header;
         }
@@ -972,7 +973,8 @@
     {
         if (section == 0)
         {
-            return [self _hasRelatedArticles] ? [GGCompanyDetailHeaderView HEIGHT] : 0.f; //[self _infoHeaderView].frame.size.height;
+            return [self _infoHeaderView].frame.size.height;
+            //return [self _hasRelatedArticles] ? [GGCompanyDetailHeaderView HEIGHT] : 0.f; //[self _infoHeaderView].frame.size.height;
         }
         else if (section == 1)
         {
@@ -986,6 +988,24 @@
     
     return 0.f;
 }
+
+//-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    return nil;
+//}
+//
+//-(float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    if (tableView == _tvInfo)
+//    {
+//        if (section == 2)
+//        {
+//            return 20.f;
+//        }
+//    }
+//    
+//    return 0.f;
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

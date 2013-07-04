@@ -44,6 +44,7 @@
     #import "GGFactory.h"
     #import "GGTagetActionPair.h"
     #import "UIButton+GGAddOn.h"
+    #import "GGWhiteBackgroundImageView.h"
 #endif
 
 #include "GGBackLog.h"
