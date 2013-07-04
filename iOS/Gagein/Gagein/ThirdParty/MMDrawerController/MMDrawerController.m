@@ -21,6 +21,7 @@
 
 #import "MMDrawerController.h"
 #import "UIViewController+MMDrawerController.h"
+#import "GGAppDelegate.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -323,7 +324,8 @@ static CAKeyframeAnimation * bounceKeyFrameAnimationForDistanceOnView(CGFloat di
     [self.centerViewController.view setFrame:self.view.bounds];
     [self.centerContainerView addSubview:self.centerViewController.view];
     [self.view bringSubviewToFront:self.centerContainerView];
-    [self.centerViewController.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    //[self.centerViewController.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    self.centerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     [self updateShadowForCenterView];
     
     if(animated == NO){
@@ -581,8 +583,32 @@ static CAKeyframeAnimation * bounceKeyFrameAnimationForDistanceOnView(CGFloat di
 
 #pragma mark Rotation
 
+#pragma mark Rotation
+-(void)adjustCenterRect
+{
+    [self _adjustCenterRectWithOrient:self.interfaceOrientation];
+}
+
+-(void)_adjustCenterRectWithOrient:(UIInterfaceOrientation)anOrient
+{
+    CGRect coverRc = [GGLayout contentRectWithOrient:anOrient];
+    
+    
+        BOOL needMenu = GGSharedDelegate.topMostVC.doNeedMenu;
+        if (UIInterfaceOrientationIsLandscape(anOrient) && needMenu)
+           {
+                    coverRc.size.width -= LEFT_DRAWER_WIDTH;
+                }
+    
+        UIView *centerView = GGSharedDelegate.tabBarController.view;
+        centerView.frame = CGRectMake(centerView.frame.origin.x, centerView.frame.origin.y, coverRc.size.width, coverRc.size.height);
+        //DLog(@"center view rect set:%@", NSStringFromCGRect(centerView.frame));
+}
+
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    
+    [self _adjustCenterRectWithOrient:toInterfaceOrientation];
     //If a rotation begins, we are going to cancel the current gesture and reset transform and anchor points so everything works correctly
     for(UIGestureRecognizer * gesture in self.view.gestureRecognizers){
         if(gesture.state == UIGestureRecognizerStateChanged){

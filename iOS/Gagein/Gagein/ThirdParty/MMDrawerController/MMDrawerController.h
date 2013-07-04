@@ -374,4 +374,9 @@ typedef void (^MMDrawerControllerDrawerVisualStateBlock)(MMDrawerController * dr
  */
 -(void)setGestureCompletionBlock:(void(^)(MMDrawerController * drawerController, UIGestureRecognizer * gesture))gestureCompletionBlock;
 
+
+
+-(void)adjustCenterRect;
+-(void)_adjustCenterRectWithOrient:(UIInterfaceOrientation)anOrient;
+
 @end

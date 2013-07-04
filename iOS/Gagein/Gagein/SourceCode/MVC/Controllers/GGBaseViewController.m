@@ -690,11 +690,12 @@
     return [GGLayout frameWithOrientation:[UIApplication sharedApplication].statusBarOrientation rect:self.view.frame];
 }
 
+
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     if (self.presentingViewController == nil)
     {
-        //GGSharedRuntimeData.isLandscapeNeedMenu = self.doNeedMenu;
+        [GGSharedDelegate.drawerVC _adjustCenterRectWithOrient:toInterfaceOrientation];
         
         [GGSharedDelegate doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     }

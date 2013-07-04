@@ -853,7 +853,8 @@
         //[self _callApiGetMenu];
     }
     
-    //[self _adjustSelfFrameForIpadWithOrient:toInterfaceOrientation];
+    DLog(@"%@", self.view.frameString);
+    DLog(@"%@", GGSharedDelegate.drawerVC.centerViewController.view.frameString);
     
     [self adjustScrollViewFrames];
     
