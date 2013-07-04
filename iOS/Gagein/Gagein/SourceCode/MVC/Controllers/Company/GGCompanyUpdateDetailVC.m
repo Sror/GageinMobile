@@ -292,21 +292,26 @@
     
     self.navigationController.navigationBarHidden = !_btnSwitchBack.hidden;
     
-    [self _setNextBtnRect];
-    [self _setPrevBtnRect];
-    
     [self.navigationController.navigationBar addSubview:_btnPrevUpdate];
     [self.navigationController.navigationBar addSubview:_btnNextUpdate];
     [self _updateNaviBtnState];
     
     [_tvInfo reloadData];
-    //[_webView reload];
-    //[[self _infoHeaderView] setWidth:_tvInfo.frame.size.width];
+    
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [self _setNextBtnRect];
+    [self _setPrevBtnRect];
+    
+    if (ISIPADDEVICE)
+    {
+        [self doLayoutUIForIPadWithOrientation:self.interfaceOrientation];
+    }
     
     [_btnPrevUpdate goTop];
     [_btnNextUpdate goTop];

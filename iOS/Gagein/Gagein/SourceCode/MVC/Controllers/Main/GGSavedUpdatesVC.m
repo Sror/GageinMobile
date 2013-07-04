@@ -182,7 +182,7 @@
 {
     [super viewWillAppear:animated];
     
-    //[self _makeSubNaviTitleVisible:YES];
+    //[_tvUpdates centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH_FULL];
 }
 
 -(void)viewDidAppear:(BOOL)animated
