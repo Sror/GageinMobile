@@ -158,7 +158,13 @@
                 // right - location
                 [self.viewRightInfo setTitle:_happening.company.city];
                 [self.viewRightInfo setSubTitle:@"New Location"];
-                [self.viewRightInfo updateWithMapUrl:_happening.addressMap];
+                
+                NSString *mapUrl = [GGUtils stringWithMapUrl:_happening.addressMap
+                                                       width:_viewRightInfo.frame.size.width
+                                                      height:_viewRightInfo.frame.size.height];
+                [self.viewRightInfo updateWithMapUrl:mapUrl];
+                
+                //[self.viewRightInfo updateWithMapUrl:_happening.addressMap];
             }
                 break;
                 
