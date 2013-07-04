@@ -26,6 +26,9 @@
 #import "GGUpdateInfoHeaderView.h"
 #import "GGUpdateInfoRelatedArticleCell.h"
 #import "GGRelatedArticlesVC.h"
+#import "GGCompanyDetailHeaderView.h"
+#import "GGAgent.h"
+#import "GGGroupedCell.h"
 
 
 @interface GGCompanyUpdateDetailVC () <MFMessageComposeViewControllerDelegate>
@@ -181,6 +184,7 @@
     _tvInfo.hidden = YES;
     _tvInfo.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tvInfo.backgroundColor = GGSharedColor.silver;
+    _tvInfo.tableHeaderView = [self _infoHeaderView];
     
     [self _callApiGetCompanyUpdateDetail];
     [self _callApiGetSnList];
@@ -832,7 +836,7 @@
     [self _showWebSignal:NO url:nil];
     
     //_isShowingLinkedIn = _isShowingTwitter = NO;
-    
+    _companyUpdateDetail = nil;
     GGCompanyUpdate *updateData = [self.updates objectAtIndex:_updateIndex];
     [self showLoadingHUD];
     id op = [GGSharedAPI getCompanyUpdateDetailWithNewsID:updateData.ID callback:^(id operation, id aResultObject, NSError *anError) {
@@ -897,14 +901,7 @@
 {
     if (tableView == _tvInfo)
     {
-        if ([self _hasRelatedArticles])
-        {
-            return 2;
-        }
-        else
-        {
-            return 1;
-        }
+        return 3;
     }
     
     return 0;
@@ -916,13 +913,17 @@
     
     if (tableView == _tvInfo)
     {
-        if (hasRelated && section == 0)
+        if (section == 0)
         {
-            return 1;
+            return hasRelated ? 1 : 0;
         }
-        else if ((hasRelated && section == 1) || (!hasRelated && section == 0))
+        else if (section == 1)
         {
             return _companyUpdateDetail.mentionedCompanies.count;
+        }
+        else if (section == 2)
+        {
+            return [self _recommendedTriggers].count;
         }
     }
 
@@ -935,7 +936,30 @@
     {
         if (section == 0)
         {
-            return [self _infoHeaderView];
+            if (![self _hasRelatedArticles]) return nil;
+            
+            GGCompanyDetailHeaderView *header = [GGCompanyDetailHeaderView viewFromNibWithOwner:self];
+            header.lblTitle.text = @"Related Articles";
+            header.lblAction.hidden = YES;
+            return header; //[self _infoHeaderView];
+        }
+        else if (section == 1)
+        {
+            if (_companyUpdateDetail.mentionedCompanies.count <= 0) return nil;
+            
+            GGCompanyDetailHeaderView *header = [GGCompanyDetailHeaderView viewFromNibWithOwner:self];
+            header.lblTitle.text = @"Mentioned Companies";
+            header.lblAction.hidden = YES;
+            return header;
+        }
+        else if (section == 2)
+        {
+            if ([self _recommendedTriggers].count <= 0) return nil;
+            
+            GGCompanyDetailHeaderView *header = [GGCompanyDetailHeaderView viewFromNibWithOwner:self];
+            header.lblTitle.text = @"Recommended Triggers";
+            header.lblAction.hidden = YES;
+            return header;
         }
     }
     
@@ -948,7 +972,15 @@
     {
         if (section == 0)
         {
-            return [self _infoHeaderView].frame.size.height;
+            return [self _hasRelatedArticles] ? [GGCompanyDetailHeaderView HEIGHT] : 0.f; //[self _infoHeaderView].frame.size.height;
+        }
+        else if (section == 1)
+        {
+            return _companyUpdateDetail.mentionedCompanies.count ? [GGCompanyDetailHeaderView HEIGHT] : 0.f;
+        }
+        else if (section == 2)
+        {
+            return [self _recommendedTriggers].count ? [GGCompanyDetailHeaderView HEIGHT] : 0.f;
         }
     }
     
@@ -959,15 +991,15 @@
 {
     int row = indexPath.row;
     int section = indexPath.section;
-    BOOL hasRelated = [self _hasRelatedArticles];
+    //BOOL hasRelated = [self _hasRelatedArticles];
 
     if (tableView == _tvInfo)
     {
-        if (hasRelated && section == 0)
+        if (section == 0)
         {
             return [self _relatedArticleCell];
         }
-        else if ((hasRelated && section == 1) || (!hasRelated && section == 0))
+        else if (section == 1)
         {
             static NSString *cellID = @"GGComDetailEmployeeCell";
             GGComDetailEmployeeCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -986,6 +1018,33 @@
             
             return cell;
         }
+        else if (section == 2)
+        {
+            static NSString *cellID = @"GGGroupedCell";
+            GGGroupedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+            
+            if (cell == nil)
+            {
+                cell = [GGGroupedCell viewFromNibWithOwner:self];
+            }
+            
+            GGAgent *data = [self _recommendedTriggers][row];
+            
+            cell.lblTitle.text = data.name;
+            cell.tag = row;
+            
+            cell.style = [GGUtils styleForArrayCount:[self _recommendedTriggers].count atIndex:row];
+            
+            cell.checked = data.checked;
+            [cell showSubTitle:NO];
+            
+            if (data.checked)
+            {
+                [cell hideAllAccessory];
+            }
+            
+            return cell;
+        }
     }
     
     return nil;
@@ -996,17 +1055,21 @@
 {
     //int row = indexPath.row;
     int section = indexPath.section;
-    BOOL hasRelated = [self _hasRelatedArticles];
+    //BOOL hasRelated = [self _hasRelatedArticles];
     
     if (tableView == _tvInfo)
     {
-        if (hasRelated && section == 0)
+        if (section == 0)
         {
             return [GGUpdateInfoRelatedArticleCell HEIGHT];
         }
-        else if ((hasRelated && section == 1) || (!hasRelated && section == 0))
+        else if (section == 1)
         {
             return [GGComDetailEmployeeCell HEIGHT];
+        }
+        else if (section == 2)
+        {
+            return [GGGroupedCell HEIGHT];
         }
     }
     
@@ -1015,15 +1078,15 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //int row = indexPath.row;
+    int row = indexPath.row;
     int section = indexPath.section;
-    BOOL hasRelated = [self _hasRelatedArticles];
+    //BOOL hasRelated = [self _hasRelatedArticles];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (tableView == _tvInfo)
     {
-        if (hasRelated && section == 0)
+        if (section == 0)
         {
             GGRelatedArticlesVC *vc = [[GGRelatedArticlesVC alloc] init];
             vc.similarID = _companyUpdateDetail.newsSimilarID;
@@ -1031,7 +1094,7 @@
             [self.navigationController pushViewController:vc animated:YES];
             self.navigationController.navigationBarHidden = NO;
         }
-        else if ((hasRelated && section == 1) || (!hasRelated && section == 0))
+        else if (section == 1)
         {
             GGCompany *data = _companyUpdateDetail.mentionedCompanies[indexPath.row];
             if (data.ID)
@@ -1043,6 +1106,23 @@
 //                [self.navigationController pushViewController:vc animated:YES];
                 
                 self.navigationController.navigationBarHidden = NO;
+            }
+        }
+        else if (section == 2)
+        {
+            GGAgent *trigger = [self _recommendedTriggers][row];
+            
+            if (!trigger.checked)
+            {
+                [GGSharedAPI selectAgentFilterWithID:trigger.ID selected:YES callback:^(id operation, id aResultObject, NSError *anError) {
+                    GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                    if (parser.isOK)
+                    {
+                        trigger.checked = YES;
+                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    }
+                }];
+                
             }
         }
     }
@@ -1086,6 +1166,25 @@
     
     [_tvInfo centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH_FULL];
     [[self _infoHeaderView] setWidth:_tvInfo.frame.size.width];
+}
+
+#warning DUMMY IMPLEMENTATION
+-(NSMutableArray *)_recommendedTriggers
+{
+    static NSMutableArray *_recommendedTriggers = nil;
+    if (_recommendedTriggers == nil)
+    {
+        _recommendedTriggers = [NSMutableArray array];
+        for (int i = 0; i < 4; i++)
+        {
+            GGAgent *trigger = [GGAgent model];
+            trigger.name = [NSString stringWithFormat:@"Trigger %d", i];
+            trigger.checked = (i > 1);
+            [_recommendedTriggers addObject:trigger];
+        }
+    }
+    
+    return _recommendedTriggers;
 }
 
 @end
