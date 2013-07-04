@@ -383,12 +383,14 @@
 -(void)openMapAction:(id)sender
 {
     //DLog(@"Open the map");
-    CGSize chartSize = [UIScreen mainScreen].applicationFrame.size;
-    float width = MAX(chartSize.width, chartSize.height);
-    float height = MIN(chartSize.width, chartSize.height);
-    NSString *chartUrl = [GGUtils stringWithMapUrl:_currentDetail.addressMap width:width height:height];
+//    CGSize chartSize = [UIScreen mainScreen].applicationFrame.size;
+//    float width = MAX(chartSize.width, chartSize.height);
+//    float height = MIN(chartSize.width, chartSize.height);
+//    NSString *chartUrl = [GGUtils stringWithMapUrl:_currentDetail.addressMap width:width height:height];
+//    
+//    [self presentImageWithURL:chartUrl];
     
-    [self presentImageWithURL:chartUrl];
+    [self presentMapUrl:_currentDetail.addressMap];
 }
 
 -(void)enterCompanyDetailAction:(id)sender

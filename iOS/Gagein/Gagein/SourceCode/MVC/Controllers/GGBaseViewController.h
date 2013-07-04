@@ -75,6 +75,7 @@
 -(void)unregisterOperation:(id)anOperation;
 
 -(void)presentImageWithURL:(NSString *)anImageURL;
+-(void)presentMapUrl:(NSString *)aMapURL;
 
 #pragma mark - config & exploring actions
 -(void)presentPageFollowCompanies;

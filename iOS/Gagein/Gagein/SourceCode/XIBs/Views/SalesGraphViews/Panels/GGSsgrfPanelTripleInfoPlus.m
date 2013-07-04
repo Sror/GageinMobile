@@ -140,14 +140,22 @@
             {
                 // left - old location
                 [self.viewLeftInfo setTitle:_happening.addressPersonOld];
-                [self.viewLeftInfo updateWithMapUrl:_happening.addressMap];
+                
+                NSString *mapUrl = [GGUtils stringWithMapUrl:_happening.oldAddressMap
+                                                         width:_viewLeftInfo.frame.size.width
+                                                        height:_viewLeftInfo.frame.size.height];
+                [self.viewLeftInfo updateWithMapUrl:mapUrl];
                 
                 // center - person
                 [self.viewCenterInfo updateWithPerson:_happening.person];
                 
                 // right - new location
                 [self.viewRightInfo setTitle:_happening.addressPerson];
-                [self.viewRightInfo updateWithMapUrl:_happening.addressMap];
+                
+                mapUrl = [GGUtils stringWithMapUrl:_happening.addressMap
+                                             width:_viewRightInfo.frame.size.width
+                                            height:_viewRightInfo.frame.size.height];
+                [self.viewRightInfo updateWithMapUrl:mapUrl];
                 
                 // bottom - company
                 [self.viewBottomInfo updateWithCompany:_happening.company];

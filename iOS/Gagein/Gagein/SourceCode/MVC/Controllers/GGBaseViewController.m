@@ -863,18 +863,17 @@
         aViewController.modalPresentationStyle = UIModalPresentationFormSheet;
         aViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [self presentViewController:aViewController animated:YES completion:nil];
-        
-//        aViewController.view.superview.autoresizingMask =
-//        UIViewAutoresizingFlexibleTopMargin |
-//        UIViewAutoresizingFlexibleBottomMargin |
-//        UIViewAutoresizingFlexibleLeftMargin |
-//        UIViewAutoresizingFlexibleRightMargin;
-//        
-//        CGRect screenBounds = [GGLayout screenFrame];
-//        aViewController.view.superview.frame = CGRectMake(0, 0, aSize.width, aSize.height);
-//        CGPoint center = CGPointMake(CGRectGetMidX(screenBounds), CGRectGetMidY(screenBounds));
-//        aViewController.view.superview.center = UIDeviceOrientationIsPortrait(self.interfaceOrientation) ? center : CGPointMake(center.y, center.x);
     }
+}
+
+-(void)presentMapUrl:(NSString *)aMapURL
+{
+    CGSize chartSize = [UIScreen mainScreen].applicationFrame.size;
+    float width = MAX(chartSize.width, chartSize.height);
+    float height = MIN(chartSize.width, chartSize.height);
+    NSString *chartUrl = [GGUtils stringWithMapUrl:aMapURL width:width height:height];
+    
+    [self presentImageWithURL:chartUrl];
 }
 
 #pragma mark - GGSsgrfActionDelegate
@@ -1012,6 +1011,8 @@
 -(void)ssGraphShowImageURL:(NSString *)aImageURL
 {
     DLog(@"ssGraphShowImageURL:%@", aImageURL);
+    
+    [self presentMapUrl:aImageURL];
 }
 
 #pragma mark - 
