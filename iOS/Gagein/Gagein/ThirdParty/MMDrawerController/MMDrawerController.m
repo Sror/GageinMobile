@@ -650,9 +650,22 @@ static CAKeyframeAnimation * bounceKeyFrameAnimationForDistanceOnView(CGFloat di
     }
 }
 
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
-    return YES;
+
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return [GGOrientation shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
 }
+
+- (BOOL)shouldAutorotate
+{
+    return [GGOrientation shouldAutorotate];
+}
+
+-(NSUInteger)supportedInterfaceOrientations{
+    
+    return [GGOrientation supportedInterfaceOrientations];
+}
+
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];

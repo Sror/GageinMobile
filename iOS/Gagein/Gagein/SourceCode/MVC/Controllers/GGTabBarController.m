@@ -299,32 +299,17 @@
 #pragma mark - orientation
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    if (ISIPADDEVICE)
-    {
-        return YES;
-    }
-    
-    return toInterfaceOrientation == UIInterfaceOrientationPortrait; // etc
+    return [GGOrientation shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
 }
 
-- (BOOL)shouldAutorotate {
-    
-    if (ISIPADDEVICE)
-    {
-        return YES;
-    }
-    
-    return NO;
+- (BOOL)shouldAutorotate
+{
+    return [GGOrientation shouldAutorotate];
 }
 
 -(NSUInteger)supportedInterfaceOrientations{
     
-    if (ISIPADDEVICE)
-    {
-        return UIInterfaceOrientationMaskAll;
-    }
-    
-    return UIInterfaceOrientationMaskPortrait; // etc
+    return [GGOrientation supportedInterfaceOrientations];
 }
 
 @end

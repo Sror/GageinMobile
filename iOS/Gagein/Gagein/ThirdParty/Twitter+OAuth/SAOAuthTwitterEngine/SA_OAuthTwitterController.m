@@ -283,10 +283,6 @@ static NSString* const kGGTwitterLoadingBackgroundImage = @"twitter_load.png";
     //[GGSharedDelegate makeNaviBarCustomed:YES];
 }
 
-//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-//    return YES;
-//}
-
 - (void) didRotateFromInterfaceOrientation: (UIInterfaceOrientation) fromInterfaceOrientation {
 	self.orientation = self.interfaceOrientation;
     
