@@ -113,6 +113,7 @@ typedef enum
     UIView *tvBgView = [[UIView alloc] initWithFrame:CGRectZero];
     tvBgView.backgroundColor = GGSharedColor.silver;
     _tvDetail.backgroundView = tvBgView;
+    _tvDetail.hidden = YES;
     
     //
     [self _callApiGetOverView];
@@ -564,9 +565,14 @@ typedef enum
     [self showLoadingHUD];
     id op = [GGSharedAPI getCompanyOverviewWithID:_companyID needSocialProfile:YES callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
+        _tvDetail.hidden = NO;
+        
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-        _companyOverview = [parser parseGetCompanyOverview];
-        [self _updateUiOverview];
+        if (parser.isOK)
+        {
+            _companyOverview = [parser parseGetCompanyOverview];
+            [self _updateUiOverview];
+        }
     }];
     
     [self registerOperation:op];
