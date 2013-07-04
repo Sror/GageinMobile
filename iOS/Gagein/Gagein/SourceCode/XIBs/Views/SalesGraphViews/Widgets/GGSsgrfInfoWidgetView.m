@@ -241,7 +241,7 @@
 
 -(void)mapTapped:(id)sender
 {
-    [self postNotification:GG_NOTIFY_SSGRF_SHOW_IMAGE_URL withObject:[self _mapURL]];
+    [self postNotification:GG_NOTIFY_SSGRF_SHOW_MAP_IMAGE_URL withObject:[self _mapURL]];
 }
 
 -(void)competitorTapped:(id)sender

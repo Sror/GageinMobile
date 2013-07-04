@@ -72,7 +72,7 @@
 #pragma mark - action
 -(void)chartTapped:(id)sender
 {
-    [self postNotification:GG_NOTIFY_SSGRF_SHOW_IMAGE_URL withObject:_happening.revenueChart];
+    [self postNotification:GG_NOTIFY_SSGRF_SHOW_CHART_IMAGE_URL withObject:_happening.revenueChart];
 }
 
 @end

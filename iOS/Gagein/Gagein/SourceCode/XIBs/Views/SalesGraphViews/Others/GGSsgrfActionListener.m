@@ -24,7 +24,11 @@ DEF_SINGLETON(GGSsgrfActionListener)
         [self observeNotification:GG_NOTIFY_SSGRF_SHOW_EMPLOYER_LIST_PAGE];
         //[self observeNotification:GG_NOTIFY_SSGRF_SHOW_COMPANY_LIST_PAGE];
         [self observeNotification:GG_NOTIFY_SSGRF_SHOW_WEBPAGE];
+        
         [self observeNotification:GG_NOTIFY_SSGRF_SHOW_IMAGE_URL];
+        [self observeNotification:GG_NOTIFY_SSGRF_SHOW_CHART_IMAGE_URL];
+        [self observeNotification:GG_NOTIFY_SSGRF_SHOW_MAP_IMAGE_URL];
+        
         [self observeNotification:GG_NOTIFY_SSGRF_SHARE];
         [self observeNotification:GG_NOTIFY_SSGRF_SIGNAL];
         
@@ -104,6 +108,16 @@ DEF_SINGLETON(GGSsgrfActionListener)
     else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SHOW_IMAGE_URL])
     {
         [_delegate ssGraphShowImageURL:notiObj];
+    }
+    
+    else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SHOW_MAP_IMAGE_URL])
+    {
+        [_delegate ssGraphShowMapImageURL:notiObj];
+    }
+    
+    else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SHOW_CHART_IMAGE_URL])
+    {
+        [_delegate ssGraphShowChartImageURL:notiObj];
     }
     
     else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SIGNAL])

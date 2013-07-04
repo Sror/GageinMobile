@@ -23,7 +23,10 @@
 //-(void)ssGraphShowCompanyListPage:(NSArray *)aCompanies;
 
 -(void)ssGraphShowWebPage:(NSString *)aURL;
+
 -(void)ssGraphShowImageURL:(NSString *)aImageURL;
+-(void)ssGraphShowMapImageURL:(NSString *)aImageURL;
+-(void)ssGraphShowChartImageURL:(NSString *)aImageURL;
 
 -(void)ssGraphFollowPerson:(NSNumber *)aPersonID;
 -(void)ssGraphUnfollowPerson:(NSNumber *)aPersonID;

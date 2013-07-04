@@ -862,6 +862,16 @@
     [self presentImageWithURL:chartUrl];
 }
 
+-(void)presentChartUrl:(NSString *)aChartURL
+{
+    CGSize chartSize = [UIScreen mainScreen].applicationFrame.size;
+    float width = MAX(chartSize.width, chartSize.height);
+    float height = MIN(chartSize.width, chartSize.height);
+    NSString *chartUrl = [GGUtils stringWithChartUrl:aChartURL width:width height:height];
+    
+    [self presentImageWithURL:chartUrl];
+}
+
 #pragma mark - GGSsgrfActionDelegate
 
 -(void)ssGraphShowPersonPanel:(NSNumber *)aPersonID
@@ -998,7 +1008,21 @@
 {
     DLog(@"ssGraphShowImageURL:%@", aImageURL);
     
+    [self presentImageWithURL:aImageURL];
+}
+
+-(void)ssGraphShowMapImageURL:(NSString *)aImageURL
+{
+    DLog(@"ssGraphShowImageURL:%@", aImageURL);
+    
     [self presentMapUrl:aImageURL];
+}
+
+-(void)ssGraphShowChartImageURL:(NSString *)aImageURL
+{
+    DLog(@"ssGraphShowImageURL:%@", aImageURL);
+    
+    [self presentChartUrl:aImageURL];
 }
 
 #pragma mark - 
