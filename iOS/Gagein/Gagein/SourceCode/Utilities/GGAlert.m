@@ -15,7 +15,13 @@
 {
     if (aParser)
     {
-        if (aParser.status == kGGApiStatusUserOperationError)
+        if (aParser.messageCode == kGGMsgCodeCompanyFollowedGradC)
+        {
+            NSString *messageFormat = [GGStringPool stringWithMessageCode:aParser.messageCode];
+            NSString *message = [NSString stringWithFormat:messageFormat, [aParser.messageExtraInfo intValue]];
+            [self alertWithApiMessage:message];
+        }
+        else if (aParser.status == kGGApiStatusUserOperationError)
         {
             NSString *message = [GGStringPool stringWithMessageCode:aParser.messageCode];
             [self alertWithApiMessage:message];

@@ -96,6 +96,20 @@
     return [NSString stringWithFormat:@"%@,%@,%@", _city, _state, _country];
 }
 
+-(EGGCompanyGrade)getGrade
+{
+    if ([self.grade.lowercaseString isEqualToString:@"a"])
+    {
+        return kGGComGradeGood;
+    }
+    else if ([self.grade.lowercaseString isEqualToString:@"b"])
+    {
+        return kGGComGradeBad;
+    }
+    
+    return kGGComGradeUnknown;
+}
+
 @end
 
 //////////////////////////////////////////////
@@ -207,18 +221,9 @@
     }
 }
 
--(EGGCompanyGrade)getGrade
+-(BOOL)isPending
 {
-    if ([self.grade.lowercaseString isEqualToString:@"a"])
-    {
-        return kGGComGradeGood;
-    }
-    else if ([self.grade.lowercaseString isEqualToString:@"b"])
-    {
-        return kGGComGradeBad;
-    }
-
-    return kGGComGradeUnknown;
+    return _followed && self.getGrade == kGGComGradeUnknown;
 }
 
 @end

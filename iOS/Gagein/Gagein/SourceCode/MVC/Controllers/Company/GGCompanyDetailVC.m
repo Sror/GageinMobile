@@ -50,6 +50,7 @@ typedef enum
 @property (weak, nonatomic) IBOutlet UILabel *lblWebsite;
 @property (weak, nonatomic) IBOutlet UIButton *btnFollow;
 @property (weak, nonatomic) IBOutlet UIView *viewBaseInfo;
+@property (weak, nonatomic) IBOutlet UILabel *lblTip;
 
 @end
 
@@ -136,6 +137,7 @@ typedef enum
     [self setBtnFollow:nil];
     [self setScrollView:nil];
     [self setViewBaseInfo:nil];
+    [self setLblTip:nil];
     [super viewDidUnload];
 }
 
@@ -493,11 +495,25 @@ typedef enum
 {
     if (_companyOverview.followed)
     {
-        [self.btnFollow setTitle:@"following" forState:UIControlStateNormal];
-        self.btnFollow.selected = YES;
+        if (_companyOverview.getGrade == kGGComGradeUnknown)
+        {
+            _btnFollow.hidden = YES;
+            _lblTip.hidden = NO;
+            _lblTip.text = @"This company should be available soon. We will notify you when it is ready.";
+        }
+        else
+        {
+            _btnFollow.hidden = NO;
+            _lblTip.hidden = YES;
+            [self.btnFollow setTitle:@"following" forState:UIControlStateNormal];
+            self.btnFollow.selected = YES;
+        }
+        
     }
     else
     {
+        _btnFollow.hidden = NO;
+        _lblTip.hidden = YES;
         [self.btnFollow setTitle:@"follow" forState:UIControlStateNormal];
         self.btnFollow.selected = NO;
     }

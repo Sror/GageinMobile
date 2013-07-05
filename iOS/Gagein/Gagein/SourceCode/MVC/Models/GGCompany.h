@@ -51,7 +51,9 @@
 @property (assign) long long     *relevancePersonID;    // for sales graph display
 
 -(NSString *)addressCityStateCountry;
-//+(GGCompanyDigest *)instanceFromCompany:(GGCompany *)aCompany;
+
+-(EGGCompanyGrade)getGrade;
+
 @end
 
 
@@ -80,5 +82,6 @@
 @property (copy)    NSString *latestDate;
 @property (copy)    NSString *revenuesChartUrl;
 
--(EGGCompanyGrade)getGrade;
+-(BOOL)isPending;
+
 @end
