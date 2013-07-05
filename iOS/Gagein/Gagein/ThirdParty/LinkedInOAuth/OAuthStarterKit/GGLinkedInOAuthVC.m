@@ -226,7 +226,7 @@
 {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     [self postNotification:OA_NOTIFY_LINKEDIN_AUTH_OK withObject:self];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self naviBackAction:nil];
 }
 
 

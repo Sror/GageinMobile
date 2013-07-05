@@ -53,8 +53,8 @@
     UITapGestureRecognizer          *_tapGestToHideSearch;
     
 //#warning XXX: this two boolean value should be replaced by real judgement for salesforce and linkedIn account.
-    BOOL                _needImportFromSalesforce;
-    BOOL                _needImportFromLinkedIn;
+    //BOOL                _needImportFromSalesforce;
+    //BOOL                _needImportFromLinkedIn;
     //NSMutableArray      *_snTypes;
     
     NSUInteger          _pageNumberFollowedCompanies;
@@ -132,8 +132,8 @@
     _tableViewCompanies.rowHeight = [GGGroupedCell HEIGHT];
     
     //
-    _needImportFromLinkedIn = NO;
-    _needImportFromSalesforce = NO;
+    //_needImportFromLinkedIn = NO;
+    //_needImportFromSalesforce = NO;
     [self _adjustStyleForSuggestedHeaderView];
     
     //
@@ -238,13 +238,13 @@
 
 -(void)_adjustStyleForSuggestedHeaderView
 {
-    id headerView = (!_needImportFromLinkedIn && !_needImportFromSalesforce) ? nil : _viewTvCompaniesHeader;
+    id headerView = (![self _needImportFromLinkedIn] && ![self _needImportFromSalesforce]) ? nil : _viewTvCompaniesHeader;
     _tableViewCompanies.tableHeaderView = headerView;
     
     CGRect headerRc = _viewTvCompaniesHeader.frame;
     _btnSalesForce.hidden = _btnLinkedIn.hidden = YES;
     
-    if (_needImportFromLinkedIn && _needImportFromSalesforce)
+    if ([self _needImportFromLinkedIn] && [self _needImportFromSalesforce])
     {
         // case 1
         float horiGap = (headerRc.size.width - BUTTON_WIDTH_SHORT * 2) / 3;
@@ -262,7 +262,7 @@
         
         _btnSalesForce.hidden = _btnLinkedIn.hidden = NO;
     }
-    else if (_needImportFromSalesforce)
+    else if ([self _needImportFromSalesforce])
     {
         // case 2
         // salesForceLongBtnBg
@@ -275,7 +275,7 @@
         
         _btnSalesForce.hidden = NO;
     }
-    else if (_needImportFromLinkedIn)
+    else if ([self _needImportFromLinkedIn])
     {
         // case 3
         // linkedInLongBtnBg
@@ -310,6 +310,7 @@
             {
                 [GGUtils addSnType:kGGSnTypeLinkedIn];
                 [self _callImportCompaniesWithSnType:kGGSnTypeLinkedIn];
+                [self _adjustStyleForSuggestedHeaderView];
             }
         }];
         
@@ -856,12 +857,21 @@
             [GGSharedRuntimeData.snTypes removeAllObjects];
             [GGSharedRuntimeData.snTypes addObjectsFromArray:snTypes];
             
-            _needImportFromLinkedIn = (![GGUtils hasLinkedSnType:kGGSnTypeLinkedIn]);
             [self _adjustStyleForSuggestedHeaderView];
         }
     }];
     
     [self registerOperation:op];
+}
+
+-(BOOL)_needImportFromLinkedIn
+{
+    return (![GGUtils hasLinkedSnType:kGGSnTypeLinkedIn]);
+}
+
+-(BOOL)_needImportFromSalesforce
+{
+    return (![GGUtils hasLinkedSnType:kGGSnTypeSalesforce]);
 }
 
 -(void)_callImportCompaniesWithSnType:(EGGSnType)aSnType

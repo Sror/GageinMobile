@@ -233,7 +233,7 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
     
     [self postNotification:OA_NOTIFY_SALESFORCE_AUTH_OK withObject:self.oauthCoordinator.credentials];
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self naviBackAction:nil];
 }
 
 - (void)oauthCoordinator:(SFOAuthCoordinator *)coordinator didFailWithError:(NSError *)error authInfo:(SFOAuthInfo *)info
@@ -252,7 +252,7 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
     
     [alert show];
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self naviBackAction:nil];
 }
 
 #pragma mark - UIActionSheetDelegate
