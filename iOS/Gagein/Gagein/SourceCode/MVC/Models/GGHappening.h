@@ -109,6 +109,7 @@ typedef enum {
 
 @property (strong) GGCompanyDigest           *company;
 @property (strong) GGCompanyDigest           *oldCompany;
+@property (strong) GGCompanyDigest           *contactCurrentCompany;
 
 @property (copy) NSString                       *change;        // e.g. LEAVE
 @property (assign) EGGHappeningType             type;

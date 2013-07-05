@@ -9,11 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GGDataModel.h"
 
-typedef enum {
-    kGGCompanyTypePublic = 0
-    , kGGCompanyTypePrivate
-    , kGGCompanyTypeUnknown
-}EGGCompanyType;
+
 
 @class GGSocialProfile;
 @class GGTicker;
@@ -32,6 +28,7 @@ typedef enum {
 @property (copy) NSString       *orgName;
 @property (copy) NSString       *website;
 @property (copy) NSString       *logoPath;
+@property (copy) NSString       *grade;
 
 @property (copy) NSString       *type;              // eg. "Private Company"
 @property (copy) NSString       *ownership;
@@ -83,5 +80,5 @@ typedef enum {
 @property (copy)    NSString *latestDate;
 @property (copy)    NSString *revenuesChartUrl;
 
--(EGGCompanyType)getType;
+-(EGGCompanyGrade)getGrade;
 @end

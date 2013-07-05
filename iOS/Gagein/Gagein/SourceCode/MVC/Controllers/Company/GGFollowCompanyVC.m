@@ -391,7 +391,7 @@
         GGCompany *companyData = _searchedCompanies[row];
         [cell.ivLogo setImageWithURL:[NSURL URLWithString:companyData.logoPath] placeholderImage:nil];
         cell.lblName.text = companyData.name;
-        cell.lblName.textColor = (companyData.getType == kGGCompanyTypePrivate) ? GGSharedColor.gray : GGSharedColor.black;
+        cell.lblName.textColor = [GGSharedColor colorForCompanyGrade:companyData.getGrade];
         cell.lblWebsite.text = companyData.website;
         cell.tag = indexPath.row;
         
@@ -531,9 +531,10 @@
         {
             [GGAlert alertWithMessage:@"Ops, You have already followed this company."];
         }
-        else if (company.getType == kGGCompanyTypePrivate)
+        else if (company.getGrade == kGGComGradeBad)
         {
-            [GGAlert alertWithMessage:@"Sorry, You can't follow this company, please upgrade your plan."];
+#warning MESSAGE NEED TO BE REFINED
+            [GGAlert alertWithMessage:@"Sorry, You can't follow this company."];
         }
         else
         {

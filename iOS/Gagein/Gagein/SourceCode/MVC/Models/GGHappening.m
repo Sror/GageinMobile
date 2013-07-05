@@ -143,8 +143,11 @@
     self = [super init];
     if (self) {
         _person = [GGHappeningPerson model];
+        
         _company = [GGCompanyDigest model];
         _oldCompany = [GGCompanyDigest model];
+        _contactCurrentCompany = [GGCompanyDigest model];
+        
         _revenues = [NSMutableArray array];
     }
     return self;
@@ -177,7 +180,10 @@
     self.photoPath = [aData objectForKey:@"photo_path"];
     
     [self.person parseWithData:[aData objectForKey:@"person"]];
-    [self.company parseWithData:[aData objectForKey:@"company"]];
+    
+    
+    [_company parseWithData:[aData objectForKey:@"company"]];
+    [_contactCurrentCompany parseWithData:[aData objectForKey:@"contact_current_company"]];
     
     
     self.ID = [[aData objectForKey:@"eventid"] longLongValue];
@@ -223,6 +229,7 @@
     {
         _company.relevancePersonID = _person.ID;
         _oldCompany.relevancePersonID = _person.ID;
+        _contactCurrentCompany.relevancePersonID = _person.ID;
     }
 }
 

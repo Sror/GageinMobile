@@ -111,4 +111,27 @@ DEF_SINGLETON(GGColor)
     return [self colorFromR:(arc4random() % 255) g:(arc4random() % 255) b:(arc4random() % 255)];
 }
 
+-(UIColor *)colorForCompanyGrade:(EGGCompanyGrade)aCompanyGrade
+{
+    switch (aCompanyGrade)
+    {
+        case kGGComGradeGood:
+            return self.orangeGageinDark;
+            break;
+            
+        case kGGComGradeBad:
+            return self.lightGray;
+            break;
+            
+        case kGGComGradeUnknown:
+            return self.black;
+            break;
+            
+        default:
+            break;
+    }
+    
+    return self.black;
+}
+
 @end

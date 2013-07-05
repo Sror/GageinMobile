@@ -40,6 +40,7 @@
     self.orgName = [aData objectForKey:@"org_name"];    // current name
     
     self.profile = [aData objectForKey:@"profile"];
+    _grade = [aData objectForKey:@"grade"];
     
     self.website = [aData objectForKey:@"org_website"];
     self.logoPath = [aData objectForKey:@"org_logo_path"];
@@ -206,18 +207,18 @@
     }
 }
 
--(EGGCompanyType)getType
+-(EGGCompanyGrade)getGrade
 {
-    if ([self.type isEqualToString:@"Public Company"])
+    if ([self.grade.lowercaseString isEqualToString:@"a"])
     {
-        return kGGCompanyTypePublic;
+        return kGGComGradeGood;
     }
-    else if ([self.type isEqualToString:@"Private Company"])
+    else if ([self.grade.lowercaseString isEqualToString:@"b"])
     {
-        return kGGCompanyTypePrivate;
+        return kGGComGradeBad;
     }
 
-    return kGGCompanyTypeUnknown;
+    return kGGComGradeUnknown;
 }
 
 @end

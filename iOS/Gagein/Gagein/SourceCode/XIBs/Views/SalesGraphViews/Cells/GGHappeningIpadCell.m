@@ -309,7 +309,8 @@
             panel = thePanel;
         }
             break;
-            
+
+///////////////////////////// person happening //////////////////////////////////////////////////
         case kGGHappeningPersonUpdateProfilePic:
         {
             // person profile changed

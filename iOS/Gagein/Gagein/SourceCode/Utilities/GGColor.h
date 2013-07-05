@@ -32,6 +32,8 @@ AS_SINGLETON(GGColor)
 -(UIColor *)colorFromR:(int)aRed g:(int)aGreen b:(int)aBlue;
 -(UIColor *)random;
 
+-(UIColor *)colorForCompanyGrade:(EGGCompanyGrade)aCompanyGrade;
+
 @end
 
 #define GGSharedColor [GGColor sharedInstance]

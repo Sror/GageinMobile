@@ -10,6 +10,7 @@
 
 
 /////////////////////////// enums ////////////////////////////////////////
+//environment
 typedef enum
 {
     kGGServerProduction = 1
@@ -19,6 +20,8 @@ typedef enum
     , kGGServerRoshen
 }EGGServerEnvironment;
 
+
+// cell style
 typedef enum {
     kGGGroupCellFirst = 0
     , kGGGroupCellMiddle
@@ -26,6 +29,8 @@ typedef enum {
     , kGGGroupCellRound
 }EGGGroupedCellStyle;
 
+
+// happening source
 typedef enum {
     kGGHappeningSourceLindedIn = 2002
     , kGGHappeningSourceCrunchBase = 3001
@@ -41,6 +46,12 @@ typedef enum {
 }EGGHappeningSource;
 
 
+// company grade
+typedef enum {
+    kGGComGradeGood = 0
+    , kGGComGradeBad
+    , kGGComGradeUnknown
+}EGGCompanyGrade;
 
 
 /////////////////////////////////// defines ///////////////////////////////////////

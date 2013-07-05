@@ -125,7 +125,7 @@
                 [self.viewRightInfo updateWithPerson:_happening.person showOldPhoto:NO];
                 
                 // bottom - company
-                [self.viewBottomInfo updateWithCompany:_happening.company];
+                [self.viewBottomInfo updateWithCompany:_happening.contactCurrentCompany];
             }
                 break;
                 
@@ -139,7 +139,7 @@
                 [self setRightSubText:@"New Title"];
                 
                 // bottom - company
-                [self.viewBottomInfo updateWithCompany:_happening.company];
+                [self.viewBottomInfo updateWithCompany:_happening.contactCurrentCompany];
             }
                 break;
                 
