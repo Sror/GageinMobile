@@ -104,6 +104,12 @@
     _ivDot.hidden = YES;
 }
 
+-(void)showDot
+{
+    _ivDisclosure.hidden = YES;
+    _ivDot.hidden = NO;
+}
+
 -(void)hideAllAccessory
 {
     _ivDisclosure.hidden = YES;

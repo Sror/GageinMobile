@@ -22,7 +22,10 @@
 @property (assign, nonatomic) BOOL  checked;
 
 +(float)HEIGHT;
+
 -(void)showDisclosure;
+-(void)showDot;
 -(void)hideAllAccessory;
+
 -(void)showSubTitle:(BOOL)aShow;
 @end

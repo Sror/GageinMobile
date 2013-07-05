@@ -74,7 +74,7 @@
     
     BOOL                    _isTabbarHiddenWhenLoaded;
     
-    //UITableView             *_tvContent;
+    NSMutableArray          *_selectableAgents;
 }
 
 
@@ -83,7 +83,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        //_snTypes = [NSMutableArray array];
+        _selectableAgents = [NSMutableArray array];
     }
     return self;
 }
@@ -847,6 +847,16 @@
             updateData.hasBeenRead = YES;
             _companyUpdateDetail = [parser parseGetCompanyUpdateDetail];
             
+            // record selectable agents
+            [_selectableAgents removeAllObjects];
+            for (GGAgent *agent in _companyUpdateDetail.agents)
+            {
+                if (!agent.checked)
+                {
+                    [_selectableAgents addObject:agent];
+                }
+            }
+            
             [self _updateUIWithUpdateDetail];
             [_tvInfo reloadData];
         }
@@ -1058,9 +1068,13 @@
             cell.checked = data.checked;
             [cell showSubTitle:NO];
             
-            if (data.checked)
+            if ([_selectableAgents indexOfObject:data] == NSNotFound)
             {
                 [cell hideAllAccessory];
+            }
+            else
+            {
+                [cell showDot];
             }
             
             return cell;
@@ -1132,16 +1146,35 @@
         {
             GGAgent *trigger = _companyUpdateDetail.agents[row];
             
-            if (!trigger.checked)
+            if ([_selectableAgents indexOfObject:trigger] != NSNotFound)
             {
-                [GGSharedAPI selectAgentFilterWithID:trigger.ID selected:YES callback:^(id operation, id aResultObject, NSError *anError) {
-                    GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-                    if (parser.isOK)
-                    {
-                        trigger.checked = YES;
-                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                    }
-                }];
+                if (trigger.checked)
+                {
+                    [self showLoadingHUD];
+                    [GGSharedAPI selectAgentFilterWithID:trigger.ID selected:NO callback:^(id operation, id aResultObject, NSError *anError) {
+                        [self hideLoadingHUD];
+                        
+                        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                        if (parser.isOK)
+                        {
+                            trigger.checked = NO;
+                            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                        }
+                    }];
+                }
+                else
+                {
+                    [self showLoadingHUD];
+                    [GGSharedAPI selectAgentFilterWithID:trigger.ID selected:YES callback:^(id operation, id aResultObject, NSError *anError) {
+                        [self hideLoadingHUD];
+                        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                        if (parser.isOK)
+                        {
+                            trigger.checked = YES;
+                            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                        }
+                    }];
+                }
                 
             }
         }
