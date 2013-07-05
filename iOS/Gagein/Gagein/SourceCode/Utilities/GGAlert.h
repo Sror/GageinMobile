@@ -41,17 +41,20 @@ typedef enum {
     
     // billing
     , kGGMsgCodeBillingCantFollowMoreCompany = 20001    // user reaches the max limitation for companies he can follow
-    , kGGMsgCodeBillingCantFollowMorePeople             // user reaches the max limitation for people he can follow
-    , kGGMsgCodeBillingCantAccessUpdateNeedPay          // user need to pay for further access
-    , kGGMsgCodeBillingCantAccessUpdateNeedUpgrade      // user need to upgrad for further access
-    , kGGMsgCodeBillingExceededQuota                    // user reaches the limitation of his plan
-    , kGGMsgCodeBillingCantSaveAnyMoreUpdate            // user reaches the limitation for updates he can save
+    , kGGMsgCodeBillingCantFollowMorePeople = 20002             // user reaches the max limitation for people he can follow
+    , kGGMsgCodeBillingCantAccessUpdateNeedPay = 20003         // user need to pay for further access
+    , kGGMsgCodeBillingCantAccessUpdateNeedUpgrade = 20004      // user need to upgrad for further access
+    , kGGMsgCodeBillingExceededQuota = 20005                   // user reaches the limitation of his plan
+    , kGGMsgCodeBillingCantSaveAnyMoreUpdate = 20006           // user reaches the limitation for updates he can save
+    , kGGMsgCodeBillingFreeCantFollowGradeC = 20007
     
     // company
     , kGGMsgCodeCompanyAlreadyFollowed = 30001          // company has already been followed
-    , kGGMsgCodeCompanyNotFollowed                      // company has not benn followed yet
-    , kGGMsgCodeCompanyBuzExists                        // N/A FOR IOS
-    , kGGMsgCodeCompanyWebConnectFailed                 // N/A FOR IOS
+    , kGGMsgCodeCompanyNotFollowed = 30002              // company has not benn followed yet
+    , kGGMsgCodeCompanyBuzExists = 30003                // N/A FOR IOS
+    , kGGMsgCodeCompanyWebConnectFailed = 30004           // N/A FOR IOS
+    , kGGMsgCodeCompanyCantFollowGradeB = 30007
+    , kGGMsgCodeCompanyFollowedGradC = 30008
     
     // people
     , kGGMsgCodeMemberProfileLoadError = 31001          // member's profile cant be found in database

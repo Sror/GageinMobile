@@ -45,10 +45,10 @@
             return @"Sorry, our server was unable to process your sign up. Please try again. ";
         }
             break;
-            
+///////////////////////////////////////////////////////////////////////////////////
         case kGGMsgCodeBillingCantFollowMoreCompany:
         {
-            return @"Upgrade your account to follow more companies.";
+            return GGString(@"api_message_cant_follow_more_company");
         }
             break;
             
@@ -82,9 +82,15 @@
         }
             break;
             
+        case kGGMsgCodeBillingFreeCantFollowGradeC:
+        {
+            return GGString(@"api_message_free_plan_cant_follow_c_company");
+        }
+            break;
+////////////////////////////////////////////////////////////////////////////////
         case kGGMsgCodeCompanyAlreadyFollowed:
         {
-            return @"You are already following this company.";
+            return GGString(@"api_message_already_following_the_company");
         }
             break;
             
@@ -106,6 +112,19 @@
         }
             break;
             
+        case kGGMsgCodeCompanyCantFollowGradeB:
+        {
+            return GGString(@"api_message_grade_b_company_cant_be_followed");
+        }
+            break;
+            
+        case kGGMsgCodeCompanyFollowedGradC:
+        {
+            return GGString(@"api_message_grad_c_company_followed");
+        }
+            break;
+            
+////////////////////////////////////////////////////////////////////////////////////
         case kGGMsgCodeMemberProfileLoadError:
         {
             return @"Sorry, our server was unable to retrieve your profile. Please try again. ";
