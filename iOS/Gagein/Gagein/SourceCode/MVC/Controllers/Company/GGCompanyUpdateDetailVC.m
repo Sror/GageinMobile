@@ -923,7 +923,7 @@
         }
         else if (section == 2)
         {
-            return [self _recommendedTriggers].count;
+            return _companyUpdateDetail.agents.count;
         }
     }
 
@@ -955,7 +955,7 @@
         }
         else if (section == 2)
         {
-            if ([self _recommendedTriggers].count <= 0) return nil;
+            if (_companyUpdateDetail.agents.count <= 0) return nil;
             
             GGCompanyDetailHeaderView *header = [GGCompanyDetailHeaderView viewFromNibWithOwner:self];
             header.lblTitle.text = @"Triggers";
@@ -982,7 +982,7 @@
         }
         else if (section == 2)
         {
-            return [self _recommendedTriggers].count ? [GGCompanyDetailHeaderView HEIGHT] : 0.f;
+            return _companyUpdateDetail.agents.count ? [GGCompanyDetailHeaderView HEIGHT] : 0.f;
         }
     }
     
@@ -1048,12 +1048,12 @@
                 cell = [GGGroupedCell viewFromNibWithOwner:self];
             }
             
-            GGAgent *data = [self _recommendedTriggers][row];
+            GGAgent *data = _companyUpdateDetail.agents[row];
             
             cell.lblTitle.text = data.name;
             cell.tag = row;
             
-            cell.style = [GGUtils styleForArrayCount:[self _recommendedTriggers].count atIndex:row];
+            cell.style = [GGUtils styleForArrayCount:_companyUpdateDetail.agents.count atIndex:row];
             
             cell.checked = data.checked;
             [cell showSubTitle:NO];
@@ -1130,7 +1130,7 @@
         }
         else if (section == 2)
         {
-            GGAgent *trigger = [self _recommendedTriggers][row];
+            GGAgent *trigger = _companyUpdateDetail.agents[row];
             
             if (!trigger.checked)
             {
@@ -1188,23 +1188,23 @@
     [[self _infoHeaderView] setWidth:_tvInfo.frame.size.width];
 }
 
-#warning DUMMY IMPLEMENTATION
--(NSMutableArray *)_recommendedTriggers
-{
-    static NSMutableArray *_recommendedTriggers = nil;
-    if (_recommendedTriggers == nil)
-    {
-        _recommendedTriggers = [NSMutableArray array];
-        for (int i = 0; i < 4; i++)
-        {
-            GGAgent *trigger = [GGAgent model];
-            trigger.name = [NSString stringWithFormat:@"Trigger %d", i];
-            trigger.checked = (i > 1);
-            [_recommendedTriggers addObject:trigger];
-        }
-    }
-    
-    return _recommendedTriggers;
-}
+//#warning DUMMY IMPLEMENTATION
+//-(NSMutableArray *)_recommendedTriggers
+//{
+//    static NSMutableArray *_recommendedTriggers = nil;
+//    if (_recommendedTriggers == nil)
+//    {
+//        _recommendedTriggers = [NSMutableArray array];
+//        for (int i = 0; i < 4; i++)
+//        {
+//            GGAgent *trigger = [GGAgent model];
+//            trigger.name = [NSString stringWithFormat:@"Trigger %d", i];
+//            trigger.checked = (i > 1);
+//            [_recommendedTriggers addObject:trigger];
+//        }
+//    }
+//    
+//    return _recommendedTriggers;
+//}
 
 @end

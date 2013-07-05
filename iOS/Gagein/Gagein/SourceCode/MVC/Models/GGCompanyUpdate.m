@@ -8,6 +8,7 @@
 
 #import "GGCompanyUpdate.h"
 #import "GGCompany.h"
+#import "GGAgent.h"
 
 @implementation GGCompanyUpdate
 
@@ -17,6 +18,7 @@
     if (self) {
         _company = [GGCompany model];
         _mentionedCompanies = [NSMutableArray array];
+        _agents = [NSMutableArray array];
     }
     return self;
 }
@@ -56,6 +58,18 @@
         [_mentionedCompanies addObject:company];
     }
     
+    //////////
+    NSArray *agents = [aData objectForKey:@"agents"];
+    
+    for (id agentDic in agents)
+    {
+        GGAgent *agent = [GGAgent model];
+        [agent parseWithData:agentDic];
+        [_agents addObjectIfNotNil:agent];
+    }
+
+    
+    ///////
     [self.company parseWithData:aData];
     
     self.hasBeenRead = [[aData objectForKey:@"readed"] boolValue];

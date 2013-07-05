@@ -36,6 +36,7 @@
 @property (copy)    NSString    *linkedInSignal;
 @property (copy)    NSString    *twitterTweets;
 @property (strong)  NSMutableArray  *mentionedCompanies;
+@property (strong)  NSMutableArray   *agents;
 
 @property (copy)    NSString        *newsPicURL;
 
