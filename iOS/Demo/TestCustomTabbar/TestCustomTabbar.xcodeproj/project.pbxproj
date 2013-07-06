@@ -1,0 +1,386 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EA2FFCEE1787A9D3000116B3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FFCED1787A9D3000116B3 /* UIKit.framework */; };
+		EA2FFCF01787A9D3000116B3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FFCEF1787A9D3000116B3 /* Foundation.framework */; };
+		EA2FFCF21787A9D3000116B3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2FFCF11787A9D3000116B3 /* CoreGraphics.framework */; };
+		EA2FFCF81787A9D3000116B3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA2FFCF61787A9D3000116B3 /* InfoPlist.strings */; };
+		EA2FFCFA1787A9D3000116B3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FFCF91787A9D3000116B3 /* main.m */; };
+		EA2FFCFE1787A9D3000116B3 /* GGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FFCFD1787A9D3000116B3 /* GGAppDelegate.m */; };
+		EA2FFD001787A9D3000116B3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2FFCFF1787A9D3000116B3 /* Default.png */; };
+		EA2FFD021787A9D3000116B3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2FFD011787A9D3000116B3 /* Default@2x.png */; };
+		EA2FFD041787A9D3000116B3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2FFD031787A9D3000116B3 /* Default-568h@2x.png */; };
+		EA2FFD071787A9D3000116B3 /* GGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FFD061787A9D3000116B3 /* GGViewController.m */; };
+		EA2FFD1B1787A9E4000116B3 /* tab_company_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2FFD111787A9E4000116B3 /* tab_company_normal@2x.png */; };
+		EA2FFD1C1787A9E4000116B3 /* tab_company_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2FFD121787A9E4000116B3 /* tab_company_selected@2x.png */; };
+		EA2FFD1D1787A9E4000116B3 /* tab_people_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2FFD131787A9E4000116B3 /* tab_people_normal@2x.png */; };
+		EA2FFD1E1787A9E4000116B3 /* tab_people_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2FFD141787A9E4000116B3 /* tab_people_selected@2x.png */; };
+		EA2FFD1F1787A9E4000116B3 /* tab_saved_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2FFD151787A9E4000116B3 /* tab_saved_normal@2x.png */; };
+		EA2FFD201787A9E4000116B3 /* tab_saved_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2FFD161787A9E4000116B3 /* tab_saved_selected@2x.png */; };
+		EA2FFD211787A9E4000116B3 /* tab_settings_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2FFD171787A9E4000116B3 /* tab_settings_normal@2x.png */; };
+		EA2FFD221787A9E4000116B3 /* tab_settings_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2FFD181787A9E4000116B3 /* tab_settings_selected@2x.png */; };
+		EA2FFD231787A9E4000116B3 /* tabbarBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2FFD191787A9E4000116B3 /* tabbarBg@2x.png */; };
+		EA2FFD241787A9E4000116B3 /* transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = EA2FFD1A1787A9E4000116B3 /* transparent.png */; };
+		EA2FFD2C1787A9F8000116B3 /* RDVTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FFD271787A9F8000116B3 /* RDVTabBar.m */; };
+		EA2FFD2D1787A9F8000116B3 /* RDVTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FFD291787A9F8000116B3 /* RDVTabBarController.m */; };
+		EA2FFD2E1787A9F8000116B3 /* RDVTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FFD2B1787A9F8000116B3 /* RDVTabBarItem.m */; };
+		EA2FFD351787AA4E000116B3 /* RDVFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FFD301787AA4E000116B3 /* RDVFirstViewController.m */; };
+		EA2FFD361787AA4E000116B3 /* RDVSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FFD321787AA4E000116B3 /* RDVSecondViewController.m */; };
+		EA2FFD371787AA4E000116B3 /* RDVThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2FFD341787AA4E000116B3 /* RDVThirdViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EA2FFCEA1787A9D3000116B3 /* TestCustomTabbar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestCustomTabbar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA2FFCED1787A9D3000116B3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EA2FFCEF1787A9D3000116B3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EA2FFCF11787A9D3000116B3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EA2FFCF51787A9D3000116B3 /* TestCustomTabbar-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestCustomTabbar-Info.plist"; sourceTree = "<group>"; };
+		EA2FFCF71787A9D3000116B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EA2FFCF91787A9D3000116B3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EA2FFCFB1787A9D3000116B3 /* TestCustomTabbar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestCustomTabbar-Prefix.pch"; sourceTree = "<group>"; };
+		EA2FFCFC1787A9D3000116B3 /* GGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGAppDelegate.h; sourceTree = "<group>"; };
+		EA2FFCFD1787A9D3000116B3 /* GGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGAppDelegate.m; sourceTree = "<group>"; };
+		EA2FFCFF1787A9D3000116B3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		EA2FFD011787A9D3000116B3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		EA2FFD031787A9D3000116B3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		EA2FFD051787A9D3000116B3 /* GGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGViewController.h; sourceTree = "<group>"; };
+		EA2FFD061787A9D3000116B3 /* GGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGViewController.m; sourceTree = "<group>"; };
+		EA2FFD111787A9E4000116B3 /* tab_company_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_company_normal@2x.png"; sourceTree = "<group>"; };
+		EA2FFD121787A9E4000116B3 /* tab_company_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_company_selected@2x.png"; sourceTree = "<group>"; };
+		EA2FFD131787A9E4000116B3 /* tab_people_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_people_normal@2x.png"; sourceTree = "<group>"; };
+		EA2FFD141787A9E4000116B3 /* tab_people_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_people_selected@2x.png"; sourceTree = "<group>"; };
+		EA2FFD151787A9E4000116B3 /* tab_saved_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_saved_normal@2x.png"; sourceTree = "<group>"; };
+		EA2FFD161787A9E4000116B3 /* tab_saved_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_saved_selected@2x.png"; sourceTree = "<group>"; };
+		EA2FFD171787A9E4000116B3 /* tab_settings_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_settings_normal@2x.png"; sourceTree = "<group>"; };
+		EA2FFD181787A9E4000116B3 /* tab_settings_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_settings_selected@2x.png"; sourceTree = "<group>"; };
+		EA2FFD191787A9E4000116B3 /* tabbarBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbarBg@2x.png"; sourceTree = "<group>"; };
+		EA2FFD1A1787A9E4000116B3 /* transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparent.png; sourceTree = "<group>"; };
+		EA2FFD261787A9F8000116B3 /* RDVTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBar.h; sourceTree = "<group>"; };
+		EA2FFD271787A9F8000116B3 /* RDVTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBar.m; sourceTree = "<group>"; };
+		EA2FFD281787A9F8000116B3 /* RDVTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBarController.h; sourceTree = "<group>"; };
+		EA2FFD291787A9F8000116B3 /* RDVTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBarController.m; sourceTree = "<group>"; };
+		EA2FFD2A1787A9F8000116B3 /* RDVTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBarItem.h; sourceTree = "<group>"; };
+		EA2FFD2B1787A9F8000116B3 /* RDVTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBarItem.m; sourceTree = "<group>"; };
+		EA2FFD2F1787AA4E000116B3 /* RDVFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVFirstViewController.h; sourceTree = "<group>"; };
+		EA2FFD301787AA4E000116B3 /* RDVFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVFirstViewController.m; sourceTree = "<group>"; };
+		EA2FFD311787AA4E000116B3 /* RDVSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVSecondViewController.h; sourceTree = "<group>"; };
+		EA2FFD321787AA4E000116B3 /* RDVSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVSecondViewController.m; sourceTree = "<group>"; };
+		EA2FFD331787AA4E000116B3 /* RDVThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVThirdViewController.h; sourceTree = "<group>"; };
+		EA2FFD341787AA4E000116B3 /* RDVThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVThirdViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EA2FFCE71787A9D3000116B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA2FFCEE1787A9D3000116B3 /* UIKit.framework in Frameworks */,
+				EA2FFCF01787A9D3000116B3 /* Foundation.framework in Frameworks */,
+				EA2FFCF21787A9D3000116B3 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EA2FFCE11787A9D3000116B3 = {
+			isa = PBXGroup;
+			children = (
+				EA2FFD251787A9F8000116B3 /* RDVTabBarController */,
+				EA2FFD101787A9E4000116B3 /* tabIcon */,
+				EA2FFCF31787A9D3000116B3 /* TestCustomTabbar */,
+				EA2FFCEC1787A9D3000116B3 /* Frameworks */,
+				EA2FFCEB1787A9D3000116B3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EA2FFCEB1787A9D3000116B3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA2FFCEA1787A9D3000116B3 /* TestCustomTabbar.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EA2FFCEC1787A9D3000116B3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA2FFCED1787A9D3000116B3 /* UIKit.framework */,
+				EA2FFCEF1787A9D3000116B3 /* Foundation.framework */,
+				EA2FFCF11787A9D3000116B3 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA2FFCF31787A9D3000116B3 /* TestCustomTabbar */ = {
+			isa = PBXGroup;
+			children = (
+				EA2FFCFC1787A9D3000116B3 /* GGAppDelegate.h */,
+				EA2FFCFD1787A9D3000116B3 /* GGAppDelegate.m */,
+				EA2FFD2F1787AA4E000116B3 /* RDVFirstViewController.h */,
+				EA2FFD301787AA4E000116B3 /* RDVFirstViewController.m */,
+				EA2FFD311787AA4E000116B3 /* RDVSecondViewController.h */,
+				EA2FFD321787AA4E000116B3 /* RDVSecondViewController.m */,
+				EA2FFD331787AA4E000116B3 /* RDVThirdViewController.h */,
+				EA2FFD341787AA4E000116B3 /* RDVThirdViewController.m */,
+				EA2FFD051787A9D3000116B3 /* GGViewController.h */,
+				EA2FFD061787A9D3000116B3 /* GGViewController.m */,
+				EA2FFCF41787A9D3000116B3 /* Supporting Files */,
+			);
+			path = TestCustomTabbar;
+			sourceTree = "<group>";
+		};
+		EA2FFCF41787A9D3000116B3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EA2FFCF51787A9D3000116B3 /* TestCustomTabbar-Info.plist */,
+				EA2FFCF61787A9D3000116B3 /* InfoPlist.strings */,
+				EA2FFCF91787A9D3000116B3 /* main.m */,
+				EA2FFCFB1787A9D3000116B3 /* TestCustomTabbar-Prefix.pch */,
+				EA2FFCFF1787A9D3000116B3 /* Default.png */,
+				EA2FFD011787A9D3000116B3 /* Default@2x.png */,
+				EA2FFD031787A9D3000116B3 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EA2FFD101787A9E4000116B3 /* tabIcon */ = {
+			isa = PBXGroup;
+			children = (
+				EA2FFD111787A9E4000116B3 /* tab_company_normal@2x.png */,
+				EA2FFD121787A9E4000116B3 /* tab_company_selected@2x.png */,
+				EA2FFD131787A9E4000116B3 /* tab_people_normal@2x.png */,
+				EA2FFD141787A9E4000116B3 /* tab_people_selected@2x.png */,
+				EA2FFD151787A9E4000116B3 /* tab_saved_normal@2x.png */,
+				EA2FFD161787A9E4000116B3 /* tab_saved_selected@2x.png */,
+				EA2FFD171787A9E4000116B3 /* tab_settings_normal@2x.png */,
+				EA2FFD181787A9E4000116B3 /* tab_settings_selected@2x.png */,
+				EA2FFD191787A9E4000116B3 /* tabbarBg@2x.png */,
+				EA2FFD1A1787A9E4000116B3 /* transparent.png */,
+			);
+			path = tabIcon;
+			sourceTree = "<group>";
+		};
+		EA2FFD251787A9F8000116B3 /* RDVTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				EA2FFD261787A9F8000116B3 /* RDVTabBar.h */,
+				EA2FFD271787A9F8000116B3 /* RDVTabBar.m */,
+				EA2FFD281787A9F8000116B3 /* RDVTabBarController.h */,
+				EA2FFD291787A9F8000116B3 /* RDVTabBarController.m */,
+				EA2FFD2A1787A9F8000116B3 /* RDVTabBarItem.h */,
+				EA2FFD2B1787A9F8000116B3 /* RDVTabBarItem.m */,
+			);
+			path = RDVTabBarController;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EA2FFCE91787A9D3000116B3 /* TestCustomTabbar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA2FFD0D1787A9D3000116B3 /* Build configuration list for PBXNativeTarget "TestCustomTabbar" */;
+			buildPhases = (
+				EA2FFCE61787A9D3000116B3 /* Sources */,
+				EA2FFCE71787A9D3000116B3 /* Frameworks */,
+				EA2FFCE81787A9D3000116B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestCustomTabbar;
+			productName = TestCustomTabbar;
+			productReference = EA2FFCEA1787A9D3000116B3 /* TestCustomTabbar.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EA2FFCE21787A9D3000116B3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = GG;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Dong Yiming";
+			};
+			buildConfigurationList = EA2FFCE51787A9D3000116B3 /* Build configuration list for PBXProject "TestCustomTabbar" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EA2FFCE11787A9D3000116B3;
+			productRefGroup = EA2FFCEB1787A9D3000116B3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EA2FFCE91787A9D3000116B3 /* TestCustomTabbar */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EA2FFCE81787A9D3000116B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA2FFCF81787A9D3000116B3 /* InfoPlist.strings in Resources */,
+				EA2FFD001787A9D3000116B3 /* Default.png in Resources */,
+				EA2FFD021787A9D3000116B3 /* Default@2x.png in Resources */,
+				EA2FFD041787A9D3000116B3 /* Default-568h@2x.png in Resources */,
+				EA2FFD1B1787A9E4000116B3 /* tab_company_normal@2x.png in Resources */,
+				EA2FFD1C1787A9E4000116B3 /* tab_company_selected@2x.png in Resources */,
+				EA2FFD1D1787A9E4000116B3 /* tab_people_normal@2x.png in Resources */,
+				EA2FFD1E1787A9E4000116B3 /* tab_people_selected@2x.png in Resources */,
+				EA2FFD1F1787A9E4000116B3 /* tab_saved_normal@2x.png in Resources */,
+				EA2FFD201787A9E4000116B3 /* tab_saved_selected@2x.png in Resources */,
+				EA2FFD211787A9E4000116B3 /* tab_settings_normal@2x.png in Resources */,
+				EA2FFD221787A9E4000116B3 /* tab_settings_selected@2x.png in Resources */,
+				EA2FFD231787A9E4000116B3 /* tabbarBg@2x.png in Resources */,
+				EA2FFD241787A9E4000116B3 /* transparent.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EA2FFCE61787A9D3000116B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA2FFCFA1787A9D3000116B3 /* main.m in Sources */,
+				EA2FFCFE1787A9D3000116B3 /* GGAppDelegate.m in Sources */,
+				EA2FFD071787A9D3000116B3 /* GGViewController.m in Sources */,
+				EA2FFD2C1787A9F8000116B3 /* RDVTabBar.m in Sources */,
+				EA2FFD2D1787A9F8000116B3 /* RDVTabBarController.m in Sources */,
+				EA2FFD2E1787A9F8000116B3 /* RDVTabBarItem.m in Sources */,
+				EA2FFD351787AA4E000116B3 /* RDVFirstViewController.m in Sources */,
+				EA2FFD361787AA4E000116B3 /* RDVSecondViewController.m in Sources */,
+				EA2FFD371787AA4E000116B3 /* RDVThirdViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EA2FFCF61787A9D3000116B3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA2FFCF71787A9D3000116B3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EA2FFD0B1787A9D3000116B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EA2FFD0C1787A9D3000116B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EA2FFD0E1787A9D3000116B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TestCustomTabbar/TestCustomTabbar-Prefix.pch";
+				INFOPLIST_FILE = "TestCustomTabbar/TestCustomTabbar-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EA2FFD0F1787A9D3000116B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TestCustomTabbar/TestCustomTabbar-Prefix.pch";
+				INFOPLIST_FILE = "TestCustomTabbar/TestCustomTabbar-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EA2FFCE51787A9D3000116B3 /* Build configuration list for PBXProject "TestCustomTabbar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA2FFD0B1787A9D3000116B3 /* Debug */,
+				EA2FFD0C1787A9D3000116B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA2FFD0D1787A9D3000116B3 /* Build configuration list for PBXNativeTarget "TestCustomTabbar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA2FFD0E1787A9D3000116B3 /* Debug */,
+				EA2FFD0F1787A9D3000116B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EA2FFCE21787A9D3000116B3 /* Project object */;
+}
