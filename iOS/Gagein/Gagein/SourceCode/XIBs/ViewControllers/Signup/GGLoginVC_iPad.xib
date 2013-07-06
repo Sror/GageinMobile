@@ -172,6 +172,7 @@
 										<string key="NSFrame">{{2, 10}, {130, 9}}</string>
 										<reference key="NSSuperview" ref="185674388"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -184,7 +185,7 @@
 									<object class="IBUIButton" id="689737198">
 										<reference key="NSNextResponder" ref="185674388"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{2, 7}, {47, 15}}</string>
+										<string key="NSFrameSize">{59, 30}</string>
 										<reference key="NSSuperview" ref="185674388"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="897013357"/>
