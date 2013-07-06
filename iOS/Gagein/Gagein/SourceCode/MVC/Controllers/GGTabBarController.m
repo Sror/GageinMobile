@@ -97,6 +97,19 @@
 -(void)_costomizeTab
 {
     static BOOL isLoaded = NO;
+    
+    [self.view printViewsTree];
+    
+//    UITabBar *tabbar = nil;
+//    for (UIView *sub in self.view.subviews)
+//    {
+//        if ([sub isKindOfClass:[UITabBar class]])
+//        {
+//            tabbar = (UITabBar *)sub;
+//            break;
+//        }
+//    }
+    
     NSArray *subviews = self.tabBar.subviews;
     
     if (!isLoaded && subviews.count > 4)
