@@ -341,11 +341,16 @@
     vc.happening = _currentDetail;
     vc.snType = aType;
     vc.snTypesRef = GGSharedRuntimeData.snTypes;
-    vc.shareType = _isPeopleHappening ? kGGSnShareTypeHappeningPerson : kGGSnShareTypeHappeningCompany;
+    vc.shareType = [self _isPeopleHappening] ? kGGSnShareTypeHappeningPerson : kGGSnShareTypeHappeningCompany;
     
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+-(BOOL)_isPeopleHappening
+{
+    GGHappening *currentHappening = _happenings[_happeningIndex];
+    return [currentHappening isPersonEvent];
+}
 
 #pragma mark - MFMailComposeViewControllerDelegate
 - (void)mailComposeController:(MFMailComposeViewController*)controller
@@ -814,7 +819,7 @@
     GGHappening *data = _happenings[_happeningIndex];
     
     [self showLoadingHUD];
-    if (_isPeopleHappening)
+    if ([self _isPeopleHappening])
     {
         id op = [GGSharedAPI getPeopleEventDetailWithID:data.ID callback:callback];
         [self registerOperation:op];

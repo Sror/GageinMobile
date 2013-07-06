@@ -237,7 +237,7 @@
 -(void)_enterHappeningDetailAt:(NSUInteger)aIndex
 {
     GGHappeningDetailVC *vc = [[GGHappeningDetailVC alloc] init];
-    vc.isPeopleHappening = YES;
+    //vc.isPeopleHappening = YES;
     vc.happenings = _happenings;
     vc.happeningIndex = aIndex;
     
