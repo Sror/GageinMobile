@@ -61,6 +61,7 @@
     _backgroundView = [[UIImageView alloc] init];
     _backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _backgroundView.contentMode = UIViewContentModeScaleToFill;
+    
     [self addSubview:_backgroundView];
 }
 
