@@ -36,9 +36,38 @@
     GGUpgradeInfo *_upgradeInfo;
 }
 
--(void)_initTabbar
-{
-    // Override point for customization after application launch.
+//-(void)_initTabbar
+//{
+//    // Override point for customization after application launch.
+//    UIViewController *viewController1, *viewController2, *viewController3, *viewController4;
+//    UINavigationController *nc1, *nc2, *nc3, *nc4;
+//    
+//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+//        viewController1 = [[GGCompaniesVC alloc] initWithNibName:@"GGCompaniesVC" bundle:nil];
+//        viewController2 = [[GGPeopleVC alloc] init];
+//        viewController3 = [[GGSavedUpdatesVC alloc] initWithNibName:@"GGSavedUpdatesVC" bundle:nil];
+//        viewController4 = [[GGSettingVC alloc] initWithNibName:@"GGSettingVC" bundle:nil];
+//    } else {
+//        viewController1 = [[GGCompaniesVC alloc] initWithNibName:@"GGCompaniesVC_iPad" bundle:nil];
+//        viewController2 = [[GGPeopleVC alloc] init];
+//        viewController3 = [[GGSavedUpdatesVC alloc] initWithNibName:@"GGSavedUpdatesVC_iPad" bundle:nil];
+//        viewController4 = [[GGSettingVC alloc] initWithNibName:@"GGSettingVC" bundle:nil];
+//    }
+//    
+//    nc1 = [[UINavigationController alloc] initWithRootViewController:viewController1];
+//    nc2 = [[UINavigationController alloc] initWithRootViewController:viewController2];
+//    nc3 = [[UINavigationController alloc] initWithRootViewController:viewController3];
+//    nc4 = [[UINavigationController alloc] initWithRootViewController:viewController4];
+//    
+//    _tabBarController = [[RDVTabBarController alloc] initWithViewControllers:@[nc1, nc2, nc3, nc4]];
+//    _tabBarController.delegate = self;
+//    [_tabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbarBg"]];
+//    //_tabbarVC.viewControllers = @[nc1, nc2, nc3, nc4];
+//    
+//}
+
+
+- (void)_initTabbar {
     UIViewController *viewController1, *viewController2, *viewController3, *viewController4;
     UINavigationController *nc1, *nc2, *nc3, *nc4;
     
@@ -54,16 +83,49 @@
         viewController4 = [[GGSettingVC alloc] initWithNibName:@"GGSettingVC" bundle:nil];
     }
     
-    nc1 = [[UINavigationController alloc] initWithRootViewController:viewController1];
-    nc2 = [[UINavigationController alloc] initWithRootViewController:viewController2];
-    nc3 = [[UINavigationController alloc] initWithRootViewController:viewController3];
-    nc4 = [[UINavigationController alloc] initWithRootViewController:viewController4];
+    nc1 = [[GGNavigationController alloc] initWithRootViewController:viewController1];
+    nc2 = [[GGNavigationController alloc] initWithRootViewController:viewController2];
+    nc3 = [[GGNavigationController alloc] initWithRootViewController:viewController3];
+    nc4 = [[GGNavigationController alloc] initWithRootViewController:viewController4];
     
-    _tabBarController = [[GGTabBarController alloc] initWithViewControllers:@[nc1, nc2, nc3, nc4]];
-    _tabBarController.delegate = self;
-    [_tabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbarBg"]];
-    //_tabbarVC.viewControllers = @[nc1, nc2, nc3, nc4];
+    _tabBarController = [[RDVTabBarController alloc] init];
+    [_tabBarController setViewControllers:@[nc1, nc2, nc3, nc4]];
+    //self.viewController = tabBarController;
     
+    [self customizeTabBarForController:_tabBarController];
+}
+
+- (void)customizeTabBarForController:(RDVTabBarController *)tabBarController {
+    //UIImage *finishedImage = [[UIImage imageNamed:@"tabbarBg"]
+    //resizableImageWithCapInsets:UIEdgeInsetsMake(0, 1, 0, 0)];
+    //UIImage *unfinishedImage = [[UIImage imageNamed:@"tabbarBg"]
+    //resizableImageWithCapInsets:UIEdgeInsetsMake(0, 1, 0, 0)];
+    
+    RDVTabBar *tabBar = [tabBarController tabBar];
+    //tabBar.opaque = NO;
+    [tabBar setBackgroundImage:[UIImage imageNamed:@"tabbarBg"]];
+    
+    [tabBar setFrame:CGRectMake(CGRectGetMinX(tabBar.frame), CGRectGetMinY(tabBar.frame), CGRectGetWidth(tabBar.frame), 63)];
+    
+    NSAssert((tabBar.items.count == 4), @"tabbar count should be 4");
+    
+    RDVTabBarItem *item1 = tabBar.items[0];
+    [item1 setFinishedSelectedImage:[UIImage imageNamed:@"tab_company_selected"] withFinishedUnselectedImage:[UIImage imageNamed:@"tab_company_normal"]];
+    
+    RDVTabBarItem *item2 = tabBar.items[1];
+    [item2 setFinishedSelectedImage:[UIImage imageNamed:@"tab_people_selected"] withFinishedUnselectedImage:[UIImage imageNamed:@"tab_people_normal"]];
+    
+    RDVTabBarItem *item3 = tabBar.items[2];
+    [item3 setFinishedSelectedImage:[UIImage imageNamed:@"tab_saved_selected"] withFinishedUnselectedImage:[UIImage imageNamed:@"tab_saved_normal"]];
+    
+    RDVTabBarItem *item4 = tabBar.items[3];
+    [item4 setFinishedSelectedImage:[UIImage imageNamed:@"tab_settings_selected"] withFinishedUnselectedImage:[UIImage imageNamed:@"tab_settings_normal"]];
+    
+    //    for (RDVTabBarItem *item in [[tabBarController tabBar] items]) {
+    //        //[item setBackgroundSelectedImage:finishedImage withUnselectedImage:unfinishedImage];
+    //        UIImage *image = [UIImage imageNamed:@"tab_company_normal"];
+    //        [item setFinishedSelectedImage:[UIImage imageNamed:@"tab_company_selected"] withFinishedUnselectedImage:image];
+    //    }
 }
 
 -(GGBaseViewController *)topMostVC

@@ -48,7 +48,6 @@
 		EA0E629E172663550002F113 /* tab_settings_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0E6295172663550002F113 /* tab_settings_normal@2x.png */; };
 		EA0E629F172663550002F113 /* tab_settings_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0E6296172663550002F113 /* tab_settings_selected@2x.png */; };
 		EA0E62A0172663550002F113 /* transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0E6297172663550002F113 /* transparent.png */; };
-		EA0E62A4172663740002F113 /* GGTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0E62A3172663740002F113 /* GGTabBarController.m */; };
 		EA0E62EE172687050002F113 /* GGSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0E62ED172687050002F113 /* GGSwitchButton.m */; };
 		EA0E62F1172687220002F113 /* GGSwitchButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0E62F0172687220002F113 /* GGSwitchButton.xib */; };
 		EA0E62F61726873E0002F113 /* switch_bg_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0E62F31726873E0002F113 /* switch_bg_gray@2x.png */; };
@@ -94,8 +93,6 @@
 		EA1A6229170A8C95000B4EAE /* GGPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A6227170A8C95000B4EAE /* GGPredicate.m */; };
 		EA1A622C170A9088000B4EAE /* GGAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1A622B170A907B000B4EAE /* GGAlert.m */; };
 		EA1CA78B175812FC007C9232 /* GGStringPool.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1CA78A175812FC007C9232 /* GGStringPool.m */; };
-		EA1D944917335EAB009FCC7B /* GGRootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1D944717335EAB009FCC7B /* GGRootVC.m */; };
-		EA1D944A17335EAB009FCC7B /* GGRootVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1D944817335EAB009FCC7B /* GGRootVC.xib */; };
 		EA1D947417339DB1009FCC7B /* darkBtnBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1D945A17339DB1009FCC7B /* darkBtnBg@2x.png */; };
 		EA1D947517339DB1009FCC7B /* deleteRadioHorizontal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1D945B17339DB1009FCC7B /* deleteRadioHorizontal@2x.png */; };
 		EA1D947617339DB1009FCC7B /* deleteRadioVertical@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1D945C17339DB1009FCC7B /* deleteRadioVertical@2x.png */; };
@@ -377,6 +374,9 @@
 		EA9923C91745AD290043251E /* timezones.json in Resources */ = {isa = PBXBuildFile; fileRef = EA9923C81745AD290043251E /* timezones.json */; };
 		EA997426174E8D5100A125D5 /* Happening_Cases_and_data_format.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA997425174E8D5100A125D5 /* Happening_Cases_and_data_format.txt */; };
 		EA99742C174EEB1600A125D5 /* UILabel+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA99742B174EEB1500A125D5 /* UILabel+AddOn.m */; };
+		EA9A4E0A1788B6950079DA29 /* RDVTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9A4E051788B6950079DA29 /* RDVTabBar.m */; };
+		EA9A4E0B1788B6950079DA29 /* RDVTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9A4E071788B6950079DA29 /* RDVTabBarController.m */; };
+		EA9A4E0C1788B6950079DA29 /* RDVTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9A4E091788B6950079DA29 /* RDVTabBarItem.m */; };
 		EA9B3A0C1768E24E008C5709 /* GGTriggerChartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9B3A0B1768E24E008C5709 /* GGTriggerChartCell.m */; };
 		EA9B3A0E1768E280008C5709 /* GGTriggerChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9B3A0D1768E280008C5709 /* GGTriggerChartCell.xib */; };
 		EA9C7F94177110F7003217F7 /* GGSsgrfPopPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C7F93177110F7003217F7 /* GGSsgrfPopPanelView.m */; };
@@ -657,8 +657,6 @@
 		EA0E6295172663550002F113 /* tab_settings_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_settings_normal@2x.png"; sourceTree = "<group>"; };
 		EA0E6296172663550002F113 /* tab_settings_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_settings_selected@2x.png"; sourceTree = "<group>"; };
 		EA0E6297172663550002F113 /* transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparent.png; sourceTree = "<group>"; };
-		EA0E62A2172663740002F113 /* GGTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTabBarController.h; sourceTree = "<group>"; };
-		EA0E62A3172663740002F113 /* GGTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGTabBarController.m; sourceTree = "<group>"; };
 		EA0E62EC172687050002F113 /* GGSwitchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSwitchButton.h; sourceTree = "<group>"; };
 		EA0E62ED172687050002F113 /* GGSwitchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSwitchButton.m; sourceTree = "<group>"; };
 		EA0E62F0172687220002F113 /* GGSwitchButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSwitchButton.xib; sourceTree = "<group>"; };
@@ -732,9 +730,6 @@
 		EA1A622B170A907B000B4EAE /* GGAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGAlert.m; sourceTree = "<group>"; };
 		EA1CA789175812FC007C9232 /* GGStringPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGStringPool.h; sourceTree = "<group>"; };
 		EA1CA78A175812FC007C9232 /* GGStringPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGStringPool.m; sourceTree = "<group>"; };
-		EA1D944617335EAB009FCC7B /* GGRootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGRootVC.h; sourceTree = "<group>"; };
-		EA1D944717335EAB009FCC7B /* GGRootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGRootVC.m; sourceTree = "<group>"; };
-		EA1D944817335EAB009FCC7B /* GGRootVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGRootVC.xib; sourceTree = "<group>"; };
 		EA1D945A17339DB1009FCC7B /* darkBtnBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "darkBtnBg@2x.png"; sourceTree = "<group>"; };
 		EA1D945B17339DB1009FCC7B /* deleteRadioHorizontal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deleteRadioHorizontal@2x.png"; sourceTree = "<group>"; };
 		EA1D945C17339DB1009FCC7B /* deleteRadioVertical@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deleteRadioVertical@2x.png"; sourceTree = "<group>"; };
@@ -1146,6 +1141,12 @@
 		EA997425174E8D5100A125D5 /* Happening_Cases_and_data_format.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Happening_Cases_and_data_format.txt; sourceTree = "<group>"; };
 		EA99742A174EEB1500A125D5 /* UILabel+AddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+AddOn.h"; sourceTree = "<group>"; };
 		EA99742B174EEB1500A125D5 /* UILabel+AddOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+AddOn.m"; sourceTree = "<group>"; };
+		EA9A4E041788B6950079DA29 /* RDVTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBar.h; sourceTree = "<group>"; };
+		EA9A4E051788B6950079DA29 /* RDVTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBar.m; sourceTree = "<group>"; };
+		EA9A4E061788B6950079DA29 /* RDVTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBarController.h; sourceTree = "<group>"; };
+		EA9A4E071788B6950079DA29 /* RDVTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBarController.m; sourceTree = "<group>"; };
+		EA9A4E081788B6950079DA29 /* RDVTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBarItem.h; sourceTree = "<group>"; };
+		EA9A4E091788B6950079DA29 /* RDVTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBarItem.m; sourceTree = "<group>"; };
 		EA9B3A0A1768E24E008C5709 /* GGTriggerChartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTriggerChartCell.h; sourceTree = "<group>"; };
 		EA9B3A0B1768E24E008C5709 /* GGTriggerChartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGTriggerChartCell.m; sourceTree = "<group>"; };
 		EA9B3A0D1768E280008C5709 /* GGTriggerChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGTriggerChartCell.xib; sourceTree = "<group>"; };
@@ -2229,6 +2230,19 @@
 			path = Others;
 			sourceTree = "<group>";
 		};
+		EA9A4E031788B6950079DA29 /* RDVTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				EA9A4E041788B6950079DA29 /* RDVTabBar.h */,
+				EA9A4E051788B6950079DA29 /* RDVTabBar.m */,
+				EA9A4E061788B6950079DA29 /* RDVTabBarController.h */,
+				EA9A4E071788B6950079DA29 /* RDVTabBarController.m */,
+				EA9A4E081788B6950079DA29 /* RDVTabBarItem.h */,
+				EA9A4E091788B6950079DA29 /* RDVTabBarItem.m */,
+			);
+			path = RDVTabBarController;
+			sourceTree = "<group>";
+		};
 		EA9E00111770072D00127233 /* Popups */ = {
 			isa = PBXGroup;
 			children = (
@@ -2661,8 +2675,6 @@
 			children = (
 				EA945CBF177EB14900523A2F /* GGLeftDrawerVC.h */,
 				EA945CC0177EB14900523A2F /* GGLeftDrawerVC.m */,
-				EA0E62A2172663740002F113 /* GGTabBarController.h */,
-				EA0E62A3172663740002F113 /* GGTabBarController.m */,
 				EA79B89E1724CEDF00141E6D /* GGBaseViewController.h */,
 				EA16AA1917325A4C0052B526 /* GGBaseViewController.m */,
 				EA916214176792B4000AB2FB /* GGScrollToHideVC.h */,
@@ -2675,9 +2687,6 @@
 				EA09080D1712659E00BCD4C4 /* Setting */,
 				EA0CA558170BD54000DBCD83 /* Main */,
 				EAC96C2617098313003FAFAA /* Signup */,
-				EA1D944617335EAB009FCC7B /* GGRootVC.h */,
-				EA1D944717335EAB009FCC7B /* GGRootVC.m */,
-				EA1D944817335EAB009FCC7B /* GGRootVC.xib */,
 				EAEC1E401739CCCD0058130E /* GGRootNaviVC.h */,
 				EAEC1E411739CCCD0058130E /* GGRootNaviVC.m */,
 				EA9162611767F6EC000AB2FB /* GGNavigationController.h */,
@@ -2798,6 +2807,7 @@
 		EACAE0BB17094A3100E7088F /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				EA9A4E031788B6950079DA29 /* RDVTabBarController */,
 				EA945CB2177EB10C00523A2F /* MMDrawerController */,
 				EAAF888D176265EE00FAD594 /* Popover */,
 				EA96495217613D4D00739F73 /* YRDropdownView */,
@@ -3385,7 +3395,6 @@
 				EA16AA081732194F0052B526 /* GGConfigCategoryFiltersVC.xib in Resources */,
 				EA16AA0D1732196C0052B526 /* GGConfigMediaFiltersVC.xib in Resources */,
 				EA16AA12173231B90052B526 /* GGConfigSwitchCell.xib in Resources */,
-				EA1D944A17335EAB009FCC7B /* GGRootVC.xib in Resources */,
 				EA1D947417339DB1009FCC7B /* darkBtnBg@2x.png in Resources */,
 				EA1D947517339DB1009FCC7B /* deleteRadioHorizontal@2x.png in Resources */,
 				EA1D947617339DB1009FCC7B /* deleteRadioVertical@2x.png in Resources */,
@@ -3677,7 +3686,6 @@
 				EA0E6203172617B00002F113 /* GGComOverviewProfileCell.m in Sources */,
 				EA0E6204172617B00002F113 /* GGComOverviewRevenuesCell.m in Sources */,
 				EA0E6205172617B00002F113 /* GGComOverviewStockCell.m in Sources */,
-				EA0E62A4172663740002F113 /* GGTabBarController.m in Sources */,
 				EA0E62EE172687050002F113 /* GGSwitchButton.m in Sources */,
 				EAF0F08717276BA90065C39A /* GGComUpdateSearchVC.m in Sources */,
 				EAF0F0951727A39E0065C39A /* GGKeywordExampleCell.m in Sources */,
@@ -3704,7 +3712,6 @@
 				EA16AA10173231A80052B526 /* GGConfigSwitchCell.m in Sources */,
 				EA16AA15173238770052B526 /* GGAgentFilter.m in Sources */,
 				EA16AA1A17325A5B0052B526 /* GGBaseViewController.m in Sources */,
-				EA1D944917335EAB009FCC7B /* GGRootVC.m in Sources */,
 				EAF676331734B57600CE9F7D /* NSMutableURLRequest+Parameters.m in Sources */,
 				EAF676341734B57600CE9F7D /* NSString+URLEncodingPlus.m in Sources */,
 				EAF676351734B57600CE9F7D /* NSURL+Base.m in Sources */,
@@ -3833,6 +3840,9 @@
 				EA9D2F5017823BF7004CA4BC /* GGRelatedArticlesVC.m in Sources */,
 				EAA3AEC61785FC070045E448 /* GGWhiteBackgroundImageView.m in Sources */,
 				EAA3AEC917860B800045E448 /* GGOrientation.m in Sources */,
+				EA9A4E0A1788B6950079DA29 /* RDVTabBar.m in Sources */,
+				EA9A4E0B1788B6950079DA29 /* RDVTabBarController.m in Sources */,
+				EA9A4E0C1788B6950079DA29 /* RDVTabBarItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

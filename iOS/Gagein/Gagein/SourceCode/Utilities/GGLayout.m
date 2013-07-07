@@ -8,7 +8,7 @@
 
 #import "GGLayout.h"
 #import "GGAppDelegate.h"
-#import "GGTabBarController.h"
+//#import "GGTabBarController.h"
 
 @implementation GGLayout
 

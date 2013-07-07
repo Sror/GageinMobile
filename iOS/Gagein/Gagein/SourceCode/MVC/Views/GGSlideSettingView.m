@@ -9,7 +9,7 @@
 #import "GGSlideSettingView.h"
 #import "GGAppDelegate.h"
 #import "GGSearchBar.h"
-#import "GGRootVC.h"
+//#import "GGRootVC.h"
 #import <QuartzCore/QuartzCore.h>
 
 #import "MMDrawerController.h"

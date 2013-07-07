@@ -7,7 +7,7 @@
 //
 
 #import "GGRootNaviVC.h"
-#import "GGTabBarController.h"
+//#import "GGTabBarController.h"
 
 @interface GGRootNaviVC ()
 

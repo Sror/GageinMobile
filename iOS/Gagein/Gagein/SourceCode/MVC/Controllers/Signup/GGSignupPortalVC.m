@@ -271,7 +271,7 @@
 {
     GGLoginVC *vc = [GGLoginVC createInstance];
     
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    GGNavigationController *nc = [[GGNavigationController alloc] initWithRootViewController:vc];
     [self.view.window.layer addAnimation:[GGUtils animationTransactionPushed:YES] forKey:nil];
     [self presentViewController:nc animated:NO completion:nil];
 }
@@ -286,7 +286,7 @@
     GGSignupVC *vc = [GGSignupVC createInstance];
     vc.userInfo = aUserInfo;
     
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    GGNavigationController *nc = [[GGNavigationController alloc] initWithRootViewController:vc];
     [self.view.window.layer addAnimation:[GGUtils animationTransactionPushed:YES] forKey:nil];
     [self presentViewController:nc animated:NO completion:nil];
 }

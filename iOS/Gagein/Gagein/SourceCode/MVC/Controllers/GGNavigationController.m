@@ -18,4 +18,9 @@
     return NO;
 }
 
+-(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    DLog(@"%@", self.view.frameString);
+}
+
 @end

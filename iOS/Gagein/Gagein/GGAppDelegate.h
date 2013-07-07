@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GGTabBarController.h"
+//#import "GGTabBarController.h"
+#import "RDVTabBarController.h"
 //#import "GGRootVC.h"
 #import "GGRootNaviVC.h"
 
@@ -23,7 +24,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) GGTabBarController *tabBarController;
+@property (strong, nonatomic) RDVTabBarController *tabBarController;
 @property (strong, nonatomic) GGRootNaviVC *naviController;
 //@property (readonly) GGSlideSettingView *slideSettingView;
 //@property (strong, nonatomic) GGRootVC *rootVC;
