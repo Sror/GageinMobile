@@ -35,7 +35,10 @@
 
 @property (copy)    NSString    *linkedInSignal;
 @property (copy)    NSString    *twitterTweets;
+
 @property (strong)  NSMutableArray  *mentionedCompanies;
+@property (assign)  NSUInteger      mentionedComIndex;      // for salesGraph display
+
 @property (strong)  NSMutableArray   *agents;
 
 @property (copy)    NSString        *newsPicURL;

@@ -213,14 +213,11 @@
         {
             NSMutableArray *imageURLs = [NSMutableArray array];
             
-//#if 1
             for (GGCompany *company in _detailData.mentionedCompanies)
             {
                 [imageURLs addObjectIfNotNil:company.logoPath];
             }
-//#else
-//            imageURLs = [NSMutableArray arrayWithObjects:[GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], [GGUtils testImageURL], nil];
-//#endif
+            
             [_panel.viewScroll setImageUrls:imageURLs placeholder:GGSharedImagePool.logoDefaultCompany];
         }
     }

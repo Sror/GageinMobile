@@ -218,7 +218,7 @@
         [button addTarget:self action:@selector(pushAwayFromButton:)];
     }
     
-    int popIndex = 0;//_imageButtons.count / 2;
+    int popIndex = _data.mentionedComIndex;//_imageButtons.count / 2;
     
     if (_imageButtons.count > 0)
     {
@@ -294,6 +294,9 @@
 {
     //self.viewScroll.backgroundColor = GGSharedColor.random;
     //int index = aButton.tag;
+    
+    _data.mentionedComIndex = aIndex;
+    
     int count = _imageButtons.count;
     UIButton *pushedButton = _imageButtons[aIndex];
     _infoWidget.hidden = YES;
