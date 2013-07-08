@@ -24,6 +24,6 @@
 
 "api_message_already_following_the_company" = "You are already following this company.";
 "api_message_grade_b_company_cant_be_followed" = "The company has no update right now, you can't follow it for now.";
-"api_message_cant_follow_more_company" = "Upgrade your plan to follow more companies.";
+"api_message_cant_follow_more_company" = "You may only follow up to 5 companies with your current plan.";
 "api_message_free_plan_cant_follow_c_company" = "Upgrade your account now to follow companies beyond Fortune 1000, public, and hot private companies in the US and Canada.";
 "api_message_grad_c_company_followed" = "This company should be available in %d business days. We will notify you when it is ready.";

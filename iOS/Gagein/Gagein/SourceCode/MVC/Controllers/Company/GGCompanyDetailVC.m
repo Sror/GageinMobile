@@ -497,25 +497,41 @@ typedef enum
     {
         if (_companyOverview.getGrade == kGGComGradeUnknown)
         {
-            _btnFollow.hidden = YES;
-            _lblTip.hidden = NO;
-            _lblTip.text = @"This company should be available soon. We will notify you when it is ready.";
+//            _btnFollow.hidden = YES;
+//            _lblTip.hidden = NO;
+//            _lblTip.text = @"This company should be available soon. We will notify you when it is ready.";
+            _btnFollow.hidden = NO;
+            _lblTip.hidden = YES;
+            [self.btnFollow setTitle:@"Pending" forState:UIControlStateNormal];
+            self.btnFollow.selected = NO;
         }
         else
         {
             _btnFollow.hidden = NO;
             _lblTip.hidden = YES;
-            [self.btnFollow setTitle:@"following" forState:UIControlStateNormal];
+            [self.btnFollow setTitle:@"Following" forState:UIControlStateNormal];
             self.btnFollow.selected = YES;
         }
         
     }
     else
     {
-        _btnFollow.hidden = NO;
-        _lblTip.hidden = YES;
-        [self.btnFollow setTitle:@"follow" forState:UIControlStateNormal];
-        self.btnFollow.selected = NO;
+        if (_companyOverview.getGrade == kGGComGradeBad)
+        {
+            _btnFollow.hidden = YES;
+            _lblTip.hidden = NO;
+            _lblTip.text = @"Not available to follow.";
+        }
+        else
+        {
+            _btnFollow.hidden = NO;
+            _lblTip.hidden = YES;
+            [self.btnFollow setTitle:@"Follow" forState:UIControlStateNormal];
+            self.btnFollow.selected = NO;
+        }
+        
+        
+        //
     }
 }
 
