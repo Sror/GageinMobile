@@ -134,7 +134,9 @@
     //
     //_needImportFromLinkedIn = NO;
     //_needImportFromSalesforce = NO;
+    
     [self _adjustStyleForSuggestedHeaderView];
+    _tableViewCompanies.tableHeaderView = nil;
     
     //
     [self _showTitle:YES];
@@ -144,6 +146,8 @@
     [self _getAllFollowedCompanies];
     [self _getAllSuggestedCompanies];
     [self _callApiGetSnList];
+    
+    //_btnSalesForce.hidden = _btnLinkedIn.hidden = YES;
 }
 
 -(void)tapToHideSearch:(UITapGestureRecognizer *)aTapGest
@@ -482,7 +486,9 @@
         
         if (company.followed)
         {
+            [self showLoadingHUD];
             id op = [GGSharedAPI unfollowCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                [self hideLoadingHUD];
                 GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
                 if (parser.isOK)
                 {
@@ -500,7 +506,9 @@
         }
         else
         {
+            [self showLoadingHUD];
             id op = [GGSharedAPI followCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                [self hideLoadingHUD];
                 GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
                 if (parser.isOK)
                 {
@@ -530,12 +538,12 @@
         
         if ([self _isCompanyFollowed:company.ID])
         {
-            [GGAlert alertWithMessage:@"Ops, You have already followed this company."];
+            [GGAlert alertWithMessage:GGString(@"api_message_already_following_the_company")];
         }
         else if (company.getGrade == kGGComGradeBad)
         {
-#warning MESSAGE NEED TO BE REFINED
-            [GGAlert alertWithMessage:@"Sorry, You can't follow this company."];
+//#warning MESSAGE NEED TO BE REFINED
+            [GGAlert alertWithMessage:GGString(@"Not available to follow.")];
         }
         else
         {

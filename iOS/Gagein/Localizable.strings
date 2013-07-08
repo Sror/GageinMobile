@@ -27,3 +27,5 @@
 "api_message_cant_follow_more_company" = "You may only follow up to 5 companies with your current plan.";
 "api_message_free_plan_cant_follow_c_company" = "Upgrade your account now to follow companies beyond Fortune 1000, public, and hot private companies in the US and Canada.";
 "api_message_grad_c_company_followed" = "This company should be available in %d business days. We will notify you when it is ready.";
+
+"Not available to follow." = "Not available to follow.";

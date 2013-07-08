@@ -1413,7 +1413,7 @@
 
 -(void)_callApiGetMenu
 {
-    [_slideSettingView.viewTable showLoadingHUD];
+    [_slideSettingView.viewTable showLoadingHUDWithOffsetY:-100];
     id op = [GGSharedAPI getMenuByType:kGGStrMenuTypeCompanies callback:^(id operation, id aResultObject, NSError *anError) {
         [_slideSettingView.viewTable hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];

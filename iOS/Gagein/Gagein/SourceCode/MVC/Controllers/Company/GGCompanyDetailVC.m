@@ -520,7 +520,7 @@ typedef enum
         {
             _btnFollow.hidden = YES;
             _lblTip.hidden = NO;
-            _lblTip.text = @"Not available to follow.";
+            _lblTip.text = GGString(@"Not available to follow.");
         }
         else
         {

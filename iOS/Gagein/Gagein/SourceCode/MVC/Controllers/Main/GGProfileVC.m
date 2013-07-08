@@ -106,6 +106,7 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         [cell.contentView addSubview:_viewHeader];
+        [_viewHeader centerMeHorizontally];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
@@ -119,6 +120,7 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         [cell.contentView addSubview:_viewFooter];
+        [_viewFooter centerMeHorizontally];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
@@ -294,6 +296,8 @@
     [super doLayoutUIForIPadWithOrientation:toInterfaceOrientation];
     
     [_tvProfile centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH];
+    [_viewFooter centerMeHorizontally];
+    [_viewHeader centerMeHorizontally];
 }
 
 @end
