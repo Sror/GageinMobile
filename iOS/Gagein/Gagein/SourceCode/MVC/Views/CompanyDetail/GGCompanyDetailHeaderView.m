@@ -29,4 +29,9 @@
     return 40.f;
 }
 
+-(void)setTitleFontSize:(float)aFontSize
+{
+    _lblTitle.font = [UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE size:aFontSize];
+}
+
 @end

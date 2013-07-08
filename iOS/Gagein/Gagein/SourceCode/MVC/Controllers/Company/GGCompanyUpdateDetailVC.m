@@ -200,7 +200,7 @@
     
     [headerView setWidth:_tvInfo.frame.size.width];
     [headerView doLayout];
-    headerView.backgroundColor = GGSharedColor.lightGray;
+    //headerView.backgroundColor = GGSharedColor.lightGray;
     return headerView;
 }
 
@@ -741,7 +741,8 @@
     [self _infoHeaderView].lblTitle.text = _companyUpdateDetail.headline;
     
     //
-    [self _relatedArticleCell].lblCount.text = [NSString stringWithFormat:@"(%d)", _companyUpdateDetail.newsSimilarCount];
+    int relatedCount = _companyUpdateDetail.newsSimilarCount;
+    [self _relatedArticleCell].lblTitle.text = (relatedCount <= 1) ? @"1 Related Article" : [NSString stringWithFormat:@"%d Related Articles", relatedCount];
     
     //
     if (![self _hasTextView])
@@ -961,6 +962,7 @@
             GGCompanyDetailHeaderView *header = [GGCompanyDetailHeaderView viewFromNibWithOwner:self];
             header.lblTitle.text = @"Some mentioned companies";
             header.lblAction.hidden = YES;
+            [header setTitleFontSize:13.f];
             return header;
         }
         else if (section == 2)
@@ -970,6 +972,7 @@
             GGCompanyDetailHeaderView *header = [GGCompanyDetailHeaderView viewFromNibWithOwner:self];
             header.lblTitle.text = @"Triggers";
             header.lblAction.hidden = YES;
+            [header setTitleFontSize:13.f];
             return header;
         }
     }

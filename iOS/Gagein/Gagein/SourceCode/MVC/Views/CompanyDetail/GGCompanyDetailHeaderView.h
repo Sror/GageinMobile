@@ -13,4 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *lblAction;
 
 +(float)HEIGHT;
+-(void)setTitleFontSize:(float)aFontSize;
+
 @end
