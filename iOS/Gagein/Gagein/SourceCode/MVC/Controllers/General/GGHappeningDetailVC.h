@@ -18,8 +18,5 @@
 , UIAlertViewDelegate>
 
 @property (strong) NSMutableArray       *happenings;
-//@property (assign)     NSUInteger          currentIndex;
-//@property (assign)  BOOL                isPeopleHappening;
-
-@property (assign) NSUInteger   happeningIndex;
+@property (assign) NSUInteger           happeningIndex;
 @end

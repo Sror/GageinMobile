@@ -113,7 +113,17 @@
     _isTabbarHiddenWhenLoaded = GGSharedDelegate.tabBarController.isTabbarHidden;
     [GGUtils hideTabBarAnimated:YES];
     
-    self.naviTitle = @"Happening";
+    GGHappening *data = _happenings[_happeningIndex];
+    
+    if ([data isPersonEvent])
+    {
+        self.naviTitle = @"People Updates";
+    }
+    else
+    {
+        self.naviTitle = @"Company Happenings";
+    }
+    
     self.svContent.frame = [self viewportAdjsted];
     self.view.backgroundColor = GGSharedColor.silver;
     self.tvDetail.backgroundColor = GGSharedColor.silver;

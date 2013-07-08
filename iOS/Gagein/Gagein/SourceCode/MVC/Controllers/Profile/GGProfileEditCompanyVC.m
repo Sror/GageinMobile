@@ -56,6 +56,7 @@
     _viewSearchBar = [GGUtils replaceFromNibForView:_viewSearchBar];
     _viewSearchBar.delegate = self;
     _viewSearchBar.tfSearch.returnKeyType = UIReturnKeyDone;
+    _viewSearchBar.tfSearch.placeholder = @"Your new company";
     
     UITapGestureRecognizer *tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideDimedView)];
     [_viewDimed addGestureRecognizer:tapGest];
@@ -159,6 +160,7 @@
             _userProfile.orgLogoPath = company.logoPath;
             
             [self _updateUiIsComanyCustomed];
+            [self naviBackAction:nil];
             //[GGAlert alertWithMessage:@"Company changed OK!"];
         }
         else
