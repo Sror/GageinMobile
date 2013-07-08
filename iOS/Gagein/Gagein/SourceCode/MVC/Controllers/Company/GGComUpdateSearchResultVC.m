@@ -87,6 +87,13 @@
     [_updatesTV reloadData];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [_updatesTV centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH_FULL];
+}
+
 #pragma mark - notification handling
 -(void)handleNotification:(NSNotification *)notification
 {
@@ -199,7 +206,7 @@
 {
     if (ISIPADDEVICE)
     {
-        if (indexPath.row == _tvExpandHelper.expandingIndex)
+        if (_tvExpandHelper.isExpanding && indexPath.row == _tvExpandHelper.expandingIndex)
         {
             [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
         }

@@ -423,7 +423,7 @@
 -(void)_refreshTimer
 {
     [_searchTimer invalidate];
-    _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2.f target:self selector:@selector(_callApiGetSuggestions) userInfo:nil repeats:NO];
+   // _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2.f target:self selector:@selector(_callApiGetSuggestions) userInfo:nil repeats:NO];
 }
 
 #pragma mark - search bar delegate

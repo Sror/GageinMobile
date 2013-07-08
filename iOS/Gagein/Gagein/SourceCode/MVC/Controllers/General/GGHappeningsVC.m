@@ -168,7 +168,7 @@
 {
     if (ISIPADDEVICE)
     {
-        if (indexPath.row == _happeningTvExpandHelper.expandingIndex)
+        if (_happeningTvExpandHelper.isExpanding && indexPath.row == _happeningTvExpandHelper.expandingIndex)
         {
             [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
         }
