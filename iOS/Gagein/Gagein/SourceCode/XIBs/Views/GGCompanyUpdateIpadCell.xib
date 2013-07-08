@@ -201,7 +201,6 @@
 										<string key="NSFrame">{{610, 45}, {9, 6}}</string>
 										<reference key="NSSuperview" ref="297775012"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -271,7 +270,7 @@
 							</object>
 							<object class="IBUIButton" id="861698896">
 								<reference key="NSNextResponder" ref="509386514"/>
-								<int key="NSvFlags">290</int>
+								<int key="NSvFlags">292</int>
 								<string key="NSFrameSize">{670, 100}</string>
 								<reference key="NSSuperview" ref="509386514"/>
 								<reference key="NSWindow"/>
