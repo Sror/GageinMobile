@@ -255,11 +255,11 @@
         for (GGAgentFilter *agentFilter in page.items)
         {
             //agentFilter.chartPercentage = (arc4random() % 100) / 100.f;
-            if (agentFilter.type == kGGAgentTypeCustom)
-            {
-                [_customAgentFilters addObject:agentFilter];
-            }
-            else if (agentFilter.type == kGGAgentTypePredefined)
+//            if (agentFilter.type == kGGAgentTypeCustom)
+//            {
+//                [_customAgentFilters addObject:agentFilter];
+//            }
+//            else if (agentFilter.type == kGGAgentTypePredefined)
             {
                 [_predefinedAgentFilters addObject:agentFilter];
             }
