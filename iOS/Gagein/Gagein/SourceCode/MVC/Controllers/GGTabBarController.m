@@ -98,7 +98,7 @@
 {
     static BOOL isLoaded = NO;
     
-    [self.view printViewsTree];
+    //[self.view printViewsTree];
     
 //    UITabBar *tabbar = nil;
 //    for (UIView *sub in self.view.subviews)
