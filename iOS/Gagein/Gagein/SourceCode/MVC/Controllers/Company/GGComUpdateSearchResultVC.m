@@ -91,7 +91,10 @@
 {
     [super viewDidAppear:animated];
     
-    [_updatesTV centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH_FULL];
+    if (ISIPADDEVICE)
+    {
+        [_updatesTV centerMeHorizontallyChangeMyWidth:IPAD_CONTENT_WIDTH_FULL];
+    }
 }
 
 #pragma mark - notification handling
