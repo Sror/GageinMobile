@@ -8,6 +8,23 @@
 
 #import "GGSnUserInfo.h"
 
+@implementation GGAutoLoginInfo
+
+-(void)parseWithData:(NSDictionary *)aData
+{
+    [super parseWithData:aData];
+    
+    _accessToken = [aData objectForKey:@"access_token"];
+    _memberID = [[aData objectForKey:@"memid"] longLongValue];
+    _memberEmail = [aData objectForKey:@"mem_email"];
+    _memberFullName = [aData objectForKey:@"mem_full_name"];
+    _memberTimeZone = [aData objectForKey:@"mem_timezone"];
+    _signupProcessStatus = [[aData objectForKey:@"signup_process_status"] intValue];
+}
+
+@end
+
+////////////////////////////////////////////////
 @implementation GGSnUserInfo
 -(void)parseWithData:(NSDictionary *)aData
 {
@@ -23,17 +40,42 @@
     self.accountID = [aData objectForKey:@"sn_account_id"];
     self.accountName = [aData objectForKey:@"sn_account_name"];
     self.profileURL = [aData objectForKey:@"sn_profile_url"];
+    
+    NSArray *autoLoginInfoArr = [aData objectForKey:@"auto_login_info"];
+    _autoLoginInfos = (autoLoginInfoArr.count) ? [NSMutableArray array] : nil;
+    for (id infoDic in autoLoginInfoArr)
+    {
+        GGAutoLoginInfo *info = [GGAutoLoginInfo model];
+        [info parseWithData:infoDic];
+        [_autoLoginInfos addObject:info];
+    }
 }
 
 @end
 
-/*"sn_token": "b68732d4-ebbd-4677-b3d4-12373d3be665",
- "sn_secret": "c632126c-cc31-4cb3-b4c8-9f4528d6bf1e",
- "sn_refresh_token": "",
- "sn_instance_url": "",
- "sn_first_name": "ä¸é¸£",
- "sn_last_name": "è£",
- "sn_email": "",
- "sn_account_id": "JW9P-IUQlw",
- "sn_account_name": "",
- "sn_profile_url": "http://www.linkedin.com/pub/%E4%B8%80%E9%B8%A3-%E8%91%A3/38/a13/852"*/
+/*
+    "status": "1",
+    "msg": "ok",
+    "data": {
+        "sn_token": "57eaba2c-9005-483c-84d9-77c32bb6ff03",
+        "sn_secret": "c94a9503-3e59-44d7-8c59-21930cf95b9c",
+        "sn_refresh_token": "",
+        "sn_instance_url": "",
+        "sn_first_name": "ä¸é¸£",
+        "sn_last_name": "è£",
+        "sn_email": "",
+        "sn_account_id": "dqm-qSr-WU",
+        "sn_account_name": "",
+        "sn_profile_url": "http://www.linkedin.com/pub/%E4%B8%80%E9%B8%A3-%E8%91%A3/38/a13/852",
+        "auto_login_info": [
+                            {
+                                "access_token": "d9bbcd680a94bc1d3a46e31151b7ecb4",
+                                "memid": "20129",
+                                "mem_email": "1@q.com",
+                                "mem_full_name": "adjhasgdjahs hjagsdjhasdg",
+                                "mem_timezone": "US/Eastern", 
+                                "signup_process_status": "3"
+                            }
+                            ]
+    }
+*/

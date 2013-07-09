@@ -82,6 +82,8 @@
     [parameters setObjectIfNotNil:aSnToken forKey:@"sn_token"];
     [parameters setObjectIfNotNil:aSnSecret forKey:@"sn_secret"];
     
+    [parameters setObject:@"true" forKey:@"include_login_info"];
+    
     if (aSnType == kGGSnTypeSalesforce) {
         [parameters setObjectIfNotNil:aSfAccountID forKey:@"sn_account_id"];
         [parameters setObjectIfNotNil:aSfRefreshToken forKey:@"sn_refresh_token"];

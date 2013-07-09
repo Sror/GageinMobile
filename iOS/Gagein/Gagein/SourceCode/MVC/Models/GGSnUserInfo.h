@@ -9,6 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "GGDataModel.h"
 
+
+@interface GGAutoLoginInfo : GGDataModel
+@property (copy)    NSString    *accessToken;
+@property (assign)  long long   memberID;
+@property (copy)    NSString    *memberEmail;
+@property (copy)    NSString    *memberFullName;
+@property (copy)    NSString    *memberTimeZone;
+@property (assign)  int         signupProcessStatus;
+@end
+
+//////////////////////////////////////////////////////////////
 @interface GGSnUserInfo : GGDataModel
 @property (copy)    NSString    *token;
 @property (copy)    NSString    *secret;
@@ -20,6 +31,8 @@
 @property (copy)    NSString    *accountID;
 @property (copy)    NSString    *accountName;
 @property (copy)    NSString    *profileURL;
+
+@property (strong) NSMutableArray   *autoLoginInfos;
 
 @property (assign)  EGGSnType   snType;
 
