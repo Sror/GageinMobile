@@ -30,10 +30,6 @@
 {
     GGAutosizingLabel           *_lblTitle;
     
-    
-    UIImage                     *_placeholder;
-    NSArray                     *_imageUrls;
-    
     id                          _imageBtnTarget;
     SEL                         _imageBtnAction;
 }
@@ -99,9 +95,10 @@
     
     //int offsetX = 0;
     int count = _imageUrls.count;
+    float btnY = ([self scrollViewHeight] - [self imageSize].height) / 2;
     for (int i = 0; i < count; i++)
     {
-        GGSsgrfRndImgButton *button = [[GGSsgrfRndImgButton alloc] initWithFrame:CGRectMake(0, ([self scrollViewHeight] - [self imageSize].height) / 2, [self imageSize].width, [self imageSize].height)];
+        GGSsgrfRndImgButton *button = [[GGSsgrfRndImgButton alloc] initWithFrame:CGRectMake(0, btnY, [self imageSize].width, [self imageSize].height)];
         
         button.tag = i;
         
@@ -116,6 +113,41 @@
     }
     
     [self reArrangeImagePos];
+}
+
+-(void)_appendImages
+{
+    DLog(@"%@", NSStringFromCGPoint(_viewScroll.contentOffset));
+    int imageCount = _imageUrls.count;
+    int buttonCount = _imageButtons.count;
+    
+    if (imageCount > buttonCount)
+    {
+        GGSsgrfRndImgButton *lastBtn = _imageButtons.lastObject;
+        float btnY = ([self scrollViewHeight] - [self imageSize].height) / 2;
+        float offsetX = lastBtn ? (CGRectGetMaxX(lastBtn.frame) + _gap) : 0;
+        
+        for (int i = buttonCount; i < imageCount; i++)
+        {
+            GGSsgrfRndImgButton *button = [[GGSsgrfRndImgButton alloc] initWithFrame:CGRectMake(offsetX, btnY, [self imageSize].width, [self imageSize].height)];
+            
+            button.tag = i;
+            
+            NSString *urlStr = _imageUrls[i];
+            
+            [button setImageUrl:urlStr placeholder:_placeholder];
+            button.layer.cornerRadius = 4.f;
+            
+            [button addTarget:_imageBtnTarget action:_imageBtnAction];
+            [_viewScroll addSubview:button];
+            [_imageButtons addObject:button];
+            
+            offsetX = CGRectGetMaxX(button.frame) + _gap;
+        }
+        
+        [self _setContentWidth:offsetX - _gap];
+        DLog(@"%@", NSStringFromCGPoint(_viewScroll.contentOffset));
+    }
 }
 
 
@@ -148,7 +180,9 @@
 -(void)_setContentWidth:(float)aWidth
 {
     //aWidth = MAX(_viewScroll.frame.size.width, aWidth);
+    //DLog(@"%@", NSStringFromCGPoint(_viewScroll.contentOffset));
     _viewScroll.contentSize = CGSizeMake(aWidth, [self imageSize].height);
+    
 }
 
 
@@ -170,10 +204,22 @@
 
 -(void)setImageUrls:(NSArray *)imageUrls placeholder:(UIImage *)aPlaceholder
 {
+    [self setImageUrls:imageUrls placeholder:aPlaceholder needReInstall:YES];
+}
+
+-(void)setImageUrls:(NSArray *)imageUrls placeholder:(UIImage *)aPlaceholder needReInstall:(BOOL)aNeedReInstall
+{
     _imageUrls = imageUrls;
     _placeholder = aPlaceholder;
     
-    [self _reinstallImages];
+    if (aNeedReInstall)
+    {
+        [self _reinstallImages];
+    }
+    else
+    {
+        [self _appendImages];
+    }
 }
 
 @end
@@ -209,7 +255,43 @@
     return 250.f;
 }
 
+-(void)setImageUrls:(NSArray *)imageUrls placeholder:(UIImage *)aPlaceholder needReInstall:(BOOL)aNeedReInstall
+{
+    _imageUrls = imageUrls;
+    _placeholder = aPlaceholder;
+    
+    if (aNeedReInstall)
+    {
+        [self _reinstallImages];
+    }
+    else
+    {
+        [self _reinstallImagesAnimated:NO needReInstall:NO];
+    }
+}
+
+-(void)updateWithUpdateDetail:(GGCompanyUpdate *)aUpdateDetail
+{
+    if (aUpdateDetail)
+    {
+        NSMutableArray *imageURLs = [NSMutableArray array];
+        
+        for (GGCompany *company in aUpdateDetail.mentionedCompanies)
+        {
+            [imageURLs addObjectIfNotNil:company.logoPath];
+        }
+        
+        [self setImageUrls:imageURLs placeholder:GGSharedImagePool.logoDefaultCompany];
+    }
+}
+
+
 -(void)_reinstallImages
+{
+    [self _reinstallImagesAnimated:YES needReInstall:YES];
+}
+
+-(void)_reinstallImagesAnimated:(BOOL)aAnimated needReInstall:(BOOL)aNeedReInstall
 {
     [super _reinstallImages];
     
@@ -222,11 +304,12 @@
     
     if (_imageButtons.count > 0)
     {
-        [self showInfoWidgetAnimatedWithPushButton:_imageButtons[popIndex]];
-        GGCompany *company = self.data.mentionedCompanies[popIndex];
-        [_infoWidget updateWithCompany:company];
+        [self showInfoWidgetWithPushButton:_imageButtons[popIndex] animated:aAnimated];
         
-        [self pushAwayFromIndex:popIndex];
+        GGCompany *company = self.data.mentionedCompanies[popIndex];
+        [_infoWidget updateWithCompany:company needReInstall:aNeedReInstall];
+        
+        [self pushAwayFromIndex:popIndex animated:aAnimated];
     }
     
 }
@@ -235,53 +318,64 @@
 
 - (void)showInfoWidgetAnimatedWithPushButton:(UIButton *)pushedButton
 {
+    [self showInfoWidgetWithPushButton:pushedButton animated:YES];
+}
+
+- (void)showInfoWidgetWithPushButton:(UIButton *)pushedButton animated:(BOOL)aAnimated
+{
     _infoWidget.hidden = NO;
-    _infoWidget.viewTitledScroll.viewScroll.contentOffset = CGPointZero;
+    if (aAnimated)
+    {
+        _infoWidget.viewTitledScroll.viewScroll.contentOffset = CGPointZero;
+    }
     _infoWidget.center = pushedButton.center;
     [self.viewScroll addSubview:_infoWidget];
     
-    CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    opacityAnimation.fromValue = @(0);
-    opacityAnimation.toValue = @(1);
-    opacityAnimation.duration = THIS_ANIM_DURATION / 2;
-    [_infoWidget.layer addAnimation:opacityAnimation forKey:@"opacityAnimation"];
-    
-    CAKeyframeAnimation *alertScaleAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-    
-    CATransform3D startingScale = CATransform3DScale(_infoWidget.layer.transform, 0, 0, 0);
-    CATransform3D overshootScale = CATransform3DScale(_infoWidget.layer.transform, 1.05, 1.05, 1.0);
-    CATransform3D undershootScale = CATransform3DScale(_infoWidget.layer.transform, 0.95, 0.95, 1.0);
-    CATransform3D endingScale = _infoWidget.layer.transform;
-    
-    alertScaleAnimation.values = @[
-                                   [NSValue valueWithCATransform3D:startingScale],
-                                   [NSValue valueWithCATransform3D:overshootScale],
-                                   [NSValue valueWithCATransform3D:undershootScale],
-                                   [NSValue valueWithCATransform3D:endingScale]
-                                   ];
-    
-    alertScaleAnimation.keyTimes = @[
-                                     @(0.0f),
-                                     @(0.3f),
-                                     @(0.85f),
-                                     @(1.0f)
-                                     ];
-    
-    alertScaleAnimation.timingFunctions = @[
-                                            [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut],
-                                            [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
-                                            [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]
-                                            ];
-    alertScaleAnimation.fillMode = kCAFillModeForwards;
-    alertScaleAnimation.removedOnCompletion = NO;
-    
-    CAAnimationGroup *alertAnimation = [CAAnimationGroup animation];
-    alertAnimation.animations = @[
-                                  alertScaleAnimation,
-                                  opacityAnimation
-                                  ];
-    alertAnimation.duration = THIS_ANIM_DURATION;
-    [_infoWidget.layer addAnimation:alertAnimation forKey:@"alertAnimation"];
+    if (aAnimated)
+    {
+        CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+        opacityAnimation.fromValue = @(0);
+        opacityAnimation.toValue = @(1);
+        opacityAnimation.duration = THIS_ANIM_DURATION / 2;
+        [_infoWidget.layer addAnimation:opacityAnimation forKey:@"opacityAnimation"];
+        
+        CAKeyframeAnimation *alertScaleAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+        
+        CATransform3D startingScale = CATransform3DScale(_infoWidget.layer.transform, 0, 0, 0);
+        CATransform3D overshootScale = CATransform3DScale(_infoWidget.layer.transform, 1.05, 1.05, 1.0);
+        CATransform3D undershootScale = CATransform3DScale(_infoWidget.layer.transform, 0.95, 0.95, 1.0);
+        CATransform3D endingScale = _infoWidget.layer.transform;
+        
+        alertScaleAnimation.values = @[
+                                       [NSValue valueWithCATransform3D:startingScale],
+                                       [NSValue valueWithCATransform3D:overshootScale],
+                                       [NSValue valueWithCATransform3D:undershootScale],
+                                       [NSValue valueWithCATransform3D:endingScale]
+                                       ];
+        
+        alertScaleAnimation.keyTimes = @[
+                                         @(0.0f),
+                                         @(0.3f),
+                                         @(0.85f),
+                                         @(1.0f)
+                                         ];
+        
+        alertScaleAnimation.timingFunctions = @[
+                                                [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut],
+                                                [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+                                                [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]
+                                                ];
+        alertScaleAnimation.fillMode = kCAFillModeForwards;
+        alertScaleAnimation.removedOnCompletion = NO;
+        
+        CAAnimationGroup *alertAnimation = [CAAnimationGroup animation];
+        alertAnimation.animations = @[
+                                      alertScaleAnimation,
+                                      opacityAnimation
+                                      ];
+        alertAnimation.duration = THIS_ANIM_DURATION;
+        [_infoWidget.layer addAnimation:alertAnimation forKey:@"alertAnimation"];
+    }
 }
 
 -(void)pushAwayFromButton:(UIButton *)aButton
@@ -291,6 +385,11 @@
 }
 
 -(void)pushAwayFromIndex:(NSUInteger)aIndex
+{
+    [self pushAwayFromIndex:aIndex animated:YES];
+}
+
+-(void)pushAwayFromIndex:(NSUInteger)aIndex animated:(BOOL)aAnimated
 {
     //self.viewScroll.backgroundColor = GGSharedColor.random;
     //int index = aButton.tag;
@@ -303,7 +402,7 @@
     
     if (count <= 1)
     {
-        [self showInfoWidgetAnimatedWithPushButton:pushedButton];
+        [self showInfoWidgetWithPushButton:pushedButton animated:aAnimated];
         return; // dont need
     }
     
@@ -402,7 +501,8 @@
         
     } completion:^(BOOL finished) {
         
-        [self showInfoWidgetAnimatedWithPushButton:pushedButton];
+        [self showInfoWidgetWithPushButton:pushedButton animated:aAnimated];
+        
     }];
     
 }

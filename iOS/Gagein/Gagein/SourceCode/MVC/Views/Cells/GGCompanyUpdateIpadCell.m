@@ -88,7 +88,7 @@
                         competitorsPage.hasMore = newPage.hasMore;
                         aCompany.competitors = competitorsPage;
                         
-                        [self doUpdateUI];
+                        [self doUpdateUiNeedReinstall:NO];
                     }
                 }];
             }
@@ -193,6 +193,11 @@
 
 -(void)doUpdateUI
 {
+    [self doUpdateUiNeedReinstall:YES];
+}
+
+-(void)doUpdateUiNeedReinstall:(BOOL)aNeedReinstall
+{
     if (_data)
     {
         self.lblHeadline.text = _data.headline;//[aData headlineTruncated];
@@ -211,6 +216,7 @@
         
         if (_expanded)
         {
+            
             NSMutableArray *imageURLs = [NSMutableArray array];
             
             for (GGCompany *company in _detailData.mentionedCompanies)
@@ -218,7 +224,7 @@
                 [imageURLs addObjectIfNotNil:company.logoPath];
             }
             
-            [_panel.viewScroll setImageUrls:imageURLs placeholder:GGSharedImagePool.logoDefaultCompany];
+            [_panel.viewScroll setImageUrls:imageURLs placeholder:GGSharedImagePool.logoDefaultCompany needReInstall:aNeedReinstall];
         }
     }
 }

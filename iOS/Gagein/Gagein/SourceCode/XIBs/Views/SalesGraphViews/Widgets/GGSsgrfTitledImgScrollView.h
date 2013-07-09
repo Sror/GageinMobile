@@ -21,6 +21,8 @@
  @protected
     NSMutableArray              *_imageButtons;
     float                       _gap;
+    UIImage                     *_placeholder;
+    NSArray                     *_imageUrls;
     
 }
 @property (strong, nonatomic) UIScrollView           *viewScroll;
@@ -28,6 +30,7 @@
 -(void)setTitle:(NSString *)aTitle;
 -(void)setTaget:(id)aTarget action:(SEL)aAction;
 -(void)setImageUrls:(NSArray *)imageUrls placeholder:(UIImage *)aPlaceholder;
+-(void)setImageUrls:(NSArray *)imageUrls placeholder:(UIImage *)aPlaceholder needReInstall:(BOOL)aNeedReInstall;
 -(void)setGap:(float)aGap;
 
 -(CGSize)imageSize;

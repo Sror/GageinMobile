@@ -40,9 +40,12 @@ typedef enum {
 -(void)setMainTaget:(id)aTarget action:(SEL)aAction;
 
 -(void)setScrollImageUrls:(NSArray *)aScrollImageUrls placeholder:(UIImage *)aPlaceholder;
+-(void)setScrollImageUrls:(NSArray *)aScrollImageUrls placeholder:(UIImage *)aPlaceholder needReInstall:(BOOL)aNeedReInstall;
 -(void)setScrollTaget:(id)aTarget action:(SEL)aAction;
 
 -(void)updateWithCompany:(GGCompanyDigest *)aCompany;
+-(void)updateWithCompany:(GGCompanyDigest *)aCompany needReInstall:(BOOL)aNeedReInstall;
+
 -(void)updateWithPerson:(GGHappeningPerson *)aPerson;
 -(void)updateWithPerson:(GGHappeningPerson *)aPerson showOldPhoto:(BOOL)showOldPhoto;
 -(void)updateWithMapUrl:(NSString *)aMapURL;

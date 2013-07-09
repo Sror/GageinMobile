@@ -104,7 +104,12 @@
 
 -(void)setScrollImageUrls:(NSArray *)aScrollImageUrls placeholder:(UIImage *)aPlaceholder
 {
-    [_viewTitledScroll setImageUrls:aScrollImageUrls placeholder:aPlaceholder];
+    [self setScrollImageUrls:aScrollImageUrls placeholder:aPlaceholder needReInstall:YES];
+}
+
+-(void)setScrollImageUrls:(NSArray *)aScrollImageUrls placeholder:(UIImage *)aPlaceholder needReInstall:(BOOL)aNeedReInstall
+{
+    [_viewTitledScroll setImageUrls:aScrollImageUrls placeholder:aPlaceholder needReInstall:aNeedReInstall];
 }
 
 -(void)setScrollTaget:(id)aTarget action:(SEL)aAction
@@ -149,6 +154,11 @@
 
 -(void)updateWithCompany:(GGCompanyDigest *)aCompany
 {
+    [self updateWithCompany:aCompany needReInstall:YES];
+}
+
+-(void)updateWithCompany:(GGCompanyDigest *)aCompany needReInstall:(BOOL)aNeedReInstall
+{
     _type = kGGSsGrfInfoWidgetCompany;
     _data = aCompany;
     
@@ -168,7 +178,7 @@
         }
         
         [self setScrollTaget:self action:@selector(competitorTapped:)];
-        [self setScrollImageUrls:imageURLs placeholder:GGSharedImagePool.placeholder];
+        [self setScrollImageUrls:imageURLs placeholder:GGSharedImagePool.placeholder needReInstall:aNeedReInstall];
     }
 }
 
