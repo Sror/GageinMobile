@@ -9,6 +9,7 @@
 #import "GGMember.h"
 #import "GGCompany.h"
 #import "GGMemberPlan.h"
+#import "GGSnUserInfo.h"
 
 #define kMemberID           @"kMemberID"
 #define kMemberFullName     @"kMemberFullName"
@@ -20,6 +21,18 @@
 #define kAccessToken        @"kAccessToken"
 
 @implementation GGMember
+
++(GGMember *)memberFromLoginInfo:(GGAutoLoginInfo *)aLoginInfo
+{
+    GGMember *member = [GGMember model];
+    member.accessToken = aLoginInfo.accessToken;
+    member.ID = aLoginInfo.memberID;
+    member.accountEmail = aLoginInfo.memberEmail;
+    member.fullName = aLoginInfo.memberFullName;
+    member.signupProcessStatus = aLoginInfo.signupProcessStatus;
+    
+    return member;
+}
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {

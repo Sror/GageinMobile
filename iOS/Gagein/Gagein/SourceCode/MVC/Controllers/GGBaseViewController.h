@@ -84,6 +84,9 @@
 -(void)presentPageSelectFuncArea;
 -(void)presentPageConfigFilters;
 
+#pragma mark - login navi
+-(void)naviWithCurrentUser:(GGMember *)aCurrentUser;
+
 
 #pragma mark - lay out for ipad
 -(void)layoutUIForIPadIfNeeded;

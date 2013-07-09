@@ -42,6 +42,7 @@
 
 #import "GGEmployerComsVC.h"
 #import "GGPerson.h"
+#import "GGMember.h"
 
 #import "MMDrawerController.h"
 
@@ -870,6 +871,38 @@
     NSString *chartUrl = [GGUtils stringWithChartUrl:aChartURL width:width height:height];
     
     [self presentImageWithURL:chartUrl];
+}
+
+-(void)naviWithCurrentUser:(GGMember *)aCurrentUser
+{
+    if (aCurrentUser)
+    {
+        GGSharedRuntimeData.currentUser = aCurrentUser;
+        [GGSharedRuntimeData saveCurrentUser];
+        
+        if (aCurrentUser.isSignupOK)
+        {
+            // go home
+            [self dismissViewControllerAnimated:NO completion:nil];
+            [GGSharedDelegate popNaviToRoot];
+            [GGSharedDelegate showTabIndex:0];
+            [self postNotification:GG_NOTIFY_LOG_IN];
+        }
+        else if (aCurrentUser.signupProcessStatus == kGGSignupProcessAgentsSelect)
+        {
+            // go to Agents select
+            GGSelectAgentsVC *vc = [[GGSelectAgentsVC alloc] init];
+            vc.isFromRegistration = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else if (aCurrentUser.signupProcessStatus == kGGSignupProcessAreasSelect)
+        {
+            // go to areas select
+            GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
+            vc.isFromRegistration = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
 }
 
 #pragma mark - GGSsgrfActionDelegate

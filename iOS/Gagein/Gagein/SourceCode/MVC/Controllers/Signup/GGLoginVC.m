@@ -153,32 +153,8 @@
                 GGMember *currentUser = [parser parseLogin];
                 currentUser.accountEmail = self.tfEmail.text;
                 currentUser.accountPassword = self.tfPassword.text;
-                GGSharedRuntimeData.currentUser = currentUser;
-                [GGSharedRuntimeData saveCurrentUser];
                 
-                if (currentUser.isSignupOK)
-                {
-                    // go home
-                    [self dismissViewControllerAnimated:NO completion:nil];
-                    [GGSharedDelegate popNaviToRoot];
-                    [GGSharedDelegate showTabIndex:0];
-                    [self postNotification:GG_NOTIFY_LOG_IN];
-                }
-                else if (currentUser.signupProcessStatus == kGGSignupProcessAgentsSelect)
-                {
-                    // go to Agents select
-                    GGSelectAgentsVC *vc = [[GGSelectAgentsVC alloc] init];
-                    vc.isFromRegistration = YES;
-                    [self.navigationController pushViewController:vc animated:YES];
-                }
-                else if (currentUser.signupProcessStatus == kGGSignupProcessAreasSelect)
-                {
-                    // go to areas select
-                    GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
-                    vc.isFromRegistration = YES;
-                    [self.navigationController pushViewController:vc animated:YES];
-                }
-                
+                [self naviWithCurrentUser:currentUser];
             }
             else
             {

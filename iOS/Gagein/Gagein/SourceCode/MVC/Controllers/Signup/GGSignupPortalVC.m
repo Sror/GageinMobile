@@ -20,6 +20,8 @@
 #import "GGSnUserInfo.h"
 #import "OAToken.h"
 #import "GGAppDelegate.h"
+#import "GGMember.h"
+#import "CMActionSheet.h"
 
 #define TAG_ALERT_SALESFORCE_OAUTH_FAILED   1000
 
@@ -157,6 +159,39 @@
 
 
 #pragma mark - handle notification
+-(void)_handleUserInfo:(GGSnUserInfo *)aUserInfo
+{
+    if (aUserInfo.autoLoginInfos.count > 1) // has multiple Existing accounts
+    {
+        CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
+        actionSheet.title = @"Choose an existing account";
+        
+        for (GGAutoLoginInfo *loginInfo in aUserInfo.autoLoginInfos)
+        {
+            [actionSheet addButtonWithTitle:loginInfo.memberEmail type:CMActionSheetButtonTypeWhite block:^{
+                GGMember *currentUser = [GGMember memberFromLoginInfo:loginInfo];
+                [self naviWithCurrentUser:currentUser];
+            }];
+        }
+        
+        [actionSheet addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:nil];
+        [actionSheet present];
+        
+    }
+    else if (aUserInfo.autoLoginInfos.count == 1) // has one account
+    {
+        GGAutoLoginInfo *autoLoginInfo = aUserInfo.autoLoginInfos[0];
+        GGMember *currentUser = [GGMember memberFromLoginInfo:autoLoginInfo];
+        
+        [self naviWithCurrentUser:currentUser];
+    }
+    else // not linked to any account
+    {
+        [self _signupWithUserInfo:aUserInfo];
+    }
+
+}
+
 - (void)handleNotification:(NSNotification *)notification
 {
     NSString *notiName = notification.name;
@@ -174,7 +209,8 @@
             {
                 GGSnUserInfo *userInfo = [parser parseSnGetUserInfo];
                 userInfo.snType = kGGSnTypeLinkedIn;
-                [self _signupWithUserInfo:userInfo];
+                
+                [self _handleUserInfo:userInfo];
             }
             
         }];
@@ -200,7 +236,8 @@
             {
                 GGSnUserInfo *userInfo = [parser parseSnGetUserInfo];
                 userInfo.snType = kGGSnTypeSalesforce;
-                [self _signupWithUserInfo:userInfo];
+                
+                [self _handleUserInfo:userInfo];
             }
             else if (parser.messageCode == kGGMsgCodeSnSaleforceCantAuth)
             {
@@ -227,7 +264,8 @@
             {
                 GGSnUserInfo *userInfo = [parser parseSnGetUserInfo];
                 userInfo.snType = kGGSnTypeFacebook;
-                [self _signupWithUserInfo:userInfo];
+                
+                [self _handleUserInfo:userInfo];
             }
         }];
         
@@ -247,7 +285,8 @@
             {
                 GGSnUserInfo *userInfo = [parser parseSnGetUserInfo];
                 userInfo.snType = kGGSnTypeTwitter;
-                [self _signupWithUserInfo:userInfo];
+                
+                [self _handleUserInfo:userInfo];
             }
             
         }];

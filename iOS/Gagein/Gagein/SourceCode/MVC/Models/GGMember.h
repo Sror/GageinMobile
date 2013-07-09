@@ -17,6 +17,7 @@ typedef enum {
 }EGGSignupProcessStatus;
 
 @class GGMemberPlan;
+@class GGAutoLoginInfo;
 
 @interface GGMember : GGPerson <NSCoding>
 @property (assign)  int         timeZone;
@@ -27,4 +28,6 @@ typedef enum {
 @property (strong)  GGMemberPlan *plan;
 
 -(BOOL)isSignupOK;
++(GGMember *)memberFromLoginInfo:(GGAutoLoginInfo *)aLoginInfo;
+
 @end
