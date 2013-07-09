@@ -234,6 +234,7 @@ static NSString * const kHttpPostContentType                    = @"application/
         // lazily create web view if needed
         CGRect orientRc = [GGLayout frameWithOrientation:[UIApplication sharedApplication].statusBarOrientation rect:[UIScreen mainScreen].bounds];
         _view = [[UIWebView  alloc] initWithFrame:orientRc];
+        _view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     _view.delegate = self;
 
@@ -486,7 +487,7 @@ static NSString * const kHttpPostContentType                    = @"application/
 #pragma mark - UIWebViewDelegate (User-Agent Token Flow)
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    
+    //_view.frame = _view.superview.bounds;
     if (self.credentials.logLevel < kSFOAuthLogLevelWarning) {
         NSLog(@"SFOAuthCoordinator:webView:shouldStartLoadWithRequest: (navType=%u): host=%@ : path=%@", 
               navigationType, request.URL.host, request.URL.path);
@@ -566,10 +567,13 @@ static NSString * const kHttpPostContentType                    = @"application/
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     NSURL *url = webView.request.URL;
-    _view.frame = _view.superview.bounds;
+    //_view.frame = _view.superview.bounds;
     
     if (self.credentials.logLevel < kSFOAuthLogLevelWarning) {
+        DLog(@"%@", url.absoluteString);
         NSLog(@"SFOAuthCoordinator:webViewDidStartLoad: host=%@ : path=%@", url.host, url.path);
     }
     
@@ -579,6 +583,9 @@ static NSString * const kHttpPostContentType                    = @"application/
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    //_view.frame = _view.superview.bounds;
+    DLog(@"%@", _view.frameString);
     if ([self.delegate respondsToSelector:@selector(oauthCoordinator:didFinishLoad:error:)]) {
         [self.delegate oauthCoordinator:self didFinishLoad:webView error:nil];
     }
@@ -590,7 +597,7 @@ static NSString * const kHttpPostContentType                    = @"application/
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     // Report all errors other than -999 (operation couldn't be completed), which is not catastrophic.
     // Typical errors encountered (many others are possible):
     // WebKitErrorDomain:

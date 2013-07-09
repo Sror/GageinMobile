@@ -143,7 +143,7 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
     self.oauthCoordinator.delegate = self;
     
     [self.oauthCoordinator authenticate];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -208,12 +208,13 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
 
 - (void)oauthCoordinator:(SFOAuthCoordinator *)manager didBeginAuthenticationWithView:(UIWebView *)webView {
     
+    webView.frame = self.view.bounds;
     [self.view addSubview:webView];
 }
 
 - (void)oauthCoordinatorDidAuthenticate:(SFOAuthCoordinator *)coordinator authInfo:(SFOAuthInfo *)info
 {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    //[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
     NSLog(@"SalesforceOAuthTestViewController:oauthCoordinatorDidAuthenticate:authInfo: info: %@ credentials: %@", info, coordinator.credentials);
     
@@ -238,7 +239,7 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
 
 - (void)oauthCoordinator:(SFOAuthCoordinator *)coordinator didFailWithError:(NSError *)error authInfo:(SFOAuthInfo *)info
 {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    //[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
     NSLog(@"SalesforceOAuthTestViewController:oauthCoordinator:didFailWithError:authInfo: info: %@ error: %@", info, error);
     self.authInfo = info;
