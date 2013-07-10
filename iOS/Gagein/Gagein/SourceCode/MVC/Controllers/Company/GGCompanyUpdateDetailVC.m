@@ -451,7 +451,7 @@
             {
                 _companyUpdateDetail.liked = YES;
                 [self _updateLikedButton];
-                [self showCheckMarkHUDWithText:@"liked"];
+                [self showCheckMarkHUDWithText:@"Liked"];
             }
         }];
     }
@@ -744,6 +744,9 @@
     int relatedCount = _companyUpdateDetail.newsSimilarCount;
     [self _relatedArticleCell].lblTitle.text = (relatedCount <= 1) ? @"1 Related Article" : [NSString stringWithFormat:@"%d Related Articles", relatedCount];
     
+    [self _updateSaveBtnSaved:_companyUpdateDetail.saved];
+    [self _updateLikedButton];
+    
     //
     if (![self _hasTextView])
     {
@@ -764,8 +767,7 @@
         
         _comUpdateDetailCell.lblDate.text = [data monthDayWithDate:data.date];
         
-        [self _updateSaveBtnSaved:_companyUpdateDetail.saved];
-        [self _updateLikedButton];
+        
         
         NSString *urlStr = nil;
         if (_companyUpdateDetail.pictures.count)

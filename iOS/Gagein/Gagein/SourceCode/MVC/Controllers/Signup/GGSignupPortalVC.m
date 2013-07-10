@@ -164,7 +164,7 @@
     if (aUserInfo.autoLoginInfos.count > 1) // has multiple Existing accounts
     {
         CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
-        actionSheet.title = @"Choose an existing account";
+        actionSheet.title = @"Select a login account";
         
         for (GGAutoLoginInfo *loginInfo in aUserInfo.autoLoginInfos)
         {
@@ -192,6 +192,8 @@
 
 }
 
+#define STR_FORMAT_ACCESSING_SN_DATA   @"Accessing data from\r\n %@"
+#define STR_FORMAT_NO_RESPONSE          @"No response from %@. Please try again."
 - (void)handleNotification:(NSNotification *)notification
 {
     NSString *notiName = notification.name;
@@ -199,7 +201,7 @@
     {
         [self unobserveNotification:OA_NOTIFY_LINKEDIN_AUTH_OK];
         
-        [self showLoadingHUD];
+        [self showLoadingHUDWithText:[NSString stringWithFormat:STR_FORMAT_ACCESSING_SN_DATA, [GGUtils stringForSnType:kGGSnTypeLinkedIn]]];
         GGLinkedInOAuthVC *linkedInVC = [self linkedInAuthView];
         id op = [GGSharedAPI snGetUserInfoLinedInWithToken:linkedInVC.accessToken.key secret:linkedInVC.accessToken.secret callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
@@ -211,6 +213,10 @@
                 userInfo.snType = kGGSnTypeLinkedIn;
                 
                 [self _handleUserInfo:userInfo];
+            }
+            else
+            {
+                [GGAlert alertWithMessage:[NSString stringWithFormat:STR_FORMAT_NO_RESPONSE, [GGUtils stringForSnType:kGGSnTypeLinkedIn]]];
             }
             
         }];
@@ -226,7 +232,8 @@
     {
         SFOAuthCredentials *credential = notification.object;
         
-        [self showLoadingHUD];
+        [self showLoadingHUDWithText:[NSString stringWithFormat:STR_FORMAT_ACCESSING_SN_DATA, [GGUtils stringForSnType:kGGSnTypeSalesforce]]];
+        
         id op = [GGSharedAPI snGetUserInfoSalesforceWithToken:credential.accessToken accountID:credential.userId refreshToken:credential.refreshToken instanceURL:credential.instanceUrl.absoluteString callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             
@@ -245,6 +252,10 @@
                 alert.tag = TAG_ALERT_SALESFORCE_OAUTH_FAILED;
                 [alert show];
             }
+            else
+            {
+                [GGAlert alertWithMessage:[NSString stringWithFormat:STR_FORMAT_NO_RESPONSE, [GGUtils stringForSnType:kGGSnTypeLinkedIn]]];
+            }
             
         }];
         
@@ -255,7 +266,8 @@
         FBSession *session = notification.object;
         NSString *accessToken = session.accessTokenData.accessToken;//[GGFacebookOAuth sharedInstance].session.accessTokenData.accessToken;
         
-        [self showLoadingHUD];
+        [self showLoadingHUDWithText:[NSString stringWithFormat:STR_FORMAT_ACCESSING_SN_DATA, [GGUtils stringForSnType:kGGSnTypeFacebook]]];
+        
         id op = [GGSharedAPI snGetUserInfoFacebookWithToken:accessToken callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
@@ -267,6 +279,10 @@
                 
                 [self _handleUserInfo:userInfo];
             }
+            else
+            {
+                [GGAlert alertWithMessage:[NSString stringWithFormat:STR_FORMAT_NO_RESPONSE, [GGUtils stringForSnType:kGGSnTypeLinkedIn]]];
+            }
         }];
         
         [self registerOperation:op];
@@ -275,7 +291,8 @@
     {
         OAToken *token = notification.object;
         
-        [self showLoadingHUD];
+        [self showLoadingHUDWithText:[NSString stringWithFormat:STR_FORMAT_ACCESSING_SN_DATA, [GGUtils stringForSnType:kGGSnTypeTwitter]]];
+        
         id op = [GGSharedAPI snGetUserInfoTwitterWithToken:token.key secret:token.secret callback:^(id operation, id aResultObject, NSError *anError) {
             
             [self hideLoadingHUD];
@@ -287,6 +304,10 @@
                 userInfo.snType = kGGSnTypeTwitter;
                 
                 [self _handleUserInfo:userInfo];
+            }
+            else
+            {
+                [GGAlert alertWithMessage:[NSString stringWithFormat:STR_FORMAT_NO_RESPONSE, [GGUtils stringForSnType:kGGSnTypeLinkedIn]]];
             }
             
         }];

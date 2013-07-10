@@ -340,7 +340,7 @@
             {
                 _data.liked = _detailData.liked = YES;
                 [self _updateLikedButton];
-                [GGAlert showCheckMarkHUDWithText:@"liked" inView:self.viewContent];
+                [GGAlert showCheckMarkHUDWithText:@"Liked" inView:self.viewContent];
             }
         }];
     }
