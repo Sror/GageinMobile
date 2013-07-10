@@ -164,7 +164,7 @@
     if (aUserInfo.autoLoginInfos.count > 1) // has multiple Existing accounts
     {
         CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
-        actionSheet.title = @"Select a login account";
+        actionSheet.title = @"Select a Gagein login account";
         
         for (GGAutoLoginInfo *loginInfo in aUserInfo.autoLoginInfos)
         {
