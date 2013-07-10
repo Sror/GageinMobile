@@ -115,6 +115,8 @@
 {
     if (_happening)
     {
+        self.blackCurtainView.hidden = YES;
+        
         switch (_happening.type)
         {
             case kGGHappeningCompanyPersonJionDetail:

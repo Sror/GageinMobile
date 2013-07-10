@@ -25,7 +25,7 @@
     thisRc.size.height /= 2;
     
     _lblTitle = [[GGAutosizingLabel alloc] initWithFrame:thisRc];
-    _lblTitle.font = [UIFont boldSystemFontOfSize:15.f];
+    _lblTitle.font = [UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE size:16.f];
     _lblTitle.backgroundColor = [UIColor clearColor];
     _lblTitle.textColor = [UIColor whiteColor];
     _lblTitle.textAlignment = NSTextAlignmentCenter;
@@ -37,7 +37,7 @@
     
     thisRc = CGRectOffset(thisRc, 0, thisRc.size.height);
     _lblSubTitle = [[GGAutosizingLabel alloc] initWithFrame:thisRc];
-    _lblSubTitle.font = [UIFont boldSystemFontOfSize:12.f];
+    _lblSubTitle.font = [UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE_LIGHT size:14.f];
     _lblSubTitle.textColor = [UIColor lightGrayColor];
     _lblSubTitle.backgroundColor = [UIColor clearColor];
     _lblSubTitle.textAlignment = NSTextAlignmentCenter;

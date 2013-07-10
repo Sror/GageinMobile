@@ -97,7 +97,7 @@
     [self unobserveAllNotifications];
 }
 
-#define MIN_CONTENT_HEIGHT      (60.f)
+#define MIN_CONTENT_HEIGHT      (80.f)
 -(void)adjustLayout
 {
     [_lblHeadline sizeToFitFixWidth];

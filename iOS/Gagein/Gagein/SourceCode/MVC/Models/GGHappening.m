@@ -247,8 +247,9 @@
     _oldRevenue = [aData objectForKey:@"oldRevenue"];
     _theNewRevenue = [aData objectForKey:@"newRevenue"];
     
-    _oldEmployNum = [aData objectForKey:@"oldEmployNum"];
-    _employNum = [aData objectForKey:@"employNum"];
+    _oldEmployNum = [[aData objectForKey:@"oldEmployNum"] stringValue];
+    DLog(@"_oldEmployNum class is:%@", _oldEmployNum.className);
+    _employNum = [[aData objectForKey:@"employNum"] stringValue];
     
     self.profilePic = [aData objectForKey:@"profilepic"];
     self.oldProfilePic = [aData objectForKey:@"oldProfilepic"];

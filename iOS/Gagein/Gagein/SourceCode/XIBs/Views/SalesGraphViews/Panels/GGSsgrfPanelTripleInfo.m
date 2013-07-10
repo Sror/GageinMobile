@@ -11,13 +11,15 @@
 #import "GGSsgrfDblTitleView.h"
 #import "GGHappening.h"
 
+#import "GGStringFormatter.h"
+
 @implementation GGSsgrfPanelTripleInfo
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        
     }
     return self;
 }
@@ -29,6 +31,7 @@
 
 -(void)awakeFromNib
 {
+    
     self.backgroundColor = PANEL_COLOR;
     _viewLeftInfo.backgroundColor = [UIColor clearColor];
     _viewCenterInfo.backgroundColor = [UIColor clearColor];
@@ -130,18 +133,23 @@
             {
                 // left - old employee size
                 [self setLeftText:_happening.oldEmployNum];
+                [self setLeftSubText:[GGStringFormatter stringForEmployeesWithDate:_happening.oldTimestamp]];
+                
                 
                 // center - company
                 [self.viewCenterInfo updateWithCompany:_happening.company];
                 
                 // right - new employee size
                 [self setRightText:_happening.employNum];
+                [self setRightSubText:[GGStringFormatter stringForEmployeesWithDate:_happening.timestamp]];
             }
                 break;
                 
             default:
                 break;
         }
+        
+        self.blackCurtainView.hidden = YES;
     }
 }
 

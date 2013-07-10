@@ -160,7 +160,6 @@ YWxsIFN0cmVldCBKb3VybmFsIAA</string>
 										<int key="NSvFlags">-2147483358</int>
 										<string key="NSFrame">{{62, 76}, {242, 41}}</string>
 										<reference key="NSSuperview" ref="165257857"/>
-										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>

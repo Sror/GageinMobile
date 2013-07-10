@@ -66,6 +66,8 @@
             default:
                 break;
         }
+        
+        self.blackCurtainView.hidden = YES;
     }
 }
 

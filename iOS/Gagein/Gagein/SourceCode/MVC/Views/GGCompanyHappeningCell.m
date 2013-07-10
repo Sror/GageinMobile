@@ -33,7 +33,7 @@
     _ivLogo.layer.borderColor = GGSharedColor.silver.CGColor;
     _ivLogo.layer.borderWidth = 1;
     
-    [_ivLogo applyEffectShadowAndBorder];
+    //[_ivLogo applyEffectShadowAndBorder];
     
     _lblInterval.textColor = GGSharedColor.grayTopText;
     _lblName.textColor = GGSharedColor.grayTopText;

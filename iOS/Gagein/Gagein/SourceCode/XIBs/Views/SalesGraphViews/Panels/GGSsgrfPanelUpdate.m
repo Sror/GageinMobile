@@ -27,8 +27,7 @@
     
     _viewScroll.backgroundColor = [UIColor clearColor];
     
-//    UITapGestureRecognizer *tapGest = [[UITapGestureRecognizer alloc] initWithTarget:_viewScroll action:@selector(hideInfoWidget)];
-//    [self addGestureRecognizer:tapGest];
+    self.blackCurtainView.hidden = YES;
 }
 
 -(void)setData:(GGCompanyUpdate *)data

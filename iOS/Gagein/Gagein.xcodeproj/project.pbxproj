@@ -329,6 +329,7 @@
 		EA844A36171FD29C00658015 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA844A35171FD29B00658015 /* MessageUI.framework */; };
 		EA9104FD177E3DC000E28FA3 /* GGEmployerComsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9104FB177E3DBF00E28FA3 /* GGEmployerComsVC.m */; };
 		EA9104FE177E3DC000E28FA3 /* GGEmployerComsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9104FC177E3DC000E28FA3 /* GGEmployerComsVC.xib */; };
+		EA915479178DE46D0005DB57 /* GGStringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA915478178DE46D0005DB57 /* GGStringFormatter.m */; };
 		EA916216176792B4000AB2FB /* GGScrollToHideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA916215176792B4000AB2FB /* GGScrollToHideVC.m */; };
 		EA9162631767F6F1000AB2FB /* GGNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9162621767F6EE000AB2FB /* GGNavigationController.m */; };
 		EA945CBB177EB10C00523A2F /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EA945CB4177EB10C00523A2F /* MMDrawerBarButtonItem.m */; };
@@ -1074,6 +1075,8 @@
 		EA9104FA177E3DBF00E28FA3 /* GGEmployerComsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGEmployerComsVC.h; sourceTree = "<group>"; };
 		EA9104FB177E3DBF00E28FA3 /* GGEmployerComsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGEmployerComsVC.m; sourceTree = "<group>"; };
 		EA9104FC177E3DC000E28FA3 /* GGEmployerComsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGEmployerComsVC.xib; sourceTree = "<group>"; };
+		EA915477178DE46D0005DB57 /* GGStringFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGStringFormatter.h; sourceTree = "<group>"; };
+		EA915478178DE46D0005DB57 /* GGStringFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGStringFormatter.m; sourceTree = "<group>"; };
 		EA916214176792B4000AB2FB /* GGScrollToHideVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGScrollToHideVC.h; sourceTree = "<group>"; };
 		EA916215176792B4000AB2FB /* GGScrollToHideVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGScrollToHideVC.m; sourceTree = "<group>"; };
 		EA9162611767F6EC000AB2FB /* GGNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGNavigationController.h; sourceTree = "<group>"; };
@@ -2892,6 +2895,8 @@
 				EA23FCB71772338F00E3DBB9 /* GGTableViewExpandHelper.m */,
 				EAA3AEC717860B7F0045E448 /* GGOrientation.h */,
 				EAA3AEC817860B800045E448 /* GGOrientation.m */,
+				EA915477178DE46D0005DB57 /* GGStringFormatter.h */,
+				EA915478178DE46D0005DB57 /* GGStringFormatter.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -3833,6 +3838,7 @@
 				EA9D2F5017823BF7004CA4BC /* GGRelatedArticlesVC.m in Sources */,
 				EAA3AEC61785FC070045E448 /* GGWhiteBackgroundImageView.m in Sources */,
 				EAA3AEC917860B800045E448 /* GGOrientation.m in Sources */,
+				EA915479178DE46D0005DB57 /* GGStringFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

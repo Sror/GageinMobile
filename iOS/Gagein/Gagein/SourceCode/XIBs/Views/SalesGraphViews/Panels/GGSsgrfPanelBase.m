@@ -33,6 +33,11 @@
 {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doNothing)];
     [self addGestureRecognizer:tap];
+    
+    _blackCurtainView = [[UIView alloc] initWithFrame:self.bounds];
+    _blackCurtainView.backgroundColor = GGSharedColor.black;
+    _blackCurtainView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self addSubview:_blackCurtainView];
 }
 
 -(void)doNothing

@@ -104,6 +104,7 @@
 #define MIN_CONTENT_HEIGHT      (80.f)
 -(void)adjustLayout
 {
+    //self.contentView.backgroundColor = GGSharedColor.random;
     [_lblHeadline sizeToFitFixWidth];
     
     _btnHeadline.alpha = .5f;

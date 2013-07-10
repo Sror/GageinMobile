@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface GGSsgrfPanelBase : UIView
+@property (strong, nonatomic) UIView              *blackCurtainView;
 
 +(float)HEIGHT;
 
