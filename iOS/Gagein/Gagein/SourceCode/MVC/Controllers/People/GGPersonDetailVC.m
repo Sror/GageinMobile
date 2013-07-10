@@ -327,12 +327,12 @@ typedef enum
 {
     if (_personOverview.followed)
     {
-        [self.btnFollow setTitle:@"following" forState:UIControlStateNormal];
+        [self.btnFollow setTitle:@"Following" forState:UIControlStateNormal];
         self.btnFollow.selected = YES;
     }
     else
     {
-        [self.btnFollow setTitle:@"follow" forState:UIControlStateNormal];
+        [self.btnFollow setTitle:@"Follow" forState:UIControlStateNormal];
         self.btnFollow.selected = NO;
     }
 }

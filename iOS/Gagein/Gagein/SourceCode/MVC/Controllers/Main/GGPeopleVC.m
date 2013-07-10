@@ -304,7 +304,7 @@
 
 -(void)_doFollowingHideSlide:(BOOL)aHideSlide
 {
-    self.naviTitle = @"FOLLOWING";
+    self.naviTitle = @"Following";
     
     [[self _followingSectionView] setHightlighted:YES];
     [[self _exploringSectionView] setHightlighted:NO];
@@ -332,7 +332,7 @@
 
 -(void)_doExploringHideSlide:(BOOL)aHideSlide
 {
-    self.naviTitle = @"EXPLORING";
+    self.naviTitle = @"Exploring";
     
     [[self _followingSectionView] setHightlighted:NO];
     [[self _exploringSectionView] setHightlighted:YES];
