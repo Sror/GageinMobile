@@ -88,6 +88,9 @@
     GGTableViewExpandHelper             *_happeningTvExpandHelper;
     
     __weak NSTimer                      *_timerMenuUpdate;
+    
+    __weak AFHTTPRequestOperation       *_companyUpdatesRequest;
+    __weak AFHTTPRequestOperation       *_companyHappeningsRequest;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -700,8 +703,7 @@
 -(void)_doFollowingHideSlide:(BOOL)aHideSlide
 {
     self.naviTitle = @"Following";
-    _updateTvExpandHelper.isExpanding = NO;
-    _happeningTvExpandHelper.isExpanding = NO;
+    [self _resetState];
     
     [[self _followingSectionView] setHightlighted:YES];
     [[self _exploringSectionView] setHightlighted:NO];
@@ -733,8 +735,7 @@
 -(void)_doExploringHideSlide:(BOOL)aHideSlide
 {
     self.naviTitle = @"Exploring";
-    _updateTvExpandHelper.isExpanding = NO;
-    _happeningTvExpandHelper.isExpanding = NO;
+    [self _resetState];
     
     [[self _followingSectionView] setHightlighted:NO];
     [[self _exploringSectionView] setHightlighted:YES];
@@ -1229,8 +1230,7 @@
     }
     else if (tableView == _slideSettingView.viewTable)
     {
-        _updateTvExpandHelper.isExpanding = NO;
-        _happeningTvExpandHelper.isExpanding = NO;
+        [self _resetState];
         
         GGDataPage *thePage = _menuDatas[indexPath.section];
         GGMenuData *theData = thePage.items[row];
@@ -1264,6 +1264,14 @@
             [self _doSearchWithKeyword:keyword];
         }
     }
+}
+
+-(void)_resetState
+{
+    _updateTvExpandHelper.isExpanding = NO;
+    _happeningTvExpandHelper.isExpanding = NO;
+    [_companyUpdatesRequest cancel];
+    [_companyHappeningsRequest cancel];
 }
 
 #pragma mark - screen migration
@@ -1560,13 +1568,13 @@
     //[self showLoadingHUD];
     if (_menuType == kGGMenuTypeCompany)
     {
-        id op = [GGSharedAPI getCompanyUpdatesWithCompanyID:_menuID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:callback];
-        [self registerOperation:op];
+        _companyUpdatesRequest = [GGSharedAPI getCompanyUpdatesWithCompanyID:_menuID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:callback];
+        [self registerOperation:_companyUpdatesRequest];
     }
     else if (_menuType == kGGMenuTypeAgent)
     {
-        id op = [GGSharedAPI getCompanyUpdatesWithAgentID:_menuID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:callback];
-        [self registerOperation:op];
+        _companyUpdatesRequest = [GGSharedAPI getCompanyUpdatesWithAgentID:_menuID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:callback];
+        [self registerOperation:_companyUpdatesRequest];
     }
 }
 
@@ -1658,8 +1666,8 @@
     
     if (_menuType == kGGMenuTypeCompany)
     {
-        id op = [GGSharedAPI getHappeningsWithCompanyID:_menuID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
-        [self registerOperation:op];
+        _companyHappeningsRequest = [GGSharedAPI getHappeningsWithCompanyID:_menuID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+        [self registerOperation:_companyHappeningsRequest];
     }
     else if (_menuType == kGGMenuTypeAgent)
     {

@@ -71,7 +71,9 @@
 {
     AFHTTPRequestOperation *httpOp = anOperation;
     
-    if (httpOp.responseString.length <= 0 && self.networkReachabilityStatus != AFNetworkReachabilityStatusNotReachable)
+    if (!httpOp.isCancelled
+        && httpOp.responseString.length <= 0
+        && self.networkReachabilityStatus != AFNetworkReachabilityStatusNotReachable)
     {
         [GGAlert showWarning:@"Network Error" message:nil];
         [self postNotification:GG_NOTIFY_HIDE_ALL_LOADING_HUD];
