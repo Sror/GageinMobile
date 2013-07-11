@@ -29,7 +29,7 @@
 #import "GGCompanyDetailHeaderView.h"
 #import "GGAgent.h"
 #import "GGGroupedCell.h"
-
+#import "GGAnimatedMenu.h"
 
 @interface GGCompanyUpdateDetailVC () <MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -539,6 +539,53 @@
 
 -(void)_showSheetToShare
 {
+    GGAnimatedMenu *menu = [[GGAnimatedMenu alloc] init];
+    
+    menu.menuItemRadious = 53.f;
+    menu.menuRadious = 70.f;
+    
+    __weak GGAnimatedMenu *menuShadow = menu;
+    
+    [menu addItemWithImage:[UIImage imageNamed:@"share_chatter"] selectedImage:nil action:^{
+       // NSLog(@"share chatter");
+        [self _shareWithType:kGGSnTypeSalesforce]; 
+        [menuShadow dismiss];
+    }];
+    
+    [menu addItemWithImage:[UIImage imageNamed:@"share_linkedin"] selectedImage:nil action:^{
+        //NSLog(@"share linkedIn");
+        [self _shareWithType:kGGSnTypeLinkedIn];
+        [menuShadow dismiss];
+    }];
+    
+    [menu addItemWithImage:[UIImage imageNamed:@"share_twitter"] selectedImage:nil action:^{
+        //NSLog(@"share twitter");
+        [self _shareWithType:kGGSnTypeTwitter];
+        [menuShadow dismiss];
+    }];
+    
+    [menu addItemWithImage:[UIImage imageNamed:@"share_facebook"] selectedImage:nil action:^{
+        //NSLog(@"share facebook");
+        [self _shareWithType:kGGSnTypeFacebook];
+        [menuShadow dismiss];
+    }];
+    
+    [menu addItemWithImage:[UIImage imageNamed:@"share_mail"] selectedImage:nil action:^{
+        //NSLog(@"share mail");
+        [self sendMailAction:nil];
+        [menuShadow dismiss];
+    }];
+    
+    [menu addItemWithImage:[UIImage imageNamed:@"share_message"] selectedImage:nil action:^{
+        //NSLog(@"share message");
+        [self sendSMSAction:nil];
+        [menuShadow dismiss];
+    }];
+    
+    [menu show];
+    
+    ////////////////////////////////////////////////////////////
+#if 0
     CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
     actionSheet.title = @"Share";
     
@@ -550,14 +597,14 @@
         bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"chatterLongBtnBg"];
         [actionSheet addButtonWithTitle:@"Chatter" bgImage:bgImg block:^{
             
-            [self _shareWithType:kGGSnTypeSalesforce];            
+            [self _shareWithType:kGGSnTypeSalesforce];
         }];
     }
     
     
     bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
     [actionSheet addButtonWithTitle:@"LinkedIn" bgImage:bgImg block:^{
-       [self _shareWithType:kGGSnTypeLinkedIn];
+        [self _shareWithType:kGGSnTypeLinkedIn];
     }];
     
     bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"twitterLongBtnBg"];
@@ -606,13 +653,17 @@
     [cancelBtn setTitleShadowColor:GGSharedColor.black forState:UIControlStateNormal];
     
     
-//    [actionSheet addSeparator];
-//    [actionSheet addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:^{
-//        NSLog(@"Dismiss action sheet with \"Close Button\"");
-//    }];
+    //    [actionSheet addSeparator];
+    //    [actionSheet addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:^{
+    //        NSLog(@"Dismiss action sheet with \"Close Button\"");
+    //    }];
     
     // Present
     [actionSheet present];
+
+#endif
+/////////////////////////////////////////////////
+    
 }
 
 

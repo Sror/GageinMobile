@@ -55,7 +55,7 @@
     float max = MAX(orientationFrame.size.width, orientationFrame.size.height);
     float min = MIN(orientationFrame.size.width, orientationFrame.size.height);
     
-    if (anOrientation == UIInterfaceOrientationPortrait || anOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    if (UIInterfaceOrientationIsPortrait(anOrientation))
     {
         orientationFrame.size.width = min;
         orientationFrame.size.height = max;
