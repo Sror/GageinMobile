@@ -306,6 +306,7 @@
 		EA62C6DB174C5DD80031BF42 /* SN_setting_Salesforce.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA62C6D6174C5DD70031BF42 /* SN_setting_Salesforce.txt */; };
 		EA62C6DC174C5DD80031BF42 /* SN_setting_Twitter.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA62C6D7174C5DD70031BF42 /* SN_setting_Twitter.txt */; };
 		EA62C6DD174C5DD80031BF42 /* SN_setting_Yammer.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA62C6D8174C5DD80031BF42 /* SN_setting_Yammer.txt */; };
+		EA656EC4178F2B5600ADC6C4 /* triggerChartTip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA656EC3178F2B5600ADC6C4 /* triggerChartTip@2x.png */; };
 		EA7180D41715008900347EA4 /* FXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D31715008900347EA4 /* FXPageControl.m */; };
 		EA7180D917150AAF00347EA4 /* GGFollowCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */; };
 		EA7180E4171511B700347EA4 /* GGSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180E3171511B700347EA4 /* GGSearchBar.m */; };
@@ -1045,6 +1046,7 @@
 		EA62C6D6174C5DD70031BF42 /* SN_setting_Salesforce.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SN_setting_Salesforce.txt; sourceTree = "<group>"; };
 		EA62C6D7174C5DD70031BF42 /* SN_setting_Twitter.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SN_setting_Twitter.txt; sourceTree = "<group>"; };
 		EA62C6D8174C5DD80031BF42 /* SN_setting_Yammer.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SN_setting_Yammer.txt; sourceTree = "<group>"; };
+		EA656EC3178F2B5600ADC6C4 /* triggerChartTip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "triggerChartTip@2x.png"; sourceTree = "<group>"; };
 		EA7180D21715008900347EA4 /* FXPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXPageControl.h; sourceTree = "<group>"; };
 		EA7180D31715008900347EA4 /* FXPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXPageControl.m; sourceTree = "<group>"; };
 		EA7180D617150AAF00347EA4 /* GGFollowCompanyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFollowCompanyVC.h; sourceTree = "<group>"; };
@@ -2565,6 +2567,7 @@
 		EACAE0B117094A3100E7088F /* 2X */ = {
 			isa = PBXGroup;
 			children = (
+				EA656EC3178F2B5600ADC6C4 /* triggerChartTip@2x.png */,
 				EA9D2F5517828075004CA4BC /* logoCompanyDefaultV2@2x.png */,
 				EA9D2F5617828076004CA4BC /* logoNewsDefaultV2@2x.png */,
 				EA9D2F5717828076004CA4BC /* logoPersonDefaultV2@2x.png */,
@@ -3596,6 +3599,7 @@
 				EA915497178E328C0005DB57 /* share_mail@2x.png in Resources */,
 				EA915499178E328C0005DB57 /* share_message@2x.png in Resources */,
 				EA91549A178E328C0005DB57 /* share_twitter@2x.png in Resources */,
+				EA656EC4178F2B5600ADC6C4 /* triggerChartTip@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3920,8 +3924,8 @@
 		EA525E861715A3CB00052B17 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: GageIn, Inc (2L7KL2QHQ3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: GageIn, Inc (2L7KL2QHQ3)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -3937,8 +3941,8 @@
 					"\"$(SRCROOT)/Gagein/ThirdParty/LinkedInOAuth/Twitter+OAuth/Libraries & Headers\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "DE0CEA83-374C-4F92-99AF-E3F1D4B06F6D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DE0CEA83-374C-4F92-99AF-E3F1D4B06F6D";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = AdHoc;

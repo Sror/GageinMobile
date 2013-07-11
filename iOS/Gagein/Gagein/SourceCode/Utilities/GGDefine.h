@@ -117,6 +117,8 @@ typedef enum {
 
 #define MENU_REFRESH_INTERVAL       (30 * 60)       // seconds
 
+#define UIViewAutoresizingFlexibleBorder (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin)
+
 
 /////////////////////// functions ////////////////////////////////////////
 

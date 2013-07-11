@@ -31,9 +31,13 @@
     
     GGConfigSwitchView  *_viewSwitch;
     UITableViewCell     *_headerView;
+    UIView              *_tipView;
+    //UIImageView         *_ivTriggerTip;
     
     NSMutableArray      *_topAgents;
     BOOL                _isSelectionChanged;
+    
+    BOOL                _chartEnabled;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -59,13 +63,33 @@
     _tv.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tv.showsVerticalScrollIndicator = NO;
     
+    
+    //[_tv addSubview:_ivTriggerTip];
+    
     self.navigationItem.rightBarButtonItem = [GGUtils naviButtonItemWithTitle:@"Done" target:self selector:@selector(doneAction:)];
     
     //
     [self _createSwitchView];
     
+    [self _initTipView];
+    
+    
     // at last
     [self _callApiGetConfigOptions];
+}
+
+-(void)_initTipView
+{
+    UIImageView *ivTriggerTip = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"triggerChartTip"]];
+    _tipView = [[UIView alloc] initWithFrame:CGRectMake(0, _headerView.frame.size.height, _tv.frame.size.width, ivTriggerTip.frame.size.height + 20)];
+    
+    
+    ivTriggerTip.autoresizingMask = UIViewAutoresizingFlexibleBorder;
+    ivTriggerTip.frame = CGRectMake((_tipView.frame.size.width - ivTriggerTip.frame.size.width) / 2, (_tipView.frame.size.height - ivTriggerTip.frame.size.height) / 2, ivTriggerTip.frame.size.width, ivTriggerTip.frame.size.height);
+    [_tipView addSubview:ivTriggerTip];
+    
+    _tipView.hidden = YES;
+    [_tv addSubview:_tipView];
 }
 
 
@@ -146,6 +170,22 @@
     return 0;
     
     //return _predefinedAgentFilters.count;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return [[UIView alloc] init];
+}
+
+
+-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 1)
+    {
+        return _chartEnabled ? 0.f : _tipView.frame.size.height - 20;
+    }
+    
+    return 0.f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -266,7 +306,10 @@
         }
         
         // if chart is enabled, sort agents order by chart percentage desc
-        if (page.chartEnabled)
+        _chartEnabled = page.chartEnabled;
+        _tipView.hidden = _chartEnabled;
+        
+        if (_chartEnabled)
         {
             [_predefinedAgentFilters sortUsingComparator:^NSComparisonResult(GGAgentFilter *obj1, GGAgentFilter *obj2) {
                 if (obj1.chartPercentage > obj2.chartPercentage)
