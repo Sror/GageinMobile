@@ -141,7 +141,7 @@ static BOOL __isShowing = NO;
         //
         self.alpha = .3f;
         [self _arrangeButtonsWithRadious:[self _maxMenuRadious]];
-        _rotateView.transform = CGAffineTransformMakeRotation(-M_PI);
+        _rotateView.transform = CGAffineTransformMakeRotation(-M_PI / 12);
         //
         [UIView animateWithDuration:.2f animations:^{
             
@@ -151,43 +151,43 @@ static BOOL __isShowing = NO;
             
         } completion:^(BOOL finished) {
             
-            [UIView animateWithDuration:1.f delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:.3f delay:0.f options:UIViewAnimationOptionCurveEaseOut animations:^{
                 _rotateView.transform = CGAffineTransformIdentity;
             } completion:nil];
         }];
     }
 }
 
--(void)showInView:(UIView *)aView
-{
-    if (__isShowing) return;
-    __isShowing = YES;
-    
-    self.frame = aView.bounds;
-    int itemCount = _menuItems.count;
-    
-    if (itemCount)
-    {
-        self.alpha = .3f;
-        [self _arrangeButtonsWithRadious:[self _maxMenuRadious]];
-        _rotateView.transform = CGAffineTransformMakeRotation(-M_PI);
-        //
-        [UIView animateWithDuration:.2f animations:^{
-            
-            [self _arrangeButtonsWithRadious:_menuRadious];
-            self.alpha = 1.f;
-            
-            
-        } completion:^(BOOL finished) {
-            
-            [UIView animateWithDuration:1.f delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                _rotateView.transform = CGAffineTransformIdentity;
-            } completion:nil];
-        }];
-    }
-    
-    [aView addSubview:self];
-}
+//-(void)showInView:(UIView *)aView
+//{
+//    if (__isShowing) return;
+//    __isShowing = YES;
+//    
+//    self.frame = aView.bounds;
+//    int itemCount = _menuItems.count;
+//    
+//    if (itemCount)
+//    {
+//        self.alpha = .3f;
+//        [self _arrangeButtonsWithRadious:[self _maxMenuRadious]];
+//        _rotateView.transform = CGAffineTransformMakeRotation(-M_PI);
+//        //
+//        [UIView animateWithDuration:.2f animations:^{
+//            
+//            [self _arrangeButtonsWithRadious:_menuRadious];
+//            self.alpha = 1.f;
+//            
+//            
+//        } completion:^(BOOL finished) {
+//            
+//            [UIView animateWithDuration:1.f delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//                _rotateView.transform = CGAffineTransformIdentity;
+//            } completion:nil];
+//        }];
+//    }
+//    
+//    [aView addSubview:self];
+//}
 
 -(float)_maxMenuRadious
 {
