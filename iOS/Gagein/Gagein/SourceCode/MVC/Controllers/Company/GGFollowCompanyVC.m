@@ -114,14 +114,15 @@
         _viewSearchBg.frame = dimBgRc;
     }
     
-    if (!ISIPADDEVICE)
-    {
-        float height = self.view.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT + self.tabBarController.tabBar.frame.size.height;
-        _tvSearchResultRectShort = [GGUtils setH:height rect:self.tableViewSearchResult.frame];
-        self.tableViewSearchResult.frame = _tvSearchResultRectShort;
-    }
+//    if (!ISIPADDEVICE)
+//    {
+//        float height = self.view.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT + self.tabBarController.tabBar.frame.size.height;
+//        _tvSearchResultRectShort = [GGUtils setH:height rect:self.tableViewSearchResult.frame];
+//        self.tableViewSearchResult.frame = _tvSearchResultRectShort;
+//    }
     
     self.tableViewSearchResult.rowHeight = [GGSearchSuggestionCell HEIGHT];
+    _tableViewSearchResult.showsVerticalScrollIndicator = NO;
     
     //
     _tapGestToHideSearch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToHideSearch:)];
@@ -584,6 +585,15 @@
     }
 }
 
+#pragma mark - scroll view delegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView == _tableViewSearchResult)
+    {
+        [_viewSearchBar endEditing:YES];
+    }
+}
+
 #pragma mark - GGStyledSearchBarDelegate
 
 - (BOOL)searchBarShouldBeginEditing:(GGBaseSearchBar *)searchBar
@@ -636,7 +646,7 @@
 -(void)_refreshTimer
 {
     [_searchTimer invalidate];
-    _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2.f target:self selector:@selector(_callSearchCompanySuggestion) userInfo:nil repeats:NO];
+    _searchTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(_callSearchCompanySuggestion) userInfo:nil repeats:NO];
 }
 
 
