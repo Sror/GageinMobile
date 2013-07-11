@@ -9,7 +9,7 @@
 #import "GGComOverviewAboutCell.h"
 
 @interface GGComOverviewAboutCell ()
-@property (weak, nonatomic) IBOutlet UITextView *textView;
+
 @end
 
 @implementation GGComOverviewAboutCell
@@ -42,24 +42,33 @@
 
 -(float)height
 {
-    float contentHeight = self.textView.contentSize.height;
-    return contentHeight + 20;
+    return self.frame.size.height;
+//    float contentHeight = self.textView.contentSize.height;
+//    return contentHeight + 20;
 }
 
 -(void)setTextViewText:(NSString *)aText
 {
-    _textView.text = aText;
+    _lblContent.text = aText;
+    //_lblContent.backgroundColor = GGSharedColor.random;
+    [_lblContent sizeToFitFixWidth];
     
-    if (ISIPADDEVICE && aText.length)
-    {
-        CGSize tightContentSize = [aText sizeWithFont:_textView.font constrainedToSize:CGSizeMake(_textView.bounds.size.width, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-        
-        // i Dont know why, but for ipad need to devide by 2...Daniel Dong
-        tightContentSize.height /= 2;
-        tightContentSize.height = MAX(tightContentSize.height, 40);
-        
-        [_textView setContentSize:tightContentSize];
-    }
+    [_viewContent setHeight:CGRectGetMaxY(_lblContent.frame) + 10];
+    
+    [self setHeight:CGRectGetMaxY(_viewContent.frame) + 5];
+    
+//    _textView.text = aText;
+//    
+//    if (ISIPADDEVICE && aText.length)
+//    {
+//        CGSize tightContentSize = [aText sizeWithFont:_textView.font constrainedToSize:CGSizeMake(_textView.bounds.size.width, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+//        
+//        // i Dont know why, but for ipad need to devide by 2...Daniel Dong
+//        tightContentSize.height /= 2;
+//        tightContentSize.height = MAX(tightContentSize.height, 40);
+//        
+//        [_textView setContentSize:tightContentSize];
+//    }
 }
 
 

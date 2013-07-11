@@ -63,6 +63,7 @@ typedef enum
     //_tv.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tv.separatorColor = GGSharedColor.silver;
     _tv.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    _tv.showsVerticalScrollIndicator = NO;
     
     [self.view addSubview:_tv];
 }
@@ -324,7 +325,8 @@ typedef enum
     
     if (section == kGGSectionAbout) {
         
-        return [self _tvCellAbout].height;
+        float height = [self _tvCellAbout].height;
+        return height;
         
     } else if (section == kGGSectionProfile) {
         

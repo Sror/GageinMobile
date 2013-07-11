@@ -839,9 +839,9 @@
     int index = ((UIButton*)sender).tag;
     GGHappening *data = _happenings[index];
     
-    if (data.company.orgID > 0)
+    if (data.company.ID > 0)
     {
-        [self enterCompanyDetailWithID:data.company.orgID];
+        [self enterCompanyDetailWithID:data.company.ID];
         
 //        GGCompanyDetailVC *vc = [[GGCompanyDetailVC alloc] init];
 //        vc.companyID = data.company.orgID;

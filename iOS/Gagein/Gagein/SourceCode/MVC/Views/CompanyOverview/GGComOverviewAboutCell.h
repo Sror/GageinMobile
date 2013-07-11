@@ -12,6 +12,8 @@
 @property (weak, nonatomic) IBOutlet UIView *viewContent;
 @property (weak, nonatomic) IBOutlet UIImageView *ivCellBg;
 
+@property (weak, nonatomic) IBOutlet UILabel *lblContent;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 
 //+(float)HEIGHT;
 //-(void)adjustLayout;
