@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class MBProgressHUD;
+
 @interface GGAlert : NSObject
 
 +(void)alertWithApiParser:(GGApiParser *)aParser;
@@ -24,8 +26,22 @@
 #pragma mark - warnings
 +(void)showWarning:(NSString *)aTitle message:(NSString *)aMessage;
 
-+(void)showCheckMarkHUDWithText:(NSString *)aText inView:(UIView *)aView;
-+ (void)showHUDWithCustomView:(UIView*)aCustomView text:(NSString *)aText inView:(UIView *)aView;
++(MBProgressHUD *)showCheckMarkHUDWithText:(NSString *)aText inView:(UIView *)aView;
++(MBProgressHUD *)showHUDWithCustomView:(UIView*)aCustomView text:(NSString *)aText inView:(UIView *)aView;
+
++(MBProgressHUD *)showLoadingHUDInView:(UIView *)aView;
+
++(MBProgressHUD *)showLoadingHUDWithOffsetY:(float)aOffsetY inView:(UIView *)aView;
++(MBProgressHUD *)showLoadingHUDWithOffset:(CGSize)aOffset inView:(UIView *)aView;
+
++(MBProgressHUD *)showLoadingHUDWithOffset:(CGSize)aOffset
+                                     title:(NSString *)aTitle
+                                   message:(NSString *)aMessage
+                                    inView:(UIView *)aView;
+
++(MBProgressHUD *)showLoadingHUDWithTitle:(NSString *)aTitle inView:(UIView *)aView;
+
++(MBProgressHUD *)showLoadingHUDWithMessage:(NSString *)aMessage inView:(UIView *)aView;
 
 @end
 

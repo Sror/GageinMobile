@@ -41,43 +41,35 @@ static MBProgressHUD * hud;
 }
 
 
-
 -(void)showLoadingHUD
 {
-    
-    [self showLoadingHUDWithOffsetY:0];
+    [hud hide:YES];
+    hud = [GGAlert showLoadingHUDInView:self];
 }
 
 -(void)showLoadingHUDWithOffsetY:(float)aOffsetY
 {
-    [self showLoadingHUDWithOffset:CGSizeMake(0, aOffsetY)];
+    [hud hide:YES];
+    hud = [GGAlert showLoadingHUDWithOffsetY:aOffsetY inView:self];
 }
 
 -(void)showLoadingHUDWithOffset:(CGSize)aOffset
 {
     [hud hide:YES];
-    hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    hud.xOffset = aOffset.width;
-    hud.yOffset = aOffset.height;
-    hud.labelText = @"Loading";
+    hud = [GGAlert showLoadingHUDWithOffset:aOffset inView:self];
 }
 
 
 -(void)showLoadingHUDWithTitle:(NSString *)aTitle
 {
     [hud hide:YES];
-    hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    hud.labelText = aTitle;
+    hud = [GGAlert showLoadingHUDWithTitle:aTitle inView:self];
 }
 
 -(void)showLoadingHUDWithText:(NSString *)aText
 {
     [hud hide:YES];
-    hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    hud.detailsLabelText = aText;
+    hud = [GGAlert showLoadingHUDWithMessage:aText inView:self];
 }
 
 -(void)hideLoadingHUD

@@ -128,13 +128,15 @@
     }
 }
 
-+(void)showCheckMarkHUDWithText:(NSString *)aText inView:(UIView *)aView
+
+#pragma mark - Progress HUD
++(MBProgressHUD *)showCheckMarkHUDWithText:(NSString *)aText inView:(UIView *)aView
 {
     UIImageView *iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark"]];
-    [self showHUDWithCustomView:iv text:aText inView:aView];
+    return [self showHUDWithCustomView:iv text:aText inView:aView];
 }
 
-+ (void)showHUDWithCustomView:(UIView*)aCustomView text:(NSString *)aText inView:(UIView *)aView
++ (MBProgressHUD *)showHUDWithCustomView:(UIView*)aCustomView text:(NSString *)aText inView:(UIView *)aView
 {
 	MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:aView];
 	[aView addSubview:HUD];
@@ -144,6 +146,54 @@
     
     [HUD show:YES];
     [HUD hide:YES afterDelay:1];
+    
+    return HUD;
+}
+
++(MBProgressHUD *)showLoadingHUDInView:(UIView *)aView
+{
+    return [self showLoadingHUDWithOffsetY:0 inView:aView];
+}
+
++(MBProgressHUD *)showLoadingHUDWithOffsetY:(float)aOffsetY inView:(UIView *)aView
+{
+    return [self showLoadingHUDWithOffset:CGSizeMake(0, aOffsetY) inView:aView];
+}
+
++(MBProgressHUD *)showLoadingHUDWithOffset:(CGSize)aOffset inView:(UIView *)aView
+{
+    return [self showLoadingHUDWithOffset:aOffset title:@"Loading" message:nil inView:aView];
+}
+
++(MBProgressHUD *)showLoadingHUDWithOffset:(CGSize)aOffset
+                                     title:(NSString *)aTitle
+                                   message:(NSString *)aMessage
+                                    inView:(UIView *)aView
+{
+    if (aView)
+    {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:aView animated:YES];
+        hud.mode = MBProgressHUDModeIndeterminate;
+        hud.xOffset = aOffset.width;
+        hud.yOffset = aOffset.height;
+        hud.labelText = aTitle;
+        hud.detailsLabelText = aMessage;
+        
+        return hud;
+    }
+    
+    return nil;
+}
+
+
++(MBProgressHUD *)showLoadingHUDWithTitle:(NSString *)aTitle inView:(UIView *)aView
+{
+    return [self showLoadingHUDWithOffset:CGSizeZero title:aTitle message:nil inView:aView];
+}
+
++(MBProgressHUD *)showLoadingHUDWithMessage:(NSString *)aMessage inView:(UIView *)aView
+{
+    return [self showLoadingHUDWithOffset:CGSizeZero title:nil message:aMessage inView:aView];
 }
 
 @end

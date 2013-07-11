@@ -19,6 +19,7 @@
 #define BUTTON_WIDTH_SHORT      116.f
 #define BUTTON_HEIGHT           31.f
 
+#define LOADING_OFFSET_Y        (-100.f)
 
 @interface GGFollowCompanyVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *viewScroll;
@@ -682,6 +683,7 @@
     [_searchTimer invalidate];
     _searchTimer = nil;
     [self _callSearchCompany];
+    [_viewSearchBar endEditing:YES];
     
     return YES;
 }
@@ -698,7 +700,7 @@
     NSString *keyword = [self _searchText];
     if (keyword.length)
     {
-        [self showLoadingHUD];
+        [self showLoadingHUDWithOffsetY:LOADING_OFFSET_Y];
         id op = [GGSharedAPI getCompanySuggestionWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
@@ -713,11 +715,13 @@
 }
 
 
+
 -(void)_callSearchCompany
 {
     NSString *keyword = [self _searchText];
     if (keyword.length)
     {
+        //[self showLoadingHUDWithOffsetY:LOADING_OFFSET_Y];
         [self showLoadingHUD];
         id op = [GGSharedAPI searchCompaniesWithKeyword:keyword page:0 callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];

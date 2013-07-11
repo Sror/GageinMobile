@@ -28,6 +28,8 @@
 +(id)createInstance;
 
 -(void)showLoadingHUD;
+-(void)showLoadingHUDWithOffsetY:(float)aOffsetY;
+
 -(void)showLoadingHUDWithTitle:(NSString *)aTitle;
 -(void)showLoadingHUDWithText:(NSString *)aText;
 -(void)hideLoadingHUD;

@@ -527,25 +527,26 @@
 
 -(void)showLoadingHUD
 {
-    [self showLoadingHUDWithTitle:@"Loading"];
+    [hud hide:YES];
+    hud = [GGAlert showLoadingHUDInView:self.view];
+}
+
+-(void)showLoadingHUDWithOffsetY:(float)aOffsetY
+{
+    [hud hide:YES];
+    hud = [GGAlert showLoadingHUDWithOffsetY:aOffsetY inView:self.view];
 }
 
 -(void)showLoadingHUDWithTitle:(NSString *)aTitle
 {
     [hud hide:YES];
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    hud.labelText = aTitle;
+    hud = [GGAlert showLoadingHUDWithTitle:aTitle inView:self.view];
 }
 
 -(void)showLoadingHUDWithText:(NSString *)aText
 {
-    //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud hide:YES];
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    hud.detailsLabelText = aText;
-    //hud.dimBackground = YES;
+    hud = [GGAlert showLoadingHUDWithMessage:aText inView:self.view];
 }
 
 -(void)hideLoadingHUD
