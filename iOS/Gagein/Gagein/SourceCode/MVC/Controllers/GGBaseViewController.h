@@ -28,6 +28,7 @@
 +(id)createInstance;
 
 -(void)showLoadingHUD;
+-(void)showLoadingHUDWithTitle:(NSString *)aTitle;
 -(void)showLoadingHUDWithText:(NSString *)aText;
 -(void)hideLoadingHUD;
 -(void)showCheckMarkHUDWithText:(NSString *)aText;

@@ -15,6 +15,8 @@
 -(void)showLoadingHUD;
 -(void)showLoadingHUDWithOffsetY:(float)aOffsetY;
 -(void)showLoadingHUDWithOffset:(CGSize)aOffset;
+-(void)showLoadingHUDWithTitle:(NSString *)aTitle;
+-(void)showLoadingHUDWithText:(NSString *)aText;
 
 -(void)hideLoadingHUD;
 

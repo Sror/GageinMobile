@@ -527,10 +527,15 @@
 
 -(void)showLoadingHUD
 {
+    [self showLoadingHUDWithTitle:@"Loading"];
+}
+
+-(void)showLoadingHUDWithTitle:(NSString *)aTitle
+{
     [hud hide:YES];
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
-    hud.labelText = @"Loading";
+    hud.labelText = aTitle;
 }
 
 -(void)showLoadingHUDWithText:(NSString *)aText

@@ -710,7 +710,9 @@
     GGCompanyUpdate *data = _updates[_updateIndex];
     if (data.saved)
     {
+        [self showLoadingHUDWithTitle:@"Unsaving"];
         id op = [GGSharedAPI unsaveUpdateWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {
@@ -727,7 +729,9 @@
     }
     else
     {
+        [self showLoadingHUDWithTitle:@"Saving"];
         id op = [GGSharedAPI saveUpdateWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {

@@ -358,7 +358,9 @@
     
     if (_data.saved)
     {
+        [self showLoadingHUDWithTitle:@"Unsaving"];
         [GGSharedAPI unsaveUpdateWithID:_data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {
@@ -373,7 +375,9 @@
     }
     else
     {
+        [self showLoadingHUDWithTitle:@"Saving"];
         [GGSharedAPI saveUpdateWithID:_data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {

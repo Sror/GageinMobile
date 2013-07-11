@@ -63,6 +63,23 @@ static MBProgressHUD * hud;
     hud.labelText = @"Loading";
 }
 
+
+-(void)showLoadingHUDWithTitle:(NSString *)aTitle
+{
+    [hud hide:YES];
+    hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = aTitle;
+}
+
+-(void)showLoadingHUDWithText:(NSString *)aText
+{
+    [hud hide:YES];
+    hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.detailsLabelText = aText;
+}
+
 -(void)hideLoadingHUD
 {
      [hud hide:YES];
