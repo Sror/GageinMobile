@@ -411,26 +411,24 @@
     if (ISIPADDEVICE)
     {
         // snapshot old value...
-        NSUInteger oldIndex = _tvExpandHelper.expandingIndex;
-        //BOOL oldIsExpanding = _tvExpandHelper.isExpanding;
+        //NSUInteger oldIndex = _tvExpandHelper.expandingIndex;
+        
         [_tvExpandHelper changeExpaningAt:row];
+        [tableView reloadData];
         
         // reload cells
-        [tableView beginUpdates];
-        if (indexPath.row == oldIndex)
-        {
-            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        }
-        else
-        {
-            NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:indexPath.section];
-            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
-        }
-        
-        // adjust tableview content offset
-        //[_tvExpandHelper scrollToCenterFrom:oldIndex to:row oldIsExpanding:oldIsExpanding];
-        
-        [tableView endUpdates];
+//        [tableView beginUpdates];
+//        if (indexPath.row == oldIndex)
+//        {
+//            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//        }
+//        else
+//        {
+//            NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:indexPath.section];
+//            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+//        }
+//        
+//        [tableView endUpdates];
     }
     else
     {

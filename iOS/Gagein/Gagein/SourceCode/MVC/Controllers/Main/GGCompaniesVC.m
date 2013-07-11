@@ -700,6 +700,8 @@
 -(void)_doFollowingHideSlide:(BOOL)aHideSlide
 {
     self.naviTitle = @"Following";
+    _updateTvExpandHelper.isExpanding = NO;
+    _happeningTvExpandHelper.isExpanding = NO;
     
     [[self _followingSectionView] setHightlighted:YES];
     [[self _exploringSectionView] setHightlighted:NO];
@@ -731,6 +733,8 @@
 -(void)_doExploringHideSlide:(BOOL)aHideSlide
 {
     self.naviTitle = @"Exploring";
+    _updateTvExpandHelper.isExpanding = NO;
+    _happeningTvExpandHelper.isExpanding = NO;
     
     [[self _followingSectionView] setHightlighted:NO];
     [[self _exploringSectionView] setHightlighted:YES];
@@ -1162,7 +1166,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
     int row = indexPath.row;
     
     if (tableView == self.updatesTV)
@@ -1170,26 +1174,24 @@
         if (ISIPADDEVICE)
         {
             // snapshot old value...
-            NSUInteger oldIndex = _updateTvExpandHelper.expandingIndex;
+            //NSUInteger oldIndex = _updateTvExpandHelper.expandingIndex;
 
             [_updateTvExpandHelper changeExpaningAt:row];
+            [tableView reloadData];
             
             // reload cells
-            [tableView beginUpdates];
-            if (indexPath.row == oldIndex)
-            {
-                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            }
-            else
-            {
-                NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:indexPath.section];
-                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
-            }
-            
-            DLog(@"adjust tableview content offset");
-            //[_updateTvExpandHelper scrollToCenterFrom:oldIndex to:row oldIsExpanding:oldIsExpanding];
-            
-            [tableView endUpdates];
+//            [tableView beginUpdates];
+//            if (indexPath.row == oldIndex)
+//            {
+//                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//            }
+//            else
+//            {
+//                NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:indexPath.section];
+//                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+//            }
+//            
+//            [tableView endUpdates];
         }
         else
         {
@@ -1201,28 +1203,24 @@
         
         if (ISIPADDEVICE)
         {
-            //NSIndexPath *oldIdxPath = _expandIndexPathForHappeningTV;
-            NSUInteger oldIndex = _happeningTvExpandHelper.expandingIndex;
-            //BOOL oldIsExpanding = _happeningTvExpandHelper.isExpanding;
+            //NSUInteger oldIndex = _happeningTvExpandHelper.expandingIndex;
             
             [_happeningTvExpandHelper changeExpaningAt:row];
+            [tableView reloadData];
             
-            [tableView beginUpdates];
-            
-            if (indexPath.row == oldIndex)
-            {
-                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            }
-            else
-            {
-                 NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:indexPath.section];
-                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
-            }
-            
-            // adjust tableview content offset
-            //[_happeningTvExpandHelper scrollToCenterFrom:oldIndex to:row oldIsExpanding:oldIsExpanding];
-            
-            [tableView endUpdates];
+//            [tableView beginUpdates];
+//            
+//            if (indexPath.row == oldIndex)
+//            {
+//                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//            }
+//            else
+//            {
+//                 NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:indexPath.section];
+//                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+//            }
+//            
+//            [tableView endUpdates];
         }
         else
         {
@@ -1231,6 +1229,9 @@
     }
     else if (tableView == _slideSettingView.viewTable)
     {
+        _updateTvExpandHelper.isExpanding = NO;
+        _happeningTvExpandHelper.isExpanding = NO;
+        
         GGDataPage *thePage = _menuDatas[indexPath.section];
         GGMenuData *theData = thePage.items[row];
         
@@ -1242,6 +1243,7 @@
         }
         
         self.naviTitle = theData.name;
+        
         [[self _followingSectionView] setHightlighted:NO];
         [[self _exploringSectionView] setHightlighted:NO];
         
@@ -1250,11 +1252,6 @@
         //get update data by menuID
         _menuType = theData.type;
         _menuID = theData.ID;
-        
-//        if (theData.type == kGGMenuTypeAgent)
-//        {
-//            [_btnSwitchUpdate switchOn:YES];
-//        }
         
         [self _refreshWithMenuId:theData.ID type:theData.type hideSlide:![self isIPadLandscape]];
     }

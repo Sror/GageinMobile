@@ -182,28 +182,26 @@
     
     if (ISIPADDEVICE)
     {
-        //NSIndexPath *oldIdxPath = _expandIndexPathForHappeningTV;
-        NSUInteger oldIndex = _happeningTvExpandHelper.expandingIndex;
-        //BOOL oldIsExpanding = _happeningTvExpandHelper.isExpanding;
+        //NSUInteger oldIndex = _happeningTvExpandHelper.expandingIndex;
+        
         
         [_happeningTvExpandHelper changeExpaningAt:row];
         
-        [tableView beginUpdates];
+        [tableView reloadData];
         
-        if (indexPath.row == oldIndex)
-        {
-            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        }
-        else
-        {
-            NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:indexPath.section];
-            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
-        }
-        
-        // adjust tableview content offset
-        //[_happeningTvExpandHelper scrollToCenterFrom:oldIndex to:row oldIsExpanding:oldIsExpanding];
-        
-        [tableView endUpdates];
+//        [tableView beginUpdates];
+//        
+//        if (indexPath.row == oldIndex)
+//        {
+//            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//        }
+//        else
+//        {
+//            NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:indexPath.section];
+//            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+//        }
+//        
+//        [tableView endUpdates];
     }
     else
     {
