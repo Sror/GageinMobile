@@ -300,6 +300,10 @@
                 
                 [self updateFollowButton];
             }
+            else
+            {
+                [GGAlert alertWithApiParser:parser];
+            }
         }];
     }
     else
@@ -313,6 +317,10 @@
                 [self postNotification:GG_NOTIFY_COMPANY_FOLLOW_CHANGED];
                 
                 [self updateFollowButton];
+            }
+            else
+            {
+                [GGAlert alertWithApiParser:parser];
             }
         }];
     }

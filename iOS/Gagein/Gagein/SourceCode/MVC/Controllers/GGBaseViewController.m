@@ -291,10 +291,10 @@
     [super viewWillDisappear:animated];
     
     //DLog(@"%@: viewWillDisappear", self.className);
-    if ([self canHearAction])
-    {
-        [GGSsgrfActionListener sharedInstance].delegate = nil;
-    }
+//    if ([self canHearAction])
+//    {
+//        [GGSsgrfActionListener sharedInstance].delegate = nil;
+//    }
 }
 
 -(BOOL)canHearAction

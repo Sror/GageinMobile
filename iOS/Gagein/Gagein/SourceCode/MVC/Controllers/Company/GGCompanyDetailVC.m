@@ -585,6 +585,10 @@ typedef enum
                 
                 [self _updateUiBtnFollow];
             }
+            else
+            {
+                [GGAlert alertWithApiParser:parser];
+            }
         }];
         
         [self registerOperation:op];
