@@ -95,6 +95,7 @@ typedef enum
     
     [self _callApiGetPersonOverview];
     [self _callApiGetHappenings];
+    _tvDetail.hidden = YES;
 }
 
 
@@ -397,14 +398,18 @@ typedef enum
     id op = [GGSharedAPI getPersonOverviewWithID:_personID callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-        _personOverview = [parser parseGetPersonOverview];
-        
-        DLog(@"%@", _personOverview.prevCompanies);
-        for (GGCompany *company in _personOverview.prevCompanies) {
-            DLog(@"%@", company);
+        if (parser.isOK)
+        {
+            _personOverview = [parser parseGetPersonOverview];
+            
+            DLog(@"%@", _personOverview.prevCompanies);
+            for (GGCompany *company in _personOverview.prevCompanies) {
+                DLog(@"%@", company);
+            }
+            
+            [self _updateUiOverview];
+            _tvDetail.hidden = NO;
         }
-        
-        [self _updateUiOverview];
     }];
     
     [self registerOperation:op];
