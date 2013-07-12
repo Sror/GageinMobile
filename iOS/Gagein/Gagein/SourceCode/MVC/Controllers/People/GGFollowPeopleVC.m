@@ -702,7 +702,7 @@
     if (_searchBar.tfSearch.text.length)
     {
         [self showLoadingHUD];
-        id op = [GGSharedAPI searchPeopleWithKeyword:_searchBar.tfSearch.text page:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI getSuggestedPeopleWithKeyword:_searchBar.tfSearch.text page:0 callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];

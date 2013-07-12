@@ -11,9 +11,9 @@
 @interface GGApi (People)
 
 //SC01:Search ContactsBack to top
--(AFHTTPRequestOperation *)searchPeopleWithKeyword:(NSString *)aKeyword
-                          page:(int)aPage
-                      callback:(GGApiBlock)aCallback;
+//-(AFHTTPRequestOperation *)searchPeopleWithKeyword:(NSString *)aKeyword
+//                          page:(int)aPage
+//                      callback:(GGApiBlock)aCallback;
 
 //MC01:Follow ContactBack to top
 -(AFHTTPRequestOperation *)followPersonWithID:(long long)aPersonID callback:(GGApiBlock)aCallback;

@@ -704,10 +704,17 @@
         id op = [GGSharedAPI getCompanySuggestionWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            GGDataPage *page = [parser parseSearchCompany];
-            _searchedCompanies = page.items;
-            
-            [self.tableViewSearchResult reloadData];
+            if (parser.isOK)
+            {
+                GGDataPage *page = [parser parseSearchCompany];
+                _searchedCompanies = page.items;
+                
+                [self.tableViewSearchResult reloadData];
+            }
+            else
+            {
+                [GGAlert alertWithApiParser:parser];
+            }
         }];
         
         [self registerOperation:op];
@@ -723,17 +730,26 @@
     {
         //[self showLoadingHUDWithOffsetY:LOADING_OFFSET_Y];
         [self showLoadingHUD];
-        id op = [GGSharedAPI searchCompaniesWithKeyword:keyword page:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        id op = [GGSharedAPI getCompanySuggestionWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            GGDataPage *page = [parser parseSearchCompany];
-            _searchedCompanies = page.items;
-            if (_searchedCompanies.count <= 0) {
-                [GGAlert showToast:@"No results." inView:self.view];
+            
+            if (parser.isOK)
+            {
+                GGDataPage *page = [parser parseSearchCompany];
+                _searchedCompanies = page.items;
+                if (_searchedCompanies.count <= 0) {
+                    [GGAlert showToast:@"No results." inView:self.view];
+                }
+                
+                [self.tableViewSearchResult reloadData];
+            }
+            else
+            {
+                [GGAlert alertWithApiParser:parser];
             }
             
-            [self.tableViewSearchResult reloadData];
         }];
         
         [self registerOperation:op];

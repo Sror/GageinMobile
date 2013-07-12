@@ -54,6 +54,8 @@
 
 -(EGGCompanyGrade)getGrade;
 
+-(BOOL)hasBeenRemoved;
+
 @end
 
 

@@ -110,6 +110,11 @@
     return kGGComGradeUnknown;
 }
 
+-(BOOL)hasBeenRemoved
+{
+    return self.ID > 0 && self.orgID <= 0;
+}
+
 @end
 
 //////////////////////////////////////////////
