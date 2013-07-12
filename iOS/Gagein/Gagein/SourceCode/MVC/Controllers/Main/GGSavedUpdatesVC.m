@@ -288,7 +288,7 @@
         _viewEmpty.lblMessage.text = _isUnread ? EMPTY_TEXT_UNREAD : EMPTY_TEXT_ALL;
         [_tvUpdates reloadData];
         
-        [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:.5f];
+        [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     }];
     
     [self registerOperation:op];

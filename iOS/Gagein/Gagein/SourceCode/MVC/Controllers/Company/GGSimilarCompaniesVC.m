@@ -150,7 +150,7 @@
     }
     else
     {
-        [self performSelector:@selector(_delayedStopInfiniteAnimating) withObject:nil afterDelay:.5f];
+        [self performSelector:@selector(_delayedStopInfiniteAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     }
 }
 
@@ -175,7 +175,7 @@
         [self.tvSimilarCompanies reloadData];
         
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
-        [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:.5f];
+        [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     };
     
     id op = [GGSharedAPI getSimilarCompaniesWithOrgID:_companyID pageNumber:_currentPageIndex callback:callback];

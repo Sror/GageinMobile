@@ -116,6 +116,7 @@ typedef enum {
 #define LEFT_DRAWER_WIDTH_LONG      320
 
 #define MENU_REFRESH_INTERVAL       (30 * 60)       // seconds
+#define SCROLL_REFRESH_STOP_DELAY   (.1f)
 
 #define UIViewAutoresizingFlexibleBorder (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin)
 

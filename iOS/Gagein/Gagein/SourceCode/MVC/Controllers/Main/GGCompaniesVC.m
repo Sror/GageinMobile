@@ -1562,7 +1562,7 @@
         [self.updatesTV reloadData];
         
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
-        [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:.5f];
+        [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     };
     
     //[self showLoadingHUD];
@@ -1661,7 +1661,7 @@
         [self.happeningsTV reloadData];
         
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
-        [self performSelector:@selector(_delayedStopHappeningAnimating) withObject:nil afterDelay:.5f];
+        [self performSelector:@selector(_delayedStopHappeningAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     };
     
     if (_menuType == kGGMenuTypeCompany)
@@ -1671,7 +1671,7 @@
     }
     else if (_menuType == kGGMenuTypeAgent)
     {
-        [self performSelector:@selector(_delayedStopHappeningAnimating) withObject:nil afterDelay:.5f];
+        [self performSelector:@selector(_delayedStopHappeningAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     }
 }
 
