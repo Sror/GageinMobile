@@ -494,9 +494,11 @@ typedef enum
 
 -(void)_updateUiBtnFollow
 {
+    EGGCompanyGrade grade = _companyOverview.getGrade;
+    //grade = kGGComGradeBad;
     if (_companyOverview.followed)
     {
-        if (_companyOverview.getGrade == kGGComGradeUnknown)
+        if (grade == kGGComGradeUnknown)
         {
 //            _btnFollow.hidden = YES;
 //            _lblTip.hidden = NO;
@@ -504,7 +506,7 @@ typedef enum
             _btnFollow.hidden = NO;
             _lblTip.hidden = YES;
             [self.btnFollow setTitle:@"Pending" forState:UIControlStateNormal];
-            self.btnFollow.selected = NO;
+            self.btnFollow.selected = YES;
         }
         else
         {
@@ -517,7 +519,7 @@ typedef enum
     }
     else
     {
-        if (_companyOverview.getGrade == kGGComGradeBad)
+        if (grade == kGGComGradeBad)
         {
             _btnFollow.hidden = YES;
             _lblTip.hidden = NO;
