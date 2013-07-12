@@ -730,7 +730,7 @@
             GGDataPage *page = [parser parseSearchCompany];
             _searchedCompanies = page.items;
             if (_searchedCompanies.count <= 0) {
-                [GGAlert alertWithMessage:@"No results."];
+                [GGAlert showToast:@"No results." inView:self.view];
             }
             
             [self.tableViewSearchResult reloadData];

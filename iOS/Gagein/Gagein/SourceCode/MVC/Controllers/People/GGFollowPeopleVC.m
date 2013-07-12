@@ -685,7 +685,7 @@
                 GGDataPage *page = [parser parseGetSeggestedPeople];
                 _searchedPeople = page.items;
 //                if (_searchedPeople.count <= 0) {
-//                    [GGAlert alertWithMessage:@"No results."];
+//                    [GGAlert showToast:@"No results." inView:self.view];
 //                }
             }
             
@@ -709,7 +709,7 @@
             GGDataPage *page = [parser parseSearchForPeople];
             _searchedPeople = page.items;
             if (_searchedPeople.count <= 0) {
-                [GGAlert alertWithMessage:@"No results."];
+                [GGAlert showToast:@"No results." inView:self.view];
             }
             
             [self.tvSearchResult reloadData];

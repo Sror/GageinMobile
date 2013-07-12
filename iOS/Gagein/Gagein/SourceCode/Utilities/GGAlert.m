@@ -196,4 +196,19 @@
     return [self showLoadingHUDWithOffset:CGSizeZero title:nil message:aMessage inView:aView];
 }
 
++(MBProgressHUD *)showToast:(NSString *)aMessage inView:(UIView *)aView
+{
+    if (aView)
+    {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:aView animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = aMessage;
+        [hud hide:YES afterDelay:1];
+        
+        return hud;
+    }
+    
+    return nil;
+}
+
 @end

@@ -43,6 +43,8 @@
 
 +(MBProgressHUD *)showLoadingHUDWithMessage:(NSString *)aMessage inView:(UIView *)aView;
 
++(MBProgressHUD *)showToast:(NSString *)aMessage inView:(UIView *)aView;
+
 @end
 
 typedef enum {
