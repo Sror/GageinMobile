@@ -10,5 +10,10 @@
 #import "GGStyledSearchBar.h"
 
 @interface GGFollowPeopleVC : GGBaseViewController
-<UITableViewDataSource, UITableViewDelegate, GGStyledSearchBarDelegate>
+<
+UITableViewDataSource
+, UITableViewDelegate
+, GGStyledSearchBarDelegate
+, UIScrollViewDelegate
+>
 @end

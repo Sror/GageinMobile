@@ -156,12 +156,12 @@
     }
     
     //
-    if (!ISIPADDEVICE)
-    {
-        float height = self.view.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT + self.tabBarController.tabBar.frame.size.height;
-        _tvSearchResultRectShort = [GGUtils setH:height rect:self.tvSearchResult.frame];
-        self.tvSearchResult.frame = _tvSearchResultRectShort;
-    }
+//    if (!ISIPADDEVICE)
+//    {
+//        float height = self.view.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT + self.tabBarController.tabBar.frame.size.height;
+//        _tvSearchResultRectShort = [GGUtils setH:height rect:self.tvSearchResult.frame];
+//        self.tvSearchResult.frame = _tvSearchResultRectShort;
+//    }
     
     self.tvSearchResult.rowHeight = [GGSearchSuggestionCell HEIGHT];
     
@@ -308,6 +308,7 @@
         
         GGPerson *data = _searchedPeople[indexPath.row];
         [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.photoPath] placeholderImage:GGSharedImagePool.placeholder];
+        [cell.ivLogo applyEffectCircleSilverBorder];
         cell.lblName.text = data.name;
         cell.lblWebsite.text = data.orgTitle;
         cell.tag = indexPath.row;
@@ -500,6 +501,15 @@
 }
 
 
+#pragma mark - scroll view delegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView == _tvSearchResult)
+    {
+        [_searchBar endEditing:YES];
+    }
+}
+
 #pragma mark - GGStyledSearchBarDelegate
 
 - (BOOL)searchBarShouldBeginEditing:(GGBaseSearchBar *)searchBar
@@ -558,7 +568,7 @@
 -(void)_refreshTimer
 {
     [_searchTimer invalidate];
-    _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2.f target:self selector:@selector(_callSearchPeopleSuggestion) userInfo:nil repeats:NO];
+    _searchTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(_callSearchPeopleSuggestion) userInfo:nil repeats:NO];
 }
 
 - (BOOL)searchBarShouldClear:(GGBaseSearchBar *)searchBar
@@ -592,7 +602,7 @@
     [_searchTimer invalidate];
     _searchTimer = nil;
     [self _callSearchPeople];
-    //[searchBar resignFirstResponder];
+    [searchBar endEditing:YES];
     
     //    UIButton *cancelBtn = ((GGSearchBar *)searchBar).cancelButton;
     //    cancelBtn.enabled = YES;
@@ -665,7 +675,7 @@
     {
 //#warning TODO: Currently no API for people suggestion
         //getSuggestedPeopleWithKeyword
-        [self showLoadingHUD];
+        [self showLoadingHUDWithOffsetY:-100];
         id op = [GGSharedAPI getSuggestedPeopleWithKeyword:keyword page:0 callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             
