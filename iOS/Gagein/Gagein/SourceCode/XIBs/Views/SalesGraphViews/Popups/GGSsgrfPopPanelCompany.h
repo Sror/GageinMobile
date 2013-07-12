@@ -67,6 +67,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnClose;
 
+@property (weak, nonatomic) IBOutlet UIView *viewMessage;
+@property (weak, nonatomic) IBOutlet UILabel *lblMessage;
+
 
 //-(void)showSourceButtonWithProfile:(GGSocialProfile *)aSourceProfile;
 -(void)updateWithCompany:(GGCompany *)aCompany;

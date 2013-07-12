@@ -52,7 +52,7 @@
             case kGGHappeningCompanyRevenueChange:
             {
                 // left - old company
-                [self.viewLeftInfo updateWithCompany:_happening.oldCompany];
+                [self.viewLeftInfo updateWithCompany:_happening.company];
                 
                 // right - chart
                 NSString *chartUrl = [_happening chartUrlWithSize:_btnChart.frame.size];

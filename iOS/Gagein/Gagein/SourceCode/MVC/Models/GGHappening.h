@@ -13,7 +13,7 @@
 typedef enum {
     kGGHappeningCompanyPersonJion = 2001
     , kGGHappeningCompanyPersonJionDetail = 2002
-    , kGGHappeningCompanyRevenueChange = 2003
+    , kGGHappeningCompanyRevenueChange = 2008
     , kGGHappeningCompanyNewFunding = 2004
     , kGGHappeningCompanyNewLocation = 2005
     , kGGHappeningCompanyEmloyeeSizeIncrease = 2006

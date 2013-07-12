@@ -48,9 +48,9 @@ typedef enum {
 
 // company grade
 typedef enum {
-    kGGComGradeGood = 0
-    , kGGComGradeBad
-    , kGGComGradeUnknown
+    kGGComGradeGood = 0         // grade A
+    , kGGComGradeBad            // grade B
+    , kGGComGradeUnknown        // grade C
 }EGGCompanyGrade;
 
 

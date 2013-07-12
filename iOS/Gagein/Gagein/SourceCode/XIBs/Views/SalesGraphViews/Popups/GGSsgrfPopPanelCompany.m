@@ -58,6 +58,11 @@
     self.layer.shadowOffset = CGSizeMake(3.f, 3.f);
     self.layer.shadowRadius = 6.f;
     
+    _viewMessage.backgroundColor = GGSharedColor.whiteAlmost;
+    _viewMessage.hidden = YES;
+    [_lblMessage applyEffectEmboss];
+    _lblMessage.text = @"";
+    
     _lblTitle.text = _lblSubTitle.text
     = _lblEmp1Title.text = _lblEmp1SubTitle.text
     = _lblEmp2Title.text = _lblEmp2SubTitle.text
@@ -173,6 +178,28 @@
         
         //
         _btnLinkedInFooter.data = _data.linkedInSearchUrl;
+        
+        
+        // grade a b c
+        [self _updateUIWithGrade];
+    }
+}
+
+-(void)_updateUIWithGrade
+{
+    EGGCompanyGrade grade = _data.getGrade;
+    //grade = kGGComGradeUnknown;
+    
+    _viewMessage.hidden = (grade == kGGComGradeGood);
+    _btnFollow.hidden = (grade == kGGComGradeBad);
+    
+    if (grade == kGGComGradeBad)
+    {
+        _lblMessage.text = @"This company is not available to follow.";
+    }
+    else if (grade == kGGComGradeUnknown)
+    {
+        _lblMessage.text = _data.followed ? @"This company’s content should be available in 5 business days." : @"Follow this company to activate its content.";
     }
 }
 
@@ -284,6 +311,8 @@
         [_btnFollow setBackgroundImage:[UIImage imageNamed:@"ssgrf_bg_btn_follow"] forState:UIControlStateNormal];
         [_btnFollow setTitle:@"+ Follow" forState:UIControlStateNormal];
     }
+    
+    [self _updateUIWithGrade];
 }
 
 -(void)followAction:(id)sender

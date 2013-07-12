@@ -71,6 +71,11 @@ DEF_SINGLETON(GGColor)
     return UIColorFromRGB(0xEFEFEF);
 }
 
+-(UIColor *)whiteAlmost
+{
+    return UIColorFromRGB(0xF9F9F9);
+}
+
 -(UIColor *)darkGray
 {
     return UIColorFromRGB(0x333333);
