@@ -15,13 +15,15 @@
 @interface GGBaseViewController : UIViewController <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 {
  @protected
-    NSString *_naviStringRecord;
+    NSString    *_naviStringRecord;
+    //BOOL        _needHideTabbar;
 }
 
 @property (strong, nonatomic)  UILabel                     *customNaviTitle;
 @property (copy, nonatomic)    NSString                    *naviTitle;
 @property (strong, nonatomic)  UIButton                    *naviButtonLeft;
 @property (strong, nonatomic)  UIImageView                 *ivGageinLogo;
+//@property (assign, nonatomic)  BOOL                        needHideTabbar;
 
 @property (assign, nonatomic)   BOOL    isMenuShowingBeforeLeavePortrait;
 
@@ -36,10 +38,16 @@
 -(void)showCheckMarkHUDWithText:(NSString *)aText;
 //- (void)showHUDWithCustomView:(UIView*)aCustomView text:(NSString *)aText;
 
+
+// for override
+-(void)doInit;
+
+//
 -(void)installGageinLogo;
 -(void)installGageinLogoTo:(UIView *)aView;
 -(void)installTopLine;
 
+//
 -(void)showBackButton;
 -(void)hideBackButton;
 -(void)pushBackButtonFront;
@@ -107,6 +115,8 @@
 //-(void)setNeedMenu:(BOOL)aNeedMenu;
 //-(BOOL)needMenu;
 -(BOOL)doNeedMenu;
+
+
 
 #pragma mark - navi or modal
 -(BOOL)isTheRootOfNaviStack;

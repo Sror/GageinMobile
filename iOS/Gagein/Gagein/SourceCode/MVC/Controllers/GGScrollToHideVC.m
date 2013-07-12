@@ -7,6 +7,7 @@
 //
 
 #import "GGScrollToHideVC.h"
+#import "GGAppDelegate.h"
 
 @interface GGScrollToHideVC ()
 
@@ -26,6 +27,8 @@
     
     _scrolls = [NSMutableSet set];
     _excludeScrolls = [NSMutableArray array];
+    
+    [GGSharedDelegate.tabBarController adjustOtherViewsHideBar:YES];
 }
 
 -(void)excludeScrollView:(UIScrollView *)aScrollView

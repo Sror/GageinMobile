@@ -386,6 +386,7 @@
 		EA9923C91745AD290043251E /* timezones.json in Resources */ = {isa = PBXBuildFile; fileRef = EA9923C81745AD290043251E /* timezones.json */; };
 		EA997426174E8D5100A125D5 /* Happening_Cases_and_data_format.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA997425174E8D5100A125D5 /* Happening_Cases_and_data_format.txt */; };
 		EA99742C174EEB1600A125D5 /* UILabel+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = EA99742B174EEB1500A125D5 /* UILabel+AddOn.m */; };
+		EA99D4B41790AF190094B0FE /* GGNib.m in Sources */ = {isa = PBXBuildFile; fileRef = EA99D4B31790AF190094B0FE /* GGNib.m */; };
 		EA9B3A0C1768E24E008C5709 /* GGTriggerChartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9B3A0B1768E24E008C5709 /* GGTriggerChartCell.m */; };
 		EA9B3A0E1768E280008C5709 /* GGTriggerChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9B3A0D1768E280008C5709 /* GGTriggerChartCell.xib */; };
 		EA9C7F94177110F7003217F7 /* GGSsgrfPopPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C7F93177110F7003217F7 /* GGSsgrfPopPanelView.m */; };
@@ -1166,6 +1167,8 @@
 		EA997425174E8D5100A125D5 /* Happening_Cases_and_data_format.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Happening_Cases_and_data_format.txt; sourceTree = "<group>"; };
 		EA99742A174EEB1500A125D5 /* UILabel+AddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+AddOn.h"; sourceTree = "<group>"; };
 		EA99742B174EEB1500A125D5 /* UILabel+AddOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+AddOn.m"; sourceTree = "<group>"; };
+		EA99D4B21790AF190094B0FE /* GGNib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGNib.h; sourceTree = "<group>"; };
+		EA99D4B31790AF190094B0FE /* GGNib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGNib.m; sourceTree = "<group>"; };
 		EA9B3A0A1768E24E008C5709 /* GGTriggerChartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTriggerChartCell.h; sourceTree = "<group>"; };
 		EA9B3A0B1768E24E008C5709 /* GGTriggerChartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGTriggerChartCell.m; sourceTree = "<group>"; };
 		EA9B3A0D1768E280008C5709 /* GGTriggerChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGTriggerChartCell.xib; sourceTree = "<group>"; };
@@ -2931,6 +2934,8 @@
 				EAA3AEC817860B800045E448 /* GGOrientation.m */,
 				EA915477178DE46D0005DB57 /* GGStringFormatter.h */,
 				EA915478178DE46D0005DB57 /* GGStringFormatter.m */,
+				EA99D4B21790AF190094B0FE /* GGNib.h */,
+				EA99D4B31790AF190094B0FE /* GGNib.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -3881,6 +3886,7 @@
 				EAA3AEC917860B800045E448 /* GGOrientation.m in Sources */,
 				EA915479178DE46D0005DB57 /* GGStringFormatter.m in Sources */,
 				EA915493178E328C0005DB57 /* GGAnimatedMenu.m in Sources */,
+				EA99D4B41790AF190094B0FE /* GGNib.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

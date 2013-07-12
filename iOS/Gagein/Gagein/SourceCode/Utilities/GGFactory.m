@@ -14,6 +14,7 @@
 #import "GGHappeningIpadCell.h"
 #import "GGHappening.h"
 #import "GGCompanyHappeningCell.h"
+#import "GGNib.h"
 
 @implementation GGFactory
 
@@ -25,7 +26,7 @@
     GGCompanyUpdateCell * cell = aDequeuedCell;
     if (cell == nil)
     {
-        cell = [GGCompanyUpdateCell viewFromNibWithOwner:self];
+        cell = [GGNib sharedInstance].companyUpdateCell;//[GGCompanyUpdateCell viewFromNibWithOwner:self];
         
         if (anAction && anAction.action)
         {

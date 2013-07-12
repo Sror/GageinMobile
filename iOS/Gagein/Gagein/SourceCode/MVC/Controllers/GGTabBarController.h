@@ -19,4 +19,8 @@
 
 - (void)showTabBarAnimated:(BOOL)aAnimated;
 - (void)hideTabBarAnimated:(BOOL)aAnimated;
+
+-(void)adjustBarHide:(BOOL)aHide;
+-(void)adjustOtherViewsHideBar:(BOOL)aHide;
+
 @end

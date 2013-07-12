@@ -235,14 +235,14 @@
         
         
         
-        [UIView animateWithDuration:TABBAR_ANIM_DURATION * 2 animations:^{
-            [self _adjustOtherViewsHideBar:NO];
-        }];
+//        [UIView animateWithDuration:TABBAR_ANIM_DURATION * 2 animations:^{
+//            [self adjustOtherViewsHideBar:NO];
+//        }];
     }
     else
     {
         moveTabbarUp();
-        [self _adjustOtherViewsHideBar:NO];
+        //[self adjustOtherViewsHideBar:NO];
     }
 }
 
@@ -260,7 +260,7 @@
         self.tabBar.frame = CGRectMake(_initialTabRect.origin.x, _initialTabRect.origin.y + 60.f, _initialTabRect.size.width, _initialTabRect.size.height);
     };
     
-    [self _adjustOtherViewsHideBar:YES];
+    //[self adjustOtherViewsHideBar:YES];
     
     if (aAnimated)
     {
@@ -281,8 +281,9 @@
     }
 }
 
--(void)_adjustBarHide:(BOOL)aHide
+-(void)adjustBarHide:(BOOL)aHide
 {
+    if (ISIPADDEVICE) return;
     float offsetY = aHide ? _initialTabRect.origin.y - 20 : _initialTabRect.origin.y + 60.f;
     
     for (UIView *view in self.view.subviews) {
@@ -292,8 +293,10 @@
     }
 }
 
--(void)_adjustOtherViewsHideBar:(BOOL)aHide
+-(void)adjustOtherViewsHideBar:(BOOL)aHide
 {
+    if (ISIPADDEVICE) return;
+    
     for (UIView *view in self.view.subviews)
     {
         if (![view isKindOfClass:[UITabBar class]])

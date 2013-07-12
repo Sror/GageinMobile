@@ -113,6 +113,8 @@
     self.updatesTV.dataSource = self;
     self.updatesTV.delegate = self;
     _updatesTV.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _updatesTV.showsVerticalScrollIndicator = NO;
+    
     //[_scrollingView addPage:self.updatesTV];
     self.updatesTV.backgroundColor = GGSharedColor.silver;
     _happeningTvExpandHelper.tableView = _updatesTV;

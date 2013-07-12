@@ -76,6 +76,8 @@
     GGCompanyUpdate                          *_dataForSignal;
     GGCompanyUpdate                          *_updateForSharing;
     GGHappening                              *_happeningForSharing;
+    
+    BOOL                        _hasBeenInitialized;
 }
 
 #pragma mark - api operation management
@@ -133,10 +135,35 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _apiOperations = [NSMutableSet set];
+        [self _initailize];
     }
     return self;
 }
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        [self _initailize];
+    }
+    return self;
+}
+
+-(void)_initailize
+{
+    if (!_hasBeenInitialized)
+    {
+        [self doInit];
+    }
+}
+
+-(void)doInit
+{
+    _hasBeenInitialized = YES;
+    
+    _apiOperations = [NSMutableSet set];
+}
+
 
 - (void)viewDidLoad
 {
@@ -266,6 +293,8 @@
     {
         [self _decideCanPanToOpenDrawerWithOrient:self.interfaceOrientation];
     }
+    
+    //[GGSharedDelegate.tabBarController adjustOtherViewsHideBar:_needHideTabbar];
 }
 
 -(void)viewWillAppearNotFirstTimeAction
