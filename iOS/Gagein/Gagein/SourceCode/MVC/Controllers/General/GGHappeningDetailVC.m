@@ -23,6 +23,7 @@
 #import "GGFacebookOAuth.h"
 #import "GGTwitterOAuthVC.h"
 #import "GGSalesforceOAuthVC.h"
+#import "GGAnimatedMenu.h"
 
 
 #define TAG_ALERT_SALESFORCE_OAUTH_FAILED   1000
@@ -264,6 +265,55 @@
 
 -(void)_showSheetToShare
 {
+    GGAnimatedMenu *menu = [[GGAnimatedMenu alloc] init];
+    
+    menu.menuItemRadious = 53.f;
+    menu.menuRadious = 70.f;
+    
+    __weak GGAnimatedMenu *menuShadow = menu;
+    
+    [menu addItemWithImage:[UIImage imageNamed:@"share_chatter"] selectedImage:nil action:^{
+        // NSLog(@"share chatter");
+        [self _shareWithType:kGGSnTypeSalesforce];
+        [menuShadow dismiss];
+    }];
+    
+    [menu addItemWithImage:[UIImage imageNamed:@"share_linkedin"] selectedImage:nil action:^{
+        //NSLog(@"share linkedIn");
+        [self _shareWithType:kGGSnTypeLinkedIn];
+        [menuShadow dismiss];
+    }];
+    
+    [menu addItemWithImage:[UIImage imageNamed:@"share_twitter"] selectedImage:nil action:^{
+        //NSLog(@"share twitter");
+        [self _shareWithType:kGGSnTypeTwitter];
+        [menuShadow dismiss];
+    }];
+    
+    [menu addItemWithImage:[UIImage imageNamed:@"share_facebook"] selectedImage:nil action:^{
+        //NSLog(@"share facebook");
+        [self _shareWithType:kGGSnTypeFacebook];
+        [menuShadow dismiss];
+    }];
+    
+    [menu addItemWithImage:[UIImage imageNamed:@"share_mail"] selectedImage:nil action:^{
+        //NSLog(@"share mail");
+        [self sendMailAction:nil];
+        [menuShadow dismiss];
+    }];
+    
+    [menu addItemWithImage:[UIImage imageNamed:@"share_message"] selectedImage:nil action:^{
+        //NSLog(@"share message");
+        [self sendSMSAction:nil];
+        [menuShadow dismiss];
+    }];
+    
+    [menu show];
+    
+    
+    
+    ///////////////////////////////////////////////////////////
+#if 0
     CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
     actionSheet.title = @"Share";
     
@@ -341,6 +391,7 @@
     
     // Present
     [actionSheet present];
+#endif
 }
 
 
