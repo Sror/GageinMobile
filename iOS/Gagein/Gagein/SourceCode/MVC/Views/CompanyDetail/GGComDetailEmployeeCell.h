@@ -17,8 +17,17 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblSubTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblThirdLine;
 
+@property (weak, nonatomic) IBOutlet UIImageView *ivMark;
+@property (weak, nonatomic) IBOutlet UIButton *btnAction;
+
+
 +(float)HEIGHT;
 
 -(void)grayoutTitle:(BOOL)aGrayoutTitle;
+
+
+-(void)showMarkDiscolsure;
+-(void)showMarkPlus;
+-(void)showMarkCheck;
 
 @end

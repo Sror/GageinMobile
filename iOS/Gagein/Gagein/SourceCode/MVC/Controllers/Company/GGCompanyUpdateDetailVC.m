@@ -1116,13 +1116,27 @@
             if (cell == nil)
             {
                 cell = [GGComDetailEmployeeCell viewFromNibWithOwner:self];
+                [cell.btnAction addTarget:self action:@selector(followCompanyAction:) forControlEvents:UIControlEventTouchUpInside];
             }
             
             GGCompany *data = _companyUpdateDetail.mentionedCompanies[row];
+            
             cell.lblTitle.text = data.name;
             cell.lblSubTitle.text = data.website;
             cell.lblThirdLine.text = [NSString stringWithFormat:@"%@,%@,%@", data.city, data.state, data.country];
             [cell.ivPhoto setImageWithURL:[NSURL URLWithString:data.logoPath] placeholderImage:GGSharedImagePool.logoDefaultCompany];
+            
+            cell.btnAction.enabled = !data.followed;
+            cell.btnAction.tag = row;
+            
+            if (data.followed)
+            {
+                [cell showMarkCheck];
+            }
+            else
+            {
+                [cell showMarkPlus];
+            }
             
             cell.tag = row;
             
@@ -1162,6 +1176,26 @@
     }
     
     return nil;
+}
+
+-(void)followCompanyAction:(id)sender
+{
+    int index = ((UIView *)sender).tag;
+    GGCompany *data = _companyUpdateDetail.mentionedCompanies[index];
+    [self showLoadingHUD];
+    [GGSharedAPI followCompanyWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            data.followed = YES;
+            [_tvInfo reloadData];
+        }
+        else
+        {
+            [GGAlert alertWithApiParser:parser];
+        }
+    }];
 }
 
 #pragma mark - tableview delegate

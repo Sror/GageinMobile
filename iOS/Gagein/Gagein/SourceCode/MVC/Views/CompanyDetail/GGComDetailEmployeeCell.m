@@ -45,4 +45,25 @@
     return 75.f;
 }
 
+-(void)showMarkDiscolsure
+{
+    [self _showMarkWithImage:[UIImage imageNamed:@"discolsureArrowRight"]];
+}
+
+-(void)showMarkPlus
+{
+    [self _showMarkWithImage:[UIImage imageNamed:@"addGray"]];
+}
+
+-(void)showMarkCheck
+{
+    [self _showMarkWithImage:[UIImage imageNamed:@"checkGray"]];
+}
+
+-(void)_showMarkWithImage:(UIImage *)aImage
+{
+    _ivMark.image = aImage;
+    _ivMark.frame = CGRectMake(_ivMark.frame.origin.x, (_viewContent.frame.size.height - aImage.size.height) / 2, aImage.size.width, aImage.size.height);
+}
+
 @end

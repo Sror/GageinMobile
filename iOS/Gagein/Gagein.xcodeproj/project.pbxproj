@@ -340,6 +340,8 @@
 		EA91549A178E328C0005DB57 /* share_twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA915492178E328C0005DB57 /* share_twitter@2x.png */; };
 		EA916216176792B4000AB2FB /* GGScrollToHideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA916215176792B4000AB2FB /* GGScrollToHideVC.m */; };
 		EA9162631767F6F1000AB2FB /* GGNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9162621767F6EE000AB2FB /* GGNavigationController.m */; };
+		EA91A0E51791F41C002E3594 /* addGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA91A0E31791F41C002E3594 /* addGray@2x.png */; };
+		EA91A0E61791F41C002E3594 /* checkGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA91A0E41791F41C002E3594 /* checkGray@2x.png */; };
 		EA945CBB177EB10C00523A2F /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EA945CB4177EB10C00523A2F /* MMDrawerBarButtonItem.m */; };
 		EA945CBC177EB10C00523A2F /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA945CB6177EB10C00523A2F /* MMDrawerController.m */; };
 		EA945CBD177EB10C00523A2F /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = EA945CB8177EB10C00523A2F /* MMDrawerVisualState.m */; };
@@ -1099,6 +1101,8 @@
 		EA916215176792B4000AB2FB /* GGScrollToHideVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGScrollToHideVC.m; sourceTree = "<group>"; };
 		EA9162611767F6EC000AB2FB /* GGNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGNavigationController.h; sourceTree = "<group>"; };
 		EA9162621767F6EE000AB2FB /* GGNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGNavigationController.m; sourceTree = "<group>"; };
+		EA91A0E31791F41C002E3594 /* addGray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addGray@2x.png"; sourceTree = "<group>"; };
+		EA91A0E41791F41C002E3594 /* checkGray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkGray@2x.png"; sourceTree = "<group>"; };
 		EA945CB3177EB10C00523A2F /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
 		EA945CB4177EB10C00523A2F /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
 		EA945CB5177EB10C00523A2F /* MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerController.h; sourceTree = "<group>"; };
@@ -2570,6 +2574,8 @@
 		EACAE0B117094A3100E7088F /* 2X */ = {
 			isa = PBXGroup;
 			children = (
+				EA91A0E31791F41C002E3594 /* addGray@2x.png */,
+				EA91A0E41791F41C002E3594 /* checkGray@2x.png */,
 				EA656EC3178F2B5600ADC6C4 /* triggerChartTip@2x.png */,
 				EA9D2F5517828075004CA4BC /* logoCompanyDefaultV2@2x.png */,
 				EA9D2F5617828076004CA4BC /* logoNewsDefaultV2@2x.png */,
@@ -3605,6 +3611,8 @@
 				EA915499178E328C0005DB57 /* share_message@2x.png in Resources */,
 				EA91549A178E328C0005DB57 /* share_twitter@2x.png in Resources */,
 				EA656EC4178F2B5600ADC6C4 /* triggerChartTip@2x.png in Resources */,
+				EA91A0E51791F41C002E3594 /* addGray@2x.png in Resources */,
+				EA91A0E61791F41C002E3594 /* checkGray@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
