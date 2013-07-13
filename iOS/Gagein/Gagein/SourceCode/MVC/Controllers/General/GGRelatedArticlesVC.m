@@ -68,7 +68,9 @@
 
 -(float)_updateCellHeightForIndexPath:(NSIndexPath *)indexPath
 {
-    return [self _updateCellForIndexPath:indexPath].frame.size.height;
+    GGCompanyUpdate *data = _articles[indexPath.row];
+    return [GGCompanyUpdateCell heightForUpdate:data];
+    //return [self _updateCellForIndexPath:indexPath].frame.size.height;
 }
 
 -(GGCompanyUpdateCell *)_updateCellForIndexPath:(NSIndexPath *)indexPath

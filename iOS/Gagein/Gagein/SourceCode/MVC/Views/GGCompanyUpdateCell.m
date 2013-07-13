@@ -24,45 +24,80 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+        [self _installSubviews];
     }
     return self;
     
     
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+#warning IMPROVEMENT: for now, use digit value, need optimise in future
+#define TITLE_Y         (23)
+#define TITLE_WIDTH     (230)
+#define CELL_HEIGHT     (130)
+#define OUTER_MARGIN_Y  (3)
+-(void)_installSubviews
 {
-    [super setSelected:selected animated:animated];
-}
-
--(void)awakeFromNib
-{
-    self.ivCellBg.image = GGSharedImagePool.stretchShadowBgWite;
-    _titleLbl.text = @"";
-//    CGRect titleRc = _titleLbl.frame;
-//    UILabel * newTitleLbl = [GGCompanyUpdateCell labelForUpdateCellWithFrame:titleRc];
-//    _titleLbl = [GGUtils replaceView:_titleLbl inPlaceWithNewView:newTitleLbl];
+    //
+    _viewCellBg = [[UIView alloc] initWithFrame:CGRectMake(5, OUTER_MARGIN_Y, 310, CELL_HEIGHT - OUTER_MARGIN_Y * 2)];
+    _viewCellBg.autoresizingMask = UIViewAutoresizingFixLeftTop;
+    [self.contentView addSubview:_viewCellBg];
     
-    _intervalLbl.text = @"";
+    // cell bg image
+    _ivCellBg = [[UIImageView alloc] initWithFrame:_viewCellBg.bounds];
+    _ivCellBg.autoresizingMask = UIViewAutoresizingFixLeftTop;
+    _ivCellBg.image = GGSharedImagePool.stretchShadowBgWite;
+    [_viewCellBg addSubview:_ivCellBg];
     
-    [_logoIV applyEffectShadowAndBorder];
+    // interval label
+    _intervalLbl = [[UILabel alloc] initWithFrame:CGRectMake(246, 5, 55, 20)];
+    _intervalLbl.font = [UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE_LIGHT size:11.f];
+    _intervalLbl.textColor = GGSharedColor.grayTopText;
+    _intervalLbl.backgroundColor = GGSharedColor.clear;
+    _intervalLbl.textAlignment = NSTextAlignmentRight;
+    [_viewCellBg addSubview:_intervalLbl];
     
+    // source label
+    _sourceLbl = [[UILabel alloc] initWithFrame:CGRectMake(70, 5, 180, 20)];
+    _sourceLbl.font = [UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE_LIGHT size:11.f];
+    _sourceLbl.textColor = GGSharedColor.grayTopText;
+    _sourceLbl.backgroundColor = GGSharedColor.clear;
+    //_sourceLbl.lineBreakMode = UILineBreakModeTailTruncation;
+    [_viewCellBg addSubview:_sourceLbl];
+    
+    // title label
+    _titleLbl = [[UILabel alloc] initWithFrame:CGRectMake(70, TITLE_Y, TITLE_WIDTH, 49)];
+    _titleLbl.font = [UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE_MEDIUM size:14.f];
+    _titleLbl.textColor = GGSharedColor.grayTopText;
+    _titleLbl.backgroundColor = GGSharedColor.clear;
+    _titleLbl.lineBreakMode = UILineBreakModeWordWrap;
     _titleLbl.numberOfLines = 3;
-    _descriptionLbl.numberOfLines = 2;
+    [_viewCellBg addSubview:_titleLbl];
     
-    _sourceLbl.textColor = _intervalLbl.textColor = GGSharedColor.grayTopText;
+    // 8 11 65 65
+    _logoIV = [[UIImageView alloc] initWithFrame:CGRectMake(8, 11, 65, 65)];
+    _logoIV.autoresizingMask = UIViewAutoresizingFixLeftTop;
+    _logoIV.contentMode = UIViewContentModeScaleAspectFill;
+    _logoIV.clipsToBounds = YES;
+    [_logoIV applyEffectShadowAndBorder];
+    [_viewCellBg addSubview:_logoIV];
 }
 
-//+(UILabel*)labelForUpdateCellWithFrame:(CGRect)aRect
-//{
-//    UILabel *label = [[UILabel alloc] initWithFrame:aRect];
-//    label.backgroundColor = GGSharedColor.clear;
-//    label.font = [UIFont fontWithName:GG_FONT_NAME_OPTIMA_BOLD size:15.f];
-//    label.textColor = GGSharedColor.black;
-//    
-//    return label;
-//}
+//calculatedSize
++(float)heightForUpdate:(GGCompanyUpdate *)anUpdate
+{
+    if (anUpdate)
+    {
+        CGSize constraint = CGSizeMake(TITLE_WIDTH, FLT_MAX);
+        
+        float titleMaxY = [anUpdate.headlineTruncated sizeWithFont:[UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE_MEDIUM size:14.f] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap].height + TITLE_Y;
+        titleMaxY = MAX(MINIMAL_HEIGHT, titleMaxY);
+        
+        return titleMaxY + 5 + OUTER_MARGIN_Y * 2;
+    }
+    
+    return MINIMAL_HEIGHT;
+}
 
 -(void)setHasBeenRead:(BOOL)hasRead
 {
@@ -112,20 +147,11 @@
 
 -(float)adjustLayout
 {
-    //_descriptionLbl.backgroundColor = GGSharedColor.darkGray;
-    //NSString * text = _descriptionLbl.text;
-    self.contentView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
-    //self.clipsToBounds = YES;
+    self.contentView.autoresizingMask = UIViewAutoresizingFixLeftTop;
     
     _titleLbl.text = [_titleLbl.text stringLimitedToLength:90];
     
     [_titleLbl sizeToFitFixWidth];
-    
-//    CGRect theRect = _titleLbl.frame;
-//    float titleMaxY = CGRectGetMaxY(theRect);
-//    theRect = _descriptionLbl.frame;
-//    theRect.origin.y = titleMaxY;
-//    _descriptionLbl.frame = theRect;
 
     
     CGRect theRect = self.viewCellBg.frame;
@@ -133,9 +159,7 @@
     height = height > MINIMAL_HEIGHT ? height : MINIMAL_HEIGHT;
     theRect.size.height = height;
     self.viewCellBg.frame = theRect;
-    //self.viewCellBg.backgroundColor = GGSharedColor.random;
-    
-    //self.ivCellBg.hidden = YES;
+
     self.ivCellBg.frame = _viewCellBg.bounds;
     
     theRect = self.contentView.frame;
@@ -146,8 +170,6 @@
     theRect = self.frame;
     theRect.size.height = CGRectGetMaxY(self.contentView.frame);
     self.frame = theRect;
-    
-    //self.contentView.backgroundColor = GGSharedColor.random;
     
     return theRect.size.height;
 }

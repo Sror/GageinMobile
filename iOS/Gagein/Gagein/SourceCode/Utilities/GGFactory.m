@@ -26,12 +26,12 @@
     GGCompanyUpdateCell * cell = aDequeuedCell;
     if (cell == nil)
     {
-        cell = [GGNib sharedInstance].companyUpdateCell;//[GGCompanyUpdateCell viewFromNibWithOwner:self];
+        cell = [[GGCompanyUpdateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GGCompanyUpdateCell"]; //[GGCompanyUpdateCell viewFromNibWithOwner:self]; // [GGNib sharedInstance].companyUpdateCell;
         
-        if (anAction && anAction.action)
-        {
-            //[cell.logoBtn addTarget:anAction.target action:anAction.action forControlEvents:UIControlEventTouchUpInside];
-        }
+//        if (anAction && anAction.action)
+//        {
+//            [cell.logoBtn addTarget:anAction.target action:anAction.action forControlEvents:UIControlEventTouchUpInside];
+//        }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
@@ -46,7 +46,7 @@
         cell.titleLbl.text = [aData headlineTruncated];
         cell.sourceLbl.text = aData.fromSource;
         
-        cell.descriptionLbl.text = aData.content;
+        //cell.descriptionLbl.text = aData.content;
         
         [cell.logoIV setImageWithURL:[NSURL URLWithString:aData.newsPicURL/*aData.company.logoPath*/] placeholderImage:GGSharedImagePool.logoDefaultNews];
         

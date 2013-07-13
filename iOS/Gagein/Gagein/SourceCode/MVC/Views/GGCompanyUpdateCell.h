@@ -10,15 +10,14 @@
 #import "GGAutosizingLabel.h"
 
 @interface GGCompanyUpdateCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *logoIV;
-@property (weak, nonatomic) IBOutlet UILabel *sourceLbl;
-@property (weak, nonatomic) IBOutlet UILabel *intervalLbl;
-@property (weak, nonatomic) IBOutlet UILabel *titleLbl;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLbl;
-//@property (weak, nonatomic) IBOutlet UIButton *logoBtn;
+@property (strong, nonatomic) IBOutlet UIImageView *logoIV;
+@property (strong, nonatomic) IBOutlet UILabel *sourceLbl;
+@property (strong, nonatomic) IBOutlet UILabel *intervalLbl;
+@property (strong, nonatomic) IBOutlet UILabel *titleLbl;
+//@property (strong, nonatomic) IBOutlet UILabel *descriptionLbl;
 
-@property (weak, nonatomic) IBOutlet UIView *viewCellBg;
-@property (weak, nonatomic) IBOutlet UIImageView *ivCellBg;
+@property (strong, nonatomic) IBOutlet UIView *viewCellBg;
+@property (strong, nonatomic) IBOutlet UIImageView *ivCellBg;
 
 @property (assign)  long long               ID;
 @property (assign, nonatomic)  BOOL         hasBeenRead;
@@ -27,4 +26,7 @@
 -(void)showPicture:(BOOL)aShow;
 
 -(float)adjustLayout;
+
++(float)heightForUpdate:(GGCompanyUpdate *)anUpdate;
+
 @end

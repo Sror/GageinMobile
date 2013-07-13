@@ -194,14 +194,25 @@ UIEdgeInsets scrollViewOriginalContentInsets;
 - (void)scrollViewDidScroll:(CGPoint)contentOffset {
     if(self.state != SVInfiniteScrollingStateLoading && self.enabled) {
         CGFloat scrollViewContentHeight = self.scrollView.contentSize.height;
-        CGFloat scrollOffsetThreshold = scrollViewContentHeight-self.scrollView.bounds.size.height;
+        CGFloat scrollOffsetThreshold = (scrollViewContentHeight) - self.scrollView.bounds.size.height;
+        
+        //DLog(@"%f > %f, state:%d, dragging:%d", contentOffset.y, scrollOffsetThreshold, self.state, self.scrollView.isDragging);
         
         if(!self.scrollView.isDragging && self.state == SVInfiniteScrollingStateTriggered)
+        {
+            //DLog(@"scroll loading");
             self.state = SVInfiniteScrollingStateLoading;
+        }
         else if(contentOffset.y > scrollOffsetThreshold && self.state == SVInfiniteScrollingStateStopped && self.scrollView.isDragging)
+        {
+            //DLog(@"scroll triggered");
             self.state = SVInfiniteScrollingStateTriggered;
+        }
         else if(contentOffset.y < scrollOffsetThreshold  && self.state != SVInfiniteScrollingStateStopped)
+        {
+            //DLog(@"scroll stopped");
             self.state = SVInfiniteScrollingStateStopped;
+        }
     }
 }
 

@@ -120,6 +120,8 @@ typedef enum {
 
 #define UIViewAutoresizingFlexibleBorder (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin)
 
+#define UIViewAutoresizingFixLeftTop (UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin)
+
 
 /////////////////////// functions ////////////////////////////////////////
 
