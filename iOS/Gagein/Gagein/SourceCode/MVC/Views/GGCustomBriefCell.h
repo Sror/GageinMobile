@@ -20,6 +20,8 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblAddress;
+@property (weak, nonatomic) IBOutlet UIButton *btnAction;
+@property (weak, nonatomic) IBOutlet UIImageView *ivMark;
 
 @property (assign, nonatomic) EGGCustomBriefCellType    type;
 
@@ -28,5 +30,9 @@ typedef enum {
 -(void)loadLogoWithImageUrl:(NSString *)aImageUrl placeholder:(UIImage *)aPlaceHolder;
 
 -(void)grayoutTitle:(BOOL)aGrayout;
+
+-(void)showMarkDiscolsure;
+-(void)showMarkPlus;
+-(void)showMarkCheck;
 
 @end

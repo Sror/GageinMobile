@@ -29,15 +29,103 @@
 #define TAG_ALERT_SALESFORCE_OAUTH_FAILED   1000
 
 @interface GGCellData : NSObject
-@property (assign) long long    ID;
-@property (copy) NSString       *name;
-@property (copy) NSString       *title;
-@property (copy) NSString       *address;
-@property (copy) NSString       *picUrl;
-@property (assign) EGGCustomBriefCellType   type;
+@property (assign, nonatomic) long long    ID;
+@property (copy, nonatomic) NSString       *name;
+@property (copy, nonatomic) NSString       *title;
+@property (copy, nonatomic) NSString       *address;
+@property (copy, nonatomic) NSString       *picUrl;
+@property (assign, nonatomic)  BOOL        followed;
+
+@property (weak, nonatomic)    id          referedObject;
+
+@property (assign, nonatomic) EGGCustomBriefCellType   type;
 @end
 
 @implementation GGCellData
+-(long long)ID
+{
+    if (_type == kGGCustomBriefCellCompany)
+    {
+        GGCompanyDigest *com = _referedObject;
+        return com.ID;
+    }
+    
+    GGHappeningPerson *person = _referedObject;
+    return person.ID;
+}
+
+-(NSString *)name
+{
+    if (_type == kGGCustomBriefCellCompany)
+    {
+        GGCompanyDigest *com = _referedObject;
+        return com.name;
+    }
+    
+    GGHappeningPerson *person = _referedObject;
+    return person.name;
+}
+
+-(NSString *)title
+{
+    if (_type == kGGCustomBriefCellCompany)
+    {
+        GGCompanyDigest *com = _referedObject;
+        return com.website;
+    }
+    
+    GGHappeningPerson *person = _referedObject;
+    return person.orgTitle;
+}
+
+-(NSString *)address
+{
+    if (_type == kGGCustomBriefCellCompany)
+    {
+        GGCompanyDigest *com = _referedObject;
+        return [com addressCityStateCountry];
+    }
+    
+    GGHappeningPerson *person = _referedObject;
+    return person.address;
+}
+
+-(NSString *)picUrl
+{
+    if (_type == kGGCustomBriefCellCompany)
+    {
+        GGCompanyDigest *com = _referedObject;
+        return com.logoPath;
+    }
+    
+    GGHappeningPerson *person = _referedObject;
+    return person.photoPath;
+}
+
+-(BOOL)followed
+{
+    if (_type == kGGCustomBriefCellCompany)
+    {
+        GGCompanyDigest *com = _referedObject;
+        return com.followed;
+    }
+    
+    GGHappeningPerson *person = _referedObject;
+    return person.followed;
+}
+
+-(void)setFollowed:(BOOL)followed
+{
+    if (_type == kGGCustomBriefCellCompany)
+    {
+        GGCompanyDigest *com = _referedObject;
+        com.followed = followed;
+    }
+    
+    GGHappeningPerson *person = _referedObject;
+    person.followed = followed;
+}
+
 @end
 
 
@@ -771,7 +859,27 @@
         cell.lblAddress.text = data.address;
         cell.type = data.type;
         
-        data.type == kGGCustomBriefCellPerson ? [cell.ivPhoto applyEffectCircleSilverBorder] : [cell.ivPhoto applyEffectRoundRectSilverBorder];
+        data.followed ? [cell showMarkCheck] : [cell showMarkPlus];
+        
+        [cell.btnAction removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
+        cell.btnAction.tag = row;
+        
+        if (data.type == kGGCustomBriefCellPerson)
+        {
+            [cell.ivPhoto applyEffectCircleSilverBorder];
+            if (!data.followed)
+            {
+                [cell.btnAction addTarget:self action:@selector(followePersonAction:) forControlEvents:UIControlEventTouchUpInside];
+            }
+        }
+        else
+        {
+            [cell.ivPhoto applyEffectRoundRectSilverBorder];
+            if (!data.followed)
+            {
+                [cell.btnAction addTarget:self action:@selector(followeCompanyAction:) forControlEvents:UIControlEventTouchUpInside];
+            }
+        }
         
         [cell loadLogoWithImageUrl:data.picUrl placeholder:(data.type == kGGCustomBriefCellCompany ? GGSharedImagePool.logoDefaultCompany : GGSharedImagePool.logoDefaultPerson)];
         
@@ -780,6 +888,48 @@
     }
     
     return nil;
+}
+
+-(void)followePersonAction:(id)sender
+{
+    int index = ((UIView *)sender).tag;
+    GGCellData *data = _cellDatas[index - 1];
+    
+    [self showLoadingHUD];
+    [GGSharedAPI followPersonWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            data.followed = YES;
+            [_tvDetail reloadData];
+        }
+        else
+        {
+            [GGAlert alertWithApiParser:parser];
+        }
+    }];
+}
+
+-(void)followeCompanyAction:(id)sender
+{
+    int index = ((UIView *)sender).tag;
+    GGCellData *data = _cellDatas[index - 1];
+    
+    [self showLoadingHUD];
+    [GGSharedAPI followCompanyWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            data.followed = YES;
+            [_tvDetail reloadData];
+        }
+        else
+        {
+            [GGAlert alertWithApiParser:parser];
+        }
+    }];
 }
 
 #pragma mark - table view delegate
@@ -834,41 +984,35 @@
             // cell datas
             [_cellDatas removeAllObjects];
             
-            if (_currentDetail.person.ID)
+            GGHappeningPerson *person = _currentDetail.person;
+            if (person.ID)
             {
                 GGCellData *data = [[GGCellData alloc] init];
-                data.ID = _currentDetail.person.ID;
-                data.name = _currentDetail.person.name;
-                data.title = _currentDetail.person.orgTitle;
-                data.address = _currentDetail.person.address;
-                data.picUrl = _currentDetail.person.photoPath;
                 data.type = kGGCustomBriefCellPerson;
                 
-                [_cellDatas addObject:data];
-            }
-            
-            if (_currentDetail.company.ID)
-            {
-                GGCellData *data = [[GGCellData alloc] init];
-                data.ID = _currentDetail.company.ID;
-                data.name = _currentDetail.company.name;
-                data.title = _currentDetail.company.website;
-                data.address = [_currentDetail.company addressCityStateCountry];
-                data.picUrl = _currentDetail.company.logoPath;
-                data.type = kGGCustomBriefCellCompany;
+                data.referedObject = person;
                 
                 [_cellDatas addObject:data];
             }
             
-            if (_currentDetail.oldCompany.ID)
+            GGCompanyDigest *company = _currentDetail.company;
+            if (company.ID)
             {
                 GGCellData *data = [[GGCellData alloc] init];
-                data.ID = _currentDetail.oldCompany.ID;
-                data.name = _currentDetail.oldCompany.name;
-                data.title = _currentDetail.oldCompany.website;
-                data.address = [_currentDetail.oldCompany addressCityStateCountry];
-                data.picUrl = _currentDetail.oldCompany.logoPath;
                 data.type = kGGCustomBriefCellCompany;
+                
+                data.referedObject = company;
+                
+                [_cellDatas addObject:data];
+            }
+            
+            GGCompanyDigest *oldCompany = _currentDetail.oldCompany;
+            if (oldCompany.ID)
+            {
+                GGCellData *data = [[GGCellData alloc] init];
+                data.type = kGGCustomBriefCellCompany;
+                
+                data.referedObject = oldCompany;
                 
                 [_cellDatas addObject:data];
             }

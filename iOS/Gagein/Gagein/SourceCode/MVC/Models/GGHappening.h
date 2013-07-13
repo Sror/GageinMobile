@@ -45,6 +45,7 @@ typedef enum {
 @property (copy) NSString       *oldPhotoPath;          // from oldProfilePic
 @property (strong) NSMutableArray   *socialProfiles;
 @property (copy) NSString           *actionType;
+@property (assign) BOOL             followed;
 
 @end
 

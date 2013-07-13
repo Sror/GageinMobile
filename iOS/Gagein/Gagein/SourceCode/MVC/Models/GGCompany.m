@@ -19,8 +19,9 @@
     [super parseWithData:aData];
     
     self.ID = [[aData objectForKey:@"orgid"] longLongValue];
-    self.name = [aData objectForKey:@"org_name"];
-    self.enabled = [[aData objectForKey:@"enabled"] boolValue];
+    _name = [aData objectForKey:@"org_name"];
+    _enabled = [[aData objectForKey:@"enabled"] boolValue];
+    _followed = [[aData objectForKey:@"followed"] boolValue];
 }
 
 @end
@@ -141,7 +142,6 @@
     self.website = [aData objectForKey:@"org_website"];
     self.logoPath = [aData objectForKey:@"org_logo_path"];
     self.type = [aData objectForKey:@"type"];
-    self.followed = [[aData objectForKey:@"followed"] boolValue];
     
     self.employeeSize = [aData objectForKey:@"employee_size"];
     self.fortuneRank = [aData objectForKey:@"fortune_rank"];
@@ -228,7 +228,7 @@
 
 -(BOOL)isPending
 {
-    return _followed && self.getGrade == kGGComGradeUnknown;
+    return self.followed && self.getGrade == kGGComGradeUnknown;
 }
 
 @end

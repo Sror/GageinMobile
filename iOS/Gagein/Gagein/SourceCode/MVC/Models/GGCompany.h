@@ -15,8 +15,9 @@
 @class GGTicker;
 
 @interface GGCompanyBrief : GGDataModel
-@property (copy)    NSString *name;
-@property (assign)  BOOL    enabled;
+@property (copy)    NSString    *name;
+@property (assign)  BOOL        enabled;
+@property (assign)  BOOL        followed;
 @end
 
 ///////////////////////////////////////////
@@ -69,7 +70,6 @@
 
 @property (copy)    NSString *faxNumber;
 @property (copy)    NSString *fiscalYear;
-@property (assign)  BOOL      followed;
 @property (copy)    NSString *founded;
 @property (copy)    NSString *googleMapUrl;
 @property (copy)    NSString *industries;
