@@ -324,25 +324,29 @@
 {
     if (_detailData.liked)
     {
+        _data.liked = _detailData.liked = NO;
+        [self _updateLikedButton];
+
         [GGSharedAPI unlikeUpdateWithID:_detailData.ID callback:^(id operation, id aResultObject, NSError *anError) {
-            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            if (parser.isOK)
-            {
-                _data.liked = _detailData.liked = NO;
-                [self _updateLikedButton];
-            }
+//            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//            if (parser.isOK)
+//            {
+//                
+//            }
         }];
     }
     else
     {
+        _data.liked = _detailData.liked = YES;
+        [self _updateLikedButton];
+        [GGAlert showCheckMarkHUDWithText:@"Liked" inView:self.viewContent];
+        
         [GGSharedAPI likeUpdateWithID:_detailData.ID callback:^(id operation, id aResultObject, NSError *anError) {
-            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            if (parser.isOK)
-            {
-                _data.liked = _detailData.liked = YES;
-                [self _updateLikedButton];
-                [GGAlert showCheckMarkHUDWithText:@"Liked" inView:self.viewContent];
-            }
+//            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//            if (parser.isOK)
+//            {
+//                
+//            }
         }];
     }
 }
@@ -358,38 +362,48 @@
     
     if (_data.saved)
     {
-        [self showLoadingHUDWithTitle:@"Unsaving"];
+        _data.saved = NO;
+        [self _updateSaveBtnSaved:_data.saved];
+        
+        //[self showLoadingHUDWithTitle:@"Unsaving"];
         [GGSharedAPI unsaveUpdateWithID:_data.ID callback:^(id operation, id aResultObject, NSError *anError) {
-            [self hideLoadingHUD];
+            //[self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {
-                _data.saved = NO;
-                [self _updateSaveBtnSaved:NO];
+                
             }
             else
             {
+                _data.saved = YES;
+                [self _updateSaveBtnSaved:_data.saved];
                 [GGAlert alertWithApiParser:parser];
             }
         }];
     }
     else
     {
-        [self showLoadingHUDWithTitle:@"Saving"];
+        
+        //[GGAlert alert:@"saved!"];
+        
+        [GGAlert showCheckMarkHUDWithText:@"Saved" inView:self];
+        
+        _data.saved = YES;
+        [self _updateSaveBtnSaved:_data.saved];
+        
+        //[self showLoadingHUDWithTitle:@"Saving"];
         [GGSharedAPI saveUpdateWithID:_data.ID callback:^(id operation, id aResultObject, NSError *anError) {
-            [self hideLoadingHUD];
+            //[self hideLoadingHUD];
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {
-                _data.saved = YES;
-                //[GGAlert alert:@"saved!"];
                 
-                [GGAlert showCheckMarkHUDWithText:@"Saved" inView:self];
-                
-                [self _updateSaveBtnSaved:YES];
             }
             else
             {
+                _data.saved = NO;
+                [self _updateSaveBtnSaved:_data.saved];
+                
                 [GGAlert alertWithApiParser:parser];
             }
         }];
