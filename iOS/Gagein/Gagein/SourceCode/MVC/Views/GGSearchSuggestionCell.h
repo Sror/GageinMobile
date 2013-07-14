@@ -12,6 +12,13 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ivLogo;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblWebsite;
+@property (weak, nonatomic) IBOutlet UIImageView *ivMark;
+@property (weak, nonatomic) IBOutlet UIButton *btnAction;
 
 +(float)HEIGHT;
+
+-(void)showMarkDiscolsure;
+-(void)showMarkPlus;
+-(void)showMarkCheck;
+
 @end

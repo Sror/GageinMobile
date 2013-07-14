@@ -14,6 +14,7 @@
 #import "GGConfigLabel.h"
 #import "GGGroupedCell.h"
 #import "GGLinkedInOAuthVC.h"
+#import "GGCompanyDetailVC.h"
 
 #define BUTTON_WIDTH_LONG       247.f
 #define BUTTON_WIDTH_SHORT      116.f
@@ -393,14 +394,28 @@
         GGSearchSuggestionCell *cell = [tableView dequeueReusableCellWithIdentifier:searchResultCellId];
         if (cell == nil) {
             cell = [GGSearchSuggestionCell viewFromNibWithOwner:self];
+            [cell.btnAction addTarget:self action:@selector(followCompanyAction:) forControlEvents:UIControlEventTouchUpInside];
         }
         
         GGCompany *companyData = _searchedCompanies[row];
+        
         [cell.ivLogo setImageWithURL:[NSURL URLWithString:companyData.logoPath] placeholderImage:nil];
         cell.lblName.text = companyData.name;
         cell.lblName.textColor = [GGSharedColor colorForCompanyGrade:companyData.getGrade];
         cell.lblWebsite.text = companyData.website;
         cell.tag = indexPath.row;
+        
+        cell.btnAction.enabled = !companyData.followed;
+        cell.btnAction.tag = row;
+        
+        if (companyData.followed)
+        {
+            [cell showMarkCheck];
+        }
+        else
+        {
+            [cell showMarkPlus];
+        }
         
         return cell;
     }
@@ -429,6 +444,60 @@
     return cell;
 }
 
+-(void)followCompanyAction:(id)sender
+{
+    int index = ((UIView *)sender).tag;
+    //GGCompany *data = _searchedCompanies[index];
+    
+    GGCompany *company = _searchedCompanies[index];
+    
+    
+    if ([self _isCompanyFollowed:company.ID])
+    {
+        [GGAlert alertWithMessage:GGString(@"api_message_already_following_the_company")];
+    }
+    else if (company.getGrade == kGGComGradeBad)
+    {
+        //#warning MESSAGE NEED TO BE REFINED
+        [GGAlert alertWithMessage:GGString(@"Not available to follow.")];
+    }
+    else
+    {
+        id op = [GGSharedAPI followCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [self postNotification:GG_NOTIFY_COMPANY_FOLLOW_CHANGED];
+                
+                int indexInFollowedList = [self _indexInFollowedListWithCompanyID:company.ID];
+                if (indexInFollowedList != NSNotFound)
+                {
+                    GGCompany *followedCompany = _followedCompanies[indexInFollowedList];
+                    followedCompany.followed = YES;
+                    
+                    [self.tableViewCompanies reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexInFollowedList inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                }
+                else
+                {
+                    company.followed = YES;
+                    [_followedCompanies insertObject:company atIndex:0];
+                    
+                    [self.tableViewCompanies insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                }
+                
+                
+                //[self searchBarCancelButtonClicked:self.searchBar];
+                [self searchBarCanceled:_viewSearchBar];
+            }
+            else
+            {
+                [GGAlert alertWithApiParser:parser];
+            }
+        }];
+        
+        [self registerOperation:op];
+    }
+}
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -476,7 +545,7 @@
 #pragma mark - table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //int row = indexPath.row;
+    int row = indexPath.row;
     int section = indexPath.section;
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -535,54 +604,17 @@
     }
     else if (tableView == self.tableViewSearchResult)
     {
-        GGCompany *company = _searchedCompanies[indexPath.row];
-
+        [_viewSearchBar endEditing:YES];
+        GGCompany *company = _searchedCompanies[row];
         
-        if ([self _isCompanyFollowed:company.ID])
-        {
-            [GGAlert alertWithMessage:GGString(@"api_message_already_following_the_company")];
-        }
-        else if (company.getGrade == kGGComGradeBad)
-        {
-//#warning MESSAGE NEED TO BE REFINED
-            [GGAlert alertWithMessage:GGString(@"Not available to follow.")];
-        }
-        else
-        {
-            id op = [GGSharedAPI followCompanyWithID:company.ID callback:^(id operation, id aResultObject, NSError *anError) {
-                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-                if (parser.isOK)
-                {
-                    [self postNotification:GG_NOTIFY_COMPANY_FOLLOW_CHANGED];
-                    
-                    int indexInFollowedList = [self _indexInFollowedListWithCompanyID:company.ID];
-                    if (indexInFollowedList != NSNotFound)
-                    {
-                        GGCompany *followedCompany = _followedCompanies[indexInFollowedList];
-                        followedCompany.followed = YES;
-                        
-                        [self.tableViewCompanies reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexInFollowedList inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-                    }
-                    else
-                    {
-                        company.followed = YES;
-                        [_followedCompanies insertObject:company atIndex:0];
-                        
-                        [self.tableViewCompanies insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-                    }
-                    
-                    
-                    //[self searchBarCancelButtonClicked:self.searchBar];
-                    [self searchBarCanceled:_viewSearchBar];
-                }
-                else
-                {
-                    [GGAlert alertWithApiParser:parser];
-                }
-            }];
-            
-            [self registerOperation:op];
-        }
+        GGCompanyDetailVC   *vc = [[GGCompanyDetailVC alloc] init];
+        vc.companyID = company.ID;
+        vc.isPresented = YES;
+        
+        GGNavigationController *nc = [[GGNavigationController alloc] initWithRootViewController:vc];
+        nc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        
+        [self presentViewController:nc animated:YES completion:nil];
     }
 }
 
