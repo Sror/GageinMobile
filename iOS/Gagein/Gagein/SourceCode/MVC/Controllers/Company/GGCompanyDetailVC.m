@@ -125,11 +125,18 @@ typedef enum
     _tvDetail.hidden = YES;
 }
 
-//-(void)viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-//    [self pushBackButtonFront];
-//}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (_isPresented)
+    {
+        [self showBackButton];
+//        CGPoint offset = CGPointMake(0, 3);
+//        UIBarButtonItem *doneBtn = [GGUtils barButtonWithImageName:@"Done" offset:offset action:[GGTagetActionPair pairWithTaget:self action:@selector(naviBackAction:)]];
+//        self.navigationItem.leftBarButtonItem = doneBtn;
+    }
+}
 
 - (void)viewDidUnload {
     [self setIvLogo:nil];

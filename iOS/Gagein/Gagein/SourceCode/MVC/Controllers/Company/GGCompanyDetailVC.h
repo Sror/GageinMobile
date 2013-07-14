@@ -10,5 +10,6 @@
 
 @interface GGCompanyDetailVC : GGBaseViewController
 <UIActionSheetDelegate, UITableViewDataSource, UITableViewDelegate>
-@property (assign) long long companyID;
+@property (assign) long long    companyID;
+@property (assign) BOOL         isPresented;
 @end
