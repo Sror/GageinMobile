@@ -304,14 +304,28 @@
         GGSearchSuggestionCell *cell = [tableView dequeueReusableCellWithIdentifier:searchResultCellId];
         if (cell == nil) {
             cell = [GGSearchSuggestionCell viewFromNibWithOwner:self];
+            [cell.btnAction addTarget:self action:@selector(followPersonAction:) forControlEvents:UIControlEventTouchUpInside];
         }
         
         GGPerson *data = _searchedPeople[indexPath.row];
+        
         [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.photoPath] placeholderImage:GGSharedImagePool.placeholder];
         [cell.ivLogo applyEffectCircleSilverBorder];
         cell.lblName.text = data.name;
         cell.lblWebsite.text = data.orgTitle;
         cell.tag = indexPath.row;
+        
+        cell.btnAction.enabled = !data.followed;
+        cell.btnAction.tag = row;
+        
+        if (data.followed)
+        {
+            [cell showMarkCheck];
+        }
+        else
+        {
+            [cell showMarkPlus];
+        }
         
         return cell;
     }
@@ -334,6 +348,34 @@
     [cell showSubTitle:NO];
     
     return cell;
+}
+
+-(void)followPersonAction:(id)sender
+{
+//#warning WORKING...
+    int index = ((UIView *)sender).tag;
+    
+    GGPerson *data = _searchedPeople[index];
+    
+    [_searchBar endEditing:YES];
+    [self showLoadingHUD];
+    [GGSharedAPI followPersonWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+        [self hideLoadingHUD];
+        
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
+            
+            data.followed = YES;
+            [_tvSearchResult reloadData];
+        }
+        else
+        {
+            [GGAlert alertWithApiParser:parser];
+        }
+        
+    }];
 }
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
