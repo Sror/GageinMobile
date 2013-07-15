@@ -86,6 +86,7 @@
 - (void)viewDidLoad
 {
     self.navigationItem.hidesBackButton = YES;
+    [self observeNotification:GG_NOTIFY_COMPANY_FOLLOW_CHANGED];
     
     [super viewDidLoad];
     self.naviTitle = @"Follow Companies";
@@ -324,6 +325,10 @@
         [self registerOperation:op];
         
     }
+//    else if ([notiName isEqualToString:GG_NOTIFY_COMPANY_FOLLOW_CHANGED])
+//    {
+//        [self _callGetAllFollowedCompanies];
+//    }
 }
 
 #pragma mark - actions
@@ -468,6 +473,8 @@
             if (parser.isOK)
             {
                 [self postNotification:GG_NOTIFY_COMPANY_FOLLOW_CHANGED];
+
+// manual or notify, it's a problem. -- D.D.
                 
                 int indexInFollowedList = [self _indexInFollowedListWithCompanyID:company.ID];
                 if (indexInFollowedList != NSNotFound)
