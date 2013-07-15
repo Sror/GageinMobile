@@ -1188,6 +1188,8 @@
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
+            [self postNotification:GG_NOTIFY_COMPANY_FOLLOW_CHANGED];
+            
             data.followed = YES;
             [_tvInfo reloadData];
         }

@@ -73,10 +73,13 @@ typedef enum {
     , kGGMsgCodeCompanyWebConnectFailed = 30004           // N/A FOR IOS
     , kGGMsgCodeCompanyCantFollowGradeB = 30007
     , kGGMsgCodeCompanyFollowedGradC = 30008
+    , kGGMsgCodeCompanyGradeBNoUpdate = 30009           // not_updates_for_the_grade_b_company
+    , kGGMsgCodeCompanyGradeCNoUpdate = 30010           // not_updates_for_the_grade_c_company
     
     // people
-    , kGGMsgCodeMemberProfileLoadError = 31001          // member's profile cant be found in database
-    , kGGMsgCodePeopleNotFound                          // people not found in database
+    , kGGMsgCodeMemberProfileLoadError  = 31001          // member's profile cant be found in database
+    , kGGMsgCodePeopleNotFound          = 31002          // people not found in database
+    , kGGMsgCodePeopleNotFollowed       = 31003          // not_follow_the_contact
     
     // updates
     , kGGMsgCodeNoUpdateForLessFollowedCompanies = 32001   // Empty Page Message No.2

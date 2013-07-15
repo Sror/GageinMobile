@@ -902,6 +902,7 @@
         if (parser.isOK)
         {
             data.followed = YES;
+            [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
             [_tvDetail reloadData];
         }
         else
@@ -923,6 +924,7 @@
         if (parser.isOK)
         {
             data.followed = YES;
+            [self postNotification:GG_NOTIFY_COMPANY_FOLLOW_CHANGED];
             [_tvDetail reloadData];
         }
         else
