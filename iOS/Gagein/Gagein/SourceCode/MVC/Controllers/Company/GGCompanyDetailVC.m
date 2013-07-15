@@ -117,10 +117,7 @@ typedef enum
     
     //
     [self _callApiGetOverView];
-    [self _callApiGetUpdates];
-    [self _callApiGetHappenings];
-    [self _callApiGetPeople];
-    [self _callApiGetSimilarCompanies];
+    
     
     _tvDetail.hidden = YES;
 }
@@ -618,7 +615,16 @@ typedef enum
             _companyOverview = [parser parseGetCompanyOverview];
             [self _updateUiOverview];
             _tvDetail.hidden = NO;
+            
+            if (_companyOverview.getGrade == kGGComGradeA)
+            {
+                [self _callApiGetUpdates];
+                [self _callApiGetHappenings];
+            }
         }
+        
+        [self _callApiGetPeople];
+        [self _callApiGetSimilarCompanies];
     }];
     
     [self registerOperation:op];
