@@ -69,9 +69,9 @@ typedef enum
 -(AFHTTPRequestOperation *)getCompanySuggestionWithKeyword:(NSString *)aKeyword callback:(GGApiBlock)aCallback;
 
 //SO01:Search CompaniesBack to top
-//-(AFHTTPRequestOperation *)searchCompaniesWithKeyword:(NSString *)aKeyword
-//                             page:(int)aPage
-//                         callback:(GGApiBlock)aCallback;
+-(AFHTTPRequestOperation *)searchCompaniesWithKeyword:(NSString *)aKeyword
+                             page:(int)aPage
+                         callback:(GGApiBlock)aCallback;
 
 //MO03:Follow a CompanyBack to top
 -(AFHTTPRequestOperation *)followCompanyWithID:(long long)aCompanyID callback:(GGApiBlock)aCallback;

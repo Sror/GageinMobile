@@ -49,6 +49,9 @@
     NSTimer             *_searchTimer;
     
     NSMutableArray      *_searchedCompanies;
+    BOOL                _hasMoreToSearch;
+    
+    NSMutableArray      *_autoCompleteCompanies;
     NSMutableArray      *_followedCompanies;
     NSMutableArray      *_suggestedCompanies;
     
@@ -63,6 +66,10 @@
     NSUInteger          _pageNumberSuggestedCompanies;
     
     BOOL                _hasGotSuggestedCompanies;
+    
+    NSUInteger          _pageNumberSearch;
+    BOOL                _isSearching;
+    BOOL                _isInAutoCompleteMode;
 }
 
 
@@ -76,10 +83,13 @@
         _searchedCompanies = [NSMutableArray array];
         _followedCompanies = [NSMutableArray array];
         _suggestedCompanies = [NSMutableArray array];
+        _autoCompleteCompanies = [NSMutableArray array];
         //_snTypes = [NSMutableArray array];
         
         _pageNumberFollowedCompanies = 1;
         _pageNumberSuggestedCompanies = 1;
+        
+        [self _resetSearch];
     }
     
     return self;
@@ -374,9 +384,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.tableViewSearchResult) {
-        self.tableViewSearchResult.hidden = (_searchedCompanies.count <= 0);
-        return _searchedCompanies.count;
+    if (tableView == self.tableViewSearchResult)
+    {
+        NSArray *companies = _isInAutoCompleteMode ? _autoCompleteCompanies : _searchedCompanies;
+        
+        self.tableViewSearchResult.hidden = (companies.count <= 0);
+        return companies.count;
     }
     
     if (section == 0)
@@ -404,7 +417,8 @@
             [cell.btnAction addTarget:self action:@selector(followCompanyAction:) forControlEvents:UIControlEventTouchUpInside];
         }
         
-        GGCompany *companyData = _searchedCompanies[row];
+        NSArray *companies = _isInAutoCompleteMode ? _autoCompleteCompanies : _searchedCompanies;
+        GGCompany *companyData = companies[row];
         
         [cell.ivLogo setImageWithURL:[NSURL URLWithString:companyData.logoPath] placeholderImage:nil];
         cell.lblName.text = companyData.name;
@@ -633,6 +647,12 @@
     if (scrollView == _tableViewSearchResult)
     {
         [_viewSearchBar endEditing:YES];
+        
+        if (!_isInAutoCompleteMode && _hasMoreToSearch && scrollView.reachBottom)
+        {
+            _pageNumberSearch++;
+            [self _callSearchCompany];
+        }
     }
 }
 
@@ -672,6 +692,7 @@
 
 - (BOOL)searchBar:(GGBaseSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
+    _isInAutoCompleteMode = YES;
     
     if (range.location <= 0 && text.length <= 0)
     {
@@ -703,8 +724,8 @@
 
 - (void)searchBarCanceled:(GGBaseSearchBar *)searchBar
 {
-    [_viewSearchBar.tfSearch resignFirstResponder];
-    //[_viewSearchBar endEditing:YES];
+    //[_viewSearchBar.tfSearch resignFirstResponder];
+    [_viewSearchBar endEditing:YES];
     self.viewSearchBg.hidden = YES;
     
     if (!ISIPADDEVICE)
@@ -725,6 +746,9 @@
     // search and show result
     [_searchTimer invalidate];
     _searchTimer = nil;
+    
+    _isInAutoCompleteMode = NO;
+    [self _resetSearch];
     [self _callSearchCompany];
     [_viewSearchBar endEditing:YES];
     
@@ -750,7 +774,7 @@
             if (parser.isOK)
             {
                 GGDataPage *page = [parser parseSearchCompany];
-                _searchedCompanies = page.items;
+                _autoCompleteCompanies = [NSMutableArray arrayWithArray:page.items];
                 
                 [self.tableViewSearchResult reloadData];
             }
@@ -764,16 +788,25 @@
     }
 }
 
-
+-(void)_resetSearch
+{
+    [_searchedCompanies removeAllObjects];
+    _pageNumberSearch = 1;
+    _hasMoreToSearch = YES;
+}
 
 -(void)_callSearchCompany
 {
+    if (_isSearching) return;
+    
     NSString *keyword = [self _searchText];
     if (keyword.length)
     {
         //[self showLoadingHUDWithOffsetY:LOADING_OFFSET_Y];
         [self showLoadingHUD];
-        id op = [GGSharedAPI getCompanySuggestionWithKeyword:keyword callback:^(id operation, id aResultObject, NSError *anError) {
+        
+        _isSearching = YES;
+        id op = [GGSharedAPI searchCompaniesWithKeyword:keyword page:_pageNumberSearch callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
@@ -781,7 +814,8 @@
             if (parser.isOK)
             {
                 GGDataPage *page = [parser parseSearchCompany];
-                _searchedCompanies = page.items;
+                _hasMoreToSearch = page.hasMore;
+                [_searchedCompanies addObjectsFromArray:page.items];
                 if (_searchedCompanies.count <= 0) {
                     [GGAlert showToast:@"No results." inView:self.view];
                 }
@@ -792,6 +826,8 @@
             {
                 [GGAlert alertWithApiParser:parser];
             }
+            
+            _isSearching = NO;
             
         }];
         

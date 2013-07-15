@@ -36,4 +36,9 @@
     self.scrollsToTop = YES;
 }
 
+-(BOOL)reachBottom
+{
+    return self.contentOffset.y + self.frame.size.height >= self.contentSize.height;
+}
+
 @end

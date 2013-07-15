@@ -36,7 +36,9 @@
         [self setMessageCode:anApiParser];
         
         [_btnAction removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
-        switch (anApiParser.messageCode)
+        
+        long long code = anApiParser.messageCode;
+        switch (code)
         {
             case kGGMsgCodeNoUpdateForLessFollowedCompanies:
             {
@@ -59,6 +61,12 @@
             case kGGMsgCodeNoEventForTheAllSelectedFunctionals:
             {
                 [_btnAction addTarget:aVc action:@selector(presentPageSelectFuncArea) forControlEvents:UIControlEventTouchUpInside];
+            }
+                break;
+                
+            case kGGMsgCodeNoUpdateForTheCompany:
+            {
+                
             }
                 break;
                 
@@ -101,6 +109,10 @@
         case kGGMsgCodeNoUpdateForTheCompany:
         {
             _lblSimpleMessage.text = GGString(@"In the last 7 days, there were no triggers found for this company.");
+//            _viewSimple.hidden = YES;
+//            _lblTitle.text = nil;
+//            _lblMessage.text = GGString(@"In the last 7 days, there were no triggers found for this company.");
+//            [_btnAction setTitle:GGString(@"Check out profile") forState:UIControlStateNormal];
         }
             break;
             

@@ -83,12 +83,12 @@ typedef enum {
     
     // updates
     , kGGMsgCodeNoUpdateForLessFollowedCompanies = 32001   // Empty Page Message No.2
-    , kGGMsgCodeNoUpdateForMoreFollowedCompanies           // Empty Page Message No.3
-    , kGGMsgCodeNoUpdateForAllSalesTriggers                // Empty Page Message No.1
-    , kGGMsgCodeNoUpdateForTheCompany                      // Empty Page Message No.5 & No.7
-    , kGGMsgCodeNoUpdateTheSaleTrigger                      // Empty Page Message No.??? -- no update for a specific agent
-    , kGGMsgCodeNoUpdateTheUnfollowedCompany                // Empty Page Message No.8
-    , kGGMsgCodeNoUpdateTheUnavailableCompany               // Empty Page Message No.9
+    , kGGMsgCodeNoUpdateForMoreFollowedCompanies = 32002          // Empty Page Message No.3
+    , kGGMsgCodeNoUpdateForAllSalesTriggers      = 32003          // Empty Page Message No.1
+    , kGGMsgCodeNoUpdateForTheCompany            = 32004          // Empty Page Message No.5 & No.7
+    , kGGMsgCodeNoUpdateTheSaleTrigger           = 32005           // Empty Page Message No.??? -- no update for a specific agent
+    , kGGMsgCodeNoUpdateTheUnfollowedCompany     = 32006           // Empty Page Message No.8
+    , kGGMsgCodeNoUpdateTheUnavailableCompany    = 32007           // Empty Page Message No.9
     
     // events
     , kGGMsgCodeNoEventForLessFollowedCompanies = 33001    // Empty Page Message No.4
