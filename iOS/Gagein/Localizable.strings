@@ -29,3 +29,7 @@
 "api_message_grad_c_company_followed" = "This company should be available in %d business days. We will notify you when it is ready.";
 
 "Not available to follow." = "Not available to follow.";
+
+"not_updates_for_the_grade_b_company" = "Not available.";
+"not_updates_for_the_grade_c_company" = "Available in 5 business days. We will notify you when it is ready.";
+"not_follow_the_contact" = "You are not following this person.";

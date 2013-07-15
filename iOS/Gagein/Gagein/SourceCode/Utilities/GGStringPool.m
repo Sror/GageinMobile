@@ -87,7 +87,7 @@
             return GGString(@"api_message_free_plan_cant_follow_c_company");
         }
             break;
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////company////////////////////////////////////////
         case kGGMsgCodeCompanyAlreadyFollowed:
         {
             return GGString(@"api_message_already_following_the_company");
@@ -124,6 +124,18 @@
         }
             break;
             
+        case kGGMsgCodeCompanyGradeBNoUpdate:
+        {
+            return GGString(@"not_updates_for_the_grade_b_company");
+        }
+            break;
+            
+        case kGGMsgCodeCompanyGradeCNoUpdate:
+        {
+            return GGString(@"not_updates_for_the_grade_c_company");
+        }
+            break;
+            
 ////////////////////////////////////////////////////////////////////////////////////
         case kGGMsgCodeMemberProfileLoadError:
         {
@@ -137,6 +149,13 @@
         }
             break;
             
+        case kGGMsgCodePeopleNotFollowed:
+        {
+            return GGString(@"not_follow_the_contact");
+        }
+            break;
+
+//////////////////////////////////////////////////////////////////////
         case kGGMsgCodeSavedSearchDoesNotExist:
         {
             return @"";
