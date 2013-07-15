@@ -98,6 +98,15 @@ typedef enum
     _tvDetail.hidden = YES;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (_isPresented)
+    {
+        [self showBackButton];
+    }
+}
 
 
 - (void)viewDidUnload {

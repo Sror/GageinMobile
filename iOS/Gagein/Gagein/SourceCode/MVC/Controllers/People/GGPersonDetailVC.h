@@ -10,5 +10,6 @@
 
 @interface GGPersonDetailVC : GGBaseViewController
 <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
-@property (assign) long long personID;
+@property (assign) long long    personID;
+@property (assign) BOOL         isPresented;
 @end

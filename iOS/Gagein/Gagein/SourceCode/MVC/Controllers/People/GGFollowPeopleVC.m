@@ -14,6 +14,8 @@
 #import "GGGroupedCell.h"
 #import "GGConfigLabel.h"
 
+#import "GGPersonDetailVC.h"
+
 @interface GGFollowPeopleVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *svContent;
 @property (weak, nonatomic) IBOutlet UITableView *tvPeople;
@@ -124,6 +126,7 @@
 - (void)viewDidLoad
 {
     self.navigationItem.hidesBackButton = YES;
+    //[self observeNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
     
     [super viewDidLoad];
     self.svContent.backgroundColor = GGSharedColor.silver;
@@ -155,14 +158,6 @@
         _viewSearchBg.frame = dimBgRc;
     }
     
-    //
-//    if (!ISIPADDEVICE)
-//    {
-//        float height = self.view.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT + self.tabBarController.tabBar.frame.size.height;
-//        _tvSearchResultRectShort = [GGUtils setH:height rect:self.tvSearchResult.frame];
-//        self.tvSearchResult.frame = _tvSearchResultRectShort;
-//    }
-    
     self.tvSearchResult.rowHeight = [GGSearchSuggestionCell HEIGHT];
     
     
@@ -186,6 +181,14 @@
     [self _getAllFollowedPeople];
     [self _getAllSuggestedPeople];
 }
+
+//-(void)handleNotification:(NSNotification *)notification
+//{
+//    if ([notification.name isEqualToString:GG_NOTIFY_PERSON_FOLLOW_CHANGED])
+//    {
+//        [self _callGetAllFollowedPeople];
+//    }
+//}
 
 -(void)tapToHideSearch:(UITapGestureRecognizer *)aTapGest
 {
@@ -352,30 +355,78 @@
 
 -(void)followPersonAction:(id)sender
 {
-//#warning WORKING...
     int index = ((UIView *)sender).tag;
+    
+    [_searchBar endEditing:YES];
     
     GGPerson *data = _searchedPeople[index];
     
-    [_searchBar endEditing:YES];
+    
     [self showLoadingHUD];
-    [GGSharedAPI followPersonWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
-        [self hideLoadingHUD];
+    id op = [GGSharedAPI followPersonWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
         
+        [self hideLoadingHUD];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
-            [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
-            
             data.followed = YES;
             [_tvSearchResult reloadData];
+            [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
+            
+            int indexInFollowedList = [self _indexInFollowedListWithPersonID:data.ID];
+            if (indexInFollowedList != NSNotFound)
+            {
+                GGPerson *followedPerson = _followedPeople[indexInFollowedList];
+                followedPerson.followed = YES;
+                
+                //[self.tvPeople reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexInFollowedList inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            else
+            {
+                [_followedPeople insertObject:data atIndex:0];
+                
+//                NSArray *updateIndexs = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+//                
+//                [self.tvPeople insertRowsAtIndexPaths:updateIndexs withRowAnimation:UITableViewRowAnimationAutomatic];
+//                
+//                if (_followedPeople.count > 1)
+//                {
+//                    [self.tvPeople reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+//                }
+                
+            }
+            
+            [_tvPeople reloadData];
+            
+            //[self searchBarCanceled:_searchBar];
         }
         else
         {
             [GGAlert alertWithApiParser:parser];
         }
-        
     }];
+    
+    [self registerOperation:op];
+    
+    
+//    [self showLoadingHUD];
+//    [GGSharedAPI followPersonWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+//        [self hideLoadingHUD];
+//
+//        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//        if (parser.isOK)
+//        {
+//            [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
+//            
+//            data.followed = YES;
+//            [_tvSearchResult reloadData];
+//        }
+//        else
+//        {
+//            [GGAlert alertWithApiParser:parser];
+//        }
+//        
+//    }];
 }
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -450,7 +501,8 @@
                         
                         [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
                         
-                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                        [tableView reloadData];
+                        //[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                     }
                     else
                     {
@@ -472,7 +524,7 @@
                         
                         [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
                         
-                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                        //[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                     }
                     else
                     {
@@ -486,59 +538,17 @@
     }
     else if (tableView == self.tvSearchResult)
     {
-        GGPerson *data = _searchedPeople[row];
+        [_searchBar endEditing:YES];
+        GGPerson *data = _searchedPeople[indexPath.row];
         
+        GGPersonDetailVC *vc = [GGPersonDetailVC new];
+        vc.personID = data.ID;
+        vc.isPresented = YES;
         
-        if ([self _isPersonFollowed:data.ID])
-        {
-            [GGAlert alertWithMessage:@"Ops, You have already followed this company."];
-        }
-        else
-        {
-            [self showLoadingHUD];
-            id op = [GGSharedAPI followPersonWithID:data.ID callback:^(id operation, id aResultObject, NSError *anError) {
-                
-                [self hideLoadingHUD];
-                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-                if (parser.isOK)
-                {
-                    [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
-                    
-                    int indexInFollowedList = [self _indexInFollowedListWithPersonID:data.ID];
-                    if (indexInFollowedList != NSNotFound)
-                    {
-                        GGPerson *followedPerson = _followedPeople[indexInFollowedList];
-                        followedPerson.followed = YES;
-                        
-                        [self.tvPeople reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexInFollowedList inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-                    }
-                    else
-                    {
-                        data.followed = YES;
-                        [_followedPeople insertObject:data atIndex:0];
-                        
-                        NSArray *updateIndexs = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
-                        
-                        [self.tvPeople insertRowsAtIndexPaths:updateIndexs withRowAnimation:UITableViewRowAnimationAutomatic];
-                        
-                        if (_followedPeople.count > 1)
-                        {
-                            [self.tvPeople reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-                        }
-                        
-                    }
-                    
-                    //[self _cancelSearch];
-                    [self searchBarCanceled:_searchBar];
-                }
-                else
-                {
-                    [GGAlert alertWithApiParser:parser];
-                }
-            }];
-            
-            [self registerOperation:op];
-        }
+        GGNavigationController *nc = [[GGNavigationController alloc] initWithRootViewController:vc];
+        nc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        
+        [self presentViewController:nc animated:YES completion:nil];
     }
 }
 
