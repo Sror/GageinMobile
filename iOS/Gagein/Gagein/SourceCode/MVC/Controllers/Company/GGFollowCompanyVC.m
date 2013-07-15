@@ -456,7 +456,7 @@
     {
         [GGAlert alertWithMessage:GGString(@"api_message_already_following_the_company")];
     }
-    else if (company.getGrade == kGGComGradeBad)
+    else if (company.getGrade == kGGComGradeB)
     {
         //#warning MESSAGE NEED TO BE REFINED
         [GGAlert alertWithMessage:GGString(@"Not available to follow.")];

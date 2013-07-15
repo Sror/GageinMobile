@@ -19,7 +19,11 @@ typedef enum {
 @interface GGMenuData : GGDataModel
 @property (copy)    NSString *name;
 @property (copy)    NSString *timeInterval;
+@property (copy)    NSString *grade;
+
 @property (assign)  BOOL        checked;
 @property (assign)  EGGMenuType   type;
+
+-(EGGCompanyGrade)getGrade;
 
 @end

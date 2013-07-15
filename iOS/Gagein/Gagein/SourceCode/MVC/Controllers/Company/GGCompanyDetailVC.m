@@ -505,7 +505,7 @@ typedef enum
     //grade = kGGComGradeBad;
     if (_companyOverview.followed)
     {
-        if (grade == kGGComGradeUnknown)
+        if (grade == kGGComGradeC)
         {
 //            _btnFollow.hidden = YES;
 //            _lblTip.hidden = NO;
@@ -526,7 +526,7 @@ typedef enum
     }
     else
     {
-        if (grade == kGGComGradeBad)
+        if (grade == kGGComGradeB)
         {
             _btnFollow.hidden = YES;
             _lblTip.hidden = NO;

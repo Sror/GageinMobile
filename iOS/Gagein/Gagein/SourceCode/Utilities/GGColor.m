@@ -120,15 +120,15 @@ DEF_SINGLETON(GGColor)
 {
     switch (aCompanyGrade)
     {
-        case kGGComGradeGood:
+        case kGGComGradeA:
             return self.orangeGageinDark;
             break;
             
-        case kGGComGradeBad:
+        case kGGComGradeB:
             return self.lightGray;
             break;
             
-        case kGGComGradeUnknown:
+        case kGGComGradeC:
             return self.black;
             break;
             

@@ -190,14 +190,14 @@
     EGGCompanyGrade grade = _data.getGrade;
     //grade = kGGComGradeUnknown;
     
-    _viewMessage.hidden = (grade == kGGComGradeGood);
-    _btnFollow.hidden = (grade == kGGComGradeBad);
+    _viewMessage.hidden = (grade == kGGComGradeA);
+    _btnFollow.hidden = (grade == kGGComGradeB);
     
-    if (grade == kGGComGradeBad)
+    if (grade == kGGComGradeB)
     {
         _lblMessage.text = @"This company is not available to follow.";
     }
-    else if (grade == kGGComGradeUnknown)
+    else if (grade == kGGComGradeC)
     {
         _lblMessage.text = _data.followed ? @"This company’s content should be available in 5 business days." : @"Follow this company to activate its content.";
     }

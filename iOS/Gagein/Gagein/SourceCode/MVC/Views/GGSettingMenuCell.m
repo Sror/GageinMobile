@@ -36,7 +36,7 @@
     _lblName.textColor = GGSharedColor.silver;
 }
 
--(void)setHightlighted:(BOOL)aHighlighted
+-(void)setHightlighted:(BOOL)aHighlighted grade:(EGGCompanyGrade)aGrade
 {
     if (aHighlighted)
     {
@@ -44,7 +44,14 @@
     }
     else
     {
-        _lblName.textColor = GGSharedColor.silver;
+        if (aGrade == kGGComGradeA)
+        {
+            _lblName.textColor = GGSharedColor.silver;
+        }
+        else
+        {
+            _lblName.textColor = GGSharedColor.lightGray;
+        }
     }
 }
 

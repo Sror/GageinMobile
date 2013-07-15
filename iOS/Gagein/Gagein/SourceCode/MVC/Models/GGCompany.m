@@ -101,14 +101,14 @@
 {
     if ([self.grade.lowercaseString isEqualToString:@"a"])
     {
-        return kGGComGradeGood;
+        return kGGComGradeA;
     }
     else if ([self.grade.lowercaseString isEqualToString:@"b"])
     {
-        return kGGComGradeBad;
+        return kGGComGradeB;
     }
     
-    return kGGComGradeUnknown;
+    return kGGComGradeC;
 }
 
 -(BOOL)hasBeenRemoved
@@ -228,7 +228,7 @@
 
 -(BOOL)isPending
 {
-    return self.followed && self.getGrade == kGGComGradeUnknown;
+    return self.followed && self.getGrade == kGGComGradeC;
 }
 
 @end

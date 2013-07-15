@@ -14,5 +14,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblInterval;
 
 +(float)HEIGHT;
--(void)setHightlighted:(BOOL)aHighlighted;
+-(void)setHightlighted:(BOOL)aHighlighted grade:(EGGCompanyGrade)aGrade;
 @end

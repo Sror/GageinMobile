@@ -17,6 +17,26 @@
     self.ID = [[aData objectForKey:@"menuid"] longLongValue];
     self.name = [aData objectForKey:@"menu_name"];
     self.timeInterval = [aData objectForKey:@"time_interval"];
+    _grade = [aData objectForKey:@"grade"];
+}
+
+-(EGGCompanyGrade)getGrade
+{
+    if (_type == kGGMenuTypeCompany || _type == kGGMenuTypePerson)
+    {
+        if ([self.grade.lowercaseString isEqualToString:@"a"])
+        {
+            return kGGComGradeA;
+        }
+        else if ([self.grade.lowercaseString isEqualToString:@"b"])
+        {
+            return kGGComGradeB;
+        }
+        
+        return kGGComGradeC;
+    }
+    
+    return kGGComGradeA;
 }
 
 @end
