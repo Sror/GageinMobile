@@ -29,6 +29,8 @@ AS_SINGLETON(GGImagePool)
 @property (strong, nonatomic) UIImage  *tableSelectedDot;
 @property (strong, nonatomic) UIImage  *tableUnselectedDot;
 
+@property (strong, nonatomic) UIImage   *x;
+
 //@property (strong, nonatomic) UIImage  *tableCellRoundBg;
 @end
 

@@ -79,7 +79,6 @@
     [_button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
 }
 
-
 -(void)setImageUrl:(NSString *)aImageURL placeholder:(UIImage *)aPlaceHolder
 {
     [_imageView addSubview:_viewLoading];

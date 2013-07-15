@@ -110,8 +110,15 @@
     _data = aCompany;
     if (_data)
     {
+        if (_data.hasBeenRemoved)
+        {
+            [_btnLogo setBackgroundImage:GGSharedImagePool.x forState:UIControlStateNormal];
+        }
+        else
+        {
+            [_btnLogo setBackgroundImageWithURL:[NSURL URLWithString:_data.logoPath] forState:UIControlStateNormal placeholderImage:GGSharedImagePool.logoDefaultCompany];
+        }
         
-        [_btnLogo setBackgroundImageWithURL:[NSURL URLWithString:_data.logoPath] forState:UIControlStateNormal placeholderImage:GGSharedImagePool.logoDefaultCompany];
         _lblTitle.text = _data.name;
         _lblSubTitle.text = _data.website;
         
@@ -181,24 +188,31 @@
         
         
         // grade a b c
-        [self _updateUIWithGrade];
+        [self _updateUIExtra];
     }
 }
 
--(void)_updateUIWithGrade
+-(void)_updateUIExtra
 {
     EGGCompanyGrade grade = _data.getGrade;
     //grade = kGGComGradeUnknown;
     
-    _viewMessage.hidden = (grade == kGGComGradeA);
+    _viewMessage.hidden = YES;
     _btnFollow.hidden = (grade == kGGComGradeB);
     
-    if (grade == kGGComGradeB)
+    if (1|| _data.hasBeenRemoved)
     {
+        _viewMessage.hidden = NO;
+        _lblMessage.text = @"This company is removed from GageIn.";
+    }
+    else if (grade == kGGComGradeB)
+    {
+        _viewMessage.hidden = NO;
         _lblMessage.text = @"This company is not available to follow.";
     }
     else if (grade == kGGComGradeC)
     {
+        _viewMessage.hidden = NO;
         _lblMessage.text = _data.followed ? @"This company’s content should be available in 5 business days." : @"Follow this company to activate its content.";
     }
 }
@@ -312,7 +326,7 @@
         [_btnFollow setTitle:@"+ Follow" forState:UIControlStateNormal];
     }
     
-    [self _updateUIWithGrade];
+    [self _updateUIExtra];
 }
 
 -(void)followAction:(id)sender

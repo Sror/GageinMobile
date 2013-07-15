@@ -36,6 +36,8 @@ typedef enum {
 -(void)showScrollBar:(BOOL)aShow;
 
 -(void)applyCircleEffect:(BOOL)aApplyCircle;
+
+-(void)setMainImage:(UIImage *)aImage;
 -(void)setMainImageUrl:(NSString *)aImageUrl placeholder:(UIImage *)aPlaceholder;
 -(void)setMainTaget:(id)aTarget action:(SEL)aAction;
 

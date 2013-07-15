@@ -85,6 +85,10 @@
     self.frame = thisRc;
 }
 
+-(void)setMainImage:(UIImage *)aImage
+{
+    [_viewTitledImage setImage:aImage];
+}
 
 -(void)setMainImageUrl:(NSString *)aImageUrl placeholder:(UIImage *)aPlaceholder
 {
@@ -167,7 +171,16 @@
     {
         NSString *trunckName = [aCompany.name stringSeperatedWith:@" " componentsCount:2 maxLength:20];
         [self setTitle:trunckName];
-        [self setMainImageUrl:aCompany.logoPath placeholder:GGSharedImagePool.logoDefaultCompany];
+        
+        if (aCompany.hasBeenRemoved)
+        {
+            [self setMainImage:GGSharedImagePool.x];
+        }
+        else
+        {
+            [self setMainImageUrl:aCompany.logoPath placeholder:GGSharedImagePool.logoDefaultCompany];
+        }
+        
         [self setMainTaget:self action:@selector(companyLogoTapped:)];
         
         NSArray *competitors = aCompany.competitors.items;

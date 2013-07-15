@@ -86,6 +86,11 @@
     [self _adjsutTitlePos];
 }
 
+-(void)setImage:(UIImage *)aImage
+{
+    _viewRndImgBtn.imageView.image = aImage;
+}
+
 -(void)setImageURL:(NSString *)aImageURL placeholder:(UIImage *)aPlaceholder
 {
     [_viewRndImgBtn setImageUrl:aImageURL placeholder:aPlaceholder];
