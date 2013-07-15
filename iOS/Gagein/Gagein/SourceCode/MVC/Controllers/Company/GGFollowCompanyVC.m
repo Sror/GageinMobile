@@ -61,6 +61,8 @@
     
     NSUInteger          _pageNumberFollowedCompanies;
     NSUInteger          _pageNumberSuggestedCompanies;
+    
+    BOOL                _hasGotSuggestedCompanies;
 }
 
 
@@ -86,7 +88,7 @@
 - (void)viewDidLoad
 {
     self.navigationItem.hidesBackButton = YES;
-    [self observeNotification:GG_NOTIFY_COMPANY_FOLLOW_CHANGED];
+    //[self observeNotification:GG_NOTIFY_COMPANY_FOLLOW_CHANGED];
     
     [super viewDidLoad];
     self.naviTitle = @"Follow Companies";
@@ -148,7 +150,7 @@
     
     
     [self _getAllFollowedCompanies];
-    [self _getAllSuggestedCompanies];
+    
     [self _callApiGetSnList];
     
     //_btnSalesForce.hidden = _btnLinkedIn.hidden = YES;
@@ -457,7 +459,7 @@
     GGCompany *company = _searchedCompanies[index];
     
     
-    if ([self _isCompanyFollowed:company.ID])
+    if (company.followed)
     {
         [GGAlert alertWithMessage:GGString(@"api_message_already_following_the_company")];
     }
@@ -472,9 +474,8 @@
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             if (parser.isOK)
             {
+                company.followed = YES;
                 [self postNotification:GG_NOTIFY_COMPANY_FOLLOW_CHANGED];
-
-// manual or notify, it's a problem. -- D.D.
                 
                 int indexInFollowedList = [self _indexInFollowedListWithCompanyID:company.ID];
                 if (indexInFollowedList != NSNotFound)
@@ -482,19 +483,20 @@
                     GGCompany *followedCompany = _followedCompanies[indexInFollowedList];
                     followedCompany.followed = YES;
                     
-                    [self.tableViewCompanies reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexInFollowedList inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    //[self.tableViewCompanies reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexInFollowedList inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
                 }
                 else
                 {
-                    company.followed = YES;
                     [_followedCompanies insertObject:company atIndex:0];
                     
-                    [self.tableViewCompanies insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    //[self.tableViewCompanies insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
                 }
                 
+                [_tableViewSearchResult reloadData];
+                [_tableViewCompanies reloadData];
                 
                 //[self searchBarCancelButtonClicked:self.searchBar];
-                [self searchBarCanceled:_viewSearchBar];
+                //[self searchBarCanceled:_viewSearchBar];
             }
             else
             {
@@ -713,6 +715,8 @@
         [self _showDoneBtn:YES];
         [self _showTitle:YES];
     }
+    
+    [self _callGetAllFollowedCompanies];
 }
 
 - (BOOL)searchBarShouldSearch:(GGBaseSearchBar *)searchBar
@@ -837,6 +841,12 @@
             }
         }
         
+        if (!_hasGotSuggestedCompanies)
+        {
+            _hasGotSuggestedCompanies = YES;
+            [self _getAllSuggestedCompanies];
+        }
+        
         [self.tableViewCompanies reloadData];
     }];
     
@@ -870,9 +880,9 @@
 -(void)_callGetAllRecommendCompanies
 {
     //#warning TODO: need API for getting recommend companies
-    [self showLoadingHUD];
+    //[self showLoadingHUD];
     id op = [GGSharedAPI getRecommendedCompanieWithPage:_pageNumberSuggestedCompanies callback:^(id operation, id aResultObject, NSError *anError) {
-        [self hideLoadingHUD];
+        //[self hideLoadingHUD];
         
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         
