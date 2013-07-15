@@ -301,6 +301,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = indexPath.row;
+    int section = indexPath.section;
     
     if (tableView == self.tvSearchResult) {
         static NSString *searchResultCellId = @"GGSearchSuggestionCell";
@@ -339,8 +340,9 @@
     {
         cell = [GGGroupedCell viewFromNibWithOwner:self];
     }
+    NSArray *people = (section == 0) ? _followedPeople : _suggestedPeople;
     
-    GGPerson *data = _followedPeople[row];
+    GGPerson *data = people[row];
     
     cell.lblTitle.text = data.name;
     cell.tag = row;
@@ -485,9 +487,9 @@
     
     if (tableView == self.tvPeople)
     {
-        if (section == 0)
-        {
-            GGPerson *data = _followedPeople[row];
+        NSArray *people = (section == 0) ? _followedPeople : _suggestedPeople;
+        
+            GGPerson *data = people[row];
             
             if (data.followed)  // unfollow him
             {
@@ -524,6 +526,12 @@
                         
                         [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
                         
+                        if (![self _existsInFollowedPeople:data])
+                        {
+                            [_followedPeople addObjectIfNotNil:data];
+                        }
+                        
+                        [tableView reloadData];
                         //[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                     }
                     else
@@ -534,7 +542,7 @@
                 
                 [self registerOperation:op];
             }
-        }
+        
     }
     else if (tableView == self.tvSearchResult)
     {
@@ -550,6 +558,20 @@
         
         [self presentViewController:nc animated:YES completion:nil];
     }
+}
+
+
+-(BOOL)_existsInFollowedPeople:(GGPerson *)aPerson
+{
+    for (GGPerson *person in _followedPeople)
+    {
+        if (aPerson.ID == person.ID)
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 
@@ -811,27 +833,6 @@
     
     [self registerOperation:op];
 }
-
-//-(void)_callGetFollowedPeople
-//{
-//    [self showLoadingHUD];
-//    id op = [GGSharedAPI getFollowedPeopleWithPage:0 callback:^(id operation, id aResultObject, NSError *anError) {
-//        [self hideLoadingHUD];
-//        
-//        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-//        if (parser.isOK)
-//        {
-//            GGDataPage *page = [parser parseGetFollowedPeople];
-//            [_followedPeople removeAllObjects];
-//            [_followedPeople addObjectsFromArray:page.items];
-//        }
-//        
-//        [_tvPeople reloadData];
-//        
-//    }];
-//    
-//    [self registerOperation:op];
-//}
 
 -(void)_getAllSuggestedPeople
 {
