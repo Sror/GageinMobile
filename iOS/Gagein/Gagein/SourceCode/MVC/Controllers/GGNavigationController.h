@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGNavigationController : UINavigationController
+@class SINavigationMenuView;
 
+@interface GGNavigationController : UINavigationController
+@property (strong, nonatomic) SINavigationMenuView      *dropMenu;
 @end

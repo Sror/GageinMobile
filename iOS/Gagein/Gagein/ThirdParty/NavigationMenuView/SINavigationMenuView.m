@@ -23,9 +23,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        frame.origin.y += 1.0;
+        frame = self.bounds;
+        frame.origin.y += 2.0;
         self.menuButton = [[SIMenuButton alloc] initWithFrame:frame];
         self.menuButton.title.text = title;
+        //self.menuButton.backgroundColor = GGSharedColor.random;
         [self.menuButton addTarget:self action:@selector(onHandleMenuTap:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.menuButton];
     }
@@ -53,10 +55,9 @@
 - (void)onShowMenu
 {
     if (!self.table) {
-//        UIWindow *mainWindow = [[UIApplication sharedApplication] keyWindow];
-//        CGRect frame = mainWindow.frame;
-//        frame.origin.y += self.frame.size.height + [[UIApplication sharedApplication] statusBarFrame].size.height;
-        self.table = [[SIMenuTable alloc] initWithFrame:self.menuContainer.frame items:self.items images:self.images];
+        CGRect tvRc = self.menuContainer.frame;
+        tvRc.origin.y += 44;
+        self.table = [[SIMenuTable alloc] initWithFrame:tvRc items:self.items images:self.images];
         self.table.menuDelegate = self;
     }
     [self.menuContainer addSubview:self.table];
