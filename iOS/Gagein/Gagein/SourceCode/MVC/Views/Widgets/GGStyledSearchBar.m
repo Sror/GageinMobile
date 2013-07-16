@@ -70,6 +70,59 @@
 
 //
 @implementation GGStyledSearchBar
+
+-(void)awakeFromNib
+{
+    _btnCancel.layer.cornerRadius = 4.f;
+    [_btnCancel addTarget:self action:@selector(_cancelAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //self.backgroundColor = GGSharedColor.darkRed;
+}
+
+-(void)_cancelAction:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(searchBarCanceled:)]) {
+        [self.delegate searchBarCanceled:self];
+    }
+}
+
+-(void)showCancelButton:(BOOL)aShow animated:(BOOL)animated
+{
+    if (animated)
+    {
+        [UIView animateWithDuration:.3f animations:^{
+            [self _showCancelButton:aShow];
+        }];
+    }
+    else
+    {
+        [self _showCancelButton:aShow];
+    }
+}
+
+-(void)_showCancelButton:(BOOL)aShow
+{
+    float width = (aShow) ? self.frame.size.width - CANCEL_SPACE_LEN : self.frame.size.width - FILTER_SPACE_LEN;
+    
+//    CGRect searchRc = _viewSearchField.frame;
+//    searchRc.size.width = width;
+//    _viewSearchField.frame = searchRc;
+//    
+//    CGRect cancelRc = _btnCancel.frame;
+//    cancelRc.origin.x = searchRc.size.width;
+//    _btnCancel.frame = cancelRc;
+//    
+//    _btnCancel.hidden = !aShow;
+//    
+//    float filterX = aShow ? self.frame.size.width : (self.frame.size.width - FILTER_SPACE_LEN - 5);
+//    CGRect filterRc = _btnFilter.frame;
+//    filterRc.origin.x = filterX;
+//    _btnFilter.frame = filterRc;
+//    
+//    _btnFilter.hidden = aShow;
+}
+
+
 -(BOOL)resignFirstResponder
 {
     [_tfSearch resignFirstResponder];
@@ -89,6 +142,7 @@
     self.backgroundColor = GGSharedColor.graySettingBg;
     _ivSearchBg.image = [[UIImage imageNamed:@"searchBgDarkRound"] resizableImageWithCapInsets:UIEdgeInsetsMake(16, 20, 16, 20)];
     _tfSearch.text = @"";
+    
     [_btnCancel addTarget:self action:@selector(_cancelAction:) forControlEvents:UIControlEventTouchUpInside];
     
     //self.backgroundColor = GGSharedColor.darkRed;

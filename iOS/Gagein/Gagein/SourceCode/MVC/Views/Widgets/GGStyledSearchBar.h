@@ -35,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView    *ivBg;
 @property (weak, nonatomic) IBOutlet UIImageView    *ivSearchIcon;
 @property (weak, nonatomic) IBOutlet UITextField    *tfSearch;
+@property (weak, nonatomic) IBOutlet UIButton       *btnCancel;
 
 @end
 

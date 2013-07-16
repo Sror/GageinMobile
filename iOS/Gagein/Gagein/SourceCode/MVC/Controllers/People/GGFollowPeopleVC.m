@@ -305,8 +305,13 @@
         self.tvSearchResult.hidden = (people.count <= 0);
         return people.count;
     }
+    else if (tableView == _tvPeople)
+    {
+        NSArray *people = (section == 0) ? _followedPeople : _suggestedPeople;
+        return people.count;
+    }
     
-    return _followedPeople.count;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -345,26 +350,30 @@
         
         return cell;
     }
-    
-    static NSString *cellID = @"GGGroupedCell";
-    GGGroupedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell)
+    else if (tableView == _tvPeople)
     {
-        cell = [GGGroupedCell viewFromNibWithOwner:self];
+        static NSString *cellID = @"GGGroupedCell";
+        GGGroupedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if (!cell)
+        {
+            cell = [GGGroupedCell viewFromNibWithOwner:self];
+        }
+        NSArray *people = (section == 0) ? _followedPeople : _suggestedPeople;
+        
+        GGPerson *data = people[row];
+        
+        cell.lblTitle.text = data.name;
+        cell.tag = row;
+        
+        cell.style = [GGUtils styleForArrayCount:people.count atIndex:row];
+        
+        cell.checked = data.followed;
+        [cell showSubTitle:NO];
+        
+        return cell;
     }
-    NSArray *people = (section == 0) ? _followedPeople : _suggestedPeople;
     
-    GGPerson *data = people[row];
-    
-    cell.lblTitle.text = data.name;
-    cell.tag = row;
-    
-    cell.style = [GGUtils styleForArrayCount:_followedPeople.count atIndex:row];
-    
-    cell.checked = data.followed;
-    [cell showSubTitle:NO];
-    
-    return cell;
+    return nil;
 }
 
 -(void)followPersonAction:(id)sender
