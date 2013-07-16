@@ -63,7 +63,7 @@
     
     _tvSuggestedCompanies.rowHeight = [GGSearchSuggestionCell HEIGHT];
     CGRect tvComRc = _tvSuggestedCompanies.frame;
-    tvComRc.size.height = [UIScreen mainScreen].applicationFrame.size.height - self.navigationController.navigationBar.frame.size.height - _viewSearchBar.frame.size.height - GG_KEY_BOARD_HEIGHT_IPHONE_PORTRAIT;
+    tvComRc.size.height = [GGLayout pageRectWithLayoutElement:kLayoutElementAll].size.height - _viewSearchBar.frame.size.height;
     _tvSuggestedCompanies.frame = tvComRc;
     
     [self _updateUiIsComanyCustomed];
@@ -175,6 +175,15 @@
     [self registerOperation:op];
 }
 
+#pragma mark - scroll view delegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView == _tvSuggestedCompanies)
+    {
+        [_viewSearchBar endEditing:YES];
+    }
+}
+
 #pragma mark - GGStyledSearchBarDelegate
 
 - (BOOL)searchBarShouldBeginEditing:(GGBaseSearchBar *)searchBar
@@ -207,7 +216,7 @@
     else
     {
         [_searchTimer invalidate];
-        _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2.f target:self selector:@selector(_callSearchCompanySuggestion) userInfo:nil repeats:NO];
+        _searchTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(_callSearchCompanySuggestion) userInfo:nil repeats:NO];
     }
     
     return YES;
@@ -217,6 +226,11 @@
 {
     _tvSuggestedCompanies.hidden = YES;
     return YES;
+}
+
+- (void)searchBarCanceled:(GGBaseSearchBar *)searchBar
+{
+    [self hideDimedView];
 }
 
 - (BOOL)searchBarShouldSearch:(GGBaseSearchBar *)searchBar

@@ -70,11 +70,23 @@
 
 //
 @implementation GGStyledSearchBar
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self showCancelButton:YES animated:YES];
+    [super textFieldDidBeginEditing:textField];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self showCancelButton:NO animated:YES];
+    [super textFieldDidEndEditing:textField];
+}
+
 
 -(void)awakeFromNib
 {
     _btnCancel.hidden = YES;
-    _btnCancel.layer.cornerRadius = 4.f;
+    _btnCancel.layer.cornerRadius = 10.f;
     [_btnCancel addTarget:self action:@selector(_cancelAction:) forControlEvents:UIControlEventTouchUpInside];
     
     //self.backgroundColor = GGSharedColor.darkRed;

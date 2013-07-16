@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12D78</string>
+		<string key="IBDocument.SystemVersion">12E55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
 		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -46,6 +46,7 @@
 								<int key="NSvFlags">274</int>
 								<string key="NSFrameSize">{290, 60}</string>
 								<reference key="NSSuperview" ref="706917160"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="983057491"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -65,6 +66,7 @@
 										<int key="NSvFlags">290</int>
 										<string key="NSFrame">{{70, 31}, {211, 21}}</string>
 										<reference key="NSSuperview" ref="983057491"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="266949086"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
@@ -97,6 +99,7 @@
 										<int key="NSvFlags">290</int>
 										<string key="NSFrame">{{70, 10}, {211, 21}}</string>
 										<reference key="NSSuperview" ref="983057491"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="699653522"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
@@ -125,6 +128,7 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{5, 5}, {50, 50}}</string>
 										<reference key="NSSuperview" ref="983057491"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="1032135670"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<object class="NSColor" key="IBUIBackgroundColor">
@@ -137,6 +141,7 @@
 								</array>
 								<string key="NSFrameSize">{290, 60}</string>
 								<reference key="NSSuperview" ref="706917160"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="476643487"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="395060117">
@@ -154,6 +159,7 @@
 										<int key="NSvFlags">290</int>
 										<string key="NSFrame">{{16, 19}, {211, 21}}</string>
 										<reference key="NSSuperview" ref="266949086"/>
+										<reference key="NSWindow"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -170,6 +176,7 @@
 								</array>
 								<string key="NSFrameSize">{290, 60}</string>
 								<reference key="NSSuperview" ref="706917160"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="918958741"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="395060117"/>
@@ -178,6 +185,7 @@
 						</array>
 						<string key="NSFrame">{{15, 60}, {290, 60}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="840923883"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="395060117"/>
@@ -189,6 +197,7 @@
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<string key="NSFrame">{{0, 44}, {320, 411}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="21353286"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -200,9 +209,10 @@
 					</object>
 					<object class="IBUITableView" id="21353286">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483374</int>
-						<string key="NSFrame">{{0, 44}, {320, 411}}</string>
+						<int key="NSvFlags">-2147483358</int>
+						<string key="NSFrame">{{0, 45}, {320, 410}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="706917160"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -225,6 +235,7 @@
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<string key="NSFrameSize">{320, 44}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="878799919"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -239,6 +250,7 @@
 				</array>
 				<string key="NSFrame">{{0, 64}, {320, 455}}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="707848501"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -521,7 +533,125 @@
 			<nil key="sourceID"/>
 			<int key="maxID">33</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">GGBaseSearchBar</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/GGBaseSearchBar.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">GGBaseViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/GGBaseViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">GGProfileEditCompanyVC</string>
+					<string key="superclassName">GGBaseViewController</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="ivComInfoBg">UIImageView</string>
+						<string key="ivComLogo">UIImageView</string>
+						<string key="lblComName">UILabel</string>
+						<string key="lblComNameCustom">UILabel</string>
+						<string key="lblComWebsite">UILabel</string>
+						<string key="tvSuggestedCompanies">UITableView</string>
+						<string key="viewComInfo">UIView</string>
+						<string key="viewComInfoCustom">UIView</string>
+						<string key="viewComInfoDefined">UIView</string>
+						<string key="viewDimed">UIView</string>
+						<string key="viewSearchBar">GGStyledSearchBar</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="ivComInfoBg">
+							<string key="name">ivComInfoBg</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="ivComLogo">
+							<string key="name">ivComLogo</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblComName">
+							<string key="name">lblComName</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblComNameCustom">
+							<string key="name">lblComNameCustom</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lblComWebsite">
+							<string key="name">lblComWebsite</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="tvSuggestedCompanies">
+							<string key="name">tvSuggestedCompanies</string>
+							<string key="candidateClassName">UITableView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewComInfo">
+							<string key="name">viewComInfo</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewComInfoCustom">
+							<string key="name">viewComInfoCustom</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewComInfoDefined">
+							<string key="name">viewComInfoDefined</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewDimed">
+							<string key="name">viewDimed</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewSearchBar">
+							<string key="name">viewSearchBar</string>
+							<string key="candidateClassName">GGStyledSearchBar</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/GGProfileEditCompanyVC.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">GGStyledSearchBar</string>
+					<string key="superclassName">GGBaseSearchBar</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="btnCancel">UIButton</string>
+						<string key="ivBg">UIImageView</string>
+						<string key="ivSearchIcon">UIImageView</string>
+						<string key="tfSearch">UITextField</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="btnCancel">
+							<string key="name">btnCancel</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="ivBg">
+							<string key="name">ivBg</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="ivSearchIcon">
+							<string key="name">ivSearchIcon</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="tfSearch">
+							<string key="name">tfSearch</string>
+							<string key="candidateClassName">UITextField</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/GGStyledSearchBar.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
