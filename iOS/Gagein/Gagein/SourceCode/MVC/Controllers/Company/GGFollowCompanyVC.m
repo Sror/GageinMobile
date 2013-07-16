@@ -49,9 +49,9 @@
     NSTimer             *_searchTimer;
     
     NSMutableArray      *_searchedCompanies;
-    BOOL                _hasMoreToSearch;
+    BOOL                _hasMoreToSearch;       //
     
-    NSMutableArray      *_autoCompleteCompanies;
+    NSMutableArray      *_autoCompleteCompanies;        //
     NSMutableArray      *_followedCompanies;
     NSMutableArray      *_suggestedCompanies;
     
@@ -67,8 +67,8 @@
     
     BOOL                _hasGotSuggestedCompanies;
     
-    NSUInteger          _pageNumberSearch;
-    BOOL                _isSearching;
+    NSUInteger          _pageNumberSearch;  //
+    BOOL                _isSearching;       //
     BOOL                _isInAutoCompleteMode;
 }
 

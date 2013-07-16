@@ -43,6 +43,13 @@
     NSTimer             *_searchTimer;
     
     NSMutableArray      *_searchedPeople;
+    BOOL                _hasMoreToSearch;
+    NSUInteger          _pageNumberSearch;
+    BOOL                _isSearching;
+    
+    NSMutableArray      *_autoCompletePeople;
+    BOOL                _isInAutoCompleteMode;
+    
     NSMutableArray      *_followedPeople;
     NSMutableArray      *_suggestedPeople;
     
@@ -119,6 +126,7 @@
         _searchedPeople = [NSMutableArray array];
         _followedPeople = [NSMutableArray array];
         _suggestedPeople = [NSMutableArray array];
+        _autoCompletePeople = [NSMutableArray array];
     }
     return self;
 }
@@ -290,9 +298,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.tvSearchResult) {
-        self.tvSearchResult.hidden = (_searchedPeople.count <= 0);
-        return _searchedPeople.count;
+    if (tableView == self.tvSearchResult)
+    {
+        NSArray *people = _isInAutoCompleteMode ? _autoCompletePeople : _searchedPeople;
+        
+        self.tvSearchResult.hidden = (people.count <= 0);
+        return people.count;
     }
     
     return _followedPeople.count;
@@ -311,7 +322,8 @@
             [cell.btnAction addTarget:self action:@selector(followPersonAction:) forControlEvents:UIControlEventTouchUpInside];
         }
         
-        GGPerson *data = _searchedPeople[indexPath.row];
+        NSArray *people = _isInAutoCompleteMode ? _autoCompletePeople : _searchedPeople;
+        GGPerson *data = people[indexPath.row];
         
         [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.photoPath] placeholderImage:GGSharedImagePool.placeholder];
         [cell.ivLogo applyEffectCircleSilverBorder];
@@ -361,7 +373,8 @@
     
     [_searchBar endEditing:YES];
     
-    GGPerson *data = _searchedPeople[index];
+    NSArray *people = _isInAutoCompleteMode ? _autoCompletePeople : _searchedPeople;
+    GGPerson *data = people[index];
     
     
     [self showLoadingHUD];
@@ -547,7 +560,9 @@
     else if (tableView == self.tvSearchResult)
     {
         [_searchBar endEditing:YES];
-        GGPerson *data = _searchedPeople[indexPath.row];
+        
+        NSArray *people = _isInAutoCompleteMode ? _autoCompletePeople : _searchedPeople;
+        GGPerson *data = people[indexPath.row];
         
         GGPersonDetailVC *vc = [GGPersonDetailVC new];
         vc.personID = data.ID;
@@ -581,6 +596,12 @@
     if (scrollView == _tvSearchResult)
     {
         [_searchBar endEditing:YES];
+        
+        if (!_isInAutoCompleteMode && _hasMoreToSearch && scrollView.reachBottom)
+        {
+            _pageNumberSearch++;
+            [self _callSearchPeople];
+        }
     }
 }
 
@@ -626,6 +647,7 @@
 
 - (BOOL)searchBar:(GGBaseSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
+    _isInAutoCompleteMode = YES;
     
     if (range.location <= 0 && text.length <= 0)
     {
@@ -675,6 +697,8 @@
     // search and show result
     [_searchTimer invalidate];
     _searchTimer = nil;
+    
+    _isInAutoCompleteMode = NO;
     [self _callSearchPeople];
     [searchBar endEditing:YES];
     
@@ -691,55 +715,7 @@
 
 
 #pragma mark - styled search bar delegate
-//-(void)_cancelSearch
-//{
-//    [_searchBar resignFirstResponder];
-//    _viewSearchBg.hidden = YES;
-//}
 
-//- (BOOL)searchBarShouldBeginEditing:(GGBaseSearchBar *)searchBar
-//{
-//    return YES;
-//}
-//
-//- (void)searchBarTextDidBeginEditing:(GGBaseSearchBar *)searchBar
-//{
-//    self.viewSearchBg.hidden = NO;
-//    self.tvSearchResult.frame = _tvSearchResultRectShort;
-//}
-//
-//- (BOOL)searchBarShouldEndEditing:(GGBaseSearchBar *)searchBar
-//{
-//    return YES;
-//}
-//
-//- (void)searchBarTextDidEndEditing:(GGBaseSearchBar *)searchBar
-//{
-//    self.tvSearchResult.frame = _tvSearchResultRect;
-//}
-
-//- (BOOL)searchBar:(GGBaseSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-//{
-//    [_searchTimer invalidate];
-//    _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2.f target:self selector:@selector(_callSearchPeopleSuggestion) userInfo:nil repeats:NO];
-//    
-//    return YES;
-//}
-
-//- (BOOL)searchBarShouldClear:(GGBaseSearchBar *)searchBar
-//{
-//    return YES;
-//}
-//
-//- (BOOL)searchBarShouldSearch:(GGBaseSearchBar *)searchBar
-//{
-//    [_searchTimer invalidate];
-//    _searchTimer = nil;
-//    [self _callSearchPeople];
-//    [((GGStyledSearchBar *)searchBar).tfSearch resignFirstResponder];
-//    
-//    return YES;
-//}
 
 #pragma mark - API calls
 -(void)_callSearchPeopleSuggestion
@@ -757,7 +733,7 @@
             if (parser.isOK)
             {
                 GGDataPage *page = [parser parseGetSeggestedPeople];
-                _searchedPeople = page.items;
+                _autoCompletePeople = [NSMutableArray arrayWithArray:page.items];
 //                if (_searchedPeople.count <= 0) {
 //                    [GGAlert showToast:@"No results." inView:self.view];
 //                }
@@ -770,23 +746,34 @@
     }
 }
 
+-(void)_resetSearch
+{
+    [_searchedPeople removeAllObjects];
+    _pageNumberSearch = 1;
+    _hasMoreToSearch = YES;
+}
 
 -(void)_callSearchPeople
 {
+    if (_isSearching) return;
+    
     if (_searchBar.tfSearch.text.length)
     {
         [self showLoadingHUD];
-        id op = [GGSharedAPI getSuggestedPeopleWithKeyword:_searchBar.tfSearch.text page:0 callback:^(id operation, id aResultObject, NSError *anError) {
+        _isSearching = YES;
+        id op = [GGSharedAPI getSuggestedPeopleWithKeyword:_searchBar.tfSearch.text page:_pageNumberSearch callback:^(id operation, id aResultObject, NSError *anError) {
             [self hideLoadingHUD];
             
             GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
             GGDataPage *page = [parser parseSearchForPeople];
-            _searchedPeople = page.items;
+            _hasMoreToSearch = page.hasMore;
+            [_searchedPeople addObjectsFromArray:page.items];
             if (_searchedPeople.count <= 0) {
                 [GGAlert showToast:@"No results." inView:self.view];
             }
             
             [self.tvSearchResult reloadData];
+            _isSearching = NO;
         }];
         
         [self registerOperation:op];

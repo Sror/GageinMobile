@@ -13,21 +13,21 @@
 //SC01:Search ContactsBack to top
 //POST
 ///svc/search/contacts
-//-(AFHTTPRequestOperation *)searchPeopleWithKeyword:(NSString *)aKeyword
-//                             page:(int)aPage
-//                         callback:(GGApiBlock)aCallback
-//{
-//    //POST
-//    NSString *path = @"search/contacts";
-//    
-//    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-//    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
-//    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
-//    [parameters setObjectIfNotNil:[NSNumber numberWithInt:aPage] forKey:@"page"];
-//    [parameters setObjectIfNotNil:aKeyword forKey:@"q"];
-//    
-//    return [self _execPostWithPath:path params:parameters callback:aCallback];
-//}
+-(AFHTTPRequestOperation *)searchPeopleWithKeyword:(NSString *)aKeyword
+                             page:(int)aPage
+                         callback:(GGApiBlock)aCallback
+{
+    //POST
+    NSString *path = @"search/contacts";
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObjectIfNotNil:[GGUtils appcodeString] forKey:APP_CODE_KEY];
+    [parameters setObjectIfNotNil:GGSharedRuntimeData.accessToken forKey:ACCESS_TOKEN_KEY];
+    [parameters setObjectIfNotNil:[NSNumber numberWithInt:aPage] forKey:@"page"];
+    [parameters setObjectIfNotNil:aKeyword forKey:@"q"];
+    
+    return [self _execPostWithPath:path params:parameters callback:aCallback];
+}
 
 //4. get suggested contacts when search contacts.
 //POST: /svc/search/contact/get_suggestions
