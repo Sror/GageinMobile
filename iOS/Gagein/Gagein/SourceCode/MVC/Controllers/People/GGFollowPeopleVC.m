@@ -296,11 +296,17 @@
     return 1;
 }
 
+-(NSArray *)_currentSearchPeople
+{
+    return _isInAutoCompleteMode ? _autoCompletePeople : _searchedPeople;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.tvSearchResult)
     {
-        NSArray *people = _isInAutoCompleteMode ? _autoCompletePeople : _searchedPeople;
+        //NSArray *people = _isInAutoCompleteMode ? _autoCompletePeople : _searchedPeople;
+        NSArray *people = [self _currentSearchPeople];
         
         self.tvSearchResult.hidden = (people.count <= 0);
         return people.count;
@@ -327,7 +333,7 @@
             [cell.btnAction addTarget:self action:@selector(followPersonAction:) forControlEvents:UIControlEventTouchUpInside];
         }
         
-        NSArray *people = _isInAutoCompleteMode ? _autoCompletePeople : _searchedPeople;
+        NSArray *people = [self _currentSearchPeople];
         GGPerson *data = people[indexPath.row];
         
         [cell.ivLogo setImageWithURL:[NSURL URLWithString:data.photoPath] placeholderImage:GGSharedImagePool.placeholder];
@@ -382,7 +388,7 @@
     
     [_searchBar endEditing:YES];
     
-    NSArray *people = _isInAutoCompleteMode ? _autoCompletePeople : _searchedPeople;
+    NSArray *people = [self _currentSearchPeople];
     GGPerson *data = people[index];
     
     
@@ -570,7 +576,7 @@
     {
         [_searchBar endEditing:YES];
         
-        NSArray *people = _isInAutoCompleteMode ? _autoCompletePeople : _searchedPeople;
+        NSArray *people = [self _currentSearchPeople];
         GGPerson *data = people[indexPath.row];
         
         GGPersonDetailVC *vc = [GGPersonDetailVC new];
