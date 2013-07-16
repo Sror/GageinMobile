@@ -493,7 +493,7 @@
         cell.lblInterval.text = menuData.timeInterval;
         cell.lblName.text = menuData.name;
         
-        [cell setHightlighted:menuData.checked grade:menuData.getGrade];
+        [cell setHightlighted:menuData.checked grade:kGGComGradeA];
         
         return cell;
     }
