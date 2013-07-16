@@ -196,6 +196,10 @@
 //    
     self.navigationItem.hidesBackButton = YES;
     
+//    UISwipeGestureRecognizer *swipeGest = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(naviBackAction:)];
+//    swipeGest.direction = UISwipeGestureRecognizerDirectionRight;
+//    [self.view addGestureRecognizer:swipeGest];
+    
 }
 
 -(void)_customizeNaviTitleView
