@@ -386,7 +386,7 @@
 {
     if (tableView == self.tableViewSearchResult)
     {
-        NSArray *companies = _isInAutoCompleteMode ? _autoCompleteCompanies : _searchedCompanies;
+        NSArray *companies = [self _currentSearchCompanies];
         
         self.tableViewSearchResult.hidden = (companies.count <= 0);
         return companies.count;
@@ -404,6 +404,11 @@
     return 0;
 }
 
+-(NSArray *)_currentSearchCompanies
+{
+    return _isInAutoCompleteMode ? _autoCompleteCompanies : _searchedCompanies;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = indexPath.row;
@@ -417,7 +422,7 @@
             [cell.btnAction addTarget:self action:@selector(followCompanyAction:) forControlEvents:UIControlEventTouchUpInside];
         }
         
-        NSArray *companies = _isInAutoCompleteMode ? _autoCompleteCompanies : _searchedCompanies;
+        NSArray *companies = [self _currentSearchCompanies];
         GGCompany *companyData = companies[row];
         
         [cell.ivLogo setImageWithURL:[NSURL URLWithString:companyData.logoPath] placeholderImage:nil];
@@ -468,9 +473,8 @@
 -(void)followCompanyAction:(id)sender
 {
     int index = ((UIView *)sender).tag;
-    //GGCompany *data = _searchedCompanies[index];
     
-    GGCompany *company = _searchedCompanies[index];
+    GGCompany *company = [self _currentSearchCompanies][index];
     
     
     if (company.followed)
@@ -628,7 +632,7 @@
     else if (tableView == self.tableViewSearchResult)
     {
         [_viewSearchBar endEditing:YES];
-        GGCompany *company = _searchedCompanies[row];
+        GGCompany *company = [self _currentSearchCompanies][row];
         
         GGCompanyDetailVC   *vc = [[GGCompanyDetailVC alloc] init];
         vc.companyID = company.ID;

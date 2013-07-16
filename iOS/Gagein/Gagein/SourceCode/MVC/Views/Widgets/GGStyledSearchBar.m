@@ -73,6 +73,7 @@
 
 -(void)awakeFromNib
 {
+    _btnCancel.hidden = YES;
     _btnCancel.layer.cornerRadius = 4.f;
     [_btnCancel addTarget:self action:@selector(_cancelAction:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -102,8 +103,8 @@
 
 -(void)_showCancelButton:(BOOL)aShow
 {
-    float width = (aShow) ? self.frame.size.width - CANCEL_SPACE_LEN : self.frame.size.width - FILTER_SPACE_LEN;
-    
+//    float width = (aShow) ? self.frame.size.width - CANCEL_SPACE_LEN : self.frame.size.width - FILTER_SPACE_LEN;
+//    
 //    CGRect searchRc = _viewSearchField.frame;
 //    searchRc.size.width = width;
 //    _viewSearchField.frame = searchRc;
@@ -111,9 +112,9 @@
 //    CGRect cancelRc = _btnCancel.frame;
 //    cancelRc.origin.x = searchRc.size.width;
 //    _btnCancel.frame = cancelRc;
-//    
-//    _btnCancel.hidden = !aShow;
-//    
+    
+    _btnCancel.hidden = !aShow;
+    
 //    float filterX = aShow ? self.frame.size.width : (self.frame.size.width - FILTER_SPACE_LEN - 5);
 //    CGRect filterRc = _btnFilter.frame;
 //    filterRc.origin.x = filterX;
