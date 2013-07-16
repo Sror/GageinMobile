@@ -663,7 +663,6 @@
 {
     GGConfigAgentFiltersVC *vc = [[GGConfigAgentFiltersVC alloc] init];
     
-    //UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     if (ISIPADDEVICE)
     {
         [self popSheetInNaviForVC:vc];
@@ -678,7 +677,6 @@
 {
     GGConfigFiltersVC *vc = [[GGConfigFiltersVC alloc] init];
 
-    //UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     if (ISIPADDEVICE)
     {
         [self popSheetInNaviForVC:vc];
@@ -693,7 +691,6 @@
 {
     GGSelectFuncAreasVC *vc = [[GGSelectFuncAreasVC alloc] init];
     
-    //UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     if (ISIPADDEVICE)
     {
         [self popSheetInNaviForVC:vc];

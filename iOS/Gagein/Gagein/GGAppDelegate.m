@@ -40,7 +40,7 @@
 {
     // Override point for customization after application launch.
     UIViewController *viewController1, *viewController2, *viewController3, *viewController4;
-    UINavigationController *nc1, *nc2, *nc3, *nc4;
+    GGNavigationController *nc1, *nc2, *nc3, *nc4;
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         viewController1 = [[GGCompaniesVC alloc] initWithNibName:@"GGCompaniesVC" bundle:nil];
@@ -54,10 +54,10 @@
         viewController4 = [[GGSettingVC alloc] initWithNibName:@"GGSettingVC" bundle:nil];
     }
     
-    nc1 = [[UINavigationController alloc] initWithRootViewController:viewController1];
-    nc2 = [[UINavigationController alloc] initWithRootViewController:viewController2];
-    nc3 = [[UINavigationController alloc] initWithRootViewController:viewController3];
-    nc4 = [[UINavigationController alloc] initWithRootViewController:viewController4];
+    nc1 = [[GGNavigationController alloc] initWithRootViewController:viewController1];
+    nc2 = [[GGNavigationController alloc] initWithRootViewController:viewController2];
+    nc3 = [[GGNavigationController alloc] initWithRootViewController:viewController3];
+    nc4 = [[GGNavigationController alloc] initWithRootViewController:viewController4];
     
     _tabBarController = [[GGTabBarController alloc] initWithViewControllers:@[nc1, nc2, nc3, nc4]];
     _tabBarController.delegate = self;
@@ -68,7 +68,7 @@
 
 -(GGBaseViewController *)topMostVC
 {
-    UINavigationController *selectedNC = (UINavigationController *)_tabBarController.selectedViewController;
+    GGNavigationController *selectedNC = (GGNavigationController *)_tabBarController.selectedViewController;
     return (GGBaseViewController *)selectedNC.topViewController;
 }
 
@@ -107,7 +107,7 @@
     
     //
     _signPortalVC = [[GGSignupPortalVC alloc] init];
-    self.naviController = [[GGRootNaviVC alloc] initWithRootViewController:_signPortalVC];
+    self.naviController = [[GGNavigationController alloc] initWithRootViewController:_signPortalVC];
     self.naviController.navigationBarHidden = YES;
     
     [self makeNaviBarCustomed:YES];

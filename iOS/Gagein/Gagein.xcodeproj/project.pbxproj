@@ -423,6 +423,17 @@
 		EA9E001B1770074E00127233 /* GGSsgrfPopPanelPerson.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9E00171770074E00127233 /* GGSsgrfPopPanelPerson.xib */; };
 		EAA055DF17792FEC00D04463 /* GGUpdateCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA055DE17792FEB00D04463 /* GGUpdateCache.m */; };
 		EAA055E21779312F00D04463 /* GGCompetitorCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA055E11779312F00D04463 /* GGCompetitorCache.m */; };
+		EAA097D31795FF71005E65FC /* arrow_down.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA097C11795FF70005E65FC /* arrow_down.png */; };
+		EAA097D41795FF71005E65FC /* arrow_down1.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA097C21795FF70005E65FC /* arrow_down1.png */; };
+		EAA097D51795FF71005E65FC /* arrow_down1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA097C31795FF70005E65FC /* arrow_down1@2x.png */; };
+		EAA097D61795FF71005E65FC /* arrow_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA097C41795FF70005E65FC /* arrow_down@2x.png */; };
+		EAA097D71795FF71005E65FC /* SICellSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA097C61795FF70005E65FC /* SICellSelection.m */; };
+		EAA097D81795FF71005E65FC /* SIMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA097C81795FF70005E65FC /* SIMenuButton.m */; };
+		EAA097D91795FF71005E65FC /* SIMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA097CA1795FF70005E65FC /* SIMenuCell.m */; };
+		EAA097DA1795FF71005E65FC /* SIMenuConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA097CC1795FF71005E65FC /* SIMenuConfiguration.m */; };
+		EAA097DB1795FF71005E65FC /* SIMenuTable.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA097CE1795FF71005E65FC /* SIMenuTable.m */; };
+		EAA097DC1795FF71005E65FC /* SINavigationMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA097D01795FF71005E65FC /* SINavigationMenuView.m */; };
+		EAA097DD1795FF71005E65FC /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA097D21795FF71005E65FC /* UIColor+Extension.m */; };
 		EAA1880F175E7BB700580B00 /* GGSignupVC_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA1880E175E7BB700580B00 /* GGSignupVC_iPad.xib */; };
 		EAA18812175EA0E600580B00 /* GGCompanyUpdateIpadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA18811175EA0E600580B00 /* GGCompanyUpdateIpadCell.m */; };
 		EAA18814175EA11500580B00 /* GGCompanyUpdateIpadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA18813175EA11500580B00 /* GGCompanyUpdateIpadCell.xib */; };
@@ -539,7 +550,6 @@
 		EAEABBFF1724C89300947BE9 /* GGWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEABBFC1724C89300947BE9 /* GGWebVC.m */; };
 		EAEABC031724C8E400947BE9 /* GGHappeningsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEABC021724C8E400947BE9 /* GGHappeningsVC.m */; };
 		EAEC1E3A1739B6CE0058130E /* tabbarBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEC1E391739B6CE0058130E /* tabbarBg@2x.png */; };
-		EAEC1E421739CCCD0058130E /* GGRootNaviVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEC1E411739CCCD0058130E /* GGRootNaviVC.m */; };
 		EAEFB4DF1717A8100013634F /* GGCompanyDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CB1717A8100013634F /* GGCompanyDetailVC.xib */; };
 		EAEFB4E01717A8100013634F /* GGCompanyUpdateDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CC1717A8100013634F /* GGCompanyUpdateDetailVC.xib */; };
 		EAEFB4E11717A8100013634F /* GGFollowCompanyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEFB4CD1717A8100013634F /* GGFollowCompanyVC.xib */; };
@@ -1217,6 +1227,24 @@
 		EAA055DE17792FEB00D04463 /* GGUpdateCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUpdateCache.m; sourceTree = "<group>"; };
 		EAA055E01779312E00D04463 /* GGCompetitorCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompetitorCache.h; sourceTree = "<group>"; };
 		EAA055E11779312F00D04463 /* GGCompetitorCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCompetitorCache.m; sourceTree = "<group>"; };
+		EAA097C11795FF70005E65FC /* arrow_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_down.png; sourceTree = "<group>"; };
+		EAA097C21795FF70005E65FC /* arrow_down1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_down1.png; sourceTree = "<group>"; };
+		EAA097C31795FF70005E65FC /* arrow_down1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_down1@2x.png"; sourceTree = "<group>"; };
+		EAA097C41795FF70005E65FC /* arrow_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_down@2x.png"; sourceTree = "<group>"; };
+		EAA097C51795FF70005E65FC /* SICellSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SICellSelection.h; sourceTree = "<group>"; };
+		EAA097C61795FF70005E65FC /* SICellSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SICellSelection.m; sourceTree = "<group>"; };
+		EAA097C71795FF70005E65FC /* SIMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMenuButton.h; sourceTree = "<group>"; };
+		EAA097C81795FF70005E65FC /* SIMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMenuButton.m; sourceTree = "<group>"; };
+		EAA097C91795FF70005E65FC /* SIMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMenuCell.h; sourceTree = "<group>"; };
+		EAA097CA1795FF70005E65FC /* SIMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMenuCell.m; sourceTree = "<group>"; };
+		EAA097CB1795FF71005E65FC /* SIMenuConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMenuConfiguration.h; sourceTree = "<group>"; };
+		EAA097CC1795FF71005E65FC /* SIMenuConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMenuConfiguration.m; sourceTree = "<group>"; };
+		EAA097CD1795FF71005E65FC /* SIMenuTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMenuTable.h; sourceTree = "<group>"; };
+		EAA097CE1795FF71005E65FC /* SIMenuTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMenuTable.m; sourceTree = "<group>"; };
+		EAA097CF1795FF71005E65FC /* SINavigationMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SINavigationMenuView.h; sourceTree = "<group>"; };
+		EAA097D01795FF71005E65FC /* SINavigationMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SINavigationMenuView.m; sourceTree = "<group>"; };
+		EAA097D11795FF71005E65FC /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
+		EAA097D21795FF71005E65FC /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
 		EAA1880E175E7BB700580B00 /* GGSignupVC_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGSignupVC_iPad.xib; sourceTree = "<group>"; };
 		EAA18810175EA0E600580B00 /* GGCompanyUpdateIpadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GGCompanyUpdateIpadCell.h; path = Cells/GGCompanyUpdateIpadCell.h; sourceTree = "<group>"; };
 		EAA18811175EA0E600580B00 /* GGCompanyUpdateIpadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GGCompanyUpdateIpadCell.m; path = Cells/GGCompanyUpdateIpadCell.m; sourceTree = "<group>"; };
@@ -1410,8 +1438,6 @@
 		EAEABC011724C8E400947BE9 /* GGHappeningsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGHappeningsVC.h; sourceTree = "<group>"; };
 		EAEABC021724C8E400947BE9 /* GGHappeningsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGHappeningsVC.m; sourceTree = "<group>"; };
 		EAEC1E391739B6CE0058130E /* tabbarBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbarBg@2x.png"; sourceTree = "<group>"; };
-		EAEC1E401739CCCD0058130E /* GGRootNaviVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGRootNaviVC.h; sourceTree = "<group>"; };
-		EAEC1E411739CCCD0058130E /* GGRootNaviVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGRootNaviVC.m; sourceTree = "<group>"; };
 		EAEFB4CB1717A8100013634F /* GGCompanyDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyDetailVC.xib; sourceTree = "<group>"; };
 		EAEFB4CC1717A8100013634F /* GGCompanyUpdateDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGCompanyUpdateDetailVC.xib; sourceTree = "<group>"; };
 		EAEFB4CD1717A8100013634F /* GGFollowCompanyVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGFollowCompanyVC.xib; sourceTree = "<group>"; };
@@ -2312,6 +2338,39 @@
 			path = ssgrf_button;
 			sourceTree = "<group>";
 		};
+		EAA097BF1795FF70005E65FC /* NavigationMenuView */ = {
+			isa = PBXGroup;
+			children = (
+				EAA097C01795FF70005E65FC /* images */,
+				EAA097C51795FF70005E65FC /* SICellSelection.h */,
+				EAA097C61795FF70005E65FC /* SICellSelection.m */,
+				EAA097C71795FF70005E65FC /* SIMenuButton.h */,
+				EAA097C81795FF70005E65FC /* SIMenuButton.m */,
+				EAA097C91795FF70005E65FC /* SIMenuCell.h */,
+				EAA097CA1795FF70005E65FC /* SIMenuCell.m */,
+				EAA097CB1795FF71005E65FC /* SIMenuConfiguration.h */,
+				EAA097CC1795FF71005E65FC /* SIMenuConfiguration.m */,
+				EAA097CD1795FF71005E65FC /* SIMenuTable.h */,
+				EAA097CE1795FF71005E65FC /* SIMenuTable.m */,
+				EAA097CF1795FF71005E65FC /* SINavigationMenuView.h */,
+				EAA097D01795FF71005E65FC /* SINavigationMenuView.m */,
+				EAA097D11795FF71005E65FC /* UIColor+Extension.h */,
+				EAA097D21795FF71005E65FC /* UIColor+Extension.m */,
+			);
+			path = NavigationMenuView;
+			sourceTree = "<group>";
+		};
+		EAA097C01795FF70005E65FC /* images */ = {
+			isa = PBXGroup;
+			children = (
+				EAA097C11795FF70005E65FC /* arrow_down.png */,
+				EAA097C21795FF70005E65FC /* arrow_down1.png */,
+				EAA097C31795FF70005E65FC /* arrow_down1@2x.png */,
+				EAA097C41795FF70005E65FC /* arrow_down@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		EAAD14D1170AA8D600EFB23A /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -2726,8 +2785,6 @@
 				EA1D944617335EAB009FCC7B /* GGRootVC.h */,
 				EA1D944717335EAB009FCC7B /* GGRootVC.m */,
 				EA1D944817335EAB009FCC7B /* GGRootVC.xib */,
-				EAEC1E401739CCCD0058130E /* GGRootNaviVC.h */,
-				EAEC1E411739CCCD0058130E /* GGRootNaviVC.m */,
 				EA9162611767F6EC000AB2FB /* GGNavigationController.h */,
 				EA9162621767F6EE000AB2FB /* GGNavigationController.m */,
 			);
@@ -2846,6 +2903,7 @@
 		EACAE0BB17094A3100E7088F /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				EAA097BF1795FF70005E65FC /* NavigationMenuView */,
 				EA915489178E328B0005DB57 /* GGAnimatedMenu */,
 				EA945CB2177EB10C00523A2F /* MMDrawerController */,
 				EAAF888D176265EE00FAD594 /* Popover */,
@@ -3617,6 +3675,10 @@
 				EA91A0E51791F41C002E3594 /* addGray@2x.png in Resources */,
 				EA91A0E61791F41C002E3594 /* checkGray@2x.png in Resources */,
 				EA3B44A31794A1C600F65E67 /* x@2x.png in Resources */,
+				EAA097D31795FF71005E65FC /* arrow_down.png in Resources */,
+				EAA097D41795FF71005E65FC /* arrow_down1.png in Resources */,
+				EAA097D51795FF71005E65FC /* arrow_down1@2x.png in Resources */,
+				EAA097D61795FF71005E65FC /* arrow_down@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3796,7 +3858,6 @@
 				EAB8D51A1739762200D033FC /* GGSalesforceOAuthVC.m in Sources */,
 				EAB8D52417397CA100D033FC /* Bee_Thread.mm in Sources */,
 				EAB8D52B1739882F00D033FC /* GGUserProfile.m in Sources */,
-				EAEC1E421739CCCD0058130E /* GGRootNaviVC.m in Sources */,
 				EAD16176173AE2050092C11B /* GGComUpdateDetailView.m in Sources */,
 				EAD1618B173B3BB50092C11B /* GGFacebookOAuth.m in Sources */,
 				EA2AD9C5173C4D6C007428E2 /* GGCategoryFilter.m in Sources */,
@@ -3899,6 +3960,13 @@
 				EA915479178DE46D0005DB57 /* GGStringFormatter.m in Sources */,
 				EA915493178E328C0005DB57 /* GGAnimatedMenu.m in Sources */,
 				EA99D4B41790AF190094B0FE /* GGNib.m in Sources */,
+				EAA097D71795FF71005E65FC /* SICellSelection.m in Sources */,
+				EAA097D81795FF71005E65FC /* SIMenuButton.m in Sources */,
+				EAA097D91795FF71005E65FC /* SIMenuCell.m in Sources */,
+				EAA097DA1795FF71005E65FC /* SIMenuConfiguration.m in Sources */,
+				EAA097DB1795FF71005E65FC /* SIMenuTable.m in Sources */,
+				EAA097DC1795FF71005E65FC /* SINavigationMenuView.m in Sources */,
+				EAA097DD1795FF71005E65FC /* UIColor+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

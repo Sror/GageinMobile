@@ -165,15 +165,6 @@
         [[self _iconAt:_currentIndex] setImage:[_normalImages objectAtIndex:_currentIndex]];
         [[self _iconAt:index] setImage:[_selectedImages objectAtIndex:index]];
         
-//        UIViewController *vc = self.viewControllers[index];
-//        if ([vc isKindOfClass:[UINavigationController class]])
-//        {
-//            UIViewController *subVC = ((UINavigationController *)vc).viewControllers[0];
-//            if ([subVC isKindOfClass:[GGBaseViewController class]])
-//            {
-//                [((GGBaseViewController *)subVC) layoutUIForIPadIfNeeded];
-//            }
-//        }
         [GGSharedDelegate.drawerVC adjustCenterRect];
         
         _currentIndex = index;
@@ -181,7 +172,7 @@
 }
 
 #pragma mark - unused method
--(UINavigationController*)navControllerWithRootByClassName:(NSString*)aClassName
+-(GGNavigationController*)navControllerWithRootByClassName:(NSString*)aClassName
 {
     NSAssert(aClassName.length
              && NSClassFromString(aClassName)
@@ -191,7 +182,7 @@
     Class theClass = NSClassFromString(aClassName);
     
     UIViewController* rootVC = [[theClass alloc] initWithNibName:aClassName bundle:nil];
-    return [[UINavigationController alloc] initWithRootViewController:rootVC];
+    return [[GGNavigationController alloc] initWithRootViewController:rootVC];
 }
 
 -(void)doLayoutUIForIPadWithOrientation:(UIInterfaceOrientation)toInterfaceOrientation

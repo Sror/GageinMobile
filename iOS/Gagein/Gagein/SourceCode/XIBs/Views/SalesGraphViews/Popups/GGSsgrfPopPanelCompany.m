@@ -200,7 +200,7 @@
     _viewMessage.hidden = YES;
     _btnFollow.hidden = (grade == kGGComGradeB);
     
-    if (1|| _data.hasBeenRemoved)
+    if (_data.hasBeenRemoved)
     {
         _viewMessage.hidden = NO;
         _lblMessage.text = @"This company is removed from GageIn.";
