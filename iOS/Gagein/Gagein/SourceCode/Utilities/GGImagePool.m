@@ -53,6 +53,8 @@ DEF_SINGLETON(GGImagePool)
     _tableUnselectedDot = [[UIImage imageNamed:@"tableUnselectedDot"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
     
     _x = [UIImage imageNamed:@"x"];
+    
+    _logoGageinWithName = [UIImage imageNamed:@"gageinLogo"];
 }
 
 @end

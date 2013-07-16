@@ -30,6 +30,7 @@ AS_SINGLETON(GGImagePool)
 @property (strong, nonatomic) UIImage  *tableUnselectedDot;
 
 @property (strong, nonatomic) UIImage   *x;
+@property (strong, nonatomic) UIImage   *logoGageinWithName;
 
 //@property (strong, nonatomic) UIImage  *tableCellRoundBg;
 @end

@@ -15,6 +15,7 @@
 @implementation GGWebVC
 {
     UIWebView   *_webview;
+    UIImageView *_ivLogo;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,12 +30,22 @@
 #define WEB_PREFIX_HTTP     @"http://"
 #define WEB_PREFIX_HTTPS     @"https://"
 
+#define ZOOM_RATIO          (.6f)
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.naviTitle = _naviTitleString;
+    
+    
+    UIImage *logo = GGSharedImagePool.logoGageinWithName;
+    _ivLogo = [[UIImageView alloc] initWithImage:logo];
+    
+    CGSize displaySize = CGSizeMake(logo.size.width * ZOOM_RATIO, logo.size.height * ZOOM_RATIO);
+    CGSize naviBarSize = self.navigationController.navigationBar.frame.size;
+    _ivLogo.frame = CGRectMake((naviBarSize.width - displaySize.width) / 2, (naviBarSize.height - displaySize.height) / 2 + 5, displaySize.width, displaySize.height);
+    
 	
-    _webview = [[UIWebView alloc] initWithFrame:[self viewportAdjsted]];
+    _webview = [[UIWebView alloc] initWithFrame:[GGLayout pageRectWithLayoutElement:kLayoutElementAll]];
     _webview.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _webview.delegate = self;
     _webview.scalesPageToFit = YES;
@@ -57,6 +68,18 @@
 {
     [super viewWillAppear:animated];
     [self showBackButton];
+    
+    if (_naviTitleString.length <= 0)
+    {
+        [self.navigationController.navigationBar addSubview:_ivLogo];
+    }
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [_ivLogo removeFromSuperview];
 }
 
 -(void)dealloc

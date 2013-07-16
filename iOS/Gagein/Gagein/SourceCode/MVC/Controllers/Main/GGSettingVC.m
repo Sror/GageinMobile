@@ -278,15 +278,15 @@
         } else if (row == 1) {
 
             GGWebVC *vc = [[GGWebVC alloc] init];
-            vc.urlStr = [NSString stringWithFormat:@"%@/privacy", CURRENT_SERVER_URL];
-            vc.naviTitleString = @"Privacy";
+            vc.urlStr = [NSString stringWithFormat:@"%@/html/privacy.html", CURRENT_SERVER_URL];
+            //vc.naviTitleString = @"Privacy";
             [self.navigationController pushViewController:vc animated:YES];
             
         } else if (row == 2) {
 
             GGWebVC *vc = [[GGWebVC alloc] init];
-            vc.urlStr = [NSString stringWithFormat:@"%@/tou", CURRENT_SERVER_URL];
-            vc.naviTitleString = @"Terms";
+            vc.urlStr = [NSString stringWithFormat:@"%@/html/tos.html", CURRENT_SERVER_URL];
+            //vc.naviTitleString = @"Terms";
             [self.navigationController pushViewController:vc animated:YES];
             
         }
