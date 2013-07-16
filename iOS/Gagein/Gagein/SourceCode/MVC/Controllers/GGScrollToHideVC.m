@@ -28,7 +28,7 @@
     _scrolls = [NSMutableSet set];
     _excludeScrolls = [NSMutableArray array];
     
-    [GGSharedDelegate.tabBarController adjustOtherViewsHideBar:YES];
+    //[GGSharedDelegate.tabBarController adjustOtherViewsHideBar:YES];
 }
 
 -(void)excludeScrollView:(UIScrollView *)aScrollView
@@ -73,27 +73,27 @@
     }
 }
 
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
-{
-    int index = [_excludeScrolls indexOfObject:scrollView];
-    if (!ISIPADDEVICE && index == NSNotFound /*&& scrollView.contentSize.height > scrollView.frame.size.height*/)
-    {
-        if (_offsetWhenStartDragging.y < scrollView.contentOffset.y)
-        {
-            //DLog(@"moved up");
-            
-            [GGUtils hideTabBar];
-        }
-        else
-        {
-            //DLog(@"moved down");
-            
-            [GGUtils showTabBar];
-        }
-        
-        [self adjustScrollViewFrames];
-    }
-}
+//- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+//{
+//    int index = [_excludeScrolls indexOfObject:scrollView];
+//    if (!ISIPADDEVICE && index == NSNotFound /*&& scrollView.contentSize.height > scrollView.frame.size.height*/)
+//    {
+//        if (_offsetWhenStartDragging.y < scrollView.contentOffset.y)
+//        {
+//            //DLog(@"moved up");
+//            
+//            [GGUtils hideTabBar];
+//        }
+//        else
+//        {
+//            //DLog(@"moved down");
+//            
+//            [GGUtils showTabBar];
+//        }
+//        
+//        [self adjustScrollViewFrames];
+//    }
+//}
 
 -(void)adjustScrollViewFrames
 {

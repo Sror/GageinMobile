@@ -135,6 +135,9 @@
         //make indicator image transparent
         self.tabBar.selectionIndicatorImage = [UIImage imageNamed:@"transparent.png"];
     }
+    
+    [self adjustOtherViewsHideBar:YES];
+    [self hideTabBarAnimated:NO];
 }
 
 
@@ -162,8 +165,8 @@
 {
     if (_currentIndex != index)
     {
-        [[self _iconAt:_currentIndex] setImage:[_normalImages objectAtIndex:_currentIndex]];
-        [[self _iconAt:index] setImage:[_selectedImages objectAtIndex:index]];
+        //[[self _iconAt:_currentIndex] setImage:[_normalImages objectAtIndex:_currentIndex]];
+        //[[self _iconAt:index] setImage:[_selectedImages objectAtIndex:index]];
         
         [GGSharedDelegate.drawerVC adjustCenterRect];
         

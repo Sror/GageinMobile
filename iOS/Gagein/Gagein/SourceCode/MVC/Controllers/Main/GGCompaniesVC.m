@@ -240,6 +240,7 @@
     [self observeNotification:GG_NOTIFY_TRIGGER_CHANGED];
     
     [super viewDidLoad];
+    self.showDropDownMenu = YES;
     
     [self _installMenuButton];
 //#warning COLOR is originally silver

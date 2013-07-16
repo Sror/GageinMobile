@@ -56,7 +56,7 @@
 {
     if (!self.table) {
         CGRect tvRc = self.menuContainer.frame;
-        tvRc.origin.y += 44;
+        tvRc.origin.y += 48;
         self.table = [[SIMenuTable alloc] initWithFrame:tvRc items:self.items images:self.images];
         self.table.menuDelegate = self;
     }

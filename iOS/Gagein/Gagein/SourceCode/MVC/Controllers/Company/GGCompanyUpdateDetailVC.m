@@ -1358,4 +1358,10 @@
 //    return _recommendedTriggers;
 //}
 
+-(void)naviBackAction:(id)aSender
+{
+    self.navigationController.navigationBarHidden = NO;
+    [super naviBackAction:aSender];
+}
+
 @end

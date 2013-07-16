@@ -95,7 +95,7 @@
 
 - (float)bounceAnimationDuration
 {
-    float percentage = 28.57;
+    float percentage = 15.f;
     return [SIMenuConfiguration animationDuration]*percentage/100.0;
 }
 

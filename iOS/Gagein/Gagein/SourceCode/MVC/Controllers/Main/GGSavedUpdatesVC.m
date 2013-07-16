@@ -129,6 +129,7 @@
     [self observeNotification:GG_NOTIFY_LOG_IN];
     
     [super viewDidLoad];
+    self.showDropDownMenu = YES;
     self.view.backgroundColor = GGSharedColor.silver;
     self.naviTitle = @"Saved Updates";
     

@@ -8,6 +8,7 @@
 
 #import "GGNavigationController.h"
 #import "SINavigationMenuView.h"
+#import "GGAppDelegate.h"
 
 @interface GGNavigationController ()<SINavigationMenuDelegate>
 
@@ -53,7 +54,7 @@
         _dropMenu.items = @[@"Companies", @"People", @"Saved", @"Settings"];
         _dropMenu.images = @[@"tab_company_selected", @"tab_people_selected", @"tab_saved_selected", @"tab_settings_selected"];
         _dropMenu.delegate = self;
-        
+        _dropMenu.hidden = YES;
     }
 }
 
@@ -72,6 +73,7 @@
 #pragma mark -
 - (void)didSelectItemAtIndex:(NSUInteger)index
 {
+    GGSharedDelegate.tabBarController.selectedIndex = index;
     NSLog(@"did selected item at index %d", index);
 }
 

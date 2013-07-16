@@ -23,7 +23,7 @@
 @property (copy, nonatomic)    NSString                    *naviTitle;
 @property (strong, nonatomic)  UIButton                    *naviButtonLeft;
 @property (strong, nonatomic)  UIImageView                 *ivGageinLogo;
-//@property (assign, nonatomic)  BOOL                        needHideTabbar;
+@property (assign, nonatomic)  BOOL                        showDropDownMenu;
 
 @property (assign, nonatomic)   BOOL    isMenuShowingBeforeLeavePortrait;
 

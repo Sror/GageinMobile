@@ -100,6 +100,7 @@
     [self observeNotification:GG_NOTIFY_FUNC_ROLE_CHANGED];
     
     [super viewDidLoad];
+    self.showDropDownMenu = YES;
     
     [self _installMenuButton];
     self.naviTitle = @"Exploring";

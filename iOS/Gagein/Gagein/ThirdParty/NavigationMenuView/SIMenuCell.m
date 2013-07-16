@@ -22,7 +22,17 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.contentView.backgroundColor = [UIColor colorWithWhite:.2f alpha:.8f];//[UIColor color:[SIMenuConfiguration itemsColor] withAlpha:[SIMenuConfiguration menuAlpha]];
+        self.contentView.backgroundColor = [UIColor colorWithWhite:.2f alpha:1];//[UIColor color:[SIMenuConfiguration itemsColor] withAlpha:[SIMenuConfiguration menuAlpha]];
+        
+        // top line
+        UIView *topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.bounds.size.width, 1)];
+        topLine.backgroundColor = [UIColor colorWithWhite:1 alpha:.1];
+        [self.contentView addSubview:topLine];
+        
+        // bottom line
+        UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, self.contentView.bounds.size.height - 1, self.contentView.bounds.size.width, 1)];
+        bottomLine.backgroundColor = [UIColor colorWithWhite:0 alpha:.1];
+        [self.contentView addSubview:bottomLine];
         
         //
         self.textLabel.textColor = [SIMenuConfiguration itemTextColor];
@@ -40,6 +50,7 @@
         self.cellSelection.alpha = 0.0;
         [self.contentView insertSubview:self.cellSelection belowSubview:self.textLabel];
         
+        //
         CGRect logoRc = CGRectMake(5, 5, [SIMenuConfiguration logoSize], [SIMenuConfiguration logoSize]);
         _ivLogo = [[UIImageView alloc] initWithFrame:logoRc];
         _ivLogo.contentMode = UIViewContentModeScaleAspectFill;
@@ -49,24 +60,24 @@
     return self;
 }
 
-- (void)drawRect:(CGRect)rect {
-    [super drawRect:rect];
-    
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGContextSetLineWidth(ctx, 2.0f);
-    
-    CGContextSetRGBStrokeColor(ctx, 0.0f, 0.0f, 0.0f, 1.0f);
-    CGContextMoveToPoint(ctx, 0, self.contentView.bounds.size.height);
-    CGContextAddLineToPoint(ctx, self.contentView.bounds.size.width, self.contentView.bounds.size.height);
-    CGContextStrokePath(ctx);
-    
-    CGContextSetRGBStrokeColor(ctx, 1.0f, 1.0f, 1.0f, 0.7f);
-        
-    CGContextMoveToPoint(ctx, 0, 0);
-    CGContextAddLineToPoint(ctx, self.contentView.bounds.size.width, 0);
-    CGContextStrokePath(ctx);
-    
-}
+//- (void)drawRect:(CGRect)rect {
+//    [super drawRect:rect];
+//    
+//    CGContextRef ctx = UIGraphicsGetCurrentContext();
+//    CGContextSetLineWidth(ctx, 2.0f);
+//    
+//    CGContextSetRGBStrokeColor(ctx, 0.0f, 0.0f, 0.0f, 1.0f);
+//    CGContextMoveToPoint(ctx, 0, self.contentView.bounds.size.height);
+//    CGContextAddLineToPoint(ctx, self.contentView.bounds.size.width, self.contentView.bounds.size.height);
+//    CGContextStrokePath(ctx);
+//    
+//    CGContextSetRGBStrokeColor(ctx, 1.0f, 1.0f, 1.0f, 0.7f);
+//        
+//    CGContextMoveToPoint(ctx, 0, 0);
+//    CGContextAddLineToPoint(ctx, self.contentView.bounds.size.width, 0);
+//    CGContextStrokePath(ctx);
+//    
+//}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

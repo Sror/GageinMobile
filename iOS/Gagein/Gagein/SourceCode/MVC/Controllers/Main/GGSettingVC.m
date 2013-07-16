@@ -62,10 +62,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.showDropDownMenu = YES;
     self.naviTitle = @"Settings";
     self.view.backgroundColor = GGSharedColor.silver;
     self.svContent.backgroundColor = GGSharedColor.silver;
     self.tvSettings.backgroundColor = GGSharedColor.silver;
+    
+    
     _tvSettings.rowHeight = [GGGroupedCell HEIGHT];
     _tvSettings.separatorStyle = UITableViewCellSeparatorStyleNone;
 }

@@ -45,7 +45,7 @@
     _ivLogo.frame = CGRectMake((naviBarSize.width - displaySize.width) / 2, (naviBarSize.height - displaySize.height) / 2 + 5, displaySize.width, displaySize.height);
     
 	
-    _webview = [[UIWebView alloc] initWithFrame:[GGLayout pageRectWithLayoutElement:kLayoutElementAll]];
+    _webview = [[UIWebView alloc] initWithFrame:[GGLayout pageRectWithLayoutElement:kLayoutElementStatusBar | kLayoutElementNaviBar]];
     _webview.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _webview.delegate = self;
     _webview.scalesPageToFit = YES;

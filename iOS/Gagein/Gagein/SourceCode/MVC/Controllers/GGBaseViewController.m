@@ -46,6 +46,7 @@
 
 #import "MMDrawerController.h"
 #import "GGAnimatedMenu.h"
+#import "SINavigationMenuView.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 
@@ -196,9 +197,9 @@
 //    
     self.navigationItem.hidesBackButton = YES;
     
-//    UISwipeGestureRecognizer *swipeGest = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(naviBackAction:)];
-//    swipeGest.direction = UISwipeGestureRecognizerDirectionRight;
-//    [self.view addGestureRecognizer:swipeGest];
+    UISwipeGestureRecognizer *swipeGest = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(naviBackAction:)];
+    swipeGest.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:swipeGest];
     
 }
 
@@ -299,7 +300,7 @@
         [self _decideCanPanToOpenDrawerWithOrient:self.interfaceOrientation];
     }
     
-    //[GGSharedDelegate.tabBarController adjustOtherViewsHideBar:_needHideTabbar];
+    ((GGNavigationController *)self.navigationController).dropMenu.hidden = !_showDropDownMenu;
 }
 
 -(void)viewWillAppearNotFirstTimeAction

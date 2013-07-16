@@ -30,7 +30,7 @@
 //Animation duration of menu appearence
 + (float)animationDuration
 {
-    return 0.3f;
+    return 0.2f;
 }
 
 //Menu substrate alpha value
@@ -48,7 +48,7 @@
 //Value of bounce
 + (float)bounceOffset
 {
-    return -7.0;
+    return -3.0;
 }
 
 //Arrow image near title
