@@ -90,6 +90,13 @@
     
     //
     [_btnLogo applyEffectCircleSilverBorder];
+    
+    //
+    _viewCover = [[UIView alloc] initWithFrame:self.bounds];
+    [self addSubview:_viewCover];
+    _viewCover.backgroundColor = GGSharedColor.white;
+    _viewCover.layer.cornerRadius = self.layer.cornerRadius;
+    _viewCover.hidden = YES;
 }
 
 -(void)updateWithPerson:(GGPerson *)aPerson

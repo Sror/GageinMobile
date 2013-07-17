@@ -72,6 +72,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblMessageAction;
 
 
+@property (strong, nonatomic) UIView    *viewCover;
+
+
 //-(void)showSourceButtonWithProfile:(GGSocialProfile *)aSourceProfile;
 -(void)updateWithCompany:(GGCompany *)aCompany;
 @end

@@ -1412,8 +1412,6 @@
         {
             [self _doExploringHideSlide:NO];
         }
-        
-        //[UIView setAnimationsEnabled:YES];
     }];
     
     [self registerOperation:op];

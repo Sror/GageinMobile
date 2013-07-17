@@ -114,6 +114,13 @@
     //_lblMessageAction.backgroundColor = GGSharedColor.random;
     _seeComDetailTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enterCompanyDetail:)];
     [_btnFollow setBackgroundImage:[UIImage imageNamed:@"ssgrf_bg_btn_unfollow"] forState:UIControlStateDisabled];
+    
+    //
+    _viewCover = [[UIView alloc] initWithFrame:self.bounds];
+    [self addSubview:_viewCover];
+    _viewCover.backgroundColor = GGSharedColor.white;
+    _viewCover.layer.cornerRadius = self.layer.cornerRadius;
+    _viewCover.hidden = YES;
 }
 
 -(void)updateWithCompany:(GGCompany *)aCompany
@@ -207,7 +214,7 @@
 {
     EGGCompanyGrade grade = _data.getGrade;
 #warning CHANGE COMPANY GRAPH GRADE
-    grade = kGGComGradeB;
+    //grade = kGGComGradeB;
     
     _viewMessage.hidden = YES;
     _lblMessageAction.hidden = YES;

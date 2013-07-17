@@ -40,9 +40,11 @@
     _personID = [aPersonID longLongValue];
     
     [self showLoadingHUD];
+    self.panel.viewCover.hidden = NO;
     
     [GGSharedAPI getPersonOverviewWithID:_personID callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
+        self.panel.viewCover.hidden = YES;
         
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         _overview = [parser parseGetPersonOverview];

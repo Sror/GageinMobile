@@ -43,9 +43,10 @@
     _relevancePersonID = aCompany.relevancePersonID;
     
     [self showLoadingHUD];
-    
+    self.panel.viewCover.hidden = NO;
     [GGSharedAPI getCompanyOverviewWithID:_companyID needSocialProfile:YES contactID:_relevancePersonID callback:^(id operation, id aResultObject, NSError *anError) {
         [self hideLoadingHUD];
+        self.panel.viewCover.hidden = YES;
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         _overview = [parser parseGetCompanyOverview];
         [self.panel updateWithCompany:_overview];
