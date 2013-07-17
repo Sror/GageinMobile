@@ -111,6 +111,12 @@
     if (aAnimated)
     {
         CAAnimation *animation = aIsPush ? [GGAnimation animationMoveInFromRight] : [GGAnimation animationRevealFromLeft];
+        
+//        if (ISIPADDEVICE)
+//        {
+//            animation = [GGAnimation animationFade];
+//        }
+        
         [UIView animateWithDuration:.5f animations:^{
             [self.view.layer addAnimation:animation forKey:nil];
         }];

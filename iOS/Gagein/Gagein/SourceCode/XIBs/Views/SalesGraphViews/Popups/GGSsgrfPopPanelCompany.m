@@ -195,7 +195,8 @@
 -(void)_updateUIExtra
 {
     EGGCompanyGrade grade = _data.getGrade;
-    //grade = kGGComGradeUnknown;
+#warning CHANGE COMPANY GRAPH GRADE
+    //grade = kGGComGradeB;
     
     _viewMessage.hidden = YES;
     _btnFollow.hidden = (grade == kGGComGradeB);

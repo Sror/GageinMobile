@@ -165,8 +165,11 @@
 {
     if (_currentIndex != index)
     {
-        //[[self _iconAt:_currentIndex] setImage:[_normalImages objectAtIndex:_currentIndex]];
-        //[[self _iconAt:index] setImage:[_selectedImages objectAtIndex:index]];
+        if (ISIPADDEVICE)
+        {
+            [[self _iconAt:_currentIndex] setImage:[_normalImages objectAtIndex:_currentIndex]];
+            [[self _iconAt:index] setImage:[_selectedImages objectAtIndex:index]];
+        }
         
         [GGSharedDelegate.drawerVC adjustCenterRect];
         
