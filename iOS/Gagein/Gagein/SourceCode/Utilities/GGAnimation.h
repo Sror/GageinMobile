@@ -21,6 +21,13 @@
 
 +(CAAnimation*)animationMoveInFromTop;
 +(CAAnimation*)animationMoveInFromBottom;
++(CAAnimation*)animationMoveInFromLeft;
++(CAAnimation*)animationMoveInFromRight;
+
++(CAAnimation*)animationRevealFromTop;
++(CAAnimation*)animationRevealFromBottom;
++(CAAnimation*)animationRevealFromLeft;
++(CAAnimation*)animationRevealFromRight;
 
 +(CAAnimation *)animationFlipFromTop;
 +(CAAnimation *)animationFlipFromBottom;

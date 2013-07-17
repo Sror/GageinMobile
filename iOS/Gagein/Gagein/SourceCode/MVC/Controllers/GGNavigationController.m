@@ -77,4 +77,41 @@
     NSLog(@"did selected item at index %d", index);
 }
 
+#pragma mark -
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [self _animated:animated isPush:YES];
+    
+    [super pushViewController:viewController animated:NO];
+}
+
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated
+{
+    [self _animated:animated isPush:NO];
+    return [super popViewControllerAnimated:NO];
+}
+
+- (NSArray *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [self _animated:animated isPush:NO];
+    return [super popToViewController:viewController animated:NO];
+}
+
+- (NSArray *)popToRootViewControllerAnimated:(BOOL)animated
+{
+    [self _animated:animated isPush:NO];
+    return [self popToRootViewControllerAnimated:NO];
+}
+
+-(void)_animated:(BOOL)aAnimated isPush:(BOOL)aIsPush
+{
+    if (aAnimated)
+    {
+        CAAnimation *animation = aIsPush ? [GGAnimation animationMoveInFromRight] : [GGAnimation animationRevealFromLeft];
+        [UIView animateWithDuration:.5f animations:^{
+            [self.view.layer addAnimation:animation forKey:nil];
+        }];
+    }
+}
+
 @end

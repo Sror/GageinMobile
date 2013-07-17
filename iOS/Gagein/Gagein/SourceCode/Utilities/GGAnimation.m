@@ -75,6 +75,36 @@
     return [self animationWithType:kCATransitionMoveIn subType:kCATransitionFromBottom];
 }
 
++(CAAnimation*)animationMoveInFromLeft
+{
+    return [self animationWithType:kCATransitionMoveIn subType:kCATransitionFromLeft];
+}
+
++(CAAnimation*)animationMoveInFromRight
+{
+    return [self animationWithType:kCATransitionMoveIn subType:kCATransitionFromRight];
+}
+
++(CAAnimation*)animationRevealFromTop
+{
+    return [self animationWithType:kCATransitionReveal subType:kCATransitionFromTop];
+}
+
++(CAAnimation*)animationRevealFromBottom
+{
+    return [self animationWithType:kCATransitionReveal subType:kCATransitionFromBottom];
+}
+
++(CAAnimation*)animationRevealFromLeft
+{
+    return [self animationWithType:kCATransitionReveal subType:kCATransitionFromLeft];
+}
+
++(CAAnimation*)animationRevealFromRight
+{
+    return [self animationWithType:kCATransitionReveal subType:kCATransitionFromRight];
+}
+
 +(CAAnimation *)animationFlipFromTop
 {
     return [self animationWithType:@"flip" subType:@"fromTop" duration:FLIP_DURATION];
