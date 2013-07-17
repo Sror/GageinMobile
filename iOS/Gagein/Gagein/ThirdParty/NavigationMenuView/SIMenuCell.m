@@ -36,6 +36,7 @@
         
         //
         self.textLabel.textColor = [SIMenuConfiguration itemTextColor];
+        self.textLabel.font = [UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE_LIGHT size:15];
         self.textLabel.textAlignment = NSTextAlignmentCenter;
         self.textLabel.shadowColor = [UIColor darkGrayColor];
         self.textLabel.shadowOffset = CGSizeMake(0.0, -1.0);
@@ -51,7 +52,7 @@
         [self.contentView insertSubview:self.cellSelection belowSubview:self.textLabel];
         
         //
-        CGRect logoRc = CGRectMake(5, 5, [SIMenuConfiguration logoSize], [SIMenuConfiguration logoSize]);
+        CGRect logoRc = CGRectMake(20, ([SIMenuConfiguration itemCellHeight] - [SIMenuConfiguration logoSize]) / 2, [SIMenuConfiguration logoSize], [SIMenuConfiguration logoSize]);
         _ivLogo = [[UIImageView alloc] initWithFrame:logoRc];
         _ivLogo.contentMode = UIViewContentModeScaleAspectFill;
         //_ivLogo.image = [UIImage imageNamed:@"tab_company_selected"];

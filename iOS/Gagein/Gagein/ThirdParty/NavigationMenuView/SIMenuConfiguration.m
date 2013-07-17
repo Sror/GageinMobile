@@ -24,7 +24,7 @@
 
 + (float)logoSize
 {
-    return 34.f;
+    return 20.f;
 }
 
 //Animation duration of menu appearence

@@ -54,7 +54,7 @@
             _dropMenu = [[SINavigationMenuView alloc] initWithFrame:frame title:@""];
             
             _dropMenu.items = @[@"Companies", @"People", @"Saved", @"Settings"];
-            _dropMenu.images = @[@"tab_company_selected", @"tab_people_selected", @"tab_saved_selected", @"tab_settings_selected"];
+            _dropMenu.images = @[@"dropDownCompany", @"dropDownPeople", @"dropDownSaved", @"dropDownSettings"];
             _dropMenu.delegate = self;
             _dropMenu.hidden = YES;
         }
