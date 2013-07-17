@@ -108,8 +108,12 @@
     
     // message
     _lblMessage.text = _lblMessageAction.text = @"";
-    _lblMessageAction.textColor = GGSharedColor.orangeGagein;
+    _lblMessageAction.textColor = GGSharedColor.orangeGageinDark;
     _lblMessageAction.hidden = YES;
+    
+    //_lblMessageAction.backgroundColor = GGSharedColor.random;
+    _seeComDetailTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enterCompanyDetail:)];
+    [_btnFollow setBackgroundImage:[UIImage imageNamed:@"ssgrf_bg_btn_unfollow"] forState:UIControlStateDisabled];
 }
 
 -(void)updateWithCompany:(GGCompany *)aCompany
@@ -203,12 +207,14 @@
 {
     EGGCompanyGrade grade = _data.getGrade;
 #warning CHANGE COMPANY GRAPH GRADE
-    //grade = kGGComGradeB;
+    grade = kGGComGradeB;
     
     _viewMessage.hidden = YES;
     _lblMessageAction.hidden = YES;
-    //_lblMessageAction removeGestureRecognizer:<#(UIGestureRecognizer *)#>
-    _btnFollow.hidden = (grade == kGGComGradeB);
+    [_lblMessageAction removeGestureRecognizer:_seeComDetailTap];
+    
+    //_btnFollow.hidden = (grade == kGGComGradeB);
+    _btnFollow.enabled = YES;
     
     if (_data.hasBeenRemoved)
     {
@@ -217,8 +223,14 @@
     }
     else if (grade == kGGComGradeB)
     {
+        _btnFollow.enabled = NO;
+        [_btnFollow setTitle:@"Not followable" forState:UIControlStateDisabled];
+        
         _viewMessage.hidden = NO;
-        _lblMessage.text = @"This company is not available to follow.";
+        _lblMessage.text = @"Limited data availability.";
+        _lblMessageAction.hidden = NO;
+        _lblMessageAction.text = @"See what's available >>";
+        [_lblMessageAction addGestureRecognizer:_seeComDetailTap];
     }
     else if (grade == kGGComGradeC)
     {
@@ -226,6 +238,7 @@
         _lblMessage.text = _data.followed ? @"Limited data availability. More coming later." : @"Limited data availability. More coming soon.";
         _lblMessageAction.hidden = NO;
         _lblMessageAction.text = @"See what's available now >>";
+        [_lblMessageAction addGestureRecognizer:_seeComDetailTap];
     }
 }
 

@@ -329,6 +329,7 @@
 		EA844A33171FBE2200658015 /* DCRoundSwitchOutlineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A2E171FBE2200658015 /* DCRoundSwitchOutlineLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA844A34171FBE2200658015 /* DCRoundSwitchToggleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA844A30171FBE2200658015 /* DCRoundSwitchToggleLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA844A36171FD29C00658015 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA844A35171FD29B00658015 /* MessageUI.framework */; };
+		EA8ADE861797174B005D72B9 /* gageinLogoDarkGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8ADE851797174B005D72B9 /* gageinLogoDarkGray@2x.png */; };
 		EA9104FD177E3DC000E28FA3 /* GGEmployerComsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9104FB177E3DBF00E28FA3 /* GGEmployerComsVC.m */; };
 		EA9104FE177E3DC000E28FA3 /* GGEmployerComsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9104FC177E3DC000E28FA3 /* GGEmployerComsVC.xib */; };
 		EA915479178DE46D0005DB57 /* GGStringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA915478178DE46D0005DB57 /* GGStringFormatter.m */; };
@@ -1100,6 +1101,7 @@
 		EA844A2F171FBE2200658015 /* DCRoundSwitchToggleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitchToggleLayer.h; sourceTree = "<group>"; };
 		EA844A30171FBE2200658015 /* DCRoundSwitchToggleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitchToggleLayer.m; sourceTree = "<group>"; };
 		EA844A35171FD29B00658015 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		EA8ADE851797174B005D72B9 /* gageinLogoDarkGray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gageinLogoDarkGray@2x.png"; sourceTree = "<group>"; };
 		EA9104FA177E3DBF00E28FA3 /* GGEmployerComsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGEmployerComsVC.h; sourceTree = "<group>"; };
 		EA9104FB177E3DBF00E28FA3 /* GGEmployerComsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGEmployerComsVC.m; sourceTree = "<group>"; };
 		EA9104FC177E3DC000E28FA3 /* GGEmployerComsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GGEmployerComsVC.xib; sourceTree = "<group>"; };
@@ -2643,6 +2645,7 @@
 		EACAE0B117094A3100E7088F /* 2X */ = {
 			isa = PBXGroup;
 			children = (
+				EA8ADE851797174B005D72B9 /* gageinLogoDarkGray@2x.png */,
 				EA940C9F179658900021BE4F /* dropDownCompany@2x.png */,
 				EA940CA0179658900021BE4F /* dropDownPeople@2x.png */,
 				EA940CA1179658900021BE4F /* dropDownSaved@2x.png */,
@@ -3695,6 +3698,7 @@
 				EA940CA4179658900021BE4F /* dropDownPeople@2x.png in Resources */,
 				EA940CA5179658900021BE4F /* dropDownSaved@2x.png in Resources */,
 				EA940CA6179658900021BE4F /* dropDownSettings.png in Resources */,
+				EA8ADE861797174B005D72B9 /* gageinLogoDarkGray@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

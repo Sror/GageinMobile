@@ -39,6 +39,7 @@
     
     UIImage *logo = GGSharedImagePool.logoGageinWithName;
     _ivLogo = [[UIImageView alloc] initWithImage:logo];
+    _ivLogo.alpha = .3f;
     
     CGSize displaySize = CGSizeMake(logo.size.width * ZOOM_RATIO, logo.size.height * ZOOM_RATIO);
     CGSize naviBarSize = self.navigationController.navigationBar.frame.size;

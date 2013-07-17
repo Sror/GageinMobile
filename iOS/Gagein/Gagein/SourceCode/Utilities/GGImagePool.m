@@ -54,7 +54,7 @@ DEF_SINGLETON(GGImagePool)
     
     _x = [UIImage imageNamed:@"x"];
     
-    _logoGageinWithName = [UIImage imageNamed:@"gageinLogo"];
+    _logoGageinWithName = [UIImage imageNamed:@"gageinLogoDarkGray"];
 }
 
 @end
