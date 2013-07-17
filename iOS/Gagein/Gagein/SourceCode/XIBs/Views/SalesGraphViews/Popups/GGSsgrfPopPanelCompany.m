@@ -213,7 +213,7 @@
 -(void)_updateUIExtra
 {
     EGGCompanyGrade grade = _data.getGrade;
-#warning CHANGE COMPANY GRAPH GRADE
+#warning CHANGE COMPANY GRAPH GRADE -- company panel
     //grade = kGGComGradeB;
     
     _viewMessage.hidden = YES;

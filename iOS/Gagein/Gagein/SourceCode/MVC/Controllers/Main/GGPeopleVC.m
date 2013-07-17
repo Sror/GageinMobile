@@ -648,13 +648,12 @@
             GGDataPage *page = _menuDatas[0];   //following
             if (page.items.count)
             {
-                _menuType = kGGMenuTypePerson;
+                [self _doFollowingHideSlide:NO];
             }
-        }
-        
-        if (_menuType == kGGMenuTypePerson)
-        {
-            [self _doFollowingHideSlide:NO];
+            else
+            {
+                [self _doExploringHideSlide:NO];
+            }
         }
         else
         {

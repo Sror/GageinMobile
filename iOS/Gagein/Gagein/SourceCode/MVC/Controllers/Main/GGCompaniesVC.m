@@ -1015,6 +1015,9 @@
         cell.lblInterval.text = menuData.timeInterval;
         cell.lblName.text = menuData.name;
         
+#warning CHANGE MENU GRADE TYEPE
+        //menuData.grade = @"b";
+        
         [cell setHightlighted:menuData.checked grade:menuData.getGrade];
         
         return cell;
@@ -1400,18 +1403,18 @@
             GGDataPage *page = _menuDatas[0];   //following
             if (page.items.count)
             {
-                _menuType = kGGMenuTypeCompany;
+                [self _doFollowingHideSlide:NO];
             }
-        }
-        
-        if (_menuType == kGGMenuTypeCompany)
-        {
-            [self _doFollowingHideSlide:NO];
+            else
+            {
+                 [self _doExploringHideSlide:NO];
+            }
         }
         else
         {
-            [self _doExploringHideSlide:NO];
+             [self _doExploringHideSlide:NO];
         }
+        
     }];
     
     [self registerOperation:op];
@@ -1542,14 +1545,6 @@
                         break;
                 }
             }
-            
-            //
-//            for (GGCompanyUpdate *update in _updates)
-//            {
-////#warning DUMMY
-//                DLog(@"%@", update.newsPicURL);
-//                //update.newsPicURL = (arc4random() % 3) ? [GGUtils testImageURL] : nil;
-//            }
             
         }
         else if (parser.status == kGGApiStatusUserOperationError)
