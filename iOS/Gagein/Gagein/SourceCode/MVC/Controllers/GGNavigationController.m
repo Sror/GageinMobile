@@ -103,7 +103,7 @@
 - (NSArray *)popToRootViewControllerAnimated:(BOOL)animated
 {
     [self _animated:animated isPush:NO];
-    return [self popToRootViewControllerAnimated:NO];
+    return [super popToRootViewControllerAnimated:NO];
 }
 
 -(void)_animated:(BOOL)aAnimated isPush:(BOOL)aIsPush

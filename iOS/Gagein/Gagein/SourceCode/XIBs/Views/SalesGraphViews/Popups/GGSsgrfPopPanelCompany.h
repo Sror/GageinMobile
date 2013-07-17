@@ -69,6 +69,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *viewMessage;
 @property (weak, nonatomic) IBOutlet UILabel *lblMessage;
+@property (weak, nonatomic) IBOutlet UILabel *lblMessageAction;
 
 
 //-(void)showSourceButtonWithProfile:(GGSocialProfile *)aSourceProfile;

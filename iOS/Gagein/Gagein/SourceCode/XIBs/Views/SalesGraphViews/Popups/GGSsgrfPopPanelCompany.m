@@ -22,6 +22,8 @@
     NSMutableArray          *_sourceVisibleButtons;
     CGPoint                 _sourceBtnStartPt;
     GGCompany               *_data;
+#warning WORK INTERRUPT....
+    UITapGestureRecognizer  *_seeComDetailTap;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -103,6 +105,11 @@
     [_ivEmp1Logo applyEffectCircleSilverBorder];
     [_ivEmp2Logo applyEffectCircleSilverBorder];
     [_ivEmp3Logo applyEffectCircleSilverBorder];
+    
+    // message
+    _lblMessage.text = _lblMessageAction.text = @"";
+    _lblMessageAction.textColor = GGSharedColor.orangeGagein;
+    _lblMessageAction.hidden = YES;
 }
 
 -(void)updateWithCompany:(GGCompany *)aCompany
@@ -199,6 +206,8 @@
     //grade = kGGComGradeB;
     
     _viewMessage.hidden = YES;
+    _lblMessageAction.hidden = YES;
+    //_lblMessageAction removeGestureRecognizer:<#(UIGestureRecognizer *)#>
     _btnFollow.hidden = (grade == kGGComGradeB);
     
     if (_data.hasBeenRemoved)
@@ -213,8 +222,10 @@
     }
     else if (grade == kGGComGradeC)
     {
-        _viewMessage.hidden = NO;
-        _lblMessage.text = _data.followed ? @"This company’s content should be available in 5 business days." : @"Follow this company to activate its content.";
+        _viewMessage.hidden = NO;       
+        _lblMessage.text = _data.followed ? @"Limited data availability. More coming later." : @"Limited data availability. More coming soon.";
+        _lblMessageAction.hidden = NO;
+        _lblMessageAction.text = @"See what's available now >>";
     }
 }
 
