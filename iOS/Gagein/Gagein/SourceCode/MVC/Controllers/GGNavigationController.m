@@ -44,17 +44,20 @@
     {
         _hasInitialized = YES;
         
-        CGSize barSz = self.navigationBar.frame.size;
-        CGRect frame = CGRectMake((barSz.width - MENU_BUTTON_WIDTH) / 2
-                                  , 0.0
-                                  , MENU_BUTTON_WIDTH
-                                  , barSz.height);
-        _dropMenu = [[SINavigationMenuView alloc] initWithFrame:frame title:@""];
-        
-        _dropMenu.items = @[@"Companies", @"People", @"Saved", @"Settings"];
-        _dropMenu.images = @[@"tab_company_selected", @"tab_people_selected", @"tab_saved_selected", @"tab_settings_selected"];
-        _dropMenu.delegate = self;
-        _dropMenu.hidden = YES;
+        if (!ISIPADDEVICE)
+        {
+            CGSize barSz = self.navigationBar.frame.size;
+            CGRect frame = CGRectMake((barSz.width - MENU_BUTTON_WIDTH) / 2
+                                      , 0.0
+                                      , MENU_BUTTON_WIDTH
+                                      , barSz.height);
+            _dropMenu = [[SINavigationMenuView alloc] initWithFrame:frame title:@""];
+            
+            _dropMenu.items = @[@"Companies", @"People", @"Saved", @"Settings"];
+            _dropMenu.images = @[@"tab_company_selected", @"tab_people_selected", @"tab_saved_selected", @"tab_settings_selected"];
+            _dropMenu.delegate = self;
+            _dropMenu.hidden = YES;
+        }
     }
 }
 
