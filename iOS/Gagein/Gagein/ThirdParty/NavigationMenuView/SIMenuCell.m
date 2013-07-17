@@ -109,21 +109,21 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    //NSLog(@"touches began");
+    //DLog(@"touches began");
     self.cellSelection.alpha = 1;
     [super touchesBegan:touches withEvent:event];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    //NSLog(@"touches ended");
+    //DLog(@"touches ended");
     self.cellSelection.alpha = 0;
     [super touchesEnded:touches withEvent:event];
 }
 
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    //NSLog(@"touches cancelled");
+    //DLog(@"touches cancelled");
     self.cellSelection.alpha = 0;
     [super touchesCancelled:touches withEvent:event];
 }

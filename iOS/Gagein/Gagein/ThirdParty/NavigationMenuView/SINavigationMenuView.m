@@ -44,10 +44,10 @@
 - (void)onHandleMenuTap:(id)sender
 {
     if (self.menuButton.isActive) {
-        NSLog(@"On show");
+        DLog(@"On show");
         [self onShowMenu];
     } else {
-        NSLog(@"On hide");
+        DLog(@"On hide");
         [self onHideMenu];
     }
 }

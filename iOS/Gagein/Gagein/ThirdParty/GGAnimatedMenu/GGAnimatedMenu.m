@@ -238,7 +238,7 @@ static BOOL __isShowing = NO;
             float offsetX = aRadious * cos(startAngel);
             float offsetY = aRadious * sin(startAngel);
             
-            //NSLog(@"center:%@, radious:%f, angel:%f, size:%f, offsetX:%f, offsetY:%f", NSStringFromCGPoint(centerPt), DEFAULT_CIRCLE_RADIOUS, (startAngel * 180 / M_PI), DEFAULT_BUTTON_SIZE, offsetX, offsetY);
+            //DLog(@"center:%@, radious:%f, angel:%f, size:%f, offsetX:%f, offsetY:%f", NSStringFromCGPoint(centerPt), DEFAULT_CIRCLE_RADIOUS, (startAngel * 180 / M_PI), DEFAULT_BUTTON_SIZE, offsetX, offsetY);
             
             UIButton *theBtn = _menuItems[i];
             theBtn.center = CGPointMake(centerPt.x - offsetX, centerPt.y - offsetY);

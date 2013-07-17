@@ -102,18 +102,18 @@
 
 #pragma mark SA_OAuthTwitterControllerDelegate
 - (void) OAuthTwitterController: (SA_OAuthTwitterController *) controller authenticatedWithUsername: (NSString *) username {
-	NSLog(@"Authenicated for %@", username);
+	DLog(@"Authenicated for %@", username);
 }
 
 - (void) OAuthTwitterControllerFailed: (SA_OAuthTwitterController *) controller {
-	NSLog(@"Authentication Failed!");
+	DLog(@"Authentication Failed!");
     [GGAlert alertWithMessage:@"Authentication Failed!"];
     [self naviBackAction:nil];
     //[self.navigationController popToViewController:self.parentViewController animated:YES];
 }
 
 - (void) OAuthTwitterControllerCanceled: (SA_OAuthTwitterController *) controller {
-	NSLog(@"Authentication Canceled.");
+	DLog(@"Authentication Canceled.");
     [self naviBackAction:nil];
     //[self.navigationController popToViewController:self.parentViewController animated:YES];
 }
@@ -121,11 +121,11 @@
 //=============================================================================================================================
 #pragma mark TwitterEngineDelegate
 - (void) requestSucceeded: (NSString *) requestIdentifier {
-	NSLog(@"Request %@ succeeded", requestIdentifier);
+	DLog(@"Request %@ succeeded", requestIdentifier);
 }
 
 - (void) requestFailed: (NSString *) requestIdentifier withError: (NSError *) error {
-	NSLog(@"Request %@ failed with error: %@", requestIdentifier, error);
+	DLog(@"Request %@ failed with error: %@", requestIdentifier, error);
 }
 
 

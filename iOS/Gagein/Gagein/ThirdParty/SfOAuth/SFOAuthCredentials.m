@@ -190,7 +190,7 @@ static NSException * kSFOAuthExceptionNilIdentifier;
         result = SecItemDelete((CFDictionaryRef)dict); // remove token
     }
     if (errSecSuccess != result && errSecItemNotFound != result) { // errSecItemNotFound is an expected condition
-        NSLog(@"%@:setAccessToken: (%ld) %@", [self class], result, [[self class] stringForKeychainResultCode:result]);
+        DLog(@"%@:setAccessToken: (%ld) %@", [self class], result, [[self class] stringForKeychainResultCode:result]);
     }
 }
 
@@ -236,7 +236,7 @@ static NSException * kSFOAuthExceptionNilIdentifier;
         if (_identityUrl.path) {
             NSArray *pathComps = [_identityUrl.path componentsSeparatedByString:@"/"];
             if (pathComps.count < 2) {
-                NSLog(@"%@:setIdentityUrl: invalid identityUrl: %@", [self class], _identityUrl);
+                DLog(@"%@:setIdentityUrl: invalid identityUrl: %@", [self class], _identityUrl);
                 return;
             }
             self.userId = [pathComps objectAtIndex:pathComps.count - 1];
@@ -294,7 +294,7 @@ static NSException * kSFOAuthExceptionNilIdentifier;
         self.identityUrl = nil;
     }
     if (errSecSuccess != result && errSecItemNotFound != result) { // errSecItemNotFound is an expected condition
-        NSLog(@"%@:setRefreshToken: (%ld) %@", [self class], result, [[self class] stringForKeychainResultCode:result]);
+        DLog(@"%@:setRefreshToken: (%ld) %@", [self class], result, [[self class] stringForKeychainResultCode:result]);
     }
 }
     
@@ -323,7 +323,7 @@ static NSException * kSFOAuthExceptionNilIdentifier;
         self.identityUrl = nil;
     }
     if (errSecSuccess != result && errSecItemNotFound != result) { // errSecItemNotFound is an expected condition
-        NSLog(@"%@:setActivationCode: (%ld) %@", [self class], result, [[self class] stringForKeychainResultCode:result]);
+        DLog(@"%@:setActivationCode: (%ld) %@", [self class], result, [[self class] stringForKeychainResultCode:result]);
     }
 }
 
@@ -354,7 +354,7 @@ static NSException * kSFOAuthExceptionNilIdentifier;
 - (void)revokeAccessToken {
     if (!([self.identifier length] > 0)) @throw kSFOAuthExceptionNilIdentifier;
     if (self.logLevel < kSFOAuthLogLevelWarning) {
-        NSLog(@"%@:revokeAccessToken: access token revoked", [self class]);
+        DLog(@"%@:revokeAccessToken: access token revoked", [self class]);
     }
     self.accessToken = nil;
 }
@@ -362,7 +362,7 @@ static NSException * kSFOAuthExceptionNilIdentifier;
 - (void)revokeRefreshToken {
     if (!([self.identifier length] > 0)) @throw kSFOAuthExceptionNilIdentifier;
     if (self.logLevel < kSFOAuthLogLevelWarning) {
-        NSLog(@"%@:revokeRefreshToken: refresh token revoked. Cleared identityUrl, instanceUrl, issuedAt fields", [self class]);
+        DLog(@"%@:revokeRefreshToken: refresh token revoked. Cleared identityUrl, instanceUrl, issuedAt fields", [self class]);
     }
     self.refreshToken = nil;
     self.instanceUrl  = nil;
@@ -404,10 +404,10 @@ static NSException * kSFOAuthExceptionNilIdentifier;
         itemDict = [self keychainItemWithConvertedTokenForMatchingItem:outDict];
     } else if (errSecItemNotFound == result) {
         if (self.logLevel < kSFOAuthLogLevelInfo) {
-            NSLog(@"%@:tokenForKey: (%ld) no existing \"%@\" item matching \"%@\"", [self class], result, key, theTokenQuery);
+            DLog(@"%@:tokenForKey: (%ld) no existing \"%@\" item matching \"%@\"", [self class], result, key, theTokenQuery);
         }
     } else {
-        NSLog(@"%@:tokenForKey: (%ld) error retrieving \"%@\" item matching \"%@\"", [self class], result, key, theTokenQuery);
+        DLog(@"%@:tokenForKey: (%ld) error retrieving \"%@\" item matching \"%@\"", [self class], result, key, theTokenQuery);
     }
     [outDict release];
     return [itemDict objectForKey:(id)kSecValueData];
@@ -443,9 +443,9 @@ static NSException * kSFOAuthExceptionNilIdentifier;
         }
         
     } else if (errSecItemNotFound == result) {
-        NSLog(@"%@:keychainItemWithConvertedTokenForMatchingItem: (%ld) no match for item \"%@\"", [self class], result, returnDict);
+        DLog(@"%@:keychainItemWithConvertedTokenForMatchingItem: (%ld) no match for item \"%@\"", [self class], result, returnDict);
     } else {
-        NSLog(@"%@:keychainItemWithConvertedTokenForMatchingItem: (%ld) error copying item \"%@\"", [self class], result, returnDict);
+        DLog(@"%@:keychainItemWithConvertedTokenForMatchingItem: (%ld) error copying item \"%@\"", [self class], result, returnDict);
     }
     [tokenData release];
     return returnDict;
@@ -481,7 +481,7 @@ static NSException * kSFOAuthExceptionNilIdentifier;
         [updateQuery setObject:[theTokenQuery objectForKey:(id)kSecClass] forKey:(id)kSecClass];
         result = SecItemUpdate((CFDictionaryRef)updateQuery, (CFDictionaryRef)updateDict);
         if (noErr != result) {
-            NSLog(@"%@:writeToKeychain: (%ld) %@ Updating item: %@", 
+            DLog(@"%@:writeToKeychain: (%ld) %@ Updating item: %@", 
                   [self class], result, [[self class] stringForKeychainResultCode:result] , updateQuery);
         }
     } else if (errSecItemNotFound == result) {
@@ -492,10 +492,10 @@ static NSException * kSFOAuthExceptionNilIdentifier;
         // TODO: [updateDict setObject:self.accessGroup forKey:(id)kSecAttrAccessGroup];
         result = SecItemAdd((CFDictionaryRef)updateDict, NULL);
         if (noErr != result) {
-            NSLog(@"%@:writeToKeychain: (%ld) error adding item: %@", [self class], result, updateDict);
+            DLog(@"%@:writeToKeychain: (%ld) error adding item: %@", [self class], result, updateDict);
         }
     } else {
-        NSLog(@"%@:writeToKeychain: (%ld) error copying item: %@", [self class], result, dictionary);
+        DLog(@"%@:writeToKeychain: (%ld) error copying item: %@", [self class], result, dictionary);
     }
     return result;
 }

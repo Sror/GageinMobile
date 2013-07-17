@@ -83,7 +83,7 @@
 - (void)requestTokenResult:(OALnServiceTicket *)ticket didFail:(NSData *)error 
 {
     [self hideLoadingHUD];
-    NSLog(@"%@",[error description]);
+    DLog(@"%@",[error description]);
 }
 
 //
@@ -208,8 +208,8 @@
     BOOL problem = ([responseBody rangeOfString:@"oauth_problem"].location != NSNotFound);
     if ( problem )
     {
-        NSLog(@"Request access token failed.");
-        NSLog(@"%@",responseBody);
+        DLog(@"Request access token failed.");
+        DLog(@"%@",responseBody);
     }
     else
     {

@@ -77,7 +77,7 @@
 - (void)didSelectItemAtIndex:(NSUInteger)index
 {
     GGSharedDelegate.tabBarController.selectedIndex = index;
-    NSLog(@"did selected item at index %d", index);
+    DLog(@"did selected item at index %d", index);
 }
 
 #pragma mark -

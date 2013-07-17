@@ -170,7 +170,7 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
 #pragma mark -
 + (void)archiveCredentials:(SFOAuthCredentials *)creds {
 //    BOOL result = [NSKeyedArchiver archiveRootObject:creds toFile:[self archivePath]];
-//    NSLog(@"%@:archiveCredentials: credentials archived=%@", @"SalesforceOAuthTestAppDelegate", (result ? @"YES" : @"NO"));
+//    DLog(@"%@:archiveCredentials: credentials archived=%@", @"SalesforceOAuthTestAppDelegate", (result ? @"YES" : @"NO"));
 }
 
 + (SFOAuthCredentials *)unarchiveCredentials {
@@ -184,9 +184,9 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
         creds.domain = param.domain;
         // domain is set by the view from its UI field value
         
-        NSLog(@"%@:unarchiveCredentials: no saved credentials, new credentials created: %@", @"SalesforceOAuthTestAppDelegate", creds);
+        DLog(@"%@:unarchiveCredentials: no saved credentials, new credentials created: %@", @"SalesforceOAuthTestAppDelegate", creds);
     } else {
-        NSLog(@"%@:unarchiveCredentials: using saved credentials: %@", @"SalesforceOAuthTestAppDelegate", creds);
+        DLog(@"%@:unarchiveCredentials: using saved credentials: %@", @"SalesforceOAuthTestAppDelegate", creds);
     }
     return creds;
 }
@@ -216,7 +216,7 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
 {
     //[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
-    NSLog(@"SalesforceOAuthTestViewController:oauthCoordinatorDidAuthenticate:authInfo: info: %@ credentials: %@", info, coordinator.credentials);
+    DLog(@"SalesforceOAuthTestViewController:oauthCoordinatorDidAuthenticate:authInfo: info: %@ credentials: %@", info, coordinator.credentials);
     
     self.authInfo = info;
     [self.oauthCoordinator.view removeFromSuperview];
@@ -230,7 +230,7 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
     [infoStr appendFormat:@"orgID:%@\n", self.oauthCoordinator.credentials.organizationId];
     [infoStr appendFormat:@"authType:%@\n", [self.authInfo authTypeDescription]];
     
-    NSLog(@"%@", infoStr);
+    DLog(@"%@", infoStr);
     
     [self postNotification:OA_NOTIFY_SALESFORCE_AUTH_OK withObject:self.oauthCoordinator.credentials];
     
@@ -241,7 +241,7 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
 {
     //[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
-    NSLog(@"SalesforceOAuthTestViewController:oauthCoordinator:didFailWithError:authInfo: info: %@ error: %@", info, error);
+    DLog(@"SalesforceOAuthTestViewController:oauthCoordinator:didFailWithError:authInfo: info: %@ error: %@", info, error);
     self.authInfo = info;
     [self.oauthCoordinator.view removeFromSuperview];
     
@@ -267,7 +267,7 @@ static NSString * const kOAuthCredentialsArchivePath = @"SFOAuthCredentials";
         [self.oauthCoordinator.credentials revokeAccessToken];
     } else {
         // invalid index
-        NSLog(@"SalesforceOAuthTestViewController:actionSheet:clickedButtonAtIndex: invalid button index: %d", buttonIndex);
+        DLog(@"SalesforceOAuthTestViewController:actionSheet:clickedButtonAtIndex: invalid button index: %d", buttonIndex);
     }
     self.authInfo = nil;
 }

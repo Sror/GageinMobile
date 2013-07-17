@@ -62,7 +62,7 @@
 //
 //-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 //{
-//    NSLog(@"selected");
+//    DLog(@"selected");
 //}
 
 -(BOOL)canHearAction

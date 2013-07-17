@@ -91,7 +91,7 @@
     _totalLength += _dataOutMoved;
     
     if (self.status != kCCSuccess) {
-        NSLog(@"Failed in cipher finalization with error:%d", self.status);
+        DLog(@"Failed in cipher finalization with error:%d", self.status);
         CCCryptorRelease(_cryptor);
         free(_dataOut);
         return nil;
@@ -136,7 +136,7 @@
     CCCryptorStatus cryptStatus = CCCryptorUpdate(_cryptor, dataIn, dataInLength, _dataOut, _dataOutLength, &_dataOutMoved);
     
     if ( cryptStatus != kCCSuccess) {
-        NSLog(@"Failed CCCryptorUpdate: %d", cryptStatus);
+        DLog(@"Failed CCCryptorUpdate: %d", cryptStatus);
     }
     
     // Write the ciphered buffer into the output buffer

@@ -507,7 +507,7 @@
                         error:(NSError*)error;
 {
     if (result == MFMailComposeResultSent) {
-        NSLog(@"It's away!");
+        DLog(@"It's away!");
     }
     
     [GGSharedDelegate makeNaviBarCustomed:YES];

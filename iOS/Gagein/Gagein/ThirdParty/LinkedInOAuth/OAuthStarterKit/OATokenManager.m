@@ -220,7 +220,7 @@
 	 settings (useful for iPhone) */
 	OALnToken *token = [[[OALnToken alloc] initWithUserDefaultsUsingServiceProviderName:oauthBase prefix:[@"request:" stringByAppendingString:realm]] autorelease];
 		/* iPhone specific, the manager must have got the authorized token before reaching this point */
-	NSLog(@"request token in settings %@", token);
+	DLog(@"request token in settings %@", token);
 	if (token && token.key && [authorizedTokenKey isEqualToString:token.key]) {
 		reqToken = [token retain];
 		[self exchangeToken];
@@ -243,7 +243,7 @@
 - (void)requestTokenReceived:(OACall *)call body:(NSString *)body
 {
 	/* XXX: Check if token != nil */
-	NSLog(@"Received request token %@", body);
+	DLog(@"Received request token %@", body);
 	OALnToken *token = [[[OALnToken alloc] initWithHTTPResponseBody:body] autorelease];
 	if (token) {
 		[reqToken release];
@@ -286,7 +286,7 @@
 }
 
 - (void)renewToken {
-	NSLog(@"Renewing token");
+	DLog(@"Renewing token");
 	if (!acToken || ![acToken isRenewable]) {
 		[self requestToken];
 		return;
@@ -328,7 +328,7 @@
 }
 
 - (void)performCall:(OACall *)aCall {
-	NSLog(@"Performing call");
+	DLog(@"Performing call");
 	[aCall perform:consumer
 			 token:acToken
 			 realm:realm
@@ -347,7 +347,7 @@
 		}
 		isDispatching = YES;
 	}
-	NSLog(@"Started dispatching");
+	DLog(@"Started dispatching");
 	if(acToken) {
 		[self performCall:call];
 	} else if(reqToken) {
@@ -364,7 +364,7 @@
 										method:aMethod
 									parameters:theParameters
 										 files:theFiles];
-	NSLog(@"Received request for: %@", aURL);
+	DLog(@"Received request for: %@", aURL);
 	[self enqueue:call selector:didFinish];
 	if (aDelegate) {
 		[delegates setObject:aDelegate forKey:[NSString stringWithFormat:@"%p", call]];
