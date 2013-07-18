@@ -63,7 +63,7 @@
     
     _tvSuggestedCompanies.rowHeight = [GGSearchSuggestionCell HEIGHT];
     CGRect tvComRc = _tvSuggestedCompanies.frame;
-    tvComRc.size.height = [GGLayout pageRectWithLayoutElement:kLayoutElementAll].size.height - _viewSearchBar.frame.size.height;
+    tvComRc.size.height = [GGLayout pageRectWithLayoutElement:kLayoutElementStatusBar | kLayoutElementNaviBar].size.height - _viewSearchBar.frame.size.height;
     _tvSuggestedCompanies.frame = tvComRc;
     
     [self _updateUiIsComanyCustomed];

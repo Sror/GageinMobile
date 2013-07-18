@@ -37,6 +37,10 @@
 @property (weak, nonatomic) IBOutlet UITextField    *tfSearch;
 @property (weak, nonatomic) IBOutlet UIButton       *btnCancel;
 
+@property (assign)  BOOL        manuallyControlCancelButton;
+
+-(void)showCancelButton:(BOOL)aShow animated:(BOOL)animated;
+
 @end
 
 

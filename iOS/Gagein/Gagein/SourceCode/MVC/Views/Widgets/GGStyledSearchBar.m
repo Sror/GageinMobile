@@ -24,7 +24,9 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [_delegate searchBarTextDidBeginEditing:self];
+    if ([_delegate respondsToSelector:@selector(searchBarTextDidBeginEditing:)]) {
+        [_delegate searchBarTextDidBeginEditing:self];
+    }
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
@@ -37,7 +39,9 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    [_delegate searchBarTextDidEndEditing:self];
+    if ([_delegate respondsToSelector:@selector(searchBarTextDidEndEditing:)]) {
+        [_delegate searchBarTextDidEndEditing:self];
+    }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -72,13 +76,21 @@
 @implementation GGStyledSearchBar
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [self showCancelButton:YES animated:YES];
+    if (!_manuallyControlCancelButton)
+    {
+        [self showCancelButton:YES animated:YES];
+    }
+    
     [super textFieldDidBeginEditing:textField];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    [self showCancelButton:NO animated:YES];
+    if (!_manuallyControlCancelButton)
+    {
+        [self showCancelButton:NO animated:YES];
+    }
+    
     [super textFieldDidEndEditing:textField];
 }
 

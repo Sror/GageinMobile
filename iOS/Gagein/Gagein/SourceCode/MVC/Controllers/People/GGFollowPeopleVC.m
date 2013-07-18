@@ -143,6 +143,7 @@
     //
     _searchBar = [GGStyledSearchBar viewFromNibWithOwner:self];
     _searchBar.tfSearch.placeholder = @"Search for people";
+    _searchBar.manuallyControlCancelButton = YES;
     _searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _searchBar.delegate = self;
     [self.svContent addSubview:_searchBar];
@@ -628,6 +629,7 @@
     {
         // install the search bar to the navigation bar
         searchBar.frame = _searchBarRectOnNavi;
+        [((GGStyledSearchBar *)searchBar) showCancelButton:YES animated:YES];
         [self.navigationController.navigationBar addSubview:searchBar];
         
         [self _showDoneBtn:NO];
@@ -641,10 +643,10 @@
     return YES;
 }
 
-- (void)searchBarTextDidBeginEditing:(GGBaseSearchBar *)searchBar
-{
-    
-}
+//- (void)searchBarTextDidBeginEditing:(GGBaseSearchBar *)searchBar
+//{
+//    
+//}
 
 - (BOOL)searchBarShouldEndEditing:(GGBaseSearchBar *)searchBar
 {
@@ -657,7 +659,7 @@
 
 - (void)searchBarTextDidEndEditing:(GGBaseSearchBar *)searchBar
 {
-    
+
 }
 
 - (BOOL)searchBar:(GGBaseSearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
@@ -699,6 +701,8 @@
     if (!ISIPADDEVICE)
     {
         _searchBar.frame = _searchBarRect;
+        [((GGStyledSearchBar *)searchBar) showCancelButton:NO animated:YES];
+        
         [_svContent addSubview:_searchBar];
         
         [self _showDoneBtn:YES];
@@ -713,6 +717,7 @@
     [_searchTimer invalidate];
     _searchTimer = nil;
     
+    [self _resetSearch];
     _isInAutoCompleteMode = NO;
     [self _callSearchPeople];
     [searchBar endEditing:YES];

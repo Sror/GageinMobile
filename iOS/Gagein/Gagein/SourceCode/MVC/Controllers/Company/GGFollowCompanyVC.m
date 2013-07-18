@@ -111,6 +111,7 @@
     // replace the search bar placeholder view with the real search bar
     _viewSearchBar = [GGUtils replaceFromNibForView:_viewSearchBar];
     _viewSearchBar.tfSearch.placeholder = @"Search for companies";
+    _viewSearchBar.manuallyControlCancelButton = YES;
     _viewSearchBar.delegate = self;
     
     // record the rect of the search bar, and calculate the rect of the search bar when it becomes the first responder.
@@ -668,6 +669,7 @@
     if (!ISIPADDEVICE)
     {
         searchBar.frame = _searchBarRectOnNavi;
+        [((GGStyledSearchBar *)searchBar) showCancelButton:YES animated:YES];
         [self.navigationController.navigationBar addSubview:searchBar];
         
         [self _showDoneBtn:NO];
@@ -735,6 +737,7 @@
     if (!ISIPADDEVICE)
     {
         _viewSearchBar.frame = _searchBarRect;
+        [((GGStyledSearchBar *)searchBar) showCancelButton:NO animated:YES];
         [_viewScroll addSubview:_viewSearchBar];
         
         [self _showDoneBtn:YES];
