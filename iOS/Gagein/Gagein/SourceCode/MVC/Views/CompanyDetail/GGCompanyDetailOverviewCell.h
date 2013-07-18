@@ -18,4 +18,6 @@
 
 +(float)HEIGHT;
 
+-(void)doLayout;
+
 @end

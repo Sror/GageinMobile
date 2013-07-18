@@ -37,4 +37,32 @@
     return 130.f;
 }
 
+-(void)doLayout
+{
+    CGSize contentSize = self.viewBg.frame.size;
+    if (_lblDescription.text.length <= 0)
+    {
+        if (_lblIndustry.text.length && _lblAddress.text.length)
+        {
+            float posY = (contentSize.height - (_lblIndustry.frame.size.height + _lblAddress.frame.size.height)) / 2;
+            [_lblIndustry setPosY:posY];
+            [_lblAddress setPosY:CGRectGetMaxY(_lblIndustry.frame)];
+        }
+        else if (_lblIndustry.text.length)
+        {
+            float posY = (contentSize.height - _lblIndustry.frame.size.height) / 2;
+            [_lblIndustry setPosY:posY];
+        }
+        else if (_lblAddress.text.length)
+        {
+            float posY = (contentSize.height - _lblAddress.frame.size.height) / 2;
+            [_lblAddress setPosY:posY];
+        }
+        else
+        {
+            _lblDescription.text = @"Check out more...";
+        }
+    }
+}
+
 @end

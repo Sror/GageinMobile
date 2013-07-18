@@ -185,8 +185,10 @@ typedef enum
         }
         
         cell.lblIndustry.text = _companyOverview.industries;
-        cell.lblDescription.text = _companyOverview.description.length ? _companyOverview.description : @"Not available yet";
+        cell.lblDescription.text = _companyOverview.description;
         cell.lblAddress.text = _companyOverview.address;
+        
+        [cell doLayout];
         
         return cell;
         

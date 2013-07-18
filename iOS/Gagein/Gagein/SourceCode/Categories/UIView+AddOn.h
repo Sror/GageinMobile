@@ -39,6 +39,8 @@
 
 -(void)adjustHeightToFitContent;
 
+-(void)setPosX:(float)aX;
+-(void)setPosY:(float)aY;
 -(void)setPos:(CGPoint)aNewPos;
 -(void)setHeight:(float)aNewHeight;
 -(void)setWidth:(float)aNewWidth;
