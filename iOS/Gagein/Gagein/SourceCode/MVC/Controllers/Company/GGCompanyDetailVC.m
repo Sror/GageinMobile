@@ -237,6 +237,7 @@ typedef enum
         cell.lblTitle.text = data.name;
         cell.lblSubTitle.text = data.orgTitle;
         [cell.ivPhoto setImageWithURL:[NSURL URLWithString:data.photoPath] placeholderImage:GGSharedImagePool.placeholder];
+        [cell.ivPhoto applyEffectCircleSilverBorder];
         
         return cell;
         
