@@ -127,5 +127,6 @@
 -(void)popSheetForVC:(UIViewController *)aViewController;
 -(void)popSheetInNaviForVC:(UIViewController *)aViewController;
 -(void)presentInNaviWithVC:(UIViewController *)aViewController;
+-(void)presentChartUrl:(NSString *)aChartURL;
 
 @end

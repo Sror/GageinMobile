@@ -19,6 +19,7 @@
 #import "GGComOverviewRevenuesCell.h"
 #import "GGComOverviewContactCell.h"
 #import "GGComDetailProfileCell.h"
+#import "GGImageVC.h"
 
 typedef enum
 {
@@ -288,11 +289,7 @@ typedef enum
         
         if (_overview.revenuesChartUrl)
         {
-            GGWebVC *vc = [[GGWebVC alloc] init];
-            vc.urlStr = _overview.revenuesChartUrl;
-            vc.naviTitleString = @"Chart";
-            
-            [self.navigationController pushViewController:vc animated:YES];
+            [self presentChartUrl:_overview.revenuesChartUrl];
         }
         
     } else if (section == kGGSectionSubsidaries) {
@@ -366,10 +363,10 @@ typedef enum
         return 0.f;
     } else if (section == kGGSectionRevenues) {
         
-    } else if (section == kGGSectionSubsidaries) {
-        
-    } else if (section == kGGSectionDivisions) {
-        
+    } else if (section == kGGSectionSubsidaries && _overview.subsidiaries.count <= 0) {
+        return 0.f;
+    } else if (section == kGGSectionDivisions && _overview.divisions.count <= 0) {
+        return 0.f;
     }  else if (section == kGGSectionContact) {
         
     }
