@@ -15,6 +15,10 @@
 @property (weak, nonatomic) IBOutlet UIView *viewSimple;
 @property (weak, nonatomic) IBOutlet UILabel *lblSimpleMessage;
 
+@property (assign)  long long               companyID;
+@property (assign)  long long               personID;
+@property (strong)  GGTagetActionPair       *action;
+
 -(void)setMessageCode:(GGApiParser *)anApiParser;
 -(void)setMessageCode:(GGApiParser *)anApiParser vc:(GGBaseViewController *)aVc;
 @end

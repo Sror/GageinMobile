@@ -779,6 +779,10 @@
             _viewUpdateEmpty = [GGEmptyActionView viewFromNibWithOwner:self];
             _viewUpdateEmpty.frame = self.view.bounds;
             [_viewUpdateEmpty setMessageCode:parser vc:self];
+            if (_menuType == kGGMenuTypePerson)
+            {
+                _viewUpdateEmpty.personID = _menuID;
+            }
         
             [_updatesTV addSubview:_viewUpdateEmpty];
         }

@@ -91,9 +91,9 @@ typedef enum
     self.ivLogo.layer.borderColor = GGSharedColor.silver.CGColor;
     self.ivLogo.layer.cornerRadius = 3.f;
     
-    [self.btnFollow setBackgroundImage:[[UIImage imageNamed:@"btnYellowBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 10, 20, 10)] forState:UIControlStateNormal];
+    [self.btnFollow setBackgroundImage:GGSharedImagePool.bgBtnOrangeDarkEdge/*[[UIImage imageNamed:@"btnYellowBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(20, 10, 20, 10)]*/ forState:UIControlStateNormal];
     
-    [self.btnFollow setBackgroundImage:[[UIImage imageNamed:@"grayBtnBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 10, 30, 10)] forState:UIControlStateSelected];
+    [self.btnFollow setBackgroundImage:GGSharedImagePool.bgBtnGray forState:UIControlStateSelected];
     
     //
     CGRect tvRc = self.view.bounds;

@@ -9,6 +9,12 @@
 #import "GGEmptyActionView.h"
 
 @implementation GGEmptyActionView
+{
+    GGBaseViewController    *_vc;
+    
+    BOOL                    _personFollowed;
+    BOOL                    _companyFollowed;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -23,14 +29,114 @@
 {
     self.backgroundColor = GGSharedColor.silver;
     [_btnAction setBackgroundImage:GGSharedImagePool.bgBtnOrange forState:UIControlStateNormal];
+    [_btnAction setBackgroundImage:GGSharedImagePool.bgBtnGray forState:UIControlStateSelected];
     //self.hidden = YES;
     
     [_lblMessage applyEffectEmboss];
     [_lblSimpleMessage applyEffectEmboss];
 }
 
+#pragma mark - btn action
+-(void)goAddingCompanies:(id)sender
+{
+    [_vc presentPageFollowCompanies];
+}
+
+-(void)goSelectingAgents:(id)sender
+{
+    [_vc presentPageSelectAgents];
+}
+
+-(void)goFollowPeople:(id)sender
+{
+    [_vc presentPageFollowPeople];
+}
+
+-(void)goSelectingFunctionAreas:(id)sender
+{
+    [_vc presentPageFollowCompanies];
+}
+
+-(void)goChekingCompanyProfile:(id)sender
+{
+    [_vc enterCompanyDetailWithID:_companyID];
+}
+
+-(void)goFollowThePerson:(id)sender
+{
+    if (_personFollowed)
+    {
+        [GGSharedAPI unfollowPersonWithID:_personID callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
+            }
+        }];
+    }
+    else
+    {
+        [GGSharedAPI followPersonWithID:_personID callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
+            }
+        }];
+    }
+    
+    _personFollowed = !_personFollowed;
+    [_btnAction setTitle:(_personFollowed ? @"Unfollow" : @"Follow") forState:UIControlStateNormal];
+    _btnAction.selected = _personFollowed;
+}
+
+-(void)goUnfollowTheCompany:(id)sender
+{
+    [GGSharedAPI unfollowCompanyWithID:_companyID callback:^(id operation, id aResultObject, NSError *anError) {
+        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+        if (parser.isOK)
+        {
+            [GGAlert alertWithMessage:@"You have unfollowed it successfully."];
+            [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
+        }
+        _btnAction.hidden = YES;
+    }];
+}
+
+-(void)goFollowTheCompany:(id)sender
+{
+    if (_companyFollowed)
+    {
+        [GGSharedAPI unfollowCompanyWithID:_companyID callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [self postNotification:GG_NOTIFY_COMPANY_FOLLOW_CHANGED];
+            }
+        }];
+    }
+    else
+    {
+        [GGSharedAPI followCompanyWithID:_companyID callback:^(id operation, id aResultObject, NSError *anError) {
+            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+            if (parser.isOK)
+            {
+                [self postNotification:GG_NOTIFY_COMPANY_FOLLOW_CHANGED];
+            }
+        }];
+    }
+    
+    _companyFollowed = !_companyFollowed;
+    [_btnAction setTitle:(_companyFollowed ? @"Unfollow" : @"Follow") forState:UIControlStateNormal];
+    _btnAction.selected = _companyFollowed;
+}
+
+#pragma mark -
+
 -(void)setMessageCode:(GGApiParser *)anApiParser vc:(GGBaseViewController *)aVc
 {
+    _vc = aVc;
+    
     if (anApiParser && aVc)
     {
         [self setMessageCode:anApiParser];
@@ -42,31 +148,50 @@
         {
             case kGGMsgCodeNoUpdateForLessFollowedCompanies:
             {
-                [_btnAction addTarget:aVc action:@selector(presentPageFollowCompanies) forControlEvents:UIControlEventTouchUpInside];
+                [_btnAction addTarget:self action:@selector(goAddingCompanies:) forControlEvents:UIControlEventTouchUpInside];
             }
                 break;
                 
             case kGGMsgCodeNoUpdateForAllSalesTriggers:
             {
-                [_btnAction addTarget:aVc action:@selector(presentPageSelectAgents) forControlEvents:UIControlEventTouchUpInside];
+                [_btnAction addTarget:self action:@selector(goSelectingAgents:) forControlEvents:UIControlEventTouchUpInside];
             }
                 break;
                 
             case kGGMsgCodeNoEventForLessFollowedContacts:
             {
-                [_btnAction addTarget:aVc action:@selector(presentPageFollowPeople) forControlEvents:UIControlEventTouchUpInside];
+                [_btnAction addTarget:self action:@selector(goFollowPeople:) forControlEvents:UIControlEventTouchUpInside];
             }
                 break;
                 
             case kGGMsgCodeNoEventForTheAllSelectedFunctionals:
             {
-                [_btnAction addTarget:aVc action:@selector(presentPageSelectFuncArea) forControlEvents:UIControlEventTouchUpInside];
+                [_btnAction addTarget:self action:@selector(goSelectingFunctionAreas:) forControlEvents:UIControlEventTouchUpInside];
             }
                 break;
                 
             case kGGMsgCodeNoUpdateForTheCompany:
             {
+                [_btnAction addTarget:self action:@selector(goChekingCompanyProfile:) forControlEvents:UIControlEventTouchUpInside];
+            }
+                break;
                 
+            case kGGMsgCodePeopleNotFollowed:
+            {
+                [_btnAction addTarget:self action:@selector(goFollowThePerson:) forControlEvents:UIControlEventTouchUpInside];
+            }
+                break;
+                
+            case kGGMsgCodeCompanyNotFollowed:
+            case kGGMsgCodeNoUpdateTheUnfollowedCompany:
+            {
+                [_btnAction addTarget:self action:@selector(goFollowTheCompany:) forControlEvents:UIControlEventTouchUpInside];
+            }
+                break;
+                
+            case kGGMsgCodeCompanyGradeBNoUpdate:
+            {
+                [_btnAction addTarget:self action:@selector(goUnfollowTheCompany:) forControlEvents:UIControlEventTouchUpInside];
             }
                 break;
                 
@@ -84,34 +209,38 @@
     {
         case kGGMsgCodeNoUpdateForLessFollowedCompanies:
         {
-            _viewSimple.hidden = YES;
-            _lblTitle.text = GGString(@"Have trouble seeing updates?");
-            _lblMessage.text = GGString(@"Add companies to watch for important updates.");
-            [_btnAction setTitle:GGString(@"Add Companies to Follow") forState:UIControlStateNormal];
+            [self _showTitle:GGString(@"Have trouble seeing updates?")
+                     message:GGString(@"Add companies to watch for important updates.")
+                 actionTitle:GGString(@"Add Companies to Follow")];
         }
             break;
             
         case kGGMsgCodeNoUpdateForMoreFollowedCompanies:
         {
-            _lblSimpleMessage.text = [NSString stringWithFormat:GGString(@"In the last %@ days, there were no triggers found for your followed companies."), anApiParser.messageExtraInfo];
+            NSString *dayCountStr = anApiParser.messageExtraInfo;
+            dayCountStr = dayCountStr.length ? dayCountStr : @"7";
+            _lblSimpleMessage.text = [NSString stringWithFormat:GGString(@"In the last %@ days, there were no triggers found for your followed companies."), dayCountStr];
         }
             break;
             
         case kGGMsgCodeNoUpdateForAllSalesTriggers:
         {
-            _viewSimple.hidden = YES;
-            _lblTitle.text = GGString(@"Have trouble seeing updates?");
-            _lblMessage.text = GGString(@"Select sales triggers to explore new opportunities.");
-            [_btnAction setTitle:GGString(@"Select Sales Triggers") forState:UIControlStateNormal];
+            [self _showTitle:GGString(@"Have trouble seeing updates?")
+                     message:GGString(@"Select sales triggers to explore new opportunities.")
+                 actionTitle:GGString(@"Select Sales Triggers")];
         }
             break;
             
         case kGGMsgCodeNoUpdateForTheCompany:
         {
-            _lblSimpleMessage.text = GGString(@"In the last 7 days, there were no triggers found for this company.");
+            [self _showTitle:nil
+                     message:GGString(@"In the last 7 days, there were no triggers found for this company.")
+                 actionTitle:GGString(@"Check out profile")];
+
+            //_lblSimpleMessage.text = GGString(@"In the last 7 days, there were no triggers found for this company.");
 //            _viewSimple.hidden = YES;
 //            _lblTitle.text = nil;
-//            _lblMessage.text = GGString(@"In the last 7 days, there were no triggers found for this company.");
+//            _lblMessage.text = ;
 //            [_btnAction setTitle:GGString(@"Check out profile") forState:UIControlStateNormal];
         }
             break;
@@ -124,13 +253,17 @@
             
         case kGGMsgCodeNoUpdateTheUnfollowedCompany:
         {
-            _lblSimpleMessage.text = GGString(@"Follow this company to activate its update feed.");
+            [self _showTitle:nil
+                     message:GGString(@"Follow this company to activate\n its update feed.")
+                 actionTitle:GGString(@"Follow")];
+            //_lblSimpleMessage.text = GGString(@"Follow this company to\n activate its update feed.");
         }
             break;
             
+        case kGGMsgCodeCompanyGradeCNoUpdate:
         case kGGMsgCodeNoUpdateTheUnavailableCompany:
         {
-            _lblSimpleMessage.text = GGString(@"Please give us [1 business day/3 business days/5 business days] to respond to your request to follow this company. We will notify you as soon as updates are available.");
+            _lblSimpleMessage.text = GGString(@"Please give us 5 business days to respond to your request to follow this company. We will notify you as soon as updates are available.");
         }
             break;
             
@@ -149,10 +282,9 @@
             
         case kGGMsgCodeNoEventForLessFollowedContacts:
         {
-            _viewSimple.hidden = YES;
-            _lblTitle.text = GGString(@"Have trouble seeing updates?");
-            _lblMessage.text = GGString(@"Add people to watch for job, location, and other changes.");
-            [_btnAction setTitle:GGString(@"Add People to Follow") forState:UIControlStateNormal];
+            [self _showTitle:GGString(@"Have trouble seeing updates?")
+                     message:GGString(@"Add people to watch for job, location, and other changes.")
+                 actionTitle:GGString(@"Add People to Follow")];
         }
             break;
             
@@ -170,10 +302,9 @@
             
         case kGGMsgCodeNoEventForTheAllSelectedFunctionals:
         {
-            _viewSimple.hidden = YES;
-            _lblTitle.text = GGString(@"Have trouble seeing updates?");
-            _lblMessage.text = GGString(@"Select functional roles to keep up with leadership changes.");
-            [_btnAction setTitle:GGString(@"Select Functional Roles") forState:UIControlStateNormal];
+            [self _showTitle:GGString(@"Have trouble seeing updates?")
+                     message:GGString(@"Select functional roles to keep up with leadership changes.")
+                 actionTitle:GGString(@"Select Functional Roles")];
         }
             break;
             
@@ -183,12 +314,48 @@
         }
             break;
             
+        case kGGMsgCodePeopleNotFollowed:
+        {
+            [self _showTitle:nil
+                     message:GGString(@"No longer a followed person.")
+                 actionTitle:GGString(@"Follow")];
+            
+            //_lblSimpleMessage.text = GGString(@"No longer a followed person.");
+        }
+            break;
+            
+        case kGGMsgCodeCompanyNotFollowed:
+        {
+            [self _showTitle:nil
+                     message:GGString(@"No longer a followed company.")
+                 actionTitle:GGString(@"Follow")];
+            
+            //_lblSimpleMessage.text = GGString(@"No longer a followed company.");
+        }
+            break;
+            
+        case kGGMsgCodeCompanyGradeBNoUpdate:
+        {
+            [self _showTitle:nil
+                     message:[GGStringPool stringWithMessageCode:kGGMsgCodeCompanyGradeBNoUpdate]
+                 actionTitle:GGString(@"Unfollow")];
+        }
+            break;
+            
         default:
         {
             _lblSimpleMessage.text = GGString(@"No available data at this time.");
         }
             break;
     }
+}
+
+-(void)_showTitle:(NSString *)aTitle message:(NSString *)aMessage actionTitle:(NSString *)anActionTitle
+{
+    _viewSimple.hidden = YES;
+    _lblTitle.text = aTitle;
+    _lblMessage.text = aMessage;
+    [_btnAction setTitle:anActionTitle forState:UIControlStateNormal];
 }
 
 @end

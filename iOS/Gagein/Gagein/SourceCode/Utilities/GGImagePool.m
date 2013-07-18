@@ -40,6 +40,8 @@ DEF_SINGLETON(GGImagePool)
     
     _bgBtnOrangeDarkEdge = [[UIImage imageNamed:@"btnYellowBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 10, 30, 10)];
     
+    _bgBtnGray = [[UIImage imageNamed:@"grayBtnBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 10, 30, 10)];
+    
     _tableCellBottomBg = [[UIImage imageNamed:@"tableCellBottomBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
     
     _tableCellMiddleBg = [[UIImage imageNamed:@"tableCellMiddleBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];

@@ -22,7 +22,7 @@
     NSMutableArray          *_sourceVisibleButtons;
     CGPoint                 _sourceBtnStartPt;
     GGCompany               *_data;
-#warning WORK INTERRUPT....
+
     UITapGestureRecognizer  *_seeComDetailTap;
 }
 

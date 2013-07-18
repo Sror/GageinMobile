@@ -1552,6 +1552,10 @@
             _viewUpdateEmpty = [GGEmptyActionView viewFromNibWithOwner:self];
             _viewUpdateEmpty.frame = self.view.bounds;
             [_viewUpdateEmpty setMessageCode:parser vc:self];
+            if (_menuType == kGGMenuTypeCompany)
+            {
+                _viewUpdateEmpty.companyID = _menuID;
+            }
 
             [_updatesTV addSubview:_viewUpdateEmpty];
         }
@@ -1651,6 +1655,10 @@
             _viewHappeningEmpty = [GGEmptyActionView viewFromNibWithOwner:self];
             _viewHappeningEmpty.frame = self.view.bounds;
             [_viewHappeningEmpty setMessageCode:parser vc:self];
+            if (_menuType == kGGMenuTypeCompany)
+            {
+                _viewUpdateEmpty.companyID = _menuID;
+            }
             
             [_happeningsTV addSubview:_viewHappeningEmpty];
         }
