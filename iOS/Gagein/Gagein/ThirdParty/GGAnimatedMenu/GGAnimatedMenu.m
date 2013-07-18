@@ -37,6 +37,11 @@ static BOOL __isShowing = NO;
     return MENU_TAG;
 }
 
++(float)standardMenuRadious
+{
+    return ISIPADDEVICE ? CIRCLE_MENU_RADIOUS_IPAD : CIRCLE_MENU_RADIOUS_IPHONE;
+}
+
 +(BOOL)isShowing
 {
     return __isShowing;

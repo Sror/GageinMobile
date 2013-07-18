@@ -44,4 +44,9 @@ typedef void (^GGAnimatedMenuAction)(void);
 +(BOOL)isShowing;
 +(int)tag;
 
++(float)standardMenuRadious;
+
 @end
+
+#define CIRCLE_MENU_RADIOUS_IPHONE      (70.f)
+#define CIRCLE_MENU_RADIOUS_IPAD        (100.f)

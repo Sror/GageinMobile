@@ -1208,7 +1208,7 @@
     GGAnimatedMenu *menu = [[GGAnimatedMenu alloc] init];
     
     menu.menuItemRadious = 53.f;
-    menu.menuRadious = 70.f;
+    menu.menuRadious = [GGAnimatedMenu standardMenuRadious];
     
     __weak GGAnimatedMenu *menuShadow = menu;
     
