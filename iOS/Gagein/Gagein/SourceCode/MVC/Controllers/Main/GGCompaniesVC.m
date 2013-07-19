@@ -125,7 +125,7 @@
     [_slideSettingView.searchBar.btnFilter addTarget:self action:@selector(_exploringConfigTapped:) forControlEvents:UIControlEventTouchUpInside];
     
     [_slideSettingView changeDelegate:self];
-    [self excludeScrollView:_slideSettingView.viewTable];
+    //[self excludeScrollView:_slideSettingView.viewTable];
 }
 
 -(UIBarButtonItem *)_switchBarButton
@@ -1309,6 +1309,8 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    [super scrollViewDidScroll:scrollView];
+    
     if (scrollView == _slideSettingView.viewTable)
     {
         [_slideSettingView.searchBar resignFirstResponder];

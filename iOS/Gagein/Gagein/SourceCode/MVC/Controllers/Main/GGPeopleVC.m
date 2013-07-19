@@ -830,7 +830,7 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    //GGSharedDelegate.rootVC.canBeDragged = YES;
+    [super scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
 }
 
 //-(void)_adjustTvFrames

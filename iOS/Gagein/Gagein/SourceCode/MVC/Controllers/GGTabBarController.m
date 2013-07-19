@@ -15,7 +15,7 @@
 #define ICON_WIDTH      76
 #define ICON_HEIGHT     48
 
-#define TABBAR_ANIM_DURATION    .4f
+#define TABBAR_ANIM_DURATION    .3f
 
 @interface GGTabBarController ()
 
@@ -205,7 +205,7 @@
 #pragma mark - show/hide tabbar
 - (void)showTabBarAnimated:(BOOL)aAnimated
 {
-    if (ISIPADDEVICE)   return;
+    if (ISIPADDEVICE || !_isTabbarHidden)   return;
     //[self.view.layer removeAllAnimations];
     
     _isTabbarHidden = NO;
@@ -217,7 +217,7 @@
     
     if (aAnimated)
     {
-        [UIView animateWithDuration:TABBAR_ANIM_DURATION animations:^{
+        [UIView animateWithDuration:TABBAR_ANIM_DURATION delay:0.f options:UIViewAnimationOptionCurveLinear animations:^{
             
             moveTabbarUp();
             
@@ -243,7 +243,7 @@
 
 - (void)hideTabBarAnimated:(BOOL)aAnimated
 {
-    if (ISIPADDEVICE)   return;
+    if (ISIPADDEVICE || _isTabbarHidden)   return;
     //[self.view.layer removeAllAnimations];
     
     _isTabbarHidden = YES;
@@ -254,11 +254,9 @@
         self.tabBar.frame = CGRectMake(_initialTabRect.origin.x, _initialTabRect.origin.y + 60.f, _initialTabRect.size.width, _initialTabRect.size.height);
     };
     
-    //[self adjustOtherViewsHideBar:YES];
-    
     if (aAnimated)
     {
-        [UIView animateWithDuration:TABBAR_ANIM_DURATION animations:^{
+        [UIView animateWithDuration:TABBAR_ANIM_DURATION delay:0.f options:UIViewAnimationOptionCurveLinear animations:^{
             
            moveTabbarDown();
             
