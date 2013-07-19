@@ -38,7 +38,7 @@
 
 -(void)setLoadingResponder:(id)aResponder
 {
-    _viewScroll.infoWidget.loadingResponder = aResponder;
+    [_viewScroll setLoadingResponder:aResponder];
 }
 
 @end

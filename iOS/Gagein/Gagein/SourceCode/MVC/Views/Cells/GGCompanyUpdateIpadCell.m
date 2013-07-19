@@ -285,8 +285,8 @@
     DLog(@"pop company index:%d", btn.tag);
     
 //#if 1
-    GGCompany *company = _detailData.mentionedCompanies[btn.tag];
-    [_panel.viewScroll.infoWidget updateWithCompany:company];
+    //GGCompany *company = _detailData.mentionedCompanies[btn.tag];
+    //[_panel.viewScroll.infoWidget updateWithCompany:company];
 //#else
 //    GGCompany *fakeCom = [GGCompany model];
 //    fakeCom.name = @"Apple Inc.";

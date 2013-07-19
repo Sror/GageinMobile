@@ -230,6 +230,7 @@
 @implementation GGSsgrfPushAwayScrollView
 {
     float                       _pushGap;
+    NSMutableArray              *_infoWidgets;
 }
 
 -(CGSize)imageSize
@@ -241,13 +242,13 @@
 {
     [super _doInit];
     
-    _gap = 35.f;
+    _gap = 130.f;
     _pushGap = 35.f;
     
-    _infoWidget = [[GGSsgrfInfoWidgetView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    //_infoWidget = [[GGSsgrfInfoWidgetView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
 
-    _infoWidget.hidden = YES;
-    
+    //_infoWidget.hidden = YES;
+    _infoWidgets = [NSMutableArray array];
 }
 
 -(float)scrollViewHeight
@@ -295,41 +296,74 @@
 {
     [super _reinstallImages];
     
+    for (GGSsgrfInfoWidgetView *infoWidget in _infoWidgets)
+    {
+        [infoWidget removeFromSuperview];
+    }
+    [_infoWidgets removeAllObjects];
+    
     for (GGSsgrfRndImgButton *button in _imageButtons)
     {
+        button.hidden = YES;
         [button addTarget:self action:@selector(pushAwayFromButton:)];
+        
+        GGSsgrfInfoWidgetView *infoWidget = [[GGSsgrfInfoWidgetView alloc] initWithFrame:CGRectZero];
+        [_infoWidgets addObject:infoWidget];
     }
     
-    int popIndex = _data.mentionedComIndex;//_imageButtons.count / 2;
-    
-    if (_imageButtons.count > 0)
+    for (GGSsgrfRndImgButton *button in _imageButtons)
     {
-        [self showInfoWidgetWithPushButton:_imageButtons[popIndex] animated:aAnimated];
+        [self showInfoWidgetWithPushButton:button animated:aAnimated];
         
-        GGCompany *company = self.data.mentionedCompanies[popIndex];
-        [_infoWidget updateWithCompany:company needReInstall:aNeedReInstall];
-        
-        [self pushAwayFromIndex:popIndex animated:aAnimated];
+        int index = button.tag;
+        GGCompany *company = self.data.mentionedCompanies[index];
+        GGSsgrfInfoWidgetView *infoWidget = _infoWidgets[index];
+        [infoWidget updateWithCompany:company needReInstall:aNeedReInstall];
     }
+    
+    if (_infoWidgets.count)
+    {
+        UIView *firstWidget = _infoWidgets[0];
+        UIView *lastWidget = _infoWidgets.lastObject;
+        
+        float width = CGRectGetMaxX(lastWidget.frame) - firstWidget.frame.origin.x;
+        [self _setContentWidth:width];
+    }
+    
+//    int popIndex = _data.mentionedComIndex;//_imageButtons.count / 2;
+//    
+//    if (_imageButtons.count > 0)
+//    {
+//        [self showInfoWidgetWithPushButton:_imageButtons[popIndex] animated:aAnimated];
+//        
+//        GGCompany *company = self.data.mentionedCompanies[popIndex];
+//        [_infoWidget updateWithCompany:company needReInstall:aNeedReInstall];
+//        
+//        [self pushAwayFromIndex:popIndex animated:aAnimated];
+//    }
     
 }
 
 #define THIS_ANIM_DURATION  .4f
 
-- (void)showInfoWidgetAnimatedWithPushButton:(UIButton *)pushedButton
+- (void)showInfoWidgetAnimatedWithPushButton:(GGSsgrfRndImgButton *)pushedButton
 {
     [self showInfoWidgetWithPushButton:pushedButton animated:YES];
 }
 
-- (void)showInfoWidgetWithPushButton:(UIButton *)pushedButton animated:(BOOL)aAnimated
+- (void)showInfoWidgetWithPushButton:(GGSsgrfRndImgButton *)pushedButton animated:(BOOL)aAnimated
 {
-    _infoWidget.hidden = NO;
+    if (pushedButton == nil)    return;
+    
+    int index = pushedButton.tag;
+    GGSsgrfInfoWidgetView *infoWidget = _infoWidgets[index];
+    infoWidget.hidden = NO;
     if (aAnimated)
     {
-        _infoWidget.viewTitledScroll.viewScroll.contentOffset = CGPointZero;
+        infoWidget.viewTitledScroll.viewScroll.contentOffset = CGPointZero;
     }
-    _infoWidget.center = pushedButton.center;
-    [self.viewScroll addSubview:_infoWidget];
+    infoWidget.center = pushedButton.center;
+    [self.viewScroll addSubview:infoWidget];
     
     if (aAnimated)
     {
@@ -337,14 +371,14 @@
         opacityAnimation.fromValue = @(0);
         opacityAnimation.toValue = @(1);
         opacityAnimation.duration = THIS_ANIM_DURATION / 2;
-        [_infoWidget.layer addAnimation:opacityAnimation forKey:@"opacityAnimation"];
+        [infoWidget.layer addAnimation:opacityAnimation forKey:@"opacityAnimation"];
         
         CAKeyframeAnimation *alertScaleAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
         
-        CATransform3D startingScale = CATransform3DScale(_infoWidget.layer.transform, 0, 0, 0);
-        CATransform3D overshootScale = CATransform3DScale(_infoWidget.layer.transform, 1.05, 1.05, 1.0);
-        CATransform3D undershootScale = CATransform3DScale(_infoWidget.layer.transform, 0.95, 0.95, 1.0);
-        CATransform3D endingScale = _infoWidget.layer.transform;
+        CATransform3D startingScale = CATransform3DScale(infoWidget.layer.transform, 0, 0, 0);
+        CATransform3D overshootScale = CATransform3DScale(infoWidget.layer.transform, 1.05, 1.05, 1.0);
+        CATransform3D undershootScale = CATransform3DScale(infoWidget.layer.transform, 0.95, 0.95, 1.0);
+        CATransform3D endingScale = infoWidget.layer.transform;
         
         alertScaleAnimation.values = @[
                                        [NSValue valueWithCATransform3D:startingScale],
@@ -374,7 +408,7 @@
                                       opacityAnimation
                                       ];
         alertAnimation.duration = THIS_ANIM_DURATION;
-        [_infoWidget.layer addAnimation:alertAnimation forKey:@"alertAnimation"];
+        [infoWidget.layer addAnimation:alertAnimation forKey:@"alertAnimation"];
     }
 }
 
@@ -391,154 +425,154 @@
 
 -(void)pushAwayFromIndex:(NSUInteger)aIndex animated:(BOOL)aAnimated
 {
-    //self.viewScroll.backgroundColor = GGSharedColor.random;
-    //int index = aButton.tag;
-    
-    _data.mentionedComIndex = aIndex;
-    
-    int count = _imageButtons.count;
-    UIButton *pushedButton = _imageButtons[aIndex];
-    _infoWidget.hidden = YES;
-    
-    if (count <= 1)
-    {
-        [self showInfoWidgetWithPushButton:pushedButton animated:aAnimated];
-        return; // dont need
-    }
-    
-    //
-    CGRect rects[count];
-    CGRect *rectsPtr = rects;
-    for (int i = 0; i < count; i++)
-    {
-        GGSsgrfRndImgButton *theButton = _imageButtons[i];
-        rects[i] = theButton.frame;
-    }
-    
-    //
-    
-    CGRect pushedRc = pushedButton.frame;
-    float posRelative = pushedRc.origin.x - self.viewScroll.contentOffset.x;
-
-    [UIView animateWithDuration:THIS_ANIM_DURATION / 4 animations:^{
-        
-        // push buttons before
-        if (aIndex > 0)
-        {
-            for (int i = aIndex - 1; i >= 0; i--)
-            {
-                CGRect targetRc = rectsPtr[i + 1];
-                
-                float distance = (i == aIndex - 1) ? (_gap + _pushGap) : _gap;
-                
-                rectsPtr[i] = CGRectMake((targetRc.origin.x - distance - [self imageSize].width)
-                                             , targetRc.origin.y
-                                             , [self imageSize].width
-                                             , [self imageSize].height);
-            }
-        }
-        
-        // push buttons after
-        if (aIndex < count - 1)
-        {
-            for (int i = aIndex + 1; i < count; i++)
-            {
-                CGRect targetRc = rectsPtr[i - 1];
-                
-                float distance = (i == aIndex + 1) ? (_gap + _pushGap) : _gap;
-                
-                rectsPtr[i] = CGRectMake((targetRc.origin.x + [self imageSize].width + distance)
-                                             , targetRc.origin.y
-                                             , [self imageSize].width
-                                             , [self imageSize].height);
-            }
-        }
-        
-        CGRect firstRc = rectsPtr[0];
-        
-        float minOffsetX = ([GGSsgrfInfoWidgetView WIDTH] - self.imageSize.width) / 2;
-        if (firstRc.origin.x < minOffsetX)
-        {
-            float offsetX = minOffsetX - firstRc.origin.x;
-            for (int i = 0; i < count; i++)
-            {
-                //CGRect theRc = rectsPtr[i];
-                rectsPtr[i] = CGRectOffset(rectsPtr[i], offsetX, 0);
-            }
-        }
-        
-//        // adjust the offset
-//        if (ABS(firstRc.origin.x) > 0.001f )
+//    //self.viewScroll.backgroundColor = GGSharedColor.random;
+//    //int index = aButton.tag;
+//    
+//    _data.mentionedComIndex = aIndex;
+//    
+//    int count = _imageButtons.count;
+//    UIButton *pushedButton = _imageButtons[aIndex];
+//    _infoWidget.hidden = YES;
+//    
+//    if (count <= 1)
+//    {
+//        [self showInfoWidgetWithPushButton:pushedButton animated:aAnimated];
+//        return; // dont need
+//    }
+//    
+//    //
+//    CGRect rects[count];
+//    CGRect *rectsPtr = rects;
+//    for (int i = 0; i < count; i++)
+//    {
+//        GGSsgrfRndImgButton *theButton = _imageButtons[i];
+//        rects[i] = theButton.frame;
+//    }
+//    
+//    //
+//    
+//    CGRect pushedRc = pushedButton.frame;
+//    float posRelative = pushedRc.origin.x - self.viewScroll.contentOffset.x;
+//
+//    [UIView animateWithDuration:THIS_ANIM_DURATION / 4 animations:^{
+//        
+//        // push buttons before
+//        if (aIndex > 0)
 //        {
-//            float offsetX = -firstRc.origin.x;
-//            
+//            for (int i = aIndex - 1; i >= 0; i--)
+//            {
+//                CGRect targetRc = rectsPtr[i + 1];
+//                
+//                float distance = (i == aIndex - 1) ? (_gap + _pushGap) : _gap;
+//                
+//                rectsPtr[i] = CGRectMake((targetRc.origin.x - distance - [self imageSize].width)
+//                                             , targetRc.origin.y
+//                                             , [self imageSize].width
+//                                             , [self imageSize].height);
+//            }
+//        }
+//        
+//        // push buttons after
+//        if (aIndex < count - 1)
+//        {
+//            for (int i = aIndex + 1; i < count; i++)
+//            {
+//                CGRect targetRc = rectsPtr[i - 1];
+//                
+//                float distance = (i == aIndex + 1) ? (_gap + _pushGap) : _gap;
+//                
+//                rectsPtr[i] = CGRectMake((targetRc.origin.x + [self imageSize].width + distance)
+//                                             , targetRc.origin.y
+//                                             , [self imageSize].width
+//                                             , [self imageSize].height);
+//            }
+//        }
+//        
+//        CGRect firstRc = rectsPtr[0];
+//        
+//        float minOffsetX = ([GGSsgrfInfoWidgetView WIDTH] - self.imageSize.width) / 2;
+//        if (firstRc.origin.x < minOffsetX)
+//        {
+//            float offsetX = minOffsetX - firstRc.origin.x;
 //            for (int i = 0; i < count; i++)
 //            {
 //                //CGRect theRc = rectsPtr[i];
 //                rectsPtr[i] = CGRectOffset(rectsPtr[i], offsetX, 0);
 //            }
 //        }
-        
-        for (int i = 0; i < count; i++)
-        {
-            CGRect theRc = rectsPtr[i];
-            GGSsgrfRndImgButton *theBtn = _imageButtons[i];
-            theBtn.frame = theRc;
-        }
-        
-        // set scroll content size
-        float contentWidth = CGRectGetMaxX(rectsPtr[count - 1]) - (rectsPtr[0]).origin.x + [GGSsgrfInfoWidgetView WIDTH];
-        self.viewScroll.contentSize = CGSizeMake(contentWidth, self.viewScroll.contentSize.height);
-
-        float contentOffsetX = pushedButton.frame.origin.x - posRelative;
-        float widgetOriginX = pushedButton.frame.origin.x + (pushedButton.frame.size.width - _infoWidget.frame.size.width) / 2;
-        float widgetMaxX = widgetOriginX + _infoWidget.frame.size.width;
-        contentOffsetX = MIN(contentOffsetX, widgetOriginX);
-        contentOffsetX = MAX(contentOffsetX, widgetMaxX - self.viewScroll.frame.size.width);
-        self.viewScroll.contentOffset = CGPointMake(contentOffsetX, self.viewScroll.contentOffset.y);
-
-        self.viewScroll.contentOffset = CGPointMake(contentOffsetX, self.viewScroll.contentOffset.y);
-        
-    } completion:^(BOOL finished) {
-        
-        [self showInfoWidgetWithPushButton:pushedButton animated:aAnimated];
-        
-    }];
+//        
+////        // adjust the offset
+////        if (ABS(firstRc.origin.x) > 0.001f )
+////        {
+////            float offsetX = -firstRc.origin.x;
+////            
+////            for (int i = 0; i < count; i++)
+////            {
+////                //CGRect theRc = rectsPtr[i];
+////                rectsPtr[i] = CGRectOffset(rectsPtr[i], offsetX, 0);
+////            }
+////        }
+//        
+//        for (int i = 0; i < count; i++)
+//        {
+//            CGRect theRc = rectsPtr[i];
+//            GGSsgrfRndImgButton *theBtn = _imageButtons[i];
+//            theBtn.frame = theRc;
+//        }
+//        
+//        // set scroll content size
+//        float contentWidth = CGRectGetMaxX(rectsPtr[count - 1]) - (rectsPtr[0]).origin.x + [GGSsgrfInfoWidgetView WIDTH];
+//        self.viewScroll.contentSize = CGSizeMake(contentWidth, self.viewScroll.contentSize.height);
+//
+//        float contentOffsetX = pushedButton.frame.origin.x - posRelative;
+//        float widgetOriginX = pushedButton.frame.origin.x + (pushedButton.frame.size.width - _infoWidget.frame.size.width) / 2;
+//        float widgetMaxX = widgetOriginX + _infoWidget.frame.size.width;
+//        contentOffsetX = MIN(contentOffsetX, widgetOriginX);
+//        contentOffsetX = MAX(contentOffsetX, widgetMaxX - self.viewScroll.frame.size.width);
+//        self.viewScroll.contentOffset = CGPointMake(contentOffsetX, self.viewScroll.contentOffset.y);
+//
+//        self.viewScroll.contentOffset = CGPointMake(contentOffsetX, self.viewScroll.contentOffset.y);
+//        
+//    } completion:^(BOOL finished) {
+//        
+//        [self showInfoWidgetWithPushButton:pushedButton animated:aAnimated];
+//        
+//    }];
     
 }
 
 #pragma mark - 
 -(void)hideInfoWidget
 {
-    CATransform3D transform = CATransform3DScale(_infoWidget.layer.transform, 0, 0, 0);
-    CATransform3D endingScale = _infoWidget.layer.transform;
-    
-    CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    opacityAnimation.fromValue = @(1);
-    opacityAnimation.toValue = @(0);
-    opacityAnimation.duration = THIS_ANIM_DURATION;
-    [_infoWidget.layer addAnimation:opacityAnimation forKey:@"opacityAnimation"];
-    
-    [UIView animateWithDuration:THIS_ANIM_DURATION
-                          delay:0
-                        options:UIViewAnimationOptionBeginFromCurrentState
-                     animations:^{
-                         
-                         _infoWidget.layer.transform = transform;
-                         
-                         [self reArrangeImagePos];
-                         
-                     }
-                     completion:^(BOOL finished){
-                         
-                         [_infoWidget removeFromSuperview];
-                         
-                         _infoWidget.hidden = YES;
-                         
-                         _infoWidget.layer.transform = endingScale;
-                         
-                         
-                     }];
+//    CATransform3D transform = CATransform3DScale(_infoWidget.layer.transform, 0, 0, 0);
+//    CATransform3D endingScale = _infoWidget.layer.transform;
+//    
+//    CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+//    opacityAnimation.fromValue = @(1);
+//    opacityAnimation.toValue = @(0);
+//    opacityAnimation.duration = THIS_ANIM_DURATION;
+//    [_infoWidget.layer addAnimation:opacityAnimation forKey:@"opacityAnimation"];
+//    
+//    [UIView animateWithDuration:THIS_ANIM_DURATION
+//                          delay:0
+//                        options:UIViewAnimationOptionBeginFromCurrentState
+//                     animations:^{
+//                         
+//                         _infoWidget.layer.transform = transform;
+//                         
+//                         [self reArrangeImagePos];
+//                         
+//                     }
+//                     completion:^(BOOL finished){
+//                         
+//                         [_infoWidget removeFromSuperview];
+//                         
+//                         _infoWidget.hidden = YES;
+//                         
+//                         _infoWidget.layer.transform = endingScale;
+//                         
+//                         
+//                     }];
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -547,6 +581,13 @@
 }
 
 
+-(void)setLoadingResponder:(id)aLoadingResponder
+{
+    for (GGSsgrfInfoWidgetView *infoWidget in _infoWidgets)
+    {
+        infoWidget.loadingResponder = aLoadingResponder;
+    }
+}
 
 @end
 
