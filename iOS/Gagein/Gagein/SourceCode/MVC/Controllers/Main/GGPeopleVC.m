@@ -50,6 +50,8 @@
     GGTableViewExpandHelper             *_happeningTvExpandHelper;
     
     __weak NSTimer                      *_timerMenuUpdate;
+    
+    __weak AFHTTPRequestOperation       *_updatesRequest;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -307,6 +309,8 @@
 
 -(void)_doFollowingHideSlide:(BOOL)aHideSlide
 {
+    [self _resetState];
+    
     self.naviTitle = @"Following";
     _happeningTvExpandHelper.isExpanding = NO;
     
@@ -336,6 +340,8 @@
 
 -(void)_doExploringHideSlide:(BOOL)aHideSlide
 {
+    [self _resetState];
+    
     self.naviTitle = @"Exploring";
     _happeningTvExpandHelper.isExpanding = NO;
     
@@ -562,27 +568,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
     int row = indexPath.row;
     
     if (tableView == self.updatesTV)
     {
         if (ISIPADDEVICE)
         {
-           // NSUInteger oldIndex = _happeningTvExpandHelper.expandingIndex;
-            
             [_happeningTvExpandHelper changeExpaningAt:row];
             [tableView reloadData];
-            
-//            if (indexPath.row == oldIndex)
-//            {
-//                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-//            }
-//            else
-//            {
-//                NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:indexPath.section];
-//                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
-//            }
         }
         else
         {
@@ -592,6 +585,8 @@
     }
     else if (tableView == _slideSettingView.viewTable)
     {
+        [self _resetState];
+        
         _happeningTvExpandHelper.isExpanding = NO;
         
         GGDataPage *thePage = _menuDatas[indexPath.section];
@@ -796,14 +791,20 @@
     
     if (_menuType == kGGMenuTypePerson)
     {
-        id op = [GGSharedAPI getHappeningsWithPersonID:_menuID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
-        [self registerOperation:op];
+        _updatesRequest = [GGSharedAPI getHappeningsWithPersonID:_menuID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+        [self registerOperation:_updatesRequest];
     }
     else if (_menuType == kGGMenuTypeFunctionalArea)
     {
-        id op = [GGSharedAPI getHappeningsWithFunctionalAreaID:_menuID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
-        [self registerOperation:op];
+        _updatesRequest = [GGSharedAPI getHappeningsWithFunctionalAreaID:_menuID eventID:anEventID pageFlag:aPageFlag pageTime:aPageTime callback:callback];
+        [self registerOperation:_updatesRequest];
     }
+}
+
+-(void)_resetState
+{
+    _happeningTvExpandHelper.isExpanding = NO;
+    [_updatesRequest cancel];
 }
 
 -(void)_delayedStopAnimating

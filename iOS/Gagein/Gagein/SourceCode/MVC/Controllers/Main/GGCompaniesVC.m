@@ -1165,32 +1165,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
     int row = indexPath.row;
     
     if (tableView == self.updatesTV)
     {
         if (ISIPADDEVICE)
         {
-            // snapshot old value...
-            //NSUInteger oldIndex = _updateTvExpandHelper.expandingIndex;
-
             [_updateTvExpandHelper changeExpaningAt:row];
             [tableView reloadData];
-            
-            // reload cells
-//            [tableView beginUpdates];
-//            if (indexPath.row == oldIndex)
-//            {
-//                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-//            }
-//            else
-//            {
-//                NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:indexPath.section];
-//                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
-//            }
-//            
-//            [tableView endUpdates];
         }
         else
         {
@@ -1202,24 +1184,8 @@
         
         if (ISIPADDEVICE)
         {
-            //NSUInteger oldIndex = _happeningTvExpandHelper.expandingIndex;
-            
             [_happeningTvExpandHelper changeExpaningAt:row];
             [tableView reloadData];
-            
-//            [tableView beginUpdates];
-//            
-//            if (indexPath.row == oldIndex)
-//            {
-//                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-//            }
-//            else
-//            {
-//                 NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:indexPath.section];
-//                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, oldIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
-//            }
-//            
-//            [tableView endUpdates];
         }
         else
         {
