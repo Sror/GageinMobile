@@ -88,7 +88,11 @@
         
         self.tfFirstName.text = _userInfo.firstName;
         self.tfLastName.text = _userInfo.lastName;
-        self.tfEmail.text = _userInfo.email;
+        
+        if (!_userInfo.emailExisted)
+        {
+            self.tfEmail.text = _userInfo.email;
+        }
     }
     else
     {
@@ -129,6 +133,8 @@
 -(IBAction)goLoginAction:(id)sender
 {
     GGLoginVC *vc = [GGLoginVC createInstance];
+    vc.userInfo = _userInfo;
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 

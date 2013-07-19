@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GGLoginVC : GGBaseViewController <UITextFieldDelegate, UIScrollViewDelegate>
-
+@property (strong) GGSnUserInfo *userInfo;
 @end

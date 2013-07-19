@@ -40,6 +40,7 @@
     self.accountID = [aData objectForKey:@"sn_account_id"];
     self.accountName = [aData objectForKey:@"sn_account_name"];
     self.profileURL = [aData objectForKey:@"sn_profile_url"];
+    _emailExisted = [aData objectForKey:@"email_existed"];
     
     NSArray *autoLoginInfoArr = [aData objectForKey:@"auto_login_info"];
     _autoLoginInfos = (autoLoginInfoArr.count) ? [NSMutableArray array] : nil;

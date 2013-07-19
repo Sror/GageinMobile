@@ -31,6 +31,7 @@
 @property (copy)    NSString    *accountID;
 @property (copy)    NSString    *accountName;
 @property (copy)    NSString    *profileURL;
+@property (assign)  BOOL        emailExisted;
 
 @property (strong) NSMutableArray   *autoLoginInfos;
 

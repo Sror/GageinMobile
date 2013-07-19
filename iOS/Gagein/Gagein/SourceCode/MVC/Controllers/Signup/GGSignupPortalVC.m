@@ -187,7 +187,15 @@
     }
     else // not linked to any account
     {
-        [self _signupWithUserInfo:aUserInfo];
+        if (aUserInfo.emailExisted)
+        {
+            // go to login with the email
+            [self _loginWithUserInfo:aUserInfo];
+        }
+        else
+        {
+            [self _signupWithUserInfo:aUserInfo];
+        }
     }
 
 }
@@ -339,6 +347,17 @@
 -(IBAction)signupAction:(id)sender
 {
     [self _signupWithUserInfo:nil];
+}
+
+
+-(void)_loginWithUserInfo:(GGSnUserInfo *)aUserInfo
+{
+    GGLoginVC *vc = [[GGLoginVC alloc] init];
+    vc.userInfo = aUserInfo;
+    
+    GGNavigationController *nc = [[GGNavigationController alloc] initWithRootViewController:vc];
+    [self.view.window.layer addAnimation:[GGUtils animationTransactionPushed:YES] forKey:nil];
+    [self presentViewController:nc animated:NO completion:nil];
 }
 
 -(void)_signupWithUserInfo:(GGSnUserInfo *)aUserInfo

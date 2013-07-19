@@ -13,6 +13,7 @@
 #import "GGSelectAgentsVC.h"
 #import "GGSelectFuncAreasVC.h"
 #import "GGSignupVC.h"
+#import "GGSnUserInfo.h"
 
 @interface GGLoginVC ()
 @property (weak, nonatomic) IBOutlet UITextField *tfEmail;
@@ -54,6 +55,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = GGSharedColor.bgGray;
     self.naviTitle = @"Login with Email";
+    
+    if (_userInfo.emailExisted)
+    {
+        _tfEmail.text = _userInfo.email;
+    }
     
     [self installGageinLogoTo:self.scrolView];
     self.ivLoginFieldBg.image = [[UIImage imageNamed:@"bgLoginField"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
@@ -126,6 +132,7 @@
     //[self.navigationController popViewControllerAnimated:NO];
     
     GGSignupVC *vc = [GGSignupVC createInstance];
+    vc.userInfo = _userInfo;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
