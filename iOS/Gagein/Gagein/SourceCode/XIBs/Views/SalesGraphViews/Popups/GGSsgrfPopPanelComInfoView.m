@@ -39,7 +39,7 @@
 
 -(void)updateWithCompany:(GGCompany *)aCompany
 {
-    _companyID = aCompany.ID;
+    _companyID = aCompany.ID > 0 ? aCompany.ID : aCompany.orgID;
     _relevancePersonID = aCompany.relevancePersonID;
     
     [self showLoadingHUD];
