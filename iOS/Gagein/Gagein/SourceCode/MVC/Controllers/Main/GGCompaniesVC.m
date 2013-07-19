@@ -339,8 +339,6 @@
 {
     [super viewDidAppear:animated];
     
-    
-    
     // show/hide switch button
     //[self _setSwitchUpdateRect];
     //[self.navigationController.navigationBar addSubview:_btnSwitchUpdate];

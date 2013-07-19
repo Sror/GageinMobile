@@ -24,6 +24,11 @@
         else if (aParser.status == kGGApiStatusUserOperationError)
         {
             NSString *message = [GGStringPool stringWithMessageCode:aParser.messageCode];
+            if (message == nil)
+            {
+                message = aParser.message;
+            }
+            
             [self alertWithApiMessage:message];
         }
         else

@@ -625,6 +625,10 @@ typedef enum
                 [self _callApiGetHappenings];
             }
         }
+        else
+        {
+            [GGAlert alertWithApiParser:parser];
+        }
         
         [self _callApiGetPeople];
         [self _callApiGetSimilarCompanies];
