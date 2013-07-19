@@ -367,7 +367,7 @@
                 }
                 else
                 {
-                    item.frame = CGRectMake(10, offset, actionSheet.frame.size.width - 10*2, 35);
+                    item.frame = CGRectMake(10, offset, actionSheet.frame.size.width - 10*2, 45);
                 }
                 
                 item.tag = tag++;

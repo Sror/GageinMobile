@@ -21,7 +21,7 @@
 #import "GGComDetailEmployeeCell.h"
 #import "GGCompanyDetailVC.h"
 #import "GGEmployerComsVC.h"
-
+#import "CMActionSheet.h"
 //
 typedef enum
 {
@@ -353,8 +353,33 @@ typedef enum
     if (_personOverview.followed)
     {
         // show action sheet
-        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:nil otherButtonTitles:@"unfollow", nil];
-        [sheet showFromTabBar:self.tabBarController.tabBar];
+//        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:nil otherButtonTitles:@"unfollow", nil];
+//        [sheet showFromTabBar:self.tabBarController.tabBar];
+        
+        CMActionSheet *shit = [[CMActionSheet alloc] init];
+        
+        [shit addButtonWithTitle:@"Unfollow" type:CMActionSheetButtonTypeWhite block:^{
+            
+            id op = [GGSharedAPI unfollowPersonWithID:_personID callback:^(id operation, id aResultObject, NSError *anError) {
+                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                if (parser.isOK)
+                {
+                    _personOverview.followed = NO;
+                    
+                    [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
+                    
+                    [self _updateUiBtnFollow];
+                }
+            }];
+            
+            [self registerOperation:op];
+            
+        }];
+        
+        [shit addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:nil];
+        
+        [shit present];
+        
     }
     else
     {
@@ -378,27 +403,27 @@ typedef enum
     }
 }
 
-#pragma mark - action sheet delegate
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    DLog(@"action sheet index:%d", buttonIndex);
-    if (buttonIndex == 0)
-    {
-        id op = [GGSharedAPI unfollowPersonWithID:_personID callback:^(id operation, id aResultObject, NSError *anError) {
-            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            if (parser.isOK)
-            {
-                _personOverview.followed = NO;
-                
-                [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
-                
-                [self _updateUiBtnFollow];
-            }
-        }];
-        
-        [self registerOperation:op];
-    }
-}
+//#pragma mark - action sheet delegate
+//- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    DLog(@"action sheet index:%d", buttonIndex);
+//    if (buttonIndex == 0)
+//    {
+//        id op = [GGSharedAPI unfollowPersonWithID:_personID callback:^(id operation, id aResultObject, NSError *anError) {
+//            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//            if (parser.isOK)
+//            {
+//                _personOverview.followed = NO;
+//                
+//                [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
+//                
+//                [self _updateUiBtnFollow];
+//            }
+//        }];
+//        
+//        [self registerOperation:op];
+//    }
+//}
 
 #pragma mark - API calls
 -(void)_callApiGetPersonOverview
