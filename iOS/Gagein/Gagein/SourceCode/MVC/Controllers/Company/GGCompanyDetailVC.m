@@ -488,7 +488,7 @@ typedef enum
 //        UIImageView *iv = [[UIImageView alloc] initWithImage:image];
 //        [self.view addSubview:iv];
 //    }];
-    [self.ivLogo setImageWithURL:url placeholderImage:GGSharedImagePool.placeholder];
+    [self.ivLogo setImageWithURL:url placeholderImage:GGSharedImagePool.placeholder options:SDWebImageRefreshCached];
     self.naviTitle = _companyOverview.name;
     self.lblWebsite.text = _companyOverview.website;
     [self _updateUiBtnFollow];
