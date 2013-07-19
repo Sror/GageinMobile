@@ -266,9 +266,8 @@
         
         [_followingSectionView.btnBg addTarget:self action:@selector(_followingTapped:) forControlEvents:UIControlEventTouchUpInside];
         [_followingSectionView.btnAdd addTarget:self action:@selector(_addPersonAction:) forControlEvents:UIControlEventTouchUpInside];
-        _followingSectionView.btnConfig.hidden = YES;
-        //_followingSectionView.btnAdd.frame = _followingSectionView.btnConfig.frame;
-        [_followingSectionView usingFollowingStyle];
+        
+        [_followingSectionView showPlusBtn];
     }
     
     return _followingSectionView;
@@ -282,9 +281,9 @@
         _exploringSectionView.lblTitle.text = @"EXPLORING";
         [_exploringSectionView setHightlighted:YES];
         
-        _exploringSectionView.btnAdd.hidden = YES;
+        [_exploringSectionView showConfigureBtn];
         [_exploringSectionView.btnBg addTarget:self action:@selector(_exploringTapped:) forControlEvents:UIControlEventTouchUpInside];
-        [_exploringSectionView.btnConfig addTarget:self action:@selector(_exploringConfigTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [_exploringSectionView.btnAdd addTarget:self action:@selector(_exploringConfigTapped:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _exploringSectionView;

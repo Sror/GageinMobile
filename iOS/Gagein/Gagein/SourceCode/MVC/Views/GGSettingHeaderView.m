@@ -41,14 +41,14 @@
     }
 }
 
--(void)usingFollowingStyle
+-(void)showPlusBtn
 {
-    [_btnConfig setImage:[UIImage imageNamed:@"sandGlassBtn"] forState:UIControlStateNormal];
-    
-    if (_btnConfig.hidden)
-    {
-        _btnAdd.frame = _btnConfig.frame;
-    }
+    _ivAdd.image = [UIImage imageNamed:@"plusBtnBg"];
+}
+
+-(void)showConfigureBtn
+{
+    _ivAdd.image = [UIImage imageNamed:@"gearBtnBg"];
 }
 
 @end

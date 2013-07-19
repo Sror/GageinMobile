@@ -11,11 +11,13 @@
 @interface GGSettingHeaderView : UIView
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UIButton *btnAdd;
-@property (weak, nonatomic) IBOutlet UIButton *btnConfig;
+//@property (weak, nonatomic) IBOutlet UIButton *btnConfig;
 //@property (weak, nonatomic) IBOutlet UIImageView *ivSelected;
 @property (weak, nonatomic) IBOutlet UIButton *btnBg;
+@property (weak, nonatomic) IBOutlet UIImageView *ivAdd;
 
 +(float)HEIGHT;
 -(void)setHightlighted:(BOOL)aHighlighted;
--(void)usingFollowingStyle;
+-(void)showPlusBtn;
+-(void)showConfigureBtn;
 @end
