@@ -110,7 +110,7 @@
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
     //int index = [_excludeScrolls indexOfObject:scrollView];
-    if (!ISIPADDEVICE && [_scrolls containsObject:scrollView] && scrollView.isDragging && _isDragging)
+    if (!ISIPADDEVICE && [_scrolls containsObject:scrollView] && scrollView.isDragging)
     {
         CGPoint currentOffset = scrollView.contentOffset;
         NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
