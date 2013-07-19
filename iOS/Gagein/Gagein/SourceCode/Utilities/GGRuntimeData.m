@@ -36,7 +36,7 @@ DEF_SINGLETON(GGRuntimeData)
         _relevance = [[NSUserDefaults standardUserDefaults] integerForKey:kDefaultKeyRelevance];
         if (_relevance == kGGCompanyUpdateRelevanceUnKnown)
         {
-            [self setRelevance:kGGCompanyUpdateRelevanceHigh];
+            [self setRelevance:kGGCompanyUpdateRelevanceVeryHigh];
         }
     }
     return self;

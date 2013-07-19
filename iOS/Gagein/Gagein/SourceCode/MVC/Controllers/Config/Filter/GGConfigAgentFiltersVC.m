@@ -348,7 +348,7 @@
     _viewSwitch.lblTitle.text = @"Relevance";
     
     EGGCompanyUpdateRelevance relevance = GGSharedRuntimeData.relevance;
-    _viewSwitch.btnSwitch.isOn = (relevance == kGGCompanyUpdateRelevanceHigh);
+    _viewSwitch.btnSwitch.isOn = (relevance == kGGCompanyUpdateRelevanceVeryHigh);
     _viewSwitch.btnSwitch.lblOn.text = @"High";
     _viewSwitch.btnSwitch.lblOff.text = @"Medium";
     _viewSwitch.btnSwitch.delegate = self;
@@ -373,7 +373,7 @@
 
 -(void)switchButton:(GGSwitchButton *)aSwitchButton isOn:(BOOL)aIsOn
 {
-    [GGSharedRuntimeData setRelevance:aIsOn ? kGGCompanyUpdateRelevanceHigh : kGGCompanyUpdateRelevanceNormal];
+    [GGSharedRuntimeData setRelevance:aIsOn ? kGGCompanyUpdateRelevanceVeryHigh : kGGCompanyUpdateRelevanceNormal];
     DLog(@"switch tapped:%d", aIsOn);
 }
 

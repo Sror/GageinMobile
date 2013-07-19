@@ -54,6 +54,8 @@
                                     , IPAD_IMAGE_WIDTH
                                     , IPAD_IMAGE_HEIGHT_LONG);
     }
+    
+    [self doLayoutUIForIPadWithOrientation:[GGLayout currentOrient]];
 }
 
 -(void)showPageWithIndex:(NSUInteger)aIndex

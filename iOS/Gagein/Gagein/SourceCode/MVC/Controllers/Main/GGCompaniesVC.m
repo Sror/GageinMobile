@@ -97,7 +97,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        //_relevance = kGGCompanyUpdateRelevanceHigh;
+        
         _updates = [NSMutableArray array];
         _happenings = [NSMutableArray array];
         _suggestedUpdates = [NSMutableArray array];
