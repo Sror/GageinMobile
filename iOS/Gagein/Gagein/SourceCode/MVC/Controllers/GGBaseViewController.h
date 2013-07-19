@@ -115,7 +115,7 @@
 //-(void)setNeedMenu:(BOOL)aNeedMenu;
 //-(BOOL)needMenu;
 -(BOOL)doNeedMenu;
-
+-(BOOL)canHearAction;
 
 
 #pragma mark - navi or modal

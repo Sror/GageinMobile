@@ -45,6 +45,6 @@
 
 @interface GGSsgrfActionListener : NSObject
 AS_SINGLETON(GGSsgrfActionListener)
-@property (nonatomic, weak) id<GGSsgrfActionDelegate>   delegate;
+
 
 @end

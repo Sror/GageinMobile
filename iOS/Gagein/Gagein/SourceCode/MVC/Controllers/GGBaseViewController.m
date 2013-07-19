@@ -314,11 +314,11 @@
     [self pushBackButtonFront];
     
     [self _adjustCustomNaviTitlePosition];
-    //DLog(@"%@: viewDidAppear", self.className);
-    if ([self canHearAction])
-    {
-        [GGSsgrfActionListener sharedInstance].delegate = self;
-    }
+//    //DLog(@"%@: viewDidAppear", self.className);
+//    if ([self canHearAction])
+//    {
+//        [GGSsgrfActionListener sharedInstance].delegate = self;
+//    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -770,7 +770,7 @@
         [self _decideCanPanToOpenDrawerWithOrient:toInterfaceOrientation];
     }
     
-    [GGSsgrfActionListener sharedInstance].delegate = GGSharedDelegate.topMostVC;
+    //[GGSsgrfActionListener sharedInstance].delegate = GGSharedDelegate.topMostVC;
 }
 
 -(void)_decideCanPanToOpenDrawerWithOrient:(UIInterfaceOrientation)anOrient

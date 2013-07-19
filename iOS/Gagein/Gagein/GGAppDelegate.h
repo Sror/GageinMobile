@@ -33,6 +33,7 @@
 
 -(GGLeftDrawerVC *)leftDrawer;
 -(GGBaseViewController *)topMostVC;
+-(UIViewController *)currentActionListener;
 
 -(void)enterLoginIfNeeded;
 -(void)popNaviToRoot;

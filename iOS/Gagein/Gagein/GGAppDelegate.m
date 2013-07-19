@@ -25,6 +25,7 @@
 
 #import "MMDrawerController.h"
 #import "GGLeftDrawerVC.h"
+#import "GGSsgrfActionListener.h"
 //#import "GGDummyDrawerVC.h"
 
 
@@ -34,6 +35,22 @@
 @implementation GGAppDelegate
 {
     GGUpgradeInfo *_upgradeInfo;
+}
+
+-(UIViewController *)currentActionListener
+{
+    UINavigationController *currentNC = (UINavigationController *)(_tabBarController.selectedViewController);
+    UIViewController *topVc = currentNC.topViewController;
+    if ([topVc isKindOfClass:[GGBaseViewController class]])
+    {
+        GGBaseViewController *ggVc = (GGBaseViewController *)topVc;
+        if ([ggVc canHearAction])
+        {
+            return ggVc;
+        }
+    }
+    
+    return nil;
 }
 
 -(void)_initTabbar
@@ -77,6 +94,8 @@
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
     [self getSnTypes];
+    
+    [GGSsgrfActionListener sharedInstance]; // initialize action listener
     
     //
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

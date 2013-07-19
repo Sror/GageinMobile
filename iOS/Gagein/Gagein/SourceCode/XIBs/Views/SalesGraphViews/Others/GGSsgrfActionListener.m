@@ -7,6 +7,7 @@
 //
 
 #import "GGSsgrfActionListener.h"
+#import "GGAppDelegate.h"
 
 @implementation GGSsgrfActionListener
 DEF_SINGLETON(GGSsgrfActionListener)
@@ -41,10 +42,7 @@ DEF_SINGLETON(GGSsgrfActionListener)
     return self;
 }
 
--(void)setDelegate:(id<GGSsgrfActionDelegate>)delegate
-{
-    _delegate = delegate;
-}
+
 
 -(void)handleNotification:(NSNotification *)notification
 {
@@ -53,82 +51,93 @@ DEF_SINGLETON(GGSsgrfActionListener)
     
     if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SHOW_PERSON_PANEL])
     {
-        [_delegate ssGraphShowPersonPanel:notiObj];
+        [self.delegate ssGraphShowPersonPanel:notiObj];
     }
     
     else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SHOW_COMPANY_PANEL])
     {
-        [_delegate ssGraphShowCompanyPanel:notiObj];
+        [self.delegate ssGraphShowCompanyPanel:notiObj];
     }
     
     else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SHOW_PERSON_LANDING_PAGE])
     {
-        [_delegate ssGraphShowPersonLandingPage:notiObj];
+        [self.delegate ssGraphShowPersonLandingPage:notiObj];
     }
     
     else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SHOW_COMPANY_LANDING_PAGE])
     {
-        [_delegate ssGraphShowCompanyLandingPage:notiObj];
+        [self.delegate ssGraphShowCompanyLandingPage:notiObj];
     }
     
     else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SHOW_EMPLOYEE_LIST_PAGE])
     {
-        [_delegate ssGraphShowEmployeeListPage:notiObj];
+        [self.delegate ssGraphShowEmployeeListPage:notiObj];
     }
     
     else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SHOW_EMPLOYER_LIST_PAGE])
     {
-        [_delegate ssGraphShowEmployerListPage:notiObj];
+        [self.delegate ssGraphShowEmployerListPage:notiObj];
     }
     
     else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SHOW_WEBPAGE])
     {
-        [_delegate ssGraphShowWebPage:notiObj];
+        [self.delegate ssGraphShowWebPage:notiObj];
     }
     
     else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_FOLLOW_PERSON])
     {
-        [_delegate ssGraphFollowPerson:notiObj];
+        [self.delegate ssGraphFollowPerson:notiObj];
     }
     
     else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_UNFOLLOW_PERSON])
     {
-        [_delegate ssGraphUnfollowPerson:notiObj];
+        [self.delegate ssGraphUnfollowPerson:notiObj];
     }
     
     else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_FOLLOW_COMPANY])
     {
-        [_delegate ssGraphFollowCompany:notiObj];
+        [self.delegate ssGraphFollowCompany:notiObj];
     }
     
     else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_UNFOLLOW_COMPANY])
     {
-        [_delegate ssGraphUnfollowCompany:notiObj];
+        [self.delegate ssGraphUnfollowCompany:notiObj];
     }
     else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SHOW_IMAGE_URL])
     {
-        [_delegate ssGraphShowImageURL:notiObj];
+        [self.delegate ssGraphShowImageURL:notiObj];
     }
     
     else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SHOW_MAP_IMAGE_URL])
     {
-        [_delegate ssGraphShowMapImageURL:notiObj];
+        [self.delegate ssGraphShowMapImageURL:notiObj];
     }
     
     else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SHOW_CHART_IMAGE_URL])
     {
-        [_delegate ssGraphShowChartImageURL:notiObj];
+        [self.delegate ssGraphShowChartImageURL:notiObj];
     }
     
     else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SIGNAL])
     {
-        [_delegate ssGraphSignal:notiObj];
+        [self.delegate ssGraphSignal:notiObj];
     }
     
     else if ([notiName isEqualToString:GG_NOTIFY_SSGRF_SHARE])
     {
-        [_delegate ssGraphShare:notiObj];
+        [self.delegate ssGraphShare:notiObj];
     }
+}
+
+-(id<GGSsgrfActionDelegate>)delegate
+{
+    id candidate = GGSharedDelegate.currentActionListener;
+    if ([candidate conformsToProtocol:@protocol(GGSsgrfActionDelegate)])
+    {
+        return candidate;
+    }
+    
+    return nil;
 }
 
 -(void)dealloc

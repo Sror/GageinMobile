@@ -361,12 +361,6 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
-    //[_btnSwitchUpdate removeFromSuperview];
-    //[self _makeSubNaviTitleVisible:NO];
-    
-    //[GGSharedDelegate.rootVC enableSwipGesture:NO];
-    //[GGSharedDelegate.rootVC enableTapGesture:NO];
 }
 
 
