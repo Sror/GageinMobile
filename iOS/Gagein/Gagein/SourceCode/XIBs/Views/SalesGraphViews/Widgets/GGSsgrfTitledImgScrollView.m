@@ -63,14 +63,15 @@
     _viewScroll.showsHorizontalScrollIndicator = NO;
     _viewScroll.alwaysBounceHorizontal = YES;
     _viewScroll.delegate = self;
-    //_viewScroll.backgroundColor = [UIColor blackColor];
+    
+    //_viewScroll.backgroundColor = GGSharedColor.random;
     [self addSubview:_viewScroll];
     
     CGRect thisRc = self.frame;
     thisRc.size.height = CGRectGetMaxY(_viewScroll.frame) + 10;
     self.frame = thisRc;
     
-    [self _reinstallImages];
+    //[self _reinstallImages];
 }
 
 -(float)scrollViewHeight
@@ -242,13 +243,14 @@
 {
     [super _doInit];
     
-    _gap = 130.f;
+    _gap = 0.f;
     _pushGap = 35.f;
     
     //_infoWidget = [[GGSsgrfInfoWidgetView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
 
     //_infoWidget.hidden = YES;
     _infoWidgets = [NSMutableArray array];
+    //self.viewScroll.pagingEnabled = YES;
 }
 
 -(float)scrollViewHeight
@@ -272,32 +274,61 @@
 }
 
 #warning REIMPLEMENT METHOD
+-(void)updateWithUpdateDetail:(GGCompanyUpdate *)aUpdateDetail needReinstall:(BOOL)aNeedReinstall
+{
+    [_infoWidgets removeAllObjects];
+    _data = aUpdateDetail;
+    
+    if (aUpdateDetail)
+    {
+        NSArray *mentionedComs = aUpdateDetail.mentionedCompanies;
+        
+        float offsetX = 0;
+        for (GGCompany *company in mentionedComs)
+        {
+            GGSsgrfInfoWidgetView *infoWidget = [[GGSsgrfInfoWidgetView alloc] initWithFrame:CGRectZero];
+            [infoWidget updateWithCompany:company needReInstall:aNeedReinstall];
+            [infoWidget setPosX:offsetX];
+            [infoWidget applyBounceAnimation];
+            //infoWidget.backgroundColor = GGSharedColor.random;
+            [self.viewScroll addSubview:infoWidget];
+
+            
+            [_infoWidgets addObject:infoWidget];
+            offsetX = CGRectGetMaxX(infoWidget.frame) + _gap;
+        }
+        
+        float contentWidth = offsetX - _gap;
+        [self _setContentWidth:contentWidth];
+        
+        float adjustionX = self.viewScroll.frame.size.width - contentWidth;
+        if (adjustionX > 0)
+        {
+            // content width is less than the view port, center align horizontally
+            adjustionX /= 2;
+            for (GGSsgrfInfoWidgetView *infoWidget in _infoWidgets)
+            {
+                infoWidget.frame = CGRectOffset(infoWidget.frame, adjustionX, 0);
+            }
+            
+        }
+    }
+}
+
 //-(void)updateWithUpdateDetail:(GGCompanyUpdate *)aUpdateDetail
 //{
 //    if (aUpdateDetail)
 //    {
-//        NSArray *mentionedComs = aUpdateDetail.mentionedCompanies;
+//        NSMutableArray *imageURLs = [NSMutableArray array];
 //        
-//        for (GGCompany in <#collection#>) {
-//            <#statements#>
+//        for (GGCompany *company in aUpdateDetail.mentionedCompanies)
+//        {
+//            [imageURLs addObjectIfNotNil:company.logoPath];
 //        }
+//        
+//        [self setImageUrls:imageURLs placeholder:GGSharedImagePool.logoDefaultCompany];
 //    }
 //}
-
--(void)updateWithUpdateDetail:(GGCompanyUpdate *)aUpdateDetail
-{
-    if (aUpdateDetail)
-    {
-        NSMutableArray *imageURLs = [NSMutableArray array];
-        
-        for (GGCompany *company in aUpdateDetail.mentionedCompanies)
-        {
-            [imageURLs addObjectIfNotNil:company.logoPath];
-        }
-        
-        [self setImageUrls:imageURLs placeholder:GGSharedImagePool.logoDefaultCompany];
-    }
-}
 
 //-(void)reArrangeImagePos
 //{
@@ -396,48 +427,49 @@
     
     if (aAnimated)
     {
-        CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-        opacityAnimation.fromValue = @(0);
-        opacityAnimation.toValue = @(1);
-        opacityAnimation.duration = THIS_ANIM_DURATION / 2;
-        [infoWidget.layer addAnimation:opacityAnimation forKey:@"opacityAnimation"];
-        
-        CAKeyframeAnimation *alertScaleAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-        
-        CATransform3D startingScale = CATransform3DScale(infoWidget.layer.transform, 0, 0, 0);
-        CATransform3D overshootScale = CATransform3DScale(infoWidget.layer.transform, 1.05, 1.05, 1.0);
-        CATransform3D undershootScale = CATransform3DScale(infoWidget.layer.transform, 0.95, 0.95, 1.0);
-        CATransform3D endingScale = infoWidget.layer.transform;
-        
-        alertScaleAnimation.values = @[
-                                       [NSValue valueWithCATransform3D:startingScale],
-                                       [NSValue valueWithCATransform3D:overshootScale],
-                                       [NSValue valueWithCATransform3D:undershootScale],
-                                       [NSValue valueWithCATransform3D:endingScale]
-                                       ];
-        
-        alertScaleAnimation.keyTimes = @[
-                                         @(0.0f),
-                                         @(0.3f),
-                                         @(0.85f),
-                                         @(1.0f)
-                                         ];
-        
-        alertScaleAnimation.timingFunctions = @[
-                                                [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut],
-                                                [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
-                                                [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]
-                                                ];
-        alertScaleAnimation.fillMode = kCAFillModeForwards;
-        alertScaleAnimation.removedOnCompletion = NO;
-        
-        CAAnimationGroup *alertAnimation = [CAAnimationGroup animation];
-        alertAnimation.animations = @[
-                                      alertScaleAnimation,
-                                      opacityAnimation
-                                      ];
-        alertAnimation.duration = THIS_ANIM_DURATION;
-        [infoWidget.layer addAnimation:alertAnimation forKey:@"alertAnimation"];
+        [infoWidget applyBounceAnimation];
+//        CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+//        opacityAnimation.fromValue = @(0);
+//        opacityAnimation.toValue = @(1);
+//        opacityAnimation.duration = THIS_ANIM_DURATION / 2;
+//        [infoWidget.layer addAnimation:opacityAnimation forKey:@"opacityAnimation"];
+//        
+//        CAKeyframeAnimation *alertScaleAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+//        
+//        CATransform3D startingScale = CATransform3DScale(infoWidget.layer.transform, 0, 0, 0);
+//        CATransform3D overshootScale = CATransform3DScale(infoWidget.layer.transform, 1.05, 1.05, 1.0);
+//        CATransform3D undershootScale = CATransform3DScale(infoWidget.layer.transform, 0.95, 0.95, 1.0);
+//        CATransform3D endingScale = infoWidget.layer.transform;
+//        
+//        alertScaleAnimation.values = @[
+//                                       [NSValue valueWithCATransform3D:startingScale],
+//                                       [NSValue valueWithCATransform3D:overshootScale],
+//                                       [NSValue valueWithCATransform3D:undershootScale],
+//                                       [NSValue valueWithCATransform3D:endingScale]
+//                                       ];
+//        
+//        alertScaleAnimation.keyTimes = @[
+//                                         @(0.0f),
+//                                         @(0.3f),
+//                                         @(0.85f),
+//                                         @(1.0f)
+//                                         ];
+//        
+//        alertScaleAnimation.timingFunctions = @[
+//                                                [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut],
+//                                                [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+//                                                [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]
+//                                                ];
+//        alertScaleAnimation.fillMode = kCAFillModeForwards;
+//        alertScaleAnimation.removedOnCompletion = NO;
+//        
+//        CAAnimationGroup *alertAnimation = [CAAnimationGroup animation];
+//        alertAnimation.animations = @[
+//                                      alertScaleAnimation,
+//                                      opacityAnimation
+//                                      ];
+//        alertAnimation.duration = THIS_ANIM_DURATION;
+//        [infoWidget.layer addAnimation:alertAnimation forKey:@"alertAnimation"];
     }
 }
 

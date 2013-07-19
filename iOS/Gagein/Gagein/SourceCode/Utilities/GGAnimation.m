@@ -11,6 +11,8 @@
 
 #define FLIP_DURATION       .5f
 
+//#define BOUNCE_ANIM_DURATION  .2f
+
 @implementation GGAnimation
 
 +(CAAnimation*)animationWithType:(NSString*)aType 
@@ -124,6 +126,8 @@
 {
     return [self animationWithType:@"flip" subType:@"fromRight" duration:FLIP_DURATION];
 }
+
+
 
 //+(CAAnimation *)aaa
 //{

@@ -217,15 +217,15 @@
         
         if (_expanded)
         {
-            
-            NSMutableArray *imageURLs = [NSMutableArray array];
-            
-            for (GGCompany *company in _detailData.mentionedCompanies)
-            {
-                [imageURLs addObjectIfNotNil:company.logoPath];
-            }
-            
-            [_panel.viewScroll setImageUrls:imageURLs placeholder:GGSharedImagePool.logoDefaultCompany needReInstall:aNeedReinstall];
+            [_panel.viewScroll updateWithUpdateDetail:_detailData needReinstall:aNeedReinstall];
+//            NSMutableArray *imageURLs = [NSMutableArray array];
+//            
+//            for (GGCompany *company in _detailData.mentionedCompanies)
+//            {
+//                [imageURLs addObjectIfNotNil:company.logoPath];
+//            }
+//            
+//            [_panel.viewScroll setImageUrls:imageURLs placeholder:GGSharedImagePool.logoDefaultCompany needReInstall:aNeedReinstall];
         }
     }
 }

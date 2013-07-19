@@ -273,4 +273,52 @@ static MBProgressHUD * hud;
     self.layer.shadowRadius = 1;
 }
 
+
+#define  BOUNCE_ANIM_DURATION   (.2f)
+-(void)applyBounceAnimation
+{
+    CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    opacityAnimation.fromValue = @(0);
+    opacityAnimation.toValue = @(1);
+    opacityAnimation.duration = BOUNCE_ANIM_DURATION;
+    [self.layer addAnimation:opacityAnimation forKey:@"opacityAnimation"];
+    
+    CAKeyframeAnimation *alertScaleAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    
+    CATransform3D startingScale = CATransform3DScale(self.layer.transform, 0, 0, 0);
+    CATransform3D overshootScale = CATransform3DScale(self.layer.transform, 1.05, 1.05, 1.0);
+    CATransform3D undershootScale = CATransform3DScale(self.layer.transform, 0.95, 0.95, 1.0);
+    CATransform3D endingScale = self.layer.transform;
+    
+    alertScaleAnimation.values = @[
+                                   [NSValue valueWithCATransform3D:startingScale],
+                                   [NSValue valueWithCATransform3D:overshootScale],
+                                   [NSValue valueWithCATransform3D:undershootScale],
+                                   [NSValue valueWithCATransform3D:endingScale]
+                                   ];
+    
+    alertScaleAnimation.keyTimes = @[
+                                     @(0.0f),
+                                     @(0.3f),
+                                     @(0.85f),
+                                     @(1.0f)
+                                     ];
+    
+    alertScaleAnimation.timingFunctions = @[
+                                            [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut],
+                                            [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+                                            [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]
+                                            ];
+    alertScaleAnimation.fillMode = kCAFillModeForwards;
+    alertScaleAnimation.removedOnCompletion = NO;
+    
+    CAAnimationGroup *alertAnimation = [CAAnimationGroup animation];
+    alertAnimation.animations = @[
+                                  alertScaleAnimation,
+                                  opacityAnimation
+                                  ];
+    alertAnimation.duration = BOUNCE_ANIM_DURATION * 2;
+    [self.layer addAnimation:alertAnimation forKey:@"alertAnimation"];
+}
+
 @end

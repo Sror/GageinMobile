@@ -53,10 +53,13 @@
 +(float)HEIGHT;
 +(float)WIDTH;
 
-
+// border and shadow
 -(void)applyEffectCircleSilverBorder;
 -(void)applyEffectRoundRectSilverBorder;
 -(void)applyEffectRoundRectShadow;
 -(void)applyEffectShadowAndBorder;
+
+// animation
+-(void)applyBounceAnimation;
 
 @end

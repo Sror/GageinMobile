@@ -46,6 +46,8 @@
 //@property (strong, nonatomic) GGSsgrfInfoWidgetView       *infoWidget;
 @property (strong, nonatomic) GGCompanyUpdate             *data;
 
+-(void)updateWithUpdateDetail:(GGCompanyUpdate *)aUpdateDetail needReinstall:(BOOL)aNeedReinstall;
+
 -(void)setLoadingResponder:(id)aLoadingResponder;
 
 -(void)hideInfoWidget;
