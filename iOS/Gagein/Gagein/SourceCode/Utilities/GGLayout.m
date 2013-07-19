@@ -28,6 +28,15 @@
     return statusFrame;
 }
 
++(BOOL)isLongScreen
+{
+    CGRect screenRc = [self screenFrame];
+    float max = MAX(screenRc.size.width, screenRc.size.height);
+    float min = MIN(screenRc.size.width, screenRc.size.height);
+    
+    return max / min > 1.5f;
+}
+
 +(float)statusHeight
 {
     return 20.f;

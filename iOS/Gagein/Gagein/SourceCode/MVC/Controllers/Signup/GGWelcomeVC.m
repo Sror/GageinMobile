@@ -44,9 +44,12 @@
     for (int i = 0; i < pageCount; i++)
     {
         GGWelcomePageView *page = [GGWelcomePageView viewFromNibWithOwner:self];
-        //page.alpha = .5f;
+        DLog(@"%@", page.frameString);
         [page showPageWithIndex:i];
-        CGRect pageFrame = CGRectOffset(page.frame, i * page.frame.size.width, 0);
+        
+        float offsetY = [GGLayout isLongScreen] ? -30 : -10;
+        
+        CGRect pageFrame = CGRectOffset(page.frame, i * page.frame.size.width, offsetY);
         page.frame = pageFrame;
         [self.scrollView addSubview:page];
         [_welcomePages addObject:page];

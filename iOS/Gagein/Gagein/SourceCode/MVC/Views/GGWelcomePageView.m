@@ -25,7 +25,10 @@
 
 -(void)awakeFromNib
 {
-    self.frame = [UIScreen mainScreen].applicationFrame;
+    CGRect appRc = [UIScreen mainScreen].applicationFrame;
+    appRc.origin.x = appRc.origin.y = 0.f;
+    self.frame = appRc;
+    
     [_getStartedBtn setBackgroundImage:GGSharedImagePool.bgBtnOrangeDarkEdge forState:UIControlStateNormal];
     
     if (ISIPADDEVICE)
@@ -134,7 +137,7 @@
     //
     float offsetY = (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) ? 60.f : 30.f;
     _ivPage4.frame = CGRectMake((thisRc.size.width - _ivPage4.frame.size.width) / 2
-                                , (thisRc.size.height - _ivPage4.frame.size.height) / 2 - offsetY
+                                , (thisRc.size.height - _ivPage4.frame.size.height) / 2 //- offsetY
                                 , _ivPage4.frame.size.width
                                 , _ivPage4.frame.size.height);
     

@@ -25,6 +25,8 @@ typedef NS_OPTIONS(NSUInteger, EMSLayoutElement) {
 +(CGRect)tabbarFrame;
 +(CGRect)navibarFrame;
 
++(BOOL)isLongScreen;
+
 +(UIInterfaceOrientation)currentOrient;
 
 
