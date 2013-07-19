@@ -135,9 +135,6 @@
         //make indicator image transparent
         self.tabBar.selectionIndicatorImage = [UIImage imageNamed:@"transparent.png"];
     }
-    
-    [self adjustOtherViewsHideBar:YES];
-    [self hideTabBarAnimated:NO];
 }
 
 
@@ -165,7 +162,7 @@
 {
     if (_currentIndex != index)
     {
-        if (ISIPADDEVICE)
+        //if (ISIPADDEVICE)
         {
             [[self _iconAt:_currentIndex] setImage:[_normalImages objectAtIndex:_currentIndex]];
             [[self _iconAt:index] setImage:[_selectedImages objectAtIndex:index]];
