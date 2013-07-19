@@ -1423,7 +1423,7 @@
     float offsetX = (_slideSettingView.viewTable.frame.size.width - _slideSettingView.frame.size.width) / 2;
     [_slideSettingView showLoadingHUDWithOffset:CGSizeMake(offsetX, -50)];
     id op = [GGSharedAPI getMenuByType:kGGStrMenuTypeCompanies callback:^(id operation, id aResultObject, NSError *anError) {
-        [_slideSettingView hideLoadingHUD];
+        [_slideSettingView hideAllHUDs];
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {

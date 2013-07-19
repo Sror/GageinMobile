@@ -77,6 +77,11 @@ static MBProgressHUD * hud;
      [hud hide:YES];
 }
 
+-(void)hideAllHUDs
+{
+    [MBProgressHUD hideAllHUDsForView:self animated:YES];
+}
+
 -(void)removeAllGestureRecognizers
 {
     for (UIGestureRecognizer *gest in self.gestureRecognizers)

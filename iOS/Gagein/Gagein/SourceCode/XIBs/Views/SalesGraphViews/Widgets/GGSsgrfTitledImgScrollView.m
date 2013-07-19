@@ -272,6 +272,18 @@
 }
 
 #warning REIMPLEMENT METHOD
+//-(void)updateWithUpdateDetail:(GGCompanyUpdate *)aUpdateDetail
+//{
+//    if (aUpdateDetail)
+//    {
+//        NSArray *mentionedComs = aUpdateDetail.mentionedCompanies;
+//        
+//        for (GGCompany in <#collection#>) {
+//            <#statements#>
+//        }
+//    }
+//}
+
 -(void)updateWithUpdateDetail:(GGCompanyUpdate *)aUpdateDetail
 {
     if (aUpdateDetail)
@@ -319,11 +331,11 @@
     
     for (GGSsgrfRndImgButton *button in _imageButtons)
     {
-        //button.hidden = YES;
+        button.hidden = YES;
         [button addTarget:self action:@selector(pushAwayFromButton:)];
         
         GGSsgrfInfoWidgetView *infoWidget = [[GGSsgrfInfoWidgetView alloc] initWithFrame:CGRectZero];
-        infoWidget.alpha = .5f;
+        //infoWidget.alpha = .5f;
         [_infoWidgets addObject:infoWidget];
         
     }

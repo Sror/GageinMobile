@@ -19,6 +19,7 @@
 -(void)showLoadingHUDWithText:(NSString *)aText;
 
 -(void)hideLoadingHUD;
+-(void)hideAllHUDs;
 
 -(void)removeAllGestureRecognizers;
 
