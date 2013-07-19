@@ -271,6 +271,7 @@
     }
 }
 
+#warning REIMPLEMENT METHOD
 -(void)updateWithUpdateDetail:(GGCompanyUpdate *)aUpdateDetail
 {
     if (aUpdateDetail)
@@ -286,11 +287,25 @@
     }
 }
 
+//-(void)reArrangeImagePos
+//{
+//    [self _reArrangeImagePosWithOffsetX:([GGSsgrfInfoWidgetView WIDTH] - [self imageSize].width) / 2];
+//    float contentWidth = self.viewScroll.contentSize.width;
+//    float scrollWidth = self.viewScroll.frame.size.width;
+//    if (contentWidth < scrollWidth)
+//    {
+//        float offsetX = (scrollWidth - contentWidth) / 2;
+//        [self _reArrangeImagePosWithOffsetX:offsetX];
+//    }
+//}
+
 
 -(void)_reinstallImages
 {
     [self _reinstallImagesAnimated:YES needReInstall:YES];
 }
+
+
 
 -(void)_reinstallImagesAnimated:(BOOL)aAnimated needReInstall:(BOOL)aNeedReInstall
 {
@@ -304,11 +319,13 @@
     
     for (GGSsgrfRndImgButton *button in _imageButtons)
     {
-        button.hidden = YES;
+        //button.hidden = YES;
         [button addTarget:self action:@selector(pushAwayFromButton:)];
         
         GGSsgrfInfoWidgetView *infoWidget = [[GGSsgrfInfoWidgetView alloc] initWithFrame:CGRectZero];
+        infoWidget.alpha = .5f;
         [_infoWidgets addObject:infoWidget];
+        
     }
     
     for (GGSsgrfRndImgButton *button in _imageButtons)
