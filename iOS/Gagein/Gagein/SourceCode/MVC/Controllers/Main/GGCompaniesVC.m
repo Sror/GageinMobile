@@ -656,6 +656,8 @@
         
         _exploringSectionView.ivAdd.hidden = YES;
         _exploringSectionView.btnAdd.hidden = YES;
+        
+        [_exploringSectionView.btnBg addTarget:self action:@selector(_exploringTapped:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _exploringSectionView;

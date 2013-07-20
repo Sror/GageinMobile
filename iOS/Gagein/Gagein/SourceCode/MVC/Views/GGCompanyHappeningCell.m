@@ -62,13 +62,16 @@
     }
 }
 
-#define DESC_BOTTOM_MARGIN      (5)
+#define DESC_BOTTOM_MARGIN          (8)
 #define CONTENT_BOTTOM_MARGIN       (5)
+#define MIN_CONTENT_HEIGHT          (90)
 -(void)doLayout
 {
     [_lblDescription sizeToFitFixWidth];
     
-    [_viewContent setHeight:CGRectGetMaxY(_lblDescription.frame) + DESC_BOTTOM_MARGIN];
+    float contentHeight = CGRectGetMaxY(_lblDescription.frame) + DESC_BOTTOM_MARGIN;
+    contentHeight = MAX(MIN_CONTENT_HEIGHT, contentHeight);
+    [_viewContent setHeight:contentHeight];
     
     [self.contentView setHeight:CGRectGetMaxY(_viewContent.frame) + CONTENT_BOTTOM_MARGIN];
 }
@@ -84,7 +87,9 @@
         CGSize constrainSize = CGSizeMake(DESC_WIDTH_RECT.size.width, FLT_MAX);
         float descHeight = [descStr sizeWithFont:font constrainedToSize:constrainSize lineBreakMode:NSLineBreakByTruncatingTail].height;
         
-        float height = DESC_WIDTH_RECT.origin.y + descHeight + DESC_BOTTOM_MARGIN + CONTENT_BOTTOM_MARGIN;
+        float contentHeight = DESC_WIDTH_RECT.origin.y + descHeight + DESC_BOTTOM_MARGIN;
+        contentHeight = MAX(MIN_CONTENT_HEIGHT, contentHeight);
+        float height = contentHeight + CONTENT_BOTTOM_MARGIN;
         return height;
     }
     
