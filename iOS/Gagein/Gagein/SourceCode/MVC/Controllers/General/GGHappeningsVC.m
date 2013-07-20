@@ -19,7 +19,7 @@
 
 #import "GGTableViewExpandHelper.h"
 #import "GGHappeningIpadCell.h"
-#import "ODRefreshControl.h"
+//#import "ODRefreshControl.h"
 
 @interface GGHappeningsVC ()
 @property (nonatomic, strong) UITableView *tvHappenings;
@@ -29,7 +29,7 @@
 {
     BOOL                                _hasMore;
     GGTableViewExpandHelper             *_happeningTvExpandHelper;
-    ODRefreshControl                    *_refreshControl;
+    //ODRefreshControl                    *_refreshControl;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -71,9 +71,10 @@
     
     ////
 
+    [_tvHappenings refreshWithTarget:self action:@selector(_getFirstPage)];
     
-    _refreshControl = [[ODRefreshControl alloc] initInScrollView:_tvHappenings];
-    [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
+//    _refreshControl = [[ODRefreshControl alloc] initInScrollView:_tvHappenings];
+//    [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
     
     [self _getFirstPage];
     
@@ -95,7 +96,7 @@
 -(void)_getFirstPageAndShowRefresh
 {
     [self _getFirstPage];
-    [_refreshControl beginRefreshing];
+    [_tvHappenings beginRefreshing];
 }
 
 -(void)dealloc
@@ -339,7 +340,7 @@
         }
         
         [self.tvHappenings reloadData];
-        [_refreshControl endRefreshing];
+        [_tvHappenings endRefreshing];
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
         //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     };
@@ -361,7 +362,7 @@
 {
     __weak GGHappeningsVC *weakSelf = self;
     //[weakSelf.tvHappenings.pullToRefreshView stopAnimating];
-    [_refreshControl endRefreshing];
+    [_tvHappenings endRefreshing];
     [weakSelf.tvHappenings.infiniteScrollingView stopAnimating];
 }
 

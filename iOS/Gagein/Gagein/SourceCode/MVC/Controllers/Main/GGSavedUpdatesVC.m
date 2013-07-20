@@ -21,7 +21,7 @@
 #import "GGEmptyView.h"
 #import "GGCompanyUpdateIpadCell.h"
 #import "GGTableViewExpandHelper.h"
-#import "ODRefreshControl.h"
+//#import "ODRefreshControl.h"
 
 #define SWITCH_WIDTH 80
 #define SWITCH_HEIGHT 20
@@ -45,7 +45,7 @@
     GGTableViewExpandHelper             *_tvExpandHelper;
     UIImageView                         *_tvPictureView;
     
-    ODRefreshControl                    *_refreshControl;
+    //ODRefreshControl                    *_refreshControl;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -120,7 +120,7 @@
         [_updates removeAllObjects];
         [_tvUpdates reloadData];
         [self _getFirstPage];
-        [_refreshControl beginRefreshing];
+        [_tvUpdates beginRefreshing];
         //[_tvUpdates triggerPullToRefresh];
         
     }];
@@ -170,12 +170,12 @@
     
     ////
     
-    
-    _refreshControl = [[ODRefreshControl alloc] initInScrollView:_tvUpdates];
-    [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
-    
+    [_tvUpdates refreshWithTarget:self action:@selector(_getFirstPage)];
+//    _refreshControl = [[ODRefreshControl alloc] initInScrollView:_tvUpdates];
+//    [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
+//    
     [self _getFirstPage];
-    
+    [_tvUpdates beginRefreshing];
     
     // setup pull-to-refresh and infinite scrolling
     __weak GGSavedUpdatesVC *weakSelf = self;
@@ -235,7 +235,7 @@
     else if ([notification.name isEqualToString:GG_NOTIFY_LOG_IN])
     {
         [self _getFirstPage];
-        [_refreshControl beginRefreshing];
+        [_tvUpdates beginRefreshing];
         //[_tvUpdates triggerPullToRefresh];
     }
 }
@@ -303,7 +303,7 @@
         _viewEmpty.hidden = _updates.count;
         _viewEmpty.lblMessage.text = _isUnread ? EMPTY_TEXT_UNREAD : EMPTY_TEXT_ALL;
         [_tvUpdates reloadData];
-        [_refreshControl endRefreshing];
+        [_tvUpdates endRefreshing];
         //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     }];
     
@@ -314,7 +314,7 @@
 {
     __weak GGSavedUpdatesVC *weakSelf = self;
     //[weakSelf.tvUpdates.pullToRefreshView stopAnimating];
-    [_refreshControl endRefreshing];
+    [_tvUpdates endRefreshing];
     [weakSelf.tvUpdates.infiniteScrollingView stopAnimating];
     
     //_roundSwitch.btnSwitch.enabled = YES;

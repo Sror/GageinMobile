@@ -29,7 +29,9 @@
 
 #import "MMDrawerController.h"
 #import "GGLeftDrawerVC.h"
-#import "ODRefreshControl.h"
+//#import "ODRefreshControl.h"
+//#import "ISRefreshControl.h"
+
 
 @interface GGPeopleVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
@@ -54,7 +56,8 @@
     
     __weak AFHTTPRequestOperation       *_updatesRequest;
     
-    ODRefreshControl                    *_refreshControl;
+    //ODRefreshControl                    *_refreshControl;
+    //ISRefreshControl                    *_refreshControl;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -128,10 +131,18 @@
     
     
     ////
-    _refreshControl = [[ODRefreshControl alloc] initInScrollView:_updatesTV];
-    [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
+    //_refreshControl = [[ODRefreshControl alloc] initInScrollView:_updatesTV];
+    //[_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
     
-    [self _getFirstPage];
+    [_updatesTV refreshWithTarget:self action:@selector(_getFirstPage)];
+//    _refreshControl = [[ISRefreshControl alloc] init];
+//    [_updatesTV addSubview:_refreshControl];
+//    [_refreshControl addTarget:self
+//                       action:@selector(_getFirstPage)
+//             forControlEvents:UIControlEventValueChanged];
+    
+    //[self _getFirstPage];
+    
     
     // setup pull-to-refresh and infinite scrolling
     __weak GGPeopleVC *weakSelf = self;
@@ -241,7 +252,7 @@
     else if ([noteName isEqualToString:GG_NOTIFY_LOG_IN])
     {
         [self _getFirstPage];
-        [_refreshControl beginRefreshing];
+        [_updatesTV beginRefreshing];
         //[self.updatesTV triggerPullToRefresh];
     }
     else if ([noteName isEqualToString:GG_NOTIFY_MENU_REVEAL])
@@ -379,7 +390,7 @@
     [self.updatesTV reloadData];
     //[self.updatesTV triggerPullToRefresh];
     [self _getFirstPage];
-    [_refreshControl beginRefreshing];
+    [_updatesTV beginRefreshing];
 }
 
 -(void)_unselectAllMenuItem
@@ -804,7 +815,7 @@
         //[self _installEmptyView];
         [self.updatesTV reloadData];
         
-        [_refreshControl endRefreshing];
+        [_updatesTV endRefreshing];
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
         //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     };
@@ -831,7 +842,7 @@
 {
     __weak GGPeopleVC *weakSelf = self;
     //[weakSelf.updatesTV.pullToRefreshView stopAnimating];
-    [_refreshControl endRefreshing];
+    [_updatesTV endRefreshing];
     [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
 }
 

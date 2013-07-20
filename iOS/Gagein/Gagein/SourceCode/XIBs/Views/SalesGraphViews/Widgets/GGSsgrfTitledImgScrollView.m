@@ -250,7 +250,7 @@
 
     //_infoWidget.hidden = YES;
     _infoWidgets = [NSMutableArray array];
-    //self.viewScroll.pagingEnabled = YES;
+    self.viewScroll.pagingEnabled = YES;
 }
 
 -(float)scrollViewHeight

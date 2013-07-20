@@ -13,7 +13,7 @@
 #import "GGCustomBriefCell.h"
 #import "GGPerson.h"
 #import "GGPersonDetailVC.h"
-#import "ODRefreshControl.h"
+//#import "ODRefreshControl.h"
 
 @interface GGCompanyEmployeesVC ()
 @property (nonatomic, strong) UITableView *tvEmployees;
@@ -25,7 +25,7 @@
     BOOL           _hasMore;
 
     
-    ODRefreshControl                    *_refreshControl;
+    //ODRefreshControl                    *_refreshControl;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -67,12 +67,13 @@
     
     /////
 
+    [_tvEmployees refreshWithTarget:self action:@selector(_getFirstPage)];
     
-    _refreshControl = [[ODRefreshControl alloc] initInScrollView:_tvEmployees];
-    [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
+//    _refreshControl = [[ODRefreshControl alloc] initInScrollView:_tvEmployees];
+//    [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
     
     [self _getFirstPage];
-    
+    [_tvEmployees beginRefreshing];
     
 
     
@@ -93,7 +94,7 @@
 -(void)_getFirstPageAndShowRefresh
 {
     [self _getFirstPage];
-    [_refreshControl beginRefreshing];
+    [_tvEmployees beginRefreshing];
 }
 
 -(void)dealloc
@@ -198,7 +199,7 @@
         }
         
         [self.tvEmployees reloadData];
-        [_refreshControl endRefreshing];
+        [_tvEmployees endRefreshing];
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
         //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     };
@@ -211,7 +212,7 @@
 {
     __weak GGCompanyEmployeesVC *weakSelf = self;
     //[weakSelf.tvEmployees.pullToRefreshView stopAnimating];
-    [_refreshControl endRefreshing];
+    [_tvEmployees endRefreshing];
     [weakSelf.tvEmployees.infiniteScrollingView stopAnimating];
 }
 

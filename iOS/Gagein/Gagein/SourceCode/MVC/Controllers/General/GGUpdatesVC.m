@@ -18,7 +18,7 @@
 #import "GGCompanyUpdateIpadCell.h"
 
 #import "GGTableViewExpandHelper.h"
-#import "ODRefreshControl.h"
+//#import "ODRefreshControl.h"
 
 @interface GGUpdatesVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
@@ -30,7 +30,7 @@
     BOOL                                _hasMore;
     
     GGTableViewExpandHelper             *_tvExpandHelper;
-    ODRefreshControl                    *_refreshControl;
+   // ODRefreshControl                    *_refreshControl;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -83,12 +83,13 @@
 
     //[self.updatesTV triggerPullToRefresh];
     
+    [_updatesTV refreshWithTarget:self action:@selector(_getFirstPage)];
     
-    
-    _refreshControl = [[ODRefreshControl alloc] initInScrollView:_updatesTV];
-    [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
+//    _refreshControl = [[ODRefreshControl alloc] initInScrollView:_updatesTV];
+//    [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
     
     [self _getFirstPage];
+    [_updatesTV beginRefreshing];
     
     [self addScrollToHide:_updatesTV];
 }
@@ -108,7 +109,7 @@
     else if ([notification.name isEqualToString:GG_NOTIFY_LOG_IN])
     {
         [self _getFirstPage];
-        [_refreshControl beginRefreshing];
+        [_updatesTV beginRefreshing];
         //[self.updatesTV triggerPullToRefresh];
     }
 }
@@ -359,7 +360,7 @@
     
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
         //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
-        [_refreshControl endRefreshing];
+        [_updatesTV endRefreshing];
     };
     
     id op = [GGSharedAPI getCompanyUpdatesNoFilteWithCompanyID:_companyID newsID:aNewsID pageFlag:aPageFlag pageTime:aPageTime relevance:aRelevance callback:callback];
@@ -371,7 +372,7 @@
 {
     __weak GGUpdatesVC *weakSelf = self;
     //[weakSelf.updatesTV.pullToRefreshView stopAnimating];
-    [_refreshControl endRefreshing];
+    [_updatesTV endRefreshing];
     [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
 }
 

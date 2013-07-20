@@ -46,7 +46,7 @@
 #import "MMDrawerController.h"
 #import "GGLeftDrawerVC.h"
 
-#import "ODRefreshControl.h"
+//#import "ODRefreshControl.h"
 
 #define SWITCH_WIDTH 90
 #define SWITCH_HEIGHT 20
@@ -94,8 +94,8 @@
     __weak AFHTTPRequestOperation       *_companyUpdatesRequest;
     __weak AFHTTPRequestOperation       *_companyHappeningsRequest;
     
-    ODRefreshControl                    *_refreshControlUpdate;
-    ODRefreshControl                    *_refreshControlHappening;
+    //ODRefreshControl                    *_refreshControlUpdate;
+    //ODRefreshControl                    *_refreshControlHappening;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -229,12 +229,8 @@
 
     
     //////
-    _refreshControlUpdate = [[ODRefreshControl alloc] initInScrollView:_updatesTV];
-    [_refreshControlUpdate addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
-    
-    _refreshControlHappening = [[ODRefreshControl alloc] initInScrollView:_happeningsTV];
-    [_refreshControlHappening addTarget:self action:@selector(_getFirstHappeningPage) forControlEvents:UIControlEventValueChanged];
-    
+    [_updatesTV refreshWithTarget:self action:@selector(_getFirstPage)];
+    [_happeningsTV refreshWithTarget:self action:@selector(_getFirstHappeningPage)];
     
     // setup pull-to-refresh and infinite scrolling
     __weak GGCompaniesVC *weakSelf = self;
@@ -700,13 +696,13 @@
     [self.updates removeAllObjects];
     [self.updatesTV reloadData];
     [self _getFirstPage];
-    [_refreshControlUpdate beginRefreshing];
+    [_updatesTV beginRefreshing];
     
     
     [self.happenings removeAllObjects];
     [self.happeningsTV reloadData];
     [self _getFirstHappeningPage];
-    [_refreshControlHappening beginRefreshing];
+    [_happeningsTV beginRefreshing];
     //[self.happeningsTV triggerPullToRefresh];
     
     //_btnSwitchUpdate.hidden = (_menuType == kGGMenuTypeAgent);
@@ -1477,7 +1473,7 @@
         
         [self.updatesTV reloadData];
         
-        [_refreshControlUpdate endRefreshing];
+        [_updatesTV endRefreshing];
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
         //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     };
@@ -1581,7 +1577,7 @@
         
         [self.happeningsTV reloadData];
         
-        [_refreshControlHappening endRefreshing];
+        [_happeningsTV endRefreshing];
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
         //[self performSelector:@selector(_delayedStopHappeningAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     };
@@ -1602,7 +1598,7 @@
 -(void)_delayedStopAnimating
 {
     //[self _delayedStopRefreshAnimating];
-    [_refreshControlUpdate endRefreshing];
+    [_updatesTV endRefreshing];
     [self _delayedStopInfiniteAnimating];
 }
 
@@ -1622,7 +1618,7 @@
 {
     __weak GGCompaniesVC *weakSelf = self;
     //[weakSelf.happeningsTV.pullToRefreshView stopAnimating];
-    [_refreshControlHappening endRefreshing];
+    [_happeningsTV endRefreshing];
     [weakSelf.happeningsTV.infiniteScrollingView stopAnimating];
 }
 
