@@ -15,11 +15,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
 @property (weak, nonatomic) IBOutlet UIImageView *ivCellBg;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogo;
+@property (weak, nonatomic) IBOutlet UIView *viewContent;
 
 @property (assign, nonatomic)  BOOL         hasBeenRead;
 
-+(float)HEIGHT;
+//+(float)HEIGHT;
 
 -(void)applyCircleLogo;
+
+-(void)doLayout;
+
++(float)heightWithHappening:(GGHappening *)aHappening;
 
 @end

@@ -523,14 +523,17 @@
 {
     if (tableView == _updatesTV)
     {
-//        if (indexPath.row == 0)
-//        {
-//            [_happeningTvExpandHelper resetCellHeights];
-//        }
+        //GGCompanyHappeningCell
         
-        float height = ISIPADDEVICE ? [self _happeningIpadCellHeightForIndexPath:indexPath] : [GGCompanyHappeningCell HEIGHT];
-        //[_happeningTvExpandHelper recordCellHeight:height];
-        return height;
+        if (ISIPADDEVICE)
+        {
+            return [self _happeningIpadCellHeightForIndexPath:indexPath];
+        }
+        else
+        {
+            GGHappening *data = _updates[indexPath.row];
+            return [GGCompanyHappeningCell heightWithHappening:data];
+        }
     }
     else if (tableView == _slideSettingView.viewTable)
     {

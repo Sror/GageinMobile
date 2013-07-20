@@ -7,6 +7,7 @@
 //
 
 #import "GGCompanyHappeningCell.h"
+#import "GGHappening.h"
 
 @implementation GGCompanyHappeningCell
 
@@ -39,10 +40,10 @@
     _lblName.textColor = GGSharedColor.grayTopText;
 }
 
-+(float)HEIGHT
-{
-    return 95.f;
-}
+//+(float)HEIGHT
+//{
+//    return 105.f;
+//}
 
 -(void)applyCircleLogo
 {
@@ -59,6 +60,35 @@
     {
         _lblDescription.textColor = GGSharedColor.black;
     }
+}
+
+#define DESC_BOTTOM_MARGIN      (5)
+#define CONTENT_BOTTOM_MARGIN       (5)
+-(void)doLayout
+{
+    [_lblDescription sizeToFitFixWidth];
+    
+    [_viewContent setHeight:CGRectGetMaxY(_lblDescription.frame) + DESC_BOTTOM_MARGIN];
+    
+    [self.contentView setHeight:CGRectGetMaxY(_viewContent.frame) + CONTENT_BOTTOM_MARGIN];
+}
+
+
+#define DESC_WIDTH_RECT     (CGRectMake(75, 23, 225, 64))
++(float)heightWithHappening:(GGHappening *)aHappening
+{    
+    if (aHappening)
+    {
+        NSString *descStr = aHappening.headLineText;
+        UIFont *font = [UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE_MEDIUM size:13.f];
+        CGSize constrainSize = CGSizeMake(DESC_WIDTH_RECT.size.width, FLT_MAX);
+        float descHeight = [descStr sizeWithFont:font constrainedToSize:constrainSize lineBreakMode:NSLineBreakByTruncatingTail].height;
+        
+        float height = DESC_WIDTH_RECT.origin.y + descHeight + DESC_BOTTOM_MARGIN + CONTENT_BOTTOM_MARGIN;
+        return height;
+    }
+    
+    return 0.f;
 }
 
 @end

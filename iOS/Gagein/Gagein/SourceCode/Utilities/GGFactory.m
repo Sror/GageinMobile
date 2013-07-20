@@ -148,6 +148,8 @@
         cell.hasBeenRead = aData.hasBeenRead;
     }
     
+    [cell doLayout];
+    
     return cell;
 }
 
