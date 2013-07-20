@@ -11,6 +11,7 @@
 #import "GGPerson.h"
 #import "GGSocialProfile.h"
 #import "GGCompany.h"
+#import "CMActionSheet.h"
 
 #define SOURCE_BTN_WIDTH    25
 #define SOURCE_BTN_HEIGHT    25
@@ -289,21 +290,33 @@
 {
     if (_data.followed)
     {
-        [GGSharedAPI unfollowPersonWithID:_data.ID callback:^(id operation, id aResultObject, NSError *anError) {
-            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            if (parser.isOK)
-            {
-                _data.followed = NO;
-                
-                [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
-                
-                [self updateFollowButton];
-            }
-            else
-            {
-                [GGAlert alertWithApiParser:parser];
-            }
+        CMActionSheet *shit = [[CMActionSheet alloc] init];
+        
+        [shit addButtonWithTitle:@"Unfollow" type:CMActionSheetButtonTypeWhite block:^{
+            
+            [GGSharedAPI unfollowPersonWithID:_data.ID callback:^(id operation, id aResultObject, NSError *anError) {
+                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                if (parser.isOK)
+                {
+                    _data.followed = NO;
+                    
+                    [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
+                    
+                    [self updateFollowButton];
+                }
+                else
+                {
+                    [GGAlert alertWithApiParser:parser];
+                }
+            }];
+            
         }];
+        
+        [shit addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:nil];
+        
+        [shit present];
+        
+        
     }
     else
     {

@@ -7,6 +7,7 @@
 //
 
 #import "GGEmptyActionView.h"
+#import "CMActionSheet.h"
 
 @implementation GGEmptyActionView
 {
@@ -66,13 +67,23 @@
 {
     if (_personFollowed)
     {
-        [GGSharedAPI unfollowPersonWithID:_personID callback:^(id operation, id aResultObject, NSError *anError) {
-            GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-            if (parser.isOK)
-            {
-                [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
-            }
+        CMActionSheet *shit = [[CMActionSheet alloc] init];
+        
+        [shit addButtonWithTitle:@"Unfollow" type:CMActionSheetButtonTypeWhite block:^{
+            
+            [GGSharedAPI unfollowPersonWithID:_personID callback:^(id operation, id aResultObject, NSError *anError) {
+                GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+                if (parser.isOK)
+                {
+                    [self postNotification:GG_NOTIFY_PERSON_FOLLOW_CHANGED];
+                }
+            }];
+            
         }];
+        
+        [shit addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:nil];
+        
+        [shit present];
     }
     else
     {
