@@ -426,6 +426,7 @@
 		EA9E00191770074E00127233 /* GGSsgrfPopPanelCompany.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9E00141770074E00127233 /* GGSsgrfPopPanelCompany.xib */; };
 		EA9E001A1770074E00127233 /* GGSsgrfPopPanelPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9E00161770074E00127233 /* GGSsgrfPopPanelPerson.m */; };
 		EA9E001B1770074E00127233 /* GGSsgrfPopPanelPerson.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9E00171770074E00127233 /* GGSsgrfPopPanelPerson.xib */; };
+		EAA026F0179B2B9B00E27F85 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA026EF179B2B9B00E27F85 /* ODRefreshControl.m */; };
 		EAA055DF17792FEC00D04463 /* GGUpdateCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA055DE17792FEB00D04463 /* GGUpdateCache.m */; };
 		EAA055E21779312F00D04463 /* GGCompetitorCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA055E11779312F00D04463 /* GGCompetitorCache.m */; };
 		EAA097D31795FF71005E65FC /* arrow_down.png in Resources */ = {isa = PBXBuildFile; fileRef = EAA097C11795FF70005E65FC /* arrow_down.png */; };
@@ -1235,6 +1236,8 @@
 		EA9EFFFD1770068100127233 /* ssgrf_btn_linkedin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_linkedin@2x.png"; sourceTree = "<group>"; };
 		EA9EFFFE1770068100127233 /* ssgrf_btn_linkedin_gdnt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_linkedin_gdnt@2x.png"; sourceTree = "<group>"; };
 		EA9EFFFF1770068100127233 /* ssgrf_btn_slideshare@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ssgrf_btn_slideshare@2x.png"; sourceTree = "<group>"; };
+		EAA026EE179B2B9B00E27F85 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
+		EAA026EF179B2B9B00E27F85 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
 		EAA055DD17792FEB00D04463 /* GGUpdateCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGUpdateCache.h; sourceTree = "<group>"; };
 		EAA055DE17792FEB00D04463 /* GGUpdateCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGUpdateCache.m; sourceTree = "<group>"; };
 		EAA055E01779312E00D04463 /* GGCompetitorCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCompetitorCache.h; sourceTree = "<group>"; };
@@ -2352,6 +2355,15 @@
 			path = ssgrf_button;
 			sourceTree = "<group>";
 		};
+		EAA026ED179B2B9A00E27F85 /* ODRefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				EAA026EE179B2B9B00E27F85 /* ODRefreshControl.h */,
+				EAA026EF179B2B9B00E27F85 /* ODRefreshControl.m */,
+			);
+			path = ODRefreshControl;
+			sourceTree = "<group>";
+		};
 		EAA097BF1795FF70005E65FC /* NavigationMenuView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2924,6 +2936,7 @@
 		EACAE0BB17094A3100E7088F /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				EAA026ED179B2B9A00E27F85 /* ODRefreshControl */,
 				EAA097BF1795FF70005E65FC /* NavigationMenuView */,
 				EA915489178E328B0005DB57 /* GGAnimatedMenu */,
 				EA945CB2177EB10C00523A2F /* MMDrawerController */,
@@ -3995,6 +4008,7 @@
 				EAA097DB1795FF71005E65FC /* SIMenuTable.m in Sources */,
 				EAA097DC1795FF71005E65FC /* SINavigationMenuView.m in Sources */,
 				EAA097DD1795FF71005E65FC /* UIColor+Extension.m in Sources */,
+				EAA026F0179B2B9B00E27F85 /* ODRefreshControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

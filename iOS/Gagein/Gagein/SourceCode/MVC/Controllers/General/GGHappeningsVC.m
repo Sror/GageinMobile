@@ -154,14 +154,17 @@
 
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (indexPath.row == 0)
-//    {
-//        [_happeningTvExpandHelper resetCellHeights];
-//    }
+    if (ISIPADDEVICE)
+    {
+        return [self _happeningIpadCellHeightForIndexPath:indexPath];
+    }
+    else
+    {
+        GGHappening *data = _happenings[indexPath.row];
+        return [GGCompanyHappeningCell heightWithHappening:data];
+    }
     
-    float height = ISIPADDEVICE ? [self _happeningIpadCellHeightForIndexPath:indexPath] : [GGCompanyHappeningCell HEIGHT];
-    //[_happeningTvExpandHelper recordCellHeight:height];
-    return height;
+    return 0.f;
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
