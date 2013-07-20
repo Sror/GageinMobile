@@ -688,6 +688,7 @@
 -(IBAction)_followingTapped:(id)sender
 {
     [self _doFollowingHideSlide:![self isIPadLandscape]];
+    GGSharedRuntimeData.isCompanyMenuFollowing = YES;
 }
 
 -(void)_doFollowingHideSlide:(BOOL)aHideSlide
@@ -720,6 +721,7 @@
     //[_btnSwitchUpdate switchOn:YES];
     
     [self _doExploringHideSlide:![self isIPadLandscape]];
+    GGSharedRuntimeData.isCompanyMenuFollowing = NO;
 }
 
 -(void)_doExploringHideSlide:(BOOL)aHideSlide
@@ -1352,29 +1354,31 @@
 #pragma mark - data handling
 -(void)_getInitData
 {
-    id op = [GGSharedAPI getMenuByType:kGGStrMenuTypeCompanies callback:^(id operation, id aResultObject, NSError *anError) {
-        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-        if (parser.isOK)
-        {
-            _menuDatas = [parser parseGetMenu:YES];
-            GGDataPage *page = _menuDatas[0];   //following
-            if (page.items.count)
-            {
-                [self _doFollowingHideSlide:NO];
-            }
-            else
-            {
-                 [self _doExploringHideSlide:NO];
-            }
-        }
-        else
-        {
-             [self _doExploringHideSlide:NO];
-        }
-        
-    }];
+    GGSharedRuntimeData.isCompanyMenuFollowing ? [self _doFollowingHideSlide:NO] : [self _doExploringHideSlide:NO];
     
-    [self registerOperation:op];
+//    id op = [GGSharedAPI getMenuByType:kGGStrMenuTypeCompanies callback:^(id operation, id aResultObject, NSError *anError) {
+//        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//        if (parser.isOK)
+//        {
+//            _menuDatas = [parser parseGetMenu:YES];
+//            GGDataPage *page = _menuDatas[0];   //following
+//            if (page.items.count)
+//            {
+//                [self _doFollowingHideSlide:NO];
+//            }
+//            else
+//            {
+//                 [self _doExploringHideSlide:NO];
+//            }
+//        }
+//        else
+//        {
+//             [self _doExploringHideSlide:NO];
+//        }
+//        
+//    }];
+//    
+//    [self registerOperation:op];
 }
 
 -(void)_callApiGetMenu

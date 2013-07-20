@@ -15,6 +15,11 @@
 #define kDefaultKeyRunedBefore @"kDefaultKeyRunedBefore"
 #define kDefaultKeyRelevance @"kDefaultKeyRelevance"
 
+#define kDefaultKeyIsCompanyMenuFollowing @"kDefaultKeyIsCompanyMenuFollowing"
+#define kDefaultKeyIsPeopleMenuFollowing @"kDefaultKeyIsPeopleMenuFollowing"
+
+#define GGDefault   ([NSUserDefaults standardUserDefaults])
+
 @implementation GGRuntimeData
 DEF_SINGLETON(GGRuntimeData)
 
@@ -33,13 +38,29 @@ DEF_SINGLETON(GGRuntimeData)
         _snTypes = [NSMutableArray array];
         
         //
-        _relevance = [[NSUserDefaults standardUserDefaults] integerForKey:kDefaultKeyRelevance];
+        _relevance = [GGDefault integerForKey:kDefaultKeyRelevance];
         if (_relevance == kGGCompanyUpdateRelevanceUnKnown)
         {
             [self setRelevance:kGGCompanyUpdateRelevanceVeryHigh];
         }
+        
+        //
+        _isCompanyMenuFollowing = [GGDefault boolForKey:kDefaultKeyIsCompanyMenuFollowing];
+        _isPeopleMenuFollowing = [GGDefault boolForKey:kDefaultKeyIsPeopleMenuFollowing];
     }
     return self;
+}
+
+-(void)setIsCompanyMenuFollowing:(BOOL)isCompanyMenuFollowing
+{
+    [GGDefault setBool:isCompanyMenuFollowing forKey:kDefaultKeyIsCompanyMenuFollowing];
+    [GGDefault synchronize];
+}
+
+-(void)setIsPeopleMenuFollowing:(BOOL)isPeopleMenuFollowing
+{
+    [GGDefault setBool:isPeopleMenuFollowing forKey:kDefaultKeyIsPeopleMenuFollowing];
+    [GGDefault synchronize];
 }
 
 -(void)setRelevance:(EGGCompanyUpdateRelevance)aRelevance
@@ -47,8 +68,8 @@ DEF_SINGLETON(GGRuntimeData)
     if (_relevance != aRelevance)
     {
         _relevance = aRelevance;
-        [[NSUserDefaults standardUserDefaults] setInteger:_relevance forKey:kDefaultKeyRelevance];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [GGDefault setInteger:_relevance forKey:kDefaultKeyRelevance];
+        [GGDefault synchronize];
     }
 }
 
@@ -79,8 +100,8 @@ DEF_SINGLETON(GGRuntimeData)
 
 -(void)saveRunedBefore
 {
-    [[NSUserDefaults standardUserDefaults] setBool:_runedBefore forKey:kDefaultKeyRunedBefore];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [GGDefault setBool:_runedBefore forKey:kDefaultKeyRunedBefore];
+    [GGDefault synchronize];
 }
 
 -(void)saveCurrentUser

@@ -304,6 +304,7 @@
 -(IBAction)_followingTapped:(id)sender
 {
     [self _doFollowingHideSlide:![self isIPadLandscape]];
+    GGSharedRuntimeData.isPeopleMenuFollowing = YES;
 }
 
 -(void)_doFollowingHideSlide:(BOOL)aHideSlide
@@ -335,6 +336,7 @@
 -(IBAction)_exploringTapped:(id)sender
 {
     [self _doExploringHideSlide:![self isIPadLandscape]];
+    GGSharedRuntimeData.isPeopleMenuFollowing = NO;
 }
 
 -(void)_doExploringHideSlide:(BOOL)aHideSlide
@@ -637,28 +639,30 @@
 #pragma mark - data handling
 -(void)_getInitData
 {
-    id op = [GGSharedAPI getMenuByType:kGGStrMenuTypePeople callback:^(id operation, id aResultObject, NSError *anError) {
-        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
-        if (parser.isOK)
-        {
-            _menuDatas = [parser parseGetMenu:NO];
-            GGDataPage *page = _menuDatas[0];   //following
-            if (page.items.count)
-            {
-                [self _doFollowingHideSlide:NO];
-            }
-            else
-            {
-                [self _doExploringHideSlide:NO];
-            }
-        }
-        else
-        {
-            [self _doExploringHideSlide:NO];
-        }
-    }];
+    GGSharedRuntimeData.isPeopleMenuFollowing ? [self _doFollowingHideSlide:NO] : [self _doExploringHideSlide:NO];
     
-    [self registerOperation:op];
+//    id op = [GGSharedAPI getMenuByType:kGGStrMenuTypePeople callback:^(id operation, id aResultObject, NSError *anError) {
+//        GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
+//        if (parser.isOK)
+//        {
+//            _menuDatas = [parser parseGetMenu:NO];
+//            GGDataPage *page = _menuDatas[0];   //following
+//            if (page.items.count)
+//            {
+//                [self _doFollowingHideSlide:NO];
+//            }
+//            else
+//            {
+//                [self _doExploringHideSlide:NO];
+//            }
+//        }
+//        else
+//        {
+//            [self _doExploringHideSlide:NO];
+//        }
+//    }];
+//    
+//    [self registerOperation:op];
 }
 
 -(void)_callApiGetMenu
