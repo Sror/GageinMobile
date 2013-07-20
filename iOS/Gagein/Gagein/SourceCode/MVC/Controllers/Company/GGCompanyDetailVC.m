@@ -557,7 +557,7 @@ typedef enum
         
         CMActionSheet *shit = [[CMActionSheet alloc] init];
         
-        [shit addButtonWithTitle:@"Unfollow" type:CMActionSheetButtonTypeWhite block:^{
+        [shit addButtonWithTitle:@"Unfollow" block:^{
             
             id op = [GGSharedAPI unfollowCompanyWithID:_companyOverview.ID callback:^(id operation, id aResultObject, NSError *anError) {
                 
@@ -580,7 +580,7 @@ typedef enum
             
         }];
         
-        [shit addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:nil];
+        [shit addCancelButton];
         
         [shit present];
         

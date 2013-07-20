@@ -23,6 +23,11 @@ typedef enum {
 @property (assign)  BOOL        isBgCustomized;
 @property (assign) CGSize       buttonSize;
 
+
+-(UIButton *)addButtonWithTitle:(NSString *)title block:(CallbackBlock)block;
+
+-(UIButton *)addCancelButton;
+
 - (UIButton *)addButtonWithTitle:(NSString *)title type:(CMActionSheetButtonType)type block:(CallbackBlock)block;
 
 // added by daniel

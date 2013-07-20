@@ -53,6 +53,24 @@
     [super dealloc];
 }
 
+-(UIButton *)addButtonWithTitle:(NSString *)aTitle block:(CallbackBlock)block
+{
+    UIImage *bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];
+    
+    return [self addButtonWithTitle:aTitle bgImage:bgImg block:block];
+}
+
+-(UIButton *)addCancelButton
+{
+    UIImage* bgImg = [UIImage imageNamed:@"grayBtnBg"];
+    UIButton *cancelBtn = [self addButtonWithTitle:@"Cancel" bgImage:bgImg block:nil];
+    
+    [cancelBtn setTitleColor:GGSharedColor.white forState:UIControlStateNormal];
+    [cancelBtn setTitleShadowColor:GGSharedColor.black forState:UIControlStateNormal];
+    
+    return cancelBtn;
+}
+
 - (UIButton *)addButtonWithTitle:(NSString *)buttonTitle bgImage:(UIImage *)aBgImage type:(CMActionSheetButtonType)type block:(CallbackBlock)block
 {
     NSAssert(buttonTitle, @"Button title must not be nil!");
@@ -246,6 +264,10 @@
             [actionSheet addSubview:labelView];
             
             offset += size.height + 10;
+        }
+        else
+        {
+            offset += 10;
         }
         
         // Add action sheet items

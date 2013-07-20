@@ -168,13 +168,13 @@
         
         for (GGAutoLoginInfo *loginInfo in aUserInfo.autoLoginInfos)
         {
-            [actionSheet addButtonWithTitle:loginInfo.memberEmail type:CMActionSheetButtonTypeWhite block:^{
+            [actionSheet addButtonWithTitle:loginInfo.memberEmail block:^{
                 GGMember *currentUser = [GGMember memberFromLoginInfo:loginInfo];
                 [self naviWithCurrentUser:currentUser];
             }];
         }
         
-        [actionSheet addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:nil];
+        [actionSheet addCancelButton];
         [actionSheet present];
         
     }

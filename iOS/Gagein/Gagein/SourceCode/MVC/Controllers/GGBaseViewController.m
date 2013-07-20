@@ -1110,26 +1110,36 @@
     CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
     actionSheet.title = @"Signal";
     
-    UIImage *bgImg = nil;
-    
-    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];
-    [actionSheet addButtonWithTitle:@"Twitter" bgImage:bgImg block:^{
-        //DLog(@"Signal to Twitter.");
+    [actionSheet addButtonWithTitle:@"Twitter" block:^{
         [self ssGraphShowWebPage:_dataForSignal.twitterTweets];
     }];
     
-    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];
-    [actionSheet addButtonWithTitle:@"LinkedIn" bgImage:bgImg block:^{
-        //DLog(@"Signal to LinkedIn.");
+    [actionSheet addButtonWithTitle:@"LinkedIn" block:^{
         [self ssGraphShowWebPage:_dataForSignal.linkedInSignal];
     }];
     
-    bgImg = [UIImage imageNamed:@"grayBtnBg"];
-    UIButton *cancelBtn = [actionSheet addButtonWithTitle:@"Cancel" bgImage:bgImg block:^{
-        
-    }];
-    [cancelBtn setTitleColor:GGSharedColor.white forState:UIControlStateNormal];
-    [cancelBtn setTitleShadowColor:GGSharedColor.black forState:UIControlStateNormal];
+    //UIImage *bgImg = nil;
+    
+//    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];
+//    [actionSheet addButtonWithTitle:@"Twitter" bgImage:bgImg block:^{
+//        //DLog(@"Signal to Twitter.");
+//        [self ssGraphShowWebPage:_dataForSignal.twitterTweets];
+//    }];
+    
+//    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];
+//    [actionSheet addButtonWithTitle:@"LinkedIn" bgImage:bgImg block:^{
+//        //DLog(@"Signal to LinkedIn.");
+//        [self ssGraphShowWebPage:_dataForSignal.linkedInSignal];
+//    }];
+    
+    [actionSheet addCancelButton];
+    
+//    bgImg = [UIImage imageNamed:@"grayBtnBg"];
+//    UIButton *cancelBtn = [actionSheet addButtonWithTitle:@"Cancel" bgImage:bgImg block:^{
+//        
+//    }];
+//    [cancelBtn setTitleColor:GGSharedColor.white forState:UIControlStateNormal];
+//    [cancelBtn setTitleShadowColor:GGSharedColor.black forState:UIControlStateNormal];
     
     
     //    [actionSheet addSeparator];
@@ -1263,79 +1273,44 @@
     CMActionSheet *actionSheet = [[CMActionSheet alloc] init];
     actionSheet.title = @"Share";
     
-    UIImage *bgImg = nil;
+    [actionSheet addButtonWithTitle:@"Chatter" block:^{
+        aShareUpdate ? [self _shareUpdateWithType:kGGSnTypeSalesforce] : [self _shareHappeningWithType:kGGSnTypeSalesforce];
+    }];
     
-    //if ([self _hasLinkedSnType:kGGSnTypeSalesforce])
-    {
-        // lightGrayBtnBg
-        bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"chatterLongBtnBg"];
-        [actionSheet addButtonWithTitle:@"Chatter" bgImage:bgImg block:^{
-            
-            DLog(@"Shared to chatter.");
-            aShareUpdate ? [self _shareUpdateWithType:kGGSnTypeSalesforce] : [self _shareHappeningWithType:kGGSnTypeSalesforce];            
-        }];
-    }
-    
-    
-    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
-    [actionSheet addButtonWithTitle:@"LinkedIn" bgImage:bgImg block:^{
-        
+    [actionSheet addButtonWithTitle:@"LinkedIn" block:^{
         aShareUpdate ? [self _shareUpdateWithType:kGGSnTypeLinkedIn] : [self _shareHappeningWithType:kGGSnTypeLinkedIn];
-    
     }];
     
-    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"twitterLongBtnBg"];
-    [actionSheet addButtonWithTitle:@"Twitter" bgImage:bgImg block:^{
-        DLog(@"Shared to Twitter.");
-        
+    [actionSheet addButtonWithTitle:@"Twitter" block:^{
         aShareUpdate ? [self _shareUpdateWithType:kGGSnTypeTwitter] : [self _shareHappeningWithType:kGGSnTypeTwitter];
-        
     }];
     
-    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
-    [actionSheet addButtonWithTitle:@"Facebook" bgImage:bgImg block:^{
-        DLog(@"Shared to facebook.");
-        
+    [actionSheet addButtonWithTitle:@"Facebook" block:^{
         aShareUpdate ? [self _shareUpdateWithType:kGGSnTypeFacebook] : [self _shareHappeningWithType:kGGSnTypeFacebook];
-        
     }];
-    
     
     if ([GGUtils hasLinkedSnType:kGGSnTypeYammer])
     {
-        bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"chatterLongBtnBg"];
-        [actionSheet addButtonWithTitle:@"Yammer" bgImage:bgImg block:^{
-            DLog(@"Shared to Yammer.");
+        [actionSheet addButtonWithTitle:@"Yammer" block:^{
             aShareUpdate ? [self _shareUpdateWithType:kGGSnTypeYammer] : [self _shareHappeningWithType:kGGSnTypeYammer];
         }];
     }
     
     [actionSheet addSeparator];
     
-    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
-    [actionSheet addButtonWithTitle:@"Email" bgImage:bgImg block:^{
+    //bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"Email" block:^{
         aShareUpdate ? [self sendMailForUpdate] : [self sendMailForHappening];
     }];
     
-    bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
-    [actionSheet addButtonWithTitle:@"SMS" bgImage:bgImg block:^{
+    //bgImg = [UIImage imageNamed:@"lightGrayBtnBg"];//[UIImage imageNamed:@"facebookLongBtnBg"];
+    [actionSheet addButtonWithTitle:@"SMS" block:^{
         aShareUpdate ? [self sendSMSForUpdate] : [self sendSMSForHappening];
     }];
     
     [actionSheet addSeparator];
     
-    bgImg = [UIImage imageNamed:@"grayBtnBg"];
-    UIButton *cancelBtn = [actionSheet addButtonWithTitle:@"Cancel" bgImage:bgImg block:^{
-        
-    }];
-    [cancelBtn setTitleColor:GGSharedColor.white forState:UIControlStateNormal];
-    [cancelBtn setTitleShadowColor:GGSharedColor.black forState:UIControlStateNormal];
-    
-    
-    //    [actionSheet addSeparator];
-    //    [actionSheet addButtonWithTitle:@"Cancel" type:CMActionSheetButtonTypeGray block:^{
-    //        NSLog(@"Dismiss action sheet with \"Close Button\"");
-    //    }];
+    [actionSheet addCancelButton];
     
     // Present
     [actionSheet present];
