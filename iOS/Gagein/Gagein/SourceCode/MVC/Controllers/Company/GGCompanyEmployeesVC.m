@@ -13,6 +13,7 @@
 #import "GGCustomBriefCell.h"
 #import "GGPerson.h"
 #import "GGPersonDetailVC.h"
+#import "ODRefreshControl.h"
 
 @interface GGCompanyEmployeesVC ()
 @property (nonatomic, strong) UITableView *tvEmployees;
@@ -22,6 +23,9 @@
 {
     NSUInteger      _currentPageIndex;
     BOOL           _hasMore;
+
+    
+    ODRefreshControl                    *_refreshControl;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -60,18 +64,36 @@
     _tvEmployees.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _tvEmployees.showsVerticalScrollIndicator = NO;
     
+    
+    /////
+
+    
+    _refreshControl = [[ODRefreshControl alloc] initInScrollView:_tvEmployees];
+    [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
+    
+    [self _getFirstPage];
+    
+    
+
+    
     __weak GGCompanyEmployeesVC *weakSelf = self;
     
-    [self.tvEmployees addPullToRefreshWithActionHandler:^{
-        [weakSelf _getFirstPage];
-    }];
+//    [self.tvEmployees addPullToRefreshWithActionHandler:^{
+//        [weakSelf _getFirstPage];
+//    }];
     
     [self.tvEmployees addInfiniteScrollingWithActionHandler:^{
         [weakSelf _getNextPage];
     }];
     
-    [self.tvEmployees triggerPullToRefresh];
+    //[self.tvEmployees triggerPullToRefresh];
     [self addScrollToHide:_tvEmployees];
+}
+
+-(void)_getFirstPageAndShowRefresh
+{
+    [self _getFirstPage];
+    [_refreshControl beginRefreshing];
 }
 
 -(void)dealloc
@@ -91,7 +113,8 @@
     }
     else if ([notification.name isEqualToString:GG_NOTIFY_LOG_IN])
     {
-        [self.tvEmployees triggerPullToRefresh];
+        [self _getFirstPageAndShowRefresh];
+        //[self.tvEmployees triggerPullToRefresh];
     }
 }
 
@@ -175,9 +198,9 @@
         }
         
         [self.tvEmployees reloadData];
-        
+        [_refreshControl endRefreshing];
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
-        [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
+        //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     };
     
     id op = [GGSharedAPI getCompanyPeopleWithOrgID:_companyID pageNumber:_currentPageIndex callback:callback];
@@ -187,7 +210,8 @@
 -(void)_delayedStopAnimating
 {
     __weak GGCompanyEmployeesVC *weakSelf = self;
-    [weakSelf.tvEmployees.pullToRefreshView stopAnimating];
+    //[weakSelf.tvEmployees.pullToRefreshView stopAnimating];
+    [_refreshControl endRefreshing];
     [weakSelf.tvEmployees.infiniteScrollingView stopAnimating];
 }
 

@@ -19,6 +19,7 @@
 
 #import "GGTableViewExpandHelper.h"
 #import "GGHappeningIpadCell.h"
+#import "ODRefreshControl.h"
 
 @interface GGHappeningsVC ()
 @property (nonatomic, strong) UITableView *tvHappenings;
@@ -28,6 +29,7 @@
 {
     BOOL                                _hasMore;
     GGTableViewExpandHelper             *_happeningTvExpandHelper;
+    ODRefreshControl                    *_refreshControl;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -66,18 +68,34 @@
     
     _tvHappenings.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
+    
+    ////
+
+    
+    _refreshControl = [[ODRefreshControl alloc] initInScrollView:_tvHappenings];
+    [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
+    
+    [self _getFirstPage];
+    
+    
     __weak GGHappeningsVC *weakSelf = self;
     
-    [self.tvHappenings addPullToRefreshWithActionHandler:^{
-        [weakSelf _getFirstPage];
-    }];
+//    [self.tvHappenings addPullToRefreshWithActionHandler:^{
+//        [weakSelf _getFirstPage];
+//    }];
     
     [self.tvHappenings addInfiniteScrollingWithActionHandler:^{
         [weakSelf _getNextPage];
     }];
     
-    [self.tvHappenings triggerPullToRefresh];
+    //[self.tvHappenings triggerPullToRefresh];
     [self addScrollToHide:_tvHappenings];
+}
+
+-(void)_getFirstPageAndShowRefresh
+{
+    [self _getFirstPage];
+    [_refreshControl beginRefreshing];
 }
 
 -(void)dealloc
@@ -99,7 +117,8 @@
     }
     else if ([notification.name isEqualToString:GG_NOTIFY_LOG_IN])
     {
-        [self.tvHappenings triggerPullToRefresh];
+        [self _getFirstPageAndShowRefresh];
+        //[self.tvHappenings triggerPullToRefresh];
     }
 }
 
@@ -320,9 +339,9 @@
         }
         
         [self.tvHappenings reloadData];
-        
+        [_refreshControl endRefreshing];
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
-        [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
+        //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     };
     
     if (_isPersonHappenings)
@@ -341,7 +360,8 @@
 -(void)_delayedStopAnimating
 {
     __weak GGHappeningsVC *weakSelf = self;
-    [weakSelf.tvHappenings.pullToRefreshView stopAnimating];
+    //[weakSelf.tvHappenings.pullToRefreshView stopAnimating];
+    [_refreshControl endRefreshing];
     [weakSelf.tvHappenings.infiniteScrollingView stopAnimating];
 }
 

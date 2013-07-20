@@ -29,6 +29,7 @@
 
 #import "MMDrawerController.h"
 #import "GGLeftDrawerVC.h"
+#import "ODRefreshControl.h"
 
 @interface GGPeopleVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
@@ -52,6 +53,8 @@
     __weak NSTimer                      *_timerMenuUpdate;
     
     __weak AFHTTPRequestOperation       *_updatesRequest;
+    
+    ODRefreshControl                    *_refreshControl;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -102,7 +105,6 @@
     [self observeNotification:GG_NOTIFY_FUNC_ROLE_CHANGED];
     
     [super viewDidLoad];
-    self.showDropDownMenu = YES;
     
     [self _installMenuButton];
     self.naviTitle = @"Exploring";
@@ -118,18 +120,25 @@
     _updatesTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     _updatesTV.showsVerticalScrollIndicator = NO;
     
-    //[_scrollingView addPage:self.updatesTV];
     self.updatesTV.backgroundColor = GGSharedColor.silver;
     _happeningTvExpandHelper.tableView = _updatesTV;
     [self.view addSubview:self.updatesTV];
     [self addScrollToHide:_updatesTV];
     
+    
+    
+    ////
+    _refreshControl = [[ODRefreshControl alloc] initInScrollView:_updatesTV];
+    [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
+    
+    [self _getFirstPage];
+    
     // setup pull-to-refresh and infinite scrolling
     __weak GGPeopleVC *weakSelf = self;
     
-    [self.updatesTV addPullToRefreshWithActionHandler:^{
-        [weakSelf _getFirstPage];
-    }];
+//    [self.updatesTV addPullToRefreshWithActionHandler:^{
+//        [weakSelf _getFirstPage];
+//    }];
     
     [self.updatesTV addInfiniteScrollingWithActionHandler:^{
         [weakSelf _getNextPage];
@@ -231,7 +240,9 @@
     }
     else if ([noteName isEqualToString:GG_NOTIFY_LOG_IN])
     {
-        [self.updatesTV triggerPullToRefresh];
+        [self _getFirstPage];
+        [_refreshControl beginRefreshing];
+        //[self.updatesTV triggerPullToRefresh];
     }
     else if ([noteName isEqualToString:GG_NOTIFY_MENU_REVEAL])
     {
@@ -366,7 +377,9 @@
     _menuID = aMenuID;
     [self.updates removeAllObjects];
     [self.updatesTV reloadData];
-    [self.updatesTV triggerPullToRefresh];
+    //[self.updatesTV triggerPullToRefresh];
+    [self _getFirstPage];
+    [_refreshControl beginRefreshing];
 }
 
 -(void)_unselectAllMenuItem
@@ -791,8 +804,9 @@
         //[self _installEmptyView];
         [self.updatesTV reloadData];
         
+        [_refreshControl endRefreshing];
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
-        [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
+        //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     };
     
     if (_menuType == kGGMenuTypePerson)
@@ -816,7 +830,8 @@
 -(void)_delayedStopAnimating
 {
     __weak GGPeopleVC *weakSelf = self;
-    [weakSelf.updatesTV.pullToRefreshView stopAnimating];
+    //[weakSelf.updatesTV.pullToRefreshView stopAnimating];
+    [_refreshControl endRefreshing];
     [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
 }
 

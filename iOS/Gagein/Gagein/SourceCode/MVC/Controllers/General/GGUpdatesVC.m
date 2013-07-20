@@ -89,7 +89,6 @@
     [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
     
     [self _getFirstPage];
-    [_refreshControl beginRefreshing];
     
     [self addScrollToHide:_updatesTV];
 }
@@ -108,7 +107,9 @@
     }
     else if ([notification.name isEqualToString:GG_NOTIFY_LOG_IN])
     {
-        [self.updatesTV triggerPullToRefresh];
+        [self _getFirstPage];
+        [_refreshControl beginRefreshing];
+        //[self.updatesTV triggerPullToRefresh];
     }
 }
 
@@ -355,7 +356,7 @@
         }
         
         [self.updatesTV reloadData];
-        
+    
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
         //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
         [_refreshControl endRefreshing];
@@ -369,7 +370,8 @@
 -(void)_delayedStopAnimating
 {
     __weak GGUpdatesVC *weakSelf = self;
-    [weakSelf.updatesTV.pullToRefreshView stopAnimating];
+    //[weakSelf.updatesTV.pullToRefreshView stopAnimating];
+    [_refreshControl endRefreshing];
     [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
 }
 

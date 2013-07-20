@@ -21,6 +21,7 @@
 #import "GGEmptyView.h"
 #import "GGCompanyUpdateIpadCell.h"
 #import "GGTableViewExpandHelper.h"
+#import "ODRefreshControl.h"
 
 #define SWITCH_WIDTH 80
 #define SWITCH_HEIGHT 20
@@ -43,6 +44,8 @@
     
     GGTableViewExpandHelper             *_tvExpandHelper;
     UIImageView                         *_tvPictureView;
+    
+    ODRefreshControl                    *_refreshControl;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -116,7 +119,9 @@
     } completion:^(BOOL finished) {
         [_updates removeAllObjects];
         [_tvUpdates reloadData];
-        [_tvUpdates triggerPullToRefresh];
+        [self _getFirstPage];
+        [_refreshControl beginRefreshing];
+        //[_tvUpdates triggerPullToRefresh];
         
     }];
     
@@ -163,19 +168,27 @@
     _viewEmpty.frame = _tvUpdates.bounds;
     [_tvUpdates addSubview:_viewEmpty];
     
+    ////
+    
+    
+    _refreshControl = [[ODRefreshControl alloc] initInScrollView:_tvUpdates];
+    [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
+    
+    [self _getFirstPage];
+    
     
     // setup pull-to-refresh and infinite scrolling
     __weak GGSavedUpdatesVC *weakSelf = self;
     
-    [_tvUpdates addPullToRefreshWithActionHandler:^{
-        [weakSelf _getFirstPage];
-    }];
+//    [_tvUpdates addPullToRefreshWithActionHandler:^{
+//        [weakSelf _getFirstPage];
+//    }];
     
     [_tvUpdates addInfiniteScrollingWithActionHandler:^{
         [weakSelf _getNextPage];
     }];
     
-    [_tvUpdates triggerPullToRefresh];
+    //[_tvUpdates triggerPullToRefresh];
     [self addScrollToHide:_tvUpdates];
 }
 
@@ -221,7 +234,9 @@
     }
     else if ([notification.name isEqualToString:GG_NOTIFY_LOG_IN])
     {
-        [_tvUpdates triggerPullToRefresh];
+        [self _getFirstPage];
+        [_refreshControl beginRefreshing];
+        //[_tvUpdates triggerPullToRefresh];
     }
 }
 
@@ -288,8 +303,8 @@
         _viewEmpty.hidden = _updates.count;
         _viewEmpty.lblMessage.text = _isUnread ? EMPTY_TEXT_UNREAD : EMPTY_TEXT_ALL;
         [_tvUpdates reloadData];
-        
-        [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
+        [_refreshControl endRefreshing];
+        //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     }];
     
     [self registerOperation:op];
@@ -298,7 +313,8 @@
 -(void)_delayedStopAnimating
 {
     __weak GGSavedUpdatesVC *weakSelf = self;
-    [weakSelf.tvUpdates.pullToRefreshView stopAnimating];
+    //[weakSelf.tvUpdates.pullToRefreshView stopAnimating];
+    [_refreshControl endRefreshing];
     [weakSelf.tvUpdates.infiniteScrollingView stopAnimating];
     
     //_roundSwitch.btnSwitch.enabled = YES;

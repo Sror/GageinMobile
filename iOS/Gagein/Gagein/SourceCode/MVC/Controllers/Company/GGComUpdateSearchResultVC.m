@@ -18,6 +18,7 @@
 #import "GGCompanyUpdateIpadCell.h"
 
 #import "GGTableViewExpandHelper.h"
+#import "ODRefreshControl.h"
 
 @interface GGComUpdateSearchResultVC ()
 @property (nonatomic, strong) UITableView *updatesTV;
@@ -31,6 +32,9 @@
     BOOL                _hasMore;
     
     GGTableViewExpandHelper             *_tvExpandHelper;
+
+    
+    ODRefreshControl                    *_refreshControl;
 }
 
 -(void)_prevViewLoaded
@@ -63,21 +67,39 @@
     [self.view addSubview:self.updatesTV];
     self.updatesTV.backgroundColor = GGSharedColor.silver;
     
+    
+    //////
+
+    
+    _refreshControl = [[ODRefreshControl alloc] initInScrollView:_updatesTV];
+    [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
+    
+    [self _getFirstPage];
+    
+    
+        
     __weak GGComUpdateSearchResultVC *weakSelf = self;
     
-    [self.updatesTV addPullToRefreshWithActionHandler:^{
-        [weakSelf _getFirstPage];
-    }];
+//    [self.updatesTV addPullToRefreshWithActionHandler:^{
+//        [weakSelf _getFirstPage];
+//    }];
     
     [self.updatesTV addInfiniteScrollingWithActionHandler:^{
         [weakSelf _getNextPage];
     }];
     
-    [self.updatesTV triggerPullToRefresh];
+    //[self.updatesTV triggerPullToRefresh];
     
     [GGSharedRuntimeData saveKeyword:_keyword];
     [self addScrollToHide:_updatesTV];
 }
+
+-(void)_getFirstPageAndShowRefresh
+{
+    [self _getFirstPage];
+    [_refreshControl beginRefreshing];
+}
+
 
 
 -(void)viewWillAppear:(BOOL)animated
@@ -109,7 +131,8 @@
     }
     else if ([notification.name isEqualToString:GG_NOTIFY_LOG_IN])
     {
-        [self.updatesTV triggerPullToRefresh];
+        [self _getFirstPageAndShowRefresh];
+        //[self.updatesTV triggerPullToRefresh];
     }
 }
 
@@ -310,9 +333,9 @@
         }
         
         [self.updatesTV reloadData];
-        
+        [_refreshControl endRefreshing];
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
-        [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
+        //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     };
     
     id op = [GGSharedAPI searchForCompanyUpdatesWithKeyword:_keyword pageIndex:_currentPageIndex callback:callback];
@@ -322,7 +345,8 @@
 -(void)_delayedStopAnimating
 {
     __weak GGComUpdateSearchResultVC *weakSelf = self;
-    [weakSelf.updatesTV.pullToRefreshView stopAnimating];
+    //[weakSelf.updatesTV.pullToRefreshView stopAnimating];
+    [_refreshControl endRefreshing];
     [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
 }
 

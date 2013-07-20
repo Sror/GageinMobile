@@ -46,6 +46,8 @@
 #import "MMDrawerController.h"
 #import "GGLeftDrawerVC.h"
 
+#import "ODRefreshControl.h"
+
 #define SWITCH_WIDTH 90
 #define SWITCH_HEIGHT 20
 
@@ -91,6 +93,9 @@
     
     __weak AFHTTPRequestOperation       *_companyUpdatesRequest;
     __weak AFHTTPRequestOperation       *_companyHappeningsRequest;
+    
+    ODRefreshControl                    *_refreshControlUpdate;
+    ODRefreshControl                    *_refreshControlHappening;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -164,69 +169,8 @@
     
     // switch bar button
     [self _decideSwitchButtonAppearOrNot];
-    
 }
 
-//-(void)_makeSubNaviTitleVisible:(BOOL)aVisible
-//{
-//    if (aVisible)
-//    {
-//        [self.navigationController.navigationBar addSubview:[self _subNaviLabel]];
-//        [[self _subNaviLabel] centerMeHorizontally];
-//        [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:0.f forBarMetrics:UIBarMetricsDefault];
-//    }
-//    else
-//    {
-//        [[self _subNaviLabel] removeFromSuperview];
-//        [self.navigationController.navigationBar setTitleVerticalPositionAdjustment:5.f forBarMetrics:UIBarMetricsDefault];
-//    }
-//}
-//
-//-(UILabel *)_subNaviLabel
-//{
-//    static UILabel *_subNaviLabel = nil;
-//    if (_subNaviLabel == nil)
-//    {
-//        CGRect naviRc = [GGLayout navibarFrame];
-//        CGRect subNaviRc = CGRectMake(naviRc.size.width / 4, 28, naviRc.size.width / 2, 15);
-//        _subNaviLabel = [[UILabel alloc] initWithFrame:subNaviRc];
-//        _subNaviLabel.font = [UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE_LIGHT size:12.f];
-//        _subNaviLabel.textColor = GGSharedColor.white;
-//        _subNaviLabel.backgroundColor = GGSharedColor.clear;
-//        _subNaviLabel.textAlignment = NSTextAlignmentCenter;
-//        _subNaviLabel.text = _isShowingUpdate ? GGString(@"Updates") : GGString(@"Happenings");
-//    }
-//    
-//    return _subNaviLabel;
-//}
-
-//-(void)_initRoundSwitch
-//{
-//    _btnSwitchUpdate = [GGSwitchButton viewFromNibWithOwner:self];
-//    _btnSwitchUpdate.delegate = self;
-//    _btnSwitchUpdate.lblOn.text = @"Updates";
-//    _btnSwitchUpdate.lblOff.text = @"Happenings";
-//    _btnSwitchUpdate.isOn = _isShowingUpdate;
-//    
-//    [self _setSwitchUpdateRect];
-//}
-//
-//-(void)_setSwitchUpdateRect
-//{
-//    CGRect naviRc = self.navigationController.navigationBar.frame;
-//    CGRect switchRc = CGRectMake(naviRc.size.width - SWITCH_WIDTH - 5
-//                                 , (naviRc.size.height - [GGSwitchButton HEIGHT]) / 2 + 5
-//                                 , SWITCH_WIDTH
-//                                 , [GGSwitchButton HEIGHT]);
-//    _btnSwitchUpdate.frame = switchRc;
-//}
-
-//-(CGRect)_relevanceFrameHided:(BOOL)aHided
-//{
-//    CGRect relevanceRc = _relevanceBar.frame;
-//    float width = _updatesTV.frame.size.width;
-//    return aHided ? CGRectMake(0, 5 - relevanceRc.size.height, width, relevanceRc.size.height) : CGRectMake(0, 5, width, relevanceRc.size.height);
-//}
 
 - (void)viewDidLoad
 {
@@ -284,22 +228,28 @@
     _happeningsTV.frame = CGRectMake(maxUpdateTvX, _happeningsTV.frame.origin.y, _happeningsTV.frame.size.width, _happeningsTV.frame.size.height);
 
     
-    //[self.view bringSubviewToFront:_relevanceBar];
+    //////
+    _refreshControlUpdate = [[ODRefreshControl alloc] initInScrollView:_updatesTV];
+    [_refreshControlUpdate addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
+    
+    _refreshControlHappening = [[ODRefreshControl alloc] initInScrollView:_happeningsTV];
+    [_refreshControlHappening addTarget:self action:@selector(_getFirstHappeningPage) forControlEvents:UIControlEventValueChanged];
+    
     
     // setup pull-to-refresh and infinite scrolling
     __weak GGCompaniesVC *weakSelf = self;
 
-    [self.updatesTV addPullToRefreshWithActionHandler:^{
-        [weakSelf _getFirstPage];
-    }];
+//    [self.updatesTV addPullToRefreshWithActionHandler:^{
+//        [weakSelf _getFirstPage];
+//    }];
     
     [self.updatesTV addInfiniteScrollingWithActionHandler:^{
         [weakSelf _getNextPage];
     }];
     
-    [self.happeningsTV addPullToRefreshWithActionHandler:^{
-        [weakSelf _getFirstHappeningPage];
-    }];
+//    [self.happeningsTV addPullToRefreshWithActionHandler:^{
+//        [weakSelf _getFirstHappeningPage];
+//    }];
     
     [self.happeningsTV addInfiniteScrollingWithActionHandler:^{
         [weakSelf _getNextHappeningPage];
@@ -749,11 +699,15 @@
     _menuID = aMenuID;
     [self.updates removeAllObjects];
     [self.updatesTV reloadData];
-    [self.updatesTV triggerPullToRefresh];
+    [self _getFirstPage];
+    [_refreshControlUpdate beginRefreshing];
+    
     
     [self.happenings removeAllObjects];
     [self.happeningsTV reloadData];
-    [self.happeningsTV triggerPullToRefresh];
+    [self _getFirstHappeningPage];
+    [_refreshControlHappening beginRefreshing];
+    //[self.happeningsTV triggerPullToRefresh];
     
     //_btnSwitchUpdate.hidden = (_menuType == kGGMenuTypeAgent);
     [self _decideSwitchButtonAppearOrNot];
@@ -1523,8 +1477,9 @@
         
         [self.updatesTV reloadData];
         
+        [_refreshControlUpdate endRefreshing];
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
-        [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
+        //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     };
     
     //[self showLoadingHUD];
@@ -1626,8 +1581,9 @@
         
         [self.happeningsTV reloadData];
         
+        [_refreshControlHappening endRefreshing];
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
-        [self performSelector:@selector(_delayedStopHappeningAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
+        //[self performSelector:@selector(_delayedStopHappeningAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     };
     
     if (_menuType == kGGMenuTypeCompany)
@@ -1645,15 +1601,16 @@
 
 -(void)_delayedStopAnimating
 {
-    [self _delayedStopRefreshAnimating];
+    //[self _delayedStopRefreshAnimating];
+    [_refreshControlUpdate endRefreshing];
     [self _delayedStopInfiniteAnimating];
 }
 
--(void)_delayedStopRefreshAnimating
-{
-    __weak GGCompaniesVC *weakSelf = self;
-    [weakSelf.updatesTV.pullToRefreshView stopAnimating];
-}
+//-(void)_delayedStopRefreshAnimating
+//{
+//    __weak GGCompaniesVC *weakSelf = self;
+//    [weakSelf.updatesTV.pullToRefreshView stopAnimating];
+//}
 
 -(void)_delayedStopInfiniteAnimating
 {
@@ -1664,15 +1621,16 @@
 -(void)_delayedStopHappeningAnimating
 {
     __weak GGCompaniesVC *weakSelf = self;
-    [weakSelf.happeningsTV.pullToRefreshView stopAnimating];
+    //[weakSelf.happeningsTV.pullToRefreshView stopAnimating];
+    [_refreshControlHappening endRefreshing];
     [weakSelf.happeningsTV.infiniteScrollingView stopAnimating];
 }
 
--(void)_delayedStopHappeningRefreshAnimating
-{
-    __weak GGCompaniesVC *weakSelf = self;
-    [weakSelf.happeningsTV.pullToRefreshView stopAnimating];
-}
+//-(void)_delayedStopHappeningRefreshAnimating
+//{
+//    __weak GGCompaniesVC *weakSelf = self;
+//    [weakSelf.happeningsTV.pullToRefreshView stopAnimating];
+//}
 
 -(void)_delayedStopHappeningInfiniteAnimating
 {

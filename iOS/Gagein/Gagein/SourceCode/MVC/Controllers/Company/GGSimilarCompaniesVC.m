@@ -13,6 +13,7 @@
 #import "GGCustomBriefCell.h"
 #import "GGCompany.h"
 #import "GGCompanyDetailVC.h"
+#import "ODRefreshControl.h"
 
 @interface GGSimilarCompaniesVC ()
 @property (nonatomic, strong) UITableView *tvSimilarCompanies;
@@ -22,6 +23,9 @@
 {
     NSUInteger      _currentPageIndex;
     BOOL           _hasMore;
+
+    
+    ODRefreshControl                    *_refreshControl;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -60,17 +64,26 @@
     _tvSimilarCompanies.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tvSimilarCompanies.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
+    
+    ////
+
+    
+    _refreshControl = [[ODRefreshControl alloc] initInScrollView:_tvSimilarCompanies];
+    [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
+    
+    [self _getFirstPage];
+    
     __weak GGSimilarCompaniesVC *weakSelf = self;
     
-    [self.tvSimilarCompanies addPullToRefreshWithActionHandler:^{
-        [weakSelf _getFirstPage];
-    }];
+//    [self.tvSimilarCompanies addPullToRefreshWithActionHandler:^{
+//        [weakSelf _getFirstPage];
+//    }];
     
     [self.tvSimilarCompanies addInfiniteScrollingWithActionHandler:^{
         [weakSelf _getNextPage];
     }];
     
-    [self.tvSimilarCompanies triggerPullToRefresh];
+    //[self.tvSimilarCompanies triggerPullToRefresh];
     [self addScrollToHide:_tvSimilarCompanies];
 }
 
@@ -87,8 +100,15 @@
     }
     else if ([notification.name isEqualToString:GG_NOTIFY_LOG_IN])
     {
-        [self.tvSimilarCompanies triggerPullToRefresh];
+        [self _getFirstPageAndShowRefresh];
+        //[self.tvSimilarCompanies triggerPullToRefresh];
     }
+}
+
+-(void)_getFirstPageAndShowRefresh
+{
+    [self _getFirstPage];
+    [_refreshControl beginRefreshing];
 }
 
 #pragma mark - table view delegate
@@ -173,9 +193,9 @@
         }
         
         [self.tvSimilarCompanies reloadData];
-        
+        [_refreshControl endRefreshing];
         // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
-        [self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
+        //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
     };
     
     id op = [GGSharedAPI getSimilarCompaniesWithOrgID:_companyID pageNumber:_currentPageIndex callback:callback];
@@ -185,7 +205,8 @@
 -(void)_delayedStopAnimating
 {
     __weak GGSimilarCompaniesVC *weakSelf = self;
-    [weakSelf.tvSimilarCompanies.pullToRefreshView stopAnimating];
+    //[weakSelf.tvSimilarCompanies.pullToRefreshView stopAnimating];
+    [_refreshControl endRefreshing];
     [weakSelf.tvSimilarCompanies.infiniteScrollingView stopAnimating];
 }
 

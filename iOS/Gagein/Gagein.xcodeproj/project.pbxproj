@@ -32,7 +32,6 @@
 		EA0CA564170BD54000DBCD83 /* GGSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA560170BD54000DBCD83 /* GGSettingVC.m */; };
 		EA0CA567170BD57200DBCD83 /* GGWelcomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA566170BD57200DBCD83 /* GGWelcomeVC.m */; };
 		EA0CA58A170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA587170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m */; };
-		EA0CA58B170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0CA589170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m */; };
 		EA0CA58D170BF4C000DBCD83 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0CA58C170BF4C000DBCD83 /* QuartzCore.framework */; };
 		EA0E6201172617B00002F113 /* GGComOverviewAboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0E61F8172617B00002F113 /* GGComOverviewAboutCell.m */; };
 		EA0E6202172617B00002F113 /* GGComOverviewContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0E61FA172617B00002F113 /* GGComOverviewContactCell.m */; };
@@ -666,8 +665,6 @@
 		EA0CA585170BF4A700DBCD83 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
 		EA0CA586170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
 		EA0CA587170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
-		EA0CA588170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
-		EA0CA589170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		EA0CA58C170BF4C000DBCD83 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EA0E61F7172617B00002F113 /* GGComOverviewAboutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGComOverviewAboutCell.h; sourceTree = "<group>"; };
 		EA0E61F8172617B00002F113 /* GGComOverviewAboutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGComOverviewAboutCell.m; sourceTree = "<group>"; };
@@ -1684,8 +1681,6 @@
 				EA0CA585170BF4A700DBCD83 /* SVPullToRefresh.h */,
 				EA0CA586170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.h */,
 				EA0CA587170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m */,
-				EA0CA588170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.h */,
-				EA0CA589170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m */,
 			);
 			path = SVPullToRefresh;
 			sourceTree = "<group>";
@@ -3770,7 +3765,6 @@
 				EA0CA564170BD54000DBCD83 /* GGSettingVC.m in Sources */,
 				EA0CA567170BD57200DBCD83 /* GGWelcomeVC.m in Sources */,
 				EA0CA58A170BF4A700DBCD83 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
-				EA0CA58B170BF4A700DBCD83 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				EAD481F91710FFB300556288 /* GGCompanyUpdateCell.m in Sources */,
 				EAD481FE17111BB800556288 /* GGDataPage.m in Sources */,
 				EAD4820A17116F8F00556288 /* GGSlideSettingView.m in Sources */,
