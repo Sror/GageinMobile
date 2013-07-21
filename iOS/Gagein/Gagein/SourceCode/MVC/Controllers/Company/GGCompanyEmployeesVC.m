@@ -72,10 +72,7 @@
 //    _refreshControl = [[ODRefreshControl alloc] initInScrollView:_tvEmployees];
 //    [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
     
-    [self _getFirstPage];
-    [_tvEmployees beginRefreshing];
-    
-
+    [self _getFirstPageAndShowRefresh];
     
     __weak GGCompanyEmployeesVC *weakSelf = self;
     

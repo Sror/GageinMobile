@@ -76,7 +76,7 @@
 //    _refreshControl = [[ODRefreshControl alloc] initInScrollView:_tvHappenings];
 //    [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
     
-    [self _getFirstPage];
+    [self _getFirstPageAndShowRefresh];
     
     
     __weak GGHappeningsVC *weakSelf = self;

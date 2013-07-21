@@ -74,7 +74,7 @@
 //    _refreshControl = [[ODRefreshControl alloc] initInScrollView:_updatesTV];
 //    [_refreshControl addTarget:self action:@selector(_getFirstPage) forControlEvents:UIControlEventValueChanged];
     
-    [self _getFirstPage];
+    [self _getFirstPageAndShowRefresh];
     
     
         
