@@ -178,9 +178,9 @@ typedef enum
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    cell.lblTelephone.text = _overview.telephone;
+    cell.lblTelephone.text = [NSString stringWithFormat:@"(T) %@", _overview.telephone];
     cell.lblAddress.text = _overview.address;
-    cell.lblFax.text = _overview.faxNumber;
+    cell.lblFax.text = [NSString stringWithFormat:@"(F) %@", _overview.faxNumber];
     
     return cell;
 }

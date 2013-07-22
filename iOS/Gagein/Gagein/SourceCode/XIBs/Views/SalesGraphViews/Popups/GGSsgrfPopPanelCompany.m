@@ -194,10 +194,10 @@
         _lblFortuneRank.text = _data.fortuneRank;
         _lblFiscalYear.text = _data.fiscalYear;
         _lblEmail.text = _data.orgEmail;              // no email
-        _lblPhone.text = _data.telephone;
-        _lblFax.text = _data.faxNumber;
+        _lblPhone.text = [NSString stringWithFormat:@"(T) %@", _data.telephone];
+        _lblFax.text = [NSString stringWithFormat:@"(F) %@", _data.faxNumber];
         
-        _lblAddress.text = [NSString stringWithFormat:@"%@\n%@", _data.address, _data.addressCityStateCountry];
+        _lblAddress.text = [NSString stringWithFormat:@"%@,%@", _data.address, _data.addressCityStateCountry];
         [_lblAddress sizeToFitFixWidth];
         
         //
