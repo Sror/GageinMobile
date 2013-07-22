@@ -7,6 +7,7 @@
 //
 
 #import "GGComOverviewContactCell.h"
+#import "OTSCopiableLabel.h"
 
 @implementation GGComOverviewContactCell
 

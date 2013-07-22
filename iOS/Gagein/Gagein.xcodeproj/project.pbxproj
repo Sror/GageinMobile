@@ -315,6 +315,7 @@
 		EA62C6DB174C5DD80031BF42 /* SN_setting_Salesforce.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA62C6D6174C5DD70031BF42 /* SN_setting_Salesforce.txt */; };
 		EA62C6DC174C5DD80031BF42 /* SN_setting_Twitter.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA62C6D7174C5DD70031BF42 /* SN_setting_Twitter.txt */; };
 		EA62C6DD174C5DD80031BF42 /* SN_setting_Yammer.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA62C6D8174C5DD80031BF42 /* SN_setting_Yammer.txt */; };
+		EA63A3C0179DE97B00EDC3CA /* OTSCopiableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA63A3BF179DE97B00EDC3CA /* OTSCopiableLabel.m */; };
 		EA656EC4178F2B5600ADC6C4 /* triggerChartTip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA656EC3178F2B5600ADC6C4 /* triggerChartTip@2x.png */; };
 		EA7180D41715008900347EA4 /* FXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D31715008900347EA4 /* FXPageControl.m */; };
 		EA7180D917150AAF00347EA4 /* GGFollowCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7180D717150AAF00347EA4 /* GGFollowCompanyVC.m */; };
@@ -1090,6 +1091,8 @@
 		EA62C6D6174C5DD70031BF42 /* SN_setting_Salesforce.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SN_setting_Salesforce.txt; sourceTree = "<group>"; };
 		EA62C6D7174C5DD70031BF42 /* SN_setting_Twitter.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SN_setting_Twitter.txt; sourceTree = "<group>"; };
 		EA62C6D8174C5DD80031BF42 /* SN_setting_Yammer.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SN_setting_Yammer.txt; sourceTree = "<group>"; };
+		EA63A3BE179DE97A00EDC3CA /* OTSCopiableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTSCopiableLabel.h; sourceTree = "<group>"; };
+		EA63A3BF179DE97B00EDC3CA /* OTSCopiableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTSCopiableLabel.m; sourceTree = "<group>"; };
 		EA656EC3178F2B5600ADC6C4 /* triggerChartTip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "triggerChartTip@2x.png"; sourceTree = "<group>"; };
 		EA7180D21715008900347EA4 /* FXPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXPageControl.h; sourceTree = "<group>"; };
 		EA7180D31715008900347EA4 /* FXPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXPageControl.m; sourceTree = "<group>"; };
@@ -2922,6 +2925,8 @@
 		EACAE0BA17094A3100E7088F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EA63A3BE179DE97A00EDC3CA /* OTSCopiableLabel.h */,
+				EA63A3BF179DE97B00EDC3CA /* OTSCopiableLabel.m */,
 				EA96DDC3176D0F29007355DB /* Bars */,
 				EA18C2FF1742B450008A2D67 /* Cells */,
 				EAF99595173C7DF6009DA08E /* EmptyPage */,
@@ -4063,6 +4068,7 @@
 				EA1CEBE1179B4EF800CF3577 /* UITableView+ISRefreshControl.m in Sources */,
 				EA1CEBE2179B4EF800CF3577 /* UITableViewController+ISRefreshControl.m in Sources */,
 				EA1CEBE7179B4F5800CF3577 /* ISMethodSwizzling.m in Sources */,
+				EA63A3C0179DE97B00EDC3CA /* OTSCopiableLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
