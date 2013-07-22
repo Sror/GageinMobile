@@ -10,5 +10,6 @@
 
 @interface UIScrollView (OTS)
 -(void)ScrollMeToTopOnly;
+-(float)scrollableHeight;
 -(BOOL)reachBottom;
 @end

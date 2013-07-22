@@ -27,7 +27,7 @@
     
     //BOOL    _isDragging;
     
-    //BOOL    _isBouncing;
+    BOOL    _isBeyondBottom;
 }
 
 -(void)viewDidLoad
@@ -93,12 +93,18 @@
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
 {
     //_isBouncing = NO;
+    DLog(@"begin dec");
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    DLog(@"end dec");
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
     //int index = [_excludeScrolls indexOfObject:scrollView];
-    if (!ISIPADDEVICE && [_scrolls containsObject:scrollView] && scrollView.isDragging)
+    if (!ISIPADDEVICE && [_scrolls containsObject:scrollView] && scrollView.isDragging && !_isBeyondBottom)
     {
         CGPoint currentOffset = scrollView.contentOffset;
         NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
@@ -129,9 +135,13 @@
         }
     }
     
+    
+    _isBeyondBottom = scrollView.reachBottom;
+//    DLog(@"%f,%f", scrollView.scrollableHeight - scrollView.frame.size.height, scrollView.contentOffset.y);
+//    //DLog(@"inset:%@", NSStringFromUIEdgeInsets(scrollView.contentInset));
 //    if (scrollView.reachBottom)
 //    {
-//        _isBouncing = YES;
+//        DLog(@"bottom");
 //    }
 }
 

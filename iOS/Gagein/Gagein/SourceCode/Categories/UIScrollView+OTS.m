@@ -36,9 +36,19 @@
     self.scrollsToTop = YES;
 }
 
+-(float)scrollableHeight
+{
+    return self.contentSize.height + self.contentInset.bottom;
+}
+
 -(BOOL)reachBottom
 {
-    return self.contentOffset.y + self.frame.size.height >= self.contentSize.height;
+    if (self.scrollableHeight > 0 && self.contentOffset.y > 0)
+    {
+        return self.contentOffset.y + self.frame.size.height >= self.scrollableHeight;
+    }
+    
+    return NO;
 }
 
 @end
