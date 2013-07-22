@@ -277,8 +277,7 @@
     }
     else
     {
-        [self _delayedStopInfiniteAnimating];
-        //[self performSelector:@selector(_delayedStopInfiniteAnimating) withObject:nil afterDelay:.5f];
+        [_tvUpdates stopInfiniteScrollAnimating];
     }
 }
 
@@ -303,30 +302,10 @@
         _viewEmpty.hidden = _updates.count;
         _viewEmpty.lblMessage.text = _isUnread ? EMPTY_TEXT_UNREAD : EMPTY_TEXT_ALL;
         [_tvUpdates reloadData];
-        [_tvUpdates endRefreshing];
-        //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
+        [_tvUpdates stopAnimating];
     }];
     
     [self registerOperation:op];
-}
-
--(void)_delayedStopAnimating
-{
-    __weak GGSavedUpdatesVC *weakSelf = self;
-    //[weakSelf.tvUpdates.pullToRefreshView stopAnimating];
-    [_tvUpdates endRefreshing];
-    [weakSelf.tvUpdates.infiniteScrollingView stopAnimating];
-    
-    //_roundSwitch.btnSwitch.enabled = YES;
-}
-
--(void)_delayedStopInfiniteAnimating
-{
-    __weak GGSavedUpdatesVC *weakSelf = self;
-    
-    [weakSelf.tvUpdates.infiniteScrollingView stopAnimating];
-    
-    //_roundSwitch.btnSwitch.enabled = YES;
 }
 
 #pragma mark - tableView datasource

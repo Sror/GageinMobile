@@ -290,7 +290,7 @@
     }
     else
     {
-        [self _delayedStopInfiniteAnimating];
+        [_tvHappenings stopInfiniteScrollAnimating];
     }
 }
 
@@ -340,9 +340,7 @@
         }
         
         [self.tvHappenings reloadData];
-        [_tvHappenings endRefreshing];
-        // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
-        //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
+        [_tvHappenings stopAnimating];
     };
     
     if (_isPersonHappenings)
@@ -356,21 +354,6 @@
         [self registerOperation:op];
     }
     
-}
-
--(void)_delayedStopAnimating
-{
-    __weak GGHappeningsVC *weakSelf = self;
-    //[weakSelf.tvHappenings.pullToRefreshView stopAnimating];
-    [_tvHappenings endRefreshing];
-    [weakSelf.tvHappenings.infiniteScrollingView stopAnimating];
-}
-
--(void)_delayedStopInfiniteAnimating
-{
-    __weak GGHappeningsVC *weakSelf = self;
-    
-    [weakSelf.tvHappenings.infiniteScrollingView stopAnimating];
 }
 
 

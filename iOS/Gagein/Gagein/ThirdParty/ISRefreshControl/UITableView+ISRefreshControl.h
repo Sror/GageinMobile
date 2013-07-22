@@ -10,4 +10,6 @@
 -(void)beginRefreshing;
 -(void)endRefreshing;
 
+-(void)stopAnimating;
+
 @end

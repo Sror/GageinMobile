@@ -25,8 +25,9 @@
     CGPoint lastOffset;
     NSTimeInterval lastOffsetCapture;
     
-    BOOL    _isDragging;
-    //BOOL isScrollingFast;
+    //BOOL    _isDragging;
+    
+    //BOOL    _isBouncing;
 }
 
 -(void)viewDidLoad
@@ -76,7 +77,7 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     
     //DLog(@"start drag");
-    _isDragging = YES;
+    //_isDragging = YES;
 //    if ([self _hasTheScrollView:scrollView])
 //    {
 //        _offsetWhenStartDragging = scrollView.contentOffset;
@@ -86,25 +87,12 @@
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     //DLog(@"end drag");
-    _isDragging = NO;
+    //_isDragging = NO;
 }
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
 {
-//    int index = [_excludeScrolls indexOfObject:scrollView];
-//    if (!ISIPADDEVICE && index == NSNotFound /*&& scrollView.contentSize.height > scrollView.frame.size.height*/)
-//    {
-//        if (_offsetWhenStartDragging.y < scrollView.contentOffset.y)
-//        {
-//            [GGUtils hideTabBar];
-//        }
-//        else
-//        {
-//            [GGUtils showTabBar];
-//        }
-//        
-//        [self adjustScrollViewFrames];
-//    }
+    //_isBouncing = NO;
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
@@ -140,7 +128,13 @@
             lastOffsetCapture = currentTime;
         }
     }
+    
+//    if (scrollView.reachBottom)
+//    {
+//        _isBouncing = YES;
+//    }
 }
+
 
 //-(void)scrollViewDidScroll:(UIScrollView *)scrollView
 //{

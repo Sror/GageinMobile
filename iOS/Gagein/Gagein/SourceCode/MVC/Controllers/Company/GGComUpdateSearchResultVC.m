@@ -333,28 +333,12 @@
         }
         
         [self.updatesTV reloadData];
-        [_updatesTV endRefreshing];
-        // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
-        //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
+        [_updatesTV stopAnimating];
+       
     };
     
     id op = [GGSharedAPI searchForCompanyUpdatesWithKeyword:_keyword pageIndex:_currentPageIndex callback:callback];
     [self registerOperation:op];
-}
-
--(void)_delayedStopAnimating
-{
-    __weak GGComUpdateSearchResultVC *weakSelf = self;
-    //[weakSelf.updatesTV.pullToRefreshView stopAnimating];
-    [_updatesTV endRefreshing];
-    [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
-}
-
--(void)_delayedStopInfiniteAnimating
-{
-    __weak GGComUpdateSearchResultVC *weakSelf = self;
-    
-    [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
 }
 
 

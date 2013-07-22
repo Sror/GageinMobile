@@ -123,9 +123,9 @@
     _updatesTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     _updatesTV.showsVerticalScrollIndicator = NO;
     
-    self.updatesTV.backgroundColor = GGSharedColor.random;
+    self.updatesTV.backgroundColor = GGSharedColor.silver;
     _updatesTV.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.view.backgroundColor = GGSharedColor.random;
+    //self.view.backgroundColor = GGSharedColor.random;
     _happeningTvExpandHelper.tableView = _updatesTV;
     [self.view addSubview:self.updatesTV];
     [self addScrollToHide:_updatesTV];
@@ -754,7 +754,7 @@
     }
     else
     {
-        [self _delayedStopInfiniteAnimating];
+        [_updatesTV stopInfiniteScrollAnimating];
     }
 }
 
@@ -817,9 +817,7 @@
         //[self _installEmptyView];
         [self.updatesTV reloadData];
         
-        [_updatesTV endRefreshing];
-        // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
-        //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
+        [_updatesTV stopAnimating];
     };
     
     if (_menuType == kGGMenuTypePerson)
@@ -838,21 +836,6 @@
 {
     _happeningTvExpandHelper.isExpanding = NO;
     [_updatesRequest cancel];
-}
-
--(void)_delayedStopAnimating
-{
-    __weak GGPeopleVC *weakSelf = self;
-    //[weakSelf.updatesTV.pullToRefreshView stopAnimating];
-    [_updatesTV endRefreshing];
-    [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
-}
-
--(void)_delayedStopInfiniteAnimating
-{
-    __weak GGPeopleVC *weakSelf = self;
-    
-    [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
 }
 
 #pragma mark - scroll view delegate

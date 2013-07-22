@@ -1,4 +1,5 @@
 #import "UITableView+ISRefreshControl.h"
+#import "UIScrollView+SVInfiniteScrolling.h"
 #import "ISMethodSwizzling.h"
 #import "ISRefreshControl.h"
 #import <objc/runtime.h>
@@ -58,6 +59,12 @@ static char ISAssociatedRefreshControlKey;
 -(void)endRefreshing
 {
     [[self refreshControl] endRefreshing];
+}
+
+-(void)stopAnimating
+{
+    [self stopInfiniteScrollAnimating];
+    [self endRefreshing];
 }
 
 @end

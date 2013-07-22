@@ -19,6 +19,8 @@
 @property (nonatomic, strong, readonly) SVInfiniteScrollingView *infiniteScrollingView;
 @property (nonatomic, assign) BOOL showsInfiniteScrolling;
 
+-(void)stopInfiniteScrollAnimating;
+
 @end
 
 

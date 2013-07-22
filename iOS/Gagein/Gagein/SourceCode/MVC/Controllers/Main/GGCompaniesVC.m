@@ -1395,7 +1395,7 @@
     }
     else
     {
-        [self _delayedStopInfiniteAnimating];
+        [_updatesTV stopInfiniteScrollAnimating];
     }
 }
 
@@ -1473,9 +1473,7 @@
         
         [self.updatesTV reloadData];
         
-        [_updatesTV endRefreshing];
-        // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
-        //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
+        [_updatesTV stopAnimating];
     };
     
     //[self showLoadingHUD];
@@ -1513,7 +1511,7 @@
     }
     else
     {
-        [self _delayedStopHappeningInfiniteAnimating];
+        [_happeningsTV stopInfiniteScrollAnimating];
     }
 }
 
@@ -1577,9 +1575,7 @@
         
         [self.happeningsTV reloadData];
         
-        [_happeningsTV endRefreshing];
-        // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
-        //[self performSelector:@selector(_delayedStopHappeningAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
+        [_happeningsTV stopAnimating];
     };
     
     if (_menuType == kGGMenuTypeCompany)
@@ -1589,49 +1585,8 @@
     }
     else if (_menuType == kGGMenuTypeAgent)
     {
-        [self performSelector:@selector(_delayedStopHappeningAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
+        [_happeningsTV stopAnimating];
     }
-}
-
-#pragma mark - stop animation
-
--(void)_delayedStopAnimating
-{
-    //[self _delayedStopRefreshAnimating];
-    [_updatesTV endRefreshing];
-    [self _delayedStopInfiniteAnimating];
-}
-
-//-(void)_delayedStopRefreshAnimating
-//{
-//    __weak GGCompaniesVC *weakSelf = self;
-//    [weakSelf.updatesTV.pullToRefreshView stopAnimating];
-//}
-
--(void)_delayedStopInfiniteAnimating
-{
-    __weak GGCompaniesVC *weakSelf = self;
-    [weakSelf.updatesTV.infiniteScrollingView stopAnimating];
-}
-
--(void)_delayedStopHappeningAnimating
-{
-    __weak GGCompaniesVC *weakSelf = self;
-    //[weakSelf.happeningsTV.pullToRefreshView stopAnimating];
-    [_happeningsTV endRefreshing];
-    [weakSelf.happeningsTV.infiniteScrollingView stopAnimating];
-}
-
-//-(void)_delayedStopHappeningRefreshAnimating
-//{
-//    __weak GGCompaniesVC *weakSelf = self;
-//    [weakSelf.happeningsTV.pullToRefreshView stopAnimating];
-//}
-
--(void)_delayedStopHappeningInfiniteAnimating
-{
-    __weak GGCompaniesVC *weakSelf = self;
-    [weakSelf.happeningsTV.infiniteScrollingView stopAnimating];
 }
 
 #pragma mark -

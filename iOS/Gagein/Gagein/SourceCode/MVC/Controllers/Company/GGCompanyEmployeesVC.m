@@ -173,7 +173,7 @@
     }
     else
     {
-        [self performSelector:@selector(_delayedStopInfiniteAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
+        [_tvEmployees stopInfiniteScrollAnimating];
     }
 }
 
@@ -196,28 +196,11 @@
         }
         
         [self.tvEmployees reloadData];
-        [_tvEmployees endRefreshing];
-        // if network response is too quick, stop animating immediatly will cause scroll view offset problem, so delay it.
-        //[self performSelector:@selector(_delayedStopAnimating) withObject:nil afterDelay:SCROLL_REFRESH_STOP_DELAY];
+        [_tvEmployees stopAnimating];
     };
     
     id op = [GGSharedAPI getCompanyPeopleWithOrgID:_companyID pageNumber:_currentPageIndex callback:callback];
     [self registerOperation:op];
-}
-
--(void)_delayedStopAnimating
-{
-    __weak GGCompanyEmployeesVC *weakSelf = self;
-    //[weakSelf.tvEmployees.pullToRefreshView stopAnimating];
-    [_tvEmployees endRefreshing];
-    [weakSelf.tvEmployees.infiniteScrollingView stopAnimating];
-}
-
--(void)_delayedStopInfiniteAnimating
-{
-    __weak GGCompanyEmployeesVC *weakSelf = self;
-    
-    [weakSelf.tvEmployees.infiniteScrollingView stopAnimating];
 }
 
 #pragma mark - orientation change
