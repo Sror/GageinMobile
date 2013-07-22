@@ -444,6 +444,10 @@ typedef enum
             [self _updateUiOverview];
             _tvDetail.hidden = NO;
         }
+        else
+        {
+            [GGAlert alertWithMessage:@"Sorry, this profile has been deleted."];
+        }
     }];
     
     [self registerOperation:op];

@@ -123,7 +123,9 @@
     _updatesTV.separatorStyle = UITableViewCellSeparatorStyleNone;
     _updatesTV.showsVerticalScrollIndicator = NO;
     
-    self.updatesTV.backgroundColor = GGSharedColor.silver;
+    self.updatesTV.backgroundColor = GGSharedColor.random;
+    _updatesTV.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.view.backgroundColor = GGSharedColor.random;
     _happeningTvExpandHelper.tableView = _updatesTV;
     [self.view addSubview:self.updatesTV];
     [self addScrollToHide:_updatesTV];
