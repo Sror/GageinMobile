@@ -40,10 +40,10 @@
     [GGSharedDelegate.tabBarController adjustOtherViewsHideBar:YES];
 }
 
-//-(void)excludeScrollView:(UIScrollView *)aScrollView
-//{
-//    [_excludeScrolls addObject:aScrollView];
-//}
+-(BOOL)canAutoHideTabbar
+{
+    return YES;
+}
 
 -(void)addScrollToHide:(UIScrollView *)aScrollView
 {

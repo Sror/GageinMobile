@@ -116,7 +116,7 @@
 //-(BOOL)needMenu;
 -(BOOL)doNeedMenu;
 -(BOOL)canHearAction;
-
+-(BOOL)canAutoHideTabbar;
 
 #pragma mark - navi or modal
 -(BOOL)isTheRootOfNaviStack;

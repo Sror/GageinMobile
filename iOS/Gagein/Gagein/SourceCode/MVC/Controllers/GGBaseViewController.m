@@ -253,8 +253,22 @@
     [self layoutUIForIPadIfNeeded];
 }
 
+-(BOOL)canAutoHideTabbar
+{
+    return NO;
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
+    if (self.canAutoHideTabbar)
+    {
+        [GGSharedDelegate.tabBarController adjustOtherViewsHideBar:YES];
+    }
+    else
+    {
+        [GGSharedDelegate.tabBarController adjustOtherViewsHideBar:GGSharedDelegate.tabBarController.isTabbarHidden];
+    }
+    
     [self _checkNeedMenuAndLayout];
     
     // custom back button
