@@ -167,7 +167,12 @@
     GGCompanyHappeningCell *cell = [tableView dequeueReusableCellWithIdentifier:updateCellId];
     
     GGTagetActionPair *action = [GGTagetActionPair pairWithTaget:self action:@selector(companyDetailAction:)];
-    cell = [GGFactory cellOfHappening:cell data:_happenings[row] dataIndex:row logoAction:action isCompanyHappening:YES];
+    
+    cell = [GGFactory cellOfHappening:cell
+                                 data:_happenings[row]
+                            dataIndex:row
+                           logoAction:action
+                   isCompanyHappening:!_isPersonHappenings];
     
     return cell;
 }

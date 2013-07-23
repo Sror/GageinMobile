@@ -143,6 +143,7 @@
         {
             [cell.ivLogo setImageWithURL:[NSURL URLWithString:aData.person.photoPath]
                         placeholderImage:GGSharedImagePool.logoDefaultPerson];
+            [cell applyCircleLogo];
         }
         
         cell.hasBeenRead = aData.hasBeenRead;
