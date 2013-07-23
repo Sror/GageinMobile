@@ -54,6 +54,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnInfo;
 
 @property (weak, nonatomic) IBOutlet UITableView *tvContent;
+@property (weak, nonatomic) IBOutlet UIView *viewBottomBar;
 
 @end
 
@@ -262,9 +263,19 @@
 //    }
     
     float realContentHeight = _comUpdateDetailCell.height; //+ tvMentionedComHeight;
+    float minContentHeight = [GGLayout pageRectWithLayoutElement:kLayoutElementStatusBar | kLayoutElementNaviBar].size.height - _viewBottomBar.frame.size.height - 10;
+    
+    if (realContentHeight < minContentHeight)
+    {
+        realContentHeight = minContentHeight;
+        [_comUpdateDetailCell setHeight:realContentHeight];
+        //_comUpdateDetailCell.backgroundColor = GGSharedColor.random;
+    }
+    
     
     CGSize contentSize = self.scrollView.contentSize;
     contentSize.height = realContentHeight + 10;
+    
     self.scrollView.contentSize = contentSize;
     self.scrollView.contentOffset = CGPointZero;
 }
@@ -289,6 +300,7 @@
     [self setBtnInfo:nil];
     [self setTvInfo:nil];
     [self setTvContent:nil];
+    [self setViewBottomBar:nil];
     [super viewDidUnload];
 }
 
