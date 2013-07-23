@@ -281,6 +281,8 @@ typedef enum
     
     if (section == kGGSectionUpdates) {
         
+        if ( _updates.count <= 0) return nil;
+        
         header.lblTitle.text = @"UPDATES";
         [header.lblAction addTarget:self action:@selector(_seeAllHappeningsAction:) forControlEvents:UIControlEventTouchUpInside];
         

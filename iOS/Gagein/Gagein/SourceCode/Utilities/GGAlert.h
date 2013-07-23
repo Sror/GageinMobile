@@ -92,13 +92,13 @@ typedef enum {
     
     // events
     , kGGMsgCodeNoEventForLessFollowedCompanies = 33001    // Empty Page Message No.4
-    , kGGMsgCodeNoEventForMoreFollowedCompanies            // Empty Page Message No.4
-    , kGGMsgCodeNoEventForTheCompany                       // Empty Page Message No.6 & No.10
-    , kGGMsgCodeNoEventForLessFollowedContacts              // Empty Page Message No.12
-    , kGGMsgCodeNoEventForMoreFollowedContacts              // Empty Page Message No.13
-    , kGGMsgCodeNoEventForTheContact                        // Empty Page Message No.14
-    , kGGMsgCodeNoEventForTheAllSelectedFunctionals         // Empty Page Message No.11
-    , kGGMsgCodeNoEventForTheFunctional                     // Empty Page Message No.??? -- no happening for a specific func area
+    , kGGMsgCodeNoEventForMoreFollowedCompanies = 33002           // Empty Page Message No.4
+    , kGGMsgCodeNoEventForTheCompany            = 33003          // Empty Page Message No.6 & No.10
+    , kGGMsgCodeNoEventForLessFollowedContacts  = 33004            // Empty Page Message No.12
+    , kGGMsgCodeNoEventForMoreFollowedContacts  = 33005            // Empty Page Message No.13
+    , kGGMsgCodeNoEventForTheContact            = 33006            // Empty Page Message No.14
+    , kGGMsgCodeNoEventForTheAllSelectedFunctionals  = 33007       // Empty Page Message No.11
+    , kGGMsgCodeNoEventForTheFunctional              = 33008       // Empty Page Message No.??? -- no happening for a specific func area
     
     // saved updates/searches
 //#warning TODO: search keywords need to be saved locally

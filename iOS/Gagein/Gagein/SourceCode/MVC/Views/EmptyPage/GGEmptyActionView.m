@@ -63,6 +63,11 @@
     [_vc enterCompanyDetailWithID:_companyID];
 }
 
+-(void)goChekingPersonProfile:(id)sender
+{
+    [_vc enterPersonDetailWithID:_personID];
+}
+
 -(void)goFollowThePerson:(id)sender
 {
     if (_personFollowed)
@@ -187,6 +192,12 @@
             }
                 break;
                 
+            case kGGMsgCodeNoEventForTheContact:
+            {
+                [_btnAction addTarget:self action:@selector(goChekingPersonProfile:) forControlEvents:UIControlEventTouchUpInside];
+            }
+                break;
+                
             case kGGMsgCodePeopleNotFollowed:
             {
                 [_btnAction addTarget:self action:@selector(goFollowThePerson:) forControlEvents:UIControlEventTouchUpInside];
@@ -307,7 +318,9 @@
             
         case kGGMsgCodeNoEventForTheContact:
         {
-            _lblSimpleMessage.text = GGString(@"No updates found for this person as of this new feature launch in July 2013.");
+            [self _showTitle:nil
+                     message:GGString(@"No updates found for this person as of this new feature launch in July 2013.")
+                 actionTitle:GGString(@"Check out profile")];
         }
             break;
             
