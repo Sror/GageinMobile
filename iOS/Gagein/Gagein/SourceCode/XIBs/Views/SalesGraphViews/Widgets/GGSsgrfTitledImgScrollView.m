@@ -17,8 +17,8 @@
 
 //#define IMAGE_GAP   5
 
-#define IMAGE_SIZE_WIDTH    31
-#define IMAGE_SIZE_HEIGHT   31
+#define IMAGE_SIZE_WIDTH    40
+#define IMAGE_SIZE_HEIGHT   40
 
 
 
@@ -41,7 +41,7 @@
 
 -(void)_doInit
 {
-    _gap = 10.f;
+    _gap = 13.f;
     
     CGSize thisSize = self.bounds.size;
     _imageButtons = [NSMutableArray array];
@@ -63,6 +63,7 @@
     _viewScroll.showsHorizontalScrollIndicator = NO;
     _viewScroll.alwaysBounceHorizontal = YES;
     _viewScroll.delegate = self;
+    _viewScroll.pagingEnabled = YES;
     
     //_viewScroll.backgroundColor = GGSharedColor.random;
     [self addSubview:_viewScroll];
@@ -126,7 +127,7 @@
     {
         GGSsgrfRndImgButton *lastBtn = _imageButtons.lastObject;
         float btnY = ([self scrollViewHeight] - [self imageSize].height) / 2;
-        float offsetX = lastBtn ? (CGRectGetMaxX(lastBtn.frame) + _gap) : 0;
+        float offsetX = lastBtn ? (CGRectGetMaxX(lastBtn.frame) + _gap) : _gap / 2;
         
         for (int i = buttonCount; i < imageCount; i++)
         {
@@ -146,7 +147,7 @@
             offsetX = CGRectGetMaxX(button.frame) + _gap;
         }
         
-        [self _setContentWidth:offsetX - _gap];
+        [self _setContentWidth:offsetX - _gap / 2];
         DLog(@"%@", NSStringFromCGPoint(_viewScroll.contentOffset));
     }
 }
@@ -154,7 +155,7 @@
 
 -(void)reArrangeImagePos
 {
-    [self _reArrangeImagePosWithOffsetX:0];
+    [self _reArrangeImagePosWithOffsetX:_gap / 2];
     float contentWidth = _viewScroll.contentSize.width;
     float scrollWidth = _viewScroll.frame.size.width;
     if (contentWidth < scrollWidth)
@@ -174,7 +175,7 @@
         aOffsetX = CGRectGetMaxX(btn.frame) + _gap;
     }
     
-    [self _setContentWidth:aOffsetX - _gap];
+    [self _setContentWidth:aOffsetX - _gap / 2];
     
 }
 
@@ -311,6 +312,7 @@
                 infoWidget.frame = CGRectOffset(infoWidget.frame, adjustionX, 0);
             }
             
+            [self _setContentWidth:self.viewScroll.frame.size.width];
         }
     }
 }
@@ -639,6 +641,11 @@
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     //[self hideInfoWidget];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    DLog(@"offset:%@", NSStringFromCGPoint(scrollView.contentOffset));
 }
 
 
