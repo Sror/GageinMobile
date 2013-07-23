@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblSource;
 @property (weak, nonatomic) IBOutlet UILabel *lblInterval;
 @property (weak, nonatomic) IBOutlet UILabel *lblHeadLine;
+@property (weak, nonatomic) IBOutlet UIImageView *ivContentBg;
 
-+(float)HEIGHT;
+//+(float)HEIGHT;
+-(void)doLayout;
++(float)heightWithHeadLine:(NSString *)aHeadLine;
 @end

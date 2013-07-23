@@ -205,7 +205,8 @@ typedef enum
         
         cell.lblSource.text = data.fromSource;
         cell.lblInterval.text = [data intervalStringWithDate:data.date];//@"1d ago";
-        cell.lblHeadLine.text = data.headline;
+        cell.lblHeadLine.text = data.headlineTruncated;
+        [cell doLayout];
         
         return cell;
         
@@ -222,6 +223,7 @@ typedef enum
         cell.lblSource.text = data.sourceText;
         cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
         cell.lblHeadLine.text = data.headLineText;
+        [cell doLayout];
         
         return cell;
         
@@ -340,6 +342,7 @@ typedef enum
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    int row = indexPath.row;
     int section = indexPath.section;
     
     if (section == kGGSectionOverview) {
@@ -348,11 +351,14 @@ typedef enum
         
     } else if (section == kGGSectionUpdates) {
         
-        return [GGCompanyDetailUpdateCell HEIGHT];
+        //return [GGCompanyDetailUpdateCell HEIGHT];
+        GGCompanyUpdate *data = _updates[row];
+        return [GGCompanyDetailUpdateCell heightWithHeadLine:data.headlineTruncated];
         
     } else if (section == kGGSectionHappenings) {
         
-        return [GGCompanyDetailUpdateCell HEIGHT];
+        GGHappening *data = _happenings[row];
+        return [GGCompanyDetailUpdateCell heightWithHeadLine:data.headLineText];
         
     } else if (section == kGGSectionEmployees) {
     

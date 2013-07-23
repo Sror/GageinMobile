@@ -158,6 +158,7 @@ typedef enum
         cell.lblSource.text = data.sourceText;
         cell.lblInterval.text = [data intervalStringWithDate:data.timestamp];
         cell.lblHeadLine.text = data.headLineText;
+        [cell doLayout];
         
         return cell;
         
@@ -236,11 +237,14 @@ typedef enum
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    int row = indexPath.row;
     int section = indexPath.section;
     
     if (section == kGGSectionUpdates) {
         
-        return [GGCompanyDetailUpdateCell HEIGHT];
+        //return [GGCompanyDetailUpdateCell HEIGHT];
+        GGHappening *data = _updates[row];
+        return [GGCompanyDetailUpdateCell heightWithHeadLine:data.headLineText];
         
     }
     else if (section == kGGSectionPrevCompanies) {
