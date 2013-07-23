@@ -116,6 +116,11 @@
     return self.ID > 0 && self.orgID <= 0;
 }
 
+-(BOOL)isPublic
+{
+    return [_ownership.lowercaseString isEqualToString:@"public"];
+}
+
 @end
 
 //////////////////////////////////////////////

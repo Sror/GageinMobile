@@ -21,4 +21,6 @@
 
 -(void)setTextViewText:(NSString *)aText;
 
++(float)heightWithContent:(NSString *)aContent;
+
 @end

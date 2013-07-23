@@ -322,7 +322,7 @@ typedef enum
     
     if (section == kGGSectionAbout) {
         
-        float height = [self _tvCellAbout].height;
+        float height = [GGComOverviewAboutCell heightWithContent:_overview.description];//[self _tvCellAbout].height;
         return height;
         
     } else if (section == kGGSectionProfile) {
@@ -356,6 +356,8 @@ typedef enum
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == kGGSectionAbout) {
+        
+        return [GGCompanyDetailHeaderView HEIGHT];
         
     } else if (section == kGGSectionProfile) {
         return 0.f;

@@ -33,6 +33,7 @@
 -(void)awakeFromNib
 {
     self.ivCellBg.image = GGSharedImagePool.stretchShadowBgWite;
+    [_lblContent setWidth:[GGComOverviewAboutCell _labelWidth]];
 }
 
 //+(float)HEIGHT
@@ -47,38 +48,40 @@
 //    return contentHeight + 20;
 }
 
+#define CONTENT_MARGIN_X        (10.f)
+#define CONTENT_MARGIN_Y        (5.f)
+#define CONTENT_PADDING_Y       (10.f)
+#define LABEL_MARGIN_X          (15.f)
+#define LABEL_MARGIN_Y          (10.f)
+
++(float)_labelWidth
+{
+    float cellWidth = ISIPADDEVICE ? IPAD_CONTENT_WIDTH : 320;
+    return cellWidth - (LABEL_MARGIN_X + CONTENT_MARGIN_X) * 2;
+}
+
 -(void)setTextViewText:(NSString *)aText
 {
     _lblContent.text = aText;
     //_lblContent.backgroundColor = GGSharedColor.random;
     [_lblContent sizeToFitFixWidth];
     
-    [_viewContent setHeight:CGRectGetMaxY(_lblContent.frame) + 10];
+    [_viewContent setHeight:CGRectGetMaxY(_lblContent.frame) + CONTENT_PADDING_Y];
     
-    [self setHeight:CGRectGetMaxY(_viewContent.frame) + 5];
-    
-//    _textView.text = aText;
-//    
-//    if (ISIPADDEVICE && aText.length)
-//    {
-//        CGSize tightContentSize = [aText sizeWithFont:_textView.font constrainedToSize:CGSizeMake(_textView.bounds.size.width, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-//        
-//        // i Dont know why, but for ipad need to devide by 2...Daniel Dong
-//        tightContentSize.height /= 2;
-//        tightContentSize.height = MAX(tightContentSize.height, 40);
-//        
-//        [_textView setContentSize:tightContentSize];
-//    }
+    [self setHeight:CGRectGetMaxY(_viewContent.frame) + CONTENT_MARGIN_Y];
 }
 
-
-//-(void)adjustLayout
-//{
-//    float height = self.textView.contentSize.height;
-//    DLog(@"%f", height);
-////    self.textView.frame = [GGUtils setH:height rect:self.textView.frame];
-////    self.viewContent.frame = CGRectMake(self.viewContent.frame.origin.x, self.viewContent.frame.origin.y, self.textView.frame.size.width, self.textView.frame.size.height);
-//    self.frame = CGRectMake(0, 0, 320, [self height] + 20);
-//}
++(float)heightWithContent:(NSString *)aContent
+{
+    if (aContent.length)
+    {
+        UIFont *font = [UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE_LIGHT size:14.f];
+        CGSize constraintSize = [aContent sizeWithFont:font constrainedToSize:CGSizeMake([self _labelWidth], FLT_MAX) lineBreakMode:UILineBreakModeTailTruncation];
+        
+        return constraintSize.height + (CONTENT_MARGIN_Y + LABEL_MARGIN_Y) * 2;
+    }
+    
+    return 0.f;
+}
 
 @end

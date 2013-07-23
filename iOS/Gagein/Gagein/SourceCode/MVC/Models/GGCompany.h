@@ -56,6 +56,7 @@
 -(EGGCompanyGrade)getGrade;
 
 -(BOOL)hasBeenRemoved;
+-(BOOL)isPublic;
 
 @end
 
