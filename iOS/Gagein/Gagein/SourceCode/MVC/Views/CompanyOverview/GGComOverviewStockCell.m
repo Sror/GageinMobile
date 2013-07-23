@@ -36,4 +36,20 @@
     return self.frame.size.height;
 }
 
+#define CONTENT_MARGIN_X        10
+#define CONTENT_MARGIN_Y        5
+#define CONTENT_PADDING_Y       0
+-(void)doLayoutIsPublic:(BOOL)aIsPublic
+{
+    _lblStockChange.hidden = _lblStockSymbol.hidden = _btnStock.hidden
+    = _lblStockChangeCap.hidden = _lblStockSymbolCap.hidden = !aIsPublic;
+    float contentHeight = [GGComOverviewStockCell heightIsPublic:aIsPublic] - CONTENT_MARGIN_Y * 2;
+    [_viewContent setHeight:contentHeight];
+}
+
++(float)heightIsPublic:(BOOL)aIsPublic
+{
+    return aIsPublic ? 100 : 50;
+}
+
 @end

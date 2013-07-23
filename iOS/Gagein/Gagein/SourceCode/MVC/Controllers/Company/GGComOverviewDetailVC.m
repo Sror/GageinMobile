@@ -56,6 +56,10 @@ typedef enum
 {
     [super viewDidLoad];
     self.naviTitle = @"Overview";
+    
+//    _overview.description = @"";
+//    _overview.ownership = @"private";
+//    _overview.revenuesChartUrl = @"";
 	
     _tv = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tv.backgroundColor = GGSharedColor.silver;
@@ -150,6 +154,7 @@ typedef enum
         }
         
         [cell.btnStock addTarget:self action:@selector(_seeStockAction:) forControlEvents:UIControlEventTouchUpInside];
+        [cell doLayoutIsPublic:_overview.isPublic];
     }
     
     return cell;
@@ -222,7 +227,9 @@ typedef enum
     
     if (section == kGGSectionAbout) {
         
-        return [self _tvCellAbout];
+        GGComOverviewAboutCell * cell = [self _tvCellAbout];
+        cell.hidden = (_overview.description.length <= 0);
+        return cell;
         
     } else if (section == kGGSectionProfile) {
         
@@ -322,8 +329,13 @@ typedef enum
     
     if (section == kGGSectionAbout) {
         
-        float height = [GGComOverviewAboutCell heightWithContent:_overview.description];//[self _tvCellAbout].height;
-        return height;
+        if (_overview.description.length)
+        {
+            float height = [GGComOverviewAboutCell heightWithContent:_overview.description];//[self _tvCellAbout].height;
+            return height;
+        }
+        
+        return 0.f;
         
     } else if (section == kGGSectionProfile) {
         
@@ -331,11 +343,17 @@ typedef enum
         
     } else if (section == kGGSectionStock) {
         
-        return [self _tvCellStock].height;
+        //return [self _tvCellStock].height;
+        return [GGComOverviewStockCell heightIsPublic:_overview.isPublic];
         
     } else if (section == kGGSectionRevenues) {
         
-        return [self _tvCellRevernues].height;
+        if (_overview.revenuesChartUrl.length)
+        {
+            return [self _tvCellRevernues].height;
+        }
+        
+        return 0.f;
         
     } else if (section == kGGSectionSubsidaries) {
         
@@ -365,6 +383,11 @@ typedef enum
         return 0.f;
     } else if (section == kGGSectionRevenues) {
         
+        if (_overview.revenuesChartUrl.length <= 0)
+        {
+            return 0.f;
+        }
+        
     } else if (section == kGGSectionSubsidaries && _overview.subsidiaries.count <= 0) {
         return 0.f;
     } else if (section == kGGSectionDivisions && _overview.divisions.count <= 0) {
@@ -388,7 +411,16 @@ typedef enum
     } else if (section == kGGSectionStock) {
         
     } else if (section == kGGSectionRevenues) {
-        header.lblTitle.text = @"QUARTERLY REVENUES";
+        
+        if (_overview.revenuesChartUrl.length)
+        {
+            header.lblTitle.text = @"QUARTERLY REVENUES";
+        }
+        else
+        {
+            return nil;
+        }
+        
     } else if (section == kGGSectionSubsidaries) {
         header.lblTitle.text = @"SUBSIDARIES";
     } else if (section == kGGSectionDivisions) {

@@ -15,6 +15,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblStockChange;
 @property (weak, nonatomic) IBOutlet UILabel *lblStockSymbol;
 @property (weak, nonatomic) IBOutlet UIButton *btnStock;
+@property (weak, nonatomic) IBOutlet UILabel *lblOwnershipCap;
+@property (weak, nonatomic) IBOutlet UILabel *lblStockSymbolCap;
+@property (weak, nonatomic) IBOutlet UILabel *lblStockChangeCap;
 
 -(float)height;
+-(void)doLayoutIsPublic:(BOOL)aIsPublic;
++(float)heightIsPublic:(BOOL)aIsPublic;
 @end
