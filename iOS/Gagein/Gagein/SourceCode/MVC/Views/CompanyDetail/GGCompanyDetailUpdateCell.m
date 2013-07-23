@@ -31,6 +31,11 @@
     self.viewCellBg.backgroundColor = GGSharedColor.silver;
     
     _lblSource.textColor = _lblInterval.textColor = GGSharedColor.grayTopText;
+    
+    if (ISIPADDEVICE)
+    {
+        _lblHeadLine.numberOfLines = 2;
+    }
 }
 
 #define MIN_CELL_HEIGHT     (65.f)
@@ -46,23 +51,30 @@
 #define CONTENT_BOTTOM_PADDING  (5)
 -(void)doLayout
 {
-    [_lblHeadLine sizeToFitFixWidth];
-    
-    float contentHeight = CGRectGetMaxY(_lblHeadLine.frame) + CONTENT_BOTTOM_PADDING;
-    contentHeight = MAX(MIN_CELL_HEIGHT, contentHeight);
-    [_viewContent setHeight:contentHeight];
-    
-    [self.contentView setHeight:CGRectGetMaxY(_viewContent.frame)];
-    
-    DLog(@"layout height:%f", CGRectGetMaxY(_viewContent.frame));
-    //self.viewCellBg.backgroundColor = GGSharedColor.random;
-    //_ivContentBg.hidden = YES;
+    if (!ISIPADDEVICE)
+    {
+        [_lblHeadLine sizeToFitFixWidth];
+        
+        float contentHeight = CGRectGetMaxY(_lblHeadLine.frame) + CONTENT_BOTTOM_PADDING;
+        contentHeight = MAX(MIN_CELL_HEIGHT, contentHeight);
+        [_viewContent setHeight:contentHeight];
+        
+        [self.contentView setHeight:CGRectGetMaxY(_viewContent.frame)];
+        
+        DLog(@"layout height:%f", CGRectGetMaxY(_viewContent.frame));
+        //self.viewCellBg.backgroundColor = GGSharedColor.random;
+        //_ivContentBg.hidden = YES;
+    }
+    else
+    {
+        [_lblHeadLine sizeToFit];
+    }
 }
 
 
 +(float)heightWithHeadLine:(NSString *)aHeadLine
 {
-    if (aHeadLine.length)
+    if (!ISIPADDEVICE && aHeadLine.length)
     {
         UIFont *font = [UIFont fontWithName:GG_FONT_NAME_HELVETICA_NEUE size:14.f];
         CGSize constraintSize = CGSizeMake(HEADLINE_WIDTH, FLT_MAX);
@@ -75,7 +87,7 @@
         return height;
     }
     
-    return 0.f;
+    return MIN_CELL_HEIGHT;
 }
 
 @end

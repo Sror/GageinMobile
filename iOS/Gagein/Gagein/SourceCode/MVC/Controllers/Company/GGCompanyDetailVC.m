@@ -205,7 +205,7 @@ typedef enum
         
         cell.lblSource.text = data.fromSource;
         cell.lblInterval.text = [data intervalStringWithDate:data.date];//@"1d ago";
-        cell.lblHeadLine.text = data.headlineTruncated;
+        cell.lblHeadLine.text = ISIPADDEVICE ? data.headline : data.headlineTruncated;
         [cell doLayout];
         
         return cell;
