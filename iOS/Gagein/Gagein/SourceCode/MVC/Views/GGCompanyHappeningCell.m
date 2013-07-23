@@ -89,7 +89,7 @@
         
         float contentHeight = DESC_WIDTH_RECT.origin.y + descHeight + DESC_BOTTOM_MARGIN;
         contentHeight = MAX(MIN_CONTENT_HEIGHT, contentHeight);
-        float height = contentHeight + CONTENT_BOTTOM_MARGIN;
+        float height = contentHeight + CONTENT_BOTTOM_MARGIN * 2;
         return height;
     }
     
