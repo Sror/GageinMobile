@@ -438,10 +438,10 @@ typedef enum
         {
             _personOverview = [parser parseGetPersonOverview];
             
-            DLog(@"%@", _personOverview.prevCompanies);
-            for (GGCompany *company in _personOverview.prevCompanies) {
-                DLog(@"%@", company);
-            }
+//            DLog(@"%@", _personOverview.prevCompanies);
+//            for (GGCompany *company in _personOverview.prevCompanies) {
+//                DLog(@"%@", company);
+//            }
             
             [self _updateUiOverview];
             _tvDetail.hidden = NO;

@@ -75,6 +75,8 @@
     BOOL                    _isTabbarHiddenWhenLoaded;
     
     NSMutableArray          *_selectableAgents;
+    
+    __weak AFHTTPRequestOperation       *_updateDetailRequest;
 }
 
 
@@ -125,7 +127,7 @@
     self.viewContent.backgroundColor = GGSharedColor.silver;
     self.scrollView.alwaysBounceVertical = YES;
     self.scrollView.backgroundColor = GGSharedColor.silver;
-
+    _scrollView.showsVerticalScrollIndicator = YES;
     _webviewSignal.hidden = YES;
     
     
@@ -888,9 +890,18 @@
     //_isShowingLinkedIn = _isShowingTwitter = NO;
     _companyUpdateDetail = nil;
     GGCompanyUpdate *updateData = [self.updates objectAtIndex:_updateIndex];
+    
+    [_updateDetailRequest cancel];
     [self showLoadingHUD];
-    id op = [GGSharedAPI getCompanyUpdateDetailWithNewsID:updateData.ID callback:^(id operation, id aResultObject, NSError *anError) {
-        [self hideLoadingHUD];
+    
+    _updateDetailRequest = [GGSharedAPI getCompanyUpdateDetailWithNewsID:updateData.ID callback:^(id operation, id aResultObject, NSError *anError) {
+        
+        AFHTTPRequestOperation * theOperation = operation;
+        if (!theOperation.isCancelled)
+        {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        }
+        
         GGApiParser *parser = [GGApiParser parserWithApiData:aResultObject];
         if (parser.isOK)
         {
@@ -913,7 +924,7 @@
         
     }];
     
-    [self registerOperation:op];
+    [self registerOperation:_updateDetailRequest];
 }
 
 -(void)_callApiGetSnList
